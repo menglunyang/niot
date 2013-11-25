@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="niot"
+  id="myeclipse.1383494233570"
+  context-root="/niot"
+  j2ee-spec="5.0"
+  archive="niot.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
