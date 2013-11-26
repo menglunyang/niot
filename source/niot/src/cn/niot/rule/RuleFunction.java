@@ -1,5 +1,7 @@
 package cn.niot.rule;
 
+import cn.niot.dao.RecoDao;
+
 public class RuleFunction {
 	
 	static String ERR = "ERR";
@@ -17,7 +19,7 @@ public class RuleFunction {
 		index[1] = 1;
 		index[2] = 2;
 		index[3] = 3;
-		System.out.println(MonthDate(IDstr, 4, index, 4));
+		System.out.println(First4CharsofAdminDivision(IDstr, 4, index, 4));
 		}
 	
 	
@@ -60,7 +62,7 @@ public class RuleFunction {
 	//IDstr: ID string 
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
-	//		 Index[0] is the the index of mainclass code whose values can be int 1, 2, 3, 4, 9
+	//		 Index[0] is  the index of mainclass code whose values can be int 1, 2, 3, 4, 9
 	//		 Index[1] and Index[2] are the index of subclass codes
 	//LenIndex: the number of indexes that must be 3
 	public static String CigaSubClassCode(char [] IDstr, int LenID, int [] Index, int LenIndex) {
@@ -180,7 +182,7 @@ public class RuleFunction {
 	//LenIndex: the number of indexes that must be 2
 	public static String CigaOrgCode(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
-			if(LenIndex != 1){
+			if(LenIndex != 2){
 				return ERR;
 			}
 			if(IDstr[Index[0]] == '1'){
@@ -202,4 +204,31 @@ public class RuleFunction {
 		}
 	}
 	
+	//Function: There are all together 6 chars of administrative division code. This method is to used to
+	//get the first 4 chars of division code. 
+	//IDstr: ID string, the first 4 chars of administrative division code. 
+	//LenID: the number of characters in the ID string 
+	//Index: the list of corresponding indexes regarding to this algorithm
+	//LenIndex: the number of indexes that must be 4
+	public static String First4CharsofAdminDivision(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String id = "";
+			String append = "00";
+			if(LenIndex != 4){
+				return ERR;
+			}
+			RecoDao recoDao = new RecoDao();
+			for(int i = 0; i < LenIndex; i++){
+				id = id.concat(String.valueOf(IDstr[i]));
+			}
+			id = id.concat(append);
+			boolean ret  = recoDao.getAdminDivisionID(id);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
 }

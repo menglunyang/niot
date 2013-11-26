@@ -3,6 +3,7 @@ package cn.niot.controller;
 import com.opensymphony.xwork2.ActionSupport;
 
 import cn.niot.dao.*;
+import cn.niot.rule.RuleFunction;
 
 public class RecoAction extends ActionSupport {
 	/**
@@ -32,10 +33,21 @@ public class RecoAction extends ActionSupport {
 			Msg = "                   "+ iotID + " is not ID type A";     // 逻辑运算
 		}
 		
-		RecoDao recodao = RecoDao.getRecoDao();
-		recodao.getIoTID("1");
+//		RecoDao recodao = RecoDao.getRecoDao();
+//		recodao.getAdminDivisionID("110114");
 		
-	
+		char [] IDstr = new char[4];
+		IDstr[0] = '1';
+		IDstr[1] = '1';
+		IDstr[2] = '0';
+		IDstr[3] = '1';
+		int [] index = new int[4];
+		index[0] = 0;
+		index[1] = 1;
+		index[2] = 2;
+		index[3] = 3;
+		System.out.println(RuleFunction.First4CharsofAdminDivision(IDstr, 4, index, 4));
+		
 		return "sucess"; //预定义常量
 	} 
 
