@@ -19,7 +19,7 @@ public class RuleFunction {
 		index[1] = 1;
 		index[2] = 2;
 		index[3] = 3;
-		System.out.println(First4CharsofAdminDivision(IDstr, 4, index, 4));
+		System.out.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 		}
 	
 	
@@ -58,7 +58,7 @@ public class RuleFunction {
 		
 	}
 	
-	//Function: decide the cigarette subclass code according to diferrent mainclass code 
+	//Function: decide the cigarette subclass code according to different mainclass code 
 	//IDstr: ID string 
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
@@ -204,18 +204,42 @@ public class RuleFunction {
 		}
 	}
 	
+	//Function: Cigarette department or subordinate department code. There are totally 2 characters.
+	//IDstr: ID string. Code range is 00-97.
+	//LenID: the number of characters in the ID string 
+	//Index: the list of corresponding indexes regarding to this algorithm
+	//LenIndex: the number of indexes that must be 2
+	public static String CigaDepCode(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			if(LenIndex != 2){
+				return ERR;
+			}
+			int depCode = Integer.parseInt(String.valueOf(IDstr[Index[0]])) * 10 + Integer.parseInt(String.valueOf(IDstr[Index[1]]));
+			if(depCode >= 0 && depCode <= 97){
+				return OK;
+			}else{
+				return ERR;
+			}
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
 	//Function: There are all together 6 chars of administrative division code. This method is to used to
-	//get the first 4 chars of division code. 
+	//connect to the database and get the first 4 chars of division code. 
 	//IDstr: ID string, the first 4 chars of administrative division code. 
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
 	//LenIndex: the number of indexes that must be 4
-	public static String First4CharsofAdminDivision(char [] IDstr, int LenID, int [] Index, int LenIndex){
+	public static String First4CharsofAdminDivisionforCiga(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			String id = "";
 			String append = "00";
 			if(LenIndex != 4){
 				return ERR;
+			}
+			if(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '0'){
+				return OK;
 			}
 			RecoDao recoDao = new RecoDao();
 			for(int i = 0; i < LenIndex; i++){

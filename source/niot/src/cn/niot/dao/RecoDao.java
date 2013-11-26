@@ -58,7 +58,6 @@ public class RecoDao {
 			if(1 == rowcount){
 				ret =  true;
 			}
-			System.out.println(rowcount);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

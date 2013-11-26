@@ -46,7 +46,7 @@ public class RecoAction extends ActionSupport {
 		index[1] = 1;
 		index[2] = 2;
 		index[3] = 3;
-		System.out.println(RuleFunction.First4CharsofAdminDivision(IDstr, 4, index, 4));
+		System.out.println(RuleFunction.First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 		
 		return "sucess"; //预定义常量
 	} 
