@@ -243,10 +243,87 @@ public class RuleFunction {
 			}
 			RecoDao recoDao = new RecoDao();
 			for(int i = 0; i < LenIndex; i++){
-				id = id.concat(String.valueOf(IDstr[i]));
+				id = id.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			id = id.concat(append);
 			boolean ret  = recoDao.getAdminDivisionID(id);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function: 6位行政区划代码.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用行政区划代码的位置
+	//LenIndex: 长度必须是6位
+	public String AdminDivision(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			if(LenIndex != 6 ){
+				return ERR;
+			}
+			String id = "";
+			RecoDao recoDao = new RecoDao();
+			for(int i = 0; i < LenIndex; i++){
+				id = id.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			boolean ret  = recoDao.getAdminDivisionID(id);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function: 世界各国和地区名称代码为CPC编码调用,(279)中规定编码长度为2-3位，CPC编码为在第4位加0.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用世界各国和地区名称代码的位置
+	//LenIndex: 长度是多少，一定是4位
+	public static String CountryRegionCodeforCPC(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			if(LenIndex != 4 ){
+				return ERR;
+			}
+			for(int i = 0; i < LenIndex - 1; i++){
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getCountryRegionCode(code);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function: 世界各国和地区名称代码，(279)中规定编码长度为2-3位.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用世界各国和地区名称代码的位置
+	//LenIndex: 长度是多少，一定是2-3位
+	public static String CountryRegionCode(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			if(!(LenIndex == 2 || LenIndex == 3)){
+				return ERR;
+			}
+			for(int i = 0; i < LenIndex; i++){
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getCountryRegionCode(code);
 			if(ret){
 				return OK;
 			}else

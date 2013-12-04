@@ -36,17 +36,18 @@ public class RecoAction extends ActionSupport {
 //		RecoDao recodao = RecoDao.getRecoDao();
 //		recodao.getAdminDivisionID("110114");
 		
-		char [] IDstr = new char[4];
-		IDstr[0] = '1';
-		IDstr[1] = '1';
+		char [] IDstr = new char[5];
+		IDstr[0] = 'A';
+		IDstr[1] = '0';
 		IDstr[2] = '0';
-		IDstr[3] = '1';
+		IDstr[3] = '2';
+		IDstr[4] = '0';
 		int [] index = new int[4];
-		index[0] = 0;
-		index[1] = 1;
-		index[2] = 2;
-		index[3] = 3;
-		System.out.println(RuleFunction.First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
+		index[0] = 1;
+		index[1] = 2;
+		index[2] = 3;
+		index[3] = 4;
+		System.out.println(RuleFunction.CountryRegionCodeforCPC(IDstr, 4, index, 4));
 		
 		return "sucess"; //预定义常量
 	} 
