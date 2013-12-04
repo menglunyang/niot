@@ -42,6 +42,7 @@ public class RecoDao {
 		return "ok";
 	}
 	
+	///行政区划代码(296)
 	public boolean getAdminDivisionID(String id){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -50,6 +51,35 @@ public class RecoDao {
 		try {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_ADMINDIVISION);
 			stmt.setString(1, id);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	///世界各国和地区名称代码(279)
+	public boolean getCountryRegionCode(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_COUNTRYREGIONCODE);
+			int i = 1;
+			stmt.setString(i++, code);
+			stmt.setString(i++, code);
+			stmt.setString(i++, code);
+			
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
