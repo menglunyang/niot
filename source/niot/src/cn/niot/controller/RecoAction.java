@@ -36,6 +36,7 @@ public class RecoAction extends ActionSupport {
 //		RecoDao recodao = RecoDao.getRecoDao();
 //		recodao.getAdminDivisionID("110114");
 		
+<<<<<<< HEAD
 		char [] IDstr = new char[5];
 		IDstr[0] = 'A';
 		IDstr[1] = '0';
@@ -48,6 +49,18 @@ public class RecoAction extends ActionSupport {
 		index[2] = 3;
 		index[3] = 4;
 		System.out.println(RuleFunction.CountryRegionCodeforCPC(IDstr, 4, index, 4));
+=======
+		char [] IDstr = new char[4];
+		IDstr[0] = 'A';
+		IDstr[1] = 'F';
+		IDstr[2] = 'G';
+		IDstr[3] = 'A';
+		int [] index = new int[3];
+		index[0] = 0;
+		index[1] = 1;
+		index[2] = 2;
+		System.out.println(RuleFunction.CountryRegionCodeforCPC(IDstr, 4, index, 3));
+>>>>>>> ac1bb329a4276887dbfb81170d0b7885ab1d55c1
 		
 		return "sucess"; //预定义常量
 	} 
