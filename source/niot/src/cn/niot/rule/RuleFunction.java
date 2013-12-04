@@ -291,7 +291,7 @@ public class RuleFunction {
 		}
 	}
 	
-<<<<<<< HEAD
+
 	//Function: 6位行政区划代码.
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
@@ -302,10 +302,6 @@ public class RuleFunction {
 			if(LenIndex != 6 ){
 				return ERR;
 			}
-=======
-	public String AdminDivision(char [] IDstr, int LenID, int [] Index, int LenIndex){
-		try{
->>>>>>> ac1bb329a4276887dbfb81170d0b7885ab1d55c1
 			String id = "";
 			RecoDao recoDao = new RecoDao();
 			for(int i = 0; i < LenIndex; i++){
@@ -321,11 +317,7 @@ public class RuleFunction {
 		}
 	}
 	
-<<<<<<< HEAD
 	//Function: 世界各国和地区名称代码为CPC编码调用,(279)中规定编码长度为2-3位，CPC编码为在第4位加0.
-=======
-	//Function: 世界各国和地区名称代码为CPC编码调用,(279)中规定编码长度为2-3位.
->>>>>>> ac1bb329a4276887dbfb81170d0b7885ab1d55c1
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
 	//Index: 调用世界各国和地区名称代码的位置
@@ -336,11 +328,7 @@ public class RuleFunction {
 			if(LenIndex != 4 ){
 				return ERR;
 			}
-<<<<<<< HEAD
 			for(int i = 0; i < LenIndex - 1; i++){
-=======
-			for(int i = 0; i < LenIndex; i++){
->>>>>>> ac1bb329a4276887dbfb81170d0b7885ab1d55c1
 				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			
@@ -355,7 +343,6 @@ public class RuleFunction {
 		}
 	}
 	
-<<<<<<< HEAD
 	//Function: 世界各国和地区名称代码，(279)中规定编码长度为2-3位.
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
@@ -380,7 +367,8 @@ public class RuleFunction {
 		}catch(Exception e){
 			return ERR;
 		}
-=======
+	}
+		
 	//Function:两位数，第一位为0时，第二位为（0，1，2）；第一位为1时，第二位为（1，2,6,7）；第一位为（2）时，第二位为（0~5） 
 	//IDstr: ID string 
 	//LenID: the number of characters in the ID string 
@@ -682,6 +670,5 @@ public static String CountUcode(char [] IDstr, int LenID, int [] Index, int LenI
 			return ERR;
 		}			
 		return OK;
->>>>>>> ac1bb329a4276887dbfb81170d0b7885ab1d55c1
 	}
 }
