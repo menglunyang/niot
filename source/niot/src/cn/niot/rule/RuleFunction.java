@@ -2,6 +2,9 @@ package cn.niot.rule;
 
 import cn.niot.dao.RecoDao;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RuleFunction {
 	
 	static String ERR = "ERR";
@@ -368,7 +371,134 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-		
+	
+	//Function: 烟草机械产品用物料 分类和编码 第3部分：机械外购件(7)中的5位编码.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用烟草机械产品用物料代码的位置
+	//LenIndex: 长度是6位
+	public static String TabaccoMachineProduct(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			if(LenIndex != 5){
+				return ERR;
+			}
+			String categoryCode = String.valueOf(IDstr[Index[0]]);
+			String groupCode = String.valueOf(IDstr[Index[1]]) + String.valueOf(IDstr[Index[2]]);
+			String variatyCode = String.valueOf(IDstr[Index[3]]) + String.valueOf(IDstr[Index[4]]);
+			
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getTabaccoMachineProduct(categoryCode, groupCode, variatyCode);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function: 商品条码零售商品编码EAN UPC前3位前缀码.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用前缀码的位置
+	//LenIndex: 长度是3位
+	public static String PrefixofRetailCommodityNumber(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			int num = 0;
+			if(LenIndex != 3){
+				return ERR;
+			}
+			for(int i = 0; i < LenIndex; i++){
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			num = Integer.parseInt(code);
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getPrefixofRetailCommodityNumber(num);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	//Function:  烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用前缀码的位置
+	//LenIndex: 长度是2位，为大写字母
+	public static String TabaccoMachineProducer(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			if(LenIndex != 2){
+				return ERR;
+			}
+			for(int i = 0; i < LenIndex; i++){
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getTabaccoMachineProducer(code);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function:  4位行政区号.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用行政区好的位置
+	//LenIndex: 长度是4位，为数字
+	public static String DistrictNo(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			if(LenIndex != 4){
+				return ERR;
+			}
+			for(int i = 0; i < LenIndex; i++){
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getDistrictNo(code);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	//Function:  CID满足的域名规则.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	public static String CIDRegex(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			String regex = "(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62}){2}\\.cid\\.iot\\.cn";
+			int prefix = 3;//18;
+			
+			if(Index[0] != prefix){
+				return ERR;
+			}
+			for(int i = Index[0]; i < LenID; i++){
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret  = ma.matches();
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
 	//Function:两位数，第一位为0时，第二位为（0，1，2）；第一位为1时，第二位为（1，2,6,7）；第一位为（2）时，第二位为（0~5） 
 	//IDstr: ID string 
 	//LenID: the number of characters in the ID string 
@@ -612,8 +742,7 @@ public class RuleFunction {
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
 	//LenIndex: the number of indexes, 固定为2
-public static String CountUcode(char [] IDstr, int LenID, int [] Index, int LenIndex)
-	{
+	public static String CountUcode(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		if (LenIndex != 4){
 			return "ERR";
 		}		
@@ -671,4 +800,6 @@ public static String CountUcode(char [] IDstr, int LenID, int [] Index, int LenI
 		}			
 		return OK;
 	}
+	
+	
 }
