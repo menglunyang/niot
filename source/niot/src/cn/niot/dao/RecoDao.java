@@ -95,4 +95,115 @@ public class RecoDao {
 		}
 		return ret;
 	}
+	
+	//烟草机械产品用物料 分类和编码 第3部分：机械外购件(7)
+	public boolean getTabaccoMachineProduct(String categoryCode, String groupCode, String variatyCode){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
+			int i = 1;
+			stmt.setString(i++, categoryCode);
+			stmt.setString(i++, groupCode);
+			stmt.setString(i++, variatyCode);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//商品条码零售商品编码EAN UPC前3位前缀码
+	public boolean getPrefixofRetailCommodityNumber(int code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_EANUPC);
+			int i = 1;
+			stmt.setInt(i++, code);
+			stmt.setInt(i++, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码
+	public boolean getTabaccoMachineProducer(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCER);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//CID调用4位数字行政区号
+	public boolean getDistrictNo(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_DISTRICTNO);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }
