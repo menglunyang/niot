@@ -11,4 +11,16 @@ public class RecoUtil {
 	
 	//country and region code
 	public static final String SELECT_COUNTRYREGIONCODE = "select * from countryregioncode where twocharcode=? or threecharcode=? or numcode=?";
+	
+	//烟草机械产品用物料
+	public static final String SELECT_TABACCOMACHINEPRODUCT = "select * from tabaccomachineproduct where categorycode=? and groupcode=? and variatycode=?";
+	
+	//商品条码零售商品编码EAN UPC前3位前缀码
+	public static final String SELECT_EANUPC = "select * from EANUPC where begincode<=? and endcode>=?";
+	
+	//烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码
+	public static final String SELECT_TABACCOMACHINEPRODUCER = "select * from tabaccomachineproducer where id=?";
+	
+	//CID调用4位数字行政区号
+	public static final String SELECT_DISTRICTNO = "select * from districtno where id=?";
 }
