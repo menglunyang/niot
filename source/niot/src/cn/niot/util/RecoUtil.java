@@ -11,4 +11,9 @@ public class RecoUtil {
 	
 	//country and region code
 	public static final String SELECT_COUNTRYREGIONCODE = "select * from countryregioncode where twocharcode=? or threecharcode=? or numcode=?";
+	
+	public static final String ID_LEN = "Len";
+	public static final String ID_NAME = "IDName";
+	public static final int INTERVAL_WIDTH = 2;
+	public static final int COUNT_NUMBER_CHARS = 64;
 }
