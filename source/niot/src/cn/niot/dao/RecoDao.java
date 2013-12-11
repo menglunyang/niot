@@ -153,7 +153,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码
+	//烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码(672)
 	public boolean getTabaccoMachineProducer(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -188,6 +188,90 @@ public class RecoDao {
 		boolean ret = false;
 		try {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_DISTRICTNO);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//烟草机械产品用物料 企业机械标准件 编码中的类别代码，组别代码和品种代码（6）
+	public boolean getTabaccoStandardPart(String categoryCode, String groupCode, String variatyCode){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOSTANDARDPART);
+			int i = 1;
+			stmt.setString(i++, categoryCode);
+			stmt.setString(i++, groupCode);
+			stmt.setString(i++, variatyCode);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//烟草机械产品用物料分类和编码 第6部分：原、辅材料(4)
+	public boolean getTabaccoMaterial(String categoryCode, String variatyCode){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMATERIAL);
+			int i = 1;
+			stmt.setString(i++, categoryCode);
+			stmt.setString(i++, variatyCode);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//粮食信息分类与编码 财务会计分类与代码(15)
+	public boolean getFoodAccount(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_FOORDACCOUNT);
 			int i = 1;
 			stmt.setString(i, code);
 			

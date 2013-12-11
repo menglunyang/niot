@@ -10,22 +10,8 @@ public class RuleFunction {
 	static String ERR = "ERR";
 	static String OK = "OK";
 	public static void main(String[] args) {
-		//System.out.println("你好世界!");
-		//System.out.println("Hello World!");
-		char [] IDstr = new char[4];
-		IDstr[0] = '0';
-		IDstr[1] = '2';
-		IDstr[2] = '0';
-		IDstr[3] = '1';
-		int [] index = new int[4];
-		index[0] = 0;
-		index[1] = 1;
-		index[2] = 2;
-		index[3] = 3;
-		System.out.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
-		}
-	
-	
+		//TODO:
+	}
 	
 	//Function: represent a decimal integer whose value range is from 1 to 99 
 	//IDstr: ID string 
@@ -68,6 +54,7 @@ public class RuleFunction {
 	//		 Index[0] is  the index of mainclass code whose values can be int 1, 2, 3, 4, 9
 	//		 Index[1] and Index[2] are the index of subclass codes
 	//LenIndex: the number of indexes that must be 3
+	//creator: zll
 	public static String CigaSubClassCode(char [] IDstr, int LenID, int [] Index, int LenIndex) {
 		
 		if(LenIndex != 3){
@@ -138,6 +125,7 @@ public class RuleFunction {
 	//		 Index[0] and Index[1] are the index of month
 	//		 Index[2] and Index[3] are the index of date
 	//LenIndex: the number of indexes that must be 4
+	//creator: zll
 	public static String MonthDate(char [] IDstr, int LenID, int [] Index, int LenIndex) {
 		try{
 			int date = Integer.parseInt(String.valueOf(IDstr[Index[2]])) * 10 + Integer.parseInt(String.valueOf(IDstr[Index[3]]));
@@ -183,6 +171,7 @@ public class RuleFunction {
 	//		 Index[0] is the index of the first character of cigarette organization code which is 1,2 or 9.
 	//		 Index[1] is the index of the second character.
 	//LenIndex: the number of indexes that must be 2
+	//creator: zll
 	public static String CigaOrgCode(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			if(LenIndex != 2){
@@ -247,6 +236,7 @@ public class RuleFunction {
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
 	//LenIndex: the number of indexes that must be 2
+	//creator: zll
 	public static String CigaDepCode(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			if(LenIndex != 2){
@@ -269,6 +259,7 @@ public class RuleFunction {
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
 	//LenIndex: the number of indexes that must be 4
+	//creator: zll
 	public static String First4CharsofAdminDivisionforCiga(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			String id = "";
@@ -294,12 +285,39 @@ public class RuleFunction {
 		}
 	}
 	
+	//Function: 6位行政区划代码的前2位.
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用行政区划代码的位置
+	//LenIndex: 长度必须是2位
+	public static String First2CharsofAdminDivision(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String id = "";
+			String append = "0000";
+			if(LenIndex != 2){
+				return ERR;
+			}
+			RecoDao recoDao = new RecoDao();
+			for(int i = 0; i < LenIndex; i++){
+				id = id.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			id = id.concat(append);
+			boolean ret  = recoDao.getAdminDivisionID(id);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
 
 	//Function: 6位行政区划代码.
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
 	//Index: 调用行政区划代码的位置
 	//LenIndex: 长度必须是6位
+	//creator: zll
 	public String AdminDivision(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			if(LenIndex != 6 ){
@@ -325,6 +343,7 @@ public class RuleFunction {
 	//LenID: 标识编码的长度 
 	//Index: 调用世界各国和地区名称代码的位置
 	//LenIndex: 长度是多少，一定是4位
+	//creator: zll
 	public static String CountryRegionCodeforCPC(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			String code = "";
@@ -351,6 +370,7 @@ public class RuleFunction {
 	//LenID: 标识编码的长度 
 	//Index: 调用世界各国和地区名称代码的位置
 	//LenIndex: 长度是多少，一定是2-3位
+	//creator: zll
 	public static String CountryRegionCode(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			String code = "";
@@ -377,6 +397,7 @@ public class RuleFunction {
 	//LenID: 标识编码的长度 
 	//Index: 调用烟草机械产品用物料代码的位置
 	//LenIndex: 长度是6位
+	//creator: zll
 	public static String TabaccoMachineProduct(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			if(LenIndex != 5){
@@ -402,6 +423,7 @@ public class RuleFunction {
 	//LenID: 标识编码的长度 
 	//Index: 调用前缀码的位置
 	//LenIndex: 长度是3位
+	//creator: zll
 	public static String PrefixofRetailCommodityNumber(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			String code = "";
@@ -428,6 +450,7 @@ public class RuleFunction {
 	//LenID: 标识编码的长度 
 	//Index: 调用前缀码的位置
 	//LenIndex: 长度是2位，为大写字母
+	//creator: zll
 	public static String TabaccoMachineProducer(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			String code = "";
@@ -453,6 +476,7 @@ public class RuleFunction {
 	//LenID: 标识编码的长度 
 	//Index: 调用行政区好的位置
 	//LenIndex: 长度是4位，为数字
+	//creator: zll
 	public static String DistrictNo(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			String code = "";
@@ -475,11 +499,14 @@ public class RuleFunction {
 	//Function:  CID满足的域名规则.
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
+	//Index: (18,-1),从18位以后的字符串进行正则表达式验证
+	//LenIndex: 长度必为2
+	//creator: zll
 	public static String CIDRegex(char [] IDstr, int LenID, int [] Index, int LenIndex){
 		try{
 			String code = "";
 			String regex = "(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62}){2}\\.cid\\.iot\\.cn";
-			int prefix = 3;//18;
+			int prefix = 18;
 			
 			if(Index[0] != prefix){
 				return ERR;
@@ -490,6 +517,114 @@ public class RuleFunction {
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret  = ma.matches();
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function:  烟草企业标准件编码所需的类别代码，组别代码和品种代码
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用类别代码（1位），组别代码（2位）和品种代码（2位）的位置
+	//LenIndex:长度必为5
+	//creator: zll
+	public static String TabaccoStandardPart(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			if(LenIndex != 5){
+				return ERR;
+			}
+			String categoryCode = String.valueOf(IDstr[Index[0]]);
+			String groupCode = String.valueOf(IDstr[Index[1]]) + String.valueOf(IDstr[Index[2]]);
+			String variatyCode = String.valueOf(IDstr[Index[3]]) + String.valueOf(IDstr[Index[4]]);
+			
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getTabaccoStandardPart(categoryCode, groupCode, variatyCode);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function:  烟草机械产品用物料分类和编码 第6部分：原、辅材料
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用类别代码（2位）和品种代码（3位）的位置
+	//LenIndex:长度必为5
+	//creator: zll
+	public static String TabaccoMaterial(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			if(LenIndex != 5){
+				return ERR;
+			}
+			String categoryCode = String.valueOf(IDstr[Index[0]]) + String.valueOf(IDstr[Index[1]]);
+			String variatyCode = String.valueOf(IDstr[Index[2]]) + String.valueOf(IDstr[Index[3]]) + String.valueOf(IDstr[Index[4]]);
+			
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getTabaccoMaterial(categoryCode, variatyCode);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function:  国际货运代理单证标识符编码中不定长的企业自定义编码正则匹配,数字或者字母，数字在字母后面。
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度<=16
+	//creator: zll
+	public static String IntFreitForwarding(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			String regex = "[a-zA-Z][a-zA-Z0-9]{0,15}";
+			int prefix = 2;//18;
+			
+			if(Index[0] != prefix){
+				return ERR;
+			}
+			//最后一位为校验位
+			for(int i = Index[0]; i < LenID - 1; i++){
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret  = ma.matches();
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function:  粮食信息分类与编码 财务会计分类与代码(15)
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度必为6
+	//creator: zll
+	public static String FoodAccount(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			if(LenIndex != 6){
+				return ERR;
+			}
+			for(int i = 0; i < LenIndex; i++){
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getFoodAccount(code);
 			if(ret){
 				return OK;
 			}else
