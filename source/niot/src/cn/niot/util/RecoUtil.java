@@ -5,13 +5,17 @@ public class RecoUtil {
 	public static final String JNDI_NAME = "java:comp/env/jdbc/IoTDataSource";
 	public static final String SELECT_IOTID = "select * from iotid where id=?";
 	public static final String COLUMNNAME = "columnName";
+	public static final String ID_LEN = "Len";
+	public static final String ID_NAME = "IDName";
+	public static final int INTERVAL_WIDTH = 2;
+	public static final int COUNT_NUMBER_CHARS = 64;
 	
 	//administrative division
 	public static final String SELECT_ADMINDIVISION = "select * from admindivision where id=?";
 	
 	//country and region code
 	public static final String SELECT_COUNTRYREGIONCODE = "select * from countryregioncode where twocharcode=? or threecharcode=? or numcode=?";
-	
+
 	//烟草机械产品用物料
 	public static final String SELECT_TABACCOMACHINEPRODUCT = "select * from tabaccomachineproduct where categorycode=? and groupcode=? and variatycode=?";
 	
@@ -32,4 +36,5 @@ public class RecoUtil {
 	
 	//粮食信息分类与编码 财务会计分类与代码(15)
 	public static final String SELECT_FOORDACCOUNT = "select * from foodaccount where id=?";
+
 }
