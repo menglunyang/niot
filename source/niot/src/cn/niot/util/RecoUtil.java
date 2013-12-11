@@ -36,5 +36,4 @@ public class RecoUtil {
 	
 	//粮食信息分类与编码 财务会计分类与代码(15)
 	public static final String SELECT_FOORDACCOUNT = "select * from foodaccount where id=?";
-
 }
