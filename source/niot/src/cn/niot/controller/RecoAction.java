@@ -4,7 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import cn.niot.dao.*;
 import cn.niot.rule.RuleFunction;
-
+import cn.niot.service.*;
 public class RecoAction extends ActionSupport {
 	/**
 	 * @return
@@ -66,6 +66,9 @@ public class RecoAction extends ActionSupport {
 		//index[3] = 4;
 		//index[4] = 4;
 		System.out.println(RuleFunction.CIDRegex(IDstr, 24, index, 2));
+		
+		CollisionDetectAlgorithm collisionDetecAlg = CollisionDetectAlgorithm.getCollisionDetectAlgorithm();
+		System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
 		
 		return "sucess"; //预定义常量
 	} 

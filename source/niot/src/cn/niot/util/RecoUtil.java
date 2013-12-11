@@ -12,6 +12,12 @@ public class RecoUtil {
 	//country and region code
 	public static final String SELECT_COUNTRYREGIONCODE = "select * from countryregioncode where twocharcode=? or threecharcode=? or numcode=?";
 	
+<<<<<<< HEAD
+	public static final String ID_LEN = "Len";
+	public static final String ID_NAME = "IDName";
+	public static final int INTERVAL_WIDTH = 2;
+	public static final int COUNT_NUMBER_CHARS = 64;
+=======
 	//烟草机械产品用物料
 	public static final String SELECT_TABACCOMACHINEPRODUCT = "select * from tabaccomachineproduct where categorycode=? and groupcode=? and variatycode=?";
 	
@@ -23,4 +29,5 @@ public class RecoUtil {
 	
 	//CID调用4位数字行政区号
 	public static final String SELECT_DISTRICTNO = "select * from districtno where id=?";
+>>>>>>> 1abfcb62d8c3b92490bcc7a7f66961cd1106aa67
 }
