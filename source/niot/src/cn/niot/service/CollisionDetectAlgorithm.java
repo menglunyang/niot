@@ -2,11 +2,14 @@ package cn.niot.service;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Random;
+
 import net.sf.json.JSONObject;
 import cn.niot.util.*;
 
 public class CollisionDetectAlgorithm {
 	private static CollisionDetectAlgorithm collisionDetectAlg = new CollisionDetectAlgorithm();
+	private static Random r1 = new Random(1000);//指定种子数字
 	
 	public static CollisionDetectAlgorithm getCollisionDetectAlgorithm() {
 		return collisionDetectAlg;
@@ -119,7 +122,9 @@ public class CollisionDetectAlgorithm {
 	    for(i = 0; i < len; i++)  
 	    {	    	
 	    	do {
-	    		double random = Math.random();
+	    		
+	    		//double random = Math.random();
+	    		double random = r1.nextDouble();
 		        index = (int) Math.floor(random * (len - i)); 
 		        if (index >= len){
 		        	index = len - 1;
@@ -128,13 +133,22 @@ public class CollisionDetectAlgorithm {
 		        if (index < 0){
 		        	index = 0;
 		        }
-	    	}while (index != i); 
+	    	}while (index == i); 
 	    	
 	    	tmp = resCharArray[i];  
             resCharArray[i] = resCharArray[index];  
             resCharArray[index] = tmp;	    		  
-	    }  
-	    resChar = resCharArray[0];	    
+	    } 
+	    double rand = r1.nextDouble();
+        int index_res = (int) Math.floor(rand * len); 
+        if (index_res >= len){
+        	index_res = len - 1;
+        }
+        
+        if (index_res < 0){
+        	index_res = 0;
+        }
+	    resChar = resCharArray[index_res];	    
 		return resChar;
 	}
 	

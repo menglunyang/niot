@@ -25,8 +25,6 @@ public class RuleFunction {
 		System.out.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 	}
 	
-	
-	
 	//Function: represent a decimal integer whose value range is from 1 to 99 
 	//IDstr: ID string 
 	//LenID: the number of characters in the ID string 
@@ -801,7 +799,7 @@ public class RuleFunction {
 		return OK;
 	}
 	
-<<<<<<< HEAD
+
 	//Function: 检验是否属于  序号2开始求出偶数位上数字之和①；①×3=②；从序号3开始求出奇数位上数字之和③；②+③=④；用大于	
 	//或等于结果④且为整数倍的最小数减去④得到的值。
 	//IDstr: ID string 
@@ -1520,7 +1518,4 @@ public class RuleFunction {
 	}
 	
 
-=======
-	
->>>>>>> 1abfcb62d8c3b92490bcc7a7f66961cd1106aa67
 }

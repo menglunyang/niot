@@ -65,11 +65,16 @@ public class RecoAction extends ActionSupport {
 		//index[2] = 3;
 		//index[3] = 4;
 		//index[4] = 4;
-		System.out.println(RuleFunction.CIDRegex(IDstr, 24, index, 2));
+		//System.out.println(RuleFunction.CIDRegex(IDstr, 24, index, 2));
 		
 		CollisionDetectAlgorithm collisionDetecAlg = CollisionDetectAlgorithm.getCollisionDetectAlgorithm();
-		System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
+		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
+		//System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-5\",\"1\":\"A-E\",\"2\":\"h-x\"}"));
+		for (int i = 0; i < 100; i++){
+			System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
+		}
 		
+	
 		return "sucess"; //预定义常量
 	} 
 
