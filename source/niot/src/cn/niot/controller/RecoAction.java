@@ -10,8 +10,7 @@ public class RecoAction extends ActionSupport {
 	 * @return
 	 */
 	private String iotID;
-	
-	
+		
 	public String getIotID() {
 		return iotID;
 	}
@@ -24,7 +23,7 @@ public class RecoAction extends ActionSupport {
 
 
 	public String getMsg() {    // Ìí¼Ógetter
-	return Msg;
+		return Msg;
 	}
 	public String execute() {
 		if (iotID.equals("123456")){
@@ -67,7 +66,7 @@ public class RecoAction extends ActionSupport {
 		//index[4] = 4;
 		//System.out.println(RuleFunction.CIDRegex(IDstr, 24, index, 2));
 		
-		CollisionDetectAlgorithm collisionDetecAlg = CollisionDetectAlgorithm.getCollisionDetectAlgorithm();
+		NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
 		//System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-5\",\"1\":\"A-E\",\"2\":\"h-x\"}"));
 		for (int i = 0; i < 100; i++){

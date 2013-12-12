@@ -7,4 +7,14 @@
 		<action name="reco" class="cn.niot.controller.RecoAction">
 			<result name="sucess">/result.jsp</result>
 		</action>
-	</package></struts>    
+	</package>
+	
+	<package name="ajax" extends="json-default">
+	    <action name="respCode" class="cn.niot.controller.IoTIDRecognitionAction" method="execute">
+	       <result type="json"></result>
+	    </action>
+    </package>	
+	
+	</struts>  
+	
+	  

@@ -7,14 +7,39 @@ import java.util.Random;
 import net.sf.json.JSONObject;
 import cn.niot.util.*;
 
-public class CollisionDetectAlgorithm {
-	private static CollisionDetectAlgorithm collisionDetectAlg = new CollisionDetectAlgorithm();
+public class NewIDstdCollisionDetect {
+	private static NewIDstdCollisionDetect collisionDetectAlg = new NewIDstdCollisionDetect();
 	private static Random r1 = new Random(1000);//指定种子数字
+	private static double RandomNumber = 10000;
 	
-	public static CollisionDetectAlgorithm getCollisionDetectAlgorithm() {
+	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {
 		return collisionDetectAlg;
 	}
-	
+	public HashMap<String, Double> computeCollisionRate(String JsonString){
+		HashMap<String, Double> IDSTD_CollisionRate = new HashMap<String, Double>();
+		HashMap<String, Double> IDSTD_Count = new HashMap<String, Double>();
+		for (int i = 0; i < RandomNumber; i++){
+			String IDstr = generateIDString(JsonString);
+			IDstrRecognition idstrReco = new IDstrRecognition();
+			HashMap<String, Double> Id_Probability = idstrReco.IoTIDRecognizeAlg(IDstr);
+			Iterator iterator = Id_Probability.keySet().iterator();
+			while (iterator.hasNext()) {
+				String key = (String)iterator.next();
+				if(IDSTD_Count.containsKey(key)){
+					IDSTD_Count.put(key, IDSTD_Count.get(key) + 1);
+				} else {
+					IDSTD_Count.put(key, 1.0);
+				}
+			}
+		}
+		
+		Iterator iteratorCount = IDSTD_Count.keySet().iterator();
+		while (iteratorCount.hasNext()){
+			String keyID = (String)iteratorCount.next();
+			IDSTD_CollisionRate.put(keyID, IDSTD_Count.get(keyID) / RandomNumber);
+		}
+		return IDSTD_CollisionRate;
+	}
 	public String generateIDString(String JsonString) {
 		String IDstring = "";
 		HashMap<String, Object> map = jsonStr2HashMap(JsonString);

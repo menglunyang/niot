@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link href="codeCollisionDetect.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="./js/jquery-1.9.1.min.js"></script>
+	<script src="./js/knockout-2.2.1.js"></script>
+	<script src="./js/globalize.min.js"></script>
+	<script src="./js/dx.chartjs.js"></script>
+	<script src="./js/json2.js"></script>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="header">
+            <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#000;color:#CCC">后向兼容</button>
+            <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">登录</button>
+            <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">注册</button>
+        </div><!-- end .header -->
+    
+        <div class="container_1">
+            <div class="inputContent_1">
+                 <div class="writecode_1">编码字符
+                 </div><!--end writecode-->
+                 <div class="butonn">
+                    <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;">扫描输入</button>
+                    <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
+                 </div><!--end buttonn-->
+                
+                <textarea id="reqCode" name="textarea" rows="3" class="form-control" style="height:140px; width:700px;">请在这里输入</textarea>
+    
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "sendReqCode()">立即查询</button>
+            	<div id = "warning_1">请输入要查询的编码 </div>
+            
+            </div>
+            
+            
+            <div class="outputContent_1">
+            	<div id = "pieChartContainer">
+            	</div>
+            	<div id="loading_1" class="loading_1" style="display:none">
+            		<img src="./images/loading.gif"/>
+            	</div>
+            	
+            	<div id="errorFound" class="resultInfo" style="display:none">
+            		出错了，错误信息：</br>
+            		<span id="errorStatement"></span>
+            	</div>
+            	
+            	
+            	<div id="noFound" class="resultInfo" style="display:none">
+            		对不起，您输入的编码不输入任何一种类型。。。
+            	</div>
+            	
+            	<div id="oneFound" class="resultInfo" style="display:none">
+            		您所输入的编码属于
+            		<span id="oneFoundName"></span>
+            	</div>
+            	
+            </div><!--end outputContent-->
+         
+
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:50px;
+              width:260px;  
+            background-color: transparent;
+            margin: 0px;
+            padding: 0px;
+             border: 0px;
+             color: #000;
+             font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;">
+                      编码冲突检测</button>
+
+
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:33px;
+              width:260px;
+           
+            background-color: #ebe973;
+                         margin: 0px;
+                         margin-top: 9px;
+                         margin-left: 5px;
+            padding: 0px;
+              border: 0px;
+              color: #000;
+              font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;" onclick = "switchToContainer2()">
+                      标准冲突检测</button>
+
+               
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:33px;
+              width:260px;  
+                background-color: #e66450;
+                         margin: 0px;
+                         margin-top: 9px;
+                         margin-left: 5px;
+            padding: 0px;
+             border: 0px;
+             color: #000;
+             font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;" onclick="switchToContainer3()">
+                      设计冲突检测</button>
+
+        </div><!-- end .container -->
+              
+        <div class="container_2" style="display: none">
+            <div class="inputContent_2">
+                 <div class="writecode_2">第二个
+                 </div><!--end writecode-->
+                 <div class="butonn">
+                    <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;">扫描输入</button>
+                    <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
+                 </div><!--end buttonn-->
+                
+                <textarea name="textarea" rows="3" class="form-control" style="height:140px; width:700px;">请在这里输入</textarea>
+    
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "triger()">立即查询</button>
+            </div>
+            
+            <div class="outputContent_2">
+            	<div id = "pieChartContainer">
+            	</div>
+            	<div id="loading" class="loading_2" style="display:none">
+            		<img src="./images/loading.gif"/>
+            	</div>
+            	
+            	<div id="noFound" class="noFound" style="display:none">
+            		对不起，您输入的编码不输入任何一种类型。。。
+            	</div>
+            </div><!--end outputContent-->
+         
+
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:50px;
+              width:260px;  
+            background-color: transparent;
+            margin: 0px;
+            padding: 0px;
+             border: 0px;
+             color: #000;
+             font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;" onclick = "switchToContainer1()">
+                      编码冲突检测</button>
+
+
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:33px;
+              width:260px;
+           
+            background-color: #ebe973;
+                         margin: 0px;
+                         margin-top: 9px;
+                         margin-left: 5px;
+            padding: 0px;
+              border: 0px;
+              color: #000;
+              font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;">
+                      标准冲突检测</button>
+
+               
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:33px;
+              width:260px;  
+                background-color: #e66450;
+                         margin: 0px;
+                         margin-top: 9px;
+                         margin-left: 5px;
+            padding: 0px;
+             border: 0px;
+             color: #000;
+             font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;" onclick = "switchToContainer3()">
+                      设计冲突检测</button>
+
+        </div><!-- end .container -->
+            
+        <div class="container_3" style="display: none">
+            <div class="inputContent_3">
+                 <div class="writecode_3">第三个
+                 </div><!--end writecode-->
+                 <div class="butonn">
+                    <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;">扫描输入</button>
+                    <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
+                 </div><!--end buttonn-->
+                
+                <textarea name="textarea" rows="3" class="form-control" style="height:140px; width:700px;">请在这里输入</textarea>
+    
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "triger()">立即查询</button>
+            </div>
+            
+            <div class="outputContent_3">
+            	<div id = "pieChartContainer">
+            	</div>
+            	<div id="loading" class="loading_3" style="display:none">
+            		<img src="./images/loading.gif"/>
+            	</div>
+            	
+            	<div id="noFound" class="noFound" style="display:none">
+            		对不起，您输入的编码不输入任何一种类型。。。
+            	</div>
+            	
+
+            </div><!--end outputContent-->
+         
+
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:50px;
+              width:260px;  
+            background-color: transparent;
+            margin: 0px;
+            padding: 0px;
+             border: 0px;
+             color: #000;
+             font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;" onclick="switchToContainer1()">
+                      编码冲突检测</button>
+
+
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:33px;
+              width:260px;
+           
+            background-color: #ebe973;
+                         margin: 0px;
+                         margin-top: 9px;
+                         margin-left: 5px;
+            padding: 0px;
+              border: 0px;
+              color: #000;
+              font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;" onclick = "switchToContainer2()">
+                      标准冲突检测</button>
+
+               
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:33px;
+              width:260px;  
+                background-color: #e66450;
+                         margin: 0px;
+                         margin-top: 9px;
+                         margin-left: 5px;
+            padding: 0px;
+             border: 0px;
+             color: #000;
+             font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;">
+                      设计冲突检测</button>
+
+        </div><!-- end .container -->  
+        
+</div><!--end id="main"-->
+</body>
+   <script type="text/javascript">
+		//ztStr = "{status:2,Data:[{codeName:'cpc',probability:12},{codeName:'eCode',probability:88}]}"
+		function sendReqCode()
+		{
+			$("#noFound").css("display","none");
+			$("#errorFound").css("display","none");
+			$("#oneFound").css("display","none");
+			$("#pieChartContainer").css("display","none");
+			
+			var reqCode = $("#reqCode").val();
+			
+			if (reqCode == "" || reqCode=="请在这里输入")
+			{
+				$("#warning_1").css('display','inline-block');
+			}
+			else
+			{
+				$.ajax({
+					url:'respCode.action',
+					cache:false,
+					data:{code:reqCode},
+					dataType:'json',
+					beforeSend:function(){
+									$("#loading_1").css("display","block");
+								},
+					success:function(result){
+									$("#loading_1").css("display","none");
+									if (result.status == 'error'){
+										$("#errorStatement").text(result.statement);
+										$("#errorFound").css("display","block");
+										//alert("error");
+									}
+									else if (result.status == 0){
+										$("#noFound").css("display","block");
+									}
+									else if (result.status == 1){
+										$("#oneFoundName").text(result.data);
+										$("#oneFound").css("display","block");
+									}
+									else if (result.status >1){
+										var pieData = eval(result.data);
+										$("#pieChartContainer").css("display","block");
+										drawPieChart(pieData);
+									}
+									data1=result;
+								},
+					error:"alert('1')"
+				});
+			}
+		}
+		
+		
+		
+		
+		var stepFlag = 1;
+		function triger()
+		{ 
+			if (stepFlag == 0)
+			{
+				stepFlag = 1;
+				$("#noFound").css("display","none");
+				$("#loading").css("display","block");
+				t=setTimeout("drawPieChart(dataSource)",3000);
+			}
+			else
+			{
+				stepFlag = 0;
+				$("#pieChartContainer").css("display","none");
+				$("#loading").css("display","block");
+				t=setTimeout("noFound()",3000);
+			}
+		}
+		
+
+		function noFound()
+		{
+			$("#loading").css("display","none");
+			$("#noFound").css("display","block");
+		}
+		
+		function drawPieChart(dataSource)
+		{
+			$("#loading").css("display","none");
+			$("#pieChartContainer").css("display","block");
+			$(function () {
+		    	$("#pieChartContainer").dxPieChart({
+		        dataSource: dataSource,
+		        size: {
+		            height: 320,
+		            width: 500
+		        },
+		        series: {
+		        type:'doughnut',
+		            argumentField: 'codeName',
+		            valueField: 'probability',
+		            label: {
+		                visible: true,
+		                format: 'percent',
+		                precision: 1,
+		                font:{size:6},
+		                connector: { visible: true }
+		            }
+		        },
+		        title: {text:'Collision Ratio',
+		        		position:'leftTop',
+		                font: {
+					                color: 'steelblue',
+					                family: 'Microsoft YaHei',
+					                opacity: 0.75,
+					                size: 18,
+					                weight: 400
+					            }
+		        },
+		        tooltip: { enabled: true,
+		        customizeText: function (argumentText) {
+               		return argumentText.argument;
+           		}
+		        },
+		        animation: {
+		            duration: 3000,
+		            easing: 'linear'
+		        }
+		    });
+		});
+		}
+		
+		
+		
+		dataSource = [
+		    { codeName: 'CPC', probability: 0.6 },
+		    { codeName: 'uCode', probability: 0.1 },
+		    { codeName: 'eCode', probability: 0.03 },
+		    { codeName: 'WC', probability: 0.07 },
+		    { codeName: 'WFXXF', probability: 0.15 },
+		    { codeName: 'CNNIC', probability: 0.025 },
+		    { codeName: 'FFFF', probability: 0.025 }
+		];
+		
+		function switchToContainer1()
+		{
+			$(".container_2")[0].style.display = "none";
+			$(".container_3")[0].style.display = "none";
+			$(".container_1")[0].style.display = "block";
+		}
+		
+		function switchToContainer2()
+		{
+			$(".container_1")[0].style.display = "none";
+			$(".container_3")[0].style.display = "none";
+			$(".container_2")[0].style.display = "block";
+		}
+		
+		function switchToContainer3()
+		{
+			$(".container_1")[0].style.display = "none";
+			$(".container_2")[0].style.display = "none";
+			$(".container_3")[0].style.display = "block";
+		}
+
+</script>
+</html>
