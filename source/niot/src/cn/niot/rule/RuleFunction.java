@@ -47,7 +47,7 @@ public class RuleFunction {
 		
 	}
 	
-	//Function: decide the cigarette subclass code according to different mainclass code 
+	//Function: decide the cigarette subclass code according to different mainclass code (2)
 	//IDstr: ID string 
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
@@ -164,7 +164,7 @@ public class RuleFunction {
 		}
 	}
 	
-	//Function: Cigarette organization code. There are totally 2 characters.
+	//Function: Cigarette organization code. There are totally 2 characters.(3)
 	//IDstr: ID string 
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
@@ -231,7 +231,7 @@ public class RuleFunction {
 		return ERR;
 	}
 	
-	//Function: Cigarette department or subordinate department code. There are totally 2 characters.
+	//Function: Cigarette department or subordinate department code. There are totally 2 characters.(198)
 	//IDstr: ID string. Code range is 00-97.
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
@@ -312,7 +312,7 @@ public class RuleFunction {
 		}
 	}
 
-	//Function: 6位行政区划代码.
+	//Function: 6位行政区划代码.(296)
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
 	//Index: 调用行政区划代码的位置
@@ -445,7 +445,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	//Function:  烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码.
+	//Function:  烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码.(672)
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
 	//Index: 调用前缀码的位置
@@ -526,7 +526,7 @@ public class RuleFunction {
 		}
 	}
 	
-	//Function:  烟草企业标准件编码所需的类别代码，组别代码和品种代码
+	//Function:  烟草企业标准件编码所需的类别代码，组别代码和品种代码(6)
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
 	//Index: 调用类别代码（1位），组别代码（2位）和品种代码（2位）的位置
@@ -552,7 +552,7 @@ public class RuleFunction {
 		}
 	}
 	
-	//Function:  烟草机械产品用物料分类和编码 第6部分：原、辅材料
+	//Function:  烟草机械产品用物料分类和编码 第6部分：原、辅材料(4)
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
 	//Index: 调用类别代码（2位）和品种代码（3位）的位置
@@ -577,7 +577,7 @@ public class RuleFunction {
 		}
 	}
 	
-	//Function:  国际货运代理单证标识符编码中不定长的企业自定义编码正则匹配,数字或者字母，数字在字母后面。
+	//Function:  国际货运代理单证标识符编码中不定长的企业自定义编码正则匹配,数字或者字母，数字在字母后面。(55)
 	//IDstr: 标识编码
 	//LenID: 标识编码的长度 
 	//Index: 调用正则的的索引位置
@@ -587,7 +587,7 @@ public class RuleFunction {
 		try{
 			String code = "";
 			String regex = "[a-zA-Z][a-zA-Z0-9]{0,15}";
-			int prefix = 2;//18;
+			int prefix = 18;
 			
 			if(Index[0] != prefix){
 				return ERR;
@@ -599,7 +599,13 @@ public class RuleFunction {
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret  = ma.matches();
-			if(ret){
+			
+			int[] modIndex = new int[LenID];
+			for(int i = 0; i < LenID; i++){
+				modIndex[i] = i;
+			}
+			String modRet = MOD112(IDstr, LenID, modIndex, LenID);
+			if(ret && modRet.equals(OK)){
 				return OK;
 			}else
 				return ERR;
@@ -625,6 +631,81 @@ public class RuleFunction {
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret  = recoDao.getFoodAccount(code);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	//Function:  粮食信息分类与代码 粮食设备分类与代码(23)
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度必为8
+	//creator: zll
+	public static String GrainEquipment(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			if(LenIndex != 8){
+				return ERR;
+			}
+			for(int i = 0; i < LenIndex; i++){
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getGrainEquipment(code);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function:  粮食信息分类与编码 粮食设施分类与编码（24）
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度必为7
+	//creator: zll
+	public static String GrainEstablishment(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			String code = "";
+			if(LenIndex != 7){
+				return ERR;
+			}
+			for(int i = 0; i < LenIndex; i++){
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getGrainEstablishment(code);
+			if(ret){
+				return OK;
+			}else
+				return ERR;
+		}catch(Exception e){
+			return ERR;
+		}
+	}
+	
+	//Function:  烟草机械产品用物料 分类和编码 第5部分：电器元器件 （5）
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度必为5
+	//creator: zll
+	public static String TabaccoElectricComponent(char [] IDstr, int LenID, int [] Index, int LenIndex){
+		try{
+			if(LenIndex != 5){
+				return ERR;
+			}
+			String categoryCode = String.valueOf(IDstr[Index[0]]) + String.valueOf(IDstr[Index[1]]);
+			String groupCode = String.valueOf(IDstr[Index[2]]) + String.valueOf(IDstr[Index[3]]) + String.valueOf(IDstr[Index[4]]);
+			RecoDao recoDao = new RecoDao();
+			boolean ret  = recoDao.getTabaccoElectricComponent(categoryCode, groupCode);
 			if(ret){
 				return OK;
 			}else
@@ -702,7 +783,7 @@ public class RuleFunction {
 	//LenID: the number of characters in the ID string 
 	//Index: the list of corresponding indexes regarding to this algorithm
 	//LenIndex: the number of indexes, 固定为6
-	public static String ClassOfGrain1 (char [] IDstr, int LenID, int [] Index, int LenIndex)
+	public static String ClassOfGrain (char [] IDstr, int LenID, int [] Index, int LenIndex)
 	{
 		if (LenIndex != 6)
 		{

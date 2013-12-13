@@ -36,4 +36,13 @@ public class RecoUtil {
 	
 	//粮食信息分类与编码 财务会计分类与代码(15)
 	public static final String SELECT_FOORDACCOUNT = "select * from foodaccount where id=?";
+	
+	//粮食信息分类与代码 粮食设备分类与代码（23）
+	public static final String 	SELECT_GRAINEQUIPMENT = "select * from grainequipment where id=?";
+	
+	//粮食信息分类与编码 粮食设施分类与编码（24）
+	public static final String SELECT_GRAINESTABLISHMENT = "select * from grainestablishment where id=?";
+	
+	//烟草机械产品用物料 分类和编码 第5部分：电器元器件 （5）
+	public static final String SELECT_TABACCOELECTRICCOMPONENT = "select * from tabaccoelectriccomponent where categorycode=? and groupcode=?";
 }

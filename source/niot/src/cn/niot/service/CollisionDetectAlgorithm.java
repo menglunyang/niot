@@ -151,5 +151,4 @@ public class CollisionDetectAlgorithm {
 	    resChar = resCharArray[index_res];	    
 		return resChar;
 	}
-	
 }
