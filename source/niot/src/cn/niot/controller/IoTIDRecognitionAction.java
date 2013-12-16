@@ -1,5 +1,7 @@
 package cn.niot.controller;
 
+import cn.unitTest.RuleFuncTest;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -83,6 +85,8 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		//this.status = "0";
 		
 		//System.out.println(this.status+this.data+this.statement);
+		
+		
 		return SUCCESS;
 	}
 

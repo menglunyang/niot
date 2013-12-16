@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import cn.niot.dao.*;
 import cn.niot.rule.RuleFunction;
 import cn.niot.service.*;
+import cn.unitTest.RuleFuncTest;
 public class RecoAction extends ActionSupport {
 	/**
 	 * @return
@@ -42,15 +43,17 @@ public class RecoAction extends ActionSupport {
 //		index[2] = 2;
 //		index[3] = 3;
 //		index[4] = 4;
-		System.out.println(RuleFunction.TwoByteDecimalnt(IDstr, 4, index, 2));
+		//System.out.println(RuleFunction.TwoByteDecimalnt(IDstr, 4, index, 2));
 		
-		NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
+		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
 		//System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-5\",\"1\":\"A-E\",\"2\":\"h-x\"}"));
-		for (int i = 0; i < 100; i++){
-			System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
-		}
-	
+		//for (int i = 0; i < 100; i++){
+		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
+		//}
+		
+		RuleFuncTest.testTwoByteDecimalnt();
+		
 		return "sucess"; //预定义常量
 	} 
 
