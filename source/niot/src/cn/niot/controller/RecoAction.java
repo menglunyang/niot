@@ -32,39 +32,17 @@ public class RecoAction extends ActionSupport {
 			Msg = "                   "+ iotID + " is not ID type A";     // 逻辑运算
 		}
 		//138000100000000001.sh.beidou.cid.iot.cn
-		char [] IDstr = new char[24];
-		IDstr[0] = '1';
-		IDstr[1] = '3';
-		IDstr[2] = '8';
-		IDstr[3] = '.';
-		IDstr[4] = 's';
-		IDstr[5] = 'h';
-		IDstr[6] = '.';
-		IDstr[7] = 'b';
-		IDstr[8] = 'e';
-		IDstr[9] = 'i';
-		IDstr[10] = 'd';
-		IDstr[11] = 'o';
-		IDstr[12] = 'u';
-		IDstr[13] = '.';
-		IDstr[14] = 'c';
-		IDstr[15] = 'i';
-		IDstr[16] = 'd';
-		IDstr[17] = '.';
-		IDstr[18] = 'i';
-		IDstr[19] = 'o';
-		IDstr[20] = 't';
-		IDstr[21] = 'u';
-		IDstr[22] = 'c';
-		IDstr[23] = 'n';
+		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','.','s','h','.','b','e','i',
+		//		'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};
+		char[] IDstr = new char[]{'a','d','0','1'};
 		
 		int [] index = new int[2];
-		index[0] = 3;
+		index[0] = 2;
 		index[1] = -1;
-		//index[2] = 3;
-		//index[3] = 4;
-		//index[4] = 4;
-		//System.out.println(RuleFunction.CIDRegex(IDstr, 24, index, 2));
+//		index[2] = 2;
+//		index[3] = 3;
+//		index[4] = 4;
+		System.out.println(RuleFunction.TwoByteDecimalnt(IDstr, 4, index, 2));
 		
 		NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
@@ -72,7 +50,6 @@ public class RecoAction extends ActionSupport {
 		for (int i = 0; i < 100; i++){
 			System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
 		}
-		
 	
 		return "sucess"; //预定义常量
 	} 

@@ -176,5 +176,4 @@ public class NewIDstdCollisionDetect {
 	    resChar = resCharArray[index_res];	    
 		return resChar;
 	}
-	
 }
