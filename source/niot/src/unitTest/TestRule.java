@@ -60,7 +60,9 @@ public class TestRule {
 
 	@Test
 	public void testFirst4CharsofAdminDivisionforCiga() {
-		fail("Not yet implemented");
+		int [] index2 = {0,1,2,3};
+		char [] IDstr2 = {'9','9','9','9','9','9'};
+		assertEquals(RuleFunction.First4CharsofAdminDivisionforCiga(IDstr2, 6, index2, 4),"OK");
 	}
 
 	@Test
