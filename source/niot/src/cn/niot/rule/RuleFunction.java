@@ -23,8 +23,7 @@ public class RuleFunction {
 		index[1] = 1;
 		index[2] = 2;
 		index[3] = 3;
-		System.out
-				.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
+		System.out.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 	}
 
 	private static boolean checkInputParam(char[] IDstr, int LenID, int[] Index, int LenIndex) {
