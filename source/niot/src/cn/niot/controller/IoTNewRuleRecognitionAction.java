@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 * @version V1.0
  */
 
-public class IotNewRuleRecognitionAction extends ActionSupport {
+public class IoTNewRuleRecognitionAction extends ActionSupport {
 	
 	 /**
 	  * 用户从前台传递来的编码长度
