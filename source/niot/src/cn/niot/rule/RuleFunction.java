@@ -396,7 +396,7 @@ public class RuleFunction {
 	// Index: 调用行政区划代码的位置
 	// LenIndex: 长度必须是6位
 	// creator: zll
-	public String AdminDivision(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String AdminDivision(char[] IDstr, int LenID, int[] Index, int LenIndex) {
 		try {
 			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
 				return ERR;
