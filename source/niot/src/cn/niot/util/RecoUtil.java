@@ -23,7 +23,7 @@ public class RecoUtil {
 	public static final String SELECT_EANUPC = "select * from EANUPC where begincode<=? and endcode>=?";
 	
 	//烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码(672)
-	public static final String SELECT_TABACCOMACHINEPRODUCER = "select * from tabaccomachineproducer where id=?";
+	public static final String SELECT_TABACCOMACHINEPRODUCER = "select * from tabaccomachineproducer where id=? limit 1";
 	
 	//CID调用4位数字行政区号
 	public static final String SELECT_DISTRICTNO = "select * from districtno where id=?";
