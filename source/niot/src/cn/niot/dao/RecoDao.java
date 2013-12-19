@@ -325,7 +325,7 @@ public class RecoDao {
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINEQUIPMENT);
+			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINESTABLISHMENT);
 			int i = 1;
 			stmt.setString(i, code);
 			
