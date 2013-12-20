@@ -15,7 +15,7 @@ public class NewIDstdCollisionDetect {
 	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {
 		return collisionDetectAlg;
 	}
-	public HashMap<String, Double> computeCollisionRate(String JsonString){
+	public static HashMap<String, Double> computeCollisionRate(String JsonString){
 		HashMap<String, Double> IDSTD_CollisionRate = new HashMap<String, Double>();
 		HashMap<String, Double> IDSTD_Count = new HashMap<String, Double>();
 		for (int i = 0; i < RandomNumber; i++){
@@ -40,7 +40,7 @@ public class NewIDstdCollisionDetect {
 		}
 		return IDSTD_CollisionRate;
 	}
-	public String generateIDString(String JsonString) {
+	public static String generateIDString(String JsonString) {
 		String IDstring = "";
 		HashMap<String, Object> map = jsonStr2HashMap(JsonString);
 		int len = 0;
@@ -81,7 +81,7 @@ public class NewIDstdCollisionDetect {
 		return IDstring;
 	}
 	
-	public HashMap<String, Object> jsonStr2HashMap(String JsonString){
+	public static HashMap<String, Object> jsonStr2HashMap(String JsonString){
 		HashMap<String, Object> map = new HashMap<String, Object>();		
 		JSONObject jsonObject = JSONObject.fromObject(JsonString);
 		for(Iterator iter = jsonObject.keys(); iter.hasNext();){
@@ -92,8 +92,8 @@ public class NewIDstdCollisionDetect {
 		return map;
 	}
 	
-	public char generateRandomChar(String strByteRule){
-		char resChar = '0';
+	public static char generateRandomChar(String strByteRule){
+		char resChar = '?';
 		char [] resChars = new char [RecoUtil.COUNT_NUMBER_CHARS];
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String ByteRule = strByteRule;
@@ -117,7 +117,10 @@ public class NewIDstdCollisionDetect {
 				} else {
 					map.put(String.valueOf(element.charAt(0)), "");				
 				}
+			} else {
+				map.put(element, "");
 			}
+			
 		}
 		
 		//traverse the hash map
@@ -128,13 +131,15 @@ public class NewIDstdCollisionDetect {
 			resChars[i] = key.toString().charAt(0);
 			i++; 
 		}
-		//加入随机算法
-		resChar = randomizeArray(resChars, i);
+		if (i > 0){
+			//加入随机算法
+			resChar = randomizeArray(resChars, i);
+		}	
         
 		return resChar;
 	} 
 	
-	public char randomizeArray(char [] charList, int len){
+	public static char randomizeArray(char [] charList, int len){
 		char [] resCharArray = new char [len];
 		char resChar = 'a';
 		int i = 0;
