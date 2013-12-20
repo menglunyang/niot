@@ -10,9 +10,8 @@ public class CompareCode13 {
 	//单字节随机，按照规则返回char数组
 	private char[] randomCodeRegex(String[] regexArray){
 		char[] charArray = new char[regexArray.length];
-		NewIDstdCollisionDetect detect = new NewIDstdCollisionDetect();
 		for(int i = 0; i < regexArray.length; i++){
-			charArray[i] = detect.generateRandomChar(regexArray[i]);
+			charArray[i] = NewIDstdCollisionDetect.generateRandomChar(regexArray[i]);
 		}
 		return charArray;
 	}
@@ -73,7 +72,6 @@ public class CompareCode13 {
 		String adminDivisionCode = randomAdminDivision();
 		
 		charArray = randomCodeRegex(regexArray);
-		System.out.println(adminDivisionCode.toCharArray());
 		adminDivisionArray =  adminDivisionCode.toCharArray();
 		char[] streetCode = new char[adminDivisionArray.length + charArray.length];
 		System.arraycopy(adminDivisionArray, 0, streetCode, 0, adminDivisionArray.length);
