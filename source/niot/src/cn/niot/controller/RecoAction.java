@@ -35,15 +35,15 @@ public class RecoAction extends ActionSupport {
 		//138000100000000001.sh.beidou.cid.iot.cn
 		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','.','s','h','.','b','e','i',
 		//		'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};
-		char[] IDstr = new char[]{'a','d','0','1'};
+		char[] IDstr = new char[]{'1', 'a','d','0','1'};
 		
-		int [] index = new int[2];
-		index[0] = 2;
-		index[1] = -1;
-//		index[2] = 2;
+		int [] index = new int[3];
+		index[0] = 1;
+		index[1] = 4;
+		index[2] = -1;
 //		index[3] = 3;
 //		index[4] = 4;
-		//System.out.println(RuleFunction.TwoByteDecimalnt(IDstr, 4, index, 2));
+		System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));

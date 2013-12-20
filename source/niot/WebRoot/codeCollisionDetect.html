@@ -9,6 +9,8 @@
 	<script src="./js/globalize.min.js"></script>
 	<script src="./js/dx.chartjs.js"></script>
 	<script src="./js/json2.js"></script>
+<!--	<script src="./js/jquery-ui.js"></script>-->
+
 </head>
 
 <body>
@@ -20,7 +22,7 @@
             <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">注册</button>
         </div><!-- end .header -->
     
-        <div class="container_1">
+        <div class="container_1" style="display: none">
             <div class="inputContent_1">
                  <div class="writecode_1">编码字符
                  </div><!--end writecode-->
@@ -29,7 +31,7 @@
                     <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
                  </div><!--end buttonn-->
                 
-                <textarea id="reqCode" name="textarea" rows="3" class="form-control" style="height:140px; width:700px;">请在这里输入</textarea>
+                <textarea id="reqCode" name="textarea" rows="3" class="form-control" placeholder="请在这里输入要查询的编码" style="height:140px; width:700px;"></textarea>
     
                 <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "sendReqCode()">立即查询</button>
             	<div id = "warning_1">请输入要查询的编码 </div>
@@ -62,66 +64,17 @@
             </div><!--end outputContent-->
          
 
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:50px;
-              width:260px;  
-            background-color: transparent;
-            margin: 0px;
-            padding: 0px;
-             border: 0px;
-             color: #000;
-             font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;">
-                      编码冲突检测</button>
+            <button type="button" class="btn btn-primary" style="height:50px; width:260px;background-color: transparent; margin: 0px;
+            padding: 0px;border: 0px;color: #000;font-size: 18px;">编码冲突检测</button>
 
 
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:33px;
-              width:260px;
-           
-            background-color: #ebe973;
-                         margin: 0px;
-                         margin-top: 9px;
-                         margin-left: 5px;
-            padding: 0px;
-              border: 0px;
-              color: #000;
-              font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;" onclick = "switchToContainer2()">
-                      标准冲突检测</button>
+              <button type="button" class="btn btn-primary" style="height:33px; width:260px;background-color: #ebe973; margin: 0px; 
+              margin-top: 9px; margin-left: 5px; padding: 0px; border: 0px; color: #000; font-size: 18px;" onclick = "switchToContainer2()">
+                      	标准冲突检测</button>
 
                
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:33px;
-              width:260px;  
-                background-color: #e66450;
-                         margin: 0px;
-                         margin-top: 9px;
-                         margin-left: 5px;
-            padding: 0px;
-             border: 0px;
-             color: #000;
-             font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;" onclick="switchToContainer3()">
-                      设计冲突检测</button>
+              <button type="button" class="btn btn-primary" style="height:33px; width:260px;background-color: #e66450; margin: 0px; margin-top: 9px;
+              margin-left: 5px; padding: 0px; border: 0px; color: #000; font-size: 18px;" onclick="switchToContainer3()">设计冲突检测</button>
 
         </div><!-- end .container -->
               
@@ -217,256 +170,125 @@
             
         <div class="container_3" style="display: none">
             <div class="inputContent_3">
-                 <div class="writecode_3">第三个
-                 </div><!--end writecode-->
-                 <div class="butonn">
-                    <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;">扫描输入</button>
-                    <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
-                 </div><!--end buttonn-->
-                
-                <textarea name="textarea" rows="3" class="form-control" style="height:140px; width:700px;">请在这里输入</textarea>
-    
-                <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "triger()">立即查询</button>
+                 <p style="padding-left:30px;padding-top:10px;">设计冲突检测可以检测您设计的编码是否与现有编码存在冲突，达到帮助您设计自己的编码的功能。</p>
+                 <div class="bound" >&nbsp;</div>
+                 <div class="length">
+                   	<div style="display:inline-block;height:15px;">编码长度</div>
+                  	<input id="length" type="text" class="form-control" placeholder="" style="width:50px;height:15px;display:inline-block">              
+                 </div><!--end length-->
+                 
+                 <div class="value">
+                    <div style="position:relative;top:-12px;width:800px;padding-left:8px;background-color:#FFFFFF;width:90px">定义取值范围</div>
+                    
+                    <div class="range">
+	                    <div style="display:inline-block">常用取值范围</div>                    
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">0-9</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">a-z</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">A-Z</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">0-5</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">3-8</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">f-m</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">x-z</button>  
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">N-Q</button>
+                     </div><!--end range-->
+                    
+                    <div id="row_1" class="inputtext">
+	                    <div style="display:inline-block">第</div>
+	                    <input id="startIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
+	                    <div style="display:inline-block">位~第</div>
+	                    <input id="endIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
+	                    <div style="display:inline-block">位</div>
+	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">
+                    </div><!--end inputtext-->
+       
+                    
+                    <div id="row_2" class="inputtext">
+	                    <div style="display:inline-block">第</div>
+	                    <input id="startIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
+	                    <div style="display:inline-block">位~第</div>
+	                    <input id="endIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
+	                    <div style="display:inline-block">位</div>
+	                    <input id="valueRange_2" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">
+                    </div><!--end inputtext-->
+                    
+                    <div id="row_3" class="inputtext">
+	                    <div style="display:inline-block">第</div>
+	                    <input id="startIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
+	                    <div style="display:inline-block">位~第</div>
+	                    <input id="endIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
+	                    <div style="display:inline-block">位</div>
+	                    <input id="valueRange_3" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">
+                    </div><!--end inputtext-->
+
+                    <button type="button" class="btn-label" style="height:24px; margin-left:50px;width:60px;" >增加</button>
+                    
+                    <div class="other">
+                		<div style="display:inline-block">其他</div>
+                    	<input id="rothers" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block" onclick = "updateCurrentRow(event)">
+                	</div>   
+                 </div><!--end value-->
+
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top:10px; width:100px;background:#ebe973;color:#000;margin-left:21px;" onclick ="sendReqRul()">冲突检测</button>
+      
             </div>
             
             <div class="outputContent_3">
-            	<div id = "pieChartContainer">
+            	<div id = "barChartContainer">
             	</div>
-            	<div id="loading" class="loading_3" style="display:none">
+            	<div id="loading_3" class="loading_3" style="display:none">
             		<img src="./images/loading.gif"/>
             	</div>
             	
-            	<div id="noFound" class="noFound" style="display:none">
-            		对不起，您输入的编码不输入任何一种类型。。。
+            	<div id="noFound_3" class="noFound" style="display:none">
+            		恭喜您，您输入的编码规则不与任何系统中记录的已有编码规则冲突！
+            	</div>
+            	
+            	            	
+            	<div id="errorFound_3" class="resultInfo" style="display:none">
+            		出错了，错误信息：</br>
+            		<span id="errorStatement_3"></span>
+            	</div>
+            	
+            	<div id="oneFound_3" class="resultInfo" style="display:none">
+            		您所输入的编码与
+            		<span id="oneFoundName_3"></span>冲突，冲突概率为
+            		<span id="oneFoundCollisionRatio_3"></span>
             	</div>
             	
 
             </div><!--end outputContent-->
          
 
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:50px;
-              width:260px;  
-            background-color: transparent;
-            margin: 0px;
-            padding: 0px;
-             border: 0px;
-             color: #000;
-             font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;" onclick="switchToContainer1()">
-                      编码冲突检测</button>
-
-
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:33px;
-              width:260px;
-           
-            background-color: #ebe973;
-                         margin: 0px;
-                         margin-top: 9px;
-                         margin-left: 5px;
-            padding: 0px;
-              border: 0px;
-              color: #000;
-              font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;" onclick = "switchToContainer2()">
-                      标准冲突检测</button>
-
-               
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:33px;
-              width:260px;  
-                background-color: #e66450;
-                         margin: 0px;
-                         margin-top: 9px;
-                         margin-left: 5px;
-            padding: 0px;
-             border: 0px;
-             color: #000;
-             font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;">
-                      设计冲突检测</button>
+			<button type="button" class="btn btn-primary" style="height:33px; width:260px; background-color: #51bee6; margin: 0px; margin-top: 9px;
+            padding: 0px; border: 0px; color: #000; font-size: 18px; " onclick = "switchToContainer1()"> 编码冲突检测</button>
+            
+            <button type="button" class="btn btn-primary" style="height:33px; width:260px; background-color: #ebe973; margin: 0px; margin-top: 9px;
+            margin-left: 5px; padding: 0px; border: 0px; color: #000; font-size: 18px;" onclick = "switchToContainer2()">标准冲突检测</button>
+			
+			<button type="button" class="btn btn-primary" style="height:50px; width:260px; background-color: transparent; margin: 0px; padding: 0px;
+             border: 0px; color: #000; font-size: 18px;">设计冲突检测</button>
 
         </div><!-- end .container -->  
         
+        
+        <div id="id_container_main" class="container_main">
+			<button type="button" class="btn btn-logo1" onclick="switchMainToContainer1()"> &nbsp;</button>
+	   		<button type="button" class="btn btn-logo2" onclick="switchMainToContainer2()"> &nbsp;</button>
+	   		<button type="button" class="btn btn-logo3" onclick="switchMainToContainer3()"> &nbsp;</button>
+     	</div><!-- end .container -->
+	   
+		<div id="id_ltittle" class="ltittle">   
+		   	<span class="logotittle">编码冲突检测</span>
+			<span class="logotittle">标准冲突检测</span> 
+			<span class="logotittle">设计冲突检测</span>
+		</div><!--end ltittle-->
+	   
+        
+        
+        
 </div><!--end id="main"-->
 </body>
-   <script type="text/javascript">
-		//ztStr = "{status:2,Data:[{codeName:'cpc',probability:12},{codeName:'eCode',probability:88}]}"
-		function sendReqCode()
-		{
-			$("#noFound").css("display","none");
-			$("#errorFound").css("display","none");
-			$("#oneFound").css("display","none");
-			$("#pieChartContainer").css("display","none");
-			
-			var reqCode = $("#reqCode").val();
-			
-			if (reqCode == "" || reqCode=="请在这里输入")
-			{
-				$("#warning_1").css('display','inline-block');
-			}
-			else
-			{
-				$.ajax({
-					url:'respCode.action',
-					cache:false,
-					data:{code:reqCode},
-					dataType:'json',
-					beforeSend:function(){
-									$("#loading_1").css("display","block");
-								},
-					success:function(result){
-									$("#loading_1").css("display","none");
-									if (result.status == 'error'){
-										$("#errorStatement").text(result.statement);
-										$("#errorFound").css("display","block");
-										//alert("error");
-									}
-									else if (result.status == 0){
-										$("#noFound").css("display","block");
-									}
-									else if (result.status == 1){
-										$("#oneFoundName").text(result.data);
-										$("#oneFound").css("display","block");
-									}
-									else if (result.status >1){
-										var pieData = eval(result.data);
-										$("#pieChartContainer").css("display","block");
-										drawPieChart(pieData);
-									}
-									data1=result;
-								},
-					error:"alert('1')"
-				});
-			}
-		}
-		
-		
-		
-		
-		var stepFlag = 1;
-		function triger()
-		{ 
-			if (stepFlag == 0)
-			{
-				stepFlag = 1;
-				$("#noFound").css("display","none");
-				$("#loading").css("display","block");
-				t=setTimeout("drawPieChart(dataSource)",3000);
-			}
-			else
-			{
-				stepFlag = 0;
-				$("#pieChartContainer").css("display","none");
-				$("#loading").css("display","block");
-				t=setTimeout("noFound()",3000);
-			}
-		}
-		
-
-		function noFound()
-		{
-			$("#loading").css("display","none");
-			$("#noFound").css("display","block");
-		}
-		
-		function drawPieChart(dataSource)
-		{
-			$("#loading").css("display","none");
-			$("#pieChartContainer").css("display","block");
-			$(function () {
-		    	$("#pieChartContainer").dxPieChart({
-		        dataSource: dataSource,
-		        size: {
-		            height: 320,
-		            width: 500
-		        },
-		        series: {
-		        type:'doughnut',
-		            argumentField: 'codeName',
-		            valueField: 'probability',
-		            label: {
-		                visible: true,
-		                format: 'percent',
-		                precision: 1,
-		                font:{size:6},
-		                connector: { visible: true }
-		            }
-		        },
-		        title: {text:'Collision Ratio',
-		        		position:'leftTop',
-		                font: {
-					                color: 'steelblue',
-					                family: 'Microsoft YaHei',
-					                opacity: 0.75,
-					                size: 18,
-					                weight: 400
-					            }
-		        },
-		        tooltip: { enabled: true,
-		        customizeText: function (argumentText) {
-               		return argumentText.argument;
-           		}
-		        },
-		        animation: {
-		            duration: 3000,
-		            easing: 'linear'
-		        }
-		    });
-		});
-		}
-		
-		
-		
-		dataSource = [
-		    { codeName: 'CPC', probability: 0.6 },
-		    { codeName: 'uCode', probability: 0.1 },
-		    { codeName: 'eCode', probability: 0.03 },
-		    { codeName: 'WC', probability: 0.07 },
-		    { codeName: 'WFXXF', probability: 0.15 },
-		    { codeName: 'CNNIC', probability: 0.025 },
-		    { codeName: 'FFFF', probability: 0.025 }
-		];
-		
-		function switchToContainer1()
-		{
-			$(".container_2")[0].style.display = "none";
-			$(".container_3")[0].style.display = "none";
-			$(".container_1")[0].style.display = "block";
-		}
-		
-		function switchToContainer2()
-		{
-			$(".container_1")[0].style.display = "none";
-			$(".container_3")[0].style.display = "none";
-			$(".container_2")[0].style.display = "block";
-		}
-		
-		function switchToContainer3()
-		{
-			$(".container_1")[0].style.display = "none";
-			$(".container_2")[0].style.display = "none";
-			$(".container_3")[0].style.display = "block";
-		}
-
-</script>
+<script src="./js/zt_main_page.js"></script>
+<script src="./js/zt_function_1.js"></script>
+<script src="./js/zt_function_2.js"></script>
 </html>

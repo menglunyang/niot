@@ -325,7 +325,7 @@ public class RecoDao {
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINEQUIPMENT);
+			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINESTABLISHMENT);
 			int i = 1;
 			stmt.setString(i, code);
 			
@@ -372,4 +372,19 @@ public class RecoDao {
 		}
 		return ret;
 	}
+	
+	//随机取出一条行政区划代码数据
+//	public String getRandomAdminDivision(){
+//		Connection connection = JdbcUtils.getConnection();
+//		PreparedStatement stmt = null;
+//		ResultSet results = null;
+//		String code = "";
+//		try{
+//			stmt = connection.prepareStatement()
+//		}catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {  
+//			JdbcUtils.free(null, null, connection);
+//		}
+//	}
 }

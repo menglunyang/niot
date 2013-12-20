@@ -23,8 +23,7 @@ public class RuleFunction {
 		index[1] = 1;
 		index[2] = 2;
 		index[3] = 3;
-		System.out
-				.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
+		System.out.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 	}
 
 	private static boolean checkInputParam(char[] IDstr, int LenID, int[] Index, int LenIndex) {
@@ -36,7 +35,7 @@ public class RuleFunction {
 				return false;
 			}
 			for(int i = 0; i < LenIndex; i++){
-				if(Index[i] < 0 || Index[i] >= LenID){
+				if((Index[i] < -1)|| Index[i] >= LenID){
 					return false;
 				}
 			}
@@ -397,7 +396,7 @@ public class RuleFunction {
 	// Index: 调用行政区划代码的位置
 	// LenIndex: 长度必须是6位
 	// creator: zll
-	public String AdminDivision(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String AdminDivision(char[] IDstr, int LenID, int[] Index, int LenIndex) {
 		try {
 			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
 				return ERR;
@@ -2102,6 +2101,40 @@ public class RuleFunction {
 				return OK;
 			} else return ERR;
 		} catch(Exception e) {
+			return ERR;
+		}
+	}
+	
+	//Function: 商品条码 资产编码与条码表示最后的系列号为1-16位，使用正则进行匹配(58)
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度 不固定
+	//Index: 调用正则的的索引位置
+	//LenIndex:0-13位为全球可回收资产代码,LenIndex必为3，第一位为起始的位数，第二位为正则可重复的次数,第三位为-1
+	//creator: zll
+	public static String GraiSerialNo(char[] IDstr, int LenID, int[] Index, int LenIndex){
+		try{
+			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+				return ERR;
+			}
+			if(LenIndex != 3){
+				return ERR;
+			}
+			String code = "";
+			int num = Index[1];
+			String regex = "[a-zA-Z0-9!\"%&'()*+,-./:;<=>?_]{1," + String.valueOf(num) + "}";			
+			
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if(ret){
+				return OK;
+			}else{
+				return ERR;
+			}
+		}catch (Exception e) {
 			return ERR;
 		}
 	}

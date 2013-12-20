@@ -1,0 +1,70 @@
+﻿Merge https://github.com/dgq2010/niot
+
+Conflicts:
+	source/niot/WebRoot/WEB-INF/classes/cn/niot/controller/RecoAction.class
+	source/niot/WebRoot/WEB-INF/classes/cn/unitTest/RuleFuncTest.class
+	source/niot/src/cn/unitTest/RuleFuncTest.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 17 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	modified:   .gitignore
+#	deleted:    niot
+#	new file:   source/niot/.classpath
+#	new file:   source/niot/.project
+#	deleted:    source/niot/WebRoot/WEB-INF/classes/.struts.mex
+#	new file:   source/niot/WebRoot/WEB-INF/classes/cn/niot/controller/IoTNewRuleRecognitionAction.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/controller/RecoAction.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/dao/RecoDao.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/rule/RuleFunction.class
+#	new file:   source/niot/WebRoot/WEB-INF/classes/cn/niot/service/CompareCode13.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/util/RecoUtil.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/unitTest/RuleFuncTest.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/struts.xml
+#	deleted:    source/niot/WebRoot/WEB-INF/classes/unitTest/TestRule.class
+#	modified:   source/niot/WebRoot/codeCollisionDetect.css
+#	modified:   source/niot/WebRoot/codeCollisionDetect.html
+#	deleted:    source/niot/WebRoot/images/background.gif
+#	new file:   source/niot/WebRoot/images/background.png
+#	new file:   source/niot/WebRoot/images/contentBackground3.gif
+#	new file:   source/niot/WebRoot/images/logo1.png
+#	new file:   source/niot/WebRoot/images/logo1hover.png
+#	new file:   source/niot/WebRoot/images/logo2.png
+#	new file:   source/niot/WebRoot/images/logo2hover.png
+#	new file:   source/niot/WebRoot/images/logo3.png
+#	new file:   source/niot/WebRoot/images/logo3hover.png
+#	new file:   source/niot/WebRoot/js/jquery-ui.js
+#	new file:   source/niot/WebRoot/js/zt_function_1.js
+#	new file:   source/niot/WebRoot/js/zt_function_2.js
+#	new file:   source/niot/WebRoot/js/zt_main_page.js
+#	deleted:    source/niot/src/.struts.mex
+#	new file:   source/niot/src/cn/niot/controller/IoTNewRuleRecognitionAction.java
+#	modified:   source/niot/src/cn/niot/controller/RecoAction.java
+#	modified:   source/niot/src/cn/niot/dao/RecoDao.java
+#	modified:   source/niot/src/cn/niot/rule/RuleFunction.java
+#	new file:   source/niot/src/cn/niot/service/CompareCode13.java
+#	modified:   source/niot/src/cn/niot/util/RecoUtil.java
+#	modified:   source/niot/src/cn/unitTest/RuleFuncTest.java
+#	modified:   source/niot/src/struts.xml
+#	deleted:    source/niot/src/unitTest/TestRule.java
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	niot/
+
