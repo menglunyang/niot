@@ -374,17 +374,42 @@ public class RecoDao {
 	}
 	
 	//随机取出一条行政区划代码数据
-//	public String getRandomAdminDivision(){
-//		Connection connection = JdbcUtils.getConnection();
-//		PreparedStatement stmt = null;
-//		ResultSet results = null;
-//		String code = "";
-//		try{
-//			stmt = connection.prepareStatement()
-//		}catch (SQLException e) {
-//			e.printStackTrace();
-//		}finally {  
-//			JdbcUtils.free(null, null, connection);
-//		}
-//	}
+	public String getRandomAdminDivision(){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		String code = "";
+		try{
+			stmt = connection.prepareStatement(RecoUtil.SELECT_RANDOMADMINDIVISION);
+			results = stmt.executeQuery();
+			while(results.next()){
+				code = results.getString("id");
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {  
+			JdbcUtils.free(null, null, connection);
+		}
+		return code;
+	}
+	
+	//随机取出一条EANUPC数据
+	public String getRandomEANUPC(){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		String code = "";
+		try{
+			stmt = connection.prepareStatement(RecoUtil.SELECT_RANDOMEANUPC);
+			results = stmt.executeQuery();
+			while(results.next()){
+				code = String.valueOf(results.getInt("code"));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {  
+			JdbcUtils.free(null, null, connection);
+		}
+		return code;
+	}
 }

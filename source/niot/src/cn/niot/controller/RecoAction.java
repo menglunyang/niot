@@ -43,7 +43,7 @@ public class RecoAction extends ActionSupport {
 		index[2] = -1;
 //		index[3] = 3;
 //		index[4] = 4;
-		System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
+		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
@@ -52,7 +52,13 @@ public class RecoAction extends ActionSupport {
 		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
 		//}
 		
-		RuleFuncTest.testTwoByteDecimalnt();
+		//RuleFuncTest.testTwoByteDecimalnt();
+		CompareCode13 com =  new CompareCode13();
+		String s="112345";
+		System.out.println(s.toCharArray());
+		char[] ss = com.generateRandomStreetCode();
+		
+		System.out.println(ss.toString());
 		
 		return "sucess"; //预定义常量
 	} 
