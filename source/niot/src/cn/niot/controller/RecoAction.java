@@ -52,6 +52,7 @@ public class RecoAction extends ActionSupport {
 		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
 		//}
 		
+<<<<<<< HEAD
 		//RuleFuncTest.testTwoByteDecimalnt();
 		CompareCode13 com =  new CompareCode13();
 		String s="112345";
@@ -59,6 +60,9 @@ public class RecoAction extends ActionSupport {
 		char[] ss = com.generateRandomStreetCode();
 		
 		System.out.println(ss.toString());
+=======
+		RuleFuncTest.testGenerateRandomChar();
+>>>>>>> be3efe6eeda601baeb38f50f0d8a944c809b682f
 		
 		return "sucess"; //预定义常量
 	} 

@@ -5,7 +5,9 @@ import static org.junit.Assert.assertEquals;
 import javax.swing.JOptionPane;
 
 import cn.niot.rule.RuleFunction;
+import cn.niot.service.NewIDstdCollisionDetect;
 
+import cn.niot.service.*;
 public class RuleFuncTest {
 	public static void UnitTestEqual(String str1, String str2) {
 		
@@ -18,6 +20,18 @@ public class RuleFuncTest {
 		}
 		return;
 	}
+	
+	public static void testGenerateRandomChar( ){
+		for (int i = 0; i < 100; i++){
+			String byterule = "[B,C]";
+			char res = NewIDstdCollisionDetect.generateRandomChar(byterule);
+			System.out.println(res);
+		}
+		
+	}
+	
+	
+
 
 	public static void testTwoByteDecimalnt() {
 		int[] index1 = { 0, 1 };
@@ -36,4 +50,5 @@ public class RuleFuncTest {
 		char[] IDstr4 = { 'a', 'b' };
 		UnitTestEqual(RuleFunction.TwoByteDecimalnt(IDstr4, 2, index4, 2), "ERR");
 	}
+
 }
