@@ -52,7 +52,7 @@ public class RecoAction extends ActionSupport {
 		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
 		//}
 		
-		RuleFuncTest.testTwoByteDecimalnt();
+		RuleFuncTest.testGenerateRandomChar();
 		
 		return "sucess"; //预定义常量
 	} 
