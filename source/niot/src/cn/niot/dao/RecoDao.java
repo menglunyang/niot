@@ -372,4 +372,19 @@ public class RecoDao {
 		}
 		return ret;
 	}
+	
+	//随机取出一条行政区划代码数据
+//	public String getRandomAdminDivision(){
+//		Connection connection = JdbcUtils.getConnection();
+//		PreparedStatement stmt = null;
+//		ResultSet results = null;
+//		String code = "";
+//		try{
+//			stmt = connection.prepareStatement()
+//		}catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {  
+//			JdbcUtils.free(null, null, connection);
+//		}
+//	}
 }
