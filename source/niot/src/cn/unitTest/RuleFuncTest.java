@@ -23,7 +23,7 @@ public class RuleFuncTest {
 	
 	public static void testGenerateRandomChar( ){
 		for (int i = 0; i < 100; i++){
-			String byterule = "[B,C]";
+			String byterule = "[0,1]";
 			char res = NewIDstdCollisionDetect.generateRandomChar(byterule);
 			System.out.println(res);
 		}
