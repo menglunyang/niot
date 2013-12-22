@@ -50,5 +50,14 @@ public class RuleFuncTest {
 		char[] IDstr4 = { 'a', 'b' };
 		UnitTestEqual(RuleFunction.TwoByteDecimalnt(IDstr4, 2, index4, 2), "ERR");
 	}
+	
+	public static void testFormJsonString(){
+		String len = "8";
+		String valueRange = "1-1:0-9;4-6:a-z;7-8:A-Z;";
+		String resJasonStr = NewIDstdCollisionDetect.formJsonString(len, valueRange);
+		System.out.println(resJasonStr);
+		//UnitTestEqual(resJasonStr, "ERR");
+	} 
+
 
 }

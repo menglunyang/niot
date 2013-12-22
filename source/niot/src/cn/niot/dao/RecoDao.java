@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
@@ -40,6 +41,82 @@ public class RecoDao {
 			JdbcUtils.free(null, null, connection);
 		}
 		return "ok";
+	}
+	
+	/*
+	 * 参数也是返回值 返回hashMapTypeToRules、rmvRuleSet、rmvIDSet、hashMapRuleToTypes
+	 */
+	public HashMap<String, ArrayList<String>> DBreadTypeAndRules(
+			HashMap<String, Double> rmvRuleSet,
+			HashMap<String, Double> rmvIDSet,
+			HashMap<String, ArrayList<String>> hashMapRuleToTypes) {
+		HashMap<String, ArrayList<String>> hashMapTypeToRules = new HashMap<String, ArrayList<String>>();
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TYPEANDRULES);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				ArrayList<String> rules = new ArrayList<String>();// 函数返回值中的ArrayList
+				String idType = results.getString("id");
+				String lengthRule = results.getString("length");
+				String byteRule = results.getString("byte");
+				String functionRules = results.getString("function");
+				double priorProbability = results.getDouble("priorProbability");
+				if (lengthRule.length() != 0) {
+					lengthRule = "IoTIDLength)(?#PARA=" + lengthRule + "){]";
+					rules.add(lengthRule);// eg.length8)(?#PARA=8){]
+					// 函数名字叫length8,参数8
+					rmvRuleSet.put(lengthRule, 0.5);// 向rmvRuleSet添加length规则
+					hashMapTypeToRulesSwitchhashMapRuleToTypes(
+							hashMapRuleToTypes, lengthRule, idType);// hashMapTypeToRules转换为hashMapRuleToTypes,处理length
+				}
+				if (byteRule.length() != 0) {
+					byteRule = "IoTIDByte)(?#PARA=" + byteRule + "){]";
+					rules.add(byteRule);
+					rmvRuleSet.put(byteRule, 0.5);// 向rmvRuleSet添加byte规则
+					hashMapTypeToRulesSwitchhashMapRuleToTypes(
+							hashMapRuleToTypes, byteRule, idType);// hashMapTypeToRules转换为hashMapRuleToTypes,处理byte
+				}
+				rmvIDSet.put(idType, priorProbability);// 向rmvRuleSet添加ID,先验概率0.5
+				ArrayList<String> types = new ArrayList<String>();
+
+				String[] splitFunctionRules = functionRules
+						.split("\\(\\?\\#ALGNAME=");
+				for (int i = 0; i < splitFunctionRules.length; i++) {
+					if (splitFunctionRules[i].length() != 0) {
+						rules.add(splitFunctionRules[i]);
+						rmvRuleSet.put(splitFunctionRules[i], 0.5);
+						hashMapTypeToRulesSwitchhashMapRuleToTypes(
+								hashMapRuleToTypes, splitFunctionRules[i],
+								idType);
+					}
+				}
+				hashMapTypeToRules.put(idType, rules);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return hashMapTypeToRules;
+	}
+	
+	private void hashMapTypeToRulesSwitchhashMapRuleToTypes(
+			HashMap<String, ArrayList<String>> hashMapRuleToTypes, String rule,
+			String idType) {
+		ArrayList<String> types = new ArrayList<String>();
+		if (hashMapRuleToTypes.get(rule) == null) {// hashMapTypeToRules转换为hashMapRuleToTypes,处理function
+			types.add(idType);
+			hashMapRuleToTypes.put(rule, types);
+		} else {
+			types = hashMapRuleToTypes.get(rule);
+			types.add(idType);
+			hashMapRuleToTypes.put(rule, types);
+		}
+
 	}
 	
 	///行政区划代码(296)

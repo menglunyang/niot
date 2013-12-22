@@ -10,10 +10,31 @@ import cn.niot.util.*;
 public class NewIDstdCollisionDetect {
 	private static NewIDstdCollisionDetect collisionDetectAlg = new NewIDstdCollisionDetect();
 	private static Random r1 = new Random(1000);//指定种子数字
-	private static double RandomNumber = 10000;
+	private static double RandomNumber = 10;
+	private static int BEGIN_END = 2;
 	
 	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {
 		return collisionDetectAlg;
+	}
+	
+	public static String formJsonString(String len, String valueRange){
+		String resJasonStr = "";
+		 JSONObject jsonObject = new  JSONObject();
+		 jsonObject.put("IDName", "XXXID");
+		 jsonObject.put("Len", len);
+		 String[] subArray = valueRange.split(";");
+		 for(String ele: subArray){
+			 String[] subEle = ele.split(":");
+			 if (subEle.length != BEGIN_END){
+				 System.out.println("ERROR! formJsonString!");				 
+			 }
+			 String[] subsubEle = subEle[0].split("-");
+			 for (char temp = subsubEle[0].charAt(0); temp <=  subsubEle[1].charAt(0); temp++){
+				 jsonObject.put(String.valueOf((char)((int)temp - 1)), subEle[1]);
+			 }
+		 }
+		 resJasonStr = jsonObject.toString();
+		return resJasonStr;
 	}
 	public static HashMap<String, Double> computeCollisionRate(String JsonString){
 		HashMap<String, Double> IDSTD_CollisionRate = new HashMap<String, Double>();

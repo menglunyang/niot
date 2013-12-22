@@ -54,12 +54,14 @@ public class RecoAction extends ActionSupport {
 		
 
 		//RuleFuncTest.testTwoByteDecimalnt();
+		/*
 		CompareCode13 com =  new CompareCode13();
 		String s="112345";
 		System.out.println(s.toCharArray());
 		char[] ss = com.generateRandomEAN13();
+		*/
 		
-		//RuleFuncTest.testGenerateRandomChar();
+		RuleFuncTest.testFormJsonString();
 		
 		return "sucess"; //预定义常量
 	} 
