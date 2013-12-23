@@ -10,6 +10,8 @@ import cn.niot.service.NewIDstdCollisionDetect;
 import cn.niot.util.RecoUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ActionContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 

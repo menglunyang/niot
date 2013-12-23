@@ -1,5 +1,10 @@
 package cn.niot.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import cn.niot.dao.*;
@@ -64,7 +69,11 @@ public class RecoAction extends ActionSupport {
 		
 		//System.out.println(ss.toString());
 		
-		RuleFuncTest.testFormJsonString();
+		//RuleFuncTest.testFormJsonString();
+		ActionContext ctx = ActionContext.getContext();            
+		HttpServletRequest request=(HttpServletRequest)ctx.get(ServletActionContext.HTTP_REQUEST);
+		String url = request.getRequestURL().toString();
+		System.out.println(url);
 	
 		return "sucess"; //预定义常量
 	} 

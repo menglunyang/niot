@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -491,22 +492,24 @@ public class RecoDao {
 	}
 	
 	//返回标准详细信息
-//	public String getIDDetail(){
-//		Connection connection = JdbcUtils.getConnection();
-//		PreparedStatement stmt = null;
-//		ResultSet results = null;
-//		String code = "";
-//		try{
-//			stmt = connection.prepareStatement(RecoUtil.SELECT_RANDOMEANUPC);
-//			results = stmt.executeQuery();
-//			while(results.next()){
-//				code = String.valueOf(results.getInt("code"));
-//			}
-//		}catch (SQLException e) {
-//			e.printStackTrace();
-//		}finally {  
-//			JdbcUtils.free(null, null, connection);
-//		}
-//		return code;
-//	}
+	public String getIDDetail(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		String name = "";
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
+		try{
+			stmt = connection.prepareStatement(RecoUtil.SELECT_IDDETAIL);
+			stmt.setString(1, code);
+			results = stmt.executeQuery();
+			while(results.next()){
+				name = results.getString("name");
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {  
+			JdbcUtils.free(null, null, connection);
+		}
+		return name;
+	}
 }
