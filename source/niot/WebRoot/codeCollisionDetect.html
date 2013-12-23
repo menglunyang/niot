@@ -13,6 +13,7 @@
 	<script src="./js/json2.js"></script>
 	<script src="./js/jquery-ui.js"></script>
 	<script src="./js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/raphael-min.js" type="text/javascript" charset="utf-8"></script>
 	
 
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
@@ -83,94 +84,84 @@
 
         </div><!-- end .container -->
               
-        <div class="container_2" style="display: none">
-            <div class="inputContent_2">
-                 <div class="writecode_2">第二个
-                 </div><!--end writecode-->
-                 <div class="butonn">
-                    <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;">扫描输入</button>
-                    <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
-                 </div><!--end buttonn-->
+ 	<div class="container_2" style="display:none">
+            <div class="input" style="height:240px;">
+                 <p style="padding-left:30px;padding-top:10px;">设计冲突检测可以分析两种标准之间的冲突。</p>
+                 <div class="bound" >&nbsp;</div>
+                 <div class="colabel">             
+                      <button type="button"class="btn-codelabel">ucode</button>
+                      <button type="button"class="btn-codelabel">ecode</button>
+                      <button type="button"class="btn-codelabel">EAN-13</button>
+                      <button type="button"class="btn-codelabel">EAN-8</button>
+                      <button type="button"class="btn-codelabel">EAN-12</button>
+                      <button type="button"class="btn-codelabel">UPC-A</button>
+                      <button type="button"class="btn-codelabel">UPC-B</button>  
+                      <button type="button"class="btn-codelabel">UPC-C</button>
+                      <button type="button"class="btn-codelabel">UPC-D</button>
+                      <button type="button"class="btn-codelabel">UPC-E</button>
+                      <button type="button"class="btn-codelabel">ucode</button>
+                      <button type="button"class="btn-codelabel">ecode</button>
+                      <button type="button"class="btn-codelabel">EAN-13</button>
+                      <button type="button"class="btn-codelabel">EAN-8</button>
+                      <button type="button"class="btn-codelabel">EAN-12</button>
+                      <button type="button"class="btn-codelabel">UPC-A</button>
+                      <button type="button"class="btn-codelabel">UPC-B</button>  
+                      <button type="button"class="btn-codelabel">UPC-C</button>
+                      <button type="button"class="btn-codelabel">UPC-D</button>
+                      <button type="button"class="btn-codelabel">UPC-E</button>
+                      <button type="button"class="btn-codelabel">ucode</button>
+                      <button type="button"class="btn-codelabel">ecode</button>
+                      <button type="button"class="btn-codelabel">EAN-13</button>
+                      <button type="button"class="btn-codelabel">EAN-8</button>
+                      <button type="button"class="btn-codelabel">EAN-12</button>
+                      <button type="button"class="btn-codelabel">UPC-A</button>
+                      <button type="button"class="btn-codelabel">UPC-B</button>  
+                      <button type="button"class="btn-codelabel">UPC-C</button>
+<!--                      <button type="button"class="btn-codelabel">UPC-D</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-E</button>-->
+                      
+                 </div><!--end colabel-->
+                 <div class="inputtext" style="width:700px;margin:0 auto;height:50px;margin-top: 10px;">
+                 	<div>
+                      <label>标准一</label>
+                      
+                      	<ul id="codeName_1" style="display:inline-block;vertical-align:middle;width:350px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						    <li>街巷名/小区名编码</li>
+						</ul>
+                      </div>
+                      
+                      <div style="margin-top: 5px">
+                      		<label>标准二</label>
+	<!--                      <input type="text" class="form-control" placeholder="&nbsp; " style="margin-left: 10px;display:inline;width:260px;height:20px;">-->
+	                
+	                		<ul id="codeName_2" style="display:inline-block;vertical-align:middle;width:350px" onclick="updateCurrentRow(event)">
+							    <!-- Existing list items will be pre-added to the tags -->
+							    <li>ecode</li>
+							</ul>
+						</div>
                 
-                <textarea name="textarea" rows="3" class="form-control" style="height:140px; width:700px;">请在这里输入</textarea>
-    
-                <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "triger()">立即查询</button>
+                </div><!--end inputtext-->
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top:40px ; width:100px;background:#ebe973;color:#000;margin-left:50px;" >冲突检测</button>
+            </div><!--end input-->
+            
+            <div class="outputContent_3">
+            <div id = 'circlesContainer'>
             </div>
             
-            <div class="outputContent_2">
-            	<div id = "pieChartContainer">
-            	</div>
-            	<div id="loading" class="loading_2" style="display:none">
-            		<img src="./images/loading.gif"/>
-            	</div>
-            	
-            	<div id="noFound" class="noFound" style="display:none">
-            		对不起，您输入的编码不输入任何一种类型。。。
-            	</div>
-            </div><!--end outputContent-->
-         
+            
+            </div>
+  
+  			<button type="button" class="btn btn-primary" style="height:33px; width:260px; background-color: #51bee6; margin: 0px; margin-top: 9px;
+            padding: 0px; border: 0px; color: #000; font-size: 18px; " onclick = "switchToContainer1()"> 编码冲突检测</button>
+  	
 
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:50px;
-              width:260px;  
-            background-color: transparent;
-            margin: 0px;
-            padding: 0px;
-             border: 0px;
-             color: #000;
-             font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;" onclick = "switchToContainer1()">
-                      编码冲突检测</button>
-
-
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:33px;
-              width:260px;
-           
-            background-color: #ebe973;
-                         margin: 0px;
-                         margin-top: 9px;
-                         margin-left: 5px;
-            padding: 0px;
-              border: 0px;
-              color: #000;
-              font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;">
-                      标准冲突检测</button>
-
-               
-              <button type="button"
-               class="btn btn-primary"
-               style="
-              height:33px;
-              width:260px;  
-                background-color: #e66450;
-                         margin: 0px;
-                         margin-top: 9px;
-                         margin-left: 5px;
-            padding: 0px;
-             border: 0px;
-             color: #000;
-             font-size: 18px;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                   -o-user-select: none;
-                      user-select: none;" onclick = "switchToContainer3()">
-                      设计冲突检测</button>
-
+            <button type="button" class="btn btn-primary" style="height:50px; width:260px; background-color: transparent; margin: 0px; 
+            padding: 0px; border: 0px; color: #000; font-size: 18px;">标准冲突检测</button>
+			
+			<button type="button" class="btn btn-primary" style="height:33px; width:260px;background-color: #e66450; margin: 0px; margin-top: 9px;
+            margin-left: 10px; padding: 0px; border: 0px; color: #000; font-size: 18px;" onclick="switchToContainer3()">设计冲突检测</button>
+			
         </div><!-- end .container -->
             
         <div class="container_3" style="display: none">
@@ -253,7 +244,7 @@
                 	</div>   
                  </div><!--end value-->
 
-                <button type="button" class="btn btn-primary" style="height:30px;margin-top:10px; width:100px;background:#ebe973;color:#000;margin-left:21px;" onclick ="sendReqRul()">冲突检测</button>
+                <button type="button" class="btn btn-primary" style="position:relative;z-index:2;height:30px;margin-top:10px; width:100px;background:#ebe973;color:#000;margin-left:21px;" onclick ="sendReqRul()">冲突检测</button>
       
             </div>
             
@@ -315,6 +306,7 @@
 </body>
 <script src="./js/zt_main_page.js"></script>
 <script src="./js/zt_function_1.js"></script>
-<script src="./js/zt_function_2.js"></script>
+<script src="js/zt_function_2.js"></script>
+<script src="js/zt_function_3.js"></script>
 
 </html>

@@ -11,10 +11,10 @@ function switchMainToContainer1()
 
 function switchMainToContainer2()
 {
-/*	$(".container_main").fadeOut();
+	$(".container_main").fadeOut();
 	$(".ltittle").fadeOut(function(){
 		$(".container_2").fadeIn();
-	});*/
+	});
 }
 
 function switchMainToContainer3()

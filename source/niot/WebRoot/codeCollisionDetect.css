@@ -35,7 +35,8 @@ html, body, #wrap{ height: 100%; width:100%;padding:0px; margin:0px;}
     height:630px;
     margin: 0 auto;
     margin-top: 10px;
-    background-image:url(images/contentBackground.gif);
+    background-image:url(images/contentBackground2.gif);
+    background-size:100% 100%
 }
 
 .container_3 {
@@ -185,11 +186,7 @@ padding-top:100px;
 
 .outputContent_3 {   
     width: 800px;
-    height:246px;
-    padding: 35px;
-    padding-top: 0px;
-    padding-bottom:0px;
-    
+    height:345px;    
 }
 
 .btn-logo1 {
@@ -264,6 +261,38 @@ padding-top:100px;
 .logotittle{ 
     margin-left:19px;
     margin-right:19px;
+}
+
+.colabel{
+    width:700px;
+    margin:0 auto;
+    margin-top:10px;
+    height:70px;
+}
+
+.btn-codelabel{
+	    display: inline-block;
+	    height:20px;
+	    background-color: #e66450;    
+            margin: auto;
+            margin-top: 10px;
+            margin-left: 5px;
+			color: #FFF;
+			font-size: 12px;
+            -webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+			float:left;
+			padding:1px 1px;
+			border: 1px solid transparent;
+            border-radius: 2px;
+			-webkit-user-select: none;
+			 -moz-user-select: none;
+			 -ms-user-select: none;
+			  -o-user-select: none;
+			  user-select: none;
 }
 
 

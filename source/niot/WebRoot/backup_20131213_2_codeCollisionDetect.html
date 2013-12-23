@@ -3,14 +3,19 @@
 <head>
     
     <link href="codeCollisionDetect.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
+	<link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/knockout-2.2.1.js"></script>
 	<script src="./js/globalize.min.js"></script>
 	<script src="./js/dx.chartjs.js"></script>
 	<script src="./js/json2.js"></script>
-<!--	<script src="./js/jquery-ui.js"></script>-->
+	<script src="./js/jquery-ui.js"></script>
+	<script src="./js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+	
 
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 </head>
 
 <body>
@@ -193,42 +198,62 @@
                      </div><!--end range-->
                     
                     <div id="row_1" class="inputtext">
-	                    <div style="display:inline-block">第</div>
-	                    <input id="startIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
-	                    <div style="display:inline-block">位~第</div>
-	                    <input id="endIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
-	                    <div style="display:inline-block">位</div>
-	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">
+	                    <div style="display:inline-block;vertical-align:middle;">第</div>
+	                    <input id="startIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
+	                    <input id="endIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位</div>
+<!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
+						<div style="display:inline-block;vertical-align:middle;">
+                    	<ul id="valueRange_1" style="display:inline-block;vertical-align:middle;width:550px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						</ul>
+                    	</div>
                     </div><!--end inputtext-->
        
                     
                     <div id="row_2" class="inputtext">
-	                    <div style="display:inline-block">第</div>
-	                    <input id="startIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
-	                    <div style="display:inline-block">位~第</div>
-	                    <input id="endIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
-	                    <div style="display:inline-block">位</div>
-	                    <input id="valueRange_2" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">
+	                    <div style="display:inline-block;vertical-align:middle;">第</div>
+	                    <input id="startIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
+	                    <input id="endIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位</div>
+<!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
+						<div style="display:inline-block;vertical-align:middle;">
+                    	<ul id="valueRange_2" style="display:inline-block;vertical-align:middle;width:550px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						</ul>
+                    	</div>
                     </div><!--end inputtext-->
                     
                     <div id="row_3" class="inputtext">
-	                    <div style="display:inline-block">第</div>
-	                    <input id="startIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
-	                    <div style="display:inline-block">位~第</div>
-	                    <input id="endIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:20px;display:inline-block;">
-	                    <div style="display:inline-block">位</div>
-	                    <input id="valueRange_3" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">
+	                    <div style="display:inline-block;vertical-align:middle;">第</div>
+	                    <input id="startIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
+	                    <input id="endIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位</div>
+<!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
+						<div style="display:inline-block;vertical-align:middle;">
+                    	<ul id="valueRange_3" style="display:inline-block;vertical-align:middle;width:550px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						</ul>
+                    	</div>
                     </div><!--end inputtext-->
 
                     <button type="button" class="btn-label" style="height:24px; margin-left:50px;width:60px;" >增加</button>
                     
                     <div class="other">
                 		<div style="display:inline-block">其他</div>
-                    	<input id="rothers" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block" onclick = "updateCurrentRow(event)">
+<!--             			<input id="rothers" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block" onclick = "updateCurrentRow(event)">-->
+                		
+                		<ul id="rothers" style="display:inline-block;vertical-align:middle;width:550px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						</ul>
+                	
                 	</div>   
                  </div><!--end value-->
 
-                <button type="button" class="btn btn-primary" style="height:30px;margin-top:10px; width:100px;background:#ebe973;color:#000;margin-left:21px;" onclick ="sendReqRul()">冲突检测</button>
+                <button type="button" class="btn btn-primary" style="position:relative;z-index:2;height:30px;margin-top:10px; width:100px;background:#ebe973;color:#000;margin-left:21px;" onclick ="sendReqRul()">冲突检测</button>
       
             </div>
             
@@ -282,7 +307,7 @@
 			<span class="logotittle">标准冲突检测</span> 
 			<span class="logotittle">设计冲突检测</span>
 		</div><!--end ltittle-->
-	   
+
         
         
         
@@ -291,4 +316,5 @@
 <script src="./js/zt_main_page.js"></script>
 <script src="./js/zt_function_1.js"></script>
 <script src="js/zt_function_3.js"></script>
+
 </html>
