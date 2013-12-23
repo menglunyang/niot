@@ -23,7 +23,7 @@ public class RuleFuncTest {
 	
 	public static void testGenerateRandomChar( ){
 		for (int i = 0; i < 100; i++){
-			String byterule = "[B,C]";
+			String byterule = "[0,1]";
 			char res = NewIDstdCollisionDetect.generateRandomChar(byterule);
 			System.out.println(res);
 		}
@@ -50,5 +50,14 @@ public class RuleFuncTest {
 		char[] IDstr4 = { 'a', 'b' };
 		UnitTestEqual(RuleFunction.TwoByteDecimalnt(IDstr4, 2, index4, 2), "ERR");
 	}
+	
+	public static void testFormJsonString(){
+		String len = "8";
+		String valueRange = "1-1:0-9;4-6:a-z;7-8:A-Z;";
+		String resJasonStr = NewIDstdCollisionDetect.formJsonString(len, valueRange);
+		System.out.println(resJasonStr);
+		//UnitTestEqual(resJasonStr, "ERR");
+	} 
+
 
 }

@@ -1,5 +1,14 @@
 package cn.niot.controller;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import cn.niot.service.NewIDstdCollisionDetect;
+import cn.niot.util.RecoUtil;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -72,25 +81,53 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 	public String execute() throws Exception
 	{
 		System.out.println(this.len+"!!!!!"+this.valueRange);
-//		
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		
-		this.status = "7";
-		this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
 		
-		//this.status = "1";
-		//this.data = "{codeName:'cpc',CollisionRatio:0.12}";
+		String resJasonStr = NewIDstdCollisionDetect.formJsonString(this.len, this.valueRange);
+		HashMap<String, Double> HashMapID2Probability = NewIDstdCollisionDetect.computeCollisionRate(resJasonStr);
+    	int len = HashMapID2Probability.size();
+    	if (RecoUtil.NO_ID_MATCHED == len){
+    		this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
+    	} else if (RecoUtil.ONE_ID_MATCHED == len){
+    		Iterator iterator = HashMapID2Probability.keySet().iterator();                
+            while (iterator.hasNext()) {    
+				Object key = iterator.next();    
+				this.data = String.valueOf(key); 
+				this.status = String.valueOf(RecoUtil.ONE_ID_MATCHED);
+            } 
+    	} else {
+    		this.status = String.valueOf(len);
+            
+            JSONArray jsonArray = new  JSONArray();
+            Iterator iterator2 = HashMapID2Probability.keySet().iterator();                
+            while (iterator2.hasNext()) {    
+				Object key = iterator2.next();  				
+				JSONObject jsonObject = new  JSONObject();
+				double probability = HashMapID2Probability.get(key);
+				jsonObject.put("codeName",String.valueOf(key));
+				jsonObject.put("probability",String.valueOf(probability));
+				if (jsonArray.add(jsonObject)){
+					System.out.println("ERROR! jsonArray.add(jsonObject)");
+				}
+				this.data = jsonArray.toString();
+            }
+    	}
+    	
+    	// for test only!
+    	this.status = String.valueOf(2);        
+        JSONArray jsonArray = new  JSONArray();
+        JSONObject jsonObject = new  JSONObject();             
+        jsonObject.put("codeName","b");
+		jsonObject.put("probability",String.valueOf(0.3));
+		jsonArray.add(jsonObject);
+		JSONObject jsonObject2 = new  JSONObject();
+		jsonObject2.put("codeName","a");
+		jsonObject2.put("probability",String.valueOf(0.7));
 		
-		//this.status = "error";
-		//this.statement = "服务器响应时间超时";
-		
-		//this.status = "0";
-		
+		jsonArray.add(jsonObject2);
+		this.data = jsonArray.toString();
+	
+		//this.status = "7";
+		//this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
 		
 		System.out.println(this.status+this.data+this.statement);
 		return SUCCESS;

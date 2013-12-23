@@ -52,18 +52,20 @@ public class RecoAction extends ActionSupport {
 		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
 		//}
 		
-<<<<<<< HEAD
 		RuleFuncTest.testGenerateRandomChar();
-=======
+
 		//RuleFuncTest.testTwoByteDecimalnt();
+		/*
 		CompareCode13 com =  new CompareCode13();
 		String s="112345";
 		System.out.println(s.toCharArray());
-		char[] ss = com.generateRandomStreetCode();
+		char[] ss = com.generateRandomEAN13();
+		*/
 		
-		System.out.println(ss.toString());
->>>>>>> master
+		//System.out.println(ss.toString());
 		
+		RuleFuncTest.testFormJsonString();
+	
 		return "sucess"; //预定义常量
 	} 
 

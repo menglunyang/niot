@@ -50,4 +50,14 @@ public class RecoUtil {
 	
 	//EANUPC代码随机一条记录
 	public static final String SELECT_RANDOMEANUPC = "select floor(rand()*(endcode-begincode)+begincode) as code from (select * from EANUPC where rowno >= (select floor(rand()*(max(rowno)-min(rowno))) + min(rowno) from EANUPC) limit 1) t";
+	
+	public static final String SELECT_TYPEANDRULES="select * from iotid";
+	
+	//、没有匹配成功任何一种标识
+	public static final int NO_ID_MATCHED = 0;
+	
+	//、匹配成功一种标识
+	public static final int ONE_ID_MATCHED = 1;
+
+
 }

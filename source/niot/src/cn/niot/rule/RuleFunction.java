@@ -9,6 +9,7 @@ public class RuleFunction {
 
 	static String ERR = "ERR";
 	static String OK = "OK";
+	static int NO_LENGHT_LIMIT = -1;
 
 	public static void main(String[] args) {
 		// System.out.println("你好世界!");
@@ -24,6 +25,83 @@ public class RuleFunction {
 		index[2] = 2;
 		index[3] = 3;
 		System.out.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
+	}
+	
+	// Function: represent a decimal integer whose value range is from 1 to 99
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	public static String IoTIDLength(String IDstr, int LenID, String parameter,
+			int LenIndex) {
+		// without length limit
+		boolean flag = false;
+		if (parameter.charAt(0) == '-') {// -1
+			return "OK";
+		} else {
+			String[] lengthRanges = parameter.split(",");
+			for (int i = 0; i < lengthRanges.length; i++) {
+				String[] lengthMaxMin = lengthRanges[i].split("-");
+				if (lengthMaxMin.length == 1) {// 1个数
+					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
+						return OK;
+					} else {
+						return ERR;
+					}
+				} else {
+					if (IDstr.length() >= Integer.parseInt(lengthMaxMin[0])
+							&& IDstr.length() <= Integer
+									.parseInt(lengthMaxMin[1])) {
+						flag = true;
+					}
+				}
+			}
+		}
+
+		if (flag) {
+			return "OK";
+		} else {
+			return "ERR";
+		}
+	}
+
+	// Function: represent a decimal integer whose value range is from 1 to 99
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	public static String IoTIDByte(String input, String parameter,
+			String useless, String uselessToo) {
+		
+		String[] byteStrArray = parameter.split(";");
+		int[] byteElement = new int[9];
+		for (int i = 0; i < byteStrArray.length; i++) {
+			String[] byteElementString = byteStrArray[i].split(",");
+			for (int j = 0; j < byteElementString.length; j++) {
+				byteElement[j] = Integer.parseInt(byteElementString[j]);
+			}
+			int index = byteElement[0];
+			if(input.length()<=index){return "ERR";}
+			char objChar = input.charAt(index);
+			int indexChar = 0;
+			if (objChar >= '0' && objChar <= '9') {
+				indexChar = objChar - '0';
+			} else if (objChar >= 'a' && objChar <= 'z') {
+				indexChar = objChar - 'a' + 10;
+			} else if (objChar >= 'A' && objChar <= 'Z') {
+				indexChar = objChar - 'A' + 10 + 26;
+			}
+
+			int m = 0;
+			int n = 0;
+			m = indexChar / 8 + 1;
+			n = indexChar % 8;
+
+			if ((byteElement[m] & (1 << n)) == 0) {
+				return "ERR";
+			}
+		}
+		return "OK";
 	}
 
 	private static boolean checkInputParam(char[] IDstr, int LenID, int[] Index, int LenIndex) {
