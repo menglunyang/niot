@@ -127,7 +127,29 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		jsonArray1.add(jsonObject);
 		JSONObject jsonObject2 = new  JSONObject();
 		jsonObject2.put("codeName","a");
+<<<<<<< HEAD
 		jsonObject2.put("CollisionRatio",String.valueOf(0.7));
+=======
+		jsonObject2.put("probability",String.valueOf(0.7));
+//		
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		
+		this.status = "7";
+		this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
+		
+		//this.status = "1";
+		//this.data = "{codeName:'cpc',CollisionRatio:0.12}";
+		
+		//this.status = "error";
+		//this.statement = "服务器响应时间超时";
+		
+		//this.status = "0";
+>>>>>>> edf1fefdf2708fb47a92ecc28e7f66a480ad7951
 		
 		jsonArray1.add(jsonObject2);
 		this.data = jsonArray1.toString();
