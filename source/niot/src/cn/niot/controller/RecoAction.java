@@ -35,15 +35,15 @@ public class RecoAction extends ActionSupport {
 		//138000100000000001.sh.beidou.cid.iot.cn
 		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','.','s','h','.','b','e','i',
 		//		'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};
-		char[] IDstr = new char[]{'1', 'a','d','0','1'};
+		char[] IDstr = new char[]{'6', '9','5','2','0','3','6','6','0','1','0','5','5'};
 		
-		int [] index = new int[3];
-		index[0] = 1;
-		index[1] = 4;
-		index[2] = -1;
+		int[] index = new int[]{0,1,2,3,4,5,6,7,8,9,10,11};
+//		index[0] = 12;
+//		index[1] = 4;
+//		index[2] = -1;
 //		index[3] = 3;
 //		index[4] = 4;
-		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
+		System.out.println(RuleFunction.CheckCodeForCommodityCode(IDstr, 13, index, 12));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
@@ -52,6 +52,7 @@ public class RecoAction extends ActionSupport {
 		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
 		//}
 		
+		RuleFuncTest.testGenerateRandomChar();
 
 		//RuleFuncTest.testTwoByteDecimalnt();
 		/*
@@ -61,8 +62,10 @@ public class RecoAction extends ActionSupport {
 		char[] ss = com.generateRandomEAN13();
 		*/
 		
-		RuleFuncTest.testFormJsonString();
+		//System.out.println(ss.toString());
 		
+		RuleFuncTest.testFormJsonString();
+	
 		return "sucess"; //预定义常量
 	} 
 
