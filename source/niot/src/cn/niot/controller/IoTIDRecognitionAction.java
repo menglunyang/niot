@@ -127,7 +127,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		
 		//this.status = "0";
 		
-		System.out.println(this.status+this.data+this.statement);
+		System.out.println(this.status+"\n"+this.data+"\n"+this.statement);
 		
 		
 		return SUCCESS;

@@ -47,7 +47,7 @@ public class NewIDstdCollisionDetect {
 			while (iterator.hasNext()) {
 				String key = (String)iterator.next();
 				if(IDSTD_Count.containsKey(key)){
-					IDSTD_Count.put(key, IDSTD_Count.get(key) + 1);
+					IDSTD_Count.put(key, IDSTD_Count.get(key) + 1.0);
 				} else {
 					IDSTD_Count.put(key, 1.0);
 				}
