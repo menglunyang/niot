@@ -59,5 +59,6 @@ public class RecoUtil {
 	//、匹配成功一种标识
 	public static final int ONE_ID_MATCHED = 1;
 
-
+	// 编码详细信息
+	//public static final int SELECT_IDDETAIL = "";
 }

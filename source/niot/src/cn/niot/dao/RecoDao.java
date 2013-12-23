@@ -489,4 +489,24 @@ public class RecoDao {
 		}
 		return code;
 	}
+	
+	//返回标准详细信息
+//	public String getIDDetail(){
+//		Connection connection = JdbcUtils.getConnection();
+//		PreparedStatement stmt = null;
+//		ResultSet results = null;
+//		String code = "";
+//		try{
+//			stmt = connection.prepareStatement(RecoUtil.SELECT_RANDOMEANUPC);
+//			results = stmt.executeQuery();
+//			while(results.next()){
+//				code = String.valueOf(results.getInt("code"));
+//			}
+//		}catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {  
+//			JdbcUtils.free(null, null, connection);
+//		}
+//		return code;
+//	}
 }
