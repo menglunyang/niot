@@ -80,11 +80,11 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 //		逻辑处理。。。。
 //		逻辑处理。。。。
 //		
-		this.status = "7";
-		this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
+		//this.status = "7";
+		//this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
 		
-		//this.status = "1";
-		//this.data = "{codeName:'cpc',CollisionRatio:0.12}";
+		this.status = "1";
+		this.data = "{codeName:'cpc',CollisionRatio:0.12}";
 		
 		//this.status = "error";
 		//this.statement = "服务器响应时间超时";
