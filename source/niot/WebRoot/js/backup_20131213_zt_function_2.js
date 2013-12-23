@@ -1,28 +1,3 @@
-
-    $(document).ready(function() {
-        $("#valueRange_1").tagit();
-        $("#valueRange_2").tagit();
-        $("#valueRange_3").tagit();
-        $("#rothers").tagit();
-    });
-    
-	$("#valueRange_1").tagit({
-	    availableTags: ["0-9", "a-z", "A-Z", "0-5", "3-8", "f-m", "x-z","N-Q"],
-	});
-	
-	$("#valueRange_2").tagit({
-	    availableTags: ["0-9", "a-z", "A-Z", "0-5", "3-8", "f-m", "x-z","N-Q"],
-	});
-	
-	$("#valueRange_3").tagit({
-	    availableTags: ["0-9", "a-z", "A-Z", "0-5", "3-8", "f-m", "x-z","N-Q"],
-	});
-	
-	$("#rothers").tagit({
-	    availableTags: ["0-9", "a-z", "A-Z", "0-5", "3-8", "f-m", "x-z","N-Q"],
-	});
-	
-	
 //ztStr = "{status:2,Data:[{codeName:'cpc',probability:12},{codeName:'eCode',probability:88}]}"
 
 pageStatus = new Object();
@@ -34,15 +9,14 @@ rulDesign = new Object();
 
 function updateCurrentRow(evt)
 {
-	pageStatus.currentRowID = evt.toElement.parentElement.parentElement.id;
+	pageStatus.currentRowID = evt.toElement.id;
 }
 
 function insertToRow(evt)
 {
 	var tagContent = evt.toElement.textContent;
-	//var inputContent = $("#"+pageStatus.currentRowID).val();
-	//$("#"+pageStatus.currentRowID).val(inputContent+tagContent+", ");
-	$("#"+pageStatus.currentRowID).tagit("createTag", tagContent);
+	var inputContent = $("#"+pageStatus.currentRowID).val();
+	$("#"+pageStatus.currentRowID).val(inputContent+tagContent+", ");
 }
 
 function sendReqRul()
@@ -55,22 +29,19 @@ function sendReqRul()
 			{
 				var startIndex = $("#"+"startIndex_"+i).val();
 				var endIndex = $("#"+"endIndex_"+i).val();
-				//var valueRange = $("#"+"valueRange_"+i).val();
-				var valueRange = $("#"+"valueRange_"+i).tagit("assignedTags");
+				var valueRange = $("#"+"valueRange_"+i).val();
 				rulDesign.valueRange = rulDesign.valueRange+startIndex + "-" + endIndex + ":"+ valueRange+";";
-				//console.log(rulDesign.valueRange);
 			}
 		}
-	if ($("#rothers").tagit("assignedTags") != "")
+	if ($("#rothers").val() != "")
 		{
-			rulDesign.valueRange = rulDesign.valueRange+"others:"+$("#rothers").tagit("assignedTags");
+			rulDesign.valueRange = rulDesign.valueRange+"others:"+$("#rothers").val();
 		}
 	
 	if (1!=1){
 		//发送前进行必要的检测
 	}
 	else{
-		console.log(rulDesign.valueRange);
 		$.ajax({
 			url:'respRul.action',
 			cache:false,
