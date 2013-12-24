@@ -38,6 +38,11 @@ function sendReqCode()
 							}
 							else if (result.status >1){
 								var pieData = eval(result.data);
+								var totalNum = pieData.length;
+								for (i=0;i<totalNum;i++)
+									{
+										pieData[i].probability = Number(pieData[i].probability);
+									}
 								$("#pieChartContainer").css("display","block");
 								drawPieChart(pieData);
 							}
@@ -66,7 +71,7 @@ function drawPieChart(dataSource)
             width: 500
         },
         series: {
-        type:'doughnut',
+      //  type:'doughnut',
             argumentField: 'codeName',
             valueField: 'probability',
             label: {

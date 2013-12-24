@@ -43,7 +43,7 @@ public class RecoAction extends ActionSupport {
 //		index[2] = -1;
 //		index[3] = 3;
 //		index[4] = 4;
-		System.out.println(RuleFunction.CheckCodeForCommodityCode(IDstr, 13, index, 12));
+		//System.out.println(RuleFunction.CheckCodeForCommodityCode(IDstr, 13, index, 12));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
@@ -52,7 +52,7 @@ public class RecoAction extends ActionSupport {
 		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
 		//}
 		
-		RuleFuncTest.testGenerateRandomChar();
+		//RuleFuncTest.testGenerateRandomChar();
 
 		//RuleFuncTest.testTwoByteDecimalnt();
 		/*
@@ -63,8 +63,15 @@ public class RecoAction extends ActionSupport {
 		*/
 		
 		//System.out.println(ss.toString());
+		//RuleFuncTest.testHouseCode_CheckCode();
+		//RuleFuncTest.testFormJsonString();
+		//double [] res = NormalIDstdCollisionDetect.evaluateCollisionTwoIDs();
+		//System.out.println(res);
 		
-		RuleFuncTest.testFormJsonString();
+		double [] res = NormalIDstdCollisionDetect.evaluateCollisionTwoIDs();
+		System.out.println(res[0]);
+		System.out.println(res[1]);
+		System.out.println(res[2]);
 	
 		return "sucess"; //预定义常量
 	} 

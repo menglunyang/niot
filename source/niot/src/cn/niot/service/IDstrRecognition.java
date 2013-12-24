@@ -7,6 +7,8 @@ import java.lang.reflect.*;
 import cn.niot.dao.*;
 
 public class IDstrRecognition {
+	static String DEBUG = "OFF";//the value of DEBUG can be "ON" or "OFF"
+	static String DEBUG_RES = "ON";//the value of DEBUG_RES can be "ON" or "OFF"
 	
 	static HashMap<String, Double> rmvRuleSet;
 	static HashMap<String, Double> rmvIDSet;
@@ -30,32 +32,50 @@ public class IDstrRecognition {
 			String maxRule = getMax();
 			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
 			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
-			System.out.print("matching " + splitRules[0] + "("
-					+ splitParameter[0] + ").");
+			if ("ON" == DEBUG){
+				System.out.print("matching " + splitRules[0] + "("
+						+ splitParameter[0] + ").");
+			}
+			
 			if (match(splitRules[0], splitParameter[0], s)) {
 				// intersection(rmvIDSet, hashMapRuleToTypes.get(maxRule));
-				System.out.println("OK");
+				if ("ON" == DEBUG){
+					System.out.println("OK");
+				}				
 			} else {
-				System.out.println("ERR");
+				if ("ON" == DEBUG){
+					System.out.println("ERR");
+				}				
 				subtraction(rmvIDSet, hashMapRuleToTypes.get(maxRule));
 			}
 			union(maxRule);
 		}
 		Date now = new Date();
 	    DateFormat d1 = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.LONG); //默认语言（汉语）下的默认风格（MEDIUM风格，比如：2008-6-16 20:54:53）
-	    System.out.print(d1.format(now)+":");
+	    if ("ON" == DEBUG){
+	    	System.out.print(d1.format(now)+":");
+	    }
+	    
 	    double totalProbabity = 0;
 		if (rmvIDSet.size() == 0) {
-			System.out.println(s + " doesn't belong any Type.");
+			if ("ON" == DEBUG){
+				System.out.println(s + " doesn't belong any Type.");
+			}			
 		} else {
-			System.out.print(s + " belong to:");
+			if ("ON" == DEBUG_RES){
+				System.out.print(s + " belong to:");
+			}			
 			Iterator<String> iterator = rmvIDSet.keySet().iterator();
 			while (iterator.hasNext()) {
 				Object key = iterator.next();
 				totalProbabity = totalProbabity + rmvIDSet.get(key);
-				System.out.print((String) key + " ");
+				if ("ON" == DEBUG_RES){
+					System.out.print((String) key + " ");
+				}				
 			}
-			System.out.println("");
+			if ("ON" == DEBUG_RES){
+				System.out.println("");
+			}			
 		}
 		Iterator<String> iterator2 = rmvIDSet.keySet().iterator();
 		while (iterator2.hasNext()) {

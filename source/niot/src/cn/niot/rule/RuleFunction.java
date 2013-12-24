@@ -1656,18 +1656,33 @@ public class RuleFunction {
 //		}
 //	}
 	public static String HouseCode_CheckCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
-
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+  		}
+		char [] IDstrTemp = new char[LenID]; 
+		for (int k = 0; k < LenID; k++){
+			if ('*' == IDstr[k]){
+				IDstrTemp[k] = '0';
+			} else {
+				IDstrTemp[k] = IDstr[k];
+			}
+		}
 		int i = 0;
 		int j = 10;
 		for (i = 0; i < LenIndex - 1; i++) {
-			j = (((((int) IDstr[Index[i]] - 48) + j) % 10) * 2) % 11;
+			int mode10 = (((int) IDstrTemp[Index[i]] - 48) + j) % 10;
+			if (0 == mode10){
+				mode10 = 10;
+			}
+			j = (mode10 * 2) % 11;
 		}
-		if ((((int) IDstr[Index[LenIndex - 1]] - 48) + j) % 10 == 1) {
+		if ((((int) IDstrTemp[Index[LenIndex - 1]] - 48) + j) % 10 == 1) {
 			return OK;
 		}
 		return ERR;
 
 	}
+	
 
 	// Function: 校验算法 实现 C=MOD(11-MOD(∑Ci×Wi,11),10)
 	// 其中MOD－表示求余函数；i－表示代码字符从左至右位置序号；Ci－表示第i位置上的代码字符的值；Wi－表示第i位置上的加权因子，

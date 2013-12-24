@@ -1857,7 +1857,7 @@ public class RuleFuncTest {
 
 		int j = 26;// 定义长度
 		// 定义IDstr
-		String tr1 = new String("11010101020060050001090001");
+		String tr1 = new String("1101010102006005000109*001");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
