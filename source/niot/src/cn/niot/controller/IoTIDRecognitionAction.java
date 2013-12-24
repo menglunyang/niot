@@ -118,11 +118,25 @@ public class IoTIDRecognitionAction extends ActionSupport {
     	}
 
 //		
+
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		逻辑处理。。。。
+//		
 		//this.status = "2";
 		//this.data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
 		
-		//this.status = "1";
-		//this.data = "CPC";
+		//this.status="5";
+		//this.data = "[{'codeName':'GB/T 19251-2003_EANUCC-8','probability':'0.2'},{'codeName':'GB/T 19251-2003_UCC-12','probability':'0.2'},{'codeName':'Ecode_1','probability':'0.2'},{'codeName':'GB/T 19251-2003_EANUCC-14','probability':'0.2'},{'codeName':'GB/T 19251-2003_EANUCC-13','probability':'0.2'}]";
+		
+
+		
+		
+		this.status = "1";
+		this.data = "CPC";
 		
 		//this.status = "error";
 		//this.statement = "服务器响应时间超时";
