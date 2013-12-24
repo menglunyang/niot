@@ -47,6 +47,26 @@ function updateCurrentRow(evt)
 
 }
 
+function updateCurrentRow_2(evt)
+{
+	
+	if (evt.toElement == null) /*firefox*/
+	{
+		var tempIndex = evt.target.id.indexOf("_")+1;
+		var rowNum = evt.target.id[tempIndex];
+		pageStatus.currentRowID = "valueRange_"+rowNum;
+		//pageStatus.currentRowID = evt.target.parentElement.parentElement.id;
+	}
+	else /*chrome*/
+	{
+		var tempIndex = evt.toElement.id.indexOf("_")+1;
+		var rowNum = evt.toElement.id[tempIndex];
+		pageStatus.currentRowID = "valueRange_"+rowNum;
+		
+	}
+
+}
+
 function insertToRow(evt)
 {
 	if (evt.toElement == null) /*firefox*/
@@ -85,7 +105,7 @@ function sendReqRul()
 		}
 	
 	if (1!=1){
-		//·¢ËÍÇ°½øÐÐ±ØÒªµÄ¼ì²â
+		//ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ð±ï¿½Òªï¿½Ä¼ï¿½ï¿½
 	}
 	else{
 		console.log(rulDesign.valueRange);
@@ -151,7 +171,7 @@ function drawBarChart(dataSource)
         },
     },
     series: [
-        { valueField: "CollisionRatio", name: "Collision Ratio",color: 'forestgreen' }
+        { valueField: "CollisionRatio", name: "Collision Ratio",color: '#e66450' }
     ],
     title: "Collision Ratio",
     legend: {
