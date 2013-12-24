@@ -118,8 +118,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
     	}
 
 //		
-<<<<<<< HEAD
-=======
+
 //		逻辑处理。。。。
 //		逻辑处理。。。。
 //		逻辑处理。。。。
@@ -127,7 +126,6 @@ public class IoTIDRecognitionAction extends ActionSupport {
 //		逻辑处理。。。。
 //		逻辑处理。。。。
 //		
->>>>>>> xiaobaicoding-master
 		//this.status = "2";
 		//this.data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
 		
