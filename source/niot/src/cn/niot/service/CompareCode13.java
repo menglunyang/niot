@@ -40,7 +40,7 @@ public class CompareCode13 {
 		return code;
 	}
 	//EAN-13校验算法
-	private char checkCommodityCode(char[] eanCode){
+	public static char checkCommodityCode(char[] eanCode){
 		char checkcode = 0;
 		int i = 0;
 
@@ -48,11 +48,11 @@ public class CompareCode13 {
 		int odd_sum = 0;
 		int even_sum = 0;
 		
-		for (i = eanCode.length - 1; i >= 0; i -= 2) {
+		for (i = eanCode.length - 2; i >= 0; i -= 2) {
 			even_sum += (eanCode[i] - 48); // ASCII码中 字符'0'对应的是30H,十进制就是48
 		}
 
-		for (i = eanCode.length - 2; i >= 0; i -= 2) {
+		for (i = eanCode.length - 3; i >= 0; i -= 2) {
 			odd_sum += (eanCode[i] - 48);
 		}
 

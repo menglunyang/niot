@@ -134,5 +134,5 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		
 		return SUCCESS;
 	}
-
+	
 }
