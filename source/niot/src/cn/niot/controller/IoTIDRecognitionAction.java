@@ -13,6 +13,8 @@ import cn.niot.service.*;
 import cn.niot.util.RecoUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ActionContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
@@ -86,7 +88,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 	{
 		System.out.println(this.code);
 		String IoTcode = replaceBlank(this.code);
-		HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
+		HashMap<String, Double> typeProbability = RecoUtil.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));		
 		int len = typeProbability.size();
     	if (RecoUtil.NO_ID_MATCHED == len){
     		this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
@@ -104,7 +106,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
             Iterator iterator2 = typeProbability.keySet().iterator();                
             while (iterator2.hasNext()) {    
 				Object key = iterator2.next();  				
-				JSONObject jsonObject = new  JSONObject();
+				JSONObject jsonObject = new JSONObject();
 				double probability = typeProbability.get(key);
 				jsonObject.put("codeName",String.valueOf(key));
 				jsonObject.put("probability",String.valueOf(probability));

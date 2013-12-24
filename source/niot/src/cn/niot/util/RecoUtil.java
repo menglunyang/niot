@@ -1,5 +1,16 @@
 package cn.niot.util;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+import cn.niot.dao.RecoDao;
+
+import com.opensymphony.xwork2.ActionContext;
+
 public class RecoUtil {
 	public static final String JNDI_NAME = "java:comp/env/jdbc/IoTDataSource";
 	public static final String SELECT_IOTID = "select * from iotid where id=?";
@@ -60,5 +71,27 @@ public class RecoUtil {
 	public static final int ONE_ID_MATCHED = 1;
 
 	// 编码详细信息
-	//public static final int SELECT_IDDETAIL = "";
+	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?;";
+	
+	
+	//获得URL地址
+	public static String getURL(){
+		ActionContext ctx = ActionContext.getContext();            
+		HttpServletRequest request = (HttpServletRequest)ctx.get(ServletActionContext.HTTP_REQUEST);
+		String url = request.getRequestURL().toString();
+		return url;
+	}
+	
+	//修改标准ID为名称
+	public static HashMap<String, Double> replaceIotId(HashMap<String, Double> map){
+		HashMap<String, Double> newMap = new HashMap<String, Double>();
+		Iterator iterator = map.keySet().iterator();
+		while(iterator.hasNext()){
+			String key = iterator.next().toString();
+			RecoDao dao = new RecoDao();
+			String name = dao.getIDDetail(key);
+			newMap.put(name, map.get(key));
+		}
+		return newMap;
+	}
 }
