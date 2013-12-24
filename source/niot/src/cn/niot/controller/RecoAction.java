@@ -40,9 +40,9 @@ public class RecoAction extends ActionSupport {
 		//138000100000000001.sh.beidou.cid.iot.cn
 		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','.','s','h','.','b','e','i',
 		//		'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};
-		char[] IDstr = new char[]{'6', '9','5','2','0','3','6','6','0','1','0','5','5'};
-		
-		int[] index = new int[]{0,1,2,3,4,5,6,7,8,9,10,11};
+		char[] IDstr = new char[]{'4', '6','5','9','0','0','6','9','5','1','2','1','5'};
+		char c = CompareCode13.checkCommodityCode(IDstr);
+//		int[] index = new int[]{0,1,2,3,4,5,6,7,8,9,10,11};
 //		index[0] = 12;
 //		index[1] = 4;
 //		index[2] = -1;
@@ -60,12 +60,6 @@ public class RecoAction extends ActionSupport {
 		//RuleFuncTest.testGenerateRandomChar();
 
 		//RuleFuncTest.testTwoByteDecimalnt();
-		/*
-		CompareCode13 com =  new CompareCode13();
-		String s="112345";
-		System.out.println(s.toCharArray());
-		char[] ss = com.generateRandomEAN13();
-		*/
 		
 		//System.out.println(ss.toString());
 		//RuleFuncTest.testHouseCode_CheckCode();
