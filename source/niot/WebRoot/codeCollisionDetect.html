@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="codeCollisionDetect.css" rel="stylesheet" type="text/css">
     <link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
 	<link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/knockout-2.2.1.js"></script>
 	<script src="./js/globalize.min.js"></script>
@@ -62,10 +61,15 @@
             		对不起，您输入的编码不输入任何一种类型。。。
             	</div>
             	
-            	<div id="oneFound" class="resultInfo" style="display:none">
+            	<div id="oneFound_SVG" class="resultInfo_SVG">
+            	
+            	</div>
+            	
+            	<div id="oneFound" class="resultInfo_SVG" style="display:none">
             		您所输入的编码属于
             		<span id="oneFoundName"></span>
             	</div>
+            	
             	
             </div><!--end outputContent-->
          
@@ -111,12 +115,12 @@
                       <button type="button"class="btn-codelabel">UPC-E</button>
                       <button type="button"class="btn-codelabel">ucode</button>
                       <button type="button"class="btn-codelabel">ecode</button>
-                      <button type="button"class="btn-codelabel">EAN-13</button>
-                      <button type="button"class="btn-codelabel">EAN-8</button>
-                      <button type="button"class="btn-codelabel">EAN-12</button>
-                      <button type="button"class="btn-codelabel">UPC-A</button>
-                      <button type="button"class="btn-codelabel">UPC-B</button>  
-                      <button type="button"class="btn-codelabel">UPC-C</button>
+<!--                      <button type="button"class="btn-codelabel">EAN-13</button>-->
+<!--                      <button type="button"class="btn-codelabel">EAN-8</button>-->
+<!--                      <button type="button"class="btn-codelabel">EAN-12</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-A</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-B</button>  -->
+<!--                      <button type="button"class="btn-codelabel">UPC-C</button>-->
 <!--                      <button type="button"class="btn-codelabel">UPC-D</button>-->
 <!--                      <button type="button"class="btn-codelabel">UPC-E</button>-->
                       
@@ -142,10 +146,10 @@
 						</div>
                 
                 </div><!--end inputtext-->
-                <button type="button" class="btn btn-primary" style="height:30px;margin-top:40px ; width:100px;background:#ebe973;color:#000;margin-left:50px;" >冲突检测</button>
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top:40px ; width:100px;background:#ebe973;color:#000;margin-left:50px;position:relative;z-index:2;" onclick="drawTwoCircles(15,4,2,'街巷名/小区名编码','ecode','命名空间：15万','命名空间：4万','命名空间：2万')">冲突检测</button>
             </div><!--end input-->
             
-            <div class="outputContent_3">
+            <div class="outputContent_2">
             <div id = 'circlesContainer'>
             </div>
             
@@ -190,9 +194,9 @@
                     
                     <div id="row_1" class="inputtext">
 	                    <div style="display:inline-block;vertical-align:middle;">第</div>
-	                    <input id="startIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <input id="startIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;" onclick="updateCurrentRow_2(event)">
 	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
-	                    <input id="endIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <input id="endIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;" onclick="updateCurrentRow_2(event)">
 	                    <div style="display:inline-block;vertical-align:middle;">位</div>
 <!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
 						<div style="display:inline-block;vertical-align:middle;">
@@ -205,9 +209,9 @@
                     
                     <div id="row_2" class="inputtext">
 	                    <div style="display:inline-block;vertical-align:middle;">第</div>
-	                    <input id="startIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <input id="startIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;" onclick="updateCurrentRow_2(event)">
 	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
-	                    <input id="endIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <input id="endIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;" onclick="updateCurrentRow_2(event)">
 	                    <div style="display:inline-block;vertical-align:middle;">位</div>
 <!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
 						<div style="display:inline-block;vertical-align:middle;">
@@ -219,9 +223,9 @@
                     
                     <div id="row_3" class="inputtext">
 	                    <div style="display:inline-block;vertical-align:middle;">第</div>
-	                    <input id="startIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <input id="startIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;" onclick="updateCurrentRow_2(event)">
 	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
-	                    <input id="endIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <input id="endIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;" onclick="updateCurrentRow_2(event)">
 	                    <div style="display:inline-block;vertical-align:middle;">位</div>
 <!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
 						<div style="display:inline-block;vertical-align:middle;">
@@ -286,8 +290,10 @@
 
         </div><!-- end .container -->  
         
+        <span id = "platformTitle" class = "platformName" style="">互联网异构标识解析平台</span>
         
         <div id="id_container_main" class="container_main">
+        	
 			<button type="button" class="btn btn-logo1" onclick="switchMainToContainer1()"> &nbsp;</button>
 	   		<button type="button" class="btn btn-logo2" onclick="switchMainToContainer2()"> &nbsp;</button>
 	   		<button type="button" class="btn btn-logo3" onclick="switchMainToContainer3()"> &nbsp;</button>
