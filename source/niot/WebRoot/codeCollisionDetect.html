@@ -93,28 +93,29 @@
                  <p style="padding-left:30px;padding-top:10px;">设计冲突检测可以分析两种标准之间的冲突。</p>
                  <div class="bound" >&nbsp;</div>
                  <div class="colabel">             
-                      <button type="button"class="btn-codelabel">ucode</button>
-                      <button type="button"class="btn-codelabel">ecode</button>
-                      <button type="button"class="btn-codelabel">EAN-13</button>
-                      <button type="button"class="btn-codelabel">EAN-8</button>
-                      <button type="button"class="btn-codelabel">EAN-12</button>
-                      <button type="button"class="btn-codelabel">UPC-A</button>
-                      <button type="button"class="btn-codelabel">UPC-B</button>  
-                      <button type="button"class="btn-codelabel">UPC-C</button>
-                      <button type="button"class="btn-codelabel">UPC-D</button>
-                      <button type="button"class="btn-codelabel">UPC-E</button>
-                      <button type="button"class="btn-codelabel">ucode</button>
-                      <button type="button"class="btn-codelabel">ecode</button>
-                      <button type="button"class="btn-codelabel">EAN-13</button>
-                      <button type="button"class="btn-codelabel">EAN-8</button>
-                      <button type="button"class="btn-codelabel">EAN-12</button>
-                      <button type="button"class="btn-codelabel">UPC-A</button>
-                      <button type="button"class="btn-codelabel">UPC-B</button>  
-                      <button type="button"class="btn-codelabel">UPC-C</button>
-                      <button type="button"class="btn-codelabel">UPC-D</button>
-                      <button type="button"class="btn-codelabel">UPC-E</button>
-                      <button type="button"class="btn-codelabel">ucode</button>
-                      <button type="button"class="btn-codelabel">ecode</button>
+                      <button type="button"class="btn-codelabel" onclick = "insertToRow_2(event)">CPC</button>
+                      <button type="button"class="btn-codelabel" onclick = "insertToRow_2(event)">CID</button>
+                      <button type="button"class="btn-codelabel" onclick = "insertToRow_2(event)">EPC</button>
+                      <button type="button"class="btn-codelabel" onclick = "insertToRow_2(event)">Ecode</button>
+                      <button type="button"class="btn-codelabel" onclick = "insertToRow_2(event)">Ucode</button>
+                      <button type="button"class="btn-codelabel" onclick = "insertToRow_2(event)">DESC</button>
+                      <button type="button"class="btn-codelabel" onclick = "insertToRow_2(event)">EAN_13</button>  
+                      <button type="button"class="btn-codelabel" onclick = "insertToRow_2(event)">Street</button> 
+<!--                      <button type="button"class="btn-codelabel">UPC-C</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-D</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-E</button>-->
+<!--                      <button type="button"class="btn-codelabel">ucode</button>-->
+<!--                      <button type="button"class="btn-codelabel">ecode</button>-->
+<!--                      <button type="button"class="btn-codelabel">EAN-13</button>-->
+<!--                      <button type="button"class="btn-codelabel">EAN-8</button>-->
+<!--                      <button type="button"class="btn-codelabel">EAN-12</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-A</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-B</button>  -->
+<!--                      <button type="button"class="btn-codelabel">UPC-C</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-D</button>-->
+<!--                      <button type="button"class="btn-codelabel">UPC-E</button>-->
+<!--                      <button type="button"class="btn-codelabel">ucode</button>-->
+<!--                      <button type="button"class="btn-codelabel">ecode</button>-->
 <!--                      <button type="button"class="btn-codelabel">EAN-13</button>-->
 <!--                      <button type="button"class="btn-codelabel">EAN-8</button>-->
 <!--                      <button type="button"class="btn-codelabel">EAN-12</button>-->
@@ -125,13 +126,13 @@
 <!--                      <button type="button"class="btn-codelabel">UPC-E</button>-->
                       
                  </div><!--end colabel-->
-                 <div class="inputtext" style="width:700px;margin:0 auto;height:50px;margin-top: 10px;">
+                 <div class="inputtext" style="width:700px;margin:0 auto;margin-top: 10px;">
                  	<div>
                       <label>标准一</label>
                       
-                      	<ul id="codeName_1" style="display:inline-block;vertical-align:middle;width:350px" onclick="updateCurrentRow(event)">
+                      	<ul id="codeName_1" style="display:inline-block;vertical-align:middle;width:650px" onclick="updateCurrentInputRow(event)">
 						    <!-- Existing list items will be pre-added to the tags -->
-						    <li>街巷名/小区名编码</li>
+<!--						    <li>街巷名/小区名编码</li>-->
 						</ul>
                       </div>
                       
@@ -139,14 +140,16 @@
                       		<label>标准二</label>
 	<!--                      <input type="text" class="form-control" placeholder="&nbsp; " style="margin-left: 10px;display:inline;width:260px;height:20px;">-->
 	                
-	                		<ul id="codeName_2" style="display:inline-block;vertical-align:middle;width:350px" onclick="updateCurrentRow(event)">
+	                		<ul id="codeName_2" style="display:inline-block;vertical-align:middle;width:650px" onclick="updateCurrentInputRow(event)">
 							    <!-- Existing list items will be pre-added to the tags -->
-							    <li>ecode</li>
+<!--							    <li>ecode</li>-->
 							</ul>
 						</div>
                 
                 </div><!--end inputtext-->
-                <button type="button" class="btn btn-primary" style="height:30px;margin-top:40px ; width:100px;background:#ebe973;color:#000;margin-left:50px;position:relative;z-index:2;" onclick="drawTwoCircles(15,4,2,'街巷名/小区名编码','ecode','命名空间：15万','命名空间：4万','命名空间：2万')">冲突检测</button>
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top:10px ; width:100px;background:#ebe973;color:#000;margin-left:50px;position:relative;z-index:2;" 
+                onclick="drawSth()">冲突检测</button>
+                <div id = "warning_2" style="top:40px;">请输入两种不同的编码 </div>
             </div><!--end input-->
             
             <div class="outputContent_2">

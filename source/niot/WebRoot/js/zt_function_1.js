@@ -3,6 +3,7 @@ oneresult = Raphael('oneFound_SVG',870, 300);
 
 function sendReqCode()
 {
+	$("#warning_1").css('display','none');
 	$("#noFound").css("display","none");
 	$("#errorFound").css("display","none");
 	$("#oneFound").css("display","none");
@@ -46,10 +47,10 @@ function sendReqCode()
 								
 								$("#oneFound_SVG").css("display","block");
 								
-								oneresult.text(150, 140, "您查询的编码").attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
-								oneresult.circle(380, 140, 140).attr({'fill':'#54A3F0','stroke':''});
-								oneresult.text(380,140,"100%").attr({'font-family':'Lithos Pro','font-size':'130px','fill':'#FFFEFF'});
-								oneresult.text(580,140,"属于"+result.data).attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
+								oneresult.text(380, 20, "您查询的编码").attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
+								oneresult.circle(380, 140, 100).attr({'fill':'#54A3F0','stroke':''});
+								oneresult.text(380,140,"100%").attr({'font-family':'Lithos Pro','font-size':'100px','fill':'#FFFEFF'});
+								oneresult.text(380,260,"属于"+result.data).attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
 							}
 							else if (result.status >1){
 								var pieData = eval(result.data);

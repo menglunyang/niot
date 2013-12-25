@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="codeCollisionDetect_Android_Note2.css" rel="stylesheet" type="text/css">
+   
+	
+	<script src="./js/jquery-1.9.1.min.js"></script>
+	<script src="./js/knockout-2.2.1.js"></script>
+	<script src="./js/globalize.min.js"></script>
+	<script src="./js/dx.chartjs.js"></script>
+	<script src="./js/json2.js"></script>
+	<script src="./js/raphael-min.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="container_1">
+            <div class="outputContent_1">
+            	<div id = "pieChartContainer">
+            	</div>
+            	<div id="loading_1" class="loading_1" style="display:none">
+            		<img src="./images/loading.gif"/>
+            	</div>
+            	
+            	<div id="errorFound" class="resultInfo" style="display:none">
+            		出错了，错误信息：</br>
+            		<span id="errorStatement"></span>
+            	</div>
+            	
+            	
+            	<div id="noFound" class="resultInfo" style="display:none">
+            		对不起，您输入的编码不输入任何一种类型。。。
+            	</div>
+            	
+            	<div id="oneFound_SVG" class="resultInfo_SVG">
+            	
+            	</div>
+            	
+            	<div id="oneFound" class="resultInfo_SVG" style="display:none">
+            		您所输入的编码属于
+            		<span id="oneFoundName"></span>
+            	</div>
+            	
+            	
+            </div><!--end outputContent-->
+         
+
+            
+        </div><!-- end .container -->
+              
+ 	
+        
+        
+</div><!--end id="main"-->
+</body>
+<script src="./js/zt_android.js"></script>
+
+
+</html>
