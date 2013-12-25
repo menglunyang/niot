@@ -8,8 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
 
 import cn.niot.util.JdbcUtils;
 

@@ -1,5 +1,7 @@
 package cn.niot.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -63,10 +65,13 @@ public class RecoAction extends ActionSupport {
 		//System.out.println(res);
 		
 
-		double [] res = NormalIDstdCollisionDetect.evaluateCollisionTwoIDs();
-		System.out.println(res[0]);
-		System.out.println(res[1]);
-		System.out.println(res[2]);
+		HashMap<String, Double> res = NormalIDstdCollisionDetect.evaluateCollisionTwoIDs();		
+		System.out.println("街巷或小区编码");
+		System.out.println(res.get("街巷或小区编码"));
+		System.out.println("公共部分");
+		System.out.println(res.get("公共部分"));
+		System.out.println("商品条码");
+		System.out.println(res.get("商品条码"));
 
 		//RuleFuncTest.testFormJsonString();
 		return "sucess"; //预定义常量
