@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link href="codeCollisionDetect.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
+	<link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="./js/jquery-1.9.1.min.js"></script>
+	<script src="./js/knockout-2.2.1.js"></script>
+	<script src="./js/globalize.min.js"></script>
+	<script src="./js/dx.chartjs.js"></script>
+	<script src="./js/json2.js"></script>
+	<script src="./js/jquery-ui.js"></script>
+	<script src="./js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+	
+
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="header">
+            <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#000;color:#CCC">后向兼容</button>
+            <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">登录</button>
+            <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">注册</button>
+        </div><!-- end .header -->
+    
+        <div class="container_1" style="display: none">
+            <div class="inputContent_1">
+                 <div class="writecode_1">编码字符
+                 </div><!--end writecode-->
+                 <div class="butonn">
+                    <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;">扫描输入</button>
+                    <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
+                 </div><!--end buttonn-->
+                
+                <textarea id="reqCode" name="textarea" rows="3" class="form-control" placeholder="请在这里输入要查询的编码" style="height:140px; width:700px;"></textarea>
+    
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "sendReqCode()">立即查询</button>
+            	<div id = "warning_1">请输入要查询的编码 </div>
+            
+            </div>
+            
+            
+            <div class="outputContent_1">
+            	<div id = "pieChartContainer">
+            	</div>
+            	<div id="loading_1" class="loading_1" style="display:none">
+            		<img src="./images/loading.gif"/>
+            	</div>
+            	
+            	<div id="errorFound" class="resultInfo" style="display:none">
+            		出错了，错误信息：</br>
+            		<span id="errorStatement"></span>
+            	</div>
+            	
+            	
+            	<div id="noFound" class="resultInfo" style="display:none">
+            		对不起，您输入的编码不输入任何一种类型。。。
+            	</div>
+            	
+            	<div id="oneFound" class="resultInfo" style="display:none">
+            		您所输入的编码属于
+            		<span id="oneFoundName"></span>
+            	</div>
+            	
+            </div><!--end outputContent-->
+         
+
+            <button type="button" class="btn btn-primary" style="height:50px; width:260px;background-color: transparent; margin: 0px;
+            padding: 0px;border: 0px;color: #000;font-size: 18px;">编码冲突检测</button>
+
+
+              <button type="button" class="btn btn-primary" style="height:33px; width:260px;background-color: #ebe973; margin: 0px; 
+              margin-top: 9px; margin-left: 5px; padding: 0px; border: 0px; color: #000; font-size: 18px;" onclick = "switchToContainer2()">
+                      	标准冲突检测</button>
+
+               
+              <button type="button" class="btn btn-primary" style="height:33px; width:260px;background-color: #e66450; margin: 0px; margin-top: 9px;
+              margin-left: 5px; padding: 0px; border: 0px; color: #000; font-size: 18px;" onclick="switchToContainer3()">设计冲突检测</button>
+
+        </div><!-- end .container -->
+              
+        <div class="container_2" style="display: none">
+            <div class="inputContent_2">
+                 <div class="writecode_2">第二个
+                 </div><!--end writecode-->
+                 <div class="butonn">
+                    <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;">扫描输入</button>
+                    <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
+                 </div><!--end buttonn-->
+                
+                <textarea name="textarea" rows="3" class="form-control" style="height:140px; width:700px;">请在这里输入</textarea>
+    
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "triger()">立即查询</button>
+            </div>
+            
+            <div class="outputContent_2">
+            	<div id = "pieChartContainer">
+            	</div>
+            	<div id="loading" class="loading_2" style="display:none">
+            		<img src="./images/loading.gif"/>
+            	</div>
+            	
+            	<div id="noFound" class="noFound" style="display:none">
+            		对不起，您输入的编码不输入任何一种类型。。。
+            	</div>
+            </div><!--end outputContent-->
+         
+
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:50px;
+              width:260px;  
+            background-color: transparent;
+            margin: 0px;
+            padding: 0px;
+             border: 0px;
+             color: #000;
+             font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;" onclick = "switchToContainer1()">
+                      编码冲突检测</button>
+
+
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:33px;
+              width:260px;
+           
+            background-color: #ebe973;
+                         margin: 0px;
+                         margin-top: 9px;
+                         margin-left: 5px;
+            padding: 0px;
+              border: 0px;
+              color: #000;
+              font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;">
+                      标准冲突检测</button>
+
+               
+              <button type="button"
+               class="btn btn-primary"
+               style="
+              height:33px;
+              width:260px;  
+                background-color: #e66450;
+                         margin: 0px;
+                         margin-top: 9px;
+                         margin-left: 5px;
+            padding: 0px;
+             border: 0px;
+             color: #000;
+             font-size: 18px;
+              -webkit-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                   -o-user-select: none;
+                      user-select: none;" onclick = "switchToContainer3()">
+                      设计冲突检测</button>
+
+        </div><!-- end .container -->
+            
+        <div class="container_3" style="display: none">
+            <div class="inputContent_3">
+                 <p style="padding-left:30px;padding-top:10px;">设计冲突检测可以检测您设计的编码是否与现有编码存在冲突，达到帮助您设计自己的编码的功能。</p>
+                 <div class="bound" >&nbsp;</div>
+                 <div class="length">
+                   	<div style="display:inline-block;height:15px;">编码长度</div>
+                  	<input id="length" type="text" class="form-control" placeholder="" style="width:50px;height:15px;display:inline-block">              
+                 </div><!--end length-->
+                 
+                 <div class="value">
+                    <div style="position:relative;top:-12px;width:800px;padding-left:8px;background-color:#FFFFFF;width:90px">定义取值范围</div>
+                    
+                    <div class="range">
+	                    <div style="display:inline-block">常用取值范围</div>                    
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">0-9</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">a-z</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">A-Z</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">0-5</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">3-8</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">f-m</button>
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">x-z</button>  
+	                    <button type="button"class="btn-label" onclick="insertToRow(event)">N-Q</button>
+                     </div><!--end range-->
+                    
+                    <div id="row_1" class="inputtext">
+	                    <div style="display:inline-block;vertical-align:middle;">第</div>
+	                    <input id="startIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
+	                    <input id="endIndex_1" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位</div>
+<!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
+						<div style="display:inline-block;vertical-align:middle;">
+                    	<ul id="valueRange_1" style="display:inline-block;vertical-align:middle;width:550px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						</ul>
+                    	</div>
+                    </div><!--end inputtext-->
+       
+                    
+                    <div id="row_2" class="inputtext">
+	                    <div style="display:inline-block;vertical-align:middle;">第</div>
+	                    <input id="startIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
+	                    <input id="endIndex_2" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位</div>
+<!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
+						<div style="display:inline-block;vertical-align:middle;">
+                    	<ul id="valueRange_2" style="display:inline-block;vertical-align:middle;width:550px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						</ul>
+                    	</div>
+                    </div><!--end inputtext-->
+                    
+                    <div id="row_3" class="inputtext">
+	                    <div style="display:inline-block;vertical-align:middle;">第</div>
+	                    <input id="startIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位~第</div>
+	                    <input id="endIndex_3" type="text" class="form-control" placeholder="" style="width:25px;height:28px;display:inline-block;vertical-align:middle;">
+	                    <div style="display:inline-block;vertical-align:middle;">位</div>
+<!--	                    <input id="valueRange_1" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block;" onclick = "updateCurrentRow(event)">-->
+						<div style="display:inline-block;vertical-align:middle;">
+                    	<ul id="valueRange_3" style="display:inline-block;vertical-align:middle;width:550px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						</ul>
+                    	</div>
+                    </div><!--end inputtext-->
+
+                    <button type="button" class="btn-label" style="height:24px; margin-left:50px;width:60px;" >增加</button>
+                    
+                    <div class="other">
+                		<div style="display:inline-block">其他</div>
+<!--             			<input id="rothers" type="text" class="form-control" placeholder="" style="width:550px;height:20px;display:inline-block" onclick = "updateCurrentRow(event)">-->
+                		
+                		<ul id="rothers" style="display:inline-block;vertical-align:middle;width:550px" onclick="updateCurrentRow(event)">
+						    <!-- Existing list items will be pre-added to the tags -->
+						</ul>
+                	
+                	</div>   
+                 </div><!--end value-->
+
+                <button type="button" class="btn btn-primary" style="position:relative;z-index:2;height:30px;margin-top:10px; width:100px;background:#ebe973;color:#000;margin-left:21px;" onclick ="sendReqRul()">冲突检测</button>
+      
+            </div>
+            
+            <div class="outputContent_3">
+            	<div id = "barChartContainer">
+            	</div>
+            	<div id="loading_3" class="loading_3" style="display:none">
+            		<img src="./images/loading.gif"/>
+            	</div>
+            	
+            	<div id="noFound_3" class="noFound" style="display:none">
+            		恭喜您，您输入的编码规则不与任何系统中记录的已有编码规则冲突！
+            	</div>
+            	
+            	            	
+            	<div id="errorFound_3" class="resultInfo" style="display:none">
+            		出错了，错误信息：</br>
+            		<span id="errorStatement_3"></span>
+            	</div>
+            	
+            	<div id="oneFound_3" class="resultInfo" style="display:none">
+            		您所输入的编码与
+            		<span id="oneFoundName_3"></span>冲突，冲突概率为
+            		<span id="oneFoundCollisionRatio_3"></span>
+            	</div>
+            	
+
+            </div><!--end outputContent-->
+         
+
+			<button type="button" class="btn btn-primary" style="height:33px; width:260px; background-color: #51bee6; margin: 0px; margin-top: 9px;
+            padding: 0px; border: 0px; color: #000; font-size: 18px; " onclick = "switchToContainer1()"> 编码冲突检测</button>
+            
+            <button type="button" class="btn btn-primary" style="height:33px; width:260px; background-color: #ebe973; margin: 0px; margin-top: 9px;
+            margin-left: 5px; padding: 0px; border: 0px; color: #000; font-size: 18px;" onclick = "switchToContainer2()">标准冲突检测</button>
+			
+			<button type="button" class="btn btn-primary" style="height:50px; width:260px; background-color: transparent; margin: 0px; padding: 0px;
+             border: 0px; color: #000; font-size: 18px;">设计冲突检测</button>
+
+        </div><!-- end .container -->  
+        
+        
+        <div id="id_container_main" class="container_main">
+			<button type="button" class="btn btn-logo1" onclick="switchMainToContainer1()"> &nbsp;</button>
+	   		<button type="button" class="btn btn-logo2" onclick="switchMainToContainer2()"> &nbsp;</button>
+	   		<button type="button" class="btn btn-logo3" onclick="switchMainToContainer3()"> &nbsp;</button>
+     	</div><!-- end .container -->
+	   
+		<div id="id_ltittle" class="ltittle">   
+		   	<span class="logotittle">编码冲突检测</span>
+			<span class="logotittle">标准冲突检测</span> 
+			<span class="logotittle">设计冲突检测</span>
+		</div><!--end ltittle-->
+
+        
+        
+        
+</div><!--end id="main"-->
+</body>
+<script src="./js/zt_main_page.js"></script>
+<script src="./js/zt_function_1.js"></script>
+<script src="js/zt_function_3.js"></script>
+
+</html>

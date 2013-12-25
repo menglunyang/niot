@@ -1,0 +1,43 @@
+﻿Merge branch 'master' of https://github.com/cnnic/niot
+
+Conflicts:
+	source/niot/WebRoot/WEB-INF/classes/cn/niot/controller/IoTNewRuleRecognitionAction.class
+	source/niot/src/cn/niot/controller/IoTNewRuleRecognitionAction.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	deleted:    mvfdcwu5.ijt.txt
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/controller/IoTNewRuleRecognitionAction.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/rule/RuleFunction.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/service/NormalIDstdCollisionDetect.class
+#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/unitTest/RuleFuncTest.class
+#	new file:   source/niot/WebRoot/backup_20131213_2_codeCollisionDetect.html
+#	modified:   source/niot/WebRoot/backup_20131213_codeCollisionDetect.html
+#	modified:   source/niot/WebRoot/codeCollisionDetect.css
+#	modified:   source/niot/WebRoot/codeCollisionDetect.html
+#	modified:   source/niot/WebRoot/images/contentBackground2.gif
+#	new file:   source/niot/WebRoot/js/raphael-min.js
+#	modified:   source/niot/WebRoot/js/zt_function_2.js
+#	renamed:    source/niot/WebRoot/js/zt_function_2.js -> source/niot/WebRoot/js/zt_function_3.js
+#	modified:   source/niot/WebRoot/js/zt_main_page.js
+#	modified:   source/niot/WebRoot/test.html
+#	modified:   source/niot/src/cn/niot/controller/IoTNewRuleRecognitionAction.java
+#	modified:   source/niot/src/cn/niot/dao/RecoDao.java
+#	modified:   source/niot/src/cn/niot/rule/RuleFunction.java
+#	modified:   source/niot/src/cn/niot/service/NormalIDstdCollisionDetect.java
+#	modified:   source/niot/src/cn/niot/util/RecoUtil.java
+#	modified:   source/niot/src/cn/unitTest/RuleFuncTest.java
+#
+
