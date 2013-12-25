@@ -5,15 +5,20 @@ import java.util.*;
 import java.lang.reflect.*;
 
 import cn.niot.dao.*;
+import cn.niot.util.JdbcUtils;
 
 public class IDstrRecognition {
 	static String DEBUG = "OFF";//the value of DEBUG can be "ON" or "OFF"
-	static String DEBUG_RES = "ON";//the value of DEBUG_RES can be "ON" or "OFF"
+	static String DEBUG_RES = "OFF";//the value of DEBUG_RES can be "ON" or "OFF"
+	static String DEBUG_LINE = "ON";//the value of DEBUG_LINE can be "ON" or "OFF"
+	static int line = 0;
 	
 	static HashMap<String, Double> rmvRuleSet;
 	static HashMap<String, Double> rmvIDSet;
 	static HashMap<String, ArrayList<String>> hashMapTypeToRules;// 类型对应规则
 	static HashMap<String, ArrayList<String>> hashMapRuleToTypes;// 规则对应类型
+	
+	
 	
 	public static HashMap<String, Double> IoTIDRecognizeAlg(String s){		
 		HashMap<String, Double> typeProbability = new HashMap<String, Double>();
@@ -76,6 +81,10 @@ public class IDstrRecognition {
 			if ("ON" == DEBUG_RES){
 				System.out.println("");
 			}			
+		}
+		if ("ON" == DEBUG_LINE){
+			line = line + 1;
+			System.out.println(line);
 		}
 		Iterator<String> iterator2 = rmvIDSet.keySet().iterator();
 		while (iterator2.hasNext()) {

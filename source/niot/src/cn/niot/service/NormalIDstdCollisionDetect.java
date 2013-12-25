@@ -3,13 +3,13 @@ package cn.niot.service;
 import java.util.HashMap;
 
 public class NormalIDstdCollisionDetect {
-	public static double [] evaluateCollisionTwoIDs(){
-		double TotalCode = 1000;
+	public static HashMap<String, Double> evaluateCollisionTwoIDs(){
+		double TotalCode = 100;
 		double p1 = 0;
 		double p2 = 0;
 		double Count1 = 0;
 		double Count2 = 0;
-		double [] res = new double [3];
+		HashMap<String, Double> res = new HashMap<String, Double>();
 		for (int i = 0; i < TotalCode; i++){
 			CompareCode13 StreetCode = new CompareCode13();
 			char [] IDstr1 = StreetCode.generateRandomStreetCode();
@@ -18,6 +18,7 @@ public class NormalIDstdCollisionDetect {
 			if (typeProbability1.containsKey("EAN-13")){
 				Count1 = Count1 + 1;
 			}
+			
 			p1 = Count1 / TotalCode;
 			
 			HashMap<String, Double> typeProbability2 = IDstrRecognition.IoTIDRecognizeAlg(String.valueOf(IDstr2));
@@ -26,10 +27,10 @@ public class NormalIDstdCollisionDetect {
 			}
 			p2 = Count2 / TotalCode;
 		}
-		
-		res[0] = 1 / p1 - 1;
-		res[1] = 1;
-		res[2] = 1 / p2 - 1;;
+		res.put("街巷或小区编码", 1 / p1 - 1);//GB/T 23705-2009_2
+		res.put("公共部分", 1.0);
+		res.put("商品条码", 1 / p2 - 1);//EAN-13
+	
 		return res;		
 	}
 }
