@@ -110,6 +110,7 @@ public class RuleFunction {
 	private static boolean checkInputParam(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
+			boolean hasSig = false;
 			if (LenID != IDstr.length) {
 				return false;
 			}
@@ -117,8 +118,18 @@ public class RuleFunction {
 				return false;
 			}
 			for (int i = 0; i < LenIndex; i++) {
-				if ((Index[i] < -1) || Index[i] >= LenID) {
-					return false;
+				
+				if(Index[i] == -1){
+					hasSig = true;
+					break;
+				}
+					
+			}
+			if(!hasSig){
+				for(int i = 0; i < LenIndex; i++){
+					if ((Index[i] < -1) || Index[i] >= LenID) {
+						return false;
+					}
 				}
 			}
 			return true;

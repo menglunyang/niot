@@ -1,5 +1,7 @@
 package cn.niot.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -39,16 +41,11 @@ public class RecoAction extends ActionSupport {
 		}
 		//138000100000000001.sh.beidou.cid.iot.cn
 		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','.','s','h','.','b','e','i',
-		//		'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};
-		char[] IDstr = new char[]{'4', '6','5','9','0','0','6','9','5','1','2','1','5'};
-		char c = CompareCode13.checkCommodityCode(IDstr);
-//		int[] index = new int[]{0,1,2,3,4,5,6,7,8,9,10,11};
-//		index[0] = 12;
-//		index[1] = 4;
-//		index[2] = -1;
-//		index[3] = 3;
-//		index[4] = 4;
-		//System.out.println(RuleFunction.CheckCodeForCommodityCode(IDstr, 13, index, 12));
+		//		'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};01963410486
+		char[] IDstr = new char[]{'0', '1','9','6','3','4','1','0','4','8','6'};
+		
+		int[] index = new int[]{10,20,-1};
+		System.out.println(RuleFunction.GraiSerialNo(IDstr, IDstr.length, index, index.length));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
@@ -68,10 +65,13 @@ public class RecoAction extends ActionSupport {
 		//System.out.println(res);
 		
 
-		double [] res = NormalIDstdCollisionDetect.evaluateCollisionTwoIDs();
-		System.out.println(res[0]);
-		System.out.println(res[1]);
-		System.out.println(res[2]);
+		HashMap<String, Double> res = NormalIDstdCollisionDetect.evaluateCollisionTwoIDs();		
+		System.out.println("街巷或小区编码");
+		System.out.println(res.get("街巷或小区编码"));
+		System.out.println("公共部分");
+		System.out.println(res.get("公共部分"));
+		System.out.println("商品条码");
+		System.out.println(res.get("商品条码"));
 
 		//RuleFuncTest.testFormJsonString();
 		ActionContext ctx = ActionContext.getContext();            

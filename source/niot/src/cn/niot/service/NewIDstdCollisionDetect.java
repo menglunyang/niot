@@ -10,7 +10,7 @@ import cn.niot.util.*;
 public class NewIDstdCollisionDetect {
 	private static NewIDstdCollisionDetect collisionDetectAlg = new NewIDstdCollisionDetect();
 	private static Random r1 = new Random(1000);//指定种子数字
-	private static double RandomNumber = 50;
+	private static double RandomNumber = 213;
 	private static int BEGIN_END = 2;
 	
 	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {

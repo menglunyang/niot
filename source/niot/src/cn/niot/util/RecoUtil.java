@@ -75,11 +75,12 @@ public class RecoUtil {
 	
 	
 	//获得URL地址
-	public static String getURL(){
+	public static String getURLParam(){
 		ActionContext ctx = ActionContext.getContext();            
 		HttpServletRequest request = (HttpServletRequest)ctx.get(ServletActionContext.HTTP_REQUEST);
-		String url = request.getRequestURL().toString();
-		return url;
+		String url = request.getContextPath();
+		String parameter = request.getParameter("code");
+		return parameter;
 	}
 	
 	//修改标准ID为名称
