@@ -90,12 +90,12 @@ function drawPieChart(dataSource)
             width: 600
         },
         series: {
-<<<<<<< HEAD
+
       //  type:'doughnut',
-=======
+
        /* type:'doughnut',*/
         	
->>>>>>> xiaobaicoding-master
+
             argumentField: 'codeName',
             valueField: 'probability',
             label: {
