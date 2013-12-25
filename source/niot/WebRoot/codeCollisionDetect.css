@@ -18,8 +18,17 @@ html, body, #wrap{ height: 100%; width:100%;padding:0px; margin:0px;}
     width: 800px;
     height:250px;
     margin: 0 auto;
-    margin-top:200px;
+    margin-top:80px;
     background-size:800px 630px;
+}
+
+.platformName{
+	font-size:60px;
+	display:block;
+	width:660px;
+	margin:0 auto;
+	color:#FFF;
+	margin-top:70px;
 }
 
 .container_1 {
@@ -164,6 +173,11 @@ padding-top:100px;
 .resultInfo{
 	padding-left:200px;
 	padding-top:100px;
+}
+
+.resultInfo_SVG{
+	width:870px;
+	height:300px;
 }
 
 .outputContent_1 {   

@@ -15,12 +15,12 @@ import cn.niot.util.*;
 
 public class RecoDao {
 	private static RecoDao recoDao = new RecoDao();
-	
+	//public static Connection connection = null;
 	public static RecoDao getRecoDao() {
 		return recoDao;
 	}
 	
-	public String getIoTID(String id){
+	public String getIoTID(String id){		
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -50,7 +50,9 @@ public class RecoDao {
 			HashMap<String, Double> rmvIDSet,
 			HashMap<String, ArrayList<String>> hashMapRuleToTypes) {
 		HashMap<String, ArrayList<String>> hashMapTypeToRules = new HashMap<String, ArrayList<String>>();
+		
 		Connection connection = JdbcUtils.getConnection();
+		
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		try {
@@ -120,7 +122,7 @@ public class RecoDao {
 	
 	///行政区划代码(296)
 	public boolean getAdminDivisionID(String id){
-		Connection connection = JdbcUtils.getConnection();
+		Connection	connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
