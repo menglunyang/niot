@@ -75,11 +75,11 @@ public class RecoUtil {
 	
 	
 	//ªÒµ√URLµÿ÷∑
-	public static String getURLParam(){
+	public static String getURLParam(String paramName){
 		ActionContext ctx = ActionContext.getContext();            
 		HttpServletRequest request = (HttpServletRequest)ctx.get(ServletActionContext.HTTP_REQUEST);
 		String url = request.getContextPath();
-		String parameter = request.getParameter("code");
+		String parameter = request.getParameter(paramName);
 		return parameter;
 	}
 	
