@@ -20,41 +20,29 @@ import javax.servlet.http.HttpServletRequest;
  * 
 * @Title: RespCode.java 
 * @Package cn.niot.zt 
-* @Description:ǰ��̨��ݴ������� 
+* @Description:
 * @author Zhang Tao
-* @date 2013-12-3 ���� 
+* @date 2013-12-3 
 * @version V1.0
  */
 
 public class IoTIDRecognitionAction extends ActionSupport {
 	
 	 /**
-	  * �û���ǰ̨��������Ҫ��ѯ�ı���
+	  * 
 	  */
 	private String code;
 	
 	 /**
-	  * ���
-	  * ���������ظ�ǰ̨�Ĳ�ѯ״̬��
-	  * �����ȡֵ�ֱ�Ϊ����0������1����������1�������error��
-	  */
+	  * */
 	private String status;
 	
 	 /**
-	  * ��statusȡֵΪ��1�����ߴ��ڡ�1��������ʱ�����
-	  * ���������ظ�ǰ̨�ı�����Ϣ��
-	  * ��statusȡֵΪ��1��ʱ��data�洢��ѯ���ı�����ƣ�����data="CPC",
-	  * ��statusȡֵΪ����1������ʱ��data�洢��������Լ�������ʣ�
-	  * ����data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
 	  */
 	private String data;
 	
 	 /**
-	  * ��status=="error"ʱ�����
-	  * ���������ظ�ǰ̨�Ĵ�����Ϣ��
-	  * ��status=="error"ʱ����������Ϣ��ֵ��statement��
-	  * ����statement=="��������Ӧ��ʱ"��֮�󴫵ݸ�ǰ̨
-	  */
+	   */
 	private String statement;
 	
 	public String getData() {
@@ -88,7 +76,9 @@ public class IoTIDRecognitionAction extends ActionSupport {
 	{
 		System.out.println(this.code);
 		String IoTcode = replaceBlank(this.code);
-		HashMap<String, Double> typeProbability = RecoUtil.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));		
+		//HashMap<String, Double> typeProbability = RecoUtil.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));	
+		HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
+		typeProbability = RecoUtil.replaceIotId(typeProbability);
 		int len = typeProbability.size();
     	if (RecoUtil.NO_ID_MATCHED == len){
     		this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
@@ -119,13 +109,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 
 //		
 
-//		�߼����?������
-//		�߼����?������
-//		�߼����?������
-//		�߼����?������
-//		�߼����?������
-//		�߼����?������
-//		
+
 		//this.status = "2";
 		//this.data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
 		
@@ -139,7 +123,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		//this.data = "CPC";
 		
 		//this.status = "error";
-		//this.statement = "��������Ӧʱ�䳬ʱ";
+
 		
 		//this.status = "0";
 		

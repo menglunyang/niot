@@ -83,10 +83,10 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 	public String execute() throws Exception
 	{
 		System.out.println(this.len+"!!!!!"+this.valueRange);
-		
+		int nDisplayLen = 9;
 		String resJasonStr = NewIDstdCollisionDetect.formJsonString(this.len, this.valueRange);
 		HashMap<String, Double> HashMapID2Probability = NewIDstdCollisionDetect.computeCollisionRate(resJasonStr);
-		
+	
 		JSONArray jsonArray = new  JSONArray();
 		double probability = 0;
     	int len = HashMapID2Probability.size();
@@ -99,7 +99,12 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 				this.status = String.valueOf(RecoUtil.ONE_ID_MATCHED);
 				JSONObject jsonObject = new  JSONObject();
 				probability = HashMapID2Probability.get(key);
-				jsonObject.put("codeName",String.valueOf(key));
+				String IDstr = String.valueOf(key);
+				if (IDstr.length() > nDisplayLen){
+					jsonObject.put("codeName",IDstr.substring(0, nDisplayLen));
+				} else {
+					jsonObject.put("codeName",IDstr);
+				}
 				jsonObject.put("CollisionRatio",String.valueOf(probability));
 				this.data = jsonObject.toString();
             } 
@@ -110,9 +115,14 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 				Object key = iterator2.next();  				
 				JSONObject jsonObject = new  JSONObject();
 				probability = HashMapID2Probability.get(key);
-				jsonObject.put("codeName",String.valueOf(key));
+				String IDstr = String.valueOf(key);
+				if (IDstr.length() > nDisplayLen){
+					jsonObject.put("codeName",IDstr.substring(0, nDisplayLen));
+				} else {
+					jsonObject.put("codeName",IDstr);
+				}				
 				jsonObject.put("CollisionRatio",String.valueOf(probability));
-				if (jsonArray.add(jsonObject)){
+				if (!jsonArray.add(jsonObject)){
 					System.out.println("ERROR! jsonArray.add(jsonObject)");
 				}
 				this.data = jsonArray.toString();
