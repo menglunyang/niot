@@ -4,8 +4,11 @@ import java.text.DateFormat;
 import java.util.*;
 import java.lang.reflect.*;
 
+import net.sf.json.JSONObject;
+
 import cn.niot.dao.*;
 import cn.niot.util.JdbcUtils;
+import cn.niot.util.RecoUtil;
 
 public class IDstrRecognition {
 	static String DEBUG = "OFF";//the value of DEBUG can be "ON" or "OFF"
@@ -93,6 +96,49 @@ public class IDstrRecognition {
 			typeProbability.put(String.valueOf(key2), probability);
 		}
 		return typeProbability;
+	}
+	
+	public static JSONObject getTwoNamesByIDCode(HashMap<String, Double> HashMapID2Probability ){
+		Iterator iterator_t = HashMapID2Probability.keySet().iterator();
+		HashMap<String, String>IDCode_ChineseName = new HashMap<String, String>();
+		HashMap<String, String>IDCode_ShortName = new HashMap<String, String>();
+		
+		RecoDao dao = new RecoDao();
+		while(iterator_t.hasNext()){
+			String key_IDstd = iterator_t.next().toString();			
+			String ChineseName = dao.getIDDetail(key_IDstd);
+			IDCode_ChineseName.put(key_IDstd, ChineseName);
+			
+			char [] ShortNmae = new char[RecoUtil.DISPLAYLENGTH];
+			int nIndex = 0;
+			for (int i = 0; i < key_IDstd.length(); i++){
+				char charTemp = key_IDstd.charAt(i);
+				if ((charTemp >= '0' && charTemp <= '9') ||
+					(charTemp >= 'a' && charTemp <= 'z') ||
+					(charTemp >= 'A' && charTemp <= 'Z')){
+					ShortNmae[nIndex] = charTemp;
+					nIndex++;
+					if (nIndex >= RecoUtil.DISPLAYLENGTH){
+						break;
+					}
+				}
+			}
+			IDCode_ShortName.put(key_IDstd, (String.valueOf(ShortNmae)).trim());
+		}
+//////////////////////////////////////////////////////////////////////
+		JSONObject jsonObjectRes = new  JSONObject();
+		
+		Iterator iterator_temp = HashMapID2Probability.keySet().iterator();
+		while(iterator_temp.hasNext()){
+			String key_IDstd = iterator_temp.next().toString();
+			String ChineseName = (IDCode_ChineseName.get(key_IDstd)).toString();
+			String ShortName = (IDCode_ShortName.get(key_IDstd)).toString();
+			JSONObject jsonObject2 = new  JSONObject();
+			jsonObject2.put("fullName", ChineseName);
+			jsonObject2.put("codeNum", key_IDstd);
+			jsonObjectRes.put(ShortName, jsonObject2);
+		}
+		return jsonObjectRes;
 	}
 	
 	private static boolean match(String maxRule, String parameter, String input) {

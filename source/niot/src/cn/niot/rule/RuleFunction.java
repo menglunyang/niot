@@ -127,7 +127,7 @@ public class RuleFunction {
 			}
 			if(!hasSig){
 				for(int i = 0; i < LenIndex; i++){
-					if ((Index[i] < -1) || Index[i] >= LenID) {
+					if (Index[i] < -1 || Index[i] >= LenID) {
 						return false;
 					}
 				}
@@ -150,7 +150,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex < 2) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 
@@ -562,8 +562,12 @@ public class RuleFunction {
 			int[] Index, int LenIndex) {
 		try {
 			String code = "";
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-				return ERR;
+			for(int i = 0; i < LenIndex; i++){
+				if (Index[i] < -1 || (Index[i] >= LenID && LenID !=2)) {
+					return ERR;
+				} else if (Index[i] >= LenID){
+					LenIndex = LenIndex - 1;
+				}
 			}
 			if (!(LenIndex == 2 || LenIndex == 3)) {
 				return ERR;

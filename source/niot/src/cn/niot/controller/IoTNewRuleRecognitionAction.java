@@ -6,6 +6,8 @@ import java.util.Iterator;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import cn.niot.dao.RecoDao;
+import cn.niot.service.IDstrRecognition;
 import cn.niot.service.NewIDstdCollisionDetect;
 import cn.niot.util.RecoUtil;
 
@@ -58,6 +60,8 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 	  */
 	private String statement;
 	
+	private String extraData;	
+	
 	public String getData() {
 		return data;
 	}
@@ -70,6 +74,10 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		return statement;
 	}
 	
+	public String getExtraData() {
+		return extraData;
+	}
+	
 	public void setLen(String len)
 	{
 		this.len = len;
@@ -80,13 +88,19 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		this.valueRange = valueRange;
 	}
 	
+	
+	
 	public String execute() throws Exception
 	{
 		System.out.println(this.len+"!!!!!"+this.valueRange);
 		int nDisplayLen = 9;
 		String resJasonStr = NewIDstdCollisionDetect.formJsonString(this.len, this.valueRange);
 		HashMap<String, Double> HashMapID2Probability = NewIDstdCollisionDetect.computeCollisionRate(resJasonStr);
-	
+		
+		JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(HashMapID2Probability);	
+		this.extraData = jsonObjectRes.toString();
+		
+//////////////////////////////////////////////////////////////////////		
 		JSONArray jsonArray = new  JSONArray();
 		double probability = 0;
     	int len = HashMapID2Probability.size();
@@ -143,13 +157,7 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		jsonObject2.put("CollisionRatio",String.valueOf(0.7));
 =======
 		jsonObject2.put("probability",String.valueOf(0.7));
-//		
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
+
 //		
 		this.status = "7";
 		this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
@@ -173,5 +181,4 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		System.out.println(this.status+"\n"+this.data+"\n"+this.statement);
 		return SUCCESS;
 	}
-
 }
