@@ -11,8 +11,8 @@ import cn.niot.util.JdbcUtils;
 import cn.niot.util.RecoUtil;
 
 public class IDstrRecognition {
-	static String DEBUG = "OFF";//the value of DEBUG can be "ON" or "OFF"
-	static String DEBUG_RES = "OFF";//the value of DEBUG_RES can be "ON" or "OFF"
+	static String DEBUG = "ON";//the value of DEBUG can be "ON" or "OFF"
+	static String DEBUG_RES = "ON";//the value of DEBUG_RES can be "ON" or "OFF"
 	static String DEBUG_LINE = "ON";//the value of DEBUG_LINE can be "ON" or "OFF"
 	static int line = 0;
 	
