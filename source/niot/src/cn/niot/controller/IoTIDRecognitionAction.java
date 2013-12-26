@@ -161,11 +161,13 @@ public class IoTIDRecognitionAction extends ActionSupport {
 			int len = ShortName_Probability.size();
 			if (RecoUtil.NO_ID_MATCHED == len) {
 				this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
+				//this.status = "1";
 			} else if (RecoUtil.ONE_ID_MATCHED == len) {
 				Iterator iterator = ShortName_Probability.keySet().iterator();
 				while (iterator.hasNext()) {
 					Object key = iterator.next();
 					this.data = String.valueOf(key);
+					//this.data = "邓光青邓光青邓光青邓光青邓光青邓光青邓光青邓光青邓光青\n012345678";
 					this.status = String.valueOf(RecoUtil.ONE_ID_MATCHED);
 				}
 			} else {
