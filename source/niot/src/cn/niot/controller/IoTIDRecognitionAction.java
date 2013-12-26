@@ -147,10 +147,8 @@ public class IoTIDRecognitionAction extends ActionSupport {
 */
 	public String execute() throws Exception {
 		String IoTcode = null;
-<<<<<<< HEAD
 //		String urlparam = RecoUtil.getURLParam("code");
-=======
->>>>>>> dgq2010-master
+
 		if (this.code != null) {
 			IoTcode = replaceBlank(this.code);
 		}
@@ -190,7 +188,6 @@ public class IoTIDRecognitionAction extends ActionSupport {
 				}
 			}
 		}
-<<<<<<< HEAD
 		// this.status = "2";
 		// this.data =
 		// "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
@@ -208,10 +205,9 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		// this.status = "0";
 
 		System.out.println(this.status + "\n" + this.data + "\n" + this.statement);
-=======
+
 		System.out.println("\nthis.data:   "+this.data);
 		System.out.println("\nthis.extraData:   "+this.extraData);
->>>>>>> dgq2010-master
 		return SUCCESS;
 	}
 }
