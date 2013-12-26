@@ -192,9 +192,9 @@ codeInputStatus.currentRowID = "";
 		{
 			$("#warning_2").css('display','inline-block');
 		}
-		else if (code1 == 'Street' && code2 == 'Ecode' || code1 == 'Ecode' && code2 == 'Street')
+		else if (code1 == 'Street' && code2 == 'EAN_13' || code1 == 'EAN_13' && code2 == 'Street')
 		{
-			drawTwoCircles(15,4,0.5,'Ecode','Street','命名空间：10^77','命名空间：10^9','命名空间：10^8');
+			drawTwoCircles(15,4,0.5,'EAN_13','Street','命名空间：10^12','命名空间：10^9','命名空间：10^8');
 		}
 		else
 		{
@@ -203,8 +203,6 @@ codeInputStatus.currentRowID = "";
 			
 			var code1Amount = eval("IDDataSource."+code1+".amount");
 			var code2Amount = eval("IDDataSource."+code2+".amount");
-			
-			
 			drawTwoCircles2(code1Radius,code2Radius,code1,code2,code1Amount,code2Amount,'123');
 		}
 		
