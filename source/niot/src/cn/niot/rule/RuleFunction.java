@@ -150,7 +150,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex < 2) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 
@@ -1236,7 +1236,7 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, 固定为2
+	// LenIndex: the number of indexes, 固定为4
 	public static String CountUcode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
