@@ -66,7 +66,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 
 	public String execute() throws Exception {
 		String IoTcode = null;
-		String urlparam = RecoUtil.getURLParam("code");
+//		String urlparam = RecoUtil.getURLParam("code");
 		if (this.code != null) {
 			IoTcode = replaceBlank(this.code);
 		}
@@ -119,8 +119,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 
 		// this.status = "0";
 
-		//System.out.println(this.status + "\n" + this.data + "\n"
-		//		+ this.statement);
+		System.out.println(this.status + "\n" + this.data + "\n" + this.statement);
 		return SUCCESS;
 	}
 }
