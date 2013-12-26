@@ -55,12 +55,13 @@ function sendReqCode()
 							else if (result.status >1){
 								var pieData = eval(result.data);
 								var totalNum = pieData.length;
+								var extraData = eval("(" +result.extraData+ ")");
 								for (i=0;i<totalNum;i++)
 									{
 										pieData[i].probability = Number(pieData[i].probability);
 									}
 								$("#pieChartContainer").css("display","block");
-								drawPieChart(pieData);
+								drawPieChart(pieData,extraData);
 							}
 							data1=result;
 						},
@@ -78,7 +79,7 @@ function noFound()
 var myPalette = ['#FC5944', '#F5A349', '#EAE450', '#84E956', '#00EAD3', '#00C1E5','2693E4','6D4EE2','C649E1','FD4497'];
 DevExpress.viz.core.registerPalette('mySuperPalette', myPalette);
 
-function drawPieChart(dataSource)
+function drawPieChart(dataSource,extraData)
 {
 	$("#loading").css("display","none");
 	$("#pieChartContainer").css("display","block");
@@ -118,9 +119,13 @@ function drawPieChart(dataSource)
 			            }
         },
         tooltip: { enabled: true,
-        customizeText: function (argumentText) {
-       		return argumentText.argument;
-   		}
+        customizeText: 
+        	function (argumentText) {
+        	
+    						var fullName = eval("extraData."+argumentText.argument+".fullName");
+    						var codeNum = eval("extraData."+argumentText.argument+".codeNum");
+       						return fullName+"\n"+codeNum;
+   						}
         },
       animation: {
             duration: 3000,

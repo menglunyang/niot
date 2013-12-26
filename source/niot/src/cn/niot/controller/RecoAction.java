@@ -42,9 +42,9 @@ public class RecoAction extends ActionSupport {
 		//138000100000000001.sh.beidou.cid.iot.cn
 		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','.','s','h','.','b','e','i',
 		//		'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};01963410486
-		char[] IDstr = new char[]{'U','S'};
+		char[] IDstr = new char[]{'3','4','1','2','U','S','1','2','0','E','A','3','2','4','5','A','E','1','F','F','6'};
 		
-		int[] index = new int[]{0,1,2};
+		int[] index = new int[]{4,5};
 		System.out.println(RuleFunction.CountryRegionCode(IDstr, IDstr.length, index, index.length));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
@@ -65,13 +65,13 @@ public class RecoAction extends ActionSupport {
 		//System.out.println(res);
 		
 
-		HashMap<String, Double> res = NormalIDstdCollisionDetect.evaluateCollisionTwoIDs();		
-		System.out.println("街巷或小区编码");
-		System.out.println(res.get("街巷或小区编码"));
-		System.out.println("公共部分");
-		System.out.println(res.get("公共部分"));
-		System.out.println("商品条码");
-		System.out.println(res.get("商品条码"));
+//		HashMap<String, Double> res = NormalIDstdCollisionDetect.evaluateCollisionTwoIDs();		
+//		System.out.println("街巷或小区编码");
+//		System.out.println(res.get("街巷或小区编码"));
+//		System.out.println("公共部分");
+//		System.out.println(res.get("公共部分"));
+//		System.out.println("商品条码");
+//		System.out.println(res.get("商品条码"));
 
 		//RuleFuncTest.testFormJsonString();
 		return "sucess"; //预定义常量

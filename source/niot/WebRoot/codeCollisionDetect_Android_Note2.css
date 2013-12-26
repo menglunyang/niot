@@ -54,7 +54,7 @@ padding-top:100px;
 body {
 	font-family:  "微软雅黑";
 	font-size:14px;
-	background-image: url(images/background.png);
+	/*background-image: url(images/background.png);*/
 	background-repeat: repeat;
 	margin:0;
 	/*background-size:100% 100%;*/
