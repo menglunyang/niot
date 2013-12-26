@@ -141,7 +141,8 @@ function sendReqRul()
 							else if (result.status >1){
 								console.log(result.data);
 								var barData = eval(result.data);
-								
+								var extraData = eval("(" +result.extraData+ ")");
+								//console.log(extraData);
 								
 								var totalNum = barData.length;
 								for (i=0;i<totalNum;i++)
@@ -150,7 +151,7 @@ function sendReqRul()
 									}
 								
 								$("#barChartContainer").css("display","block");
-								drawBarChart(barData);
+								drawBarChart(barData, extraData);
 							}
 							data1=result;
 						},
@@ -159,7 +160,7 @@ function sendReqRul()
 	}
 }
 
-function drawBarChart(dataSource)
+function drawBarChart(dataSource, extraData)
 {
 	$("#barChartContainer").dxChart({
     dataSource: dataSource,
@@ -205,7 +206,15 @@ function drawBarChart(dataSource)
             format: 'percent',
             precision: 2
         }
-    }
+    },
+	tooltip: { 
+    	enabled: true,
+		customizeText: function (argumentText) {
+    						var fullName = eval("extraData."+argumentText.argument+".fullName");
+    						var codeNum = eval("extraData."+argumentText.argument+".codeNum");
+       						return fullName+"\n"+codeNum;
+   						}
+     },
 	    
 	});
 }

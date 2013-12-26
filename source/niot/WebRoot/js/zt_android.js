@@ -1,4 +1,4 @@
-oneresult = Raphael('oneFound_SVG',870, 300);	
+oneresult = Raphael('oneFound_SVG',700, 700);	
 $.ajax({
 			url:'respCode.action',
 			cache:false,
@@ -29,10 +29,10 @@ $.ajax({
 								
 								$("#oneFound_SVG").css("display","block");
 								
-								oneresult.text(380, 20, "您查询的编码").attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
-								oneresult.circle(380, 140, 100).attr({'fill':'#54A3F0','stroke':''});
-								oneresult.text(380,140,"100%").attr({'font-family':'Lithos Pro','font-size':'100px','fill':'#FFFEFF'});
-								oneresult.text(380,260,"属于"+result.data).attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
+								oneresult.text(350, 50, "您查询的编码").attr({'font-family':'微软雅黑','font-size':'80px','fill':'#777'});
+								oneresult.circle(350, 300, 180).attr({'fill':'#54A3F0','stroke':''});
+								oneresult.text(350,300,"100%").attr({'font-family':'Lithos Pro','font-size':'180px','fill':'#FFFEFF'});
+								oneresult.text(350,550,"属于"+result.data).attr({'font-family':'微软雅黑','font-size':'30px','fill':'#777'});
 							}
 							else if (result.status >1){
 								var pieData = eval(result.data);
@@ -48,3 +48,58 @@ $.ajax({
 						},
 			error:"alert('1')"
 		});
+
+
+
+function drawPieChart(dataSource)
+{
+	$("#loading").css("display","none");
+	$("#pieChartContainer").css("display","block");
+	$(function () {
+    	$("#pieChartContainer").dxPieChart({
+        dataSource: dataSource,
+        palette: 'mySuperPalette',
+        size: {
+            height: 700,
+            width: 700
+        },
+        series: {
+       /* type:'doughnut',*/
+        	
+            argumentField: 'codeName',
+            valueField: 'probability',
+            label: {
+                visible: true,
+                format: 'percent',
+                precision: 1,
+                font:{size:3,weight: 700,color:'#777'},
+                connector: { visible: true },
+            }
+        },
+        title: {text:'Collision Ratio',
+        		position:'top',
+                font: {
+			                color: 'steelblue',
+			                family: 'Microsoft YaHei',
+			                opacity: 0.75,
+			                size: 18,
+			                weight: 400
+			            }
+        },
+        tooltip: { enabled: true,
+        customizeText: function (argumentText) {
+       		return argumentText.argument;
+   		}
+        },
+      animation: {
+            duration: 3000,
+            easing: 'linear'
+        },
+        
+       legend: {
+            horizontalAlignment: 'center',
+            verticalAlignment: 'top'
+        }
+    });
+});
+}
