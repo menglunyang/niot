@@ -92,8 +92,12 @@ function drawPieChart(dataSource,extraData)
             width: 600
         },
         series: {
+
+      //  type:'doughnut',
+
        /* type:'doughnut',*/
         	
+
             argumentField: 'codeName',
             valueField: 'probability',
             label: {

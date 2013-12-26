@@ -9,6 +9,7 @@ public class RuleFunction {
 
 	static String ERR = "ERR";
 	static String OK = "OK";
+	static int NO_LENGHT_LIMIT = -1;
 
 	public static void main(String[] args) {
 		// System.out.println("你好世界!");
@@ -23,20 +24,112 @@ public class RuleFunction {
 		index[1] = 1;
 		index[2] = 2;
 		index[3] = 3;
-		System.out.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
+		System.out
+				.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 	}
 
-	private static boolean checkInputParam(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	// Function: represent a decimal integer whose value range is from 1 to 99
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	public static String IoTIDLength(String IDstr, int LenID, String parameter,
+			int LenIndex) {
+		// without length limit
+		boolean flag = false;
+		if (parameter.charAt(0) == '-') {// -1
+			return "OK";
+		} else {
+			String[] lengthRanges = parameter.split(",");
+			for (int i = 0; i < lengthRanges.length; i++) {
+				String[] lengthMaxMin = lengthRanges[i].split("-");
+				if (lengthMaxMin.length == 1) {// 1个数
+					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
+						return OK;
+					} else {
+						return ERR;
+					}
+				} else {
+					if (IDstr.length() >= Integer.parseInt(lengthMaxMin[0])
+							&& IDstr.length() <= Integer
+									.parseInt(lengthMaxMin[1])) {
+						flag = true;
+					}
+				}
+			}
+		}
+
+		if (flag) {
+			return "OK";
+		} else {
+			return "ERR";
+		}
+	}
+
+	// Function: represent a decimal integer whose value range is from 1 to 99
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	public static String IoTIDByte(String input, String parameter,
+			String useless, String uselessToo) {
+
+		String[] byteStrArray = parameter.split(";");
+		int[] byteElement = new int[9];
+		for (int i = 0; i < byteStrArray.length; i++) {
+			String[] byteElementString = byteStrArray[i].split(",");
+			for (int j = 0; j < byteElementString.length; j++) {
+				byteElement[j] = Integer.parseInt(byteElementString[j]);
+			}
+			int index = byteElement[0];
+			if (input.length() <= index) {
+				return "ERR";
+			}
+			char objChar = input.charAt(index);
+			int indexChar = 0;
+			if (objChar >= '0' && objChar <= '9') {
+				indexChar = objChar - '0';
+			} else if (objChar >= 'a' && objChar <= 'z') {
+				indexChar = objChar - 'a' + 10;
+			} else if (objChar >= 'A' && objChar <= 'Z') {
+				indexChar = objChar - 'A' + 10 + 26;
+			}
+
+			int m = 0;
+			int n = 0;
+			m = indexChar / 8 + 1;
+			n = indexChar % 8;
+
+			if ((byteElement[m] & (1 << n)) == 0) {
+				return "ERR";
+			}
+		}
+		return "OK";
+	}
+
+	private static boolean checkInputParam(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
+			boolean hasSig = false;
 			if (LenID != IDstr.length) {
 				return false;
-			} 
-			if (LenIndex != Index.length){
+			}
+			if (LenIndex != Index.length) {
 				return false;
 			}
-			for(int i = 0; i < LenIndex; i++){
-				if((Index[i] < -1)|| Index[i] >= LenID){
-					return false;
+			for (int i = 0; i < LenIndex; i++) {
+				
+				if(Index[i] == -1){
+					hasSig = true;
+					break;
+				}
+					
+			}
+			if(!hasSig){
+				for(int i = 0; i < LenIndex; i++){
+					if (Index[i] < -1 || Index[i] >= LenID) {
+						return false;
+					}
 				}
 			}
 			return true;
@@ -51,9 +144,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator: Dengguangqing
-	public static String TwoByteDecimalnt(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String TwoByteDecimalnt(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex < 2) {
@@ -91,9 +185,10 @@ public class RuleFunction {
 	// Index[1] and Index[2] are the index of subclass codes
 	// LenIndex: the number of indexes that must be 3
 	// creator: zll
-	public static String CigaSubClassCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CigaSubClassCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 3) {
@@ -111,7 +206,7 @@ public class RuleFunction {
 					}
 				}
 			} else if (IDstr[Index[0]] == '2') { // mainclass: 2 subclass:
-													// 01-09, 10, 99
+				// 01-09, 10, 99
 				if (IDstr[Index[1]] == '0') {
 					if (IDstr[Index[2]] > '0' && IDstr[Index[2]] <= '9') {
 						return OK;
@@ -126,7 +221,7 @@ public class RuleFunction {
 					}
 				}
 			} else if (IDstr[Index[0]] == '3') { // mainclass: 3 subclass:
-													// 01-08, 99
+				// 01-08, 99
 				if (IDstr[Index[1]] == '0') {
 					if (IDstr[Index[2]] > '0' && IDstr[Index[2]] < '9') {
 						return OK;
@@ -137,7 +232,7 @@ public class RuleFunction {
 					}
 				}
 			} else if (IDstr[Index[0]] == '4') { // mainclass: 4 subclass:
-													// 01-09, 10, 11, 99
+				// 01-09, 10, 11, 99
 				if (IDstr[Index[1]] == '0') {
 					if (IDstr[Index[2]] > '0' && IDstr[Index[2]] <= '9') {
 						return OK;
@@ -172,9 +267,10 @@ public class RuleFunction {
 	// Index[2] and Index[3] are the index of date
 	// LenIndex: the number of indexes that must be 4
 	// creator: zll
-	public static String MonthDate(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String MonthDate(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			int date = Integer.parseInt(String.valueOf(IDstr[Index[2]])) * 10
@@ -226,9 +322,10 @@ public class RuleFunction {
 	// Index[1] is the index of the second character.
 	// LenIndex: the number of indexes that must be 2
 	// creator: zll
-	public static String CigaOrgCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CigaOrgCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -258,9 +355,10 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes, 固定为2
-	public static String Count(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String Count(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -303,9 +401,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes that must be 2
 	// creator: zll
-	public static String CigaDepCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CigaDepCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -331,11 +430,12 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes that must be 4
 	// creator: zll
-	public static String First4CharsofAdminDivisionforCiga(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String First4CharsofAdminDivisionforCiga(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
 		try {
 			String id = "";
 			String append = "00";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 4) {
@@ -365,11 +465,12 @@ public class RuleFunction {
 	// LenID: 标识编码的长度
 	// Index: 调用行政区划代码的位置
 	// LenIndex: 长度必须是2位
-	public static String First2CharsofAdminDivision(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String First2CharsofAdminDivision(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String id = "";
 			String append = "0000";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -396,9 +497,10 @@ public class RuleFunction {
 	// Index: 调用行政区划代码的位置
 	// LenIndex: 长度必须是6位
 	// creator: zll
-	public static String AdminDivision(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String AdminDivision(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 6) {
@@ -425,10 +527,11 @@ public class RuleFunction {
 	// Index: 调用世界各国和地区名称代码的位置
 	// LenIndex: 长度是多少，一定是4位
 	// creator: zll
-	public static String CountryRegionCodeforCPC(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CountryRegionCodeforCPC(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 4) {
@@ -455,11 +558,16 @@ public class RuleFunction {
 	// Index: 调用世界各国和地区名称代码的位置
 	// LenIndex: 长度是多少，一定是2-3位
 	// creator: zll
-	public static String CountryRegionCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CountryRegionCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
-				return ERR;
+			for(int i = 0; i < LenIndex; i++){
+				if (Index[i] < -1 || (Index[i] >= LenID && LenID !=2)) {
+					return ERR;
+				} else if (Index[i] >= LenID){
+					LenIndex = LenIndex - 1;
+				}
 			}
 			if (!(LenIndex == 2 || LenIndex == 3)) {
 				return ERR;
@@ -485,9 +593,10 @@ public class RuleFunction {
 	// Index: 调用烟草机械产品用物料代码的位置
 	// LenIndex: 长度是6位
 	// creator: zll
-	public static String TabaccoMachineProduct(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String TabaccoMachineProduct(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 5) {
@@ -517,11 +626,12 @@ public class RuleFunction {
 	// Index: 调用前缀码的位置
 	// LenIndex: 长度是3位
 	// creator: zll
-	public static String PrefixofRetailCommodityNumber(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String PrefixofRetailCommodityNumber(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			int num = 0;
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 3) {
@@ -542,17 +652,17 @@ public class RuleFunction {
 		}
 	}
 
-
 	// Function: 烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码.(672)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
 	// Index: 调用前缀码的位置
 	// LenIndex: 长度是2位，为大写字母
 	// creator: zll
-	public static String TabaccoMachineProducer(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String TabaccoMachineProducer(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -578,10 +688,11 @@ public class RuleFunction {
 	// Index: 调用行政区好的位置
 	// LenIndex: 长度是4位，为数字
 	// creator: zll
-	public static String DistrictNo(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String DistrictNo(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
 			String code = "";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 4) {
@@ -607,12 +718,13 @@ public class RuleFunction {
 	// Index: (18,-1),从18位以后的字符串进行正则表达式验证
 	// LenIndex: 长度必为2
 	// creator: zll
-	public static String CIDRegex(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CIDRegex(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
 			String code = "";
 			String regex = "(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62}){2}\\.cid\\.iot\\.cn";
 			int prefix = 18;
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (Index[0] != prefix) {
@@ -632,16 +744,17 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 烟草企业标准件编码所需的类别代码，组别代码和品种代码(6)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
 	// Index: 调用类别代码（1位），组别代码（2位）和品种代码（2位）的位置
 	// LenIndex:长度必为5
 	// creator: zll
-	public static String TabaccoStandardPart(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String TabaccoStandardPart(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 5) {
@@ -671,9 +784,10 @@ public class RuleFunction {
 	// Index: 调用类别代码（2位）和品种代码（3位）的位置
 	// LenIndex:长度必为5
 	// creator: zll
-	public static String TabaccoMaterial(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String TabaccoMaterial(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 5) {
@@ -702,12 +816,13 @@ public class RuleFunction {
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度<=16
 	// creator: zll
-	public static String IntFreitForwarding(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String IntFreitForwarding(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			String regex = "[a-zA-Z][a-zA-Z0-9]{0,15}";
 			int prefix = 18;
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (Index[0] != prefix) {
@@ -741,10 +856,11 @@ public class RuleFunction {
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度必为6
 	// creator: zll
-	public static String FoodAccount(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String FoodAccount(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
 			String code = "";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 6) {
@@ -770,10 +886,11 @@ public class RuleFunction {
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度必为8
 	// creator: zll
-	public static String GrainEquipment(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String GrainEquipment(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
 			String code = "";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 8) {
@@ -799,10 +916,11 @@ public class RuleFunction {
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度必为7
 	// creator: zll
-	public static String GrainEstablishment(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String GrainEstablishment(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 7) {
@@ -828,9 +946,10 @@ public class RuleFunction {
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度必为5
 	// creator: zll
-	public static String TabaccoElectricComponent(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String TabaccoElectricComponent(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 5) {
@@ -858,9 +977,10 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes, 固定为2
-	public static String CPCTwoByte(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CPCTwoByte(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -901,9 +1021,10 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes, 固定为2
-	public static String Month(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String Month(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -935,9 +1056,10 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes, 固定为6
-	public static String ClassOfGrain(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String ClassOfGrain(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 6) {
@@ -1048,9 +1170,10 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes, 固定为2
-	public static String TwobytleCode07(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String TwobytleCode07(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -1081,9 +1204,10 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes, 固定为2
-	public static String TwobytleCode06(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String TwobytleCode06(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -1113,9 +1237,10 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes, 固定为2
-	public static String CountUcode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CountUcode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 4) {
@@ -1149,14 +1274,15 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// creator: Wu Zhenyu
-	public static String DomainManagerInEPCCheck(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String DomainManagerInEPCCheck(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			int i = 0;
 			int Index_k = 0; // is 0xA011363 or not
 			int Zero_k = 0; // is 0 or not
 			char[] str = { 'A', '0', '1', '1', '3', '6', '3' };
 
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			// the length of domain manager is from 28 to 128
@@ -1166,8 +1292,8 @@ public class RuleFunction {
 
 			for (i = 0; i < LenIndex; i++) {
 				if (IDstr[Index[i]] == str[Index_k]) { // as long as str is in
-														// the IDstr,Index_k
-														// will be 7
+					// the IDstr,Index_k
+					// will be 7
 					Index_k++;
 					if (Index_k == 7) {
 						return ERR;
@@ -1195,7 +1321,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Creator:Wu Zhenyu
-	public static String CheckCodeForCommodityCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String CheckCodeForCommodityCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			char checkcode = 0;
 			int i = 0;
@@ -1203,15 +1330,15 @@ public class RuleFunction {
 			// the sum of the odd and even number
 			int odd_sum = 0;
 			int even_sum = 0;
-			
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			for (i = LenIndex - 1; i >= 0; i -= 2) {
+			for (i = LenIndex - 2; i >= 0; i -= 2) {
 				even_sum += (IDstr[i] - 48); // ASCII码中 字符'0'对应的是30H,十进制就是48
 			}
 
-			for (i = LenIndex - 2; i >= 0; i -= 2) {
+			for (i = LenIndex - 3; i >= 0; i -= 2) {
 				odd_sum += (IDstr[i] - 48);
 			}
 
@@ -1221,7 +1348,7 @@ public class RuleFunction {
 				checkcode = (char) ((10 - ((even_sum * 3 + odd_sum)) % 10) + 48);
 			}
 
-			if (checkcode == IDstr[LenID - 1]) {
+			if (checkcode == IDstr[Index[LenIndex - 1]]) {
 				return OK;
 			} else {
 				return ERR;
@@ -1230,7 +1357,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-
+	
 	// Function:12位幢编码：6位 采用竣工时间法，时间未知，全部用"*"；仅知年代，如199***；知年份不知月份，如2008**；
 	// 知道时间，如20080708， 后六位幢顺序号，不能为全0
 	// IDstr: ID string
@@ -1266,11 +1393,27 @@ public class RuleFunction {
 
 			// 判断 月份
 			int[] Index_month = { Index[4], Index[5] };
-			if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // 江峰
-																					// 实现的函数，判断是否是月份
-				return ERR;
-			}
+			
+//			if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // 江峰
+//																				// 实现的函数，判断是否是月份
+//				return ERR;
+//			}
 
+			//xjf  修改后
+			if(IDstr[Index[4]] != '*'&& Index[5] != '*'){
+				if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // 江峰
+					// 实现的函数，判断是否是月份
+					return ERR;
+				}
+			}
+			
+			if(IDstr[Index[4]] != '*'&& Index[5] == '*'){
+				if ((int)IDstr[Index[4]]-48!=0||(int)IDstr[Index[4]]-48!=1||(int)IDstr[Index[4]]-48!=2) { 
+					return ERR;
+				}
+			}
+			
+			
 			int zero_count = 0; // 不能全0
 			for (i = 6; i < LenIndex; i++) {
 				if (IDstr[Index[i]] == '0') {
@@ -1294,9 +1437,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes is 12
 	// Creator:Wu Zhenyu
-	public static String HouseCode_CheckBasedCoordinate(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String HouseCode_CheckBasedCoordinate(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 12) {
@@ -1323,12 +1467,13 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes is 12
 	// Creator:Wu Zhenyu
-	public static String HouseCode_CheckBasedFenzong(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String HouseCode_CheckBasedFenzong(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			// 4位街坊号 房产分区代码，在文档中找到的编号只有两位
 			int i = 0;
 			int count = 0;
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			for (; i < 4; i++) {
@@ -1379,10 +1524,11 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes is 12
 	// Creator:Wu Zhenyu
-	public static String HouseCode_CheckBasedFenfu(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String HouseCode_CheckBasedFenfu(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			int i = 0;
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 12) {
@@ -1419,9 +1565,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes is 4
 	// Creator:Wu Zhenyu
-	public static String HouseCode_CheckUnitCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String HouseCode_CheckUnitCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 4) {
@@ -1452,9 +1599,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes is 12
 	// Creator:Wu Zhenyu
-	public static String HouseCode_CheckTwelBitCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String HouseCode_CheckTwelBitCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			String[] result = {
@@ -1483,46 +1631,75 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:Wu Zhenyu
+//	public static String HouseCode_CheckCode(char[] IDstr, int LenID,
+//			int[] Index, int LenIndex) {
+//		try {
+//			int i = 0;
+//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+//				return ERR;
+//			}
+//			int result = 10 + (IDstr[0] - 48); // 记录校验码计算中间过程产生的值
+//
+//			for (i = 1; i < LenIndex; i++) {
+//				if (result % 10 == 0) {
+//					result = (10 * 2) % 11 + (IDstr[i] - 48);
+//				} else {
+//					result = ((result % 10) * 2) % 11 + (IDstr[i] - 48);
+//				}
+//			}
+//
+//			if (result == 10) {
+//				result = (10 * 2) % 11 + (IDstr[i] - 48);
+//			} else {
+//				result = ((result % 10) * 2) % 11;
+//			}
+//
+//			char checkcode;
+//			if (result == 1) {
+//				checkcode = 48; // 0x0
+//			} else {
+//				checkcode = (char) ((11 - result) + 48);
+//			}
+//
+//			if (checkcode == IDstr[LenID - 1]) {
+//				return OK;
+//			} else {
+//				return ERR;
+//			}
+//		} catch (Exception e) {
+//			return ERR;
+//		}
+//	}
 	public static String HouseCode_CheckCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
-		try {
-            int i = 0;
-            if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
-                    return ERR;
-            }
-            int result = 10 + (IDstr[0] - 48); // 记录校验码计算中间过程产生的值
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+  		}
+		char [] IDstrTemp = new char[LenID]; 
+		for (int k = 0; k < LenID; k++){
+			if ('*' == IDstr[k]){
+				IDstrTemp[k] = '0';
+			} else {
+				IDstrTemp[k] = IDstr[k];
+			}
+		}
+		int i = 0;
+		int j = 10;
+		for (i = 0; i < LenIndex - 1; i++) {
+			int mode10 = (((int) IDstrTemp[Index[i]] - 48) + j) % 10;
+			if (0 == mode10){
+				mode10 = 10;
+			}
+			j = (mode10 * 2) % 11;
+		}
+		if ((((int) IDstrTemp[Index[LenIndex - 1]] - 48) + j) % 10 == 1) {
+			return OK;
+		}
+		return ERR;
 
-            for (i = 1; i < LenIndex; i++) {
-                    if (result % 10 == 0) {
-                            result = (10 * 2) % 11 + (IDstr[i] - 48);
-                    } else {
-                            result = ((result % 10) * 2) % 11 + (IDstr[i] - 48);
-                    }
-            }
-
-            if (result == 10) {
-                    result = (10 * 2) % 11 + (IDstr[i] - 48);
-            } else {
-                    result = ((result % 10) * 2) % 11;
-            }
-
-            char checkcode;
-            if (result == 1) {
-                    checkcode = 48; // 0x0
-            } else {
-                    checkcode = (char) ((11 - result) + 48);
-            }
-
-            if (checkcode == IDstr[LenID - 1]) {
-                    return OK;
-            } else {
-                    return ERR;
-            }
-	    } catch (Exception e) {
-	            return ERR;
-	    }
 	}
+	
 
-	// Function: 校验算法 实现 C=11-MOD(∑Ci×Wi,10)
+	// Function: 校验算法 实现 C=MOD(11-MOD(∑Ci×Wi,11),10)
 	// 其中MOD－表示求余函数；i－表示代码字符从左至右位置序号；Ci－表示第i位置上的代码字符的值；Wi－表示第i位置上的加权因子，
 	// 加权因子的公式是：2的n-1次幂除以11取余数，n就是那个i，从右向左排列
 	// 当校检的值为10时 赋值位X
@@ -1530,29 +1707,25 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:许江峰
-	public static String DeviceMOD163(char[] IDstr, int LenID, int[] Index, int LenIndex) {
-		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
-				return ERR;
-			}
-			// MOD 校验算法，字符串开辟空间时要多一位留给最后加校验位
-			double sum = 0; // 最后的校验码
-			int i;
-			int j = LenIndex - 1;
-			for (i = 0; i < LenIndex - 1; i++) {
-				sum = sum + (int) (IDstr[Index[i]] - 48)
-						* (Math.pow(2, LenIndex - i - 1) % 11);
-			}
-			String check;
-			int mod = (int) (11 - (sum % 10));
-			check = Integer.toString(mod % 10);
-			if (check.equals(Integer.toString((int) IDstr[Index[j]] - 48))) {
-				return OK;
-			} else {
-				return ERR;
-			}
-		} catch (Exception e) {
+	public static String DeviceMOD163(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		// MOD 校验算法，字符串开辟空间时要多一位留给最后加校验位
+		double sum = 0; // 最后的校验码
+		int i;
+		int j = LenIndex - 1;
+		for (i = 0; i < LenIndex - 1; i++) {
+			sum = sum + (int) (IDstr[Index[i]] - 48)
+					* (Math.pow(2, LenIndex - i - 1) % 11);
+		}
+		String check;
+		System.out.println(sum);
+		int mod = (int) (11 - (sum % 11));
+		check = Integer.toString(mod % 10);
+		System.out.println(check);
+		System.out.println(mod);
+		if (check.equals(Integer.toString((int) IDstr[Index[j]] - 48))) {
+			return OK;
+		} else {
 			return ERR;
 		}
 	}
@@ -1563,9 +1736,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes 固定长3
 	// Creator:许江峰 232
-	public static String Egg232(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String Egg232(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
@@ -1650,9 +1824,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:许江峰
-	public static String FiveByteDecimalnt(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String FiveByteDecimalnt(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 5) {
@@ -1696,9 +1871,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:许江峰
-	public static String FourByteDecimalnt(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String FourByteDecimalnt(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 4) {
@@ -1729,6 +1905,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+
 	// Function: 实现模10“隔位乘2”求和的校验
 	// 即A-Z换算成10进制的10-35，对新的10进制组成新的数组；对新数组的从右到左开始每一位乘以2或1的循环求和sum
 	// 校验位的值为 10-sum%10
@@ -1737,71 +1914,95 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:许江峰
-	public static String InternationalSecurities(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String InternationalSecurities(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
-            if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
-                    return ERR;
-            }
-            int i = 0; // 用于判断16进制
-            int j; // 用于数组的遍历
-            int b = 0;
-            int a;
-            a = 'A';
-            for (j = 0; j < LenIndex - 1; j++) {
-                    for (i = 0; i < 26; i++) {
-                            char c = (char) (a + i);
-                            if (IDstr[Index[j]] == c) {
-                                    IDstr[Index[j]] = (char) (10 + i);
-                            }
-                    }
-                    if ((int) (IDstr[Index[j]] - 48) / 10 >= 1) {
-                            b++;
-                    }
-                    if (IDstr[Index[j]] > 47) {
-                            IDstr[Index[j]] = (char) (IDstr[Index[j]] - 48);
-                    }
-            }
-            b = b + LenIndex - 1;
-            int[] nums = new int[b];
-            int e = 0;
-            e = b - 1;
-            for (j = 0; j < LenIndex - 1; j++) {
-                    if ((int) IDstr[Index[LenIndex - j - 2]] / 10 < 1) {
-                            nums[e] = (int) IDstr[Index[LenIndex - j - 2]];
-                            e--;
-                    }
-                    if ((int) IDstr[Index[LenIndex - j - 2]] / 10 >= 1) {
-                            nums[e] = (int) IDstr[Index[LenIndex - j - 2]];
-                            e--;
-                            nums[e] = (int) Math.floor((int) IDstr[Index[LenIndex - j
-                                            - 2]] / 10);
-                            e--;
-                    }
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			int i = 0; // 用于判断16进制
+			int j; // 用于数组的遍历
+			int b = 0;
+			char a;
+			a = 'A';
+			for (j = 0; j < LenIndex - 1; j++) {
+				for (i = 0; i < 26; i++) {
+					char c = (char) (a + i);
 
-            }
-            int f; // 用于X2的数组遍历
-            int sum = 0; // 用于接受校验码
-            int check; // 用于校验码的值
-            for (f = 0; f < b; f++) {
-                    if ((b - f) % 2 != 0) {
-                            sum = sum + nums[f] * 2;
-                    } else
-                            sum = sum + nums[f] * 1;
-            }
-            if (10 - sum % 10 == 10) {
-                    check = 0;
-            } else {
-                    check = 10 - sum % 10;
-            }
-            if (check == (int) (IDstr[Index[LenIndex - 1]] - 48)) {
-                    return OK;
-            } else {
-                    return ERR;
-            }
-    } catch (Exception e) {
-            return ERR;
-    }
-}
+					if ((int) IDstr[Index[j]] == c) {
+						IDstr[Index[j]] = (char) (10 + i);
+
+					}
+				}
+				if (IDstr[Index[j]] > 47) {
+					IDstr[Index[j]] = (char) (IDstr[Index[j]] - 48);
+				}
+				if ((int) IDstr[Index[j]] / 10 >= 1)
+					b++;
+			}
+			b = b + LenIndex - 1;
+			int[] nums = new int[b];
+			int e = 0;
+			e = b - 1;
+			for (j = 0; j < LenIndex - 1; j++) {
+				if ((int) IDstr[Index[LenIndex - j - 2]] / 10 < 1) {
+					nums[e] = (int) IDstr[Index[LenIndex - j - 2]];
+					e--;
+				}
+				if ((int) IDstr[Index[LenIndex - j - 2]] / 10 >= 1) {
+					nums[e] = (int) (IDstr[Index[LenIndex - j - 2]] % 10);
+					e--;
+					nums[e] = (int) Math.floor((int) IDstr[Index[LenIndex - j
+							- 2]] / 10);
+					e--;
+				}
+			}
+			int f; // 用于X2的数组遍历
+			int sum = 0; // 用于接受校验码
+			int check; // 用于校验码的值
+			int bb = 0;
+			int ff = 0;
+			for (f = 0; f < b; f++) {
+				if ((b - f) % 2 != 0) {
+					nums[f] = nums[f] * 2;
+					if (nums[f] * 2 > 9) {
+						bb++;
+					}
+				}
+			}
+			ff = bb + b - 1;
+			int[] numss = new int[ff + 1];
+			for (f = 0; f < b; f++) {
+				if (nums[f] < 10) {
+					numss[ff] = nums[f];
+					ff--;
+				}
+				if (nums[f] >= 10) {
+					numss[ff] = (int) (nums[f] % 10);
+					ff--;
+					numss[ff] = (int) 1;
+					ff--;
+				}
+
+			}
+			for (f = 0; f < bb + b; f++) {
+				sum = sum + numss[f];
+			}
+			if (10 - sum % 10 == 10) {
+				check = 0;
+			} else {
+				check = 10 - sum % 10;
+			}
+
+			if (check == (int) IDstr[Index[LenIndex - 1]] - 48) {
+				return OK;
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 
 	// Function: ISO 7064:1983.MOD 11-2校验算法 实现 C=11-MOD(∑Ci×Wi,11)
 	// 其中MOD－表示求余函数；i－表示代码字符从左至右位置序号；Ci－表示第i位置上的代码字符的值；Wi－表示第i位置上的加权因子，
@@ -1812,51 +2013,59 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:许江峰
-	public static String MOD112(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String MOD112(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-            if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
-                    return ERR;
-            }
-            // ISO 7064:1983.MOD 11-2校验算法，字符串开辟空间时要多一位留给最后加校验位
-            double sum = 0; // 最后的校验码
-            int i, j;
-            int b = LenIndex - 1;
-            int a;
-            a = 'A';
-            for (j = 0; j < LenIndex - 1; j++) {
-                    for (i = 0; i < 26; i++) {
-                            char c = (char) (a + i);
-                            if ((int) IDstr[Index[j]] == c) {
-                                    IDstr[Index[j]] = (char) (10 + i);
-                            }
-                    }
-            }
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			// ISO 7064:1983.MOD 11-2校验算法，字符串开辟空间时要多一位留给最后加校验位
+			double sum = 0; // 最后的校验码
+			int i, j;
+			int b = LenIndex - 1;
+			int a;
+			a = 'A';
+			for (j = 0; j < LenIndex - 1; j++) {
+				for (i = 0; i < 26; i++) {
+					char c = (char) (a + i);
+					if ((int) IDstr[Index[j]] == c) {
+						IDstr[Index[j]] = (char) (10 + i);
+					}
+				}
+			}
 
-            for (i = 0; i < LenIndex - 1; i++) {
-                    if (IDstr[Index[i]] > 47) {
-                            IDstr[Index[i]] = (char) (IDstr[Index[i]] - 48);
-                    }
-                    sum = sum + (int) (IDstr[Index[i]])
-                                    * (Math.pow(2, LenIndex - i - 1) % 11);
-            }
-            char check;
-            int mod;
-            sum %= 11;
-            mod = (int) (11 - sum) % 11;
-            check = (char) (mod);
-            if (mod == 10) {
-                    check = "X".charAt(0);
-                    ; // X表示10
-            }
-            if (check == ((IDstr[Index[b]]))) {
-                    return OK;
-            } else {
-                    return ERR;
-            }
-    } catch (Exception e) {
-            return ERR;
-    }
-}
+			for (i = 0; i < LenIndex - 1; i++) {
+				if (IDstr[Index[i]] > 47) {
+					IDstr[Index[i]] = (char) (IDstr[Index[i]] - 48);
+				}
+				sum = sum + (int) (IDstr[Index[i]])
+						* (Math.pow(2, LenIndex - i - 1) % 11);
+			}
+			char check;
+			int mod;
+			sum %= 11;
+			mod = (int) (12 - sum) % 11;
+			if (mod == 10) {
+				check = "X".charAt(0); // X表示10
+			} else {
+				String jieshou = Integer.toString(mod);
+				check = jieshou.charAt(0);
+			}
+			System.out.println(check);
+			if (check == (IDstr[Index[b]])) {
+
+				return OK;
+
+			} else {
+
+				return ERR;
+
+			}
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 
 	// Function: 实现校验 MOD 16-3 即16进制的数换算成10进制，对新的10进制的数值乘以权重对16取余；权重位11,9,3,1的循环
 	// 权重位1~9的循环
@@ -1865,9 +2074,10 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes 固定长16
 	// Creator:许江峰
-	public static String MOD163(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String MOD163(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			// MOD 16-3校验算法，字符串开辟空间时要多一位留给最后加校验位
@@ -1924,96 +2134,124 @@ public class RuleFunction {
 		}
 	}
 
-	//Function: 实现校验  
-	//即数组奇数位乘以1与偶数位乘以2的和sum
-	//校验位的值为 10-sum%10
-	//IDstr: ID string 
-	//LenID: the number of characters in the ID string 
-	//Index: the list of corresponding indexes regarding to this algorithm
-	//LenIndex: the number of indexes
-	//Creator:许江峰 
-	public static String MrpCheck(char[] IDstr, int LenID, int[] Index, int LenIndex) {
-		try{
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+	// Function: 实现校验
+	// 即数组奇数位乘以1与偶数位乘以2的和sum
+	// 校验位的值为 10-sum%10
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String MrpCheck(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			int f; //用于X2的数组遍历
-			int sum = 0; //用于接受校验码
-			int check; //用于校验码的值
-				for (f = 0; f < LenIndex - 1; f++) {
-				if ((f + 1) % 2 != 0) {
-					sum = sum + (int) (IDstr[Index[f]] - 48)* 1;
+			int f; // 用于X2的数组遍历
+			int sum = 0; // 用于接受校验码
+			int check; // 用于校验码的值
+			int b = 0;
+			int j = 0;
+			for (f = 0; f < LenIndex - 1; f++) {
+
+				if (IDstr[Index[f]] > 47) {
+					IDstr[Index[f]] = (char) (IDstr[Index[f]] - 48);
 				}
-				else {
-					sum = sum + (int) (IDstr[Index[f]] - 48) * 2;
+				if ((f + 1) % 2 == 0) {
+					IDstr[Index[f]] = (char) ((int) IDstr[Index[f]] * 2);
+					if ((int) (IDstr[Index[f]]) * 2 > 9) {
+						b++;
+					}
 				}
 			}
+			b = b + LenIndex - 1;
+			int[] nums = new int[b];
+			int e = 0;
+			e = b - 1;
+			for (j = 0; j < LenIndex - 1; j++) {
+				System.out.print((int) IDstr[Index[j]]);
+				if ((int) IDstr[Index[j]] < 10) {
+					nums[e] = (int) IDstr[Index[j]];
+					e--;
+				}
+				if ((int) IDstr[Index[j]] > 9) {
+					nums[e] = (int) (IDstr[Index[j]] % 10);
+					e--;
+					nums[e] = (int) Math.floor((int) IDstr[Index[j]] / 10);
+					e--;
+				}
+			}
+
+			for (f = 0; f < b; f++) {
+				sum = sum + nums[f];
+			}
+
+			System.out.print(sum);
 			if (10 - sum % 10 == 10) {
 				check = 0;
-			}
-			else {
+			} else {
 				check = 10 - sum % 10;
 			}
-			if (check == (int) (IDstr[Index[LenIndex - 1]] - 48)) {
+			if (check == (int) IDstr[Index[LenIndex - 1]] - 48) {
 				return OK;
-			}
-			else {
+			} else {
 				return ERR;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
 	}
 
-	//LenID: the number of characters in the ID string 
-	//Index: the list of corresponding indexes regarding to this algorithm
-	//LenIndex: the number of indexes
-	//Creator:许江峰 
-	public static String MusicCheck(char[] IDstr, int LenID, int[] Index, int LenIndex) {
-		try{
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String MusicCheck(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			//从T开始算Index  
+			// 从T开始算Index
 			int S = 0;
 			int S1 = 0;
 			int check = 0;
 			int i;
 			for (i = 1; i < LenIndex; i++) {
 				if (i % 9 != 0) {
-					S1 = (int) (IDstr[Index[i - 1]] - 48)* (i % 9);
+					;
+					S1 = (int) (IDstr[Index[i]] - 48) * (i % 9);
 					S = S + S1;
-				}
-				else {
-					S1 = (int) (IDstr[Index[i - 1]] - 48) * 9;
+				} else {
+					S1 = (int) (IDstr[Index[i]] - 48) * 9;
 					S = S + S1;
 				}
 			}
 			S = S + 1;
 			if (S % 10 != 0) {
-				check = 10 - (S % 10);
-			}
-			else check = 0;
-			if (check == (int) (IDstr[Index[LenIndex - 1]] - 48)) {
-				return OK;
-			}
-			else {
 				return ERR;
 			}
-		}catch (Exception e) {
+
+			else {
+				return OK;
+			}
+		} catch (Exception e) {
 			return ERR;
 		}
 	}
 
-	//Function: represent a decimal integer whose value range is from 001 to 999 
-	//IDstr: ID string 
-	//LenID: the number of characters in the ID string 
-	//Index: the list of corresponding indexes regarding to this algorithm
-	//LenIndex: the number of indexes
-	//Creator:许江峰 
-	public static String ThreeByteDecimalnt(char[] IDstr, int LenID, int[] Index, int LenIndex) {
-		try{
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+	// Function: represent a decimal integer whose value range is from 001 to
+	// 999
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String ThreeByteDecimalnt(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 3) {
@@ -2022,7 +2260,8 @@ public class RuleFunction {
 			int index1 = Index[0];
 			int index2 = Index[1];
 			int index3 = Index[2];
-			if ((IDstr[index1] == '0') && (IDstr[index2] == '0') && (IDstr[index3] == '0')) {
+			if ((IDstr[index1] == '0') && (IDstr[index2] == '0')
+					&& (IDstr[index3] == '0')) {
 				return ERR;
 			}
 			if ((IDstr[index1] < '0') || (IDstr[index1] > '9')) {
@@ -2035,20 +2274,21 @@ public class RuleFunction {
 				return ERR;
 			}
 			return OK;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
 	}
 
-	//Function: 值只能位SR MX SM YZ
-	//IDstr: ID string 
-	//LenID: the number of characters in the ID string 
-	//Index: the list of corresponding indexes regarding to this algorithm
-	//LenIndex: the number of indexes
-	//Creator:许江峰 
-	public static String TwoByteSRMXSMYZ(char[] IDstr, int LenID, int[] Index, int LenIndex) {
-		try{
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+	// Function: 值只能位SR MX SM YZ
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String TwoByteSRMXSMYZ(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 2) {
@@ -2057,11 +2297,11 @@ public class RuleFunction {
 			if ((IDstr[Index[0]] == 'S') && (IDstr[Index[1]] == 'R')) {
 				return OK;
 			}
-	
+
 			if ((IDstr[Index[0]] == 'M') && (IDstr[Index[1]] == 'X')) {
 				return OK;
 			}
-	
+
 			if ((IDstr[Index[0]] == 'S') && (IDstr[Index[1]] == 'M')) {
 				return OK;
 			}
@@ -2069,28 +2309,62 @@ public class RuleFunction {
 				return OK;
 			}
 			return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
 	}
-	
-	//Function:纺织品 机织物组织代码及示例 的正则表达
-	//IDstr: 标识编码
-	//LenID: 标识编码的长度 不固定
-	//Index: 调用正则的的索引位置
-	//LenIndex:不固定
-	//creator: xjf
-	public static String Weaves355(char[] IDstr, int LenID, int[] Index, int LenIndex) {
-		if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+
+	// Function:纺织品 机织物组织代码及示例 的正则表达
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 不固定
+	// Index: 调用正则的的索引位置
+	// LenIndex:不固定
+	// creator: xjf
+	public static String Weaves355(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		int index1 = Index[0];
-		if ((IDstr[index1] == '1') && (IDstr[Index[LenIndex - 1]] != '0') && (IDstr[Index[LenIndex - 2]] != '0')) {
-			return ERR;
-		}
 		try {
 			String code = "";
-			String regex = "[1-3][0-1][00-90]+[00-99]+[00-99]+";
+			String regex = "[1-3][0-1]([0-9][0-9])+([0-9][0-9])+";
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if ((IDstr[index1] == '1') && (IDstr[Index[LenIndex - 1]] == '0')
+					&& (IDstr[Index[LenIndex - 2]] == '0') && ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 商品条码 资产编码与条码表示最后的系列号为1-16位，使用正则进行匹配(58)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 不固定
+	// Index: 调用正则的的索引位置
+	// LenIndex:0-13位为全球可回收资产代码,LenIndex必为3，第一位为起始的位数，第二位为正则可重复的次数,第三位为-1
+	// creator: zll
+	public static String GraiSerialNo(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			String code = "";
+			int num = Index[1];
+			String regex = "[a-zA-Z0-9!\"%&'()*+,-./:;<=>?_]{1,"
+					+ String.valueOf(num) + "}";
+
 			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
@@ -2099,42 +2373,36 @@ public class RuleFunction {
 			boolean ret = ma.matches();
 			if (ret) {
 				return OK;
-			} else return ERR;
-		} catch(Exception e) {
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
 			return ERR;
 		}
 	}
 	
-	//Function: 商品条码 资产编码与条码表示最后的系列号为1-16位，使用正则进行匹配(58)
-	//IDstr: 标识编码
-	//LenID: 标识编码的长度 不固定
-	//Index: 调用正则的的索引位置
-	//LenIndex:0-13位为全球可回收资产代码,LenIndex必为3，第一位为起始的位数，第二位为正则可重复的次数,第三位为-1
-	//creator: zll
-	public static String GraiSerialNo(char[] IDstr, int LenID, int[] Index, int LenIndex){
-		try{
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+	// Function: 药品电子监管码应用码规则，当IDstr[1]为9时，应用码可以为0,1,2
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 20位
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为1，只验证IDstr[1]是否为9
+	// creator: zll
+	public static String MedAppCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if(LenIndex != 3){
+			if (LenIndex != 1) {
 				return ERR;
 			}
-			String code = "";
-			int num = Index[1];
-			String regex = "[a-zA-Z0-9!\"%&'()*+,-./:;<=>?_]{1," + String.valueOf(num) + "}";			
-			
-			for (int i = Index[0]; i < LenID; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+			if(IDstr[1] == '9'){
+				if(!(Index[0] == '0' || Index[0] == '1' || Index[0] == '2')){
+					return ERR;
+				}
 			}
-			Pattern pa = Pattern.compile(regex);
-			Matcher ma = pa.matcher(code);
-			boolean ret = ma.matches();
-			if(ret){
-				return OK;
-			}else{
-				return ERR;
-			}
-		}catch (Exception e) {
+			return OK;
+		} catch (Exception e) {
 			return ERR;
 		}
 	}

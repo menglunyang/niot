@@ -10,12 +10,33 @@ import cn.niot.util.*;
 public class NewIDstdCollisionDetect {
 	private static NewIDstdCollisionDetect collisionDetectAlg = new NewIDstdCollisionDetect();
 	private static Random r1 = new Random(1000);//指定种子数字
-	private static double RandomNumber = 10000;
+	private static double RandomNumber = 213;
+	private static int BEGIN_END = 2;
 	
 	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {
 		return collisionDetectAlg;
 	}
-	public HashMap<String, Double> computeCollisionRate(String JsonString){
+	
+	public static String formJsonString(String len, String valueRange){
+		String resJasonStr = "";
+		 JSONObject jsonObject = new  JSONObject();
+		 jsonObject.put("IDName", "XXXID");
+		 jsonObject.put("Len", len);
+		 String[] subArray = valueRange.split(";");
+		 for(String ele: subArray){
+			 String[] subEle = ele.split(":");
+			 if (subEle.length != BEGIN_END){
+				 System.out.println("ERROR! formJsonString!");				 
+			 }
+			 String[] subsubEle = subEle[0].split("-");
+			 for (char temp = subsubEle[0].charAt(0); temp <=  subsubEle[1].charAt(0); temp++){
+				 jsonObject.put(String.valueOf((char)((int)temp - 1)), subEle[1]);
+			 }
+		 }
+		 resJasonStr = jsonObject.toString();
+		return resJasonStr;
+	}
+	public static HashMap<String, Double> computeCollisionRate(String JsonString){
 		HashMap<String, Double> IDSTD_CollisionRate = new HashMap<String, Double>();
 		HashMap<String, Double> IDSTD_Count = new HashMap<String, Double>();
 		for (int i = 0; i < RandomNumber; i++){
@@ -26,7 +47,7 @@ public class NewIDstdCollisionDetect {
 			while (iterator.hasNext()) {
 				String key = (String)iterator.next();
 				if(IDSTD_Count.containsKey(key)){
-					IDSTD_Count.put(key, IDSTD_Count.get(key) + 1);
+					IDSTD_Count.put(key, IDSTD_Count.get(key) + 1.0);
 				} else {
 					IDSTD_Count.put(key, 1.0);
 				}
@@ -40,7 +61,7 @@ public class NewIDstdCollisionDetect {
 		}
 		return IDSTD_CollisionRate;
 	}
-	public String generateIDString(String JsonString) {
+	public static String generateIDString(String JsonString) {
 		String IDstring = "";
 		HashMap<String, Object> map = jsonStr2HashMap(JsonString);
 		int len = 0;
@@ -81,7 +102,7 @@ public class NewIDstdCollisionDetect {
 		return IDstring;
 	}
 	
-	public HashMap<String, Object> jsonStr2HashMap(String JsonString){
+	public static HashMap<String, Object> jsonStr2HashMap(String JsonString){
 		HashMap<String, Object> map = new HashMap<String, Object>();		
 		JSONObject jsonObject = JSONObject.fromObject(JsonString);
 		for(Iterator iter = jsonObject.keys(); iter.hasNext();){
@@ -92,8 +113,8 @@ public class NewIDstdCollisionDetect {
 		return map;
 	}
 	
-	public char generateRandomChar(String strByteRule){
-		char resChar = '0';
+	public static char generateRandomChar(String strByteRule){
+		char resChar = '?';
 		char [] resChars = new char [RecoUtil.COUNT_NUMBER_CHARS];
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String ByteRule = strByteRule;
@@ -117,7 +138,10 @@ public class NewIDstdCollisionDetect {
 				} else {
 					map.put(String.valueOf(element.charAt(0)), "");				
 				}
+			} else {
+				map.put(element, "");
 			}
+			
 		}
 		
 		//traverse the hash map
@@ -128,13 +152,15 @@ public class NewIDstdCollisionDetect {
 			resChars[i] = key.toString().charAt(0);
 			i++; 
 		}
-		//加入随机算法
-		resChar = randomizeArray(resChars, i);
+		if (i > 0){
+			//加入随机算法
+			resChar = randomizeArray(resChars, i);
+		}	
         
 		return resChar;
 	} 
 	
-	public char randomizeArray(char [] charList, int len){
+	public static char randomizeArray(char [] charList, int len){
 		char [] resCharArray = new char [len];
 		char resChar = 'a';
 		int i = 0;
