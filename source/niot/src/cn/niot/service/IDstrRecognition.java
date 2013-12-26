@@ -98,32 +98,44 @@ public class IDstrRecognition {
 		return typeProbability;
 	}
 	
-	public static JSONObject getTwoNamesByIDCode(HashMap<String, Double> HashMapID2Probability ){
+	public static JSONObject getTwoNamesByIDCode(HashMap<String, Double> HashMapID2Probability,HashMap<String, Double> ShortName_Probability ){
 		Iterator iterator_t = HashMapID2Probability.keySet().iterator();
 		HashMap<String, String>IDCode_ChineseName = new HashMap<String, String>();
 		HashMap<String, String>IDCode_ShortName = new HashMap<String, String>();
+		ShortName_Probability.clear();
 		
 		RecoDao dao = new RecoDao();
+		int nAppendedIndex = 0;
 		while(iterator_t.hasNext()){
-			String key_IDstd = iterator_t.next().toString();			
+			String key_IDstd = iterator_t.next().toString();
+			double probability = HashMapID2Probability.get(key_IDstd);
 			String ChineseName = dao.getIDDetail(key_IDstd);
 			IDCode_ChineseName.put(key_IDstd, ChineseName);
 			
-			char [] ShortNmae = new char[RecoUtil.DISPLAYLENGTH];
+			char [] ShortName = new char[RecoUtil.DISPLAYLENGTH];
 			int nIndex = 0;
 			for (int i = 0; i < key_IDstd.length(); i++){
 				char charTemp = key_IDstd.charAt(i);
 				if ((charTemp >= '0' && charTemp <= '9') ||
 					(charTemp >= 'a' && charTemp <= 'z') ||
 					(charTemp >= 'A' && charTemp <= 'Z')){
-					ShortNmae[nIndex] = charTemp;
+					ShortName[nIndex] = charTemp;
 					nIndex++;
 					if (nIndex >= RecoUtil.DISPLAYLENGTH){
 						break;
 					}
 				}
 			}
-			IDCode_ShortName.put(key_IDstd, (String.valueOf(ShortNmae)).trim());
+			String CurShortName = (String.valueOf(ShortName)).trim();
+			if (ShortName_Probability.containsKey(CurShortName)){
+				String ResShortName = CurShortName + String.valueOf(nAppendedIndex);
+				nAppendedIndex++;
+				IDCode_ShortName.put(key_IDstd, ResShortName);
+				ShortName_Probability.put(ResShortName, probability);
+			} else {
+				IDCode_ShortName.put(key_IDstd, CurShortName);
+				ShortName_Probability.put(CurShortName, probability);
+			}			
 		}
 //////////////////////////////////////////////////////////////////////
 		JSONObject jsonObjectRes = new  JSONObject();

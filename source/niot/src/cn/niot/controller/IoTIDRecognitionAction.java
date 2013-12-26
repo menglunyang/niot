@@ -153,16 +153,16 @@ public class IoTIDRecognitionAction extends ActionSupport {
 
 		if (IoTcode != null) {
 			HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
-			HashMap<String, Double> ChineseName_Pro = RecoUtil.replaceIotId(typeProbability);
+			//HashMap<String, Double> ChineseName_Pro = RecoUtil.replaceIotId(typeProbability);
+			HashMap<String, Double> ShortName_Probability = new HashMap<String, Double>();
+			JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(typeProbability, ShortName_Probability);	
+			this.extraData = (jsonObjectRes.toString()).replace("\"", "\'");
 			
-			JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(typeProbability);	
-			this.extraData = jsonObjectRes.toString();
-			
-			int len = ChineseName_Pro.size();
+			int len = ShortName_Probability.size();
 			if (RecoUtil.NO_ID_MATCHED == len) {
 				this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
 			} else if (RecoUtil.ONE_ID_MATCHED == len) {
-				Iterator iterator = ChineseName_Pro.keySet().iterator();
+				Iterator iterator = ShortName_Probability.keySet().iterator();
 				while (iterator.hasNext()) {
 					Object key = iterator.next();
 					this.data = String.valueOf(key);
@@ -172,11 +172,11 @@ public class IoTIDRecognitionAction extends ActionSupport {
 				this.status = String.valueOf(len);
 
 				JSONArray jsonArray = new JSONArray();
-				Iterator iterator2 = ChineseName_Pro.keySet().iterator();
+				Iterator iterator2 = ShortName_Probability.keySet().iterator();
 				while (iterator2.hasNext()) {
 					Object key = iterator2.next();
 					JSONObject jsonObject = new JSONObject();
-					double probability = ChineseName_Pro.get(key);
+					double probability = ShortName_Probability.get(key);
 					jsonObject.put("codeName", String.valueOf(key));
 					jsonObject.put("probability", String.valueOf(probability));
 					if (!jsonArray.add(jsonObject)) {
@@ -186,6 +186,8 @@ public class IoTIDRecognitionAction extends ActionSupport {
 				}
 			}
 		}
+		System.out.println("\nthis.data:   "+this.data);
+		System.out.println("\nthis.extraData:   "+this.extraData);
 		return SUCCESS;
 	}
 }

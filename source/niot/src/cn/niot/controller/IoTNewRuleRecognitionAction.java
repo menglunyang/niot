@@ -96,23 +96,23 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		int nDisplayLen = 9;
 		String resJasonStr = NewIDstdCollisionDetect.formJsonString(this.len, this.valueRange);
 		HashMap<String, Double> HashMapID2Probability = NewIDstdCollisionDetect.computeCollisionRate(resJasonStr);
-		
-		JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(HashMapID2Probability);	
+		HashMap<String, Double> ShortName_Probability = new HashMap<String, Double>();
+		JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(HashMapID2Probability,ShortName_Probability);	
 		this.extraData = jsonObjectRes.toString();
 		
 //////////////////////////////////////////////////////////////////////		
 		JSONArray jsonArray = new  JSONArray();
 		double probability = 0;
-    	int len = HashMapID2Probability.size();
+    	int len = ShortName_Probability.size();
     	if (RecoUtil.NO_ID_MATCHED == len){
     		this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
     	} else if (RecoUtil.ONE_ID_MATCHED == len){
-    		Iterator iterator = HashMapID2Probability.keySet().iterator();                
+    		Iterator iterator = ShortName_Probability.keySet().iterator();                
             while (iterator.hasNext()) {    
 				Object key = iterator.next();
 				this.status = String.valueOf(RecoUtil.ONE_ID_MATCHED);
 				JSONObject jsonObject = new  JSONObject();
-				probability = HashMapID2Probability.get(key);
+				probability = ShortName_Probability.get(key);
 				String IDstr = String.valueOf(key);
 				if (IDstr.length() > nDisplayLen){
 					jsonObject.put("codeName",IDstr.substring(0, nDisplayLen));
@@ -124,11 +124,11 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
             } 
     	} else {
     		this.status = String.valueOf(len);
-            Iterator iterator2 = HashMapID2Probability.keySet().iterator();                
+            Iterator iterator2 = ShortName_Probability.keySet().iterator();                
             while (iterator2.hasNext()) {    
 				Object key = iterator2.next();  				
 				JSONObject jsonObject = new  JSONObject();
-				probability = HashMapID2Probability.get(key);
+				probability = ShortName_Probability.get(key);
 				String IDstr = String.valueOf(key);
 				if (IDstr.length() > nDisplayLen){
 					jsonObject.put("codeName",IDstr.substring(0, nDisplayLen));
@@ -179,6 +179,7 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		//this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
 		
 		System.out.println(this.status+"\n"+this.data+"\n"+this.statement);
+		System.out.println("\n"+this.extraData);
 		return SUCCESS;
 	}
 }
