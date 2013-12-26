@@ -35,6 +35,8 @@ public class IoTIDRecognitionAction extends ActionSupport {
 	private String data;
 
 	private String statement;
+	
+	private String Msg;
 
 	public String getData() {
 		return data;
@@ -51,7 +53,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	
 	public String replaceBlank(String str) {
 		String dest = "";
 		if (str != null) {
@@ -68,12 +70,11 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		if (this.code != null) {
 			IoTcode = replaceBlank(this.code);
 		}
-		if (urlparam != null) {
-			IoTcode = replaceBlank(urlparam);
-		}
+//		if (urlparam != null) {
+//			IoTcode = replaceBlank(urlparam);
+//		}
 		if (IoTcode != null) {
-			HashMap<String, Double> typeProbability = RecoUtil
-					.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));
+			HashMap<String, Double> typeProbability = RecoUtil.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));
 			int len = typeProbability.size();
 			if (RecoUtil.NO_ID_MATCHED == len) {
 				this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
@@ -102,7 +103,6 @@ public class IoTIDRecognitionAction extends ActionSupport {
 				}
 			}
 		}
-
 		// this.status = "2";
 		// this.data =
 		// "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
@@ -121,8 +121,6 @@ public class IoTIDRecognitionAction extends ActionSupport {
 
 		//System.out.println(this.status + "\n" + this.data + "\n"
 		//		+ this.statement);
-
 		return SUCCESS;
 	}
-
 }
