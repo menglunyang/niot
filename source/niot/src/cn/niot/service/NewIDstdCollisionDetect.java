@@ -10,7 +10,7 @@ import cn.niot.util.*;
 public class NewIDstdCollisionDetect {
 	private static NewIDstdCollisionDetect collisionDetectAlg = new NewIDstdCollisionDetect();
 	private static Random r1 = new Random(1000);//指定种子数字
-	private static double RandomNumber = 213;
+	private static double RandomNumber = 213;//随机标识生成的个数
 	private static int BEGIN_END = 2;
 	
 	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {
@@ -57,7 +57,9 @@ public class NewIDstdCollisionDetect {
 		Iterator iteratorCount = IDSTD_Count.keySet().iterator();
 		while (iteratorCount.hasNext()){
 			String keyID = (String)iteratorCount.next();
-			IDSTD_CollisionRate.put(keyID, IDSTD_Count.get(keyID) / RandomNumber);
+			double probability = IDSTD_Count.get(keyID) / RandomNumber;
+			probability = (double)Math.round(probability * 10000)/10000;
+			IDSTD_CollisionRate.put(keyID, probability);
 		}
 		return IDSTD_CollisionRate;
 	}

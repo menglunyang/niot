@@ -18,13 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
- * @Title: RespCode.java
- * @Package cn.niot.zt
- * @Description:
- * @author Zhang Tao
- * @date 2013-12-3
- * @version V1.0
+* @Title: RespCode.java 
+* @Package cn.niot.zt 
+* @Description:
+* @author Zhang Tao
+* @date 2013-12-3 
+* @version V1.0
  */
+
+
 
 public class IoTIDRecognitionAction extends ActionSupport {
 
@@ -34,9 +36,14 @@ public class IoTIDRecognitionAction extends ActionSupport {
 
 	private String data;
 
+
 	private String statement;
 	
+
+	private String extraData;
+
 	private String Msg;
+
 
 	public String getData() {
 		return data;
@@ -54,7 +61,81 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		this.code = code;
 	}
 	
+
+	public String getExtraData() {
+		return extraData;
+	}
+
 	public String replaceBlank(String str) {
+
+        String dest = "";
+        if (str!=null) {
+            Pattern p = Pattern.compile("\\s*|\\t|\\r|\\n");
+            Matcher m = p.matcher(str);
+            dest = m.replaceAll("");
+        }
+        return dest;
+    }
+/*	
+	public String execute() throws Exception
+	{
+		System.out.println(this.code);
+		String IoTcode = replaceBlank(this.code);
+		//HashMap<String, Double> typeProbability = RecoUtil.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));	
+		HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
+		typeProbability = RecoUtil.replaceIotId(typeProbability);
+		int len = typeProbability.size();
+    	if (RecoUtil.NO_ID_MATCHED == len){
+    		this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
+    	} else if (RecoUtil.ONE_ID_MATCHED == len){
+    		Iterator iterator = typeProbability.keySet().iterator();                
+            while (iterator.hasNext()) {    
+				Object key = iterator.next();    
+				this.data = String.valueOf(key); 
+				this.status = String.valueOf(RecoUtil.ONE_ID_MATCHED);
+            } 
+    	} else {
+    		this.status = String.valueOf(len);
+            
+            JSONArray jsonArray = new  JSONArray();
+            Iterator iterator2 = typeProbability.keySet().iterator();                
+            while (iterator2.hasNext()) {    
+				Object key = iterator2.next();  				
+				JSONObject jsonObject = new JSONObject();
+				double probability = typeProbability.get(key);
+				jsonObject.put("codeName",String.valueOf(key));
+				jsonObject.put("probability",String.valueOf(probability));
+				if (jsonArray.add(jsonObject)){
+					System.out.println("ERROR! jsonArray.add(jsonObject)");
+				}
+				this.data = jsonArray.toString();
+            }
+    	}
+
+//		
+
+
+		//this.status = "2";
+		//this.data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
+		
+		//this.status="5";
+		//this.data = "[{'codeName':'GB/T 19251-2003_EANUCC-8','probability':'0.2'},{'codeName':'GB/T 19251-2003_UCC-12','probability':'0.2'},{'codeName':'Ecode_1','probability':'0.2'},{'codeName':'GB/T 19251-2003_EANUCC-14','probability':'0.2'},{'codeName':'GB/T 19251-2003_EANUCC-13','probability':'0.2'}]";
+		
+
+		
+		
+		//this.status = "1";
+		//this.data = "CPC";
+		
+		//this.status = "error";
+
+		
+		//this.status = "0";
+		
+		System.out.println(this.status+"\n"+this.data+"\n"+this.statement);
+		
+		
+
 		String dest = "";
 		if (str != null) {
 			Pattern p = Pattern.compile("\\s*|\\t|\\r|\\n");
@@ -63,23 +144,29 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		}
 		return dest;
 	}
-
+*/
 	public String execute() throws Exception {
 		String IoTcode = null;
+<<<<<<< HEAD
 //		String urlparam = RecoUtil.getURLParam("code");
+=======
+>>>>>>> dgq2010-master
 		if (this.code != null) {
 			IoTcode = replaceBlank(this.code);
 		}
-//		if (urlparam != null) {
-//			IoTcode = replaceBlank(urlparam);
-//		}
+
 		if (IoTcode != null) {
-			HashMap<String, Double> typeProbability = RecoUtil.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));
-			int len = typeProbability.size();
+			HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
+			//HashMap<String, Double> ChineseName_Pro = RecoUtil.replaceIotId(typeProbability);
+			HashMap<String, Double> ShortName_Probability = new HashMap<String, Double>();
+			JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(typeProbability, ShortName_Probability);	
+			this.extraData = (jsonObjectRes.toString()).replace("\"", "\'");
+			
+			int len = ShortName_Probability.size();
 			if (RecoUtil.NO_ID_MATCHED == len) {
 				this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
 			} else if (RecoUtil.ONE_ID_MATCHED == len) {
-				Iterator iterator = typeProbability.keySet().iterator();
+				Iterator iterator = ShortName_Probability.keySet().iterator();
 				while (iterator.hasNext()) {
 					Object key = iterator.next();
 					this.data = String.valueOf(key);
@@ -89,20 +176,21 @@ public class IoTIDRecognitionAction extends ActionSupport {
 				this.status = String.valueOf(len);
 
 				JSONArray jsonArray = new JSONArray();
-				Iterator iterator2 = typeProbability.keySet().iterator();
+				Iterator iterator2 = ShortName_Probability.keySet().iterator();
 				while (iterator2.hasNext()) {
 					Object key = iterator2.next();
 					JSONObject jsonObject = new JSONObject();
-					double probability = typeProbability.get(key);
+					double probability = ShortName_Probability.get(key);
 					jsonObject.put("codeName", String.valueOf(key));
 					jsonObject.put("probability", String.valueOf(probability));
-					if (jsonArray.add(jsonObject)) {
+					if (!jsonArray.add(jsonObject)) {
 						System.out.println("ERROR! jsonArray.add(jsonObject)");
 					}
 					this.data = jsonArray.toString();
 				}
 			}
 		}
+<<<<<<< HEAD
 		// this.status = "2";
 		// this.data =
 		// "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
@@ -120,6 +208,10 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		// this.status = "0";
 
 		System.out.println(this.status + "\n" + this.data + "\n" + this.statement);
+=======
+		System.out.println("\nthis.data:   "+this.data);
+		System.out.println("\nthis.extraData:   "+this.extraData);
+>>>>>>> dgq2010-master
 		return SUCCESS;
 	}
 }

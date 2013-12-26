@@ -150,7 +150,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex < 2) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 
