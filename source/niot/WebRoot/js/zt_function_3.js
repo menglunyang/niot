@@ -134,15 +134,32 @@ function sendReqRul()
 							else if (result.status == 1){
 								console.log("(" +result.data+ ")");
 								var oneFoundData = eval("(" +result.data+ ")");
-								$("#oneFoundName_3").text(oneFoundData.codeName);
+								
+								var extraData = eval("(" +result.extraData+ ")");
+								var fullName = eval("extraData."+oneFoundData.codeName+".fullName");
+    							var codeNum = eval("extraData."+oneFoundData.codeName+".codeNum");
+								
+    							console.log(fullName);
+    							console.log(codeNum);
+    							
+								$("#oneFoundName_3").text(fullName+"  ("+codeNum+")");
 								$("#oneFoundCollisionRatio_3").text(oneFoundData.CollisionRatio);
 								$("#oneFound_3").css("display","block");
 							}
 							else if (result.status >1){
 								console.log(result.data);
 								var barData = eval(result.data);
+								var extraData = eval("(" +result.extraData+ ")");
+								//console.log(extraData);
+								
+								var totalNum = barData.length;
+								for (i=0;i<totalNum;i++)
+									{
+										barData[i].CollisionRatio = Number(barData[i].CollisionRatio);
+									}
+								
 								$("#barChartContainer").css("display","block");
-								drawBarChart(barData);
+								drawBarChart(barData, extraData);
 							}
 							data1=result;
 						},
@@ -151,7 +168,7 @@ function sendReqRul()
 	}
 }
 
-function drawBarChart(dataSource)
+function drawBarChart(dataSource, extraData)
 {
 	$("#barChartContainer").dxChart({
     dataSource: dataSource,
@@ -159,6 +176,9 @@ function drawBarChart(dataSource)
             height: 250,
             width: 700
         },
+    equalBarWidth: {
+        	width:40,
+    },
     commonSeriesSettings: {
         argumentField: "codeName",
         type: "bar",
@@ -166,9 +186,14 @@ function drawBarChart(dataSource)
         selectionMode: "allArgumentPoints",
         label: {
             visible: true,
-			format: 'percent',
-            precision: 1,
+			argumentPrecision: 2,
+            format: 'percent',
         },
+        bar: {
+                cornerRadius:3,
+                width:5,
+        },
+        
     },
     series: [
         { valueField: "CollisionRatio", name: "Collision Ratio",color: '#e66450' }
@@ -180,6 +205,24 @@ function drawBarChart(dataSource)
 	    },
 	    pointClick: function (point) {
 	        this.select();
-	    }
+	    },
+	    
+    valueAxis: {
+      //  axisDivisionFactor: 15,
+        visible: true,
+        label: {
+            format: 'percent',
+            precision: 2
+        }
+    },
+	tooltip: { 
+    	enabled: true,
+		customizeText: function (argumentText) {
+    						var fullName = eval("extraData."+argumentText.argument+".fullName");
+    						var codeNum = eval("extraData."+argumentText.argument+".codeNum");
+       						return fullName+"\n"+codeNum;
+   						}
+     },
+	    
 	});
 }

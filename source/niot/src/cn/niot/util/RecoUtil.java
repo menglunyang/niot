@@ -73,13 +73,15 @@ public class RecoUtil {
 	// 编码详细信息
 	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?;";
 	
+	// 前端页面显示标准名称短码字符的最大长度
+	public static final int DISPLAYLENGTH = 9;
 	
 	//获得URL地址
-	public static String getURLParam(){
+	public static String getURLParam(String paramName){
 		ActionContext ctx = ActionContext.getContext();            
 		HttpServletRequest request = (HttpServletRequest)ctx.get(ServletActionContext.HTTP_REQUEST);
 		String url = request.getContextPath();
-		String parameter = request.getParameter("code");
+		String parameter = request.getParameter(paramName);
 		return parameter;
 	}
 	

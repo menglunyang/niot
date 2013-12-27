@@ -20,61 +20,54 @@ import javax.servlet.http.HttpServletRequest;
  * 
 * @Title: RespCode.java 
 * @Package cn.niot.zt 
-* @Description:前后台数据传递用例 
+* @Description:
 * @author Zhang Tao
-* @date 2013-12-3 上午 
+* @date 2013-12-3 
 * @version V1.0
  */
 
+
+
 public class IoTIDRecognitionAction extends ActionSupport {
-	
-	 /**
-	  * 用户从前台传递来的要查询的编码
-	  */
+
 	private String code;
-	
-	 /**
-	  * 必填。
-	  * 服务器返回给前台的查询状态，
-	  * 允许的取值分别为：“0”，“1”，“大于1的整数”，“error”
-	  */
+
 	private String status;
-	
-	 /**
-	  * 当status取值为“1”或者大于“1”的整数时，必填。
-	  * 服务器返回给前台的编码信息，
-	  * 当status取值为“1”时，data存储查询到的编码名称，例如data="CPC",
-	  * 当status取值为大于1的整数时，data存储编码名称以及定义概率，
-	  * 例如data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
-	  */
+
 	private String data;
-	
-	 /**
-	  * 当status=="error"时，必填。
-	  * 服务器返回给前台的错误信息，
-	  * 当status=="error"时，将错误信息赋值给statement，
-	  * 例如statement=="服务器响应超时"，之后传递给前台
-	  */
+
+
 	private String statement;
 	
+
+	private String extraData;
+
+	private String Msg;
+
+
 	public String getData() {
 		return data;
 	}
-	
+
 	public String getStatus() {
 		return status;
 	}
-	
+
 	public String getStatement() {
 		return statement;
 	}
-	
-	public void setCode(String code)
-	{
+
+	public void setCode(String code) {
 		this.code = code;
 	}
 	
+
+	public String getExtraData() {
+		return extraData;
+	}
+
 	public String replaceBlank(String str) {
+
         String dest = "";
         if (str!=null) {
             Pattern p = Pattern.compile("\\s*|\\t|\\r|\\n");
@@ -83,12 +76,14 @@ public class IoTIDRecognitionAction extends ActionSupport {
         }
         return dest;
     }
-	
+/*	
 	public String execute() throws Exception
 	{
 		System.out.println(this.code);
 		String IoTcode = replaceBlank(this.code);
-		HashMap<String, Double> typeProbability = RecoUtil.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));		
+		//HashMap<String, Double> typeProbability = RecoUtil.replaceIotId(IDstrRecognition.IoTIDRecognizeAlg(IoTcode));	
+		HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
+		typeProbability = RecoUtil.replaceIotId(typeProbability);
 		int len = typeProbability.size();
     	if (RecoUtil.NO_ID_MATCHED == len){
     		this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
@@ -119,13 +114,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 
 //		
 
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		逻辑处理。。。。
-//		
+
 		//this.status = "2";
 		//this.data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
 		
@@ -135,18 +124,72 @@ public class IoTIDRecognitionAction extends ActionSupport {
 
 		
 		
-		this.status = "1";
-		this.data = "CPC";
+		//this.status = "1";
+		//this.data = "CPC";
 		
 		//this.status = "error";
-		//this.statement = "服务器响应时间超时";
+
 		
 		//this.status = "0";
 		
 		System.out.println(this.status+"\n"+this.data+"\n"+this.statement);
 		
 		
+
+		String dest = "";
+		if (str != null) {
+			Pattern p = Pattern.compile("\\s*|\\t|\\r|\\n");
+			Matcher m = p.matcher(str);
+			dest = m.replaceAll("");
+		}
+		return dest;
+	}
+*/
+	public String execute() throws Exception {
+		String IoTcode = null;
+		if (this.code != null) {
+			IoTcode = replaceBlank(this.code);
+		}
+
+		if (IoTcode != null) {
+			HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
+			//HashMap<String, Double> ChineseName_Pro = RecoUtil.replaceIotId(typeProbability);
+			HashMap<String, Double> ShortName_Probability = new HashMap<String, Double>();
+			JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(typeProbability, ShortName_Probability);	
+			this.extraData = (jsonObjectRes.toString()).replace("\"", "\'");
+			
+			int len = ShortName_Probability.size();
+			if (RecoUtil.NO_ID_MATCHED == len) {
+				this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
+				//this.status = "1";
+			} else if (RecoUtil.ONE_ID_MATCHED == len) {
+				Iterator iterator = ShortName_Probability.keySet().iterator();
+				while (iterator.hasNext()) {
+					Object key = iterator.next();
+					this.data = String.valueOf(key);
+					//this.data = "閭撳厜闈掗倱鍏夐潚閭撳厜闈掗倱鍏夐潚閭撳厜闈掗倱鍏夐潚閭撳厜闈掗倱鍏夐潚閭撳厜闈抃n012345678";
+					this.status = String.valueOf(RecoUtil.ONE_ID_MATCHED);
+				}
+			} else {
+				this.status = String.valueOf(len);
+
+				JSONArray jsonArray = new JSONArray();
+				Iterator iterator2 = ShortName_Probability.keySet().iterator();
+				while (iterator2.hasNext()) {
+					Object key = iterator2.next();
+					JSONObject jsonObject = new JSONObject();
+					double probability = ShortName_Probability.get(key);
+					jsonObject.put("codeName", String.valueOf(key));
+					jsonObject.put("probability", String.valueOf(probability));
+					if (!jsonArray.add(jsonObject)) {
+						System.out.println("ERROR! jsonArray.add(jsonObject)");
+					}
+					this.data = jsonArray.toString();
+				}
+			}
+		}
+		System.out.println("\nthis.data:   "+this.data);
+		System.out.println("\nthis.extraData:   "+this.extraData);
 		return SUCCESS;
 	}
-	
 }

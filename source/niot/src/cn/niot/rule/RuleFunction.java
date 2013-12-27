@@ -127,7 +127,7 @@ public class RuleFunction {
 			}
 			if(!hasSig){
 				for(int i = 0; i < LenIndex; i++){
-					if ((Index[i] < -1) || Index[i] >= LenID) {
+					if (Index[i] < -1 || Index[i] >= LenID) {
 						return false;
 					}
 				}
@@ -150,7 +150,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex < 2) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 
@@ -562,8 +562,12 @@ public class RuleFunction {
 			int[] Index, int LenIndex) {
 		try {
 			String code = "";
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-				return ERR;
+			for(int i = 0; i < LenIndex; i++){
+				if (Index[i] < -1 || (Index[i] >= LenID && LenID !=2)) {
+					return ERR;
+				} else if (Index[i] >= LenID){
+					LenIndex = LenIndex - 1;
+				}
 			}
 			if (!(LenIndex == 2 || LenIndex == 3)) {
 				return ERR;
@@ -1232,7 +1236,7 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, 固定为2
+	// LenIndex: the number of indexes, 固定为4
 	public static String CountUcode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -2372,6 +2376,32 @@ public class RuleFunction {
 			} else {
 				return ERR;
 			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 药品电子监管码应用码规则，当IDstr[1]为9时，应用码可以为0,1,2
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 20位
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为1，只验证IDstr[1]是否为9
+	// creator: zll
+	public static String MedAppCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 1) {
+				return ERR;
+			}
+			if(IDstr[1] == '9'){
+				if(!(Index[0] == '0' || Index[0] == '1' || Index[0] == '2')){
+					return ERR;
+				}
+			}
+			return OK;
 		} catch (Exception e) {
 			return ERR;
 		}

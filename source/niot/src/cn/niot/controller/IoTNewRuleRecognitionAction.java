@@ -6,6 +6,8 @@ import java.util.Iterator;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import cn.niot.dao.RecoDao;
+import cn.niot.service.IDstrRecognition;
 import cn.niot.service.NewIDstdCollisionDetect;
 import cn.niot.util.RecoUtil;
 
@@ -17,46 +19,48 @@ import javax.servlet.http.HttpServletRequest;
  * 
 * @Title: RespRul.java 
 * @Package cn.niot.zt 
-* @Description:Ç°ºóÌ¨Êı¾İ´«µİÓÃÀı 
+* @Description:Ç°ï¿½ï¿½Ì¨ï¿½ï¿½İ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 * @author Zhang Tao
-* @date 2013-12-16 ÏÂÎç 
+* @date 2013-12-16 ï¿½ï¿½ï¿½ï¿½ 
 * @version V1.0
  */
 
 public class IoTNewRuleRecognitionAction extends ActionSupport {
 	
 	 /**
-	  * ÓÃ»§´ÓÇ°Ì¨´«µİÀ´µÄ±àÂë³¤¶È
+	  * ï¿½Ã»ï¿½ï¿½ï¿½Ç°Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ë³¤ï¿½ï¿½
 	  */
 	private String len;
 	 /**
-	  * ÓÃ»§´ÓÇ°Ì¨´«µİÀ´µÄ¸÷Î»È¡Öµ·¶Î§
+	  * ï¿½Ã»ï¿½ï¿½ï¿½Ç°Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Î»È¡Öµï¿½ï¿½Î§
 	  */
 	private String valueRange;
 	
 	 /**
-	  * ±ØÌî¡£
-	  * ·şÎñÆ÷·µ»Ø¸øÇ°Ì¨µÄ²éÑ¯×´Ì¬£¬
-	  * ÔÊĞíµÄÈ¡Öµ·Ö±ğÎª£º¡°0¡±£¬¡°1¡±£¬¡°´óÓÚ1µÄÕûÊı¡±£¬¡°error¡±
+	  * ï¿½ï¿½ï¿½î¡£
+	  * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ç°Ì¨ï¿½Ä²ï¿½Ñ¯×´Ì¬ï¿½ï¿½
+	  * ï¿½ï¿½ï¿½ï¿½ï¿½È¡Öµï¿½Ö±ï¿½Îªï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½errorï¿½ï¿½
 	  */
 	private String status;
 	
 	 /**
-	  * µ±statusÈ¡ÖµÎª¡°1¡±»òÕß´óÓÚ¡°1¡±µÄÕûÊıÊ±£¬±ØÌî¡£
-	  * ·şÎñÆ÷·µ»Ø¸øÇ°Ì¨µÄ±àÂëĞÅÏ¢£¬
-	  * µ±statusÈ¡ÖµÎª¡°1¡±Ê±£¬data´æ´¢²éÑ¯µ½µÄ±àÂëÃû³Æ£¬ÀıÈçdata="CPC",
-	  * µ±statusÈ¡ÖµÎª´óÓÚ1µÄÕûÊıÊ±£¬data´æ´¢±àÂëÃû³ÆÒÔ¼°¶¨Òå¸ÅÂÊ£¬
-	  * ÀıÈçdata = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
+	  * ï¿½ï¿½statusÈ¡ÖµÎªï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½Ú¡ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½î¡£
+	  * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ç°Ì¨ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
+	  * ï¿½ï¿½statusÈ¡ÖµÎªï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½dataï¿½æ´¢ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½data="CPC",
+	  * ï¿½ï¿½statusÈ¡ÖµÎªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½dataï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	  * ï¿½ï¿½ï¿½ï¿½data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
 	  */
 	private String data;
 	
 	 /**
-	  * µ±status=="error"Ê±£¬±ØÌî¡£
-	  * ·şÎñÆ÷·µ»Ø¸øÇ°Ì¨µÄ´íÎóĞÅÏ¢£¬
-	  * µ±status=="error"Ê±£¬½«´íÎóĞÅÏ¢¸³Öµ¸østatement£¬
-	  * ÀıÈçstatement=="·şÎñÆ÷ÏìÓ¦³¬Ê±"£¬Ö®ºó´«µİ¸øÇ°Ì¨
+	  * ï¿½ï¿½status=="error"Ê±ï¿½ï¿½ï¿½ï¿½ï¿½î¡£
+	  * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ç°Ì¨ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
+	  * ï¿½ï¿½status=="error"Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Öµï¿½ï¿½statementï¿½ï¿½
+	  * ï¿½ï¿½ï¿½ï¿½statement=="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê±"ï¿½ï¿½Ö®ï¿½ó´«µİ¸ï¿½Ç°Ì¨
 	  */
 	private String statement;
+	
+	private String extraData;	
 	
 	public String getData() {
 		return data;
@@ -70,6 +74,10 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		return statement;
 	}
 	
+	public String getExtraData() {
+		return extraData;
+	}
+	
 	public void setLen(String len)
 	{
 		this.len = len;
@@ -80,39 +88,55 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		this.valueRange = valueRange;
 	}
 	
+	
+	
 	public String execute() throws Exception
 	{
 		System.out.println(this.len+"!!!!!"+this.valueRange);
-		
+		int nDisplayLen = 9;
 		String resJasonStr = NewIDstdCollisionDetect.formJsonString(this.len, this.valueRange);
 		HashMap<String, Double> HashMapID2Probability = NewIDstdCollisionDetect.computeCollisionRate(resJasonStr);
+		HashMap<String, Double> ShortName_Probability = new HashMap<String, Double>();
+		JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(HashMapID2Probability,ShortName_Probability);	
+		this.extraData = jsonObjectRes.toString();
 		
+//////////////////////////////////////////////////////////////////////		
 		JSONArray jsonArray = new  JSONArray();
 		double probability = 0;
-    	int len = HashMapID2Probability.size();
+    	int len = ShortName_Probability.size();
     	if (RecoUtil.NO_ID_MATCHED == len){
     		this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
     	} else if (RecoUtil.ONE_ID_MATCHED == len){
-    		Iterator iterator = HashMapID2Probability.keySet().iterator();                
+    		Iterator iterator = ShortName_Probability.keySet().iterator();                
             while (iterator.hasNext()) {    
 				Object key = iterator.next();
 				this.status = String.valueOf(RecoUtil.ONE_ID_MATCHED);
 				JSONObject jsonObject = new  JSONObject();
-				probability = HashMapID2Probability.get(key);
-				jsonObject.put("codeName",String.valueOf(key));
+				probability = ShortName_Probability.get(key);
+				String IDstr = String.valueOf(key);
+				if (IDstr.length() > nDisplayLen){
+					jsonObject.put("codeName",IDstr.substring(0, nDisplayLen));
+				} else {
+					jsonObject.put("codeName",IDstr);
+				}
 				jsonObject.put("CollisionRatio",String.valueOf(probability));
 				this.data = jsonObject.toString();
             } 
     	} else {
     		this.status = String.valueOf(len);
-            Iterator iterator2 = HashMapID2Probability.keySet().iterator();                
+            Iterator iterator2 = ShortName_Probability.keySet().iterator();                
             while (iterator2.hasNext()) {    
 				Object key = iterator2.next();  				
 				JSONObject jsonObject = new  JSONObject();
-				probability = HashMapID2Probability.get(key);
-				jsonObject.put("codeName",String.valueOf(key));
+				probability = ShortName_Probability.get(key);
+				String IDstr = String.valueOf(key);
+				if (IDstr.length() > nDisplayLen){
+					jsonObject.put("codeName",IDstr.substring(0, nDisplayLen));
+				} else {
+					jsonObject.put("codeName",IDstr);
+				}				
 				jsonObject.put("CollisionRatio",String.valueOf(probability));
-				if (jsonArray.add(jsonObject)){
+				if (!jsonArray.add(jsonObject)){
 					System.out.println("ERROR! jsonArray.add(jsonObject)");
 				}
 				this.data = jsonArray.toString();
@@ -133,22 +157,16 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		jsonObject2.put("CollisionRatio",String.valueOf(0.7));
 =======
 		jsonObject2.put("probability",String.valueOf(0.7));
-//		
-//		Âß¼­´¦Àí¡£¡£¡£¡£
-//		Âß¼­´¦Àí¡£¡£¡£¡£
-//		Âß¼­´¦Àí¡£¡£¡£¡£
-//		Âß¼­´¦Àí¡£¡£¡£¡£
-//		Âß¼­´¦Àí¡£¡£¡£¡£
-//		Âß¼­´¦Àí¡£¡£¡£¡£
+
 //		
 		this.status = "7";
 		this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
 		
-		//this.status = "1";
-		//this.data = "{codeName:'cpc',CollisionRatio:0.12}";
+		this.status = "1";
+		this.data = "{codeName:'cpc',CollisionRatio:0.12}";
 		
 		//this.status = "error";
-		//this.statement = "·şÎñÆ÷ÏìÓ¦Ê±¼ä³¬Ê±";
+		//this.statement = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦Ê±ï¿½ä³¬Ê±";
 		
 		//this.status = "0";
 
@@ -160,8 +178,12 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		//this.status = "7";
 		//this.data = "[{codeName:'cpc',CollisionRatio:0.12},{codeName:'eCode',CollisionRatio:0.88},{codeName:'fCode',CollisionRatio:0.80},{codeName:'mFS',CollisionRatio:0.48},{codeName:'pdAF',CollisionRatio:0.18},{codeName:'Fnme',CollisionRatio:0.88},{codeName:'qqrf',CollisionRatio:0.56}]";
 		
+    	//this.status = "1";
+		//this.data = "{codeName:'cpc',CollisionRatio:0.12}";
+		//this.extraData = "{'cpc':{'codeNum':'Ecode_5','fullName':'ç‰©è”ç½‘ç»Ÿä¸€ç¼–ç  (Entity code, Ecode) Vå‹'}}";
+    	
 		System.out.println(this.status+"\n"+this.data+"\n"+this.statement);
+		System.out.println("\n"+this.extraData);
 		return SUCCESS;
 	}
-
 }

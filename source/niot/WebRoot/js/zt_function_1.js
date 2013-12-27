@@ -3,6 +3,7 @@ oneresult = Raphael('oneFound_SVG',870, 300);
 
 function sendReqCode()
 {
+	$("#warning_1").css('display','none');
 	$("#noFound").css("display","none");
 	$("#errorFound").css("display","none");
 	$("#oneFound").css("display","none");
@@ -45,21 +46,31 @@ function sendReqCode()
 								//$("#oneFound").css("display","block");
 								
 								$("#oneFound_SVG").css("display","block");
+								var extraData = eval("(" +result.extraData+ ")");
+								var fullName = eval("extraData."+result.data+".fullName");
+    							var codeNum = eval("extraData."+result.data+".codeNum");
+    							
+    							console.log(extraData);
+    							console.log(fullName);
+    							console.log(codeNum);
 								
-								oneresult.text(150, 140, "您查询的编码").attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
-								oneresult.circle(380, 140, 140).attr({'fill':'#54A3F0','stroke':''});
-								oneresult.text(380,140,"100%").attr({'font-family':'Lithos Pro','font-size':'130px','fill':'#FFFEFF'});
-								oneresult.text(580,140,"属于"+result.data).attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
+								oneresult.text(380, 10, "您查询的编码").attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
+								oneresult.circle(380, 130, 100).attr({'fill':'#54A3F0','stroke':''});
+								oneresult.text(380,130,"100%").attr({'font-family':'Lithos Pro','font-size':'100px','fill':'#FFFEFF'});
+								oneresult.text(380,250,"属于"+result.data).attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
+								oneresult.text(380,270,fullName).attr({'font-family':'微软雅黑','font-size':'15px','fill':'#777'});
+								oneresult.text(380,290,codeNum).attr({'font-family':'微软雅黑','font-size':'15px','fill':'#777'});
 							}
 							else if (result.status >1){
 								var pieData = eval(result.data);
 								var totalNum = pieData.length;
+								var extraData = eval("(" +result.extraData+ ")");
 								for (i=0;i<totalNum;i++)
 									{
 										pieData[i].probability = Number(pieData[i].probability);
 									}
 								$("#pieChartContainer").css("display","block");
-								drawPieChart(pieData);
+								drawPieChart(pieData,extraData);
 							}
 							data1=result;
 						},
@@ -77,7 +88,7 @@ function noFound()
 var myPalette = ['#FC5944', '#F5A349', '#EAE450', '#84E956', '#00EAD3', '#00C1E5','2693E4','6D4EE2','C649E1','FD4497'];
 DevExpress.viz.core.registerPalette('mySuperPalette', myPalette);
 
-function drawPieChart(dataSource)
+function drawPieChart(dataSource,extraData)
 {
 	$("#loading").css("display","none");
 	$("#pieChartContainer").css("display","block");
@@ -90,12 +101,12 @@ function drawPieChart(dataSource)
             width: 600
         },
         series: {
-<<<<<<< HEAD
+
       //  type:'doughnut',
-=======
+
        /* type:'doughnut',*/
         	
->>>>>>> xiaobaicoding-master
+
             argumentField: 'codeName',
             valueField: 'probability',
             label: {
@@ -117,9 +128,13 @@ function drawPieChart(dataSource)
 			            }
         },
         tooltip: { enabled: true,
-        customizeText: function (argumentText) {
-       		return argumentText.argument;
-   		}
+        customizeText: 
+        	function (argumentText) {
+        	
+    						var fullName = eval("extraData."+argumentText.argument+".fullName");
+    						var codeNum = eval("extraData."+argumentText.argument+".codeNum");
+       						return fullName+"\n"+codeNum;
+   						}
         },
       animation: {
             duration: 3000,
