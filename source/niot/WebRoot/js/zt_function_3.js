@@ -217,6 +217,7 @@ function drawBarChart(dataSource, extraData)
     },
 	tooltip: { 
     	enabled: true,
+    	font:{size:15},
 		customizeText: function (argumentText) {
     						var fullName = eval("extraData."+argumentText.argument+".fullName");
     						var codeNum = eval("extraData."+argumentText.argument+".codeNum");
