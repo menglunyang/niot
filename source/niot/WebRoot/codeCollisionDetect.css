@@ -319,6 +319,13 @@ padding-top:100px;
 }
 
 
+#hideTable:hover
+{
+	cursor:pointer
+}
+
+
+
 .open .dropdown-toggle.btn-primary {
     color: #777;
     background-color: #3276b1;
