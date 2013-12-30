@@ -1,39 +1,46 @@
-﻿Merge https://github.com/dgq2010/niot
+﻿matching PrefixofRetailCommodityNumber(0,1,2).OK
+matching PrefixofRetailCommodityNumber(1,2,3).ERR
+matching AdminDivision(0,1,2,3,4,5).ERR
+matching IoTIDLength(14).ERR
+matching IoTIDLength(8).ERR
+matching IoTIDLength(24).ERR
+matching IoTIDLength(12).ERR
+matching IoTIDLength(16).ERR
+matching IoTIDLength(64).ERR
+matching IoTIDLength(256).ERR
+matching CigaSubClassCode(4,5,6).ERR
+matching IoTIDLength(32).ERR
+matching IoTIDLength(6).ERR
+matching IoTIDLength(-1).OK
+matching IoTIDByte(0,1,0,0,0,0,0,0,0;1,1,0,0,0,0,0,0,0;2,2,0,0,0,0,0,0,0;3,1,0,0,0,0,0,0,0;4,1,0,0,0,0,0,0,0;5,1,0,0,0,0,0,0,0;6,1,0,0,0,0,0,0,0;7,3,0,0,0,0,0,0,0;8,3,0,0,0,0,0,0,0;9,3,0,0,0,0,0,0,0;10,3,0,0,0,0,0,0,0;11,3,0,0,0,0,0,0,0;12,3,0,0,0,0,0,0,0;13,3,0,0,0,0,0,0,0;14,3,0,0,0,0,0,0,0;15,3,0,0,0,0,0,0,0;16,3,0,0,0,0,0,0,0;17,3,0,0,0,0,0,0,0;18,3,0,0,0,0,0,0,0;19,3,0,0,0,0,0,0,0;20,3,0,0,0,0,0,0,0;21,3,0,0,0,0,0,0,0;22,3,0,0,0,0,0,0,0;23,3,0,0,0,0,0,0,0;24,3,0,0,0,0,0,0,0;25,3,0,0,0,0,0,0,0;26,3,0,0,0,0,0,0,0;27,3,0,0,0,0,0,0,0;28,3,0,0,0,0,0,0,0;29,3,0,0,0,0,0,0,0;30,3,0,0,0,0,0,0,0;31,3,0,0,0,0,0,0,0;32,3,0,0,0,0,0,0,0;33,3,0,0,0,0,0,0,0;34,3,0,0,0,0,0,0,0;35,3,0,0,0,0,0,0,0;36,3,0,0,0,0,0,0,0;37,3,0,0,0,0,0,0,0;38,3,0,0,0,0,0,0,0;39,3,0,0,0,0,0,0,0;40,3,0,0,0,0,0,0,0;41,3,0,0,0,0,0,0,0;42,3,0,0,0,0,0,0,0;43,3,0,0,0,0,0,0,0;44,3,0,0,0,0,0,0,0;45,3,0,0,0,0,0,0,0;46,3,0,0,0,0,0,0,0;47,3,0,0,0,0,0,0,0;48,3,0,0,0,0,0,0,0;49,3,0,0,0,0,0,0,0;50,3,0,0,0,0,0,0,0;51,3,0,0,0,0,0,0,0;52,3,0,0,0,0,0,0,0;53,3,0,0,0,0,0,0,0;54,3,0,0,0,0,0,0,0;55,3,0,0,0,0,0,0,0;56,3,0,0,0,0,0,0,0;57,3,0,0,0,0,0,0,0;58,3,0,0,0,0,0,0,0;59,3,0,0,0,0,0,0,0;60,3,0,0,0,0,0,0,0;61,3,0,0,0,0,0,0,0;62,3,0,0,0,0,0,0,0;63,3,0,0,0,0,0,0,0;64,3,0,0,0,0,0,0,0;65,3,0,0,0,0,0,0,0;66,3,0,0,0,0,0,0,0;67,3,0,0,0,0,0,0,0;68,3,0,0,0,0,0,0,0;69,3,0,0,0,0,0,0,0;70,3,0,0,0,0,0,0,0;71,3,0,0,0,0,0,0,0;72,3,0,0,0,0,0,0,0;73,3,0,0,0,0,0,0,0;74,3,0,0,0,0,0,0,0;75,3,0,0,0,0,0,0,0;76,3,0,0,0,0,0,0,0;77,3,0,0,0,0,0,0,0;78,3,0,0,0,0,0,0,0;79,3,0,0,0,0,0,0,0;80,3,0,0,0,0,0,0,0;81,3,0,0,0,0,0,0,0;82,3,0,0,0,0,0,0,0;83,3,0,0,0,0,0,0,0;84,3,0,0,0,0,0,0,0;85,3,0,0,0,0,0,0,0;86,3,0,0,0,0,0,0,0;87,3,0,0,0,0,0,0,0;88,3,0,0,0,0,0,0,0;89,3,0,0,0,0,0,0,0;90,3,0,0,0,0,0,0,0;91,3,0,0,0,0,0,0,0;92,3,0,0,0,0,0,0,0;93,3,0,0,0,0,0,0,0;94,3,0,0,0,0,0,0,0;95,3,0,0,0,0,0,0,0;).ERR
+matching First4CharsofAdminDivisionforCiga(2,3,4,5).ERR
+matching IoTIDLength(7).ERR
+matching IoTIDByte(0,255,3,0,0,0,0,0,0;1,255,3,0,0,0,0,0,0;2,255,3,0,0,0,0,0,0;3,255,3,0,0,0,0,0,0;).OK
+matching IoTIDByte(3,255,3,0,0,0,0,0,0;4,255,3,0,0,0,0,0,0;5,255,3,0,0,0,0,0,0;6,255,3,0,0,0,0,0,0;7,255,3,0,0,0,0,0,0;8,255,3,0,0,0,0,0,0;9,255,3,0,0,0,0,0,0;10,255,3,0,0,0,0,0,0;11,255,3,0,0,0,0,0,0;).OK
+matching IoTIDLength(9-30).OK
+matching IoTIDLength(19-35).ERR
+matching IoTIDByte(3,255,3,0,0,0,0,0,0;4,255,3,0,0,0,0,0,0;5,255,3,0,0,0,0,0,0;6,255,3,0,0,0,0,0,0;7,255,3,0,0,0,0,0,0;8,255,3,0,0,0,0,0,0;).OK
+matching IoTIDByte(0,16,0,0,0,0,0,0,0;).ERR
+matching IoTIDByte(0,255,3,0,0,0,0,0,0;1,255,3,0,0,0,0,0,0;6,255,3,0,0,0,0,0,0;7,255,3,0,0,0,0,0,0;8,255,3,0,0,0,0,0,0;9,255,3,0,0,0,0,0,0;10,255,3,0,0,0,0,0,0;11,255,3,0,0,0,0,0,0;12,255,3,0,0,0,0,0,0;13,255,3,0,0,0,0,0,0;14,255,3,0,0,0,0,0,0;15,255,3,0,0,0,0,0,0;16,255,3,0,0,0,0,0,0;17,255,3,0,0,0,0,0,0;).ERR
+matching IoTIDByte(0,1,0,0,0,0,0,0,0;).ERR
+matching IoTIDLength(20).ERR
+matching IoTIDByte(3,255,3,0,0,0,0,0,0;4,255,3,0,0,0,0,0,0;5,255,3,0,0,0,0,0,0;6,255,3,0,0,0,0,0,0;7,255,3,0,0,0,0,0,0;).OK
+matching IoTIDByte(3,255,3,0,0,0,0,0,0;4,255,3,0,0,0,0,0,0;5,255,3,0,0,0,0,0,0;6,255,3,0,0,0,0,0,0;7,255,3,0,0,0,0,0,0;8,255,3,0,0,0,0,0,0;9,255,3,0,0,0,0,0,0;).OK
+matching IoTIDLength(4).ERR
+matching CountryRegionCode(0,1,2).ERR
+matching GraiSerialNo(8,22,-1).OK
+matching GraiSerialNo(7,23,-1).OK
+matching CheckCodeForCommodityCode(0,1,2,3,4,5,6,7,8,9,10,11,12).ERR
+matching IoTIDLength(11-30).OK
+matching IoTIDLength(8-30).OK
+matching IoTIDLength(5).ERR
+matching GraiSerialNo(10,20,-1).OK
+matching GraiSerialNo(9,21,-1).OK
+matching IoTIDLength(10-30).OK
+matching IoTIDByte(3,255,3,0,0,0,0,0,0;4,255,3,0,0,0,0,0,0;5,255,3,0,0,0,0,0,0;6,255,3,0,0,0,0,0,0;).OK
+2013年12月26日 下午04时24分33秒:5028197850191 belong to:GB/T 23833-2009_7 GB/T 23833-2009_6 GB/T 23833-2009_8 GB/T 23833-2009_5 
+14
 
-Conflicts:
-	source/niot/WebRoot/WEB-INF/classes/cn/niot/controller/IoTIDRecognitionAction.class
-	source/niot/WebRoot/WEB-INF/classes/cn/niot/rule/RuleFunction.class
-	source/niot/src/cn/niot/controller/IoTIDRecognitionAction.java
-#
-# It looks like you may be committing a merge.
-# If this is not correct, please remove the file
-#	.git/MERGE_HEAD
-# and try again.
+this.data:   [{"codeName":"GBT2383321","probability":"0.25"},{"codeName":"GBT238332","probability":"0.25"},{"codeName":"GBT2383320","probability":"0.25"},{"codeName":"GBT2383322","probability":"0.25"}]
 
-
-# Please enter the commit message for your changes. Lines starting
-# with '#' will be ignored, and an empty message aborts the commit.
-# On branch master
-# Your branch and 'origin/master' have diverged,
-# and have 2 and 6 different commits each, respectively.
-#   (use "git pull" to merge the remote branch into yours)
-#
-# All conflicts fixed but you are still merging.
-#   (use "git commit" to conclude merge)
-#
-# Changes to be committed:
-#
-#	deleted:    qkpkvo5h.elh.txt
-#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/controller/IoTIDRecognitionAction.class
-#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/controller/RecoAction.class
-#	modified:   source/niot/WebRoot/WEB-INF/classes/cn/niot/rule/RuleFunction.class
-#	modified:   source/niot/WebRoot/codeCollisionDetect_Android_Note2.css
-#	modified:   source/niot/WebRoot/js/zt_android.js
-#	modified:   source/niot/WebRoot/js/zt_function_1.js
-#	modified:   source/niot/WebRoot/js/zt_function_2.js
-#	modified:   source/niot/WebRoot/js/zt_function_3.js
-#	modified:   source/niot/src/cn/niot/controller/IoTIDRecognitionAction.java
-#	modified:   source/niot/src/cn/niot/controller/RecoAction.java
-#	modified:   source/niot/src/cn/niot/rule/RuleFunction.java
-#
-
+this.extraData:   {'GBT2383321':{'codeNum':'GB/T 23833-2009_8','fullName':'商品条码 资产编码与条码表示VIII'},'GBT238332':{'codeNum':'GB/T 23833-2009_7','fullName':'商品条码 资产编码与条码表示VII'},'GBT2383320':{'codeNum':'GB/T 23833-2009_6','fullName':'商品条码 资产编码与条码表示VI'},'GBT2383322':{'codeNum':'GB/T 23833-2009_5','fullName':'商品条码 资产编码与条码表示V'}}
