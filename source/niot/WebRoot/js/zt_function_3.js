@@ -134,7 +134,15 @@ function sendReqRul()
 							else if (result.status == 1){
 								console.log("(" +result.data+ ")");
 								var oneFoundData = eval("(" +result.data+ ")");
-								$("#oneFoundName_3").text(oneFoundData.codeName);
+								
+								var extraData = eval("(" +result.extraData+ ")");
+								var fullName = eval("extraData."+oneFoundData.codeName+".fullName");
+    							var codeNum = eval("extraData."+oneFoundData.codeName+".codeNum");
+								
+    							console.log(fullName);
+    							console.log(codeNum);
+    							
+								$("#oneFoundName_3").text(fullName+"  ("+codeNum+")");
 								$("#oneFoundCollisionRatio_3").text(oneFoundData.CollisionRatio);
 								$("#oneFound_3").css("display","block");
 							}
@@ -209,6 +217,7 @@ function drawBarChart(dataSource, extraData)
     },
 	tooltip: { 
     	enabled: true,
+    	font:{size:15},
 		customizeText: function (argumentText) {
     						var fullName = eval("extraData."+argumentText.argument+".fullName");
     						var codeNum = eval("extraData."+argumentText.argument+".codeNum");
