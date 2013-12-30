@@ -27,3 +27,12 @@ function switchMainToContainer3()
 		$(".container_3").fadeIn();
 	});
 }
+
+function hideIdTable()
+{
+	$("#idTable").slideUp('slow');
+}
+function showIdTable()
+{
+	$("#idTable").slideDown('slow');
+}

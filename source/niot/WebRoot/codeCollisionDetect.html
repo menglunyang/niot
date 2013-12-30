@@ -22,7 +22,7 @@
 
     <div class="main">
         <div class="header">
-            <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#000;color:#CCC">后向兼容</button>
+            <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#000;color:#CCC" onclick="showIdTable()">标准列表</button>
             <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">登录</button>
             <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">注册</button>
         </div><!-- end .header -->
@@ -57,8 +57,8 @@
             	</div>
             	
             	
-            	<div id="noFound" class="resultInfo" style="display:none">
-            		对不起，您输入的编码不输入任何一种类型。。。
+            	<div id="noFound" class="resultInfo" style="padding-left:100px;display:none">
+            		对不起，该编码尚未纳入本平台的标识库，您可以联系我们的管理员录入该标识的信息。
             	</div>
             	
             	<div id="oneFound_SVG" class="resultInfo_SVG">
@@ -272,9 +272,9 @@
             		<span id="errorStatement_3"></span>
             	</div>
             	
-            	<div id="oneFound_3" class="resultInfo" style="display:none">
-            		您所输入的编码与
-            		<span id="oneFoundName_3"></span>冲突，冲突概率为
+            	<div id="oneFound_3" class="resultInfo" style="padding-left:150px;display:none">
+            		您所输入的编码与<br>
+            		<span id="oneFoundName_3"></span>冲突，<br>冲突概率为
             		<span id="oneFoundCollisionRatio_3"></span>
             	</div>
             	
@@ -309,9 +309,382 @@
 		</div><!--end ltittle-->
 
         
+
+        
         
         
 </div><!--end id="main"-->
+
+<div id = "idTable" style="position:absolute;background:#FFFFFF;right:10px;top:30px;display:none">
+<div id = "hideTable" style="margin:0 auto;width:30px;" onclick = "hideIdTable()">
+隐藏
+</div>
+
+	<table border="1">
+	<tr>
+	<th>标准号</th>
+	<th>标准名称</th>
+	</tr>
+	<tr>
+	<td>YC/T 414-2011_1</td>
+	<td>烟用标准样品编码规则</td>
+	</tr>
+	<tr>
+	<td>YC/T 414-2011_2
+	</td>
+	<td>烟用标准样品编码规则
+	</td>
+	</tr>
+	<tr>
+	<td>YC/T 400-2011
+	</td>
+	<td>烟草商业企业卷烟物流运输管理系统移动通信用户身份识别卡代码编码规则
+	</td>
+	</tr>
+	<tr>
+	<td>YC/T 213.6-2006
+	</td>
+	<td>烟草机械产品用物料分类
+	和编码  
+	</td>
+	</tr>
+	<tr>
+	<td>YC/T 213.5-2006
+	</td>
+	<td>烟草机械产品用物料
+	 分类和编码 
+	</td>
+	</tr>
+	<tr>
+	<td>YC/T 213.4-2006
+	</td>
+	<td>烟草机械产品用物料
+	 分类和编码
+	</td>
+	</tr>
+	<tr>
+	<td>YC/T 213.3-2006
+	</td>
+	<td>烟草机械产品用物料
+	 分类和编码 
+	</td>
+	</tr>
+	<tr>
+	<td>SB/T 10680——2012
+	</td>
+	<td>流通节点主体码
+	</td>
+	</tr>
+	<tr>
+	<td>LS/T 1711-2004
+	</td>
+	<td>粮食信息分类与编码
+	 财务会计分类与代码
+	</td>
+	</tr>
+	<tr>
+	<td>LS/T 1706——2004
+	</td>
+	<td>粮食信息分类与编码
+	粮食设备分类与代码
+	</td>
+	</tr>
+	<tr>
+	<td>LS/T 1705——2004
+	</td>
+	<td>粮食信息分类与编码
+	粮食设施分类与代码
+	</td>
+	</tr>
+	<tr>
+	<td>LS/T 1704.3-2004
+	</td>
+	<td>粮食信息分类与编码粮食检验 第3部分: 标准方法分类与代码
+	</td>
+	</tr>
+	<tr>
+	<td>JGJ/T 246-2012
+	</td>
+	<td>房屋代码编码标准
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 26319-2010_1
+	</td>
+	<td>国际货运代理单证标
+	识符编码规则
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 26319-2010_2
+	</td>
+	<td>国际货运代理单证标
+	识符编码规则
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 26319-2010_3
+	</td>
+	<td>国际货运代理单证标
+	识符编码规则
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 23833-2009_1-4
+	</td>
+	<td>烟用标准样品编码规则
+	</td>
+	</tr>
+	<tr>
+	<td>YC/T 414-2011_2
+	</td>
+	<td>商品条码 资产编码与条码表示
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 23833-2009_5
+	</td>
+	<td>商品条码 资产编码与条码表示
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 23833-2009_6
+	</td>
+	<td>商品条码 资产编码与条码表示
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 23833-2009_7
+	</td>
+	<td>商品条码 资产编码与条码表示
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 23833-2009_8
+	</td>
+	<td>商品条码 资产编码与条码表示
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 23705-2009_1
+	</td>
+	<td>数字城市地理信息公
+	共平台地名/地址编码规则
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 23705-2009_2
+	</td>
+	<td>数字城市地理信息公
+	共平台地名/地址编码规则
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 19251-2003_EANUCC-14
+	</td>
+	<td>贸易项目的编码与符号表示导则
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 18127-2009_1
+	</td>
+	<td>商品条码
+	物流单元编码
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 18127-2009_2
+	</td>
+	<td>商品条码
+	物流单元编码
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 18127-2009_3
+	</td>
+	<td>商品条码
+	物流单元编码
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 18127-2009_4
+	</td>
+	<td>商品条码
+	物流单元编码
+	</td>
+	</tr>
+	<tr>
+	<td>YC/T 258.1-2008
+	</td>
+	<td>烟草行业人力资源代码 
+	</td>
+	</tr>
+	<tr>
+	<td>YC/T 190-2005
+	</td>
+	<td>烟草行业组织机构代码
+	编制规则
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 2659——2000
+	</td>
+	<td>世界各国和地区名称代码
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 2260——2007
+	</td>
+	<td>中华人民共和国行政区划代码
+	</td>
+	</tr>
+	<tr>
+	<td>GB/T 10114——2003
+	</td>
+	<td>县级以下行政区划代码
+	</td>
+	</tr>
+	<tr>
+	<td>EAN-13
+	</td>
+	<td>商品条码 零售商品编码与条码表示
+	</td>
+	</tr>
+	<tr>
+	<td>EAN-8
+	</td>
+	<td>商品条码 零售商品编码与条码表示
+	</td>
+	</tr>
+	<tr>
+	<td>UPC-A
+	</td>
+	<td>通用商品
+	</td>
+	</tr>
+	<tr>
+	<td>UPC-E
+	</td>
+	<td>商品短码
+	</td>
+	</tr>
+	<tr>
+	<td>MedSupervise
+	</td>
+	<td>药品电子监管码
+	</td>
+	</tr>
+	<tr>
+	<td>Ucode
+	</td>
+	<td>Ucode
+	</td>
+	</tr>
+	<tr>
+	<td>cpc
+	</td>
+	<td>CPC商务产品编码
+	</td>
+	</tr>
+	<tr>
+	<td>Mcode_1
+	</td>
+	<td>mRFID Code
+	</td>
+	</tr>
+	<tr>
+	<td>Mcode_2
+	</td>
+	<td>mRFID Code
+	</td>
+	</tr>
+	<tr>
+	<td>Mcode_3
+	</td>
+	<td>mRFID Code
+	</td>
+	</tr>
+	<tr>
+	<td>Mcode_4
+	</td>
+	<td>mRFID Code
+	</td>
+	</tr>
+	<tr>
+	<td>EPC_64_1
+	</td>
+	<td>EPC-64二进制
+	</td>
+	</tr>
+	<tr>
+	<td>EPC_64_2
+	</td>
+	<td>EPC-64十六进制
+	</td>
+	</tr>
+	<tr>
+	<td>EPC_96_1
+	</td>
+	<td>EPC-96二进制
+	</td>
+	</tr>
+	<tr>
+	<td>EPC_96_2
+	</td>
+	<td>EPC-96十六进制
+	</td>
+	</tr>
+	<tr>
+	<td>EPC_256_1
+	</td>
+	<td>EPC-256二进制
+	</td>
+	</tr>
+	<tr>
+	<td>EPC_256_2
+	</td>
+	<td>EPC-256十六进制
+	</td>
+	</tr>
+	<tr>
+	<td>Ecode_1
+	</td>
+	<td>物联网统一编码（Entity code，Ecode）
+	</td>
+	</tr>
+	<tr>
+	<td>Ecode_2
+	</td>
+	<td>物联网统一编码（Entity code，Ecode）
+	</td>
+	</tr>
+	<tr>
+	<td>Ecode_3
+	</td>
+	<td>物联网统一编码（Entity code，Ecode）
+	</td>
+	</tr>
+	<tr>
+	<td>Ecode_4
+	</td>
+	<td>物联网统一编码（Entity code，Ecode）
+	</td>
+	</tr>
+	<tr>
+	<td>Ecode_5
+	</td>
+	<td>物联网统一编码（Entity code，Ecode）
+	</td>
+	</tr>
+	<tr>
+	<td>CID
+	</td>
+	<td>CID
+	</td>
+	</tr>
+	</table>
+</div>
+
 </body>
 <script src="./js/zt_main_page.js"></script>
 <script src="./js/zt_function_1.js"></script>

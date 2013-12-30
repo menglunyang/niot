@@ -127,12 +127,16 @@ function drawPieChart(dataSource,extraData)
 			                weight: 400
 			            }
         },
-        tooltip: { enabled: true,
-        customizeText: 
-        	function (argumentText) {
-        	
+        tooltip: { 
+        	enabled: true,
+        	font:{size:15},
+        	customizeText: 
+        		function (argumentText) {
     						var fullName = eval("extraData."+argumentText.argument+".fullName");
     						var codeNum = eval("extraData."+argumentText.argument+".codeNum");
+    						console.log(fullName);
+    						console.log(codeNum);
+    						console.log(fullName+"\n"+codeNum);
        						return fullName+"\n"+codeNum;
    						}
         },
