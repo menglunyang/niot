@@ -74,36 +74,36 @@ public class RuleFunction {
 	public static String IoTIDByte(String input, String parameter,
 			String useless, String uselessToo) {
 
-		String[] byteStrArray = parameter.split(";");
+		// String[] byteStrArray = parameter.split(";");
 		int[] byteElement = new int[9];
-		for (int i = 0; i < byteStrArray.length; i++) {
-			String[] byteElementString = byteStrArray[i].split(",");
-			for (int j = 0; j < byteElementString.length; j++) {
-				byteElement[j] = Integer.parseInt(byteElementString[j]);
-			}
-			int index = byteElement[0];
-			if (input.length() <= index) {
-				return "ERR";
-			}
-			char objChar = input.charAt(index);
-			int indexChar = 0;
-			if (objChar >= '0' && objChar <= '9') {
-				indexChar = objChar - '0';
-			} else if (objChar >= 'a' && objChar <= 'z') {
-				indexChar = objChar - 'a' + 10;
-			} else if (objChar >= 'A' && objChar <= 'Z') {
-				indexChar = objChar - 'A' + 10 + 26;
-			}
-
-			int m = 0;
-			int n = 0;
-			m = indexChar / 8 + 1;
-			n = indexChar % 8;
-
-			if ((byteElement[m] & (1 << n)) == 0) {
-				return "ERR";
-			}
+		// for (int i = 0; i < byteStrArray.length; i++) {
+		String[] byteElementString = parameter.split(",");
+		for (int j = 0; j < byteElementString.length; j++) {
+			byteElement[j] = Integer.parseInt(byteElementString[j]);
 		}
+		int index = byteElement[0];
+		if (input.length() <= index) {
+			return "ERR";
+		}
+		char objChar = input.charAt(index);
+		int indexChar = 0;
+		if (objChar >= '0' && objChar <= '9') {
+			indexChar = objChar - '0';
+		} else if (objChar >= 'a' && objChar <= 'z') {
+			indexChar = objChar - 'a' + 10;
+		} else if (objChar >= 'A' && objChar <= 'Z') {
+			indexChar = objChar - 'A' + 10 + 26;
+		}
+
+		int m = 0;
+		int n = 0;
+		m = indexChar / 8 + 1;
+		n = indexChar % 8;
+
+		if ((byteElement[m] & (1 << n)) == 0) {
+			return "ERR";
+		}
+		// }
 		return "OK";
 	}
 
@@ -118,15 +118,15 @@ public class RuleFunction {
 				return false;
 			}
 			for (int i = 0; i < LenIndex; i++) {
-				
-				if(Index[i] == -1){
+
+				if (Index[i] == -1) {
 					hasSig = true;
 					break;
 				}
-					
+
 			}
-			if(!hasSig){
-				for(int i = 0; i < LenIndex; i++){
+			if (!hasSig) {
+				for (int i = 0; i < LenIndex; i++) {
 					if (Index[i] < -1 || Index[i] >= LenID) {
 						return false;
 					}
@@ -562,10 +562,10 @@ public class RuleFunction {
 			int[] Index, int LenIndex) {
 		try {
 			String code = "";
-			for(int i = 0; i < LenIndex; i++){
-				if (Index[i] < -1 || (Index[i] >= LenID && LenID !=2)) {
+			for (int i = 0; i < LenIndex; i++) {
+				if (Index[i] < -1 || (Index[i] >= LenID && LenID != 2)) {
 					return ERR;
-				} else if (Index[i] >= LenID){
+				} else if (Index[i] >= LenID) {
 					LenIndex = LenIndex - 1;
 				}
 			}
@@ -1357,7 +1357,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function:12位幢编码：6位 采用竣工时间法，时间未知，全部用"*"；仅知年代，如199***；知年份不知月份，如2008**；
 	// 知道时间，如20080708， 后六位幢顺序号，不能为全0
 	// IDstr: ID string
@@ -1365,11 +1365,12 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes is 12
 	// Creator:Wu Zhenyu
-	public static String HouseCode_CheckBasedCompleteTime(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String HouseCode_CheckBasedCompleteTime(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
 		try {
 			int i = 0;
 
-			if(!checkInputParam(IDstr, LenID, Index, LenIndex)){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 12) {
@@ -1393,27 +1394,29 @@ public class RuleFunction {
 
 			// 判断 月份
 			int[] Index_month = { Index[4], Index[5] };
-			
-//			if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // 江峰
-//																				// 实现的函数，判断是否是月份
-//				return ERR;
-//			}
 
-			//xjf  修改后
-			if(IDstr[Index[4]] != '*'&& Index[5] != '*'){
+			// if ((Month(IDstr, LenID, Index_month, Index_month.length)) ==
+			// ERR) { // 江峰
+			// // 实现的函数，判断是否是月份
+			// return ERR;
+			// }
+
+			// xjf 修改后
+			if (IDstr[Index[4]] != '*' && Index[5] != '*') {
 				if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // 江峰
 					// 实现的函数，判断是否是月份
 					return ERR;
 				}
 			}
-			
-			if(IDstr[Index[4]] != '*'&& Index[5] == '*'){
-				if ((int)IDstr[Index[4]]-48!=0||(int)IDstr[Index[4]]-48!=1||(int)IDstr[Index[4]]-48!=2) { 
+
+			if (IDstr[Index[4]] != '*' && Index[5] == '*') {
+				if ((int) IDstr[Index[4]] - 48 != 0
+						|| (int) IDstr[Index[4]] - 48 != 1
+						|| (int) IDstr[Index[4]] - 48 != 2) {
 					return ERR;
 				}
 			}
-			
-			
+
 			int zero_count = 0; // 不能全0
 			for (i = 6; i < LenIndex; i++) {
 				if (IDstr[Index[i]] == '0') {
@@ -1631,52 +1634,53 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:Wu Zhenyu
-//	public static String HouseCode_CheckCode(char[] IDstr, int LenID,
-//			int[] Index, int LenIndex) {
-//		try {
-//			int i = 0;
-//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-//				return ERR;
-//			}
-//			int result = 10 + (IDstr[0] - 48); // 记录校验码计算中间过程产生的值
-//
-//			for (i = 1; i < LenIndex; i++) {
-//				if (result % 10 == 0) {
-//					result = (10 * 2) % 11 + (IDstr[i] - 48);
-//				} else {
-//					result = ((result % 10) * 2) % 11 + (IDstr[i] - 48);
-//				}
-//			}
-//
-//			if (result == 10) {
-//				result = (10 * 2) % 11 + (IDstr[i] - 48);
-//			} else {
-//				result = ((result % 10) * 2) % 11;
-//			}
-//
-//			char checkcode;
-//			if (result == 1) {
-//				checkcode = 48; // 0x0
-//			} else {
-//				checkcode = (char) ((11 - result) + 48);
-//			}
-//
-//			if (checkcode == IDstr[LenID - 1]) {
-//				return OK;
-//			} else {
-//				return ERR;
-//			}
-//		} catch (Exception e) {
-//			return ERR;
-//		}
-//	}
-	public static String HouseCode_CheckCode(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	// public static String HouseCode_CheckCode(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// int i = 0;
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// int result = 10 + (IDstr[0] - 48); // 记录校验码计算中间过程产生的值
+	//
+	// for (i = 1; i < LenIndex; i++) {
+	// if (result % 10 == 0) {
+	// result = (10 * 2) % 11 + (IDstr[i] - 48);
+	// } else {
+	// result = ((result % 10) * 2) % 11 + (IDstr[i] - 48);
+	// }
+	// }
+	//
+	// if (result == 10) {
+	// result = (10 * 2) % 11 + (IDstr[i] - 48);
+	// } else {
+	// result = ((result % 10) * 2) % 11;
+	// }
+	//
+	// char checkcode;
+	// if (result == 1) {
+	// checkcode = 48; // 0x0
+	// } else {
+	// checkcode = (char) ((11 - result) + 48);
+	// }
+	//
+	// if (checkcode == IDstr[LenID - 1]) {
+	// return OK;
+	// } else {
+	// return ERR;
+	// }
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	// }
+	public static String HouseCode_CheckCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
-  		}
-		char [] IDstrTemp = new char[LenID]; 
-		for (int k = 0; k < LenID; k++){
-			if ('*' == IDstr[k]){
+		}
+		char[] IDstrTemp = new char[LenID];
+		for (int k = 0; k < LenID; k++) {
+			if ('*' == IDstr[k]) {
 				IDstrTemp[k] = '0';
 			} else {
 				IDstrTemp[k] = IDstr[k];
@@ -1686,7 +1690,7 @@ public class RuleFunction {
 		int j = 10;
 		for (i = 0; i < LenIndex - 1; i++) {
 			int mode10 = (((int) IDstrTemp[Index[i]] - 48) + j) % 10;
-			if (0 == mode10){
+			if (0 == mode10) {
 				mode10 = 10;
 			}
 			j = (mode10 * 2) % 11;
@@ -1697,7 +1701,6 @@ public class RuleFunction {
 		return ERR;
 
 	}
-	
 
 	// Function: 校验算法 实现 C=MOD(11-MOD(∑Ci×Wi,11),10)
 	// 其中MOD－表示求余函数；i－表示代码字符从左至右位置序号；Ci－表示第i位置上的代码字符的值；Wi－表示第i位置上的加权因子，
@@ -2380,7 +2383,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 药品电子监管码应用码规则，当IDstr[1]为9时，应用码可以为0,1,2
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度 20位
@@ -2396,8 +2399,8 @@ public class RuleFunction {
 			if (LenIndex != 1) {
 				return ERR;
 			}
-			if(IDstr[1] == '9'){
-				if(!(Index[0] == '0' || Index[0] == '1' || Index[0] == '2')){
+			if (IDstr[1] == '9') {
+				if (!(Index[0] == '0' || Index[0] == '1' || Index[0] == '2')) {
 					return ERR;
 				}
 			}
