@@ -62,7 +62,49 @@ public class RecoUtil {
 	//EANUPC代码随机一条记录
 	public static final String SELECT_RANDOMEANUPC = "select floor(rand()*(endcode-begincode)+begincode) as code from (select * from EANUPC where rowno >= (select floor(rand()*(max(rowno)-min(rowno))) + min(rowno) from EANUPC) limit 1) t";
 	
-	public static final String SELECT_TYPEANDRULES="select * from iotid";
+	public static final String SELECT_TYPEANDRULES = "select * from iotid";
+	
+	//烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
+	public static final String SELECT_TABACCOMATERIALS = "select * from tabaccomaterials where categorycode=? and groupcode=?";
+	
+	//粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
+	public static final String SELECT_FOODTRADE = "select * from foodtradestatistics where id=?";
+	
+	//粮食信息分类与编码 粮食仓储业务统计分类与代码(16)
+	public static final String SELECT_GRAINSTOREHOUSE = "select * from grainstorehouse where id=?";
+	
+	//粮食信息分类与编码 储粮病虫害分类与代码(17)
+	public static final String SELECT_GRAINSDISEASES = "select * from grainsdiseases where id=?";
+	
+	//粮食信息分类与编码 粮食加工(18)
+	public static final String SELECT_FOODECONOMY = "select * from grainstechnicaleconomy where id=?";
+	
+	//粮食信息分类与编码 粮食加工第1部分：加工作业分类与代码(19)
+	public static final String SELECT_GRAINSPROCESS = "select * from grainsprocess where id=?";
+	
+	//粮食信息分类与编码 粮食仓储第3部分：器材分类与代码(20)
+	public static final String SELECT_GRAINSEQUIPMENT = "select * from grainsequipment where id=?";
+	
+	//粮食信息分类与编码 粮食仓储第2部分：粮情检测分类与代码(21)
+	public static final String SELECT_GRAINCONDITIONDETECTION = "select * from grainconditiondetection where id=?";
+	
+	//粮食信息分类与编码 粮食仓储第1部分：仓储作业分类与代码(22)
+	public static final String SELECT_GRAINSSMARTWMS = "select * from grainsSmartWMS where id like ?";
+	
+	//粮食信息分类与编码 粮食检验第2部分：质量标准分类与代码(26)
+	public static final String SELECT_GRIANQUALITYSTANDARD = "select * from grainsqualitystandard where id=?";
+	
+	//计量器具命名与分类编码(32)
+	public static final String SELECT_MEASURINGINSTRUMENT = "select * from measuringinstrument where code=?";
+	
+	//粮食信息分类与编码 粮食检验 第1部分：指标分类与代码(27)
+	public static final String SELECT_GRAINSINDEX = "select * from grainsindex where id=?";
+	
+	//粮食信息分类与编码 粮食及加工产品分类与代码(28)
+	public static final String SELECT_GRAINSINFORMATION = "select * from grainsinformation where id=?";
+	
+	//粮食信息分类与编码 粮食属性分类与代码(29)
+	public static final String SELECT_GRAINSATTRIBUTE = "select * from grainsattribute where id=?"; 
 	
 	//、没有匹配成功任何一种标识
 	public static final int NO_ID_MATCHED = 0;
@@ -71,7 +113,7 @@ public class RecoUtil {
 	public static final int ONE_ID_MATCHED = 1;
 
 	// 编码详细信息
-	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?;";
+	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?";
 	
 	// 前端页面显示标准名称短码字符的最大长度
 	public static final int DISPLAYLENGTH = 9;
