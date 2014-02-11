@@ -75,36 +75,36 @@ public class RuleFunction {
 	public static String IoTIDByte(String input, String parameter,
 			String useless, String uselessToo) {
 
-		String[] byteStrArray = parameter.split(";");
+		// String[] byteStrArray = parameter.split(";");
 		int[] byteElement = new int[9];
-		for (int i = 0; i < byteStrArray.length; i++) {
-			String[] byteElementString = byteStrArray[i].split(",");
-			for (int j = 0; j < byteElementString.length; j++) {
-				byteElement[j] = Integer.parseInt(byteElementString[j]);
-			}
-			int index = byteElement[0];
-			if (input.length() <= index) {
-				return "ERR";
-			}
-			char objChar = input.charAt(index);
-			int indexChar = 0;
-			if (objChar >= '0' && objChar <= '9') {
-				indexChar = objChar - '0';
-			} else if (objChar >= 'a' && objChar <= 'z') {
-				indexChar = objChar - 'a' + 10;
-			} else if (objChar >= 'A' && objChar <= 'Z') {
-				indexChar = objChar - 'A' + 10 + 26;
-			}
-
-			int m = 0;
-			int n = 0;
-			m = indexChar / 8 + 1;
-			n = indexChar % 8;
-
-			if ((byteElement[m] & (1 << n)) == 0) {
-				return "ERR";
-			}
+		// for (int i = 0; i < byteStrArray.length; i++) {
+		String[] byteElementString = parameter.split(",");
+		for (int j = 0; j < byteElementString.length; j++) {
+			byteElement[j] = Integer.parseInt(byteElementString[j]);
 		}
+		int index = byteElement[0];
+		if (input.length() <= index) {
+			return "ERR";
+		}
+		char objChar = input.charAt(index);
+		int indexChar = 0;
+		if (objChar >= '0' && objChar <= '9') {
+			indexChar = objChar - '0';
+		} else if (objChar >= 'a' && objChar <= 'z') {
+			indexChar = objChar - 'a' + 10;
+		} else if (objChar >= 'A' && objChar <= 'Z') {
+			indexChar = objChar - 'A' + 10 + 26;
+		}
+
+		int m = 0;
+		int n = 0;
+		m = indexChar / 8 + 1;
+		n = indexChar % 8;
+
+		if ((byteElement[m] & (1 << n)) == 0) {
+			return "ERR";
+		}
+		// }
 		return "OK";
 	}
 
@@ -1635,6 +1635,48 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:Wu Zhenyu
+<<<<<<< HEAD
+=======
+	// public static String HouseCode_CheckCode(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// int i = 0;
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// int result = 10 + (IDstr[0] - 48); // 记录校验码计算中间过程产生的值
+	//
+	// for (i = 1; i < LenIndex; i++) {
+	// if (result % 10 == 0) {
+	// result = (10 * 2) % 11 + (IDstr[i] - 48);
+	// } else {
+	// result = ((result % 10) * 2) % 11 + (IDstr[i] - 48);
+	// }
+	// }
+	//
+	// if (result == 10) {
+	// result = (10 * 2) % 11 + (IDstr[i] - 48);
+	// } else {
+	// result = ((result % 10) * 2) % 11;
+	// }
+	//
+	// char checkcode;
+	// if (result == 1) {
+	// checkcode = 48; // 0x0
+	// } else {
+	// checkcode = (char) ((11 - result) + 48);
+	// }
+	//
+	// if (checkcode == IDstr[LenID - 1]) {
+	// return OK;
+	// } else {
+	// return ERR;
+	// }
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	// }
+>>>>>>> 06442c6032095531f884bb5878c3704473017824
 	public static String HouseCode_CheckCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {

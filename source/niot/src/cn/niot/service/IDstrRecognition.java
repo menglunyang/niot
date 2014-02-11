@@ -14,6 +14,7 @@ public class IDstrRecognition {
 	static String DEBUG = "ON";//the value of DEBUG can be "ON" or "OFF"
 	static String DEBUG_RES = "ON";//the value of DEBUG_RES can be "ON" or "OFF"
 	static String DEBUG_LINE = "ON";//the value of DEBUG_LINE can be "ON" or "OFF"
+	static String DEBUG_TIME = "ON";//the value of DEBUG_TIME can be "ON" or "OFF"
 	static int line = 0;
 	
 	static HashMap<String, Double> rmvRuleSet;
@@ -29,14 +30,21 @@ public class IDstrRecognition {
 		hashMapRuleToTypes = new HashMap<String, ArrayList<String>>();// 规则对应类型
 		rmvRuleSet = new HashMap<String, Double>();// rmvRuleSet<规则名，权重>
 		rmvIDSet = new HashMap<String, Double>();// rmvIDSet<类型名，先验概率>
+		
+		long timeDaoBegin = 0,timeDao =0,timeSortRulesBegin=0,timeSortRules=0,timeMatchBegin=0,timeMatch=0,timeSubtractionBegin=0,timeSubtraction=0,timeUnionBegin=0,timeUnion=0;
+		
 
 		RecoDao dao = RecoDao.getRecoDao();
+		if("ON"==DEBUG_TIME)timeDaoBegin=System.currentTimeMillis();
 		hashMapTypeToRules = dao.DBreadTypeAndRules(rmvRuleSet, rmvIDSet,
 				hashMapRuleToTypes);
+		if("ON"==DEBUG_TIME)timeDao=System.currentTimeMillis()-timeDaoBegin;
 		ArrayList<String> rulesList;
 
 		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
+			if("ON"==DEBUG_TIME)timeSortRulesBegin=System.currentTimeMillis();
 			sortRules();
+			if("ON"==DEBUG_TIME)timeSortRules=System.currentTimeMillis()-timeSortRulesBegin;
 			String maxRule = getMax();
 			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
 			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
@@ -44,20 +52,27 @@ public class IDstrRecognition {
 				System.out.print("matching " + splitRules[0] + "("
 						+ splitParameter[0] + ").");
 			}
-			
+			if("ON"==DEBUG_TIME)timeMatchBegin=System.currentTimeMillis();
 			if (match(splitRules[0], splitParameter[0], s)) {
 				// intersection(rmvIDSet, hashMapRuleToTypes.get(maxRule));
+				if("ON"==DEBUG_TIME)timeMatch=System.currentTimeMillis()-timeMatchBegin;
 				if ("ON" == DEBUG){
 					System.out.println("OK");
 				}				
 			} else {
+				if("ON"==DEBUG_TIME)timeMatch=System.currentTimeMillis()-timeMatchBegin;
 				if ("ON" == DEBUG){
 					System.out.println("ERR");
-				}				
+				}	
+				if("ON"==DEBUG_TIME)timeSubtractionBegin=System.currentTimeMillis();
 				subtraction(rmvIDSet, hashMapRuleToTypes.get(maxRule));
+				if("ON"==DEBUG_TIME)timeSubtraction=System.currentTimeMillis()-timeSubtractionBegin;
 			}
+			if("ON"==DEBUG_TIME)timeUnionBegin=System.currentTimeMillis();
 			union(maxRule);
+			if("ON"==DEBUG_TIME)timeUnion=System.currentTimeMillis()-timeUnionBegin;
 		}
+		if("ON"==DEBUG_TIME)System.out.println("读数据库用时："+timeDao+",SortRules用时："+timeSortRules+",Match用时："+timeMatch+",Subtraction用时："+timeSubtraction+",Union用时："+timeUnion);
 		Date now = new Date();
 	    DateFormat d1 = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.LONG); //默认语言（汉语）下的默认风格（MEDIUM风格，比如：2008-6-16 20:54:53）
 	    if ("ON" == DEBUG){
