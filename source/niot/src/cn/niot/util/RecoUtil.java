@@ -106,6 +106,75 @@ public class RecoUtil {
 	//粮食信息分类与编码 粮食属性分类与代码(29)
 	public static final String SELECT_GRAINSATTRIBUTE = "select * from grainsattribute where id=?"; 
 	
+	//粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
+	public static final String SELECT_GRAINSADMINISTRATIVE = "select * from grainsadministrative where id=?";
+	
+	//建筑产品分类和代码(34)
+	public static final String SELECT_CONSTRUCTIONPRODUCTS = "select * from constructionproducts where id=?";
+	
+	//导航电子地图数据分类与编码(45)
+	public static final String SELECT_ELECTRONICMAP = "select * from electronicmap where id=?";
+	
+	//地理信息分类与编码规则(56)
+	public static final String SELECT_GEOGRAPHICINFORMATION = "select * from geographicinformation where id=?";
+	
+	//纺织面料编码化纤部分(64)
+	public static final String SELECT_TETILEFABRICNAME = "select * from textilefabricnamecode where id=?";
+	
+	//纺织面料属性代码(64)X1X2
+	public static final String SELECT_PROPERTIESMAINMATERIAL = "select * from propertiesmainmaterial where id=?";
+	
+	//纺织面料属性代码(64)非织造布X1X2
+	public static final String SELECT_PROPERTIESMAIN = "select * from propertiesmain where id=?";
+	
+	//纺织面料属性代码(64)纤维特征 X3X4
+	public static final String SELECT_PROPERTIERFIBERCHARACTERS = "select * from propertiesfibercharacteristics where id=?";
+	
+	//纺织面料属性代码(64)X7X8纤网固结方式
+	public static final String SELECT_PROPERTIESMIX = "select * from propertiesmixed where id=?";
+	
+	//纺织面料属性代码(64)X9X10 01-19 99
+	public static final String SELECT_PROPERTIESFABRIC = "select * from propertiesfabric where id=?";
+	
+	//纺织面料属性代码(64)X11X12
+	public static final String SELECT_PROPERTIESDYEING = "select * from propertiesdyeingandfinishing where id=?";
+	
+	//面向装备制造业产品全生命周期工艺知识第2部分(65)
+	public static final String SELECT_MANUFACTURINGPROCESS = "select * from generalmanufacturingprocess where id=?";
+	
+	//全国主要产品分类与代码第2部分 不可运输产品(712)
+	public static final String SELECT_UNTRANSPORTABLEPRODUCT = "select * from untransportableproduct where id=?";
+	
+	//全国主要产品分类与代码第2部分 不可运输产品后3位(712)
+	public static final String SELECT_LASTTHREEUNTRANSPORTABLEPRODUCT = "select * from untransportableproduct where length(id)=5 and id like ?";
+	
+	//道路交通信息采集信息分类与编码(77)
+	public static final String SELECT_TRAFFICINFORMATIONCOLLECTION = "select * from trafficinformationcollection where firstcode=? and secondcode=?";
+	
+	//烟草行业工商统计数据元第2部分 代码集(202)
+	public static final String SELECT_TABACCOORGANIZATION = "select * from tobaccoorganization where id=?";
+	
+	//烟叶代码第5部分烟叶颜色代码(204)
+	public static final String SELECT_TABACCOLEAFCOLOR = "select * from tobaccoleafcolor where id=?";
+	
+	//烟叶代码第2部分烟叶形态代码(207)
+	public static final String SELECT_TABACCOLEAFFORM = "select * from tobaccoleafform where id=?";
+	
+	//烟叶代码第1部分烟叶分类与代码(208)
+	public static final String SELECT_TABACCOLEAFCLASS = "select * from tobaccoleafclass where id=?";
+	
+	//儿童大便性状代码(213)
+	public static final String SELECT_CHILDRENEXCREMENT = "select * from childrenexcrement where id=?";
+	
+	//饮酒频率代码(214)
+	public static final String SELECT_DRINKINGFREQUENCY = "select * from drinkingfrequency where id=?";
+	
+	//饮酒种类代码(214)
+	public static final String SELECT_DRINKINGCLASS = "select * from drinkingclass where id=?";
+	
+	//身体活动频率代码(214)
+	public static final String SELECT_PHYSICALACTIVITYFREQUENCY = "select * from physicalactivityfrequency where id=?";
+	
 	//、没有匹配成功任何一种标识
 	public static final int NO_ID_MATCHED = 0;
 	

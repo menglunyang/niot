@@ -892,4 +892,625 @@ public class RecoDao {
 		return ret;
 	}
 	
+	//粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
+	public boolean getGrainsAdministrative(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSADMINISTRATIVE);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//建筑产品分类和代码(34)
+	public boolean getConstructionProducts(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_CONSTRUCTIONPRODUCTS);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//导航电子地图数据分类与编码(45)
+	public boolean getElectronicMap(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_ELECTRONICMAP);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//地理信息分类与编码规则(56)
+	public boolean getGeographicInformation(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_GEOGRAPHICINFORMATION);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//纺织面料编码化纤部分(64)
+	public boolean getTextileFabricNameCode(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TETILEFABRICNAME);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//纺织面料属性代码(64)机织物X1X2
+	public boolean getPropertiesMainMaterial(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESMAINMATERIAL);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//纺织面料属性代码(64)非织造布X1X2
+	public boolean getPropertiesMain(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESMAIN);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//纺织面料属性代码(64)纤维特征 X3X4
+	public boolean getPropertiesFiberCharacteristics(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIERFIBERCHARACTERS);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//纺织面料属性代码(64)X7X8纤网固结方式
+	public boolean getPropertiesMix(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESMIX);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//纺织面料属性代码(64)X9X10 01-19 99
+	public boolean getPropertiesFabric(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESFABRIC);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//纺织面料属性代码(64)X11X12
+	public boolean getPropertiesDyeingandFinishing(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESDYEING);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//面向装备制造业产品全生命周期工艺知识第2部分(65)
+	public boolean getGeneralManufacturingProcess(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MANUFACTURINGPROCESS);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//全国主要产品分类与代码第2部分 不可运输产品(712)
+	public boolean getUntransportableProduct(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_UNTRANSPORTABLEPRODUCT);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//全国主要产品分类与代码第2部分 不可运输产品后3位(712)
+	public boolean getLastThreeUntransportableProduct(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_LASTTHREEUNTRANSPORTABLEPRODUCT);
+			int i = 1;
+			stmt.setString(i, "%" + code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//道路交通信息采集信息分类与编码(77)
+	public boolean getTrafficInformationCollection(String firstCode, String secondCode){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TRAFFICINFORMATIONCOLLECTION);
+			int i = 1;
+			stmt.setString(i++, firstCode);
+			stmt.setString(i++, secondCode);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//烟草行业工商统计数据元第2部分 代码集(202)
+	public boolean getTrafficOrganization(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOORGANIZATION);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//烟叶代码第5部分烟叶颜色代码(204)
+	public boolean getTobaccoLeafColor(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOLEAFCOLOR);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//烟叶代码第2部分烟叶形态代码(207)
+	public boolean getTobaccoLeafForm(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOLEAFFORM);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//烟叶代码第1部分烟叶分类与代码(208)
+	public boolean getTobaccoLeafClass(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOLEAFCLASS);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//儿童大便性状代码(213)
+	public boolean getChildrenExcrement(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_CHILDRENEXCREMENT);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//饮酒频率代码(214)
+	public boolean getDrinkingFrequency(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_DRINKINGFREQUENCY);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//饮酒种类代码(214)
+	public boolean getDrinkingClass(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_DRINKINGCLASS);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//身体活动频率代码(214)
+	public boolean getPhysicalActivityFrequency(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PHYSICALACTIVITYFREQUENCY);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }

@@ -2,6 +2,7 @@ package cn.niot.rule;
 
 import cn.niot.dao.RecoDao;
 
+import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -2402,56 +2403,36 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ISO 7064:1983.MOD 37 36
-	// IDstr: ID string
+	// 有问题的啊 9 15425
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:许江峰
-	public static String MOD3736(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String N14(char[] IDstr, int LenID, int[] Index, int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			int i, j;
-			int b = LenIndex - 1;
-			int a;
-			a = 'A';
-			for (j = 0; j < LenIndex; j++) {
-				for (i = 0; i < 26; i++) {
-					char c = (char) (a + i);
-					if ((int) IDstr[Index[j]] == c) {
-						IDstr[Index[j]] = (char) (10 + i);
-					}
-				}
-			}
+			// 从T开始算Index
+			int S = 0;
+			int S1 = 0;
+			int i;
+			int a = (int) (IDstr[Index[0]] - 32) * 2; // 用于接受第一位
+			for (i = 0; i < 14; i++) {
+				S = S
+						+ ((int) (IDstr[Index[2 * i + 1]] - 48) * 10 + (int) (IDstr[Index[2 * i + 2]] - 48))
+						* (i + 4);
 
-			for (i = 0; i < LenIndex; i++) {
-				if (IDstr[Index[i]] > 47) {
-					IDstr[Index[i]] = (char) (IDstr[Index[i]] - 48);
-				}
 			}
-			int p = 36;
-			int s;
-			for (i = 1; i < LenIndex; i++) {
-				if ((p + (int) IDstr[Index[i - 1]]) % 36 == 0) {
-					s = 36;
-				} else {
-					s = (p + (int) IDstr[Index[i - 1]]) % 36;
-				}
+			S = S + 104 + 102 + a + 99 * 3;
+			S1 = S % 103 + 32;
 
-				p = (s * 2) % 37;
-			}
-
-			int mod;
-			mod = 37 - (p % 36);
-			if (mod == (int) IDstr[Index[b]]) {
+			if ((int) (IDstr[Index[LenIndex - 1]] - 48) == S1) {
 				return OK;
-			} else {
+			}
 
+			else {
 				return ERR;
-
 			}
 		} catch (Exception e) {
 			return ERR;
@@ -2475,6 +2456,7 @@ public class RuleFunction {
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
 			int i = 10 * index1 + index2;
 			if (i >= 10 && i <= 13) {
 				return OK;
@@ -2510,6 +2492,7 @@ public class RuleFunction {
 			int index2 = (int) IDstr[Index[2]] - 48;
 			int index3 = (int) IDstr[Index[3]] - 48;
 			int index4 = (int) IDstr[Index[0]] - 48;
+			// int Xx = 8;
 			int i = 100 * index1 + 10 * index2 + index3 + 1000 * index4;
 			if (i >= 101 && i <= 104) {
 				return OK;
@@ -2543,6 +2526,7 @@ public class RuleFunction {
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
 			int i = 10 * index1 + index2;
 			if (i >= 20 && i <= 22) {
 				return OK;
@@ -2574,6 +2558,7 @@ public class RuleFunction {
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
 			int i = 10 * index1 + index2;
 			if (i >= 20 && i <= 21) {
 				return OK;
@@ -2605,6 +2590,7 @@ public class RuleFunction {
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
 			int i = 10 * index1 + index2;
 			if (i >= 10 && i <= 15) {
 				return OK;
@@ -2665,6 +2651,7 @@ public class RuleFunction {
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
 			int i = 10 * index1 + index2;
 			if (i >= 20 && i <= 22) {
 				return OK;
@@ -2698,6 +2685,7 @@ public class RuleFunction {
 			int index2 = (int) IDstr[Index[1]] - 48;
 			int index3 = (int) IDstr[Index[2]] - 48;
 			int index4 = (int) IDstr[Index[3]] - 48;
+			// int Xx = 8;
 			int i = 1000 * index1 + 100 * index2 + 10 * index3 + index4;
 			if (i >= 1110 && i <= 1112) {
 				return OK;
@@ -2805,6 +2793,7 @@ public class RuleFunction {
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
 			int i = 10 * index1 + index2;
 			if (i >= 10 && i <= 14) {
 				return OK;
@@ -3277,9 +3266,7 @@ public class RuleFunction {
 			if (i == 12) {
 				if (IDstr[Index[2]] == 'A' || IDstr[Index[2]] == 'B'
 						|| IDstr[Index[2]] == 'C' || IDstr[Index[2]] == 'D'
-						|| IDstr[Index[2]] ==
-
-						'E') {
+						|| IDstr[Index[2]] == 'E') {
 					return OK;
 				}
 			}
@@ -4540,7 +4527,7 @@ public class RuleFunction {
 
 	}
 
-	// Function: 01-12 99
+	// Function: 01-13 99
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -4587,7 +4574,6 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	// Function: 01-14 99 98
@@ -4790,6 +4776,61 @@ public class RuleFunction {
 
 	}
 
+	// Function: ISO 7064:1983.MOD 37 36
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String MOD3736(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			// ISO 7064:1983.MOD 11-2校验算法，字符串开辟空间时要多一位留给最后加校验位
+			double sum = 0; // 最后的校验码
+			int i, j;
+			int b = LenIndex - 1;
+			int a;
+			a = 'A';
+			for (j = 0; j < LenIndex; j++) {
+				for (i = 0; i < 26; i++) {
+					char c = (char) (a + i);
+					if ((int) IDstr[Index[j]] == c) {
+						IDstr[Index[j]] = (char) (10 + i);
+					}
+				}
+			}
+			for (i = 0; i < LenIndex; i++) {
+				if (IDstr[Index[i]] > 47) {
+					IDstr[Index[i]] = (char) (IDstr[Index[i]] - 48);
+				}
+			}
+			int p = 36;
+			int s;
+			for (i = 1; i < LenIndex; i++) {
+				if ((p + (int) IDstr[Index[i - 1]]) % 36 == 0) {
+					s = 36;
+				} else {
+					s = (p + (int) IDstr[Index[i - 1]]) % 36;
+				}
+				p = (s * 2) % 37;
+			}
+			int mod;
+			mod = 37 - (p % 36);
+			if (mod == (int) IDstr[Index[16]]) {
+				return OK;
+			} else {
+
+				return ERR;
+
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
 	public static String MOD1110(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -4810,7 +4851,6 @@ public class RuleFunction {
 					}
 				}
 			}
-
 			for (i = 0; i < LenIndex; i++) {
 				if (IDstr[Index[i]] > 47) {
 					IDstr[Index[i]] = (char) (IDstr[Index[i]] - 48);
@@ -4824,12 +4864,10 @@ public class RuleFunction {
 				} else {
 					s = (p + (int) IDstr[Index[i - 1]]) % 10;
 				}
-
 				p = (s * 2) % 11;
 			}
 
 			int mod;
-
 			mod = 11 - (p % 10);
 			if (mod == (int) IDstr[Index[4]]) {
 				return OK;
@@ -5061,7 +5099,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 00-14
+	// Function: 00-14 18 20 22 27 33 42
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -5073,13 +5111,2077 @@ public class RuleFunction {
 		int index2 = (int) IDstr[Index[1]] - 48;
 		int Xx = 14;
 		int i = 10 * index1 + index2;
-		if (i >= 0 && i <= Xx) {
+		if (i >= 0 && i <= Xx || i == 18 || i == 20 || i == 22 || i == 27
+				|| i == 33 || i == 42) {
 			return OK;
 		} else
 			return ERR;
 
 	}
-	
+
+	// Function: 00-24
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰654
+	public static String ZeroTO24(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 24;
+		int i = 10 * index1 + index2;
+		if (i >= 0 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
+	}
+
+	// Function: 00-60
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰654
+	public static String ZeroTO60(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 60;
+		int i = 10 * index1 + index2;
+		if (i >= 0 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
+	}
+
+	private static String getHexString(String hexString) {
+		String hexStr = "";
+		for (int i = hexString.length(); i < 4; i++) {
+			if (i == hexString.length())
+				hexStr = "0";
+			else
+				hexStr = hexStr + "0";
+		}
+		return hexStr + hexString;
+	}
+
+	public static String enUnicode(String content) { // 将汉字转换为16进制数
+		String enUnicode = null;
+		for (int i = 0; i < content.length(); i++) {
+			if (i == 0) {
+				enUnicode = getHexString(Integer.toHexString(content.charAt(i))
+						.toUpperCase());
+			} else {
+				enUnicode = enUnicode
+						+ getHexString(Integer.toHexString(content.charAt(i))
+								.toUpperCase());
+			}
+		}
+		return enUnicode;
+	}
+
+	// Function: 657 小写字母转2进制
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰657
+	public static String Xiaoxie(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		int j;
+		int i;
+		String out = null;
+		int aa;
+		aa = 'a';
+		for (j = 0; j < LenIndex; j++) {
+			for (i = 0; i < 26; i++) {
+				char c = (char) (aa + i);
+				if ((int) IDstr[Index[j]] == c) {
+					IDstr[Index[j]] = (char) (i);
+				}
+				if ((int) IDstr[Index[j]] == 32) {
+					IDstr[Index[j]] = (char) (26);
+				}
+			}
+		}
+		int[] jie = new int[LenIndex];
+		for (i = 0; i < LenIndex; i++) {
+			j = (int) IDstr[Index[i]];
+			String a = Integer.toString(j); // 输入数值
+			BigInteger src = new BigInteger(a); // 转换为BigInteger类型
+			String bb = src.toString(2);
+			int bbb = Integer.parseInt(bb);
+			jie[i] = bbb;
+		}
+		for (i = 0; i < LenIndex; i++) {
+			j = jie[i];
+			String bb = Integer.toString(j); // 输入数值
+			if (bb.length() == 1) {
+				bb = "0000" + bb;
+			}
+			if (bb.length() == 2) {
+				bb = "000" + bb;
+			}
+			if (bb.length() == 3) {
+				bb = "00" + bb;
+			}
+			if (bb.length() == 4) {
+				bb = "0" + bb;
+			}
+			if (i == 0) {
+				out = bb;
+			} else {
+				out += bb;
+			}
+		}
+		return OK;
+	}
+
+	// Function: 657 大写字母转2进制
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰657
+	public static String Daxie(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		int j;
+		int i;
+		String out = null;
+		int aa;
+		aa = 'A';
+		for (j = 0; j < LenIndex; j++) {
+			for (i = 0; i < 26; i++) {
+				char c = (char) (aa + i);
+				if ((int) IDstr[Index[j]] == c) {
+					IDstr[Index[j]] = (char) (i);
+				}
+				if ((int) IDstr[Index[j]] == 32) {
+					IDstr[Index[j]] = (char) (26);
+				}
+			}
+		}
+		int[] jie = new int[LenIndex];
+		for (i = 0; i < LenIndex; i++) {
+			j = (int) IDstr[Index[i]];
+			String a = Integer.toString(j); // 输入数值
+			BigInteger src = new BigInteger(a); // 转换为BigInteger类型
+			String bb = src.toString(2);
+			int bbb = Integer.parseInt(bb);
+			jie[i] = bbb;
+		}
+		for (i = 0; i < LenIndex; i++) {
+			j = jie[i];
+			String bb = Integer.toString(j); // 输入数值
+			if (bb.length() == 1) {
+				bb = "0000" + bb;
+			}
+			if (bb.length() == 2) {
+				bb = "000" + bb;
+			}
+			if (bb.length() == 3) {
+				bb = "00" + bb;
+			}
+			if (bb.length() == 4) {
+				bb = "0" + bb;
+			}
+			if (i == 0) {
+				out = bb;
+			} else {
+				out += bb;
+			}
+		}
+		return OK;
+	}
+
+	// Function: 657 数字字母转2进制
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰657
+	public static String Hunpai(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		int j;
+		int i;
+		String out = null;
+		int aa, aaa, aaaa;
+		aa = 'A';
+		aaa = 'a';
+		aaaa = '0';
+		for (j = 0; j < LenIndex; j++) {
+			for (i = 0; i < 26; i++) {
+				char c = (char) (aa + i);
+				char cc = (char) (aaa + i);
+				if ((int) IDstr[Index[j]] == c) {
+					IDstr[Index[j]] = (char) (i + 10);
+				}
+				if ((int) IDstr[Index[j]] == cc) {
+					IDstr[Index[j]] = (char) (i + 36);
+				}
+				if ((int) IDstr[Index[j]] == 32) {
+					IDstr[Index[j]] = (char) (62);
+				}
+			}
+			for (i = 0; i < 10; i++) {
+				char ccc = (char) (aaaa + i);
+				if ((int) IDstr[Index[j]] == ccc) {
+					IDstr[Index[j]] = (char) (IDstr[Index[j]] - 48);
+				}
+			}
+		}
+		int[] jie = new int[LenIndex];
+		for (i = 0; i < LenIndex; i++) {
+			j = (int) IDstr[Index[i]];
+			String a = Integer.toString(j); // 输入数值
+			BigInteger src = new BigInteger(a); // 转换为BigInteger类型
+			String bb = src.toString(2);
+			int bbb = Integer.parseInt(bb);
+			jie[i] = bbb;
+		}
+		for (i = 0; i < LenIndex; i++) {
+			j = jie[i];
+			String bb = Integer.toString(j); // 输入数值
+			if (bb.length() == 1) {
+				bb = "0000" + bb;
+			}
+			if (bb.length() == 2) {
+				bb = "000" + bb;
+			}
+			if (bb.length() == 3) {
+				bb = "00" + bb;
+			}
+			if (bb.length() == 4) {
+				bb = "0" + bb;
+			}
+			if (i == 0) {
+				out = bb;
+			} else {
+				out += bb;
+			}
+		}
+		return OK;
+	}
+
+	// Function: 657 数字模式转2进制
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰657
+	public static String figure(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+
+		int j = 0;
+		int i, ii = 0;
+		int leg;
+		String out = null; // 用于接受或判断
+		if (LenIndex % 3 != 0) {
+			leg = LenIndex / 3 + 1;
+		} else {
+			leg = LenIndex / 3;
+		}
+		int legg = leg * 3;
+		int[] jie = new int[leg];
+		char[] newIDstr = new char[legg]; // 接受数字
+		int[] GB = new int[leg]; // 接受 特殊符号
+		int[] GB1 = new int[leg]; // 接受特殊符号所在的位置
+		for (i = 0; i < LenIndex; i++) {
+			if (IDstr[Index[i]] > 47) {
+				newIDstr[j] = (char) (IDstr[Index[i]] - 48);
+				j++;
+			} else {
+				if (IDstr[Index[i]] == 32) {
+					if ((i - 4 * ii) % 3 == 0) {
+						GB[ii] = 1000;
+					}
+					if ((i - 4 * ii) % 3 == 1) {
+						GB[ii] = 1001;
+					}
+					if ((i - 4 * ii) % 3 == 2) {
+						GB[ii] = 1002;
+					}
+				}
+				if (IDstr[Index[i]] == 43) {
+					if ((i - 4 * ii) % 3 == 0) {
+						GB[ii] = 1003;
+					}
+					if ((i - 4 * ii) % 3 == 1) {
+						GB[ii] = 1004;
+					}
+					if ((i - 4 * ii) % 3 == 2) {
+						GB[ii] = 1005;
+					}
+				}
+				if (IDstr[Index[i]] == 45) {
+					if ((i - 4 * ii) % 3 == 0) {
+						GB[ii] = 1006;
+					}
+					if ((i - 4 * ii) % 3 == 1) {
+						GB[ii] = 1007;
+					}
+					if ((i - 4 * ii) % 3 == 2) {
+						GB[ii] = 1008;
+					}
+				}
+				if (IDstr[Index[i]] == 46) {
+					if ((i - 4 * ii) % 3 == 0) {
+						GB[ii] = 1009;
+					}
+					if ((i - 4 * ii) % 3 == 1) {
+						GB[ii] = 1010;
+					}
+					if ((i - 4 * ii) % 3 == 2) {
+						GB[ii] = 1011;
+					}
+				}
+				if (IDstr[Index[i]] == 44) {
+					if ((i - 4 * ii) % 3 == 0) {
+						GB[ii] = 1012;
+					}
+					if ((i - 4 * ii) % 3 == 1) {
+						GB[ii] = 1013;
+					}
+					if ((i - 4 * ii) % 3 == 2) {
+						GB[ii] = 1014;
+					}
+				}
+				GB1[ii] = i;
+				ii++;
+			}
+
+		}
+		int bu0;
+		if (j % 3 != 0) {
+			leg = j / 3 + 1;
+			bu0 = 3 - j % 3;
+		} else {
+			leg = j / 3;
+			bu0 = j % 3;
+		}
+		int bu = leg * 3 - i;
+		for (j = 0; j < bu; j++) {
+			if (bu != 0) {
+				newIDstr[i] = (char) (0);
+				i++;
+			}
+		}
+		int legleg = leg;
+		for (i = 0; i < leg; i++) {
+			jie[i] = 100 * (int) newIDstr[3 * i] + 10
+					* (int) newIDstr[3 * i + 1] + (int) newIDstr[3 * i + 2];
+		}
+		int jj = 0;
+		int[] GB2 = new int[leg]; // 接受特殊符号所在10进制的的位置
+		leg = 0;
+		for (j = 0; j < ii; j++) {
+			if (leg != 0) {
+				leg = GB1[j] / 3 + 1;
+				GB2[j] = leg;
+			} else {
+				leg = GB1[j] / 3;
+				GB2[j] = leg;
+				leg = 1;
+			}
+		}
+		leg = legleg;
+		int[] newgb = new int[leg + ii]; // 全新的数值来接受所有的10进制
+		jj = 0; // 由于接受ＧＢ中的位
+		for (i = 0; i < leg + ii; i++) {
+			j++;
+			if (ii != 0) {
+				for (j = 0; j < ii; j++) {
+					if (i == GB2[j]) {
+						newgb[i] = GB[jj];
+						jj++;
+						i++;
+						newgb[i] = jie[i - jj];
+						break;
+					} else {
+						newgb[i] = jie[i - jj];
+					}
+				}
+			} else {
+				newgb[i] = jie[i];
+			}
+		}
+		int[] Two = new int[leg + ii]; // 接受转换成的2进制数组
+		for (i = 0; i < leg + ii; i++) {
+			j = (int) newgb[i];
+			String a = Integer.toString(j); // 输入数值
+			BigInteger src = new BigInteger(a); // 转换为BigInteger类型
+			String bb = src.toString(2);
+			int bbb = Integer.parseInt(bb);
+			Two[i] = bbb;
+		}
+		for (i = 0; i < leg + ii; i++) {
+			j = Two[i];
+			String bb = Integer.toString(j); // 输入数值
+			if (bb.length() == 5) {
+				bb = "00000" + bb;
+			}
+			if (bb.length() == 6) {
+				bb = "0000" + bb;
+			}
+			if (bb.length() == 7) {
+				bb = "000" + bb;
+			}
+			if (bb.length() == 8) {
+				bb = "00" + bb;
+			}
+			if (bb.length() == 9) {
+				bb = "0" + bb;
+			}
+			if (i == 0) {
+				out = bb;
+			} else {
+				out += bb;
+			}
+		}
+		if (bu0 == 1) {
+			out = "01" + out;
+		} else if (bu0 == 2) {
+			out = "10" + out;
+		} else if (bu0 == 0) {
+			out = "00" + out;
+		} else {
+			out = "11" + out;
+		}
+		return OK;
+	}
+
+	// Function: 校检位
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰664
+	public static String Check4BitBarCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+
+		int i;
+		int[] newIDstr = new int[LenIndex];
+		for (i = 0; i < LenIndex; i++) {
+			newIDstr[i] = (int) (IDstr[Index[i]] - 48);
+		}
+		// 用于2-的第一位
+		int a = newIDstr[1];
+		int b = 0; // 用于接受加权值
+		if (a * 2 < 10) {
+			b = a * 2;
+		} else if (a * 2 > 9) {
+			b = (a * 2 - 1) % 10;
+		}
+		// 用于2-的第二位
+		int a2 = newIDstr[2];
+		int b2 = 0; // 用于接受加权值
+		if (a2 * 2 < 10) {
+			b2 = a2 * 2;
+		} else if (a2 * 2 > 9) {
+			b2 = (a2 * 2 - 1) % 10;
+		}
+		// 用于3的第三位
+		int a3 = newIDstr[3];
+		int b3 = 0; // 用于接受加权值
+		if (a3 * 3 < 10) {
+			b3 = a3 * 3;
+		} else if (a3 * 3 > 9) {
+			b3 = (a3 * 3) % 10;
+		}
+		// 用于5-的第四位
+		int a4 = newIDstr[4];
+		int b4 = 0; // 用于接受加权值
+		if (a4 * 5 < 10) {
+			b4 = a4 * 5;
+		} else if (a4 * 5 > 9) {
+			b4 = ((a4 * 5) - (int) Math.floor((a4 * 5) / 10)) % 10;
+		}
+		int check;
+		check = ((b + b2 + b3 + b4) * 3) % 10;
+		if (check == newIDstr[0]) {
+			return OK;
+		} else {
+			return ERR;
+		}
+	}
+
+	// Function: 校检位
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰664
+	public static String Check5BitBarCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+
+		int i;
+		int[] newIDstr = new int[LenIndex];
+		for (i = 0; i < LenIndex; i++) {
+			newIDstr[i] = (int) (IDstr[Index[i]] - 48);
+		}
+		// 用于2-的第五位
+		int a = newIDstr[5];
+		int b = 0; // 用于接受加权值
+		if (a * 2 < 10) {
+			b = a * 2;
+		} else if (a * 2 > 9) {
+			b = (a * 2 - 1) % 10;
+		}
+		// 用于2-的第二位
+		int a2 = newIDstr[2];
+		int b2 = 0; // 用于接受加权值
+		if (a2 * 2 < 10) {
+			b2 = a2 * 2;
+		} else if (a2 * 2 > 9) {
+			b2 = (a2 * 2 - 1) % 10;
+		}
+		// 用于5+的第一位
+		int a1 = newIDstr[1];
+		int b1 = 0; // 用于接受加权值
+		if (a1 * 5 < 10) {
+			b1 = a1 * 5;
+		} else if (a1 * 5 > 9) {
+			b1 = ((a1 * 5) + (int) Math.floor((a1 * 5) / 10)) % 10;
+		}
+		// 用于5+的第四位
+		int a3 = newIDstr[4];
+		int b3 = 0; // 用于接受加权值
+		if (a3 * 5 < 10) {
+			b3 = a3 * 5;
+		} else if (a3 * 5 > 9) {
+			b3 = ((a3 * 5) + (int) Math.floor((a3 * 5) / 10)) % 10;
+		}
+		// 用于5-的第三位
+		int a4 = newIDstr[3];
+		int b4 = 0; // 用于接受加权值
+		if (a4 * 5 < 10) {
+			b4 = a4 * 5;
+		} else if (a4 * 5 > 9) {
+			b4 = ((a4 * 5) - (int) Math.floor((a4 * 5) / 10)) % 10;
+		}
+		int check;
+		check = 10 - (((b + b2 + b3 + b4 + b1)) % 10);
+		// 用于5-的校检位
+		int a0 = newIDstr[0];
+		int b0 = 0; // 用于接受加权值
+		if (a0 * 5 < 10) {
+			b0 = a0 * 5;
+		} else if (a0 * 5 > 9) {
+			b0 = ((a0 * 5) - (int) Math.floor((a0 * 5) / 10)) % 10;
+		}
+		if (check == b0) {
+			return OK;
+		} else {
+			return ERR;
+		}
+	}
+
+	// Function:681
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String FlavorSubstance(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			int i = ((int) IDstr[Index[1]] - 48) * 100
+					+ ((int) IDstr[Index[2]] - 48) * 10
+					+ ((int) IDstr[Index[3]] - 48);
+			int j = ((int) IDstr[Index[1]] - 48) * 1000
+					+ ((int) IDstr[Index[2]] - 48) * 100
+					+ ((int) IDstr[Index[3]] - 48) * 10
+					+ ((int) IDstr[Index[4]] - 48);
+			if (LenIndex == 4) {
+				if ((int) IDstr[Index[0]] == 'N') {
+					if (i > 0 && i < 378) {
+						return OK;
+					}
+				} else {
+					return ERR;
+				}
+			}
+			if (LenIndex == 5) {
+				if ((int) IDstr[Index[0]] == 'I') {
+					if (j > 1000 && j < 2087) {
+						return OK;
+					}
+				} else if ((int) IDstr[Index[0]] == 'A') {
+					if (j > 3000 && j < 3212) {
+						return OK;
+					}
+				} else {
+					return ERR;
+				}
+			}
+
+		} catch (Exception e) {
+			return ERR;
+		}
+		return ERR;
+
+	}
+
+	// Function: 757 表59 值 10 11 12 20
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String Highway59(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * index1 + index2;
+			if (i == 10 || i == 11 || i == 12 || i == 20) {
+				return OK;
+			}
+
+			else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 01-11 90
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String OneTO11and90(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int Xx = 11;
+			int i = 10 * index1 + index2;
+			if (i >= 01 && i <= Xx || i == 90) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 10 11 12 20 21 22 29 30
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String HighwayTransportation(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * index1 + index2;
+			if (i >= 10 && i <= 12) {
+				return OK;
+			} else if (i >= 20 && i <= 22 || i == 29 || i == 30) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 10 11 12 19 20 21 22 29 30
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String HighwayTransportationB9(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int i = 10 * index1 + index2;
+		if (i >= 10 && i <= 12 || i == 19) {
+			return OK;
+		} else if (i >= 20 && i <= 22 || i == 29 || i == 30) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: jt/t 444--201 biao C3
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长4
+	// Creator:许江峰
+	public static String HighwayTransportationC3(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int index3 = (int) IDstr[Index[2]] - 48;
+		int index4 = (int) IDstr[Index[3]] - 48;
+		int i = 10 * index1 + index2;
+		int j = 10 * index3 + index4;
+		if (i >= 1 && i <= 17 && j == 0) {
+			return OK;
+		} else if (i == 8 && j == 10) {
+			return OK;
+		} else if (i == 15 && j == 20) {
+			return OK;
+		} else if (i == 16 && j == 10) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: jt/t 444--201 biao C6
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String HighwayTransportationC6(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int i = 10 * index1 + index2;
+		if (i >= 10 && i <= 12) {
+			return OK;
+		} else if (i >= 20 && i <= 23) {
+			return OK;
+		} else if (i >= 30 && i <= 33) {
+			return OK;
+		} else if (i >= 40 && i <= 42) {
+			return OK;
+		} else if (i == 80 || i == 90) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: jt/t 430
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String Porttariff(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int i = (int) IDstr[Index[0]] - 48;
+		int j = (int) IDstr[Index[1]] - 48;
+		if (i >= 0 && i <= 5 && j == 0) {
+			return OK;
+		} else if (i == 3 && j >= 0 && j <= 4) {
+			return OK;
+		}
+
+		else
+			return ERR;
+
+	}
+
+	// Function: jt/t 430
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String Porttariff4(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int i = (int) IDstr[Index[0]] - 48;
+		int j = (int) IDstr[Index[1]] - 48;
+		if (i >= 1 && i <= 3 && j == 0) {
+			return OK;
+		} else if (i == 6 && j == 0) {
+			return OK;
+		} else if (i == 6 && j == 1) {
+			return OK;
+		} else if (i == 6 && j == 2) {
+			return OK;
+		} else if (i == 6 && j == 9) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: jt/t 430
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String Porttariff10(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int index3 = (int) IDstr[Index[2]] - 48;
+		int i = 100 * index1 + 10 * index2 + index3;
+
+		if (i >= 110 && i <= 112) {
+			return OK;
+		} else if (i >= 120 && i <= 122) {
+			return OK;
+		} else if (i == 100) {
+			return OK;
+		} else if (i == 200) {
+			return OK;
+		} else if (i == 300) {
+			return OK;
+		} else if (i == 310) {
+			return OK;
+		} else if (i == 320) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: 01-24 99
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String OneoTO24(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 24;
+		int i = 10 * index1 + index2;
+		if (i >= 1 && i <= Xx || i == 99) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: 01-17
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String OneTO17No99(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 17;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: 01-12
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String OneTO12No99(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 12;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: 01-13
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String OneTO13No99(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 13;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function: 01-99 huo 001-999
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String TwoOrThree(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		if (LenIndex == 2) {
+			int i = 10 * index1 + index2;
+			if (i >= 01 && i <= 99) {
+				return OK;
+			} else
+				return ERR;
+		}
+		if (LenIndex == 3) {
+			int index3 = (int) IDstr[Index[2]] - 48;
+			int i = 100 * index1 + 10 * index2 + index3;
+			if (i >= 01 && i <= 999) {
+				return OK;
+			} else
+				return ERR;
+
+		}
+		return ERR;
+
+	}
+
+	// Function: 两位或四位
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String TwoOrFour(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		if (LenIndex == 2) {
+			int i = 10 * index1 + index2;
+			if (i >= 00 && i <= 99) {
+				return OK;
+			} else
+				return ERR;
+		}
+		if (LenIndex == 4) {
+			int index3 = (int) IDstr[Index[2]] - 48;
+			int index4 = (int) IDstr[Index[3]] - 48;
+			int i = 1000 * index1 + 100 * index2 + 10 * index3 + index4;
+			if (i >= 00 && i <= 9999) {
+				return OK;
+			} else
+				return ERR;
+
+		}
+		return ERR;
+
+	}
+
+	// Function: 910 中的表15
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table15(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int i = 10 * index1 + index2;
+		if (i == 1) {
+			if (LenID == 13) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 2) {
+			if (LenID == 13) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 3) {
+			if (LenID == 14) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 4) {
+			if (LenID == 13) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 5) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 6) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 7) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 8) {
+			if (LenID == 15) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 9) {
+			if (LenID == 10) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 10) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 11) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 12) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 13) {
+			if (LenID == 10) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: 910 中的表18
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table18(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = (int) IDstr[Index[0]] - 48;
+		if (i == 2) {
+			if (LenID == 8) {
+				return OK;
+			} else
+				return ERR;
+		} else {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+
+		}
+	}
+
+	// Function: 910 中的表19
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table19(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = (int) IDstr[Index[0]] - 48;
+		if (i == 1) {
+			if (LenID == 10) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 2) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: 910 中的表20
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table20(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = (int) IDstr[Index[1]] - 48;
+		if (i == 1 || i == 2 || i == 5) {
+			if (LenID == 13) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 6) {
+			if (LenID == 8) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 3 || i == 4) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品 之标准件
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table17(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int i = 10 * index1 + index2;
+		if (i == 3) {
+			if (LenID == 15) {
+				return OK;
+			} else
+				return ERR;
+		} else {
+			if (LenID == 18) {
+				return OK;
+			} else
+				return ERR;
+
+		}
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table22
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table22(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = (int) IDstr[Index[0]] - 48;
+		if (i == 1) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 2) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table27
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table27(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = (int) IDstr[Index[1]] - 48;
+		if (i == 1) {
+			if (LenID == 14) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 2) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table28
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table28(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = (int) IDstr[Index[1]] - 48;
+		if (i == 1 || i == 3) {
+			if (LenID == 8) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 2) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table29
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table29(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = (int) IDstr[Index[1]] - 48;
+		if (i == 1 || i == 2 || i == 5 || i == 7) {
+			if (LenID == 8) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 3) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 6) {
+			if (LenID == 7) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 4) {
+			if (LenID == 13) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table30
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table30(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = ((int) IDstr[Index[1]] - 48) + 10
+				* ((int) IDstr[Index[0]] - 48);
+		if (i == 1 || i == 3) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 6) {
+			if (LenID == 10) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 4) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 7 || i == 8) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 9 || i == 10 || i == 11 || i == 12) {
+			if (LenID == 8) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 6) {
+			if (LenID == 7) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 5) {
+			if (LenID == 6) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table31
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table31(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = ((int) IDstr[Index[1]] - 48) + 10
+				* ((int) IDstr[Index[0]] - 48);
+		if (i == 1 || i == 2) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 4) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 7) {
+			if (LenID == 10) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 3 || i == 6 || i == 9) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 5 || i == 8) {
+			if (LenID == 8) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table32
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table32(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = ((int) IDstr[Index[1]] - 48) + 10
+				* ((int) IDstr[Index[0]] - 48);
+		if (i == 1 || i == 2) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 4 || i == 3) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 5) {
+			if (LenID == 7) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table34
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table34(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = ((int) IDstr[Index[1]] - 48) + 10
+				* ((int) IDstr[Index[0]] - 48);
+		if (i == 1) {
+			if (LenID == 15) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 2) {
+			if (LenID == 14) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 4) {
+			if (LenID == 13) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 5 || i == 7) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 3 || i == 6) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 8) {
+			if (LenID == 10) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 9 || i == 10 || i == 11) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table35
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table35(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = ((int) IDstr[Index[1]] - 48) + 10
+				* ((int) IDstr[Index[0]] - 48);
+		if (i == 1 || i == 2) {
+			if (LenID == 10) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 3 || i == 4) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table38
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table38(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = ((int) IDstr[Index[1]] - 48) + 10
+				* ((int) IDstr[Index[0]] - 48);
+		if (i == 1) {
+			if (LenID == 14) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 2) {
+			if (LenID == 15) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 3) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table41
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table41(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = ((int) IDstr[Index[1]] - 48) + 10
+				* ((int) IDstr[Index[0]] - 48);
+		if (i == 1 || i == 2) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 3) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 9) {
+			if (LenID == 5) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: DL/T 700.2-1999第二部分 机电产品table43
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:许江峰
+	public static String Table43(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int j;
+		for (j = 0; j < LenID; j++) {
+			if (((int) IDstr[Index[j]] - 48) >= 0
+					&& ((int) IDstr[Index[j]] - 48) <= 9) {
+				return OK;
+			} else
+				return ERR;
+		}
+		int i = ((int) IDstr[Index[1]] - 48) + 10
+				* ((int) IDstr[Index[0]] - 48);
+		if (i == 14) {
+			if (LenID == 14) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 2 || i == 3 || i == 4 || i == 5 || i == 7 || i == 8) {
+			if (LenID == 13) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 6 || i == 12 || i == 1) {
+			if (LenID == 12) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 9 || i == 10 || i == 11 || i == 13) {
+			if (LenID == 11) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 15) {
+			if (LenID == 9) {
+				return OK;
+			} else
+				return ERR;
+		} else if (i == 9) {
+			if (LenID == 6) {
+				return OK;
+			} else
+				return ERR;
+		} else
+			return ERR;
+	}
+
+	// Function: 01-03 99
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 504
+	public static String OneTO03(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 3;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx || i == 99) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
+	// Function:1880 road transportation
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String RoadTransportation21(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[0]] - 48;
+			int i2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * i1 + i2;
+			if (i >= 20 && i <= 25) {
+				return OK;
+			}
+			if (i == 20 || i == 30) {
+				return OK;
+			}
+			if (i == 40 || i == 90) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:1880 road transportation
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String RoadTransportation22(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[0]] - 48;
+			int i2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * i1 + i2;
+
+			if (i >= 11 && i <= 12) {
+				return OK;
+			}
+			if (i >= 21 && i <= 24) {
+				return OK;
+			}
+			if (i >= 41 && i <= 42) {
+				return OK;
+			}
+			if (i == 30 || i == 50) {
+				return OK;
+			}
+			if (i == 60 || i == 90 || i == 70) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:1880 road transportation
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String RoadTransportation32(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[0]] - 48;
+			int i2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * i1 + i2;
+
+			if (i >= 10 && i <= 15) {
+				return OK;
+			}
+			if (i >= 19 && i <= 20) {
+				return OK;
+			}
+			if (i == 30 || i == 90) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:1880 road transportation
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String RoadTransportation50(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[0]] - 48;
+			int i2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * i1 + i2;
+
+			if (i >= 20 && i <= 23) {
+				return OK;
+			}
+			if (i >= 25 && i <= 26) {
+				return OK;
+			}
+			if (i == 10 || i == 90) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+
+	}
+
+	// Function:1880 road transportation
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String RoadTransportation63(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[0]] - 48;
+			int i2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * i1 + i2;
+
+			if (i >= 10 && i <= 13) {
+				return OK;
+			}
+			if (i >= 20 && i <= 23) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+
+	}
+
+	// Function:1880 road transportation
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String RoadTransportation64(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[0]] - 48;
+			int i2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * i1 + i2;
+
+			if (i >= 10 && i <= 12) {
+				return OK;
+			}
+			if (i >= 30 && i <= 32) {
+				return OK;
+			}
+			if (i == 20 || i == 40) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+
+	}
+
+	// Function: 01-40
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 504
+	public static String OneTO42No99(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 99;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+
 	// Function: 粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5109,7 +7211,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食加工(18)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5139,7 +7241,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食仓储业务统计分类与代码(16)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5169,7 +7271,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 储粮病虫害分类与代码(17)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5199,7 +7301,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食加工第1部分：加工作业分类与代码(19)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5229,7 +7331,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食仓储第3部分：器材分类与代码(20)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5259,15 +7361,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食仓储第2部分：粮情检测分类与代码(21)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度必为3
 	// creator: zll
-	public static String GainsConditionDetection(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String GainsConditionDetection(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5289,7 +7391,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食仓储第1部分：仓储作业分类与代码(22)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5319,15 +7421,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食检验第2部分：质量标准分类与代码(26)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度必为8
 	// creator: zll
-	public static String GrainsQualityStandard(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String GrainsQualityStandard(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5349,15 +7451,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 计量器具命名与分类编码(32)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度必为8
 	// creator: zll
-	public static String MeasuringInstrument(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String MeasuringInstrument(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5379,7 +7481,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食检验 第1部分：指标分类与代码(27)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5409,15 +7511,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食及加工产品分类与代码(28)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
 	// Index: 调用正则的的索引位置
 	// LenIndex:长度必为7
 	// creator: zll
-	public static String GrainsInformation(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String GrainsInformation(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5439,7 +7541,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食属性分类与代码(29)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5469,7 +7571,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 粮食信息分类与编码 粮食企业分类与代码(30)中的前两位判断，数值范围为10,11,19,30
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -5489,11 +7591,910 @@ public class RuleFunction {
 			for (int i = 0; i < LenIndex; i++) {
 				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
-			if (code == "10" || code == "11" || code == "19" || code == "30"){
+			if (code == "10" || code == "11" || code == "19" || code == "30") {
 				return OK;
-			} else{
+			} else {
 				return ERR;
 			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为6
+	// creator: zll
+	public static String GrainAdministrative(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getGrainsAdministrative(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 建筑产品分类和代码(34)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为5
+	// creator: zll
+	public static String ConstructionProducts(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 5) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getConstructionProducts(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 承运人标识符编码规则，直接满足正则表达式(44)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度11-17
+	// creator: zll
+	public static String CarrierIdentifier(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[a-zA-Z0-9]{1,7}[0-9]{3}[A-D][0-9]{6}";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 导航电子地图数据分类与编码(45)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度4
+	// creator: zll
+	public static String ElectronicMap(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getElectronicMap(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 电子收费关键信息编码(46)，前4位为两个汉字\u4e00-\u9fa5
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度4
+	// creator: zll
+	public static String ChineseCharRegex(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "(4[E-F,e-f][0-9,A-F,a-f]{2}|[5-8,A-F,a-f][0-9,A-F,a-f]{3}|9[0-9,A-E,a-e]][0-9,A-F,a-f]{2}|9[F,f][0-9][0-9,A-F,a-f]|9[F,f][a,A][0-5]){2}";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 判断2个字节是不是属于(01-53)
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes, 固定为2
+	// creator: helinjia
+	public static String TwobytleWeekCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			int index1 = Index[0];
+			int index2 = Index[1];
+
+			if (IDstr[index1] >= '1' && IDstr[index1] <= '4') {
+				if (IDstr[index2] >= '0' && IDstr[index2] <= '9') {
+					return OK;
+				}
+			}
+			if (IDstr[index1] == '0') {
+				if (IDstr[index2] >= '1' && IDstr[index2] <= '9') {
+					return OK;
+				}
+			}
+			if (IDstr[index1] == '5') {
+				if (IDstr[index2] >= '0' && IDstr[index2] <= '3') {
+					return OK;
+				}
+			}
+			return OK;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 地理信息分类与编码规则(56)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度5
+	// creator: zll
+	public static String GeographicInformation(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 5) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getGeographicInformation(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 地理信息分类与编码规则(56)中的属性码为不定长数字
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:不定长
+	// creator: zll
+	public static String GeographicPropertyRegex(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "\\d+";
+			int prefix = 10;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 数字城市地理信息公共平台，正整数(62)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:不定长
+	// creator: zll
+	public static String DigitRegex(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[0-9]*[1-9][0-9]*";
+			int prefix = 14;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 纺织面料编码化纤部分(64)纺织面料名称代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为5
+	// creator: zll
+	public static String TextileFabricNameCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 5) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTextileFabricNameCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 纺织面料编码化纤部分(64)纺织面料属性代码X1X2
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
+	// creator: zll
+	public static String PropertiesMain(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPropertiesMainMaterial(code);
+			boolean retMain = recoDao.getPropertiesMain(code);
+			if (ret || retMain) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 纺织面料编码化纤部分(64)纤维特征 X3X4
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
+	// creator: zll
+	public static String PropertiesFiberCharacteristics(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPropertiesFiberCharacteristics(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 纺织面料属性代码(64)X7X8纤网固结方式,另外可能为[1-3,9],[1-3,9]
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
+	// creator: zll
+	public static String PropertiesMix(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[1-3,9]{2}";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPropertiesMix(code);
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean retRegex = ma.matches();
+			if (ret || retRegex) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 纺织面料属性代码(64)X9X10 3种可能01-19,99 01-09,99 01-12,99，所以选择最大范围满足
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
+	// creator: zll
+	public static String PropertiesFabric(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPropertiesFabric(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 纺织面料属性代码(64)X11X12
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
+	// creator: zll
+	public static String PropertiesDyeingandFinishing(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPropertiesDyeingandFinishing(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 纺织面料属性代码(64)X11X12
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为9
+	// creator: zll
+	public static String GeneralManufacturingProcess(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 9) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getGeneralManufacturingProcess(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 道路交通信息服务信息分类与编码(68)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
+	// creator: zll
+	public static String TrafficInformation(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			// 前两位数
+			int index1 = (int) IDstr[0] - 48;
+			int index2 = (int) IDstr[1] - 48;
+			int i = 10 * index1 + index2;
+			// 3,4位数
+			int index3 = (int) IDstr[Index[0]] - 48;
+			int index4 = (int) IDstr[Index[1]] - 48;
+			int j = 10 * index3 + index4;
+			if (i >= 1 && i <= 4) {
+				if (j >= 1 && j <= 4 || j == 99) {
+					return OK;
+				}
+			} else if (i == 5) {
+				if (j >= 1 && j <= 5 || j == 99) {
+					return OK;
+				}
+			} else if (i == 99) {
+				if (j == 99) {
+					return OK;
+				}
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 全国主要产品分类与代码第2部分 不可运输产品(712)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度1-5
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2,0和-1
+	// creator: zll
+	public static String UntransportableProduct(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID >= 1 && LenID <= 5)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getUntransportableProduct(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 全国主要产品分类与代码第2部分 不可运输产品后3位(712)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度1-5
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为3
+	// creator: zll
+	public static String LastThreeUntransportableProduct(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getLastThreeUntransportableProduct(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 道路交通信息采集信息分类与编码(77)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长4
+	// Creator:zll
+	public static String TrafficInformationCollection(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+		String firstCode = String.valueOf(IDstr[Index[0]])
+				+ String.valueOf(IDstr[Index[1]]);
+		String secondCode = String.valueOf(IDstr[Index[2]])
+				+ String.valueOf(IDstr[Index[3]]);
+		RecoDao recoDao = new RecoDao();
+		boolean ret = recoDao.getTrafficInformationCollection(firstCode,
+				secondCode);
+		if (ret) {
+			return OK;
+		} else
+			return ERR;
+	}
+
+	// Function: 烟草行业工商统计数据元第2部分 代码集(202)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长2
+	// Creator:zll
+	public static String TobaccoLeafColor(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTobaccoLeafColor(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 烟叶代码第5部分烟叶颜色代码(204)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长2
+	// Creator:zll
+	public static String TrafficOrganization(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTrafficOrganization(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 烟叶代码第2部分烟叶形态代码(207)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长3
+	// Creator:zll
+	public static String TobaccoLeafForm(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTobaccoLeafForm(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 烟叶代码第1部分烟叶分类与代码(208)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长5
+	// Creator:zll
+	public static String TobaccoLeafClass(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 5) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTobaccoLeafClass(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 儿童大便性状代码(213)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String ChildrenExcrement(char[] IDstr,
+			int LenID, int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTobaccoLeafClass(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 01-11 90
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:zll
+	public static String OneToEleven(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int Xx = 11;
+			int i = 10 * index1 + index2;
+			if (i >= 01 && i <= Xx) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 饮酒频率代码(214)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String DrinkingFrequency(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getDrinkingFrequency(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 饮酒频率代码(214)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String DrinkingClass(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getDrinkingClass(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 饮酒频率代码(214)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String PhysicalActivityFrequency(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPhysicalActivityFrequency(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}

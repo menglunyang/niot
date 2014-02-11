@@ -35,7 +35,7 @@ public class RecoAction extends ActionSupport {
 		//138000100000000001.sh.beidou.cid.iot.cn
 		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','1','.','s','h','.','b','e','i',
 			//	'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};
-		char[] IDstr = new char[]{'1', '1','0','0','0'};
+		char[] IDstr = new char[]{'2', '1'};
 		
 		int [] index = new int[]{0,-1};
 //		index[0] = 18;
@@ -43,7 +43,7 @@ public class RecoAction extends ActionSupport {
 //		index[2] = -1;
 //		index[3] = 3;
 //		index[4] = 4;
-		System.out.println(RuleFunction.GrainsSmartWMS(IDstr, IDstr.length, index, index.length));
+		System.out.println(RuleFunction.DrinkingFrequency(IDstr, IDstr.length, index, index.length));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
