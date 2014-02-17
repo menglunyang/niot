@@ -1,6 +1,7 @@
 package cn.niot.rule;
 
 import cn.niot.dao.RecoDao;
+import cn.niot.util.RecoUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,19 +15,37 @@ public class RuleFunction {
 	public static void main(String[] args) {
 		// System.out.println("你好世界!");
 		// System.out.println("Hello World!");
-		char[] IDstr = new char[4];
+		char[] IDstr = new char[15];
 		IDstr[0] = '0';
-		IDstr[1] = '2';
+		IDstr[1] = '0';
 		IDstr[2] = '0';
-		IDstr[3] = '1';
-		int[] index = new int[4];
-		index[0] = 0;
-		index[1] = 1;
-		index[2] = 2;
-		index[3] = 3;
-		System.out
-				.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
+		IDstr[3] = '0';
+		IDstr[4] = '0';
+		IDstr[5] = '0';
+		
+		IDstr[6] = '1';
+		
+		IDstr[7] = '0';
+		IDstr[8] = '1';
+		IDstr[9] = '0';
+		IDstr[10] = '0';
+		IDstr[11] = '0';
+		IDstr[12] = '0';
+		
+		IDstr[13] = '0';
+		IDstr[14] = '0';
+		
+		int[] index = new int[7];
+		index[0] = 6;
+		index[1] = 7;
+		index[2] = 8;
+		index[3] = 9;
+		index[4] = 10;
+		index[5] = 11;
+		index[6] = 12;
+		System.out.println(FuneralInterment(IDstr, 15, index, 7));
 	}
+
 
 	// Function: represent a decimal integer whose value range is from 1 to 99
 	// IDstr: ID string
@@ -107,6 +126,10 @@ public class RuleFunction {
 		return "OK";
 	}
 
+	
+	
+	
+	
 	private static boolean checkInputParam(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -2406,4 +2429,113 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+	
+	//殡葬服务、设施、用品分类与代码   第6-12位对应规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 15位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:7
+	//creator:zt
+	public static String FuneralInterment(char[] IDstr, int LenID, int[] Index, int LenIndex)
+	{
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
+			{
+				return ERR;
+			}
+			if (LenIndex != 7) 
+			{
+				return ERR;
+			}
+			String id = "";
+			RecoDao recoDao = new RecoDao();
+			for (int i = 1; i < LenIndex; i++) {
+				id = id.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			if (IDstr[Index[0]] == '1')
+			{
+				boolean ret = recoDao.getFuneral(id,RecoUtil.SELECT_FUNERALSERVICE);
+				if (ret) 
+				{
+					return OK;
+				} 
+				else
+					return ERR;
+			} 
+			else if (IDstr[Index[0]] == '2')
+			{
+				boolean ret = recoDao.getFuneral(id,RecoUtil.SELECT_FUNERALFACILITIES);
+				if (ret) 
+				{
+					return OK;
+				} 
+				else
+					return ERR;
+			} 
+			else if (IDstr[Index[0]] == '3') 
+			{
+				boolean ret = recoDao.getFuneral(id,RecoUtil.SELECT_SUPPLIES);
+				if (ret) 
+				{
+					return OK;
+				} 
+				else
+					return ERR;
+			} 
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	
+	// Function: 实现校验 MOD 97-10 
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长13
+	// Creator:zt
+	public static String MOD9710(char[] IDstr, int LenID, int[] Index,int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
+			{
+				return ERR;
+			}
+			if (LenIndex != 15) 
+			{
+				return ERR;
+			}
+			String id1 = "";
+			String id2 = "";
+			//RecoDao recoDao = new RecoDao();
+			for (int i = 0; i < 13; i++) {
+				id1 = id1.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			
+			System.out.println("str id1="+id1);
+			
+			
+			for (int i = 13; i < 15; i++) {
+				id2 = id2.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			
+			System.out.println("str id2="+id2);
+			
+			double input = Double.parseDouble(id1);
+			double output = Double.parseDouble(id2);
+			
+			System.out.println("int input="+input);
+			System.out.println("int output="+output);
+			
+			if ((98-(input*100) % 97) == output)
+			{
+				return OK;
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
 }

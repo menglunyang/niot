@@ -63,6 +63,14 @@ public class RecoUtil {
 	public static final String SELECT_RANDOMEANUPC = "select floor(rand()*(endcode-begincode)+begincode) as code from (select * from EANUPC where rowno >= (select floor(rand()*(max(rowno)-min(rowno))) + min(rowno) from EANUPC) limit 1) t";
 	
 	public static final String SELECT_TYPEANDRULES="select * from iotid";
+	//殡葬服务分类的一条记录
+	public static final String SELECT_FUNERALSERVICE = "select * from funeralservice where id=?";
+	
+	//殡葬设施分类的一条记录
+	public static final String SELECT_FUNERALFACILITIES = "select * from funeralfacilities where id=?";
+	
+	//殡葬设施用品的一条记录
+	public static final String SELECT_SUPPLIES = "select * from funeralsupplies where id=?";
 	
 	//、没有匹配成功任何一种标识
 	public static final int NO_ID_MATCHED = 0;

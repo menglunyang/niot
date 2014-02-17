@@ -512,4 +512,31 @@ public class RecoDao {
 		}
 		return name;
 	}
+	
+	
+	
+	//查找殡葬服务分类、设施分类、用品分类代码
+	public boolean getFuneral(String id,String type){
+		Connection	connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(type);
+			stmt.setString(1, id);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }
