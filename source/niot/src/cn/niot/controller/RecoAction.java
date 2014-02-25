@@ -33,27 +33,27 @@ public class RecoAction extends ActionSupport {
 			Msg = "                   "+ iotID + " is not ID type A";     // Âß¼­ÔËËã
 		}
 	
-		char[] IDstr = new char[12];
-		IDstr[0] = '9';
-		IDstr[1] = '2';
-		IDstr[2] = '0';
-		IDstr[3] = '1';
-		IDstr[4] = '2';
-		IDstr[5] = '3';
+		char[] IDstr = new char[15];
+		IDstr[0] = '3';
+		IDstr[1] = '1';
+		IDstr[2] = '1';
+		IDstr[3] = '0';
+		IDstr[4] = '0';
+		IDstr[5] = '1';
 		
-		IDstr[6] = '4';
+		IDstr[6] = '1';
 		
-		IDstr[7] = '5';
-		IDstr[8] = '6';
-		IDstr[9] = '7';
-		IDstr[10] = '8';
+		IDstr[7] = '0';
+		IDstr[8] = '1';
+		IDstr[9] = '0';
+		IDstr[10] = '3';
 		IDstr[11] = '0';
-//		IDstr[12] = '0';
-//		
-//		IDstr[13] = '9';
-//		IDstr[14] = '3';
+		IDstr[12] = '0';
 		
-		int[] index = new int[12];
+		IDstr[13] = '9';
+		IDstr[14] = '3';
+		
+		int[] index = new int[15];
 		index[0] = 0;
 		index[1] = 1;
 		index[2] = 2;
@@ -66,13 +66,13 @@ public class RecoAction extends ActionSupport {
 		index[9] = 9;
 		index[10] = 10;
 		index[11] = 11;
-//		index[12] = 12;
-//		index[13] = 13;
-//		index[14] = 14;
+		index[12] = 12;
+		index[13] = 13;
+		index[14] = 14;
 		
 		System.out.println("start");
-		System.out.println("zz");
-		System.out.println(RuleFunction.DeviceMOD163(IDstr, 12, index, 12));
+		
+		System.out.println(RuleFunction.MOD9710(IDstr, 15, index, 15));
 		
 		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
 		
