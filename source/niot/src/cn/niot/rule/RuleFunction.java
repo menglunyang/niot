@@ -6,6 +6,8 @@ import cn.niot.util.RecoUtil;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.junit.internal.matchers.SubstringMatcher;
+
 public class RuleFunction {
 
 	static String ERR = "ERR";
@@ -2537,5 +2539,91 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+	
+	//91-中国煤炭编码系统   第1-12位对应规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 12位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:12
+	//creator:fdl
+	public static String CoalInterment(char[] IDstr, int LenID, int[] Index, int LenIndex)
+	{
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
+			{
+				return ERR;
+			}
+			if (LenIndex != 12) 
+			{
+				return ERR;
+			}
+			String id = "";
+			if ((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+					||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
+					||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+					||(IDstr[Index[0]] == '1' && IDstr[Index[1]] == '9')
+					||(IDstr[Index[0]] == '5' && IDstr[Index[1]] == '0'))
+			{
+				if ((IDstr[Index[2]] == '2' && IDstr[Index[3]] == '4')
+						||(IDstr[Index[2]] == '2' && IDstr[Index[3]] == '5')
+						||(IDstr[Index[2]] == '3' && IDstr[Index[3]] == '5')
+						||(IDstr[Index[2]] == '3' && IDstr[Index[3]] == '9')
+						||(IDstr[Index[2]] == '1' && IDstr[Index[3]] == '1')
+						||(IDstr[Index[2]] == '1' && IDstr[Index[3]] == '2')
+						||(IDstr[Index[2]] == '1' && IDstr[Index[3]] == '3')
+						||(IDstr[Index[2]] == '2' && IDstr[Index[3]] == '2')
+						||(IDstr[Index[2]] == '2' && IDstr[Index[3]] == '3'))
+				{
+					if((IDstr[Index[4]] == '0' && IDstr[Index[5]] == '1')
+							||(IDstr[Index[4]] == '0' && IDstr[Index[5]] == '2')
+							||(IDstr[Index[4]] == '0' && IDstr[Index[5]] == '9')
+							||(IDstr[Index[4]] == '1' && IDstr[Index[5]] == '0')
+							||(IDstr[Index[4]] == '4' && IDstr[Index[5]] == '9'))
+					{
+						return OK;
+					}
+					
+				} 
+				else
+					return ERR;
+			} 
+			if(IDstr[Index[6]] == '0' || IDstr[Index[6]] == '1' || IDstr[Index[6]] == '2'
+				|| IDstr[Index[6]] == '3' || IDstr[Index[6]] == '4' || IDstr[Index[6]] == '5'
+					|| IDstr[Index[6]] == '6')
+			{
+				return OK;
+			}
+			
+			if(IDstr[Index[7]] == '1' || IDstr[Index[7]] == '2' || IDstr[Index[7]] == '3'
+				|| IDstr[Index[7]] == '4' || IDstr[Index[7]] == '5')
+			{
+				return OK;
+			}
+			if((IDstr[Index[8]] == '0' && IDstr[Index[9]] == '0')
+					||(IDstr[Index[8]] == '0' && IDstr[Index[9]] == '1')
+					||(IDstr[Index[8]] == '0' && IDstr[Index[9]] == '2')
+					||(IDstr[Index[8]] == '2' && IDstr[Index[9]] == '9')
+					||(IDstr[Index[8]] == '3' && IDstr[Index[9]] == '0'))
+			{
+				if((IDstr[Index[10]] == '0' && IDstr[Index[11]] == '0')
+						||(IDstr[Index[10]] == '0' && IDstr[Index[11]] == '1')
+						||(IDstr[Index[10]] == '0' && IDstr[Index[11]] == '2')
+						||(IDstr[Index[10]] == '3' && IDstr[Index[11]] == '1')
+						||(IDstr[Index[10]] == '3' && IDstr[Index[11]] == '2'))
+				{
+					return OK;
+				}
+			}
+			
+					return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	
+	
+	
+	
 	
 }
