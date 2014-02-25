@@ -539,4 +539,38 @@ public class RecoDao {
 		}
 		return ret;
 	}
+	
+	///ÑÌ²Ý»úÐµ(195)
+		public boolean getTobaccoMachineryID(String id){
+			Connection	connection = JdbcUtils.getConnection();
+			PreparedStatement stmt = null;
+			ResultSet results = null;
+			boolean ret = false;
+			try {
+				stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
+				stmt.setString(1, id);
+				results = stmt.executeQuery();
+				int rowcount = 0;
+				while (results.next()) {
+					rowcount++;				
+				}
+				if(1 == rowcount){
+					ret =  true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtils.free(null, null, connection);
+			}
+			return ret;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
