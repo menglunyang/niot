@@ -529,6 +529,7 @@ public class RecoDao {
 		return name;
 	}
 	
+<<<<<<< HEAD
 	//烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
 	public boolean getTobbacoMaterials(String categoryCode, String groupCode){
 		Connection connection = JdbcUtils.getConnection();
@@ -1425,14 +1426,26 @@ public class RecoDao {
 	//儿童大便性状代码(213)
 	public boolean getChildrenExcrement(String code){
 		Connection connection = JdbcUtils.getConnection();
+=======
+	
+	
+	//查找殡葬服务分类、设施分类、用品分类代码
+	public boolean getFuneral(String id,String type){
+		Connection	connection = JdbcUtils.getConnection();
+>>>>>>> xiaobaicoding-master
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
+<<<<<<< HEAD
 			stmt = connection.prepareStatement(RecoUtil.SELECT_CHILDRENEXCREMENT);
 			int i = 1;
 			stmt.setString(i, code);
 			
+=======
+			stmt = connection.prepareStatement(type);
+			stmt.setString(1, id);
+>>>>>>> xiaobaicoding-master
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
@@ -1449,6 +1462,7 @@ public class RecoDao {
 		return ret;
 	}
 	
+<<<<<<< HEAD
 	//饮酒频率代码(214)
 	public boolean getDrinkingFrequency(String code){
 		Connection connection = JdbcUtils.getConnection();
@@ -1718,4 +1732,39 @@ public class RecoDao {
 		}
 		return ret;
 	}
+=======
+	///烟草机械(195)
+		public boolean getTobaccoMachineryID(String id){
+			Connection	connection = JdbcUtils.getConnection();
+			PreparedStatement stmt = null;
+			ResultSet results = null;
+			boolean ret = false;
+			try {
+				stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
+				stmt.setString(1, id);
+				results = stmt.executeQuery();
+				int rowcount = 0;
+				while (results.next()) {
+					rowcount++;				
+				}
+				if(1 == rowcount){
+					ret =  true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JdbcUtils.free(null, null, connection);
+			}
+			return ret;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+>>>>>>> xiaobaicoding-master
 }

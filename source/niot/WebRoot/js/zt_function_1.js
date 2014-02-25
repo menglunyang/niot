@@ -32,6 +32,7 @@ function sendReqCode()
 							$("#loading_1").css("display","block");
 						},
 			success:function(result){
+							console.log(result);
 							$("#loading_1").css("display","none");
 							if (result.status == 'error'){
 								$("#errorStatement").text(result.statement);
