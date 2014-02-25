@@ -175,6 +175,27 @@ public class RecoUtil {
 	//身体活动频率代码(214)
 	public static final String SELECT_PHYSICALACTIVITYFREQUENCY = "select * from physicalactivityfrequency where id=?";
 	
+	//妊娠终止方式代码表(215)
+	public static final String SELECT_TERMINATIONOFPREGNENCY = "select * from terminationofpregnancy where id=?";
+	
+	//分娩方式代码(215)
+	public static final String SELECT_MODEOFPRODUCTION = "select * from modeofproduction where id=?";
+	
+	//分娩地点类别代码(215)
+	public static final String SELECT_DILIVERYPLACE = "select * from deliveryplace where id=?";
+	
+	//卫生信息数据元值域代码第17部分：卫生管理(218)
+	public static final String SELECT_HEALTHSUPERVISIONOBJECT = "select * from healthsupervisionobject where id=?";
+	
+	//交通工具代码(219)
+	public static final String SELECT_COMMUNICATIONCODE = "select * from communicationmediacode where id=?";
+	
+	//卫生监督机构人员编制类别代码(220)
+	public static final String SELECT_HYGIENEAGENCYPERSONNEL = "select * from hygieneagencypersonnel where id=?";
+	
+	//卫生监督机构职工类别代码(220)
+	public static final String SELECT_WORKERHEALTHSUPERVISION = "select * from workerhealthsupervision where id=?";
+	
 	//、没有匹配成功任何一种标识
 	public static final int NO_ID_MATCHED = 0;
 	

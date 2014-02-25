@@ -1635,8 +1635,7 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:Wu Zhenyu
-<<<<<<< HEAD
-=======
+
 	// public static String HouseCode_CheckCode(char[] IDstr, int LenID,
 	// int[] Index, int LenIndex) {
 	// try {
@@ -1676,7 +1675,7 @@ public class RuleFunction {
 	// return ERR;
 	// }
 	// }
->>>>>>> 06442c6032095531f884bb5878c3704473017824
+
 	public static String HouseCode_CheckCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -3130,7 +3129,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 205 buyidin
+	// Function: 206
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
@@ -6066,7 +6065,7 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes 固定长2
 	// Creator:许江峰
-	public static String OneTO17No99(char[] IDstr, int LenID, int[] Index,
+	public static String OneTO17(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
@@ -6079,6 +6078,31 @@ public class RuleFunction {
 		int Xx = 17;
 		int i = 10 * index1 + index2;
 		if (i >= 01 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+	
+	// Function: 01-17,99
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
+	public static String OneTO17NO99(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 17;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx || i == 99) {
 			return OK;
 		} else
 			return ERR;
@@ -8541,4 +8565,216 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+	
+	// Function: 妊娠终止方式代码表(215)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String TerminationofPregnancy(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTerminationofPregnancy(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 妊娠终止方式代码表(215)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String ModeofProduction(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getDileveryPlace(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 分娩地点类别代码(215)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String DileveryPlace(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getModeofProduction(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 卫生信息数据元值域代码第17部分：卫生管理(218)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为2-8
+	// Creator:zll
+	public static String HealthSupervisionObject(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID >= 2 && LenID <= 8)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getHealthSupervisionObject(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 交通工具代码(219)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String CommunicationCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getCommunicationCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 卫生监督机构人员编制类别代码(220)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String HygieneAgencyPersonnel(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getHygieneAgencyPersonnel(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 卫生监督机构人员编制类别代码(220)
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
+	// Creator:zll
+	public static String WorkerHealthSupervision(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (!(LenID == 1 || LenID == 2)) {
+				return ERR;
+			}
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getWorkerHealthSupervision(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	
 }

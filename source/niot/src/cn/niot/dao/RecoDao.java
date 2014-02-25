@@ -1529,4 +1529,193 @@ public class RecoDao {
 		}
 		return ret;
 	}
+	
+	//妊娠终止方式代码表(215)
+	public boolean getTerminationofPregnancy(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TERMINATIONOFPREGNENCY);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//分娩方式代码(215)
+	public boolean getModeofProduction(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MODEOFPRODUCTION);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//分娩地点类别代码(215)
+	public boolean getDileveryPlace(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_DILIVERYPLACE);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//卫生信息数据元值域代码第17部分：卫生管理(218)
+	public boolean getHealthSupervisionObject(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_HEALTHSUPERVISIONOBJECT);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	// 交通工具代码(219)
+	public boolean getCommunicationCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_COMMUNICATIONCODE);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//卫生监督机构人员编制类别代码(220)
+	public boolean getHygieneAgencyPersonnel(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_HYGIENEAGENCYPERSONNEL);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//卫生监督机构职工类别代码(220)
+	public boolean getWorkerHealthSupervision(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_WORKERHEALTHSUPERVISION);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }
