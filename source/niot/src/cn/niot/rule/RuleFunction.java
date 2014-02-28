@@ -2688,7 +2688,7 @@ public class RuleFunction {
 				return ERR;
 			}
 		}
-	
+		
 		//195-烟草机械——产品工艺文件代码编制方法   查表数据库
 				// IDstr: 标识编码
 				// LenID: 标识编码的长度3位
@@ -2716,7 +2716,70 @@ public class RuleFunction {
 			}
 			
 		}
-
+		//194-烟草机械电气配置和技术文件代码附录C表查询
+		// IDstr: 标识编码
+		// LenID: 标识编码的长度3位
+		// Index: 调用验证算法的索引位置
+		// LenIndex:a3
+		//creator:fdl
+		public static String tabaccoC(char[] IDstr, int LenID, int[] Index,
+				int LenIndex){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			try{
+				int code = IDstr[Index[0]]+IDstr[Index[1]-96];
+				RecoDao recoDao = new RecoDao();
+				boolean ret = recoDao.getPrefixoftabaccoC(code);
+				if (ret) {
+					return OK;
+				} else
+					return ERR;
+			}catch (Exception e) {
+				return ERR;
+			}
+			
+		}
+		
+		//194-烟草机械电气配置和技术文件代码附录D表查询
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度2位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a3
+				//creator:fdl
+				public static String TobaccoTech(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					try {
+						if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
+						{
+							return ERR;
+						}
+						if (LenIndex != 2) 
+						{
+							return ERR;
+						}
+						
+						String s="";
+						for(int i=0;i<2;i++){
+							s=s.concat(String.valueOf(IDstr[Index[i]]));
+						}
+						System.out.println("s="+s);
+						if(s=="00" || s=="01" || s=="10" || s=="11" || s=="12"
+								|| s=="30" || s=="31" || s=="32" || s=="44" || s=="45" 
+								|| s=="33" || s=="40" || s=="41" || s=="42" || s=="43"
+								|| s=="46" || s=="47" || s=="48" || s=="50" || s=="60"){
+							return OK;
+						}
+						return ERR;
+					} catch (Exception e) {
+						return ERR;
+					}
+					
+				}
+		
 		// Function: represent a decimal integer whose value range is from 1 to 399
 		// IDstr: ID string
 		// LenID: the number of characters in the ID string
@@ -2843,7 +2906,7 @@ public class RuleFunction {
 						return ERR;
 					}
 				}
-				
+//				jlkjlkjlkj
 				// Function: 实现校验6位数物流编码
 				// IDstr: ID string
 				// LenID: the number of characters in the ID string
@@ -2877,6 +2940,275 @@ public class RuleFunction {
 						return ERR;
 					}
 				}
-		
+				
+				//280-——珠宝玉石及金属产品分类代码编制方法   查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度5位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a3
+				//creator:fdl
+				public static String JadejewelryClass(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 5) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<5;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariff280(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
+				//281-——珠宝玉石及金属材质分类代码编制方法   查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度6位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a3
+				//creator:fdl
+				public static String JadejewelryMaterialclassif(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 6) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<6;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariffMa281(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
+				
+				//282-——信息安全技术代码编制方法   查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度4位
+				// Index: 调用验证算法的索引位置
+				//creator:fdl
+				public static String InformationSafe(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 4) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<4;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						System.out.println(code);
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariffMa282(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
+				//280-——中央党政机关代码编制方法   查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度3位
+				// Index: 调用验证算法的索引位置
+				//creator:fdl
+				public static String CodeHighway(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 3) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<3;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariff280(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
+				//284-——社会经济目标分类和代码表  查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度6位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a6
+				//creator:fdl
+				public static String goalsocialeconomic(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+//					if (LenIndex != 6) {
+//						return ERR;
+//					}
+					try{
+						String code = "";
+						for(int i=0;i<6;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariffMa284(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+					
+				}
+				//285-——物流信息分类和代码表  查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度6位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a6
+				//creator:fdl
+				public static String LogisticsInf(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 5 && LenIndex != 7 ) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<IDstr.length;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariffMa285(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+					
+				}
+
+				//287-——服装分类和代码表  查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度6位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a6
+				//creator:fdl
+				public static String clothesclass(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 6 && LenIndex != 4 ) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<IDstr.length;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariffMa287(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+					
+				}
+				//288-——服装名字分类代码编制方法   查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度5位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a3
+				//creator:fdl
+				public static String ClothesName(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 5) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<5;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariffMa288(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
+				//191-——医药器械分类和代码表  查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度6位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a6
+				//creator:fdl
+				public static String Pharmacequipment(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 8) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<IDstr.length;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariffMa291(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+					
+				}
+				
+				
+				
 		
 }
