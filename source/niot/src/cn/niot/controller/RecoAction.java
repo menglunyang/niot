@@ -31,30 +31,14 @@ public class RecoAction extends ActionSupport {
 	public String getMsg() {    // 添加getter
 		return Msg;
 	}
-	
+
 	public String execute() {
-<<<<<<< HEAD
-		if (iotID.equals("123456")){
-			Msg = "                   "+ iotID + " is ID type A";     // 逻辑运算
-		} else{
-			Msg = "                   "+ iotID + " is not ID type A";     // 逻辑运算
-		}
-
-		char[] IDstr = new char[6];
-		IDstr[0] = '1';
-		IDstr[1] = '2';
-		IDstr[2] = '3';
-		IDstr[3] = '4';
-		IDstr[4] = '5';
-		IDstr[5] = '0';
-
-=======
 //		if (iotID.equals("123456")){
 //			Msg = "                   "+ iotID + " is ID type A";     // 逻辑运算
 //		} else{
 //			Msg = "                   "+ iotID + " is not ID type A";     // 逻辑运算
 //		}
-	
+
 //		char[] IDstr = new char[3];
 //		IDstr[0] = '1';
 //		IDstr[1] = '0';
@@ -62,8 +46,7 @@ public class RecoAction extends ActionSupport {
 //		IDstr[3] = '4';
 //		IDstr[4] = '5';
 //		IDstr[5] = '0';
-		
->>>>>>> 4ce87a0fc639bd84ff22a11e882b071f37520e91
+
 //		IDstr[6] = '0';
 //		IDstr[7] = '0';
 //		IDstr[8] = '0';
@@ -103,13 +86,9 @@ public class RecoAction extends ActionSupport {
 //		System.out.println(RuleFunction.Tobaccomachinery(IDstr, 12, index, 12));
 //		System.out.println(RuleFunction.BussManaCheck(IDstr, 15, index, 15));
 //		System.out.println(RuleFunction.Mod36_37(IDstr, 15, index, 15));
-<<<<<<< HEAD
-		System.out.println(RuleFunction.LogisticsCheck(IDstr, 6, index, 6));
-
-=======
 //		System.out.println(RuleFunction.LogisticsCheck(IDstr, 6, index, 6));
 //		System.out.println(RuleFunction.TheCenteralPartyCommitte(IDstr, 3, index, 3));
-		
+
 		String tr1 = new String("040399");
 		char[] IDstr1 = new char[6];
 		for (int i = 0; i < 6; i++) {
@@ -126,11 +105,10 @@ public class RecoAction extends ActionSupport {
 		String result = RuleFunction.JadejewelryMaterialclassif(IDstr1,6,index,6);
 		System.out.println("result="+result.toString());
 		return "sucess";
-		
-		
-		
-		
->>>>>>> 4ce87a0fc639bd84ff22a11e882b071f37520e91
+
+
+
+
 		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
 
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
@@ -141,13 +119,8 @@ public class RecoAction extends ActionSupport {
 		//}
 
 //		RuleFuncTest.testTwoByteDecimalnt();
-<<<<<<< HEAD
 
-		return "sucess"; //预定义常量
-=======
-		
 //		return "sucess"; s//预定义常量
->>>>>>> 4ce87a0fc639bd84ff22a11e882b071f37520e91
 	} 
 
 }
