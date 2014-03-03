@@ -9,6 +9,7 @@ import cn.niot.service.NewIDstdCollisionDetect;
 
 import cn.niot.service.*;
 
+@SuppressWarnings("unused")
 public class RuleFuncTest {
 	static int i = 0;
 

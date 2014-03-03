@@ -31,6 +31,8 @@ public class RecoUtil {
 
 	// 商品条码零售商品编码EAN UPC前3位前缀码
 	public static final String SELECT_EANUPC = "select * from EANUPC where begincode<=? and endcode>=?";
+    //烟草机械电气配置和技术文件代码附录C表查询
+	public static final String SELECT_tabaccoC = "select * from tabaccoC where code=?";
 
 	// 烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码(672)
 	public static final String SELECT_TABACCOMACHINEPRODUCER = "select * from tabaccomachineproducer where id=? limit 1";
@@ -204,11 +206,28 @@ public class RecoUtil {
 	
 	//殡葬设施用品的一条记录
 	public static final String SELECT_SUPPLIES = "select * from funeralsupplies where id=?";
-	
-	//、没有匹配成功任何一种标识
+	//280中央党政机关
+	public static final String SELECT_PORTTARIFF280 = "select * from TheCenteralPartyCommitte where code=?";
+	//	281-——珠宝玉石及金属产品分类代码编制方法   查表数据库
+	public static final String SELECT_PORTTARIFF281 = "select * from JadejewelryClass where code=?";
+//	281-——珠宝玉石及金属材质分类代码编制方法   查表数据库
+	public static final String SELECT_PORTTARIFFMa281 = "select * from JadejewelryMaterialclassif where code=?";
+	//282-——信息安全技术代码编制方法   查表数据库
+	public static final String SELECT_PORTTARIFFMa282 = "select * from InformationSafe where code=?";
+	//284-——社会经济目标分类和代码表  查表数据库
+	public static final String SELECT_PORTTARIFFMa284 = "select * from goalsocialeconomic where code=?";
+	//287_物流信息分类
+	public static final String SELECT_PORTTARIFFMa285 = "select * from LogisticsInf where code=?";
+	//287_服装分类
+	public static final String SELECT_PORTTARIFFMa287 = "select * from clothesclass where code=?";
+	//288_服装名字分类
+	public static final String SELECT_PORTTARIFFMa288 = "select * from ClothesName where code=?";
+	//191_医药器械分类
+	public static final String SELECT_PORTTARIFFMa191 = "select * from Pharmacequipment where code=?";
+	//没有匹配成功任何一种标识
 	public static final int NO_ID_MATCHED = 0;
 	
-	//、匹配成功一种标识
+	//匹配成功一种标识
 	public static final int ONE_ID_MATCHED = 1;
 
 	// 编码详细信息
