@@ -212,42 +212,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-<<<<<<< HEAD
 
 	// 商品条码零售商品编码EAN UPC前3位前缀码
 	public boolean getPrefixofRetailCommodityNumber(int code) {
-=======
-	    //烟草机械电气配置和技术文件代码附录C表查询
-		public boolean getPrefixoftabaccoC(int code){
-			Connection connection = JdbcUtils.getConnection();
-			PreparedStatement stmt = null;
-			ResultSet results = null;
-			boolean ret = false;
-			try {
-				stmt = connection.prepareStatement(RecoUtil.SELECT_tabaccoC);
-				int i = 1;
-				stmt.setInt(i++, code);
-				stmt.setInt(i++, code);
-				
-				results = stmt.executeQuery();
-				int rowcount = 0;
-				while (results.next()) {
-					rowcount++;				
-				}
-				if(1 == rowcount){
-					ret =  true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				JdbcUtils.free(null, null, connection);
-			}
-			return ret;
-		}
-	
-	//商品条码零售商品编码EAN UPC前3位前缀码
-	public boolean getPrefixofRetailCommodityNumber(int code){
->>>>>>> xiaobaicoding-master
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -1832,268 +1799,275 @@ public class RecoDao {
 		}
 		return ret;
 	}
-<<<<<<< HEAD
-=======
-	
-	///烟草机械(195)
-		public boolean getTobaccoMachineryID(String id){
-			Connection	connection = JdbcUtils.getConnection();
-			PreparedStatement stmt = null;
-			ResultSet results = null;
-			boolean ret = false;
-			try {
-				stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
-				stmt.setString(1, id);
-				results = stmt.executeQuery();
-				int rowcount = 0;
-				while (results.next()) {
-					rowcount++;				
-				}
-				if(1 == rowcount){
-					ret =  true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				JdbcUtils.free(null, null, connection);
+
+	// 280-——中央党政机关代码编制方法 查表数据库
+	public boolean getPortTariff280(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF280);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
 			}
-			return ret;
-		}
-		//280-——中央党政机关代码编制方法   查表数据库
-		public boolean getPortTariff280(String code) {
-			Connection connection = JdbcUtils.getConnection();
-			PreparedStatement stmt = null;
-			ResultSet results = null;
-			boolean ret = false;
-			try{
-				stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF280);
-				int i = 1;
-				stmt.setString(i, code);
-			    results = stmt.executeQuery();
-				int rowcount = 0;
-				while (results.next()) {
-					rowcount++;				
-				}
-				if(1 == rowcount){
-					ret =  true;
-					System.out.println("results="+results.toString());
-				} 
-			}catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				JdbcUtils.free(null, null, connection);
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
 			}
-			return ret;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
 		}
-//		281-——珠宝玉石及金属产品分类代码编制方法   查表数据库
-		public boolean getPortTariff281(String code) {
-			Connection connection = JdbcUtils.getConnection();
-			PreparedStatement stmt = null;
-			ResultSet results = null;
-			boolean ret = false;
-			try{
-				stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa281);
-				int i = 1;
-				stmt.setString(i, code);
-			    results = stmt.executeQuery();
-				int rowcount = 0;
-				while (results.next()) {
-					rowcount++;				
-				}
-				if(1 == rowcount){
-					ret =  true;
-					System.out.println("results="+results.toString());
-				} 
-			}catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				JdbcUtils.free(null, null, connection);
+		return ret;
+	}
+
+	// 281-——珠宝玉石及金属产品分类代码编制方法 查表数据库
+	public boolean getPortTariff281(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa281);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
 			}
-			return ret;
-		}
-		//281-——珠宝玉石及金属材质分类代码编制方法   查表数据库
-		public boolean getPortTariffMa281(String code) {
-			Connection connection = JdbcUtils.getConnection();
-			PreparedStatement stmt = null;
-			ResultSet results = null;
-			boolean ret = false;
-			try{
-				stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa281);
-				int i = 1;
-				stmt.setString(i, code);
-			    results = stmt.executeQuery();
-				int rowcount = 0;
-				while (results.next()) {
-					rowcount++;				
-				}
-				if(1 == rowcount){
-					ret =  true;
-					System.out.println("results="+results.toString());
-				} 
-			}catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				JdbcUtils.free(null, null, connection);
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
 			}
-			return ret;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
 		}
-		//282-——信息安全技术代码编制方法   查表数据库
-		public boolean getPortTariffMa282(String code) {
-			Connection connection = JdbcUtils.getConnection();
-			PreparedStatement stmt = null;
-			ResultSet results = null;
-			boolean ret = false;
-			try{
-				stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa282);
-				int i = 1;
-				stmt.setString(i, code);
-			    results = stmt.executeQuery();
-				int rowcount = 0;
-				while (results.next()) {
-					rowcount++;				
-				}
-				if(1 == rowcount){
-					ret =  true;
-					System.out.println("results="+results.toString());
-				} 
-			}catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				JdbcUtils.free(null, null, connection);
+		return ret;
+	}
+
+	// 281-——珠宝玉石及金属材质分类代码编制方法 查表数据库
+	public boolean getPortTariffMa281(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa281);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
 			}
-			return ret;
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
 		}
-		//284-——社会经济目标分类和代码表  查表数据库
-				public boolean getPortTariffMa284(String code) {
-					Connection connection = JdbcUtils.getConnection();
-					PreparedStatement stmt = null;
-					ResultSet results = null;
-					boolean ret = false;
-					try{
-						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa284);
-						int i = 1;
-						stmt.setString(i, code);
-					    results = stmt.executeQuery();
-						int rowcount = 0;
-						while (results.next()) {
-							rowcount++;				
-						}
-						if(1 == rowcount){
-							ret =  true;
-							System.out.println("results="+results.toString());
-						} 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}finally{
-						JdbcUtils.free(null, null, connection);
-					}
-					return ret;
-				}
-				//285-——物流信息分类和代码表  查表数据库
-				public boolean getPortTariffMa285(String code) {
-					Connection connection = JdbcUtils.getConnection();
-					PreparedStatement stmt = null;
-					ResultSet results = null;
-					boolean ret = false;
-					try{
-						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa285);
-						int i = 1;
-						stmt.setString(i, code);
-					    results = stmt.executeQuery();
-						int rowcount = 0;
-						while (results.next()) {
-							rowcount++;				
-						}
-						if(1 == rowcount){
-							ret =  true;
-							System.out.println("results="+results.toString());
-						} 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}finally{
-						JdbcUtils.free(null, null, connection);
-					}
-					return ret;
-				}
-				
-				//287-——服装分类和代码表  查表数据库
-				public boolean getPortTariffMa287(String code) {
-					Connection connection = JdbcUtils.getConnection();
-					PreparedStatement stmt = null;
-					ResultSet results = null;
-					boolean ret = false;
-					try{
-						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa287);
-						int i = 1;
-						stmt.setString(i, code);
-					    results = stmt.executeQuery();
-						int rowcount = 0;
-						while (results.next()) {
-							rowcount++;				
-						}
-						if(1 == rowcount){
-							ret =  true;
-							System.out.println("results="+results.toString());
-						} 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}finally{
-						JdbcUtils.free(null, null, connection);
-					}
-					return ret;
-				}
-				//288-——服装分类和代码表  查表数据库
-				public boolean getPortTariffMa288(String code) {
-					Connection connection = JdbcUtils.getConnection();
-					PreparedStatement stmt = null;
-					ResultSet results = null;
-					boolean ret = false;
-					try{
-						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa288);
-						int i = 1;
-						stmt.setString(i, code);
-					    results = stmt.executeQuery();
-						int rowcount = 0;
-						while (results.next()) {
-							rowcount++;				
-						}
-						if(1 == rowcount){
-							ret =  true;
-							System.out.println("results="+results.toString());
-						} 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}finally{
-						JdbcUtils.free(null, null, connection);
-					}
-					return ret;
-				}
-				//291-——医药器械分类和代码表  查表数据库
-				public boolean getPortTariffMa291(String code) {
-					Connection connection = JdbcUtils.getConnection();
-					PreparedStatement stmt = null;
-					ResultSet results = null;
-					boolean ret = false;
-					try{
-						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa191);
-						int i = 1;
-						stmt.setString(i, code);
-					    results = stmt.executeQuery();
-						int rowcount = 0;
-						while (results.next()) {
-							rowcount++;				
-						}
-						if(1 == rowcount){
-							ret =  true;
-							System.out.println("results="+results.toString());
-						} 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}finally{
-						JdbcUtils.free(null, null, connection);
-					}
-					return ret;
-				}
-	
->>>>>>> xiaobaicoding-master
+		return ret;
+	}
+
+	// 282-——信息安全技术代码编制方法 查表数据库
+	public boolean getPortTariffMa282(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa282);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 284-——社会经济目标分类和代码表 查表数据库
+	public boolean getPortTariffMa284(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa284);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 285-——物流信息分类和代码表 查表数据库
+	public boolean getPortTariffMa285(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa285);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 287-——服装分类和代码表 查表数据库
+	public boolean getPortTariffMa287(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa287);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 288-——服装分类和代码表 查表数据库
+	public boolean getPortTariffMa288(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa288);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 291-——医药器械分类和代码表 查表数据库
+	public boolean getPortTariffMa291(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa191);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 烟草机械电气配置和技术文件代码附录C表查询
+	public boolean getPrefixoftabaccoC(int code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_tabaccoC);
+			int i = 1;
+			stmt.setInt(i++, code);
+			stmt.setInt(i++, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }
