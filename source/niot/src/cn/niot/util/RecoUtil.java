@@ -62,7 +62,6 @@ public class RecoUtil {
 	//EANUPC代码随机一条记录
 	public static final String SELECT_RANDOMEANUPC = "select floor(rand()*(endcode-begincode)+begincode) as code from (select * from EANUPC where rowno >= (select floor(rand()*(max(rowno)-min(rowno))) + min(rowno) from EANUPC) limit 1) t";
 	
-<<<<<<< HEAD
 	public static final String SELECT_TYPEANDRULES = "select * from iotid";
 	
 	//烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
@@ -196,8 +195,7 @@ public class RecoUtil {
 	
 	//卫生监督机构职工类别代码(220)
 	public static final String SELECT_WORKERHEALTHSUPERVISION = "select * from workerhealthsupervision where id=?";
-=======
-	public static final String SELECT_TYPEANDRULES="select * from iotid";
+
 	//殡葬服务分类的一条记录
 	public static final String SELECT_FUNERALSERVICE = "select * from funeralservice where id=?";
 	
@@ -206,7 +204,6 @@ public class RecoUtil {
 	
 	//殡葬设施用品的一条记录
 	public static final String SELECT_SUPPLIES = "select * from funeralsupplies where id=?";
->>>>>>> xiaobaicoding-master
 	
 	//、没有匹配成功任何一种标识
 	public static final int NO_ID_MATCHED = 0;

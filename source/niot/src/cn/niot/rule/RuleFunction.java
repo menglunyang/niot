@@ -25,19 +25,19 @@ public class RuleFunction {
 		IDstr[3] = '0';
 		IDstr[4] = '0';
 		IDstr[5] = '0';
-		
+
 		IDstr[6] = '1';
-		
+
 		IDstr[7] = '0';
 		IDstr[8] = '1';
 		IDstr[9] = '0';
 		IDstr[10] = '0';
 		IDstr[11] = '0';
 		IDstr[12] = '0';
-		
+
 		IDstr[13] = '0';
 		IDstr[14] = '0';
-		
+
 		int[] index = new int[7];
 		index[0] = 6;
 		index[1] = 7;
@@ -48,7 +48,6 @@ public class RuleFunction {
 		index[6] = 12;
 		System.out.println(FuneralInterment(IDstr, 15, index, 7));
 	}
-
 
 	// Function: represent a decimal integer whose value range is from 1 to 99
 	// IDstr: ID string
@@ -129,10 +128,6 @@ public class RuleFunction {
 		return "OK";
 	}
 
-	
-	
-	
-	
 	private static boolean checkInputParam(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -2437,7 +2432,6 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-<<<<<<< HEAD
 
 	// Function: 烟用材料分类代码与产品编码
 	// IDstr: 标识编码
@@ -2667,23 +2661,24 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-=======
-	
-	//殡葬服务、设施、用品分类与代码   第6-12位对应规则
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// 殡葬服务、设施、用品分类与代码 第6-12位对应规则
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度 15位
 	// Index: 调用验证算法的索引位置
 	// LenIndex:7
-	//creator:zt
-	public static String FuneralInterment(char[] IDstr, int LenID, int[] Index, int LenIndex)
-	{
+	// creator:zt
+	public static String FuneralInterment(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
-			{
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 7) 
-			{
+			if (LenIndex != 7) {
 				return ERR;
 			}
 			String id = "";
@@ -2691,93 +2686,78 @@ public class RuleFunction {
 			for (int i = 1; i < LenIndex; i++) {
 				id = id.concat(String.valueOf(IDstr[Index[i]]));
 			}
-			if (IDstr[Index[0]] == '1')
-			{
-				boolean ret = recoDao.getFuneral(id,RecoUtil.SELECT_FUNERALSERVICE);
-				if (ret) 
-				{
+			if (IDstr[Index[0]] == '1') {
+				boolean ret = recoDao.getFuneral(id,
+						RecoUtil.SELECT_FUNERALSERVICE);
+				if (ret) {
 					return OK;
-				} 
-				else
+				} else
 					return ERR;
-			} 
-			else if (IDstr[Index[0]] == '2')
-			{
-				boolean ret = recoDao.getFuneral(id,RecoUtil.SELECT_FUNERALFACILITIES);
-				if (ret) 
-				{
+			} else if (IDstr[Index[0]] == '2') {
+				boolean ret = recoDao.getFuneral(id,
+						RecoUtil.SELECT_FUNERALFACILITIES);
+				if (ret) {
 					return OK;
-				} 
-				else
+				} else
 					return ERR;
-			} 
-			else if (IDstr[Index[0]] == '3') 
-			{
-				boolean ret = recoDao.getFuneral(id,RecoUtil.SELECT_SUPPLIES);
-				if (ret) 
-				{
+			} else if (IDstr[Index[0]] == '3') {
+				boolean ret = recoDao.getFuneral(id, RecoUtil.SELECT_SUPPLIES);
+				if (ret) {
 					return OK;
-				} 
-				else
+				} else
 					return ERR;
-			} 
+			}
 			return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
-	// Function: 实现校验 MOD 97-10 
+
+	// Function: 实现校验 MOD 97-10
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes 固定长13
 	// Creator:zt
-	public static String MOD9710(char[] IDstr, int LenID, int[] Index,int LenIndex) {
+	public static String MOD9710(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
-			{
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 15) 
-			{
+			if (LenIndex != 15) {
 				return ERR;
 			}
 			String id1 = "";
 			String id2 = "";
-			//RecoDao recoDao = new RecoDao();
+			// RecoDao recoDao = new RecoDao();
 			for (int i = 0; i < 13; i++) {
 				id1 = id1.concat(String.valueOf(IDstr[Index[i]]));
 			}
-			
-			System.out.println("str id1="+id1);
-			
-			
+
+			System.out.println("str id1=" + id1);
+
 			for (int i = 13; i < 15; i++) {
 				id2 = id2.concat(String.valueOf(IDstr[Index[i]]));
 			}
-			
-			System.out.println("str id2="+id2);
-			
+
+			System.out.println("str id2=" + id2);
+
 			double input = Double.parseDouble(id1);
 			double output = Double.parseDouble(id2);
-			
-			System.out.println("int input="+input);
-			System.out.println("int output="+output);
-			
-			if ((98-(input*100) % 97) == output)
-			{
+
+			System.out.println("int input=" + input);
+			System.out.println("int output=" + output);
+
+			if ((98 - (input * 100) % 97) == output) {
 				return OK;
 			}
-
 			return ERR;
->>>>>>> xiaobaicoding-master
 		} catch (Exception e) {
 			return ERR;
 		}
 	}
-<<<<<<< HEAD
 
 	// Function: 402 fire information
 	// LenID: the number of characters in the ID string
@@ -2870,95 +2850,86 @@ public class RuleFunction {
 					|| i == 9000) {
 				return OK;
 			} else
-=======
-	
-	//91-中国煤炭编码系统   第1-12位对应规则
-	// IDstr: 标识编码
-	// LenID: 标识编码的长度 12位
-	// Index: 调用验证算法的索引位置
-	// LenIndex:12
-	//creator:fdl
-	public static String CoalInterment(char[] IDstr, int LenID, int[] Index, int LenIndex)
-	{
-		try {
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
-			{
-				return ERR;
-			}
-			if (LenIndex != 12) 
-			{
-				return ERR;
-			}
-			if ((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
-					||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
-					||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
-					||(IDstr[Index[0]] == '1' && IDstr[Index[1]] == '9')
-					||(IDstr[Index[0]] == '5' && IDstr[Index[1]] == '0'))
-			{
-				if ((IDstr[Index[2]] == '2' && IDstr[Index[3]] == '4')
-						||(IDstr[Index[2]] == '2' && IDstr[Index[3]] == '5')
-						||(IDstr[Index[2]] == '3' && IDstr[Index[3]] == '5')
-						||(IDstr[Index[2]] == '3' && IDstr[Index[3]] == '9')
-						||(IDstr[Index[2]] == '1' && IDstr[Index[3]] == '1')
-						||(IDstr[Index[2]] == '1' && IDstr[Index[3]] == '2')
-						||(IDstr[Index[2]] == '1' && IDstr[Index[3]] == '3')
-						||(IDstr[Index[2]] == '2' && IDstr[Index[3]] == '2')
-						||(IDstr[Index[2]] == '2' && IDstr[Index[3]] == '3'))
-				{
-					if((IDstr[Index[4]] == '0' && IDstr[Index[5]] == '1')
-							||(IDstr[Index[4]] == '0' && IDstr[Index[5]] == '2')
-							||(IDstr[Index[4]] == '0' && IDstr[Index[5]] == '9')
-							||(IDstr[Index[4]] == '1' && IDstr[Index[5]] == '0')
-							||(IDstr[Index[4]] == '4' && IDstr[Index[5]] == '9'))
-					{
-						return OK;
-					}
-					
-				} 
-				else
-					return ERR;
-				
-			
-
-			} 
-			else return ERR;
-			
-			if(IDstr[Index[6]] == '0' || IDstr[Index[6]] == '1' || IDstr[Index[6]] == '2'
-				|| IDstr[Index[6]] == '3' || IDstr[Index[6]] == '4' || IDstr[Index[6]] == '5'
-					|| IDstr[Index[6]] == '6')
-			{
-				return OK;
-			}
-//			else return ERR;
-			
-			if(IDstr[Index[7]] == '1' || IDstr[Index[7]] == '2' || IDstr[Index[7]] == '3'
-				|| IDstr[Index[7]] == '4' || IDstr[Index[7]] == '5')
-			{
-				return OK;
-			}
-			if((IDstr[Index[8]] == '0' && IDstr[Index[9]] == '0')
-					||(IDstr[Index[8]] == '0' && IDstr[Index[9]] == '1')
-					||(IDstr[Index[8]] == '0' && IDstr[Index[9]] == '2')
-					||(IDstr[Index[8]] == '2' && IDstr[Index[9]] == '9')
-					||(IDstr[Index[8]] == '3' && IDstr[Index[9]] == '0'))
-			{
-				if((IDstr[Index[10]] == '0' && IDstr[Index[11]] == '0')
-						||(IDstr[Index[10]] == '0' && IDstr[Index[11]] == '1')
-						||(IDstr[Index[10]] == '0' && IDstr[Index[11]] == '2')
-						||(IDstr[Index[10]] == '3' && IDstr[Index[11]] == '1')
-						||(IDstr[Index[10]] == '3' && IDstr[Index[11]] == '2'))
-				{
-					return OK;
-				}
-			}
-			
->>>>>>> xiaobaicoding-master
 				return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}
 	}
-<<<<<<< HEAD
+
+	// 91-中国煤炭编码系统 第1-12位对应规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 12位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:12
+	// creator:fdl
+	public static String CoalInterment(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 12) {
+				return ERR;
+			}
+			if ((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+					|| (IDstr[Index[0]] == '1' && IDstr[Index[1]] == '9')
+					|| (IDstr[Index[0]] == '5' && IDstr[Index[1]] == '0')) {
+				if ((IDstr[Index[2]] == '2' && IDstr[Index[3]] == '4')
+						|| (IDstr[Index[2]] == '2' && IDstr[Index[3]] == '5')
+						|| (IDstr[Index[2]] == '3' && IDstr[Index[3]] == '5')
+						|| (IDstr[Index[2]] == '3' && IDstr[Index[3]] == '9')
+						|| (IDstr[Index[2]] == '1' && IDstr[Index[3]] == '1')
+						|| (IDstr[Index[2]] == '1' && IDstr[Index[3]] == '2')
+						|| (IDstr[Index[2]] == '1' && IDstr[Index[3]] == '3')
+						|| (IDstr[Index[2]] == '2' && IDstr[Index[3]] == '2')
+						|| (IDstr[Index[2]] == '2' && IDstr[Index[3]] == '3')) {
+					if ((IDstr[Index[4]] == '0' && IDstr[Index[5]] == '1')
+							|| (IDstr[Index[4]] == '0' && IDstr[Index[5]] == '2')
+							|| (IDstr[Index[4]] == '0' && IDstr[Index[5]] == '9')
+							|| (IDstr[Index[4]] == '1' && IDstr[Index[5]] == '0')
+							|| (IDstr[Index[4]] == '4' && IDstr[Index[5]] == '9')) {
+						return OK;
+					}
+
+				} else
+					return ERR;
+
+			} else
+				return ERR;
+
+			if (IDstr[Index[6]] == '0' || IDstr[Index[6]] == '1'
+					|| IDstr[Index[6]] == '2' || IDstr[Index[6]] == '3'
+					|| IDstr[Index[6]] == '4' || IDstr[Index[6]] == '5'
+					|| IDstr[Index[6]] == '6') {
+				return OK;
+			}
+			// else return ERR;
+
+			if (IDstr[Index[7]] == '1' || IDstr[Index[7]] == '2'
+					|| IDstr[Index[7]] == '3' || IDstr[Index[7]] == '4'
+					|| IDstr[Index[7]] == '5') {
+				return OK;
+			}
+			if ((IDstr[Index[8]] == '0' && IDstr[Index[9]] == '0')
+					|| (IDstr[Index[8]] == '0' && IDstr[Index[9]] == '1')
+					|| (IDstr[Index[8]] == '0' && IDstr[Index[9]] == '2')
+					|| (IDstr[Index[8]] == '2' && IDstr[Index[9]] == '9')
+					|| (IDstr[Index[8]] == '3' && IDstr[Index[9]] == '0')) {
+				if ((IDstr[Index[10]] == '0' && IDstr[Index[11]] == '0')
+						|| (IDstr[Index[10]] == '0' && IDstr[Index[11]] == '1')
+						|| (IDstr[Index[10]] == '0' && IDstr[Index[11]] == '2')
+						|| (IDstr[Index[10]] == '3' && IDstr[Index[11]] == '1')
+						|| (IDstr[Index[10]] == '3' && IDstr[Index[11]] == '2')) {
+					return OK;
+				}
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 
 	// Function: 393 fire information
 	// LenID: the number of characters in the ID string
@@ -3000,87 +2971,12 @@ public class RuleFunction {
 	public static String FireInfoori(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
-=======
-	
-	//90-商品条码——参与方位编码与条码表示   第13校验码
-		// IDstr: 标识编码
-		// LenID: 标识编码的长度 13位
-		// Index: 调用验证算法的索引位置
-		// LenIndex:13
-		//creator:fdl
-		public static String CheckCodebarcode(char[] IDstr, int LenID, int[] Index, int LenIndex){
-			try {
-				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
-				{
-					return ERR;
-				}
-				if (LenIndex != 13) 
-				{
-					return ERR;
-				}
-				String id1 = "";
-				int sum =0;
-				int sum1=0;//偶数序号位上的数值和
-				int sum2=0;//奇数序号位上的数值和
-				int dd=0;//sum和整除中间数
-				int code=0;//最后一位验证码
-				
-				for (int i = 1; i <12; i++) {
-					if(i%2==1){
-						sum1=sum1 +(IDstr[i]);
-						sum1=sum1-48;//字符转化为整形
-						System.out.println((int)IDstr[i]);
-					}
-				}
-				System.out.println("sum1="+sum1);
-				sum1=sum1*3;
-				for (int i = 0; i <11; i++) {
-					if(i%2==0){
-						sum2+=IDstr[i];
-						sum2=sum2-48;//字符转化为整形
-						System.out.println(IDstr[i]);
-					}
-				}
-				
-				System.out.println("sum2="+sum2);
-				sum=sum1+sum2;
-				System.out.println("sum="+sum);
-				dd=sum/10;
-				dd+=1;
-				dd=dd*10;
-				code=dd-sum;
-				if(code==10){
-					if((int)IDstr[12]-48==0){
-						return OK;
-					}
-				}
-				System.out.println("验证码位="+code);
-				if(code==(int)IDstr[12]-48){
-					return OK;
-				}
-				
-				return ERR;
-			} catch (Exception e) {
-				return ERR;
-			}
-		}
-	
-		//195-烟草机械——产品工艺文件代码编制方法   查表数据库
-				// IDstr: 标识编码
-				// LenID: 标识编码的长度3位
-				// Index: 调用验证算法的索引位置
-				// LenIndex:a3
-				//creator:fdl
-		public static String Tobaccomachinery(char[] IDstr, int LenID, int[] Index,
-				int LenIndex){
->>>>>>> xiaobaicoding-master
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
 			if (LenIndex != 3) {
 				return ERR;
 			}
-<<<<<<< HEAD
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
 			int index3 = (int) IDstr[Index[2]] - 48;
@@ -3107,6 +3003,96 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
+	}
+
+	// 90-商品条码——参与方位编码与条码表示 第13校验码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 13位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:13
+	// creator:fdl
+	public static String CheckCodebarcode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 13) {
+				return ERR;
+			}
+			String id1 = "";
+			int sum = 0;
+			int sum1 = 0;// 偶数序号位上的数值和
+			int sum2 = 0;// 奇数序号位上的数值和
+			int dd = 0;// sum和整除中间数
+			int code = 0;// 最后一位验证码
+
+			for (int i = 1; i < 12; i++) {
+				if (i % 2 == 1) {
+					sum1 = sum1 + (IDstr[i]);
+					sum1 = sum1 - 48;// 字符转化为整形
+					System.out.println((int) IDstr[i]);
+				}
+			}
+			System.out.println("sum1=" + sum1);
+			sum1 = sum1 * 3;
+			for (int i = 0; i < 11; i++) {
+				if (i % 2 == 0) {
+					sum2 += IDstr[i];
+					sum2 = sum2 - 48;// 字符转化为整形
+					System.out.println(IDstr[i]);
+				}
+			}
+
+			System.out.println("sum2=" + sum2);
+			sum = sum1 + sum2;
+			System.out.println("sum=" + sum);
+			dd = sum / 10;
+			dd += 1;
+			dd = dd * 10;
+			code = dd - sum;
+			if (code == 10) {
+				if ((int) IDstr[12] - 48 == 0) {
+					return OK;
+				}
+			}
+			System.out.println("验证码位=" + code);
+			if (code == (int) IDstr[12] - 48) {
+				return OK;
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// 195-烟草机械——产品工艺文件代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度3位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:a3
+	// creator:fdl
+	public static String Tobaccomachinery(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 3) {
+			return ERR;
+		}
+		try {
+			int code = IDstr[Index[0]] + IDstr[Index[1] - 96];
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPrefixofRetailCommodityNumber(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+
 	}
 
 	// Function: 384 fire information
@@ -6375,7 +6361,7 @@ public class RuleFunction {
 			return ERR;
 
 	}
-	
+
 	// Function: 01-17,99
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -8596,8 +8582,8 @@ public class RuleFunction {
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 固定长2
 	// Creator:zll
-	public static String TobaccoLeafColor(char[] IDstr,
-			int LenID, int[] Index, int LenIndex) {
+	public static String TobaccoLeafColor(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8619,15 +8605,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 烟叶代码第5部分烟叶颜色代码(204)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 固定长2
 	// Creator:zll
-	public static String TrafficOrganization(char[] IDstr,
-			int LenID, int[] Index, int LenIndex) {
+	public static String TrafficOrganization(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8649,15 +8635,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 烟叶代码第2部分烟叶形态代码(207)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 固定长3
 	// Creator:zll
-	public static String TobaccoLeafForm(char[] IDstr,
-			int LenID, int[] Index, int LenIndex) {
+	public static String TobaccoLeafForm(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8679,15 +8665,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 烟叶代码第1部分烟叶分类与代码(208)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 固定长5
 	// Creator:zll
-	public static String TobaccoLeafClass(char[] IDstr,
-			int LenID, int[] Index, int LenIndex) {
+	public static String TobaccoLeafClass(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8709,15 +8695,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 儿童大便性状代码(213)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
-	public static String ChildrenExcrement(char[] IDstr,
-			int LenID, int[] Index, int LenIndex) {
+	public static String ChildrenExcrement(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8739,7 +8725,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 01-11 90
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -8767,15 +8753,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 饮酒频率代码(214)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
-	public static String DrinkingFrequency(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String DrinkingFrequency(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8797,7 +8783,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 饮酒频率代码(214)
 	// IDstr: ID string
 	// LenID: 标识编码
@@ -8827,15 +8813,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 饮酒频率代码(214)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
-	public static String PhysicalActivityFrequency(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String PhysicalActivityFrequency(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8857,15 +8843,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 妊娠终止方式代码表(215)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
-	public static String TerminationofPregnancy(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String TerminationofPregnancy(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8887,7 +8873,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 妊娠终止方式代码表(215)
 	// IDstr: ID string
 	// LenID: 标识编码
@@ -8917,7 +8903,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 分娩地点类别代码(215)
 	// IDstr: ID string
 	// LenID: 标识编码
@@ -8947,15 +8933,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 卫生信息数据元值域代码第17部分：卫生管理(218)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为2-8
 	// Creator:zll
-	public static String HealthSupervisionObject(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String HealthSupervisionObject(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8977,15 +8963,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 交通工具代码(219)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
-	public static String CommunicationCode(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String CommunicationCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -9007,15 +8993,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 卫生监督机构人员编制类别代码(220)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
-	public static String HygieneAgencyPersonnel(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String HygieneAgencyPersonnel(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -9037,15 +9023,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 卫生监督机构人员编制类别代码(220)
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
-	public static String WorkerHealthSupervision(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String WorkerHealthSupervision(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -9067,184 +9053,168 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
-	
-=======
-			try{
-				int code = IDstr[Index[0]]+IDstr[Index[1]-96];
-				RecoDao recoDao = new RecoDao();
-				boolean ret = recoDao.getPrefixofRetailCommodityNumber(code);
-				if (ret) {
-					return OK;
-				} else
-					return ERR;
-			}catch (Exception e) {
-				return ERR;
-			}
-			
-		}
 
-		// Function: represent a decimal integer whose value range is from 1 to 399
-		// IDstr: ID string
-		// LenID: the number of characters in the ID string
-		// Index: the list of corresponding indexes regarding to this algorithm
-		// LenIndex: the number of indexes
-		// Creator: fdl
-		public static String ThreeByteDecimalnt1(char[] IDstr, int LenID,
-				int[] Index, int LenIndex) {
-			try {
-				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-					return ERR;
+	// Function: represent a decimal integer whose value range is from 1 to 399
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator: fdl
+	public static String ThreeByteDecimalnt1(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			int index1 = Index[0];
+			int index2 = Index[1];
+			int index3 = Index[2];
+			if ((IDstr[index1] == '0') && (IDstr[index2] == '0')
+					&& (IDstr[index3] == '0')) {
+				return ERR;
+			}
+			if ((IDstr[index1] < '3') || (IDstr[index1] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+				return ERR;
+			}
+			return OK;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 实现校验15位数17710
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:方丹丽
+	// 检验例子码110108000000016
+	public static String BussManaCheck(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 15) {
+				return ERR;
+			}
+			int[] a = new int[15];
+			for (int i = 0; i < 15; i++) {
+				a[14 - i] = IDstr[i] - 48;
+			}
+			int[] p = new int[15];
+			int[] s = new int[15];
+			p[0] = 10;
+			for (int i = 0; i < 14; i++) {
+				s[i] = p[i] % 11 + a[14 - i];
+				p[i + 1] = (s[i] % 10) * 2;
+
+				if (s[i] % 10 == 0) {
+					p[i + 1] = 20;
 				}
-				if (LenIndex != 3) {
-					return ERR;
-				}
-				int index1 = Index[0];
-				int index2 = Index[1];
-				int index3 = Index[2];
-				if ((IDstr[index1] == '0') && (IDstr[index2] == '0')
-						&& (IDstr[index3] == '0')) {
-					return ERR;
-				}
-				if ((IDstr[index1] < '3') || (IDstr[index1] > '9')) {
-					return ERR;
-				}
-				if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
-					return ERR;
-				}
-				if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
-					return ERR;
-				}
+				System.out.println("s[i]=" + s[i]);
+				System.out.println("p[i]=" + p[i]);
+			}
+			p[14] = (s[13] % 10) * 2;
+			System.out.println("p[14]=" + p[14]);
+			s[14] = p[14] % 11 + a[0];
+			System.out.println("s[14]=" + s[14]);
+
+			if (s[14] % 10 == 1) {
 				return OK;
-			} catch (Exception e) {
+			}
+
+			return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 实现校验N位数校验
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:方丹丽
+	public static String Mod36_37(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-		}
-		
-		// Function: 实现校验15位数17710
-		// IDstr: ID string
-		// LenID: the number of characters in the ID string
-		// Index: the list of corresponding indexes regarding to this algorithm
-		// LenIndex: the number of indexes
-		// Creator:方丹丽  
-		//检验例子码110108000000016
-		public static String BussManaCheck(char[] IDstr, int LenID, int[] Index,int LenIndex) {
-			try {
-				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-					return ERR;
-				}
-				if (LenIndex != 15) {
-					return ERR ;
-				}
-				int[] a =new int[15];
-				for(int i=0;i<15;i++){
-					a[14-i]=IDstr[i]-48;
-				}
-				int[] p =new int[15];
-				int[] s =new int[15];
-				p[0]=10;
-				for(int i=0;i<14;i++){
-					s[i]=p[i]%11+ a[14-i];
-					p[i+1]=(s[i]%10)*2;
-					
-					if(s[i]%10==0){
-						p[i+1]=20;
-					}
-					System.out.println("s[i]="+s[i]);
-					System.out.println("p[i]="+p[i]);
-				}
-				p[14]=(s[13]%10)*2;
-				System.out.println("p[14]="+p[14]);
-				s[14]=p[14]%11+a[0];
-				System.out.println("s[14]="+s[14]);
-				
-				if(s[14]%10==1){
-					return OK;
-				}
-				
-				return ERR;
-				
-			} catch (Exception e) {
+			if (LenIndex != 15) {
 				return ERR;
 			}
+			int[] a = new int[15];
+			for (int i = 0; i < 15; i++) {
+				a[14 - i] = IDstr[i] - 48;
+			}
+			int[] p = new int[15];
+			int[] s = new int[15];
+			int r = 2;
+			p[0] = 0;
+
+			for (int i = 0; i < 14; i++) {
+				s[i] = p[i] + a[14 - i];
+				p[i + 1] = s[i] * r;
+				System.out.println("s[i]=" + s[i]);
+				System.out.println("p[i]=" + p[i]);
+			}
+
+			if ((p[14] + a[0]) % 36 == 1 || (p[14] + a[0]) % 37 == 1) {
+				return OK;
+			}
+			System.out.println("(p[14]+a[0])%36=" + (p[14] + a[0]) % 36);
+			System.out.println("(p[14]+a[0])%37=" + (p[14] + a[0]) % 37);
+			return ERR;
+
+		} catch (Exception e) {
+			return ERR;
 		}
-		
-		// Function: 实现校验N位数校验
-				// IDstr: ID string
-				// LenID: the number of characters in the ID string
-				// Index: the list of corresponding indexes regarding to this algorithm
-				// LenIndex: the number of indexes
-				// Creator:方丹丽  
-				public static String Mod36_37(char[] IDstr, int LenID, int[] Index,int LenIndex) {
-					try {
-						if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-							return ERR;
-						}
-						if (LenIndex != 15) {
-							return ERR ;
-						}
-						int[] a =new int[15];
-						for(int i=0;i<15;i++){
-							a[14-i]=IDstr[i]-48;
-						}
-						int[] p =new int[15];
-						int[] s =new int[15];
-						int r=2;
-						p[0]=0;
-						
-						for(int i=0;i<14;i++){
-							s[i]=p[i]+ a[14-i];
-							p[i+1]=s[i]*r;
-							System.out.println("s[i]="+s[i]);
-							System.out.println("p[i]="+p[i]);
-						}
-						
-						if((p[14]+a[0])%36==1 || (p[14]+a[0])%37==1){
-							return OK;
-						}
-						System.out.println("(p[14]+a[0])%36="+(p[14]+a[0])%36);
-						System.out.println("(p[14]+a[0])%37="+(p[14]+a[0])%37);
-						return ERR;
-						
-					} catch (Exception e) {
-						return ERR;
-					}
-				}
-				
-				// Function: 实现校验6位数物流编码
-				// IDstr: ID string
-				// LenID: the number of characters in the ID string
-				// Index: the list of corresponding indexes regarding to this algorithm
-				// LenIndex: the number of indexes
-				// Creator:方丹丽  
-				//校验例子码123450
-				public static String LogisticsCheck(char[] IDstr, int LenID, int[] Index,int LenIndex) {
-					try {
-						if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-							return ERR;
-						}
-						if (LenIndex != 6) {
-							return ERR ;
-						}
-						int[] a =new int[6];
-						int sum=0;
-						for(int i=0;i<6;i++){
-							a[i]=IDstr[i]-48;
-						}
-						sum=5*a[1]+4*a[2]+3*a[3]+2*a[4];
-						
-						System.out.println("sum="+sum);
-						if(sum%11==a[5]){
-							return OK;
-						}
-						
-						return ERR;
-						
-					} catch (Exception e) {
-						return ERR;
-					}
-				}
-		
-		
->>>>>>> xiaobaicoding-master
+	}
+
+	// Function: 实现校验6位数物流编码
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:方丹丽
+	// 校验例子码123450
+	public static String LogisticsCheck(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			int[] a = new int[6];
+			int sum = 0;
+			for (int i = 0; i < 6; i++) {
+				a[i] = IDstr[i] - 48;
+			}
+			sum = 5 * a[1] + 4 * a[2] + 3 * a[3] + 2 * a[4];
+
+			System.out.println("sum=" + sum);
+			if (sum % 11 == a[5]) {
+				return OK;
+			}
+
+			return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 }

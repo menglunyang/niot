@@ -80,7 +80,8 @@ public class RecoDao {
 				if (byteRule.length() != 0) {
 					String[] byteStrArray = byteRule.split(";");
 					for (int i = 0; i < byteStrArray.length; i++) {
-						byteStrArray[i] = "IoTIDByte)(?#PARA=" + byteStrArray[i] + "){]";
+						byteStrArray[i] = "IoTIDByte)(?#PARA="
+								+ byteStrArray[i] + "){]";
 						rules.add(byteStrArray[i]);
 						rmvRuleSet.put(byteStrArray[i], 0.5);// 向rmvRuleSet添加byte规则
 						hashMapTypeToRulesSwitchhashMapRuleToTypes(
@@ -528,27 +529,27 @@ public class RecoDao {
 		}
 		return name;
 	}
-	
-<<<<<<< HEAD
-	//烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
-	public boolean getTobbacoMaterials(String categoryCode, String groupCode){
+
+	// 烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
+	public boolean getTobbacoMaterials(String categoryCode, String groupCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMATERIALS);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOMATERIALS);
 			int i = 1;
 			stmt.setString(i++, categoryCode);
 			stmt.setString(i++, groupCode);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -557,9 +558,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
-	public boolean getFoodTrade(String code){
+
+	// 粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
+	public boolean getFoodTrade(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -568,14 +569,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_FOODTRADE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -584,9 +585,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食加工(18)
-	public boolean getFoodEconomy(String code){
+
+	// 粮食信息分类与编码 粮食加工(18)
+	public boolean getFoodEconomy(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -595,14 +596,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_FOODECONOMY);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -611,9 +612,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食仓储业务统计分类与代码(16)
-	public boolean getGrainStoreHouse(String code){
+
+	// 粮食信息分类与编码 粮食仓储业务统计分类与代码(16)
+	public boolean getGrainStoreHouse(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -622,14 +623,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSTOREHOUSE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -638,9 +639,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 储粮病虫害分类与代码(17)
-	public boolean getGrainsDiseases(String code){
+
+	// 粮食信息分类与编码 储粮病虫害分类与代码(17)
+	public boolean getGrainsDiseases(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -649,14 +650,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSDISEASES);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -665,9 +666,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食加工第1部分：加工作业分类与代码(19)
-	public boolean getGrainsProcess(String code){
+
+	// 粮食信息分类与编码 粮食加工第1部分：加工作业分类与代码(19)
+	public boolean getGrainsProcess(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -676,14 +677,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSPROCESS);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -692,9 +693,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食仓储第3部分：器材分类与代码(20)
-	public boolean getGrainsEquipment(String code){
+
+	// 粮食信息分类与编码 粮食仓储第3部分：器材分类与代码(20)
+	public boolean getGrainsEquipment(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -703,14 +704,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSEQUIPMENT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -719,25 +720,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食仓储第2部分：粮情检测分类与代码(21)
-	public boolean getGrainConditionDetection(String code){
+
+	// 粮食信息分类与编码 粮食仓储第2部分：粮情检测分类与代码(21)
+	public boolean getGrainConditionDetection(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINCONDITIONDETECTION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRAINCONDITIONDETECTION);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -746,9 +748,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食仓储第1部分：仓储作业分类与代码(22)
-	public boolean getgrainsSmartWMS(String code){
+
+	// 粮食信息分类与编码 粮食仓储第1部分：仓储作业分类与代码(22)
+	public boolean getgrainsSmartWMS(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -757,14 +759,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSSMARTWMS);
 			int i = 1;
 			stmt.setString(i, code + "%");
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(rowcount >= 1){
-				ret =  true;
+			if (rowcount >= 1) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -773,25 +775,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食检验第2部分：质量标准分类与代码(26)
-	public boolean getGrainsQualityStandard(String code){
+
+	// 粮食信息分类与编码 粮食检验第2部分：质量标准分类与代码(26)
+	public boolean getGrainsQualityStandard(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRIANQUALITYSTANDARD);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRIANQUALITYSTANDARD);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -800,25 +803,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//计量器具命名与分类编码(32)
-	public boolean getMeasuringInstrument(String code){
+
+	// 计量器具命名与分类编码(32)
+	public boolean getMeasuringInstrument(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_MEASURINGINSTRUMENT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MEASURINGINSTRUMENT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -827,9 +831,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食检验 第1部分：指标分类与代码(27)
-	public boolean getGrainsIndex(String code){
+
+	// 粮食信息分类与编码 粮食检验 第1部分：指标分类与代码(27)
+	public boolean getGrainsIndex(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -838,14 +842,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSINDEX);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -854,25 +858,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食及加工产品分类与代码(28)
-	public boolean getGrainsInformation(String code){
+
+	// 粮食信息分类与编码 粮食及加工产品分类与代码(28)
+	public boolean getGrainsInformation(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSINFORMATION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRAINSINFORMATION);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -881,9 +886,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食属性分类与代码(29)
-	public boolean getGrainsAttribute(String code){
+
+	// 粮食信息分类与编码 粮食属性分类与代码(29)
+	public boolean getGrainsAttribute(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -892,14 +897,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSATTRIBUTE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -908,25 +913,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
-	public boolean getGrainsAdministrative(String code){
+
+	// 粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
+	public boolean getGrainsAdministrative(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSADMINISTRATIVE);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRAINSADMINISTRATIVE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -935,25 +941,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//建筑产品分类和代码(34)
-	public boolean getConstructionProducts(String code){
+
+	// 建筑产品分类和代码(34)
+	public boolean getConstructionProducts(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_CONSTRUCTIONPRODUCTS);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_CONSTRUCTIONPRODUCTS);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -962,9 +969,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//导航电子地图数据分类与编码(45)
-	public boolean getElectronicMap(String code){
+
+	// 导航电子地图数据分类与编码(45)
+	public boolean getElectronicMap(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -973,14 +980,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_ELECTRONICMAP);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -989,25 +996,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//地理信息分类与编码规则(56)
-	public boolean getGeographicInformation(String code){
+
+	// 地理信息分类与编码规则(56)
+	public boolean getGeographicInformation(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GEOGRAPHICINFORMATION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GEOGRAPHICINFORMATION);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1016,25 +1024,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//纺织面料编码化纤部分(64)
-	public boolean getTextileFabricNameCode(String code){
+
+	// 纺织面料编码化纤部分(64)
+	public boolean getTextileFabricNameCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TETILEFABRICNAME);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TETILEFABRICNAME);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1043,25 +1052,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//纺织面料属性代码(64)机织物X1X2
-	public boolean getPropertiesMainMaterial(String code){
+
+	// 纺织面料属性代码(64)机织物X1X2
+	public boolean getPropertiesMainMaterial(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESMAINMATERIAL);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROPERTIESMAINMATERIAL);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1070,9 +1080,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//纺织面料属性代码(64)非织造布X1X2
-	public boolean getPropertiesMain(String code){
+
+	// 纺织面料属性代码(64)非织造布X1X2
+	public boolean getPropertiesMain(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -1081,14 +1091,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESMAIN);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1097,25 +1107,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//纺织面料属性代码(64)纤维特征 X3X4
-	public boolean getPropertiesFiberCharacteristics(String code){
+
+	// 纺织面料属性代码(64)纤维特征 X3X4
+	public boolean getPropertiesFiberCharacteristics(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIERFIBERCHARACTERS);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROPERTIERFIBERCHARACTERS);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1124,9 +1135,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//纺织面料属性代码(64)X7X8纤网固结方式
-	public boolean getPropertiesMix(String code){
+
+	// 纺织面料属性代码(64)X7X8纤网固结方式
+	public boolean getPropertiesMix(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -1135,14 +1146,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESMIX);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1151,25 +1162,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//纺织面料属性代码(64)X9X10 01-19 99
-	public boolean getPropertiesFabric(String code){
+
+	// 纺织面料属性代码(64)X9X10 01-19 99
+	public boolean getPropertiesFabric(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESFABRIC);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROPERTIESFABRIC);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1178,25 +1190,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//纺织面料属性代码(64)X11X12
-	public boolean getPropertiesDyeingandFinishing(String code){
+
+	// 纺织面料属性代码(64)X11X12
+	public boolean getPropertiesDyeingandFinishing(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESDYEING);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROPERTIESDYEING);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1205,25 +1218,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//面向装备制造业产品全生命周期工艺知识第2部分(65)
-	public boolean getGeneralManufacturingProcess(String code){
+
+	// 面向装备制造业产品全生命周期工艺知识第2部分(65)
+	public boolean getGeneralManufacturingProcess(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_MANUFACTURINGPROCESS);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MANUFACTURINGPROCESS);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1232,25 +1246,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//全国主要产品分类与代码第2部分 不可运输产品(712)
-	public boolean getUntransportableProduct(String code){
+
+	// 全国主要产品分类与代码第2部分 不可运输产品(712)
+	public boolean getUntransportableProduct(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_UNTRANSPORTABLEPRODUCT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_UNTRANSPORTABLEPRODUCT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1259,25 +1274,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//全国主要产品分类与代码第2部分 不可运输产品后3位(712)
-	public boolean getLastThreeUntransportableProduct(String code){
+
+	// 全国主要产品分类与代码第2部分 不可运输产品后3位(712)
+	public boolean getLastThreeUntransportableProduct(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_LASTTHREEUNTRANSPORTABLEPRODUCT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_LASTTHREEUNTRANSPORTABLEPRODUCT);
 			int i = 1;
 			stmt.setString(i, "%" + code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1286,26 +1302,28 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//道路交通信息采集信息分类与编码(77)
-	public boolean getTrafficInformationCollection(String firstCode, String secondCode){
+
+	// 道路交通信息采集信息分类与编码(77)
+	public boolean getTrafficInformationCollection(String firstCode,
+			String secondCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TRAFFICINFORMATIONCOLLECTION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TRAFFICINFORMATIONCOLLECTION);
 			int i = 1;
 			stmt.setString(i++, firstCode);
 			stmt.setString(i++, secondCode);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1314,25 +1332,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//烟草行业工商统计数据元第2部分 代码集(202)
-	public boolean getTrafficOrganization(String code){
+
+	// 烟草行业工商统计数据元第2部分 代码集(202)
+	public boolean getTrafficOrganization(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOORGANIZATION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOORGANIZATION);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1341,25 +1360,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//烟叶代码第5部分烟叶颜色代码(204)
-	public boolean getTobaccoLeafColor(String code){
+
+	// 烟叶代码第5部分烟叶颜色代码(204)
+	public boolean getTobaccoLeafColor(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOLEAFCOLOR);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOLEAFCOLOR);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1368,9 +1388,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//烟叶代码第2部分烟叶形态代码(207)
-	public boolean getTobaccoLeafForm(String code){
+
+	// 烟叶代码第2部分烟叶形态代码(207)
+	public boolean getTobaccoLeafForm(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -1379,14 +1399,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOLEAFFORM);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1395,25 +1415,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//烟叶代码第1部分烟叶分类与代码(208)
-	public boolean getTobaccoLeafClass(String code){
+
+	// 烟叶代码第1部分烟叶分类与代码(208)
+	public boolean getTobaccoLeafClass(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOLEAFCLASS);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOLEAFCLASS);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1422,37 +1443,50 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//儿童大便性状代码(213)
-	public boolean getChildrenExcrement(String code){
+
+	// 儿童大便性状代码(213)
+	public boolean getChildrenExcrement(String code) {
 		Connection connection = JdbcUtils.getConnection();
-=======
-	
-	
-	//查找殡葬服务分类、设施分类、用品分类代码
-	public boolean getFuneral(String id,String type){
-		Connection	connection = JdbcUtils.getConnection();
->>>>>>> xiaobaicoding-master
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-<<<<<<< HEAD
-			stmt = connection.prepareStatement(RecoUtil.SELECT_CHILDRENEXCREMENT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_CHILDRENEXCREMENT);
 			int i = 1;
 			stmt.setString(i, code);
-			
-=======
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 查找殡葬服务分类、设施分类、用品分类代码
+	public boolean getFuneral(String id, String type) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
 			stmt = connection.prepareStatement(type);
 			stmt.setString(1, id);
->>>>>>> xiaobaicoding-master
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1461,26 +1495,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-<<<<<<< HEAD
-	//饮酒频率代码(214)
-	public boolean getDrinkingFrequency(String code){
+
+	// 饮酒频率代码(214)
+	public boolean getDrinkingFrequency(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_DRINKINGFREQUENCY);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_DRINKINGFREQUENCY);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1489,9 +1523,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//饮酒种类代码(214)
-	public boolean getDrinkingClass(String code){
+
+	// 饮酒种类代码(214)
+	public boolean getDrinkingClass(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -1500,14 +1534,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_DRINKINGCLASS);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1516,25 +1550,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//身体活动频率代码(214)
-	public boolean getPhysicalActivityFrequency(String code){
+
+	// 身体活动频率代码(214)
+	public boolean getPhysicalActivityFrequency(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_PHYSICALACTIVITYFREQUENCY);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PHYSICALACTIVITYFREQUENCY);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1543,25 +1578,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//妊娠终止方式代码表(215)
-	public boolean getTerminationofPregnancy(String code){
+
+	// 妊娠终止方式代码表(215)
+	public boolean getTerminationofPregnancy(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TERMINATIONOFPREGNENCY);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TERMINATIONOFPREGNENCY);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1570,25 +1606,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//分娩方式代码(215)
-	public boolean getModeofProduction(String code){
+
+	// 分娩方式代码(215)
+	public boolean getModeofProduction(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_MODEOFPRODUCTION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MODEOFPRODUCTION);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1597,9 +1634,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//分娩地点类别代码(215)
-	public boolean getDileveryPlace(String code){
+
+	// 分娩地点类别代码(215)
+	public boolean getDileveryPlace(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -1608,14 +1645,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_DILIVERYPLACE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1624,25 +1661,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//卫生信息数据元值域代码第17部分：卫生管理(218)
+
+	// 卫生信息数据元值域代码第17部分：卫生管理(218)
 	public boolean getHealthSupervisionObject(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_HEALTHSUPERVISIONOBJECT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HEALTHSUPERVISIONOBJECT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1651,7 +1689,7 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
+
 	// 交通工具代码(219)
 	public boolean getCommunicationCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
@@ -1659,17 +1697,18 @@ public class RecoDao {
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_COMMUNICATIONCODE);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_COMMUNICATIONCODE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1678,25 +1717,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//卫生监督机构人员编制类别代码(220)
+
+	// 卫生监督机构人员编制类别代码(220)
 	public boolean getHygieneAgencyPersonnel(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_HYGIENEAGENCYPERSONNEL);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HYGIENEAGENCYPERSONNEL);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1705,25 +1745,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//卫生监督机构职工类别代码(220)
+
+	// 卫生监督机构职工类别代码(220)
 	public boolean getWorkerHealthSupervision(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_WORKERHEALTHSUPERVISION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_WORKERHEALTHSUPERVISION);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1732,39 +1773,30 @@ public class RecoDao {
 		}
 		return ret;
 	}
-=======
-	///烟草机械(195)
-		public boolean getTobaccoMachineryID(String id){
-			Connection	connection = JdbcUtils.getConnection();
-			PreparedStatement stmt = null;
-			ResultSet results = null;
-			boolean ret = false;
-			try {
-				stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
-				stmt.setString(1, id);
-				results = stmt.executeQuery();
-				int rowcount = 0;
-				while (results.next()) {
-					rowcount++;				
-				}
-				if(1 == rowcount){
-					ret =  true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				JdbcUtils.free(null, null, connection);
+
+	// 烟草机械(195)
+	public boolean getTobaccoMachineryID(String id) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
+			stmt.setString(1, id);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
 			}
-			return ret;
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> xiaobaicoding-master
+		return ret;
+	}
 }
