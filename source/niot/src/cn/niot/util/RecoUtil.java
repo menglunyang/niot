@@ -64,7 +64,140 @@ public class RecoUtil {
 	//EANUPC代码随机一条记录
 	public static final String SELECT_RANDOMEANUPC = "select floor(rand()*(endcode-begincode)+begincode) as code from (select * from EANUPC where rowno >= (select floor(rand()*(max(rowno)-min(rowno))) + min(rowno) from EANUPC) limit 1) t";
 	
-	public static final String SELECT_TYPEANDRULES="select * from iotid";
+	public static final String SELECT_TYPEANDRULES = "select * from iotid";
+	
+	//烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
+	public static final String SELECT_TABACCOMATERIALS = "select * from tabaccomaterials where categorycode=? and groupcode=?";
+	
+	//粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
+	public static final String SELECT_FOODTRADE = "select * from foodtradestatistics where id=?";
+	
+	//粮食信息分类与编码 粮食仓储业务统计分类与代码(16)
+	public static final String SELECT_GRAINSTOREHOUSE = "select * from grainstorehouse where id=?";
+	
+	//粮食信息分类与编码 储粮病虫害分类与代码(17)
+	public static final String SELECT_GRAINSDISEASES = "select * from grainsdiseases where id=?";
+	
+	//粮食信息分类与编码 粮食加工(18)
+	public static final String SELECT_FOODECONOMY = "select * from grainstechnicaleconomy where id=?";
+	
+	//粮食信息分类与编码 粮食加工第1部分：加工作业分类与代码(19)
+	public static final String SELECT_GRAINSPROCESS = "select * from grainsprocess where id=?";
+	
+	//粮食信息分类与编码 粮食仓储第3部分：器材分类与代码(20)
+	public static final String SELECT_GRAINSEQUIPMENT = "select * from grainsequipment where id=?";
+	
+	//粮食信息分类与编码 粮食仓储第2部分：粮情检测分类与代码(21)
+	public static final String SELECT_GRAINCONDITIONDETECTION = "select * from grainconditiondetection where id=?";
+	
+	//粮食信息分类与编码 粮食仓储第1部分：仓储作业分类与代码(22)
+	public static final String SELECT_GRAINSSMARTWMS = "select * from grainsSmartWMS where id like ?";
+	
+	//粮食信息分类与编码 粮食检验第2部分：质量标准分类与代码(26)
+	public static final String SELECT_GRIANQUALITYSTANDARD = "select * from grainsqualitystandard where id=?";
+	
+	//计量器具命名与分类编码(32)
+	public static final String SELECT_MEASURINGINSTRUMENT = "select * from measuringinstrument where code=?";
+	
+	//粮食信息分类与编码 粮食检验 第1部分：指标分类与代码(27)
+	public static final String SELECT_GRAINSINDEX = "select * from grainsindex where id=?";
+	
+	//粮食信息分类与编码 粮食及加工产品分类与代码(28)
+	public static final String SELECT_GRAINSINFORMATION = "select * from grainsinformation where id=?";
+	
+	//粮食信息分类与编码 粮食属性分类与代码(29)
+	public static final String SELECT_GRAINSATTRIBUTE = "select * from grainsattribute where id=?"; 
+	
+	//粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
+	public static final String SELECT_GRAINSADMINISTRATIVE = "select * from grainsadministrative where id=?";
+	
+	//建筑产品分类和代码(34)
+	public static final String SELECT_CONSTRUCTIONPRODUCTS = "select * from constructionproducts where id=?";
+	
+	//导航电子地图数据分类与编码(45)
+	public static final String SELECT_ELECTRONICMAP = "select * from electronicmap where id=?";
+	
+	//地理信息分类与编码规则(56)
+	public static final String SELECT_GEOGRAPHICINFORMATION = "select * from geographicinformation where id=?";
+	
+	//纺织面料编码化纤部分(64)
+	public static final String SELECT_TETILEFABRICNAME = "select * from textilefabricnamecode where id=?";
+	
+	//纺织面料属性代码(64)X1X2
+	public static final String SELECT_PROPERTIESMAINMATERIAL = "select * from propertiesmainmaterial where id=?";
+	
+	//纺织面料属性代码(64)非织造布X1X2
+	public static final String SELECT_PROPERTIESMAIN = "select * from propertiesmain where id=?";
+	
+	//纺织面料属性代码(64)纤维特征 X3X4
+	public static final String SELECT_PROPERTIERFIBERCHARACTERS = "select * from propertiesfibercharacteristics where id=?";
+	
+	//纺织面料属性代码(64)X7X8纤网固结方式
+	public static final String SELECT_PROPERTIESMIX = "select * from propertiesmixed where id=?";
+	
+	//纺织面料属性代码(64)X9X10 01-19 99
+	public static final String SELECT_PROPERTIESFABRIC = "select * from propertiesfabric where id=?";
+	
+	//纺织面料属性代码(64)X11X12
+	public static final String SELECT_PROPERTIESDYEING = "select * from propertiesdyeingandfinishing where id=?";
+	
+	//面向装备制造业产品全生命周期工艺知识第2部分(65)
+	public static final String SELECT_MANUFACTURINGPROCESS = "select * from generalmanufacturingprocess where id=?";
+	
+	//全国主要产品分类与代码第2部分 不可运输产品(712)
+	public static final String SELECT_UNTRANSPORTABLEPRODUCT = "select * from untransportableproduct where id=?";
+	
+	//全国主要产品分类与代码第2部分 不可运输产品后3位(712)
+	public static final String SELECT_LASTTHREEUNTRANSPORTABLEPRODUCT = "select * from untransportableproduct where length(id)=5 and id like ?";
+	
+	//道路交通信息采集信息分类与编码(77)
+	public static final String SELECT_TRAFFICINFORMATIONCOLLECTION = "select * from trafficinformationcollection where firstcode=? and secondcode=?";
+	
+	//烟草行业工商统计数据元第2部分 代码集(202)
+	public static final String SELECT_TABACCOORGANIZATION = "select * from tobaccoorganization where id=?";
+	
+	//烟叶代码第5部分烟叶颜色代码(204)
+	public static final String SELECT_TABACCOLEAFCOLOR = "select * from tobaccoleafcolor where id=?";
+	
+	//烟叶代码第2部分烟叶形态代码(207)
+	public static final String SELECT_TABACCOLEAFFORM = "select * from tobaccoleafform where id=?";
+	
+	//烟叶代码第1部分烟叶分类与代码(208)
+	public static final String SELECT_TABACCOLEAFCLASS = "select * from tobaccoleafclass where id=?";
+	
+	//儿童大便性状代码(213)
+	public static final String SELECT_CHILDRENEXCREMENT = "select * from childrenexcrement where id=?";
+	
+	//饮酒频率代码(214)
+	public static final String SELECT_DRINKINGFREQUENCY = "select * from drinkingfrequency where id=?";
+	
+	//饮酒种类代码(214)
+	public static final String SELECT_DRINKINGCLASS = "select * from drinkingclass where id=?";
+	
+	//身体活动频率代码(214)
+	public static final String SELECT_PHYSICALACTIVITYFREQUENCY = "select * from physicalactivityfrequency where id=?";
+	
+	//妊娠终止方式代码表(215)
+	public static final String SELECT_TERMINATIONOFPREGNENCY = "select * from terminationofpregnancy where id=?";
+	
+	//分娩方式代码(215)
+	public static final String SELECT_MODEOFPRODUCTION = "select * from modeofproduction where id=?";
+	
+	//分娩地点类别代码(215)
+	public static final String SELECT_DILIVERYPLACE = "select * from deliveryplace where id=?";
+	
+	//卫生信息数据元值域代码第17部分：卫生管理(218)
+	public static final String SELECT_HEALTHSUPERVISIONOBJECT = "select * from healthsupervisionobject where id=?";
+	
+	//交通工具代码(219)
+	public static final String SELECT_COMMUNICATIONCODE = "select * from communicationmediacode where id=?";
+	
+	//卫生监督机构人员编制类别代码(220)
+	public static final String SELECT_HYGIENEAGENCYPERSONNEL = "select * from hygieneagencypersonnel where id=?";
+	
+	//卫生监督机构职工类别代码(220)
+	public static final String SELECT_WORKERHEALTHSUPERVISION = "select * from workerhealthsupervision where id=?";
+
 	//殡葬服务分类的一条记录
 	public static final String SELECT_FUNERALSERVICE = "select * from funeralservice where id=?";
 	
@@ -98,7 +231,7 @@ public class RecoUtil {
 	public static final int ONE_ID_MATCHED = 1;
 
 	// 编码详细信息
-	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?;";
+	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?";
 	
 	// 前端页面显示标准名称短码字符的最大长度
 	public static final int DISPLAYLENGTH = 9;
