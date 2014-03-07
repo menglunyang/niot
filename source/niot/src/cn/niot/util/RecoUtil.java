@@ -224,6 +224,8 @@ public class RecoUtil {
 	public static final String SELECT_PORTTARIFFMa288 = "select * from ClothesName where code=?";
 	//191_医药器械分类
 	public static final String SELECT_PORTTARIFFMa191 = "select * from Pharmacequipment where code=?";
+	//410_干部职位名称代码
+	public static final String SELECT_OFFICIALPOSITION="select *from officialposition where code=?";
 	//没有匹配成功任何一种标识
 	public static final int NO_ID_MATCHED = 0;
 	
