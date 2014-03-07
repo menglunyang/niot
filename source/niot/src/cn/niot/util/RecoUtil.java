@@ -206,6 +206,15 @@ public class RecoUtil {
 
 	// 殡葬设施用品的一条记录
 	public static final String SELECT_SUPPLIES = "select * from funeralsupplies where id=?";
+
+	//268中央党政机关
+	public static final String SELECT_PORTTARIFF268 = "select * from TheCenteralPartyCommitte where code=?";
+	//270自然灾害
+	public static final String SELECT_PORTTARIFF270 = "select * from Naturaldisaster where code=?";
+	//275物流作业货物
+	public static final String SELECT_PORTTARIFF275 = "select * from Logisticsoperation where code=?";
+	//276废弃物品
+	public static final String SELECT_PORTTARIFF276 = "select * from Wasteproducts where code=?";
 	// 280中央党政机关
 	public static final String SELECT_PORTTARIFF280 = "select * from TheCenteralPartyCommitte where code=?";
 	// 281-——珠宝玉石及金属产品分类代码编制方法 查表数据库
@@ -224,7 +233,16 @@ public class RecoUtil {
 	public static final String SELECT_PORTTARIFFMa288 = "select * from ClothesName where code=?";
 	// 191_医药器械分类
 	public static final String SELECT_PORTTARIFFMa191 = "select * from Pharmacequipment where code=?";
-
+	//395_消防信息代码
+	public static final String SELECT_PORTTARIFF395 = "select * from FireInfomation  where code=?";
+	//399_消防信息代码
+	public static final String SELECT_PORTTARIFF399 = "select * from FireInfowatersupply  where code=?";
+	//403_消防信息代码
+	public static final String SELECT_PORTTARIFF403 = "select * from FireInfocamp  where code=?";
+	//409_消防信息代码
+	public static final String SELECT_PORTTARIFF409 = "select * from FireInfotainass  where code=?";	
+	//没有匹配成功任何一种标识
+	public static final int NO_ID_MATCHED = 0;
 	// CoastalAdminAreaId
 	public static final String SELECT_COASTALADMINAREAID = "select * from CoastalAdminAreaId where id=?";
 
@@ -320,6 +338,7 @@ public class RecoUtil {
 	public static final String SELECT_PORT = "select * from port where code=?";
 
 	public static final String SELECT_SECURITYACCOUNTERMENTS = "select * from securityaccounterments where code=?";
+
 	
 	public static final String SELECT_SPECIALVEHICLE = "select * from specialvehicle where code=?";
 
@@ -327,8 +346,6 @@ public class RecoUtil {
 
 	public static final String SELECT_CIVILAVIATION = "select * from civilaviation where code=?";
 
-	// 没有匹配成功任何一种标识
-	public static final int NO_ID_MATCHED = 0;
 
 	// 匹配成功一种标识
 	public static final int ONE_ID_MATCHED = 1;

@@ -1807,7 +1807,7 @@ public class RecoDao {
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF280);
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF281);
 			int i = 1;
 			stmt.setString(i, code);
 			results = stmt.executeQuery();
@@ -2070,6 +2070,225 @@ public class RecoDao {
 		}
 		return ret;
 	}
+	
+		//268-——中央党政机关代码编制方法   查表数据库
+		public boolean getPortTariff268(String code) {
+			Connection connection = JdbcUtils.getConnection();
+			PreparedStatement stmt = null;
+			ResultSet results = null;
+			boolean ret = false;
+			try{
+				stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF268);
+				int i = 1;
+				stmt.setString(i, code);
+			    results = stmt.executeQuery();
+				int rowcount = 0;
+				while (results.next()) {
+					rowcount++;				
+				}
+				if(1 == rowcount){
+					ret =  true;
+					System.out.println("results="+results.toString());
+				} 
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				JdbcUtils.free(null, null, connection);
+			}
+			return ret;
+		}
+		//	 270-——自然灾害分类代码编制方法   查表数据库
+			public boolean getPortTariff270(String code) {
+				Connection connection = JdbcUtils.getConnection();
+				PreparedStatement stmt = null;
+				ResultSet results = null;
+				boolean ret = false;
+				try{
+					stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF270);
+					int i = 1;
+					stmt.setString(i, code);
+				    results = stmt.executeQuery();
+					int rowcount = 0;
+					while (results.next()) {
+						rowcount++;				
+					}
+					if(1 == rowcount){
+						ret =  true;
+						System.out.println("results="+results.toString());
+					} 
+				}catch (Exception e) {
+					e.printStackTrace();
+				}finally{
+					JdbcUtils.free(null, null, connection);
+				}
+				return ret;
+			}
+			//	 	 275-——物流作业货物分类代码编制方法   查表数据库
+					public boolean getPortTariff275(String code) {
+						Connection connection = JdbcUtils.getConnection();
+						PreparedStatement stmt = null;
+						ResultSet results = null;
+						boolean ret = false;
+						try{
+							stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF275);
+							int i = 1;
+							stmt.setString(i, code);
+						    results = stmt.executeQuery();
+							int rowcount = 0;
+							while (results.next()) {
+								rowcount++;				
+							}
+							if(1 == rowcount){
+								ret =  true;
+								System.out.println("results="+results.toString());
+							} 
+						}catch (Exception e) {
+							e.printStackTrace();
+						}finally{
+							JdbcUtils.free(null, null, connection);
+						}
+						return ret;
+					}
+//				 	 276-——废弃物品分类代码编制方法   查表数据库
+								public boolean getPortTariff276(String code) {
+									Connection connection = JdbcUtils.getConnection();
+									PreparedStatement stmt = null;
+									ResultSet results = null;
+									boolean ret = false;
+									try{
+										stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF276);
+										int i = 1;
+										stmt.setString(i, code);
+									    results = stmt.executeQuery();
+										int rowcount = 0;
+										while (results.next()) {
+											rowcount++;				
+										}
+										if(1 == rowcount){
+											ret =  true;
+											System.out.println("results="+results.toString());
+										} 
+									}catch (Exception e) {
+										e.printStackTrace();
+									}finally{
+										JdbcUtils.free(null, null, connection);
+									}
+									return ret;
+								}					
+
+		
+		
+		
+				
+				//395-——消防信息代码分类和代码表  查表数据库
+				public boolean getFireInfomation395(String code) {
+					Connection connection = JdbcUtils.getConnection();
+					PreparedStatement stmt = null;
+					ResultSet results = null;
+					boolean ret = false;
+					try{
+						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF395);
+						int i = 1;
+						stmt.setString(i, code);
+					    results = stmt.executeQuery();
+						int rowcount = 0;
+						while (results.next()) {
+							rowcount++;				
+						}
+						if(1 == rowcount){
+							ret =  true;
+							System.out.println("results="+results.toString());
+						} 
+					}catch (Exception e) {
+						e.printStackTrace();
+					}finally{
+						JdbcUtils.free(null, null, connection);
+					}
+					return ret;
+				}
+				//399-——消防信息代码分类和代码表  查表数据库
+				public boolean getFireInfomation399(String code) {
+					Connection connection = JdbcUtils.getConnection();
+					PreparedStatement stmt = null;
+					ResultSet results = null;
+					boolean ret = false;
+					try{
+						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF399);
+						int i = 1;
+						stmt.setString(i, code);
+					    results = stmt.executeQuery();
+						int rowcount = 0;
+						while (results.next()) {
+							rowcount++;				
+						}
+						if(1 == rowcount){
+							ret =  true;
+							System.out.println("results="+results.toString());
+						} 
+					}catch (Exception e) {
+						e.printStackTrace();
+					}finally{
+						JdbcUtils.free(null, null, connection);
+					}
+					return ret;
+				}
+				//403-——消防信息代码分类和代码表  查表数据库：社会宣传教育活动分类
+				public boolean getFireInfomation403(String code) {
+					Connection connection = JdbcUtils.getConnection();
+					PreparedStatement stmt = null;
+					ResultSet results = null;
+					boolean ret = false;
+					try{
+						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF403);
+						int i = 1;
+						stmt.setString(i, code);
+					    results = stmt.executeQuery();
+						int rowcount = 0;
+						while (results.next()) {
+							rowcount++;				
+						}
+						if(1 == rowcount){
+							ret =  true;
+							System.out.println("results="+results.toString());
+						} 
+					}catch (Exception e) {
+						e.printStackTrace();
+					}finally{
+						JdbcUtils.free(null, null, connection);
+					}
+					return ret;
+				}
+				
+				//409-——消防信息代码分类和代码表  查表数据库：消防训练考核代码
+				public boolean getFireInfomation409(String code) {
+					Connection connection = JdbcUtils.getConnection();
+					PreparedStatement stmt = null;
+					ResultSet results = null;
+					boolean ret = false;
+					try{
+						stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF409);
+						int i = 1;
+						stmt.setString(i, code);
+					    results = stmt.executeQuery();
+						int rowcount = 0;
+						while (results.next()) {
+							rowcount++;				
+						}
+						if(1 == rowcount){
+							ret =  true;
+							System.out.println("results="+results.toString());
+						} 
+					}catch (Exception e) {
+						e.printStackTrace();
+					}finally{
+						JdbcUtils.free(null, null, connection);
+					}
+					return ret;
+				}
+				
+				
+				
+				
 
 	// /国际贸易运输船舶名称与代码编制原则（312）
 	public boolean getInternationalShipCode(String code) {
