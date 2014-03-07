@@ -89,25 +89,24 @@ public class RecoAction extends ActionSupport {
 //		System.out.println(RuleFunction.LogisticsCheck(IDstr, 6, index, 6));
 //		System.out.println(RuleFunction.TheCenteralPartyCommitte(IDstr, 3, index, 3));
 		
-		String tr1 = new String("040399");
-		char[] IDstr1 = new char[6];
-		for (int i = 0; i < 6; i++) {
+		String tr1 = new String("22");
+		char[] IDstr1 = new char[2];
+		for (int i = 0; i < 2; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
-		int[] index = new int[6];
+		int[] index = new int[2];
 		index[0]=0;
 		index[1]=1;
-		index[2]=2;
-		index[3]=3;
-		index[4]=4;
-		index[5]=5;
+//		index[2]=2;
+//		index[3]=3;
+//		index[4]=4;
+//		index[5]=5;
+//		index[6]=6;
+//		index[7]=7;
 
-		String result = RuleFunction.JadejewelryMaterialclassif(IDstr1,6,index,6);
+		String result = RuleFunction.FireInfotainass(IDstr1,2,index,2);
 		System.out.println("result="+result.toString());
 		return "sucess";
-		
-		
-		
 		
 		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
 		

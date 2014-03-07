@@ -187,7 +187,7 @@ public class RuleFunction {
 			}
 
 			if ((IDstr[index1] < '0') || (IDstr[index1] > '9')) {
-				return ERR;
+				return ERR; 
 			}
 
 			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
@@ -2688,6 +2688,79 @@ public class RuleFunction {
 				return ERR;
 			}
 		}
+		//188城市市政综合监管信息系统
+		// IDstr: 标识编码
+		// LenID: 标识编码的长度 12位
+		// Index: 调用验证算法的索引位置
+		// LenIndex:12
+		//creator:fdl
+		public static String Bigcode(char[] IDstr, int LenID, int[] Index, int LenIndex)
+		{
+			try {
+				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
+				{
+					return ERR;
+				}
+				if (LenIndex != 2) 
+				{
+					return ERR;
+				}
+				
+				
+				if((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '1')
+						||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+						||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
+						||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+						||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '5')
+						||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '6')
+						||(IDstr[Index[0]] == '2' && IDstr[Index[1]] == '1')
+						)
+				{
+					return OK;
+				}
+				
+					return ERR;
+			} catch (Exception e) {
+				return ERR;
+			}
+		}
+		
+		//188城市市政综合监管信息系统
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度 12位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:12
+				//creator:fdl
+				public static String Littlecode(char[] IDstr, int LenID, int[] Index, int LenIndex)
+				{
+					try {
+						if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
+						{
+							return ERR;
+						}
+						if (LenIndex != 2) 
+						{
+							return ERR;
+						}
+						
+						
+						if((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '1')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '5')
+								||(IDstr[Index[0]] == '2' && IDstr[Index[1]] == '1')
+								)
+						{
+							return OK;
+						}
+						
+							return ERR;
+					} catch (Exception e) {
+						return ERR;
+					}
+				}
+		
 		
 		//195-烟草机械——产品工艺文件代码编制方法   查表数据库
 				// IDstr: 标识编码
@@ -2779,7 +2852,232 @@ public class RuleFunction {
 					}
 					
 				}
+		//381消防信息代码
+		// IDstr: ID string
+		// LenID: the number of characters in the ID string
+		// Index: the list of corresponding indexes regarding to this algorithm
+		// LenIndex: the number of indexes
+		// Creator: fdl				
+				
+		public static String FireInfoStstion(char[] IDstr, int LenID,
+				int[] Index, int LenIndex) {
+			String information;
+			try {
+				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+					return ERR;
+				}
+				if (LenIndex != 2) {
+					return ERR;
+				}
+				int index1 = Index[0];
+				int index2 = Index[1];
+				if ((IDstr[index1] == '1') && (IDstr[index2] == '0')) {
+					information="普通消防站";
+					return OK;
+				}
+				if ((IDstr[index1] == '1') && (IDstr[index2] == '1')) {
+					information="一级普通消防站";
+					return OK;
+				}
+				if ((IDstr[index1] == '1') && (IDstr[index2] == '2')) {
+					information="二级普通消防站";
+					return OK;
+				}
+				if ((IDstr[index1] == '2') && (IDstr[index2] == '0')) {
+					information="特勤消防站";
+					return OK;
+				}
+				if ((IDstr[index1] == '6') && (IDstr[index2] == '0')) {
+					information="水上消防站";
+					return OK;
+				}
+				if ((IDstr[index1] == '7') && (IDstr[index2] == '0')) {
+					information="航空消防站";
+					return OK;
+				}
+				if ((IDstr[index1] == '8') && (IDstr[index2] == '0')) {
+					information="陆地搜救基地";
+					return OK;
+				}
+				if ((IDstr[index1] == '9') && (IDstr[index2] == '0')) {
+					information="其他消防站";
+					return OK;
+				}
+				return ERR;
+			} catch (Exception e) {
+				return ERR;
+			}
+		}
+		//393消防信息代码
+		// IDstr: ID string
+		// LenID: the number of characters in the ID string
+		// Index: the list of corresponding indexes regarding to this algorithm
+		// LenIndex: the number of indexes
+		// Creator: fdl				
+				
+		public static String FireInfoSmoke(char[] IDstr, int LenID,
+				int[] Index, int LenIndex) {
+			String inforfation;
+			try {
+				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+					return ERR;
+				}
+				if (LenIndex != 2) {
+					return ERR;
+				}
+				int index1 = Index[0];
+				int index2 = Index[1];
+				if ((IDstr[index1] == '1') && (IDstr[index2] == '0')) {
+					inforfation="自然排烟系统";
+					return OK;
+				}
+				if ((IDstr[index1] == '1') && (IDstr[index2] == '1')) {
+					inforfation="可开启外烟自然排烟";
+					return OK;
+				}
+				if ((IDstr[index1] == '2') && (IDstr[index2] == '0')) {
+					inforfation="机械防排烟系统";
+					return OK;
+				}
+				if ((IDstr[index1] == '2') && (IDstr[index2] == '1')) {
+					inforfation="机械加压送风防烟";
+					return OK;
+				}
+				if ((IDstr[index1] == '2') && (IDstr[index2] == '2')) {
+					inforfation="机械排烟";
+					return OK;
+				}
+				if ((IDstr[index1] == '9') && (IDstr[index2] == '0')) {
+					inforfation="其他防排烟系统";
+					return OK;
+				}
+				return ERR;
+			} catch (Exception e) {
+				return ERR;
+			}
+		}
+		//395——消防信息代码
+		// IDstr: ID string
+		// LenID: the number of characters in the ID string
+		// Index: the list of corresponding indexes regarding to this algorithm
+		// LenIndex: the number of indexes
+		// Creator: fdl				
+	public static String FireInfomation(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+			}
+			if (LenIndex != 4) {
+			return ERR;
+			}
+			try{
+			String code = "";
+			for(int i=0;i<4;i++){
+			code=code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getFireInfomation395(code);
+			if (ret) {
+			return OK;
+			} else
+			return ERR;
+			}catch (Exception e) {
+			return ERR;
+			}
+
+			}
+	        //399——消防信息代码57部分 消防供水设施种类
+			// IDstr: ID string
+			// LenID: the number of characters in the ID string
+			// Index: the list of corresponding indexes regarding to this algorithm
+			// LenIndex: the number of indexes
+			// Creator: fdl				
+		public static String FireInfowatersupply(char[] IDstr, int LenID, int[] Index,
+				int LenIndex){
+				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+				}
+				if (LenIndex != 2) {
+				return ERR;
+				}
+				try{
+				String code = "";
+				for(int i=0;i<2;i++){
+				code=code.concat(String.valueOf(IDstr[i]));
+				}
+				RecoDao recoDao = new RecoDao();
+				boolean ret = recoDao.getFireInfomation399(code);
+				if (ret) {
+				return OK;
+				} else
+				return ERR;
+				}catch (Exception e) {
+				return ERR;
+				}
+
+				}
 		
+		 //403——消防信息代码53部分社会宣传教育活动
+		// IDstr: ID string
+		// LenID: the number of characters in the ID string
+		// Index: the list of corresponding indexes regarding to this algorithm
+		// LenIndex: the number of indexes
+		// Creator: fdl				
+	public static String FireInfocamp(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+			}
+			if (LenIndex != 2) {
+			return ERR;
+			}
+			try{
+			String code = "";
+			for(int i=0;i<2;i++){
+			code=code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getFireInfomation403(code);
+			if (ret) {
+			return OK;
+			} else
+			return ERR;
+			}catch (Exception e) {
+			return ERR;
+			}
+
+			}
+	
+	 //409——消防信息代码48部分：消防训练考核代码 
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator: fdl				
+		public static String FireInfotainass(char[] IDstr, int LenID, int[] Index,
+				int LenIndex){
+				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+				}
+				if (LenIndex != 2) {
+				return ERR;
+				}
+				try{
+				String code = "";
+		for(int i=0;i<2;i++){
+		code=code.concat(String.valueOf(IDstr[i]));
+		}
+		RecoDao recoDao = new RecoDao();
+		boolean ret = recoDao.getFireInfomation409(code);
+		if (ret) {
+		return OK;
+		} else
+		return ERR;
+		}catch (Exception e) {
+		return ERR;
+		}
+		
+		}
 		// Function: represent a decimal integer whose value range is from 1 to 399
 		// IDstr: ID string
 		// LenID: the number of characters in the ID string
@@ -2940,7 +3238,122 @@ public class RuleFunction {
 						return ERR;
 					}
 				}
-				
+				//268-——珠全国人大政协机构分类代码编制方法   查表数据库
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度3位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a3
+				//creator:fdl
+				public static String TheCenteralPartyCommitte(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 3) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<3;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariff268(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
+				//270——自然灾害Natural disaster
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度6位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a3
+				//creator:fdl
+				public static String Naturaldisaster(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 6) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<6;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariff270(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
+				//275—物流作业货物
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度4位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a3
+				//creator:fdl
+				public static String Logisticsoperation(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 4) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<4;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariff275(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
+				//276—废弃物品货物
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度4位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:a3
+				//creator:fdl
+				public static String Wasteproducts(char[] IDstr, int LenID, int[] Index,
+						int LenIndex){
+					if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+						return ERR;
+					}
+					if (LenIndex != 4) {
+						return ERR;
+					}
+					try{
+						String code = "";
+						for(int i=0;i<4;i++){
+							code=code.concat(String.valueOf(IDstr[i]));
+						}
+						RecoDao recoDao = new RecoDao();
+						boolean ret = recoDao.getPortTariff276(code);
+						if (ret) {
+							return OK;
+						} else
+							return ERR;
+					}catch (Exception e) {
+						return ERR;
+					}
+				}
 				//280-——珠宝玉石及金属产品分类代码编制方法   查表数据库
 				// IDstr: 标识编码
 				// LenID: 标识编码的长度5位
@@ -3029,7 +3442,7 @@ public class RuleFunction {
 						return ERR;
 					}
 				}
-				//280-——中央党政机关代码编制方法   查表数据库
+				//216-——中央党政机关代码编制方法   查表数据库
 				// IDstr: 标识编码
 				// LenID: 标识编码的长度3位
 				// Index: 调用验证算法的索引位置
@@ -3207,7 +3620,53 @@ public class RuleFunction {
 					}
 					
 				}
-				
+				//377——社会兼职
+				// IDstr: 标识编码
+				// LenID: 标识编码的长度 4位
+				// Index: 调用验证算法的索引位置
+				// LenIndex:4
+				//creator:fdl
+				public static String SocialWork(char[] IDstr, int LenID, int[] Index, int LenIndex)
+				{
+					try {
+						if (!checkInputParam(IDstr, LenID, Index, LenIndex)) 
+						{
+							return ERR;
+						}
+						if (LenIndex != 4) 
+						{
+							return ERR;
+						}
+						
+						
+						if((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '1')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '6')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '5')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '7')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '8')
+								||(IDstr[Index[0]] == '0' && IDstr[Index[1]] == '9')
+								||(IDstr[Index[0]] == '1' && IDstr[Index[1]] == '0')
+								||(IDstr[Index[0]] == '1' && IDstr[Index[1]] == '0')
+								||(IDstr[Index[0]] == '4' && IDstr[Index[1]] == '1')
+								||(IDstr[Index[0]] == '4' && IDstr[Index[1]] == '2')
+								||(IDstr[Index[0]] == '4' && IDstr[Index[1]] == '3')
+								||(IDstr[Index[0]] == '5' && IDstr[Index[1]] == '1')
+								||(IDstr[Index[0]] == '6' && IDstr[Index[1]] == '1')
+								||(IDstr[Index[0]] == '6' && IDstr[Index[1]] == '2')
+								||(IDstr[Index[0]] == '6' && IDstr[Index[1]] == '3')
+								||(IDstr[Index[0]] == '6' && IDstr[Index[1]] == '4')
+								)
+						{
+							return OK;
+						}
+						
+							return ERR;
+					} catch (Exception e) {
+						return ERR;
+					}
+				}	
 				
 				
 		
