@@ -25,31 +25,18 @@ public class RecoAction extends ActionSupport {
 		this.iotID = iotID;
 	}
 
-	private String Msg;    // Ìí¼ÓÒ»¸ö±äÁ¿
+	private String Msg;    // æ·»åŠ ä¸€ä¸ªå˜é‡
 
 
-	public String getMsg() {    // Ìí¼Ógetter
+	public String getMsg() {    // æ·»åŠ getter
 		return Msg;
 	}
 
 	public String execute() {
-		if (iotID.equals("123456")){
-			Msg = "                   "+ iotID + " is ID type A";     // Âß¼­ÔËËã
-		} else{
-			Msg = "                   "+ iotID + " is not ID type A";     // Âß¼­ÔËËã
-		}
-		//138000100000000001.sh.beidou.cid.iot.cn
-		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','1','.','s','h','.','b','e','i',
-			//	'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};
-//		index[0] = 18;
-//		index[1] = -1;
-//		index[2] = -1;
-//		index[3] = 3;
-//		index[4] = 4;
 //		if (iotID.equals("123456")){
-//			Msg = "                   "+ iotID + " is ID type A";     // Âß¼­ÔËËã
+//			Msg = "                   "+ iotID + " is ID type A";     // é€»è¾‘è¿ç®—
 //		} else{
-//			Msg = "                   "+ iotID + " is not ID type A";     // Âß¼­ÔËËã
+//			Msg = "                   "+ iotID + " is not ID type A";     // é€»è¾‘è¿ç®—
 //		}
 
 //		char[] IDstr = new char[3];
@@ -91,7 +78,7 @@ public class RecoAction extends ActionSupport {
 		System.out.println("start");
 
 //		System.out.println(RuleFunction.MOD9710(IDstr, 15, index, 15));
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//ÉèÖÃÈÕÆÚ¸ñÊ½ 
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//è®¾ç½®æ—¥æœŸæ ¼å¼ 
 		System.out.println(df.format(new Date()));
 //		System.out.println(RuleFunction.DeviceMOD163(IDstr, 12, index, 12));
 //		System.out.println(RuleFunction.CoalInterment(IDstr, 12, index, 12));
@@ -101,17 +88,10 @@ public class RecoAction extends ActionSupport {
 //		System.out.println(RuleFunction.Mod36_37(IDstr, 15, index, 15));
 //		System.out.println(RuleFunction.LogisticsCheck(IDstr, 6, index, 6));
 //		System.out.println(RuleFunction.TheCenteralPartyCommitte(IDstr, 3, index, 3));
-<<<<<<< HEAD
 
-		String tr1 = new String("040399");
-		char[] IDstr1 = new char[6];
-		for (int i = 0; i < 6; i++) {
-=======
-		
 		String tr1 = new String("22");
 		char[] IDstr1 = new char[2];
 		for (int i = 0; i < 2; i++) {
->>>>>>> d13c71108acbf43f3dfd97d9e4d7bc7d72717828
 			IDstr1[i] = tr1.charAt(i);
 		}
 		int[] index = new int[2];
@@ -127,21 +107,19 @@ public class RecoAction extends ActionSupport {
 		String result = RuleFunction.FireInfotainass(IDstr1,2,index,2);
 		System.out.println("result="+result.toString());
 		return "sucess";
-<<<<<<< HEAD
-=======
-		
+
 		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
-		
+
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
 		//System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-5\",\"1\":\"A-E\",\"2\":\"h-x\"}"));
 		//for (int i = 0; i < 100; i++){
 		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
 		//}
-		
+
 //		RuleFuncTest.testTwoByteDecimalnt();
-		
-//		return "sucess"; s//Ô¤¶¨Òå³£Á¿
->>>>>>> d13c71108acbf43f3dfd97d9e4d7bc7d72717828
+
+//		return "sucess"; s//é¢„å®šä¹‰å¸¸é‡
 	} 
+
 }
