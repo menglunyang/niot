@@ -161,6 +161,59 @@ dataSource = [
     { codeName: 'FFFF', probability: 0.025 }
 ];
 
+function RFIDInput()
+{
+	console.log("RFIDInput pressed");
+	$("#RFID").fadeToggle();
+	if($("#RFID").css("display") == "block")
+	{
+		//向服务器发送请求，去查看数据库，是否有新数据存入RFID这张表里是否有想要的数据
+		RFIDQuerry();
+	}
+}
+
+var querryCount = 1;
+
+function RFIDQuerry()
+{
+			$.ajax({
+			url:'RFIDInput.action',
+			cache:false,
+			data:{InputType:"RFID"},
+			dataType:'json',
+			beforeSend:function(){
+					
+						},
+			success:function(result){
+							console.log(result.code);
+							//当没有结果的时候
+							if (result.code == null && querryCount < 6)
+								{
+									console.log(querryCount);
+									setTimeout("RFIDQuerry()",5000);;
+									querryCount++;
+								}
+							else if(result.code == null && querryCount == 6)
+							{
+									console.log(querryCount);
+									//setTimeOut("RFIDQuerry()",5000);;
+									querryCount = 1;
+							}
+							else
+							{
+								console.log(querryCount);
+								//画对勾，给textinput上加上，然后发送请求去查询
+								querryCount = 1;
+							}
+							
+					
+						},
+			error:"alert('1')"
+		});
+}
+
+
+
 function switchToContainer1()
 {
 	$(".container_2")[0].style.display = "none";
