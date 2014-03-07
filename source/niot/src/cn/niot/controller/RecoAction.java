@@ -101,22 +101,47 @@ public class RecoAction extends ActionSupport {
 //		System.out.println(RuleFunction.Mod36_37(IDstr, 15, index, 15));
 //		System.out.println(RuleFunction.LogisticsCheck(IDstr, 6, index, 6));
 //		System.out.println(RuleFunction.TheCenteralPartyCommitte(IDstr, 3, index, 3));
+<<<<<<< HEAD
 
 		String tr1 = new String("040399");
 		char[] IDstr1 = new char[6];
 		for (int i = 0; i < 6; i++) {
+=======
+		
+		String tr1 = new String("22");
+		char[] IDstr1 = new char[2];
+		for (int i = 0; i < 2; i++) {
+>>>>>>> d13c71108acbf43f3dfd97d9e4d7bc7d72717828
 			IDstr1[i] = tr1.charAt(i);
 		}
-		int[] index = new int[6];
+		int[] index = new int[2];
 		index[0]=0;
 		index[1]=1;
-		index[2]=2;
-		index[3]=3;
-		index[4]=4;
-		index[5]=5;
+//		index[2]=2;
+//		index[3]=3;
+//		index[4]=4;
+//		index[5]=5;
+//		index[6]=6;
+//		index[7]=7;
 
-		String result = RuleFunction.JadejewelryMaterialclassif(IDstr1,6,index,6);
+		String result = RuleFunction.FireInfotainass(IDstr1,2,index,2);
 		System.out.println("result="+result.toString());
 		return "sucess";
+<<<<<<< HEAD
+=======
+		
+		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
+		
+		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
+		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
+		//System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-5\",\"1\":\"A-E\",\"2\":\"h-x\"}"));
+		//for (int i = 0; i < 100; i++){
+		//	System.out.println(collisionDetecAlg.generateIDString("{\"IDName\": \"XXXID\",\"Len\":\"3\",\"0\":\"2-9,a-e\",\"1\":\"A-E,0-9\",\"2\":\"h-x,0-9\"}"));
+		//}
+		
+//		RuleFuncTest.testTwoByteDecimalnt();
+		
+//		return "sucess"; s//预定义常量
+>>>>>>> d13c71108acbf43f3dfd97d9e4d7bc7d72717828
 	} 
 }
