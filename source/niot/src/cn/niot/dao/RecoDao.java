@@ -2070,7 +2070,7 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	// 291-——医药器械分类和代码表 查表数据库
+	// 410-——干部职务名称代码  查表数据库
 	public boolean getOfficialPositonByCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
