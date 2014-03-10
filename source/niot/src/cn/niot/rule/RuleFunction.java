@@ -1337,7 +1337,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 检验是否属于 序号2开始求出偶数位上数字之和①；①×3=②；从序号3开始求出奇数位上数字之和③；②+③=④；用大于
+	// 374 Function: 检验是否属于 序号2开始求出偶数位上数字之和①；①×3=②；从序号3开始求出奇数位上数字之和③；②+③=④；用大于
 	// 或等于结果④且为整数倍的最小数减去④得到的值。
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -2611,22 +2611,26 @@ public class RuleFunction {
 	public static String FireInfotainrate(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-				return ERR;
-			}
-			if (LenIndex != 2) {
-				return ERR;
-			}
-			int index1 = (int) IDstr[Index[0]] - 48;
-			int index2 = (int) IDstr[Index[1]] - 48;
+			int index1 = 0;
+			int index2 = 0;
+			int i = 0;
+			
+				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+					return ERR;
+				}
+				if (LenIndex != 2) {
+					return ERR;
+				}
+				index1 = (int) IDstr[Index[0]] - 48;
+				index2 = (int) IDstr[Index[1]] - 48;
+			
 			// int Xx = 8;
-			int i = 10 * index1 + index2;
+			i = 10 * index1 + index2;
 			if (i >= 20 && i <= 21) {
 				return OK;
 			} else if (i >= 40 && i <= 43) {
 				return OK;
-			}
-
+			} 
 			else
 				return ERR;
 		} catch (Exception e) {
@@ -3203,7 +3207,7 @@ public class RuleFunction {
 			int i = 1000 * index1 + 100 * index2 + 10 * index3 + index4;
 			if (i >= 1110 && i <= 1112) {
 				return OK;
-			} else if (i >= 1120 && i == 1122) {
+			} else if (i >= 1120 && i <= 1122) {
 				return OK;
 			} else if (i == 1000 || i == 1100 || i == 1200 || i == 1300
 					|| i == 1900 || i == 2000 || i == 2100 || i == 2900
@@ -3322,13 +3326,13 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 394 fire information
+	// Function: 394 ExtinguishFire information
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 3
 	// creator: xjf
-	public static String FireInfoori(char[] IDstr, int LenID, int[] Index,
+	public static String ExtinguishFire(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -3341,22 +3345,23 @@ public class RuleFunction {
 			int index2 = (int) IDstr[Index[1]] - 48;
 			int index3 = (int) IDstr[Index[2]] - 48;
 			int i = 100 * index1 + 10 * index2 + index3;
-			if (i >= 100 && i <= 103) {
+			if (i >= 110 && i <= 114) {
 				return OK;
-			} else if (i >= 200 && i <= 202) {
+			} else if (i >= 119 && i <= 122) {
 				return OK;
-			} else if (i >= 300 && i <= 303) {
+			} else if (i >= 210 && i <= 214) {
 				return OK;
-			} else if (i >= 402 && i <= 404) {
+			} else if (i >= 310 && i <= 323) {
 				return OK;
-			} else if (i >= 500 && i <= 502) {
+			} else if (i >= 329 && i <= 333) {
 				return OK;
-			} else if (i >= 600 && i <= 603) {
+			} else if (i >= 410 && i <= 413) {
 				return OK;
-			} else if (i >= 700 && i <= 702) {
+			} else if (i >= 419 && i <= 423) {
 				return OK;
-			} else if (i == 199 || i == 399 || i == 400 || i == 499 || i == 599
-					|| i == 699 || i == 900) {
+			} else if (i == 100 || i == 129 || i == 180 || i == 190 || i == 200
+					|| i == 219 || i == 300 || i == 339 || i == 380 || i == 390
+					|| i == 400 || i == 429) {
 				return OK;
 			} else
 				return ERR;
@@ -11592,4 +11597,78 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+
+	// Function: 386 fire information
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 3
+	// creator: lhx
+	public static String FireInfoori(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int index3 = (int) IDstr[Index[2]] - 48;
+			int i = 100 * index1 + 10 * index2 + index3;
+			if (i >= 100 && i <= 103) {
+				return OK;
+			} else if (i >= 200 && i <= 202) {
+				return OK;
+			} else if (i >= 300 && i <= 303) {
+				return OK;
+			} else if (i >= 402 && i <= 404) {
+				return OK;
+			} else if (i >= 500 && i <= 502) {
+				return OK;
+			} else if (i >= 600 && i <= 603) {
+				return OK;
+			} else if (i >= 700 && i <= 702) {
+				return OK;
+			} else if (i == 199 || i == 399 || i == 400 || i == 499 || i == 599
+					|| i == 699 || i == 900) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	// Function: 410 Cadres job code
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 4
+	// creator: lhx
+	public static String OfficialPostionCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+		try {
+			String code = "";
+			for (int i = 0; i < IDstr.length; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getOfficialPositonByCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+
+	}
+
 }

@@ -233,6 +233,7 @@ public class RecoUtil {
 	public static final String SELECT_PORTTARIFFMa288 = "select * from ClothesName where code=?";
 	// 191_医药器械分类
 	public static final String SELECT_PORTTARIFFMa191 = "select * from Pharmacequipment where code=?";
+<<<<<<< HEAD
 	//395_消防信息代码
 	public static final String SELECT_PORTTARIFF395 = "select * from FireInfomation  where code=?";
 	//399_消防信息代码
@@ -241,6 +242,15 @@ public class RecoUtil {
 	public static final String SELECT_PORTTARIFF403 = "select * from FireInfocamp  where code=?";
 	//409_消防信息代码
 	public static final String SELECT_PORTTARIFF409 = "select * from FireInfotainass  where code=?";	
+=======
+	
+	
+	
+	
+	
+	//410_干部职位名称代码
+	public static final String SELECT_OFFICIALPOSITION="select *from officialposition where code=?";
+>>>>>>> fc95ab67b5a065ccfae04b2c3275dd1e1ec09bca
 	//没有匹配成功任何一种标识
 	public static final int NO_ID_MATCHED = 0;
 	// CoastalAdminAreaId

@@ -2070,6 +2070,7 @@ public class RecoDao {
 		}
 		return ret;
 	}
+<<<<<<< HEAD
 	
 		//268-——中央党政机关代码编制方法   查表数据库
 		public boolean getPortTariff268(String code) {
@@ -3424,16 +3425,26 @@ public class RecoDao {
 	}
 
 	public boolean getRoadTransportation60(String code) {
+=======
+	// 410-——干部职务名称代码  查表数据库
+	public boolean getOfficialPositonByCode(String code) {
+>>>>>>> fc95ab67b5a065ccfae04b2c3275dd1e1ec09bca
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
+<<<<<<< HEAD
 			stmt = connection
 					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION60);
 			int i = 1;
 			stmt.setString(i, code);
 
+=======
+			stmt = connection.prepareStatement(RecoUtil.SELECT_OFFICIALPOSITION);
+			int i = 1;
+			stmt.setString(i, code);
+>>>>>>> fc95ab67b5a065ccfae04b2c3275dd1e1ec09bca
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
@@ -3441,6 +3452,10 @@ public class RecoDao {
 			}
 			if (1 == rowcount) {
 				ret = true;
+<<<<<<< HEAD
+=======
+				System.out.println("results=" + results.toString());
+>>>>>>> fc95ab67b5a065ccfae04b2c3275dd1e1ec09bca
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -3449,6 +3464,7 @@ public class RecoDao {
 		}
 		return ret;
 	}
+<<<<<<< HEAD
 	
 	public boolean getRoadTransportation22(String code){
 		Connection connection = JdbcUtils.getConnection();
@@ -3501,5 +3517,7 @@ public class RecoDao {
 		}
 		return ret;
 	}
+=======
+>>>>>>> fc95ab67b5a065ccfae04b2c3275dd1e1ec09bca
 
 }

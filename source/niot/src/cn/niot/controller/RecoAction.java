@@ -89,22 +89,52 @@ public class RecoAction extends ActionSupport {
 //		System.out.println(RuleFunction.LogisticsCheck(IDstr, 6, index, 6));
 //		System.out.println(RuleFunction.TheCenteralPartyCommitte(IDstr, 3, index, 3));
 
+<<<<<<< HEAD
 		String tr1 = new String("22");
 		char[] IDstr1 = new char[2];
 		for (int i = 0; i < 2; i++) {
+=======
+		String tr1 = new String("2300");
+		char[] IDstr1 = new char[4];
+		for (int i = 0; i < 4; i++) {
+			
+>>>>>>> fc95ab67b5a065ccfae04b2c3275dd1e1ec09bca
 			IDstr1[i] = tr1.charAt(i);
+			
 		}
+<<<<<<< HEAD
 		int[] index = new int[2];
 		index[0]=0;
 		index[1]=1;
 //		index[2]=2;
 //		index[3]=3;
+=======
+		
+		
+		int[] index = new int[4];
+		index[0]=0;
+		index[1]=1;
+		index[2]=2;
+		index[3]=3;
+>>>>>>> fc95ab67b5a065ccfae04b2c3275dd1e1ec09bca
 //		index[4]=4;
 //		index[5]=5;
 //		index[6]=6;
 //		index[7]=7;
+<<<<<<< HEAD
 
 		String result = RuleFunction.FireInfotainass(IDstr1,2,index,2);
+=======
+//		index[8]=8;
+//		index[9]=9;
+//		index[10]=10;
+//		index[11]=11;
+//		index[12]=12;
+//		index[13]=13;
+		
+		
+		String result = RuleFunction.FireInfowatersource(IDstr1,4,index,4);
+>>>>>>> fc95ab67b5a065ccfae04b2c3275dd1e1ec09bca
 		System.out.println("result="+result.toString());
 		return "sucess";
 
