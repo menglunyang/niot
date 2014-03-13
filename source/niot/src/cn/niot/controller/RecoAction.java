@@ -25,18 +25,18 @@ public class RecoAction extends ActionSupport {
 		this.iotID = iotID;
 	}
 
-	private String Msg;    // 添加一个变量
+	private String Msg;    
 
 
-	public String getMsg() {    // 添加getter
+	public String getMsg() {    
 		return Msg;
 	}
 
 	public String execute() {
 //		if (iotID.equals("123456")){
-//			Msg = "                   "+ iotID + " is ID type A";     // 逻辑运算
+//			Msg = "                   "+ iotID + " is ID type A";     
 //		} else{
-//			Msg = "                   "+ iotID + " is not ID type A";     // 逻辑运算
+//			Msg = "                   "+ iotID + " is not ID type A";     
 //		}
 
 //		char[] IDstr = new char[3];
@@ -78,7 +78,7 @@ public class RecoAction extends ActionSupport {
 		System.out.println("start");
 
 //		System.out.println(RuleFunction.MOD9710(IDstr, 15, index, 15));
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式 
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println(df.format(new Date()));
 //		System.out.println(RuleFunction.DeviceMOD163(IDstr, 12, index, 12));
 //		System.out.println(RuleFunction.CoalInterment(IDstr, 12, index, 12));
@@ -106,6 +106,7 @@ public class RecoAction extends ActionSupport {
 
 		String result = RuleFunction.FireInfotainass(IDstr1,2,index,2);
 		System.out.println("result="+result.toString());
+		RuleFuncTest.testAdminDivision();
 		return "sucess";
 
 		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
@@ -119,7 +120,7 @@ public class RecoAction extends ActionSupport {
 
 //		RuleFuncTest.testTwoByteDecimalnt();
 
-//		return "sucess"; s//预定义常量
+//		return "sucess"; s
 	} 
 
 }
