@@ -55,12 +55,12 @@ function sendReqCode()
     							console.log(fullName);
     							console.log(codeNum);
 								
-								oneresult.text(380, 10, "æ‚¨æŸ¥è¯¢çš„ç¼–ç ").attr({'font-family':'å¾®è½¯é›…é»‘','font-size':'20px','fill':'#777'});
+								oneresult.text(380, 10, "éŽ®ã„¦ç…¡ç’‡ãˆ¢æ®‘ç¼‚æ «çˆœ").attr({'font-family':'å¯°î†¿è’‹é—†å‘´ç²¦','font-size':'20px','fill':'#777'});
 								oneresult.circle(380, 130, 100).attr({'fill':'#54A3F0','stroke':''});
 								oneresult.text(380,130,"100%").attr({'font-family':'Lithos Pro','font-size':'100px','fill':'#FFFEFF'});
-								oneresult.text(380,250,"å±žäºŽ"+result.data).attr({'font-family':'å¾®è½¯é›…é»‘','font-size':'20px','fill':'#777'});
-								oneresult.text(380,270,fullName).attr({'font-family':'å¾®è½¯é›…é»‘','font-size':'15px','fill':'#777'});
-								oneresult.text(380,290,codeNum).attr({'font-family':'å¾®è½¯é›…é»‘','font-size':'15px','fill':'#777'});
+								oneresult.text(380,250,"çžç‚°ç°¬"+result.data).attr({'font-family':'å¯°î†¿è’‹é—†å‘´ç²¦','font-size':'20px','fill':'#777'});
+								oneresult.text(380,270,fullName).attr({'font-family':'å¯°î†¿è’‹é—†å‘´ç²¦','font-size':'15px','fill':'#777'});
+								oneresult.text(380,290,codeNum).attr({'font-family':'å¯°î†¿è’‹é—†å‘´ç²¦','font-size':'15px','fill':'#777'});
 							}
 							else if (result.status >1){
 								var pieData = eval(result.data);
@@ -164,52 +164,58 @@ dataSource = [
 function RFIDInput()
 {
 	console.log("RFIDInput pressed");
-	$("#RFID").fadeToggle();
+	$("#RFID").toggle();
 	if($("#RFID").css("display") == "block")
 	{
-		//Ïò·þÎñÆ÷·¢ËÍÇëÇó£¬È¥²é¿´Êý¾Ý¿â£¬ÊÇ·ñÓÐÐÂÊý¾Ý´æÈëRFIDÕâÕÅ±íÀïÊÇ·ñÓÐÏëÒªµÄÊý¾Ý
+		console.log($("#RFID").css("display"));
 		RFIDQuerry();
+	}
+	else
+	{
+		console.log($("#RFID").css("display"));
+		RFIDInfo.RFIDRequest.abort();
+		clearTimeout(RFIDInfo.RFIDTimeout);
+		RFIDInfo.querryCount = 1
+		
 	}
 }
 
-var querryCount = 1;
+var RFIDInfo = new Object();
+RFIDInfo.querryCount = 1;
+RFIDInfo.RFIDRequest = null;
+RFIDInfo.RFIDTimeout = null;
 
 function RFIDQuerry()
 {
-			$.ajax({
-			url:'RFIDInput.action',
-			cache:false,
-			data:{InputType:"RFID"},
-			dataType:'json',
-			beforeSend:function(){
-					
-						},
-			success:function(result){
-							console.log(result.code);
-							//µ±Ã»ÓÐ½á¹ûµÄÊ±ºò
-							if (result.code == null && querryCount < 6)
-								{
-									console.log(querryCount);
-									setTimeout("RFIDQuerry()",5000);;
-									querryCount++;
-								}
-							else if(result.code == null && querryCount == 6)
+	RFIDInfo.RFIDRequest = $.ajax({
+		url:'RFIDInput.action',
+		cache:false,
+		data:{InputType:"RFID"},
+		dataType:'json',
+		beforeSend:function(){
+					},
+		success:function(result){
+						console.log(result.code);
+						if (result.code == null && RFIDInfo.querryCount < 6)
 							{
-									console.log(querryCount);
-									//setTimeOut("RFIDQuerry()",5000);;
-									querryCount = 1;
+								console.log(RFIDInfo.querryCount);
+								RFIDInfo.RFIDTimeout = setTimeout("RFIDQuerry()",5000);;
+								RFIDInfo.querryCount++;
 							}
-							else
-							{
-								console.log(querryCount);
-								//»­¶Ô¹´£¬¸øtextinputÉÏ¼ÓÉÏ£¬È»ºó·¢ËÍÇëÇóÈ¥²éÑ¯
-								querryCount = 1;
-							}
-							
-					
-						},
-			error:"alert('1')"
-		});
+						else if(result.code == null && RFIDInfo.querryCount == 6)
+						{
+								console.log(RFIDInfo.querryCount);
+								//setTimeOut("RFIDQuerry()",5000);;
+								RFIDInfo.querryCount = 1;
+						}
+						else
+						{
+							console.log(RFIDInfo.querryCount);
+							RFIDInfo.querryCount = 1;
+						}
+					},
+		error:"alert('1')"
+	});
 }
 
 
