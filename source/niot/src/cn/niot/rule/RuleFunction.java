@@ -2540,35 +2540,35 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 4
 	// creator: xjf
-	public static String FireInfotrain(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
-		try {
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-				return ERR;
-			}
-			if (LenIndex != 4) {
-				return ERR;
-			}
-			int index1 = (int) IDstr[Index[1]] - 48;
-			int index2 = (int) IDstr[Index[2]] - 48;
-			int index3 = (int) IDstr[Index[3]] - 48;
-			int index4 = (int) IDstr[Index[0]] - 48;
-			// int Xx = 8;
-			int i = 100 * index1 + 10 * index2 + index3 + 1000 * index4;
-			if (i >= 101 && i <= 104) {
-				return OK;
-			} else if (i >= 201 && i <= 203) {
-				return OK;
-			} else if (i == 299 || i == 99) {
-				return OK;
-			}
-
-			else
-				return ERR;
-		} catch (Exception e) {
-			return ERR;
-		}
-	}
+	// public static String FireInfotrain(char[] IDstr, int LenID, int[] Index,
+	// int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 4) {
+	// return ERR;
+	// }
+	// int index1 = (int) IDstr[Index[1]] - 48;
+	// int index2 = (int) IDstr[Index[2]] - 48;
+	// int index3 = (int) IDstr[Index[3]] - 48;
+	// int index4 = (int) IDstr[Index[0]] - 48;
+	// // int Xx = 8;
+	// int i = 100 * index1 + 10 * index2 + index3 + 1000 * index4;
+	// if (i >= 101 && i <= 104) {
+	// return OK;
+	// } else if (i >= 201 && i <= 203) {
+	// return OK;
+	// } else if (i == 299 || i == 99) {
+	// return OK;
+	// }
+	//
+	// else
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	// }
 
 	// Function: 409 fire information
 	// LenID: the number of characters in the ID string
@@ -2614,24 +2614,23 @@ public class RuleFunction {
 			int index1 = 0;
 			int index2 = 0;
 			int i = 0;
-			
-				if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-					return ERR;
-				}
-				if (LenIndex != 2) {
-					return ERR;
-				}
-				index1 = (int) IDstr[Index[0]] - 48;
-				index2 = (int) IDstr[Index[1]] - 48;
-			
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			index1 = (int) IDstr[Index[0]] - 48;
+			index2 = (int) IDstr[Index[1]] - 48;
+
 			// int Xx = 8;
 			i = 10 * index1 + index2;
 			if (i >= 20 && i <= 21) {
 				return OK;
 			} else if (i >= 40 && i <= 43) {
 				return OK;
-			} 
-			else
+			} else
 				return ERR;
 		} catch (Exception e) {
 			return ERR;
@@ -6770,28 +6769,28 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes 固定长2
 	// Creator:许江峰
-//	public static String HighwayTransportation(char[] IDstr, int LenID,
-//			int[] Index, int LenIndex) {
-//		try {
-//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-//				return ERR;
-//			}
-//			if (LenIndex != 2) {
-//				return ERR;
-//			}
-//			int index1 = (int) IDstr[Index[0]] - 48;
-//			int index2 = (int) IDstr[Index[1]] - 48;
-//			int i = 10 * index1 + index2;
-//			if (i >= 10 && i <= 12) {
-//				return OK;
-//			} else if (i >= 20 && i <= 22 || i == 29 || i == 30) {
-//				return OK;
-//			} else
-//				return ERR;
-//		} catch (Exception e) {
-//			return ERR;
-//		}
-//	}
+	// public static String HighwayTransportation(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 2) {
+	// return ERR;
+	// }
+	// int index1 = (int) IDstr[Index[0]] - 48;
+	// int index2 = (int) IDstr[Index[1]] - 48;
+	// int i = 10 * index1 + index2;
+	// if (i >= 10 && i <= 12) {
+	// return OK;
+	// } else if (i >= 20 && i <= 22 || i == 29 || i == 30) {
+	// return OK;
+	// } else
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	// }
 
 	// Function: 10 11 12 19 20 21 22 29 30
 	// IDstr: ID string
@@ -7105,32 +7104,19 @@ public class RuleFunction {
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:许江峰
-	/*public static String TwoOrThree(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
-		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			return ERR;
-		}
-		int index1 = (int) IDstr[Index[0]] - 48;
-		int index2 = (int) IDstr[Index[1]] - 48;
-		if (LenIndex == 2) {
-			int i = 10 * index1 + index2;
-			if (i >= 01 && i <= 99) {
-				return OK;
-			} else
-				return ERR;
-		}
-		if (LenIndex == 3) {
-			int index3 = (int) IDstr[Index[2]] - 48;
-			int i = 100 * index1 + 10 * index2 + index3;
-			if (i >= 01 && i <= 999) {
-				return OK;
-			} else
-				return ERR;
-
-		}
-		return ERR;
-
-	}*/
+	/*
+	 * public static String TwoOrThree(char[] IDstr, int LenID, int[] Index, int
+	 * LenIndex) { if (!checkInputParam(IDstr, LenID, Index, LenIndex)) { return
+	 * ERR; } int index1 = (int) IDstr[Index[0]] - 48; int index2 = (int)
+	 * IDstr[Index[1]] - 48; if (LenIndex == 2) { int i = 10 * index1 + index2;
+	 * if (i >= 01 && i <= 99) { return OK; } else return ERR; } if (LenIndex ==
+	 * 3) { int index3 = (int) IDstr[Index[2]] - 48; int i = 100 * index1 + 10 *
+	 * index2 + index3; if (i >= 01 && i <= 999) { return OK; } else return ERR;
+	 * 
+	 * } return ERR;
+	 * 
+	 * }
+	 */
 
 	// Function: 两位或四位
 	// IDstr: ID string
@@ -7960,32 +7946,32 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 2
 	// creator: xjf
-//	public static String RoadTransportation21(char[] IDstr, int LenID,
-//			int[] Index, int LenIndex) {
-//		try {
-//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-//				return ERR;
-//			}
-//			if (LenIndex != 2) {
-//				return ERR;
-//			}
-//			int i1 = (int) IDstr[Index[0]] - 48;
-//			int i2 = (int) IDstr[Index[1]] - 48;
-//			int i = 10 * i1 + i2;
-//			if (i >= 20 && i <= 25) {
-//				return OK;
-//			}
-//			if (i == 20 || i == 30) {
-//				return OK;
-//			}
-//			if (i == 40 || i == 90) {
-//				return OK;
-//			}
-//			return ERR;
-//		} catch (Exception e) {
-//			return ERR;
-//		}
-//	}
+	// public static String RoadTransportation21(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 2) {
+	// return ERR;
+	// }
+	// int i1 = (int) IDstr[Index[0]] - 48;
+	// int i2 = (int) IDstr[Index[1]] - 48;
+	// int i = 10 * i1 + i2;
+	// if (i >= 20 && i <= 25) {
+	// return OK;
+	// }
+	// if (i == 20 || i == 30) {
+	// return OK;
+	// }
+	// if (i == 40 || i == 90) {
+	// return OK;
+	// }
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	// }
 
 	// Function:1880 road transportation
 	// LenID: the number of characters in the ID string
@@ -7993,39 +7979,39 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 2
 	// creator: xjf
-//	public static String RoadTransportation22(char[] IDstr, int LenID,
-//			int[] Index, int LenIndex) {
-//		try {
-//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-//				return ERR;
-//			}
-//			if (LenIndex != 2) {
-//				return ERR;
-//			}
-//			int i1 = (int) IDstr[Index[0]] - 48;
-//			int i2 = (int) IDstr[Index[1]] - 48;
-//			int i = 10 * i1 + i2;
-//
-//			if (i >= 11 && i <= 12) {
-//				return OK;
-//			}
-//			if (i >= 21 && i <= 24) {
-//				return OK;
-//			}
-//			if (i >= 41 && i <= 42) {
-//				return OK;
-//			}
-//			if (i == 30 || i == 50) {
-//				return OK;
-//			}
-//			if (i == 60 || i == 90 || i == 70) {
-//				return OK;
-//			}
-//			return ERR;
-//		} catch (Exception e) {
-//			return ERR;
-//		}
-//	}
+	// public static String RoadTransportation22(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 2) {
+	// return ERR;
+	// }
+	// int i1 = (int) IDstr[Index[0]] - 48;
+	// int i2 = (int) IDstr[Index[1]] - 48;
+	// int i = 10 * i1 + i2;
+	//
+	// if (i >= 11 && i <= 12) {
+	// return OK;
+	// }
+	// if (i >= 21 && i <= 24) {
+	// return OK;
+	// }
+	// if (i >= 41 && i <= 42) {
+	// return OK;
+	// }
+	// if (i == 30 || i == 50) {
+	// return OK;
+	// }
+	// if (i == 60 || i == 90 || i == 70) {
+	// return OK;
+	// }
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	// }
 
 	// Function:1880 road transportation
 	// LenID: the number of characters in the ID string
@@ -8033,33 +8019,33 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 2
 	// creator: xjf
-//	public static String RoadTransportation32(char[] IDstr, int LenID,
-//			int[] Index, int LenIndex) {
-//		try {
-//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-//				return ERR;
-//			}
-//			if (LenIndex != 2) {
-//				return ERR;
-//			}
-//			int i1 = (int) IDstr[Index[0]] - 48;
-//			int i2 = (int) IDstr[Index[1]] - 48;
-//			int i = 10 * i1 + i2;
-//
-//			if (i >= 10 && i <= 15) {
-//				return OK;
-//			}
-//			if (i >= 19 && i <= 20) {
-//				return OK;
-//			}
-//			if (i == 30 || i == 90) {
-//				return OK;
-//			}
-//			return ERR;
-//		} catch (Exception e) {
-//			return ERR;
-//		}
-//	}
+	// public static String RoadTransportation32(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 2) {
+	// return ERR;
+	// }
+	// int i1 = (int) IDstr[Index[0]] - 48;
+	// int i2 = (int) IDstr[Index[1]] - 48;
+	// int i = 10 * i1 + i2;
+	//
+	// if (i >= 10 && i <= 15) {
+	// return OK;
+	// }
+	// if (i >= 19 && i <= 20) {
+	// return OK;
+	// }
+	// if (i == 30 || i == 90) {
+	// return OK;
+	// }
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	// }
 
 	// Function:1880 road transportation
 	// LenID: the number of characters in the ID string
@@ -8067,34 +8053,34 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 2
 	// creator: xjf
-//	public static String RoadTransportation50(char[] IDstr, int LenID,
-//			int[] Index, int LenIndex) {
-//		try {
-//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-//				return ERR;
-//			}
-//			if (LenIndex != 2) {
-//				return ERR;
-//			}
-//			int i1 = (int) IDstr[Index[0]] - 48;
-//			int i2 = (int) IDstr[Index[1]] - 48;
-//			int i = 10 * i1 + i2;
-//
-//			if (i >= 20 && i <= 23) {
-//				return OK;
-//			}
-//			if (i >= 25 && i <= 26) {
-//				return OK;
-//			}
-//			if (i == 10 || i == 90) {
-//				return OK;
-//			}
-//			return ERR;
-//		} catch (Exception e) {
-//			return ERR;
-//		}
-//
-//	}
+	// public static String RoadTransportation50(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 2) {
+	// return ERR;
+	// }
+	// int i1 = (int) IDstr[Index[0]] - 48;
+	// int i2 = (int) IDstr[Index[1]] - 48;
+	// int i = 10 * i1 + i2;
+	//
+	// if (i >= 20 && i <= 23) {
+	// return OK;
+	// }
+	// if (i >= 25 && i <= 26) {
+	// return OK;
+	// }
+	// if (i == 10 || i == 90) {
+	// return OK;
+	// }
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	//
+	// }
 
 	// Function:1880 road transportation
 	// LenID: the number of characters in the ID string
@@ -8102,31 +8088,31 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 2
 	// creator: xjf
-//	public static String RoadTransportation63(char[] IDstr, int LenID,
-//			int[] Index, int LenIndex) {
-//		try {
-//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-//				return ERR;
-//			}
-//			if (LenIndex != 2) {
-//				return ERR;
-//			}
-//			int i1 = (int) IDstr[Index[0]] - 48;
-//			int i2 = (int) IDstr[Index[1]] - 48;
-//			int i = 10 * i1 + i2;
-//
-//			if (i >= 10 && i <= 13) {
-//				return OK;
-//			}
-//			if (i >= 20 && i <= 23) {
-//				return OK;
-//			}
-//			return ERR;
-//		} catch (Exception e) {
-//			return ERR;
-//		}
-//
-//	}
+	// public static String RoadTransportation63(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 2) {
+	// return ERR;
+	// }
+	// int i1 = (int) IDstr[Index[0]] - 48;
+	// int i2 = (int) IDstr[Index[1]] - 48;
+	// int i = 10 * i1 + i2;
+	//
+	// if (i >= 10 && i <= 13) {
+	// return OK;
+	// }
+	// if (i >= 20 && i <= 23) {
+	// return OK;
+	// }
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	//
+	// }
 
 	// Function:1880 road transportation
 	// LenID: the number of characters in the ID string
@@ -8134,34 +8120,34 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 2
 	// creator: xjf
-//	public static String RoadTransportation64(char[] IDstr, int LenID,
-//			int[] Index, int LenIndex) {
-//		try {
-//			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-//				return ERR;
-//			}
-//			if (LenIndex != 2) {
-//				return ERR;
-//			}
-//			int i1 = (int) IDstr[Index[0]] - 48;
-//			int i2 = (int) IDstr[Index[1]] - 48;
-//			int i = 10 * i1 + i2;
-//
-//			if (i >= 10 && i <= 12) {
-//				return OK;
-//			}
-//			if (i >= 30 && i <= 32) {
-//				return OK;
-//			}
-//			if (i == 20 || i == 40) {
-//				return OK;
-//			}
-//			return ERR;
-//		} catch (Exception e) {
-//			return ERR;
-//		}
-//
-//	}
+	// public static String RoadTransportation64(char[] IDstr, int LenID,
+	// int[] Index, int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 2) {
+	// return ERR;
+	// }
+	// int i1 = (int) IDstr[Index[0]] - 48;
+	// int i2 = (int) IDstr[Index[1]] - 48;
+	// int i = 10 * i1 + i2;
+	//
+	// if (i >= 10 && i <= 12) {
+	// return OK;
+	// }
+	// if (i >= 30 && i <= 32) {
+	// return OK;
+	// }
+	// if (i == 20 || i == 40) {
+	// return OK;
+	// }
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	//
+	// }
 
 	// Function: 01-40
 	// IDstr: ID string
@@ -10290,144 +10276,143 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	public static String RoadTransportation21(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+	public static String RoadTransportation21(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation21(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	public static String CivilAviation(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 9) {
 			return ERR;
 		}
-        if(IDstr[0]!='2' || IDstr[1]!='7'){
-        	return ERR;
-        }
-			String code = "";
-			for (int i = 0; i < 9; i++) {
-				code = code.concat(String.valueOf(IDstr[Index[i]]));
-			}
-			System.out.println(code);
-			try{
-				RecoDao recoDao = new RecoDao();
+		if (IDstr[0] != '2' || IDstr[1] != '7') {
+			return ERR;
+		}
+		String code = "";
+		for (int i = 0; i < 9; i++) {
+			code = code.concat(String.valueOf(IDstr[Index[i]]));
+		}
+		System.out.println(code);
+		try {
+			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getCivilAviation(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	public static String RoadTransportation22(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+	public static String RoadTransportation22(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation22(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String RoadTransportation32(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String RoadTransportation32(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation32(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String RoadTransportation5(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String RoadTransportation5(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]])+String.valueOf(IDstr[Index[2]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]])
+					+ String.valueOf(IDstr[Index[2]]);
 			RecoDao recoDao = new RecoDao();
 			System.out.println(code);
 			boolean ret = recoDao.getRoadTransportation5(code);
@@ -10435,344 +10420,338 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String RoadTransportation41(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String RoadTransportation41(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]])+String.valueOf(IDstr[Index[2]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]])
+					+ String.valueOf(IDstr[Index[2]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation41(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String RoadTransportation50(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String RoadTransportation50(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation50(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String RoadTransportation53(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String RoadTransportation53(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]])+String.valueOf(IDstr[Index[2]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]])
+					+ String.valueOf(IDstr[Index[2]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation53(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String RoadTransportation63(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String RoadTransportation63(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation63(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String Port(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String Port(char[] IDstr, int LenID, int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]])+String.valueOf(IDstr[Index[2]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]])
+					+ String.valueOf(IDstr[Index[2]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPort(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String RoadTransportation60(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String RoadTransportation60(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 4) {
 			return ERR;
 		}
-		if(IDstr[0]!='A' && IDstr[0]!='B')
+		if (IDstr[0] != 'A' && IDstr[0] != 'B')
 			return ERR;
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]])+String.valueOf(IDstr[Index[2]])+String.valueOf(IDstr[Index[3]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]])
+					+ String.valueOf(IDstr[Index[2]])
+					+ String.valueOf(IDstr[Index[3]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation60(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String RoadTransportation64(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String RoadTransportation64(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getRoadTransportation64(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String HighwayTransportation4b1(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String HighwayTransportation4b1(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayTransportation4b1(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String HighwayTransportation4b7(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String HighwayTransportation4b7(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]])+String.valueOf(IDstr[Index[2]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]])
+					+ String.valueOf(IDstr[Index[2]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayTransportation4b7(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String HighwayTransportation4b9(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String HighwayTransportation4b9(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayTransportation4b9(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String HighwayTransportation4c3(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String HighwayTransportation4c3(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 4) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<4;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 4; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayTransportation4c3(code);
@@ -10780,23 +10759,24 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	public static String PortTariff3(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 4) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<4;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 4; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff3(code);
@@ -10804,25 +10784,24 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
-	
+
 	public static String PortTariff4(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<2;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 2; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff4(code);
@@ -10830,23 +10809,24 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 4) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<4;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 4; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff9(code);
@@ -10854,24 +10834,24 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff25(code);
@@ -10879,25 +10859,24 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
-	
+
 	public static String PortTariff26(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<3;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 3; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff26(code);
@@ -10905,23 +10884,24 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	public static String PortTariff10(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<3;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 3; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff10(code);
@@ -10929,31 +10909,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery2(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery2(code);
@@ -10961,32 +10940,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	public static String HighwayMaintenance4(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+	public static String HighwayMaintenance4(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 10) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<10;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 10; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayMaintenance4(code);
@@ -10994,32 +10971,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	public static String HighwayMaintenance3(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+	public static String HighwayMaintenance3(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 10) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<10;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 10; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayMaintenance4(code);
@@ -11027,32 +11002,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery3(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery3(code);
@@ -11060,32 +11033,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery4(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery4(code);
@@ -11093,32 +11064,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery5(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery5(code);
@@ -11126,31 +11095,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery6(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery6(code);
@@ -11158,33 +11126,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
 
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery7(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery7(code);
@@ -11192,32 +11157,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery8(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery8(code);
@@ -11225,32 +11188,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery9(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery9(code);
@@ -11258,32 +11219,30 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
 	public static String Machinery10(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 5) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<5;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMachinery10(code);
@@ -11291,26 +11250,24 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
-	
-	
-	public static String HighwayTransportation4c6(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+
+	public static String HighwayTransportation4c6(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<2;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 2; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayTransportation4c6(code);
@@ -11318,32 +11275,31 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String WaterwayTransportation(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String WaterwayTransportation(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = "";
-			for(int i=0;i<3;i++){
-				code=code.concat(String.valueOf(IDstr[i]));
+			for (int i = 0; i < 3; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getWaterwayTransportation(code);
@@ -11351,30 +11307,28 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
-	}	
-	
+
+	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String HighwayTransportation4b10(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String HighwayTransportation4b10(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 1) {
 			return ERR;
 		}
-		try{
+		try {
 			String code = String.valueOf(IDstr[Index[0]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayTransportation4b10(code);
@@ -11382,53 +11336,52 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String HighwayTransportation(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String HighwayTransportation(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
 		if (LenIndex != 3) {
 			return ERR;
 		}
-		try{
-			String code = String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]])+String.valueOf(IDstr[Index[2]]);
+		try {
+			String code = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]])
+					+ String.valueOf(IDstr[Index[2]]);
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayTransportation(code);
 			if (ret) {
 				return OK;
 			} else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	
-	public static String TwobytleCode06and90(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+
+	public static String TwobytleCode06and90(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -11439,78 +11392,76 @@ public class RuleFunction {
 		int index2 = (int) IDstr[Index[1]] - 48;
 		int Xx = 06;
 		int i = 10 * index1 + index2;
-		if (i >= 01 && i <= Xx || i==90) {
+		if (i >= 01 && i <= Xx || i == 90) {
 			return OK;
 		} else
 			return ERR;
 
 	}
-	
+
 	/*
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
-	public static String SecurityAccounterments(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+	 * IDstr: ID string LenID: the number of characters in the ID string Index:
+	 * the list of corresponding indexes regarding to this algorithm Index: the
+	 * list of corresponding indexes regarding to this algorithm LenIndex: the
+	 * number of indexes creator:wt
+	 */
+	public static String SecurityAccounterments(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if(IDstr[0]!='A' && IDstr[0]!='B'){
-				return ERR;
+		if (IDstr[0] != 'A' && IDstr[0] != 'B') {
+			return ERR;
 		}
 		String code = new String(IDstr);
-		try{
+		try {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getSecurityAccounterments(code);
-			if(ret)
+			if (ret)
 				return OK;
-			else 
+			else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
 		}
-		
+
 	}
+
 	public static String SpecialVehicle(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if(IDstr[0]!='M')
+		if (IDstr[0] != 'M')
 			return ERR;
 		String code = new String(IDstr);
-		try{
+		try {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getSpecialVehicle(code);
-			if(ret)
+			if (ret)
 				return OK;
-			else 
+			else
 				return ERR;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ERR;
-			}
+		}
 	}
-	/*2 or 3 bit code
-	 * IDstr: ID string
-	 * LenID: the number of characters in the ID string
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * Index: the list of corresponding indexes regarding to this algorithm
-	 * LenIndex: the number of indexes
-	 * creator:wt
-	 * */
+
+	/*
+	 * 2 or 3 bit code IDstr: ID string LenID: the number of characters in the
+	 * ID string Index: the list of corresponding indexes regarding to this
+	 * algorithm Index: the list of corresponding indexes regarding to this
+	 * algorithm LenIndex: the number of indexes creator:wt
+	 */
 	public static String TwoOrThree(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if(LenID==2){
+		if (LenID == 2) {
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
-			if(index1<0 || index1>9 ||index2<0 || index2>9 )
+			if (index1 < 0 || index1 > 9 || index2 < 0 || index2 > 9)
 				return ERR;
 			int Xx = 99;
 			int i = 10 * index1 + index2;
@@ -11518,36 +11469,40 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		}else if(LenID==3){
-			int index1 = (int)IDstr[Index[0]]-48;
-			int index2 = (int)IDstr[Index[0]]-48;
-			int index3 = (int)IDstr[Index[0]]-48;
-			if(index1<0 || index1>9 ||index2<0 || index2>9 ||index3<0 || index3>9)
+		} else if (LenID == 3) {
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[0]] - 48;
+			int index3 = (int) IDstr[Index[0]] - 48;
+			if (index1 < 0 || index1 > 9 || index2 < 0 || index2 > 9
+					|| index3 < 0 || index3 > 9)
 				return ERR;
-			int i = 100*index1+10*index2+index3;
+			int i = 100 * index1 + 10 * index2 + index3;
 			int Xx = 999;
-			if(i > 01 && i <= Xx)
+			if (i > 01 && i <= Xx)
 				return OK;
-			else return ERR;
-		}else return ERR;
+			else
+				return ERR;
+		} else
+			return ERR;
 	}
-	//A1234
-	//12345
+
+	// A1234
+	// 12345
 	public static String CommodityName(char[] IDstr, int LenID, int[] Index,
-			int LenIndex){
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if(IDstr[Index[0]]=='A'){
-			for(int i=1;i<LenIndex;i++){
-				if(IDstr[Index[i]]<'0' || IDstr[Index[i]]>'9')
+		if (IDstr[Index[0]] == 'A') {
+			for (int i = 1; i < LenIndex; i++) {
+				if (IDstr[Index[i]] < '0' || IDstr[Index[i]] > '9')
 					return ERR;
 			}
 			return OK;
 		}
-		if(IDstr[Index[0]]>='0' && IDstr[Index[0]]<='9'){
-			for(int i=1;i<LenIndex;i++){
-				if(IDstr[Index[i]]<'0' || IDstr[Index[i]]>'9')
+		if (IDstr[Index[0]] >= '0' && IDstr[Index[0]] <= '9') {
+			for (int i = 1; i < LenIndex; i++) {
+				if (IDstr[Index[i]] < '0' || IDstr[Index[i]] > '9')
 					return ERR;
 			}
 			return OK;
@@ -11640,14 +11595,15 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+
 	// Function: 410 Cadres job code
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// LenIndex: the number of indexes that must be 4
 	// creator: lhx
-	public static String OfficialPostionCode(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String OfficialPostionCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -11669,6 +11625,1348 @@ public class RuleFunction {
 			return ERR;
 		}
 
+	}
+
+	// Function: 山脉山峰名称代码（297）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String MountainRangeAndPeakName(char[] CODEstr, int LenCODE,
+			int[] Index, int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 7) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getMountainRangeAndPeakName(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 知识产权文献与信息分类及代码（298）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String IntellectualProperty(char[] CODEstr, int LenCODE,
+			int[] Index, int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getIntellectualProperty(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 民用航空业信息分类与代码 (340)
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String ClassificationOfCivilAviation(char[] CODEstr,
+			int LenCODE, int[] Index, int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 4) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getClassificationOfCivilAviation(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 高等学校本科、专科专业名称代码（328）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String NormalAndShortCycleSpeciality(char[] CODEstr,
+			int LenCODE, int[] Index, int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 6) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getNormalAndShortCycleSpeciality(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 船舶维修保养体系 第二部分（337）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String MaintenanceSystemPTwo(char[] CODEstr, int LenCODE,
+			int[] Index, int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 14) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getMaintenanceSystemPTwo(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:国际贸易合同代码（326）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String CountryRegionCode1(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		String code = new String(IDstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getMaintenanceSystemPTwo(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:电力科技成果分类与代码（784）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String ElectricPower(char[] CODEstr, int LenCODE,
+			int[] Index, int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 6) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getMaintenanceSystemPTwo(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:全国电网名称代码（785）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String PowerGrid(char[] CODEstr, int LenCODE, int[] Index,
+			int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 3) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerGrid(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:电力行业单位类别代码（787）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String ElectricPowerIndustry(char[] CODEstr, int LenCODE,
+			int[] Index, int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getElectricPowerIndustry(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:电力地理信息系统图形符号分类与代码（788）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String ElectricPowerGeography(char[] CODEstr, int LenCODE,
+			int[] Index, int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 7) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getElectricPowerGeography(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:电压等级代码（789）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String VoltageClass(char[] CODEstr, int LenCODE, int[] Index,
+			int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 7) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getVoltageClass(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:电力物资编码 第二部分 机电产品（909）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String PowerGoodsP2(char[] CODEstr, int LenCODE, int[] Index,
+			int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerGoodsP2(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 金属热处理工艺分类及代号，工艺类型与工艺名称层次
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用标识编码的位置
+	// LenIndex: 长度为2
+	// creator: gcc
+	public static String MetalHeatCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			if (index1 == 1) {
+				if (index2 > 0 && index2 < 9) {
+					return OK;
+				}
+			}
+
+			if (index1 == 2) {
+				if (index2 > 0 && index2 < 6) {
+					return OK;
+				}
+			}
+
+			if (index1 == 3) {
+				if (index2 > 0 && index2 < 8) {
+					return OK;
+				}
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 基础地理信息要素分类与代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用标识编码的位置
+	// LenIndex: 长度为六位
+	// creator: gcc
+	public static String GeographicInfoCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getGeographicalInfoCode(code);
+			if (ret) {
+				return OK;
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 生产过程危险和有害因素分类与代码(354)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex: 长度必为6
+	// creator: gcc
+	public static String HarmfulFactor(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getHarmfulFactorCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 中华人民共和国铁路车站分类与代码(366)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex: 长度必为6
+	// creator: gcc
+	public static String RailwayStationCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 5) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getRailwayStationCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 旋转电机整体结构的防护等级（IP代码） 分级(261)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的索引位置
+	// LenIndex: 不定长
+	// creator: gcc
+	public static String ProtectionDegreeRegex(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[A-Z]*";
+			int prefix = 4;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 林业档案分类与代码（237）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的索引位置
+	// LenIndex: 不定长
+	// creator: gcc
+	public static String ForestryClassRegex(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[1-9]*";
+			int prefix = 3;
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 地质矿产术语分类与代码（241-244）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex: 不定长
+	// creator: gcc
+	public static String MineralRegex(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[0-9]*";
+			int prefix = 6;
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 国际航运货物装卸费用和船舶租赁方式条款代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用条款代码的位置
+	// LenIndex: 长度为两位
+	// creator: gcc
+	public static String StevedorageChartering(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			char index1 = IDstr[Index[0]];
+			char index2 = IDstr[Index[1]];
+			if ((index1 == 'L') && ((index2 == 'T') || (index2 == 'F'))) {
+				return OK;
+			}
+			if (index1 == 'F') {
+				if (index2 == 'I' || index2 == 'O' || index2 == 'N'
+						|| index2 == 'T' || index2 == 'S' || index2 == 'A'
+						|| index2 == 'D' || index2 == 'L') {
+					return OK;
+				}
+			}
+			if ((index1 == 'U') && (index2 == 'T')) {
+				return OK;
+			}
+			if ((index1 == 'D') && (index2 == 'L')) {
+				return OK;
+			}
+			if ((index1 == 'T') && ((index2 == 'D') || (index2 == 'W'))) {
+				return OK;
+			}
+			if (index1 == 'V') {
+				if (index2 == 'F' || index2 == 'L' || index2 == 'P'
+						|| index2 == 'A') {
+					return OK;
+				}
+			}
+			if (index1 == 'A' && index2 == 'C') {
+				return OK;
+			}
+			if (index1 == 'B' && index2 == 'C') {
+				return OK;
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 林业资源分类与代码 林木病害
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用林木病害的位置
+	// LenIndex； 长度为六位
+	// creator: gcc
+	public static String TreeDiseaseCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			String code = "";
+			RecoDao recoDao = new RecoDao();
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			boolean ret = recoDao.getTreeDiseaseCode(code);
+			if (ret) {
+				return OK;
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 内河船舶分类与代码前四位（341-1）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用船舶代码的位置
+	// LenIndex: 长度是四位
+	// creator: gcc
+	public static String NavigationShip(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getNavigationShipCode(code);
+			if (ret) {
+				return OK;
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 内河船舶分类与代码附加代码（341-2）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用附加代码的位置
+	// LenIndex: 长度是两位
+	// creator: gcc
+	public static String NavigationShipAddCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+
+			if (index1 == 1) {
+				if ((index2 >= 0 && index2 < 8) || index2 == 9)
+					return OK;
+			}
+			if (index1 == 2) {
+				if (index2 > 0 && index2 <= 9)
+					return OK;
+			}
+
+			if (index1 == 3) {
+				if (index2 == 0 || index2 == 1 || index2 == 9) {
+					return OK;
+				}
+			}
+			if (index1 == 4 || index2 == 5) {
+				if ((index2 >= 0 && index2 < 5) || index2 == 9)
+					return OK;
+			}
+			if (index1 == 6) {
+				if ((index2 >= 0 && index2 < 7) || index2 == 9)
+					return OK;
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 第46部分：消防训练分类与代码（411）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用消防训练分类与代码代码的位置
+	// LenIndex: 长度是六位
+	// creator: gcc
+	public static String FireTrainCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int index3 = (int) IDstr[Index[2]] - 48;
+			int index4 = (int) IDstr[Index[3]] - 48;
+			int index5 = (int) IDstr[Index[4]] - 48;
+			int index6 = (int) IDstr[Index[5]] - 48;
+			int Xx = 10 * index1 + index2;
+			int Yy = 10 * index3 + index4;
+			int Zz = 10 * index5 + index6;
+			if ((Xx > 0 && Xx < 5) || Xx == 99) {
+				if (Yy == 0 && Zz == 0)
+					return OK;
+			}
+			if (Xx == 1) {
+				if ((Yy > 0 && Yy < 7) || Yy == 99) {
+					if (Zz == 0)
+						return OK;
+				}
+			}
+			if (Xx == 2) {
+				if (Yy == 1) {
+					if (Zz >= 0 && Zz < 11)
+						return OK;
+				}
+			}
+			if (Xx == 2 || Xx == 3) {
+				if (Yy == 2) {
+					if (Zz >= 0 && Zz < 4)
+						return OK;
+				}
+			}
+			if (Xx == 2 || Xx == 3) {
+				if (Yy == 3) {
+					if (Zz >= 0 && Zz < 3)
+						return OK;
+				}
+			}
+			if (Xx == 2 || Xx == 3) {
+				if (Yy == 99) {
+					if (Zz == 0)
+						return OK;
+				}
+			}
+			if (Xx == 3) {
+				if (Yy == 1) {
+					if (Zz >= 0 && Zz < 15)
+						return OK;
+				}
+			}
+			if (Xx == 4) {
+				if ((Yy > 0 && Yy < 8) || Yy == 99)
+					if (Zz == 0)
+						return OK;
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 第33部分：起火原因分类与代码（425）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用起火原因分类与代码代码的位置
+	// LenIndex: 长度是六位
+	// creator: gcc
+	public static String FireCauseCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int index3 = (int) IDstr[Index[2]] - 48;
+			int index4 = (int) IDstr[Index[3]] - 48;
+			int index5 = (int) IDstr[Index[4]] - 48;
+			int index6 = (int) IDstr[Index[5]] - 48;
+			int Xx = 10 * index1 + index2;
+			int Yy = 10 * index3 + index4;
+			int Zz = 10 * index5 + index6;
+			if ((Xx > 0 && Xx < 10) || Xx == 98 || Xx == 99) {
+				if (Yy == 0 && Zz == 0)
+					return OK;
+			}
+			if (Xx == 1) {
+				if (Yy == 1) {
+					if ((Zz >= 0 && Zz < 7) || Zz == 99)
+						return OK;
+				}
+			}
+			if (Xx == 1) {
+				if (Yy == 3) {
+					if ((Zz >= 0 && Zz < 3) || Zz == 99)
+						return OK;
+				}
+			}
+			if (Xx == 1) {
+				if (Yy == 2 || Yy == 99) {
+					if (Zz == 0)
+						return OK;
+				}
+			}
+			if (Xx == 2) {
+				if (Yy == 1 || Yy == 5) {
+					if ((Zz >= 0 && Zz < 4) || Zz == 99)
+						return OK;
+				}
+			}
+			if (Xx == 2) {
+				if (Yy == 2 || Yy == 3) {
+					if ((Zz >= 0 && Zz < 5) || Zz == 99)
+						return OK;
+				}
+			}
+			if (Xx == 2) {
+				if (Yy == 4) {
+					if ((Zz >= 0 && Zz < 9) || Zz == 99)
+						return OK;
+				}
+			}
+			if (Xx == 2) {
+				if (Yy == 99) {
+					if (Zz == 0)
+						return OK;
+				}
+			}
+			if (Xx == 3) {
+				if (Yy > 0 && Yy < 12 || Yy == 99) {
+					if (Zz == 0)
+						return OK;
+				}
+			}
+			if (Xx == 4 || Xx == 6) {
+				if (Yy > 0 && Yy < 4 || Yy == 99) {
+					if (Zz == 0)
+						return OK;
+				}
+			}
+			if (Xx == 5) {
+				if (Yy == 1 || Yy == 2 || Yy == 99) {
+					if (Zz == 0)
+						return OK;
+				}
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 第28部分：消防出警事件分类与代码（425）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用消防出警事件分类与代码代码的位置
+	// LenIndex: 长度是四位
+	// creator: gcc
+	public static String FireForceCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 4) {
+				return ERR;
+			}
+
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int index3 = (int) IDstr[Index[2]] - 48;
+			int index4 = (int) IDstr[Index[3]] - 48;
+			int Xx = 10 * index3 + index4;
+
+			if ((index1 > 0 && index1 < 6) || index1 == 9) {
+				if (index2 == 0 && Xx == 0)
+					return OK;
+			}
+			if (index1 == 1) {
+				if (index2 == 1 || index2 == 3) {
+					if ((Xx >= 0 && Xx < 6) || Xx == 99)
+						return OK;
+				}
+			}
+			if (index1 == 1) {
+				if (index2 == 2) {
+					if ((Xx >= 0 && Xx < 8) || Xx == 99)
+						return OK;
+				}
+			}
+			if (index1 == 1 || index1 == 2 || index1 == 9) {
+				if (index2 == 9) {
+					if (Xx == 0)
+						return OK;
+				}
+			}
+			if (index1 == 2) {
+				if (index2 == 2 || index2 == 4) {
+					if (Xx >= 0 && Xx < 7 || Xx == 99)
+						return OK;
+				}
+			}
+			if (index1 == 2) {
+				if (index2 == 1) {
+					if ((Xx >= 0 && Xx < 9) || Xx == 99)
+						return OK;
+				}
+			}
+			if (index1 == 2) {
+				if (index2 == 3) {
+					if ((Xx >= 0 && Xx < 3) || Xx == 99)
+						return OK;
+				}
+			}
+			if (index1 == 2) {
+				if (index2 == 5) {
+					if ((Xx >= 0 && Xx < 6) || Xx == 99)
+						return OK;
+				}
+			}
+			if (index1 == 2) {
+				if (index2 == 6) {
+					if ((Xx >= 0 && Xx < 8) || Xx == 99)
+						return OK;
+				}
+			}
+			if (index1 == 4) {
+				if (index2 > 0 && index2 < 4 || index2 == 9) {
+					if (Xx == 0)
+						return OK;
+				}
+			}
+			if (index1 == 5) {
+				if (index2 > 0 && index2 < 6 || index2 == 9) {
+					if (Xx == 0)
+						return OK;
+				}
+			}
+			if (index1 == 9) {
+				if (index2 == 1) {
+					if (Xx == 0)
+						return OK;
+				}
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 412 fire information
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 4
+	// creator: gcc
+	public static String FireInfotrain(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[1]] - 48;
+			int index2 = (int) IDstr[Index[2]] - 48;
+			int index3 = (int) IDstr[Index[3]] - 48;
+			int index4 = (int) IDstr[Index[0]] - 48;
+			// int Xx = 8;
+			int i = 100 * index1 + 10 * index2 + index3 + 1000 * index4;
+			if (i >= 100 && i <= 104) {
+				return OK;
+			} else if (i >= 200 && i <= 203) {
+				return OK;
+			} else if (i == 299 || i == 99) {
+				return OK;
+			}
+
+			else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 419 fire information
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: gcc
+	public static String ServiceState(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			if ((index1 > 0 && index1 < 8) || index1 == 9) {
+				if (index2 == 0) {
+					return OK;
+				}
+			}
+			if (index1 == 2) {
+				if (index2 > 0 && index2 < 8) {
+					return OK;
+				}
+			}
+			return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 457
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: gcc
+	public static String PractitionerType(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int i = 10 * index1 + index2;
+			if (i >= 10 && i <= 13) {
+				return OK;
+			}
+			if (i >= 19 && i <= 23) {
+				return OK;
+			}
+			if (i >= 29 && i <= 30 || i == 40 || i == 99) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: GA/T 556.4
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用金融单位类别代码的位置
+	// LenIndex: 长度是两位
+	// creator: gcc
+	public static String FinancialCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+
+			if (index1 == 1 || index1 == 2 || index1 == 3 || index1 == 6
+					|| index1 == 8) {
+				if (index2 == 0) {
+					return OK;
+				}
+			}
+			if (index1 == 4) {
+				if (index2 > 0 && index2 <= 9) {
+					return OK;
+				}
+			}
+			if (index1 == 5) {
+				if (index2 > 4 && index2 <= 9) {
+					return OK;
+				}
+			}
+			if (index1 == 6) {
+				if (index2 > 0 && index2 <= 4) {
+					return OK;
+				}
+			}
+			if (index1 == 7) {
+				if (index2 == 1 || index2 == 5 || index2 == 6) {
+					return OK;
+				}
+			}
+			if (index1 == 8) {
+				if ((index2 > 0 && index2 <= 4) || index2 == 7) {
+					return OK;
+				}
+			}
+			if (index1 == 9) {
+				if (index2 == 9) {
+					return OK;
+				}
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: GA/T 556.3
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用金库类别代码的位置
+	// LenIndex: 长度是两位
+	// creator: gcc
+	public static String TreasuryClass(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+
+			if (index1 == 0) {
+				if (index2 > 0 && index2 <= 9) {
+					return OK;
+				}
+			}
+
+			if (index1 == 1) {
+				if (index2 == 9) {
+					return OK;
+				}
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: GA/T 556.1
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用职务类别代码的位置
+	// LenIndex: 长度是两位
+	// creator: gcc
+	public static String JobClassificationCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			char index1 = IDstr[Index[0]];
+			char index2 = IDstr[Index[1]];
+			int index3 = (int) IDstr[Index[2]] - 48;
+			int index4 = (int) IDstr[Index[3]] - 48;
+			int Xx = 10 * index3 + index4;
+			if (index1 == 'F' && index2 == 'F') {
+				if ((Xx > 0 && Xx < 4) || Xx == 9) {
+					return OK;
+				}
+			}
+			if (index1 == 'F' && index2 == 'Z') {
+				if (Xx == 1) {
+					return OK;
+				}
+			}
+
+			if ((index1 == 'Z' || index1 == 'C') && index2 == 'F') {
+				if (Xx > 0 && Xx < 4) {
+					return OK;
+				}
+			}
+
+			if ((index1 == 'D' || index1 == 'X') && index2 == 'F') {
+				if (Xx > 0 && Xx < 3) {
+					return OK;
+				}
+			}
+
+			if (((index1 == 'D' || index1 == 'X') && index2 == 'Y')
+					|| (index1 == 'Z' && index2 == 'Z')) {
+				if (Xx > 0 && Xx < 10) {
+					return OK;
+				}
+			}
+
+			if (index1 == 'S' && index2 == 'X') {
+				if (Xx > 2 && Xx < 9) {
+					return OK;
+				}
+			}
+
+			if (index1 == 'S' && index2 == 'F') {
+				if ((Xx > 0 && Xx < 13) || Xx == 19) {
+					return OK;
+				}
+			}
+
+			if (index1 == 'D' && index2 == 'Z') {
+				if ((Xx > 0 && Xx < 13) || Xx == 19 || Xx == 14) {
+					return OK;
+				}
+			}
+
+			if (index1 == 'X' && index2 == 'Z') {
+				if (Xx > 0 && Xx < 11) {
+					return OK;
+				}
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 常用证件代码（470）
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用索引位置长度为3
+	// creator: gcc
+	public static String TravleDocumentCode(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTravelCode(code);
+			if (ret) {
+				return OK;
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
 	}
 
 }
