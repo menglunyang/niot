@@ -397,6 +397,33 @@ public class RecoUtil {
 
 	// Travel documents coded
 	public static final String SELECT_TRAVLEDOCUMENT = "select * from TravleDocumentCode where code=?";
+	
+	//公安部消防局和省级公安消防总队代码(474)
+	public static final String SELECT_PROVINCEADMINCODE = "select * from provinceadmincode where code=?";
+	
+	//列管单位代码(474)
+	public static final String SELECT_ADMINDIVISION1 = "select * from admindivision1 where code=?";
+	
+	//910
+	public static final String SELECT_POWERMATERIALS44 = "select * from powermaterials44 where code=?";
+
+	public static final String SELECT_POWERMATERIALS45 = "select * from powermaterials45 where code=?";
+
+	public static final String SELECT_POWERMATERIALS46 = "select * from powermaterials46 where code=?";
+
+	public static final String SELECT_POWERMATERIALS47 = "select * from powermaterials47 where code=?";
+
+	public static final String SELECT_POWERMATERIALS49 = "select * from powermaterials49 where code=?";
+
+	public static final String SELECT_POWERMATERIALS50 = "select * from powermaterials50 where code=?";
+
+	public static final String SELECT_POWERMATERIALS51 = "select * from powermaterials51 where code=?";
+
+	public static final String SELECT_POWERMATERIALS52 = "select * from powermaterials52 where code=?";
+
+	public static final String SELECT_POWERMATERIALS53 = "select * from powermaterials53 where code=?";
+
+	public static final String SELECT_POWERMATERIALS54 = "select * from powermaterials54 where code=?";
 
 	// 匹配成功一种标识
 	public static final int ONE_ID_MATCHED = 1;

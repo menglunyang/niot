@@ -4039,4 +4039,328 @@ public class RecoDao {
 		return ret;
 	}
 
+	// 公安部消防局和省级公安消防总队代码(474)
+	public boolean getProvinceAdminCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROVINCEADMINCODE);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 列管单位代码(474)
+	public boolean getAdminDivision1(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_ADMINDIVISION1);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials44(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS44);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials45(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS45);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials46(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS46);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials47(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS47);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials49(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS49);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials50(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS50);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials51(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS51);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials52(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS52);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials53(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS53);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials54(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS54);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }

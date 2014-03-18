@@ -2423,7 +2423,7 @@ public class RuleFunction {
 				return ERR;
 			}
 			if (IDstr[1] == '9') {
-				if (!(Index[0] == '0' || Index[0] == '1' || Index[0] == '2')) {
+				if (!(IDstr[Index[0]] == '0' || IDstr[Index[0]] == '1' || IDstr[Index[0]] == '2')) {
 					return ERR;
 				}
 			}
@@ -12969,4 +12969,1585 @@ public class RuleFunction {
 		}
 	}
 
+	//Function:公安部消防局和省级公安消防总队代码(474)
+	//CODEstr: 标识编码
+	//LenCODE: 标识编码的长度
+	//Index: 调用正则的的索引位置
+	//LenIndex:
+	//Creator:YZC
+	public static String ProvinceAdminCode(char[] CODEstr, int LenCODE, int[] Index,
+			int LenIndex) {
+
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+			
+			if (LenIndex!=2){
+				return ERR;
+			}
+			String code = new String(CODEstr);
+
+			try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getProvinceAdminCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	//Function:列管单位代码(474)
+	//CODEstr: 标识编码
+	//LenCODE: 标识编码的长度
+	//Index: 调用正则的的索引位置
+	//LenIndex:
+	//Creator:YZC
+	public static String AdminDivision1(char[] CODEstr, int LenCODE, int[] Index,
+			int LenIndex) {
+
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+			
+			if (LenIndex!=8){
+				return ERR;
+			}
+			String code = new String(CODEstr);
+
+			try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getAdminDivision1(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+
+	//Function: 国际贸易合同代码编制规则自定义编码正则匹配,数字或者字母，数字在字母后面。(326)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=9
+	// creator: yzc
+	public static String DraftingRulesForCodes(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[A-Z][A-Z0-9]{0,8}";
+			int prefix = 8;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID - 1; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	//Function: 环境信息分类与代码正则匹配,数字(776)
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度无穷
+	//creator: yzc
+	public static String EnvironmentalInformation(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[0-9][1-9]*";
+			int prefix = 8;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID - 1; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	//Function: 废水类别代码正则匹配,数字(782)
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度无穷
+	//creator: yzc
+	public static String Wastewater(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[0-9][1-9]*";
+			int prefix = 5;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID - 1; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	//Function: 银行表示代码分支机构代码正则匹配,数字，字母(332)
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度<=4
+	//creator: yzc
+	public static String BankCodes(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[1-9A-W,Y,Z]{0,3}";
+			int prefix = 8;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID - 1; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	//Function: 书证物证种类代码（538）
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:yzc
+	public static String DocumentEnvidence(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			int index1 = Index[0];
+			int index2 = Index[1];
+			int index3 = Index[2];
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '3')) {
+				return ERR;
+			}
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+				return ERR;
+			}
+			return OK;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	//Function: 受害单位行业分类代码（532）
+	//IDstr: ID string
+	//LenID: the number of characters in the ID string
+	//Index: the list of corresponding indexes regarding to this algorithm
+	//LenIndex: the number of indexes
+	//Creator:yzc
+	public static String EconomicCasesUnit(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			int index1 = Index[0];
+			int index2 = Index[1];
+			int index3 = Index[2];
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+				return ERR;
+			}
+			return OK;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	//Function: 作案手段代码（539）
+	//IDstr: ID string
+	//LenID: the number of characters in the ID string
+	//Index: the list of corresponding indexes regarding to this algorithm
+	//LenIndex: the number of indexes
+	//Creator:yzc
+	public static String CodesOfMakingCases(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			int index1 = Index[0];
+			int index2 = Index[1];
+			int index3 = Index[2];
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '8')) {
+				return ERR;
+			}
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+				return ERR;
+			}
+			return OK;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	//Function: 01-48 
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 固定长2
+	// Creator:yzc
+	public static String OneTO48(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 48;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx ) {
+			return OK;
+		} else
+			return ERR;
+
+	}
+	//Function:公路路线标识规则和国道编号正则匹配,数字，字母(598)
+	//IDstr: 标识编码
+	//LenID: 标识编码的长度
+	//Index: 调用正则的的索引位置
+	//LenIndex:长度<=3
+	//creator: yzc
+	public static String NationalTrunkHighway(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[0-9,w][0-9,w][1-9]{0,2}";
+			int prefix = 2;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID - 1; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	public static String ParamCode(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int index1 = (int)IDstr[Index[0]]-48;
+		int index2 = (int)IDstr[Index[1]]-48;
+		if(index1<0 || index1>9 ||index2<0 ||index2>9)
+			return ERR;
+		char c = IDstr[Index[2]];
+		int index3 = IDstr[Index[2]]-48;
+		if(LenIndex==4){
+			if(c=='.'){
+				int index4 = (int)IDstr[Index[3]]-48;
+				if(index4>=0 && index4<=9)
+					return OK;
+			}
+			if(index3>=0 && index3<=9){
+				int index4=(int)IDstr[Index[3]]-48;
+				if(index4>0 && index4<9)
+					return OK;
+			}
+		}
+		if(LenIndex==5){
+			if(c=='.'){
+				int index4 = (int)IDstr[Index[3]]-48;
+				int index5 = (int)IDstr[Index[4]]-48;
+				if(index4>=0 && index4<=9 && index5>0 && index5<9)
+					return OK;
+			}
+		}
+	return ERR;
+		
+	}
+	
+	public static String ParamCode6(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		int index1 = (int)IDstr[Index[0]]-48;
+		int index2 = (int)IDstr[Index[1]]-48;
+		if(index1<0 || index1>9 ||index2<0 ||index2>9)
+			return ERR;
+		char c = IDstr[Index[2]];
+		int index3 = IDstr[Index[2]]-48;
+		if(LenIndex==6){
+			if(c=='.'){
+				int index4 = (int)IDstr[Index[3]]-48;
+				int index5 = (int)IDstr[Index[4]]-48;
+				int index6 = (int)IDstr[Index[5]]-48;
+				if(index4>=0 && index4<=9 && index5>=0 && index5<=9 &&
+						index6>=0 && index6<=9)
+					return OK;
+		}
+		if(LenIndex==7){
+			if(index3>=0 && index3<=9)
+			{
+				char d = IDstr[Index[3]];
+				if(d=='.'){
+					int index5 = (int)IDstr[Index[4]]-48;
+					int index6 = (int)IDstr[Index[5]]-48;
+					int index7 = (int)IDstr[Index[6]]-48;
+					if(index5>=0 && index5<=9 && index6>=0 && index6<=9 &&
+							index7>=0 && index7<=9)
+						return OK;
+				}
+			}
+		}
+	
+	}
+		return ERR;
+}
+	
+	/*
+	 * 前4位是数字，后2位是小数
+	 * 1234.12
+	 * author:wt
+	 */
+	public static String ParamCode7(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		for(int i=0;i<4;i++){
+			int index = (int)IDstr[Index[i]]-48;
+			if(index<0 || index>9)
+				return ERR;
+		}
+		char c = IDstr[Index[4]];
+		if(c=='.')
+		{
+			int index1 = (int)IDstr[Index[5]]-48;
+			int index2 = (int)IDstr[Index[5]]-48;
+			if(index1>=0 && index1<=9 && index2>=0 &&index2<=9)
+				return OK;
+		}
+		return ERR;
+	}
+
+	/*
+	 *可能是1,2,3,6位的数字
+	 *
+	 * author:wt
+	 */
+	public static String ParamCode17(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		switch(LenIndex){
+		case 1:{
+			int index = (int)IDstr[Index[0]]-48;
+			if(index>=0 && index<=9)
+				return OK;
+		}
+		case 2:{
+			int index1 = (int)IDstr[Index[0]]-48;
+			int index2 = (int)IDstr[Index[1]]-48;
+			if(index1>=0 && index1<=9 && index2>=0 && index2<=9)
+				return OK;
+		}
+		case 3:{
+			for(int i=0;i<3;i++){
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			return OK;
+		}
+		case 6:{
+			for(int i=0;i<6;i++){
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			return OK;
+		}
+		default:
+			return OK;
+		}
+	}
+	/*
+	 * 校验最后的码，可能是6位或7位的数字
+	 * author：wt
+	 */
+	public static String ParamCode19(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==6){
+			for(int i=0;i<6;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			return OK;
+		}
+		if(LenIndex==7){
+			for(int i=0;i<7;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			return OK;
+		}
+		return ERR;
+		
+}
+	
+	/*
+	 * 校验最后的码，可能是4位或8位或9的数字
+	 * author：wt
+	 */
+	public static String ParamCode20(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==4){
+			for(int i=0;i<4;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			return OK;
+		}
+		if(LenIndex==8){
+			for(int i=0;i<8;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			return OK;
+		}
+		if(LenIndex==9){
+			for(int i=0;i<9;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			return OK;
+		}
+		return ERR;
+		
+}
+	
+	/*
+	 * 校验最后的码，可能是8位或6位数字
+	 * 当为8位时，码的第一位是1
+	 * 当为6位时，码的第一位是2
+	 * author：wt
+	 */
+	public static String ParamCode22(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==8){
+			for(int i=0;i<8;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='1')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==6){
+			for(int i=0;i<6;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='2')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	
+	
+	/*
+	 * 校验最后的码，可能是10位或8位数字
+	 * 当为10位时，码的第1,2位是01
+	 * 当为8位时，码的第1,2位是02
+	 * author：wt
+	 */
+	public static String ParamCode27(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==10){
+			for(int i=0;i<10;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='1')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==8){
+			for(int i=0;i<8;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='2')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	
+	/*
+	 * 校验最后的码，可能是4位或5位数字
+	 * 当为4位时，码的第1,2位是01或03
+	 * 当为5位时，码的第1,2位是02
+	 * author：wt
+	 */
+	public static String ParamCode28(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==4){
+			for(int i=0;i<4;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='1' || IDstr[1]=='3'))
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==5){
+			for(int i=0;i<5;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='2')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	
+	/*
+	 * 校验最后的码，可能是3,4,5,9位数字
+	 * 当为3位时，码的第1,2位是06
+	 * 当为4位时，码的第1,2位是01,02,05,07
+	 * 当为5位时，码的第1,2位是03
+	 * 当为9位时，码的第1,2位是04
+	 * author：wt
+	 */
+	public static String ParamCode29(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==3){
+			for(int i=0;i<3;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='6')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==4){
+			for(int i=0;i<4;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='1' || IDstr[1]=='2' 
+					|| IDstr[1]=='5' || IDstr[1]=='7'))
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==5){
+			for(int i=0;i<5;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='3')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==9){
+			for(int i=0;i<9;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='4')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	
+	/*
+	 * 校验最后的码，可能是2,3,4,5,6,7,8位数字
+	 * 当为2位时，码的第1,2位是05
+	 * 当为3位时，码的第1,2位是06
+	 * 当为4位时，码的第1,2位是09,10,11,12
+	 * 当为5位时，码的第1,2位是07,08
+	 * 当为6位时，码的第1,2位是02
+	 * 当为7位时，码的第1,2位是01,03
+	 * 当为8位时，码的第1,2位是04
+	 * author：wt
+	 */
+	public static String ParamCode30(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==2){
+			for(int i=0;i<2;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='5')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==3){
+			for(int i=0;i<3;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='6')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==4){
+			for(int i=0;i<4;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='9'
+					|| IDstr[0]=='1' && IDstr[1]=='0'
+						||IDstr[0]=='1' && IDstr[1]=='1'
+							||IDstr[0]=='1' && IDstr[1]=='2')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==5){
+			for(int i=0;i<5;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='7' || IDstr[1]=='8'))
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==6){
+			for(int i=0;i<6;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='2')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==7){
+			for(int i=0;i<7;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='1' || IDstr[1]=='3'))
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==8){
+			for(int i=0;i<8;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='4')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	/*
+	 * 校验最后的码，可能是4,5,6,7,8位数字
+	 * 当为4位时，码的第1,2位是05,08
+	 * 当为5位时，码的第1,2位是03,06,09
+	 * 当为6位时，码的第1,2位是07
+	 * 当为7位时，码的第1,2位是04
+	 * 当为8位时，码的第1,2位是01,02
+	 * author：wt
+	 */
+	public static String ParamCode31(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==4){
+			for(int i=0;i<4;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='1' || IDstr[1]=='2' 
+					|| IDstr[1]=='5' || IDstr[1]=='7'))
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==5){
+			for(int i=0;i<5;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='3')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==9){
+			for(int i=0;i<9;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='4')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	
+	/*
+	 * 校验最后的码，可能是3,7,8位数字
+	 * 当为3位时，码的第1,2位是05
+	 * 当为7位时，码的第1,2位是03,04
+	 * 当为8位时，码的第1,2位是01,02
+	 * author：wt
+	 */
+	public static String ParamCode32(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==3){
+			for(int i=0;i<3;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='5')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==7){
+			for(int i=0;i<7;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='3' || IDstr[1]=='4'))
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==8){
+			for(int i=0;i<8;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='1' ||IDstr[1]=='2'))
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	
+	/*
+	 * 校验最后的码，可能是5,6,7,8,9,10,11位数字
+	 * 当为5位时，码的第1,2位是09,10,11
+	 * 当为6位时，码的第1,2位是08
+	 * 当为7位时，码的第1,2位是03,06
+	 * 当为8位时，码的第1,2位是05,07
+	 * 当为9位时，码的第1,2位是04
+	 * 当为10位时，码的第1,2位是02
+	 * 当为11位时，码的第1,2位是01
+	 * author：wt
+	 */
+	public static String ParamCode34(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==5){
+			for(int i=0;i<5;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='9'
+					|| IDstr[0]=='1' && IDstr[1]=='0'
+						|| IDstr[0]=='1' && IDstr[1]=='1')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==6){
+			for(int i=0;i<6;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='8')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==7){
+			for(int i=0;i<7;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='3' || IDstr[1]=='6'))
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==8){
+			for(int i=0;i<8;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && (IDstr[1]=='5' ||IDstr[1]=='7'))
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==9){
+			for(int i=0;i<9;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='4')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==10){
+			for(int i=0;i<10;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='2')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==11){
+			for(int i=0;i<11;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='1')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	/*
+	 * 校验最后的码，可能是5,6位数字
+	 * 当为5位时，码的第1,2位是3,4
+	 * 当为6位时，码的第1,2位是1,2
+	 * author：wt
+	 */
+	public static String ParamCode35(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==5){
+			for(int i=0;i<5;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='3' || IDstr[0]=='4')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==6){
+			for(int i=0;i<6;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='1' || IDstr[0]=='2')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	
+	
+	/*
+	 * 校验最后的码，可能是7,9,10位数字
+	 * 当为7位时，码的第1位是3
+	 * 当为9位时，码的第1位是1
+	 * 当为10位时，码的第1位是2
+	 * author：wt
+	 */
+	public static String ParamCode38(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==7){
+			for(int i=0;i<7;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='3')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==9){
+			for(int i=0;i<9;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='1')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==10){
+			for(int i=0;i<10;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='2')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	/*
+	 * 校验最后的码，可能是6,7位数字
+	 * 当为6位时，码的第1位是1或2
+	 * 当为7位时，码的第1位是3
+	 * author：wt
+	 */
+	public static String ParamCode41(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if(LenIndex==6){
+			for(int i=0;i<6;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='1' || IDstr[0]=='2')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==7){
+			for(int i=0;i<7;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='3')
+				return OK;
+			else return ERR;
+		}
+		
+		return ERR;
+		
+}
+	
+	/*
+	 * 校验最后的码，可能是6,7位数字
+	 * 当为3位时，码的第1,2位是15
+	 * 当为5位时，码的第1,2位是09,10,11,13
+	 * 当为6位时，码的第1,2位是01,06,12
+	 * 当为7位时，码的第1,2位是02,03,04,05,07,08
+	 * 当为8位时，码的第1,2位是14
+	 * author：wt
+	 */
+	public static String ParamCode43(char[] IDstr,int LenID,int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if(LenIndex==3){
+			for(int i=0;i<3;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='1' && IDstr[1]=='5')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==5){
+			for(int i=0;i<5;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='9'
+					||IDstr[0]=='1' && IDstr[1]=='0'
+						||IDstr[0]=='1' && IDstr[1]=='1'
+							||IDstr[0]=='1' && IDstr[1]=='3')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==6){
+			for(int i=0;i<6;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='1'
+					|| IDstr[0]=='0' && IDstr[1]=='6'
+						||IDstr[0]=='1' && IDstr[1]=='2')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==7){
+			for(int i=0;i<7;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='0' && IDstr[1]=='2'
+				|| IDstr[0]=='0' && IDstr[1]=='3'
+					||IDstr[0]=='0' && IDstr[1]=='4'
+						|| IDstr[0]=='0' && IDstr[1]=='5'
+							||IDstr[0]=='0' && IDstr[1]=='7'
+								|| IDstr[0]=='0' && IDstr[1]=='8')
+				return OK;
+			else return ERR;
+		}
+		if(LenIndex==8){
+			for(int i=0;i<8;i++)
+			{
+				int index = (int)IDstr[Index[i]]-48;
+				if(index<0 || index>9)
+					return ERR;
+			}
+			if(IDstr[0]=='1' && IDstr[1]=='4')
+				return OK;
+			else return ERR;
+		}
+		return ERR;
+		
+}
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials44(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials44(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials45(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials45(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials46(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials46(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials47(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials47(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials49(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials49(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials50(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials50(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials51(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials51(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials52(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials51(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials53(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials53(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
+	
+	/*
+	 * IDstr: ID string
+	 * LenID: the number of characters in the ID string
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * Index: the list of corresponding indexes regarding to this algorithm
+	 * LenIndex: the number of indexes
+	 * creator:wt
+	 * */
+	
+	public static String PowerMaterials54(char[] IDstr, int LenID, int[] Index,
+			int LenIndex){
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+	
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			try{
+				RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPowerMaterials54(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		}catch (Exception e) {
+			return ERR;
+		}
+		
+	}
 }
