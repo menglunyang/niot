@@ -4363,4 +4363,348 @@ public class RecoDao {
 		}
 		return ret;
 	}
+
+	// 509互联网网上服务营业场所——第五部分
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度5位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:a3
+	// creator:fdl
+	public boolean getPortTariff509(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF509);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 核元素编码——国家代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度5位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:a3
+	// creator:fdl
+	public boolean getPortNuclearelementNation(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PORTNuclearelementNation);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 核元素编码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度5位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:a3
+	// creator:fdl
+	public boolean getPortNuclearelements(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PORTNuclearelements);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// Function: 汽车产品零部件边编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index:4
+	// LenIndex: 长度必为4
+	// creator: fdl
+	public boolean getPortCarProductCompnent(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PORTCarProductCompnent);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// Function: TCL金能电池编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index:4
+	// LenIndex: 长度必为4
+	// creator: fdl
+	public boolean getPortTCLBatteryProduct(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PORTTCLBatteryProduct);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// Function: TCL金能电池编码规则——第三级编码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index:4
+	// LenIndex: 长度必为4
+	// creator: fdl
+	public boolean getPortProductCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTProductCode);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 商品条码 应用标识符（632)
+	public boolean getBarCodeForCommodity(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_BARCODEFORCOMMODITY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	/*
+	 * 757 author:wt
+	 */
+	public boolean getHighwayDatabase17(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYDATABASE17);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	/*
+	 * 757 author:wt
+	 */
+	public boolean getHighwayDatabase46(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYDATABASE46);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	/*
+	 * 757 author:wt
+	 */
+	public boolean getHighwayDatabase47(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYDATABASE47);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	/*
+	 * 757 author:wt
+	 */
+	public boolean getHighwayDatabase71(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYDATABASE71);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }

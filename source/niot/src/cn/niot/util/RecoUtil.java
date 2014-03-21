@@ -397,14 +397,14 @@ public class RecoUtil {
 
 	// Travel documents coded
 	public static final String SELECT_TRAVLEDOCUMENT = "select * from TravleDocumentCode where code=?";
-	
-	//公安部消防局和省级公安消防总队代码(474)
+
+	// 公安部消防局和省级公安消防总队代码(474)
 	public static final String SELECT_PROVINCEADMINCODE = "select * from provinceadmincode where code=?";
-	
-	//列管单位代码(474)
+
+	// 列管单位代码(474)
 	public static final String SELECT_ADMINDIVISION1 = "select * from admindivision1 where code=?";
-	
-	//910
+
+	// 910
 	public static final String SELECT_POWERMATERIALS44 = "select * from powermaterials44 where code=?";
 
 	public static final String SELECT_POWERMATERIALS45 = "select * from powermaterials45 where code=?";
@@ -424,6 +424,31 @@ public class RecoUtil {
 	public static final String SELECT_POWERMATERIALS53 = "select * from powermaterials53 where code=?";
 
 	public static final String SELECT_POWERMATERIALS54 = "select * from powermaterials54 where code=?";
+
+	// 509互联网网上服务营业场所——第五部分fdl
+	public static final String SELECT_PORTTARIFF509 = "select * from InternetWebService where code=?";
+	// 核元素编码 fdl
+	public static final String SELECT_PORTNuclearelements = "select * from Nuclearelements where code=?";
+	// 核元素编码——国家代码 fdl
+	public static final String SELECT_PORTNuclearelementNation = "select * from NuclearelementNation where code=?";
+	// Function: 汽车产品零部件边编码规则fdl
+	public static final String SELECT_PORTCarProductCompnent = "select * from CarProductCompnent where code=?";
+	// Function: ＴＣＬ金能电池编码规则fdl
+	public static final String SELECT_PORTTCLBatteryProduct = "select * from TCLBatteryProduct where code=?";
+	// Function: ＴＣＬ金能电池编码规则fdl
+	public static final String SELECT_PORTProductCode = "select * from ProductCode where code=?";
+	
+	//商品条码 应用标识符（632）
+	public static final String SELECT_BARCODEFORCOMMODITY  = "select * from barcodeforcommodity where code=?";
+	
+	//757,author:wt
+	public static final String SELECT_HIGHWAYDATABASE17 = "select * from highwaydatabase17 where code=?";
+	
+	public static final String SELECT_HIGHWAYDATABASE46 = "select * from highwaydatabase46 where code=?";
+
+	public static final String SELECT_HIGHWAYDATABASE47 = "select * from highwaydatabase47 where code=?";
+	
+	public static final String SELECT_HIGHWAYDATABASE71 = "select * from highwaydatabase71 where code=?";
 
 	// 匹配成功一种标识
 	public static final int ONE_ID_MATCHED = 1;
