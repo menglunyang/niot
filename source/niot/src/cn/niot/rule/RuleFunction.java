@@ -15656,4 +15656,34 @@ public class RuleFunction {
 		}
 		return ERR;
 	}
+
+	// Function:中国石油天然气总公司企、事业单位代码（763）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:
+	// Creator:YZC
+	public static String GassCompany(char[] CODEstr, int LenCODE, int[] Index,
+			int LenIndex) {
+
+		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+			return ERR;
+		}
+
+		if (LenIndex != 7) {
+			return ERR;
+		}
+		String code = new String(CODEstr);
+
+		try {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getGassCompany(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 }

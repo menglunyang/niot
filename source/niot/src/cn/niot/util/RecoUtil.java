@@ -437,18 +437,21 @@ public class RecoUtil {
 	public static final String SELECT_PORTTCLBatteryProduct = "select * from TCLBatteryProduct where code=?";
 	// Function: ＴＣＬ金能电池编码规则fdl
 	public static final String SELECT_PORTProductCode = "select * from ProductCode where code=?";
-	
-	//商品条码 应用标识符（632）
-	public static final String SELECT_BARCODEFORCOMMODITY  = "select * from barcodeforcommodity where code=?";
-	
-	//757,author:wt
+
+	// 商品条码 应用标识符（632）
+	public static final String SELECT_BARCODEFORCOMMODITY = "select * from barcodeforcommodity where code=?";
+
+	// 757,author:wt
 	public static final String SELECT_HIGHWAYDATABASE17 = "select * from highwaydatabase17 where code=?";
-	
+
 	public static final String SELECT_HIGHWAYDATABASE46 = "select * from highwaydatabase46 where code=?";
 
 	public static final String SELECT_HIGHWAYDATABASE47 = "select * from highwaydatabase47 where code=?";
-	
+
 	public static final String SELECT_HIGHWAYDATABASE71 = "select * from highwaydatabase71 where code=?";
+
+	// 中国石油天然气总公司企、事业单位代码（763）
+	public static final String SELECT_GASSCOMPANY = "select * from gasscompany where code=?";
 
 	// 匹配成功一种标识
 	public static final int ONE_ID_MATCHED = 1;
