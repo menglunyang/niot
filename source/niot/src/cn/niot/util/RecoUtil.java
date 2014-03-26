@@ -453,6 +453,10 @@ public class RecoUtil {
 	// 中国石油天然气总公司企、事业单位代码（763）
 	public static final String SELECT_GASSCOMPANY = "select * from gasscompany where code=?";
 
+	// wt
+	public static final String SELECT_HYDROLOGICDATA = "select *from hydrologicdata where code=?";
+	public static final String SELECT_MEATANDVEGETABLE = "select *from meatandvegetable where code=?";
+
 	// 匹配成功一种标识
 	public static final int ONE_ID_MATCHED = 1;
 

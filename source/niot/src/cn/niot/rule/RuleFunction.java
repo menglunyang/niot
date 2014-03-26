@@ -15686,4 +15686,61 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+	
+	/*验证标准11的前六位是不是在数据库中
+	 * 
+	 * author:wt
+	 */
+	public static String HydrologicData(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 6) {
+			return ERR;
+		}
+		try {
+			String code = "";
+			for (int i = 0; i < IDstr.length; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getHydrologicData(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+
+	} 
+	/*验证标准12的前9位是不是在数据库中
+	 * 
+	 * author:wt
+	 */
+	public static String MeatandVegetable(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 9) {
+			return ERR;
+		}
+		try {
+			String code = "";
+			for (int i = 0; i < IDstr.length; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getMeatandVegetable(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+
+	} 
 }

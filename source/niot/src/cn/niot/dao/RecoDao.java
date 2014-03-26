@@ -4734,4 +4734,59 @@ public class RecoDao {
 		}
 		return ret;
 	}
+
+	// 11 hydrologic data
+	public boolean getHydrologicData(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_HYDROLOGICDATA);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 12 meat and vegetable
+	public boolean getMeatandVegetable(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MEATANDVEGETABLE);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }
