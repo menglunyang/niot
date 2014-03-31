@@ -2768,11 +2768,13 @@ public class RuleFunction {
 				s = s.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			System.out.println("s=" + s);
-			if (s == "00" || s == "01" || s == "10" || s == "11" || s == "12"
-					|| s == "30" || s == "31" || s == "32" || s == "44"
-					|| s == "45" || s == "33" || s == "40" || s == "41"
-					|| s == "42" || s == "43" || s == "46" || s == "47"
-					|| s == "48" || s == "50" || s == "60") {
+			if (s.equals("00") || s.equals("01") || s.equals("10")
+					|| s.equals("11") || s.equals("12") || s.equals("30")
+					|| s.equals("31") || s.equals("32") || s.equals("44")
+					|| s.equals("45") || s.equals("33") || s.equals("40")
+					|| s.equals("41") || s.equals("42") || s.equals("43")
+					|| s.equals("46") || s.equals("47") || s.equals("48")
+					|| s.equals("50") || s.equals("60")) {
 				return OK;
 			}
 			return ERR;
@@ -6672,10 +6674,6 @@ public class RuleFunction {
 			int i = ((int) IDstr[Index[1]] - 48) * 100
 					+ ((int) IDstr[Index[2]] - 48) * 10
 					+ ((int) IDstr[Index[3]] - 48);
-			int j = ((int) IDstr[Index[1]] - 48) * 1000
-					+ ((int) IDstr[Index[2]] - 48) * 100
-					+ ((int) IDstr[Index[3]] - 48) * 10
-					+ ((int) IDstr[Index[4]] - 48);
 			if (LenIndex == 4) {
 				if ((int) IDstr[Index[0]] == 'N') {
 					if (i > 0 && i < 378) {
@@ -6684,8 +6682,12 @@ public class RuleFunction {
 				} else {
 					return ERR;
 				}
-			}
-			if (LenIndex == 5) {
+			} else if (LenIndex == 5) {
+				int j = ((int) IDstr[Index[1]] - 48) * 1000
+						+ ((int) IDstr[Index[2]] - 48) * 100
+						+ ((int) IDstr[Index[3]] - 48) * 10
+						+ ((int) IDstr[Index[4]] - 48);
+
 				if ((int) IDstr[Index[0]] == 'I') {
 					if (j > 1000 && j < 2087) {
 						return OK;
@@ -6945,14 +6947,14 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes 固定长2
+	// LenIndex: the number of indexes 固定长3
 	// Creator:许江峰
 	public static String Porttariff10(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex != 2) {
+		if (LenIndex != 3) {
 			return ERR;
 		}
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -6976,7 +6978,6 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	// Function: 01-24 99
@@ -8583,7 +8584,8 @@ public class RuleFunction {
 			for (int i = 0; i < LenIndex; i++) {
 				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
-			if (code == "10" || code == "11" || code == "19" || code == "30") {
+			if (code.equals("10") || code.equals("11") || code.equals("19")
+					|| code.equals("30")) {
 				return OK;
 			} else {
 				return ERR;
@@ -8726,7 +8728,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 4) {
+			if (LenIndex != 8) {
 				return ERR;
 			}
 			for (int i = Index[0]; i < LenID; i++) {
@@ -8768,17 +8770,18 @@ public class RuleFunction {
 					return OK;
 				}
 			}
+			
 			if (IDstr[index1] == '0') {
 				if (IDstr[index2] >= '1' && IDstr[index2] <= '9') {
 					return OK;
 				}
-			}
+			}			
 			if (IDstr[index1] == '5') {
 				if (IDstr[index2] >= '0' && IDstr[index2] <= '3') {
 					return OK;
 				}
 			}
-			return OK;
+			return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}
@@ -9364,7 +9367,7 @@ public class RuleFunction {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getTobaccoLeafClass(code);
+			boolean ret = recoDao.getChildrenExcrement(code);
 			if (ret) {
 				return OK;
 			} else
@@ -9542,7 +9545,7 @@ public class RuleFunction {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getDileveryPlace(code);
+			boolean ret = recoDao.getModeofProduction(code);
 			if (ret) {
 				return OK;
 			} else
@@ -9572,7 +9575,7 @@ public class RuleFunction {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getModeofProduction(code);
+			boolean ret = recoDao.getDileveryPlace(code);
 			if (ret) {
 				return OK;
 			} else
@@ -15686,8 +15689,9 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
-	/*验证标准11的前六位是不是在数据库中
+
+	/*
+	 * 验证标准11的前六位是不是在数据库中
 	 * 
 	 * author:wt
 	 */
@@ -15714,8 +15718,10 @@ public class RuleFunction {
 			return ERR;
 		}
 
-	} 
-	/*验证标准12的前9位是不是在数据库中
+	}
+
+	/*
+	 * 验证标准12的前9位是不是在数据库中
 	 * 
 	 * author:wt
 	 */
@@ -15741,6 +15747,493 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
+	}
+	
+	//中国动物分类代码 fdl
+	// Function: represent a decimal integer whose value range is from 010 to 999
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator: fdl
+	public static String ChinaAnimal(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 16) {
+				return ERR;
+			}
 
-	} 
+			if ((IDstr[Index[0]] == 'A' && IDstr[Index[1]] == 'G')
+					|| (IDstr[Index[0]] == 'A' && IDstr[Index[1]] == 'M')
+					|| (IDstr[Index[0]] == 'A' && IDstr[Index[1]] == 'V')
+					|| (IDstr[Index[0]] == 'M' && IDstr[Index[1]] == 'A')
+					|| (IDstr[Index[0]] == 'P' && IDstr[Index[1]] == 'S')
+					|| (IDstr[Index[0]] == 'R' && IDstr[Index[1]] == 'P')
+					) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: 森林类型编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index:5
+	// LenIndex: 长度必为5
+	// creator: fdl
+	public static String ForestTypes(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 5) {
+			return ERR;
+		}
+		try {
+			String code = "";
+			for (int i = 0; i < 5; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPortForestTypes(code);
+			if (ret) {
+				return OK;
+			} else
+				System.out.println("ERR000");
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+
+	// Function:654 烟卷箱用条码标签 组织机构类型
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 2
+	// Creator:lhx
+	public static String OrganizationCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[1]] - 48;
+			int i0 = (int) IDstr[Index[0]] - 48;
+
+			int i = 10 * i0 + i1;
+			if ((i >= 10 && i <= 23) || i == 99) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:654 烟卷箱用条码标签 组织所属省、自治区、直辖市
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 2
+	// Creator:lhx
+	public static String Province(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[1]] - 48;
+			int i0 = (int) IDstr[Index[0]] - 48;
+
+			int i = 10 * i0 + i1;
+			if (i >= 11 && i <= 15) {
+				return OK;
+			} else if (i >= 21 && i <= 23)
+				return OK;
+			else if (i >= 31 && i <= 37)
+				return OK;
+			else if (i >= 41 && i <= 46)
+				return OK;
+			else if (i >= 50 && i <= 54)
+				return OK;
+			else if (i >= 61 && i <= 65)
+				return OK;
+			else if (i == 71 || i == 81 || i == 82 || i == 00)
+				return OK;
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:654 烟卷箱用条码标签 组织所属市、地区
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 2
+	// Creator:lhx
+	public static String City(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[1]] - 48;
+			int i0 = (int) IDstr[Index[0]] - 48;
+
+			int i = 10 * i0 + i1;
+			if (i >= 0 && i <= 70) {
+				return OK;
+			} else if (i == 90)
+				return OK;
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:658 二位条形码网格矩阵码 小写字母模式
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 5
+	// Creator:lhx
+	public static String Letter(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 5) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int k = 0; k < 5; k++) {
+				if (IDstr[k] == '0' || IDstr[k] == '1') {
+					code = code.concat(String.valueOf(IDstr[k]));
+				} else
+					return ERR;
+			}
+			BigInteger src = new BigInteger(code, 2);
+			if (src.intValue() >= 0 && src.intValue() <= 26)
+				return OK;
+			else
+				return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:658 二位条形码网格矩阵码 数字字母混合模式
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 6
+	// Creator:lhx
+	public static String DigitAndLetter(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int k = 0; k < 6; k++) {
+				if (IDstr[k] == '0' || IDstr[k] == '1') {
+					code = code.concat(String.valueOf(IDstr[k]));
+				} else
+					return ERR;
+			}
+			BigInteger src = new BigInteger(code, 2);
+			int traCode = src.intValue();
+			if (traCode >= 48 && traCode <= 57)
+				return OK;
+			else if (traCode >= 65 && traCode <= 90)
+				return OK;
+			else if (traCode >= 97 && traCode <= 122)
+				return OK;
+			else if (traCode == 32)
+				return OK;
+			else
+				return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:700 陆生野生动物疫病分类
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 10
+	// Creator:lhx
+	public static String AnimalDisease(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 10) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int k = 0; k < 10; k++) {
+
+				code = code.concat(String.valueOf(IDstr[k]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getAnimalDiseaseByCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:704海洋信息分类与代码3,4两位定义
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 2
+	// Creator:lhx
+	public static String OceanInfoMid(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int i1 = (int) IDstr[Index[1]] - 48;
+			int i0 = (int) IDstr[Index[0]] - 48;
+
+			int i = 10 * i0 + i1;
+			if (i >= 1 && i <= 14) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:698 全国卫生行业医疗器械、仪器设备分类
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 8
+	// Creator:lhx
+	public static String MedicalInstru(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 8) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int k = 0; k < 8; k++) {
+
+				code = code.concat(String.valueOf(IDstr[k]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getMedicalInstrumentByCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:728(1)中医疾病分类
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 6
+	// Creator:lhx
+	public static String TCMDisease(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int k = 0; k < 6; k++) {
+
+				code = code.concat(String.valueOf(IDstr[k]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTCMdiseaseByCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	// Function:728(2)中医疾病症状
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 6
+	// Creator:lhx
+	public static String TCMFeature(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int k = 0; k < 6; k++) {
+
+				code = code.concat(String.valueOf(IDstr[k]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getTCMFeatureByCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	// Function:706,708地质分类
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 2
+	// Creator:lhx
+	public static String DZClassify(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int k = 0; k < 2; k++) {
+
+				code = code.concat(String.valueOf(IDstr[k]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getDZClassifyByCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	// Function:710地质分类
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes 2
+	// Creator:lhx
+	public static String DZClassify710(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			String code = "";
+
+			for (int k = 0; k < 2; k++) {
+
+				code = code.concat(String.valueOf(IDstr[k]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getDZClassify710ByCode(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	// Function: 722 国际贸易计量单位
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:不定长
+	// creator: lhx
+	public static String MeasureUnit(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[0-9,A-Z]{2,3}";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			
+			for (int i = 0; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 }

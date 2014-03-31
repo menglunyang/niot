@@ -39,28 +39,28 @@ public class RecoAction extends ActionSupport {
 //			Msg = "                   "+ iotID + " is not ID type A";     
 //		}
 
-//		char[] IDstr = new char[3];
-//		IDstr[0] = '1';
-//		IDstr[1] = '0';
-//		IDstr[2] = '6';
-//		IDstr[3] = '4';
-//		IDstr[4] = '5';
-//		IDstr[5] = '0';
+		char[] IDstr = new char[15];
+		IDstr[0] = '1';
+		IDstr[1] = '0';
+		IDstr[2] = '6';
+		IDstr[3] = '4';
+		IDstr[4] = '5';
+		IDstr[5] = '0';
 
-//		IDstr[6] = '0';
-//		IDstr[7] = '0';
-//		IDstr[8] = '0';
-//		IDstr[9] = '0';
-//		IDstr[10] = '0';
-//		IDstr[11] = '0';
-//		IDstr[12] = '0';
-//		
-//		IDstr[13] = '1';
-//		IDstr[14] = '6';
+		IDstr[6] = '0';
+		IDstr[7] = '0';
+		IDstr[8] = '0';
+		IDstr[9] = '0';
+		IDstr[10] = '0';
+		IDstr[11] = '0';
+		IDstr[12] = '0';
+		
+		IDstr[13] = '1';
+		IDstr[14] = '6';
 
-//		int[] index = new int[3];
-//		index[0] = 0;
-//		index[1] = 1;
+		int[] index = new int[2];
+		index[0] = 10;
+		index[1] = -1;
 //		index[2] = 2;
 //		index[3] = 3;
 //		index[4] = 4;
@@ -75,11 +75,11 @@ public class RecoAction extends ActionSupport {
 //		index[13] = 13;
 //		index[14] = 14;
 
-		System.out.println("start");
+//		System.out.println("start");
 
 //		System.out.println(RuleFunction.MOD9710(IDstr, 15, index, 15));
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.println(df.format(new Date()));
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		System.out.println(df.format(new Date()));
 //		System.out.println(RuleFunction.DeviceMOD163(IDstr, 12, index, 12));
 //		System.out.println(RuleFunction.CoalInterment(IDstr, 12, index, 12));
 //		System.out.println(RuleFunction.CheckCodebarcode(IDstr, 13, index, 13));
@@ -89,14 +89,14 @@ public class RecoAction extends ActionSupport {
 //		System.out.println(RuleFunction.LogisticsCheck(IDstr, 6, index, 6));
 //		System.out.println(RuleFunction.TheCenteralPartyCommitte(IDstr, 3, index, 3));
 
-		String tr1 = new String("22");
-		char[] IDstr1 = new char[2];
-		for (int i = 0; i < 2; i++) {
-			IDstr1[i] = tr1.charAt(i);
-		}
-		int[] index = new int[2];
-		index[0]=0;
-		index[1]=1;
+//		String tr1 = new String("22");
+//		char[] IDstr1 = new char[2];
+//		for (int i = 0; i < 2; i++) {
+//			IDstr1[i] = tr1.charAt(i);
+//		}
+//		int[] index = new int[2];
+//		index[0]=0;
+//		index[1]=1;
 //		index[2]=2;
 //		index[3]=3;
 //		index[4]=4;
@@ -104,9 +104,10 @@ public class RecoAction extends ActionSupport {
 //		index[6]=6;
 //		index[7]=7;
 
-		String result = RuleFunction.FireInfotainass(IDstr1,2,index,2);
-		System.out.println("result="+result.toString());
-		RuleFuncTest.testAdminDivision();
+//		String result = RuleFunction.GeographicPropertyRegex(IDstr, 15, index, 2);
+//		System.out.println("result="+result.toString());
+		RuleFuncTest.testTwobytleWeekCode();
+		//RuleFuncTest.testAdminDivision();
 		return "sucess";
 
 		//System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));

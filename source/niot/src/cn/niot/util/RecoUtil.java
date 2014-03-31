@@ -457,6 +457,22 @@ public class RecoUtil {
 	public static final String SELECT_HYDROLOGICDATA = "select *from hydrologicdata where code=?";
 	public static final String SELECT_MEATANDVEGETABLE = "select *from meatandvegetable where code=?";
 
+	// Function: 森林类型编码规则fdl
+	public static final String SELECT_PORTForestTypes = "select * from ForestTypes where code=?";
+
+	// 700陆生野生动物疫病分类
+	public static final String SELECT_ANIMIALDISEASE700 = "select *from Animaldisease where code=?";
+	// 698全国卫生行业医疗器械、仪器设备分类
+	public static final String SELECT_MEDICALINSTRUMENT = "select *from medicalInstrument where code=?";
+	// 728中医疾病分类
+	public static final String SELECT_TCMDISEASE = "select *from tcmdisease where code=?";
+	// 728(2)中医病症分类
+	public static final String SELECT_TCMFEATURE = "select *from tcmfeature where code=?";
+	// 706,708地质矿物大类分类选词范围
+	public static final String SELECT_DZCLASSIIFY = "select *from dzclassify where code=?";
+	// 710地质矿物大类分类选词范围
+	public static final String SELECT_DZCLASSIFY710 = "select *from dzclassify710 where code=?";
+
 	// 匹配成功一种标识
 	public static final int ONE_ID_MATCHED = 1;
 
