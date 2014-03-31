@@ -3094,7 +3094,7 @@ public class RecoDao {
 		boolean ret = false;
 		try {
 			stmt = connection
-					.prepareStatement(RecoUtil.SELECT_HIGHWAYMAINTENANCE4);
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYMAINTENANCE3);
 			int i = 1;
 			stmt.setString(i, code);
 			results = stmt.executeQuery();

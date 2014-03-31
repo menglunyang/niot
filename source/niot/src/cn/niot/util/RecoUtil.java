@@ -381,7 +381,7 @@ public class RecoUtil {
 
 	// Specifications for feature classification and codes of fundamental
 	// geographic information
-	public static final String SELECT_GEOGRAPHICINFO = "select * from GeographicalCode where code=?";
+	public static final String SELECT_GEOGRAPHICINFO = "select * from GeographicInfoCode where code=?";
 
 	// Classification and code for the hazardous and harmful factors in process
 	public static final String SELECT_HARMFULFACTOR = "select * from HarmfulFactor where code =?";

@@ -11000,7 +11000,7 @@ public class RuleFunction {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getHighwayMaintenance4(code);
+			boolean ret = recoDao.getHighwayMaintenance3(code);
 			if (ret) {
 				return OK;
 			} else
@@ -11008,7 +11008,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11416,6 +11415,11 @@ public class RuleFunction {
 		if (IDstr[0] != 'A' && IDstr[0] != 'B') {
 			return ERR;
 		}
+		
+		if (LenIndex != 7) {
+			return ERR;
+		}
+		
 		String code = new String(IDstr);
 		try {
 			RecoDao recoDao = new RecoDao();
@@ -11427,7 +11431,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String SpecialVehicle(char[] IDstr, int LenID, int[] Index,
