@@ -15,24 +15,27 @@ import cn.niot.util.*;
 
 public class RecoDao {
 	private static RecoDao recoDao = new RecoDao();
-	//public static Connection connection = null;
+
+	// public static Connection connection = null;
 	public static RecoDao getRecoDao() {
 		return recoDao;
 	}
-	
-	public String getIoTID(String id){		
+
+	public String getIoTID(String id) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		try {
-			stmt = connection
-					.prepareStatement(RecoUtil.SELECT_IOTID);
+			stmt = connection.prepareStatement(RecoUtil.SELECT_IOTID);
 			stmt.setString(1, id);
 			results = stmt.executeQuery();
 
 			while (results.next()) {
-				String res = results.getString("id") + "  " + results.getString("length") + "  " + results.getString("byte") + "  " + results.getString("function");
-				System.out.println(res);				
+				String res = results.getString("id") + "  "
+						+ results.getString("length") + "  "
+						+ results.getString("byte") + "  "
+						+ results.getString("function");
+				System.out.println(res);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,7 +44,7 @@ public class RecoDao {
 		}
 		return "ok";
 	}
-	
+
 	/*
 	 * ����Ҳ�Ƿ���ֵ ����hashMapTypeToRules��rmvRuleSet��rmvIDSet��hashMapRuleToTypes
 	 */
@@ -50,9 +53,9 @@ public class RecoDao {
 			HashMap<String, Double> rmvIDSet,
 			HashMap<String, ArrayList<String>> hashMapRuleToTypes) {
 		HashMap<String, ArrayList<String>> hashMapTypeToRules = new HashMap<String, ArrayList<String>>();
-		
+
 		Connection connection = JdbcUtils.getConnection();
-		
+
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		try {
@@ -72,14 +75,18 @@ public class RecoDao {
 					// �������ֽ�length8,����8
 					rmvRuleSet.put(lengthRule, 0.5);// ��rmvRuleSet���length����
 					hashMapTypeToRulesSwitchhashMapRuleToTypes(
-							hashMapRuleToTypes, lengthRule, idType);// hashMapTypeToRulesת��ΪhashMapRuleToTypes,����length
+					hashMapRuleToTypes, lengthRule, idType);// hhashMapTypeToRulesת��ΪhashMapRuleToTypes,����length
 				}
 				if (byteRule.length() != 0) {
-					byteRule = "IoTIDByte)(?#PARA=" + byteRule + "){]";
-					rules.add(byteRule);
-					rmvRuleSet.put(byteRule, 0.5);// ��rmvRuleSet���byte����
-					hashMapTypeToRulesSwitchhashMapRuleToTypes(
-							hashMapRuleToTypes, byteRule, idType);// hashMapTypeToRulesת��ΪhashMapRuleToTypes,����byte
+					String[] byteStrArray = byteRule.split(";");
+					for (int i = 0; i < byteStrArray.length; i++) {
+						byteStrArray[i] = "IoTIDByte)(?#PARA="
+								+ byteStrArray[i] + "){]";
+						rules.add(byteStrArray[i]);
+						rmvRuleSet.put(byteStrArray[i], 0.5);// ��rmvRuleSet���byte����
+						hashMapTypeToRulesSwitchhashMapRuleToTypes(
+								hashMapRuleToTypes, byteStrArray[i], idType);// hashMapTypeToRulesת��ΪhashMapRuleToTypes,����byte
+					}
 				}
 				rmvIDSet.put(idType, priorProbability);// ��rmvRuleSet���ID,�������0.5
 				ArrayList<String> types = new ArrayList<String>();
@@ -104,7 +111,7 @@ public class RecoDao {
 		}
 		return hashMapTypeToRules;
 	}
-	
+
 	private void hashMapTypeToRulesSwitchhashMapRuleToTypes(
 			HashMap<String, ArrayList<String>> hashMapRuleToTypes, String rule,
 			String idType) {
@@ -119,10 +126,10 @@ public class RecoDao {
 		}
 
 	}
-	
-	///���������(296)
-	public boolean getAdminDivisionID(String id){
-		Connection	connection = JdbcUtils.getConnection();
+
+	// ���������(296)
+	public boolean getAdminDivisionID(String id) {
+		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
@@ -132,10 +139,10 @@ public class RecoDao {
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -144,27 +151,28 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	///�������͵�����ƴ���(279)
-	public boolean getCountryRegionCode(String code){
+
+	// �������͵�����ƴ���(279)
+	public boolean getCountryRegionCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_COUNTRYREGIONCODE);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_COUNTRYREGIONCODE);
 			int i = 1;
 			stmt.setString(i++, code);
 			stmt.setString(i++, code);
 			stmt.setString(i++, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -173,27 +181,29 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//�̲ݻ�е��Ʒ������ ����ͱ��� ��3���֣���е�⹺��(7)
-	public boolean getTabaccoMachineProduct(String categoryCode, String groupCode, String variatyCode){
+
+	// �̲ݻ�е��Ʒ������ ����ͱ��� ��3���֣���е�⹺��(7)
+	public boolean getTabaccoMachineProduct(String categoryCode,
+			String groupCode, String variatyCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
 			int i = 1;
 			stmt.setString(i++, categoryCode);
 			stmt.setString(i++, groupCode);
 			stmt.setString(i++, variatyCode);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -202,9 +212,10 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��Ʒ����������Ʒ����EAN UPCǰ3λǰ׺��
-	public boolean getPrefixofRetailCommodityNumber(int code){
+
+
+	// ��Ʒ����������Ʒ����EAN UPCǰ3λǰ׺��
+	public boolean getPrefixofRetailCommodityNumber(int code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -214,14 +225,14 @@ public class RecoDao {
 			int i = 1;
 			stmt.setInt(i++, code);
 			stmt.setInt(i++, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -230,25 +241,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//�̲ݻ�е���� ����ͱ����2���֣�ר�ü� ��¼D�еĵ�λ����(672)
-	public boolean getTabaccoMachineProducer(String code){
+
+	// �̲ݻ�е���� ����ͱ����2���֣�ר�ü� ��¼D�еĵ�λ����(672)
+	public boolean getTabaccoMachineProducer(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCER);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCER);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -257,9 +269,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//CID����4λ�����������
-	public boolean getDistrictNo(String code){
+
+	// CID����4λ�����������
+	public boolean getDistrictNo(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -268,14 +280,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_DISTRICTNO);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -284,27 +296,29 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//�̲ݻ�е��Ʒ������ ��ҵ��е��׼�� �����е������룬�������Ʒ�ִ��루6��
-	public boolean getTabaccoStandardPart(String categoryCode, String groupCode, String variatyCode){
+
+	// �̲ݻ�е��Ʒ������ ��ҵ��е��׼�� �����е������룬�������Ʒ�ִ���(6)
+	public boolean getTabaccoStandardPart(String categoryCode,
+			String groupCode, String variatyCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOSTANDARDPART);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOSTANDARDPART);
 			int i = 1;
 			stmt.setString(i++, categoryCode);
 			stmt.setString(i++, groupCode);
 			stmt.setString(i++, variatyCode);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -313,9 +327,10 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//�̲ݻ�е��Ʒ�����Ϸ���ͱ��� ��6���֣�ԭ��������(4)
-	public boolean getTabaccoMaterial(String categoryCode, String variatyCode){
+
+
+	// �̲ݻ�е��Ʒ�����Ϸ���ͱ��� ��6���֣�ԭ��������(4)
+	public boolean getTabaccoMaterial(String categoryCode, String variatyCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -325,14 +340,14 @@ public class RecoDao {
 			int i = 1;
 			stmt.setString(i++, categoryCode);
 			stmt.setString(i++, variatyCode);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -341,9 +356,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� �����Ʒ��������(15)
-	public boolean getFoodAccount(String code){
+
+	// ��ʳ��Ϣ��������� �����Ʒ��������(15)
+	public boolean getFoodAccount(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -352,14 +367,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_FOORDACCOUNT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -368,9 +383,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ�豸��������루23��
-	public boolean getGrainEquipment(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ�豸���������(23)
+	public boolean getGrainEquipment(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -379,14 +394,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINEQUIPMENT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -395,25 +410,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ��ʩ��������루24��
-	public boolean getGrainEstablishment(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ��ʩ���������(24)
+	public boolean getGrainEstablishment(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINESTABLISHMENT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRAINESTABLISHMENT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -422,26 +438,28 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//�̲ݻ�е��Ʒ������ ����ͱ��� ��5���֣�����Ԫ���� ��5��
-	public boolean getTabaccoElectricComponent(String categoryCode, String groupCode){
+
+	// �̲ݻ�е��Ʒ������ ����ͱ��� ��5���֣�����Ԫ���� (5)
+	public boolean getTabaccoElectricComponent(String categoryCode,
+			String groupCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOELECTRICCOMPONENT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOELECTRICCOMPONENT);
 			int i = 1;
 			stmt.setString(i++, categoryCode);
 			stmt.setString(i++, groupCode);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -450,88 +468,90 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//���ȡ��һ��������������
-	public String getRandomAdminDivision(){
+
+	// ���ȡ��һ��������������
+	public String getRandomAdminDivision() {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		String code = "";
-		try{
-			stmt = connection.prepareStatement(RecoUtil.SELECT_RANDOMADMINDIVISION);
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_RANDOMADMINDIVISION);
 			results = stmt.executeQuery();
-			while(results.next()){
+			while (results.next()) {
 				code = results.getString("id");
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {  
+		} finally {
 			JdbcUtils.free(null, null, connection);
 		}
 		return code;
 	}
-	
-	//���ȡ��һ��EANUPC���
-	public String getRandomEANUPC(){
+
+	// ���ȡ��һ��EANUPC���
+	public String getRandomEANUPC() {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		String code = "";
-		try{
+		try {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_RANDOMEANUPC);
 			results = stmt.executeQuery();
-			while(results.next()){
+			while (results.next()) {
 				code = String.valueOf(results.getInt("code"));
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {  
+		} finally {
 			JdbcUtils.free(null, null, connection);
 		}
 		return code;
 	}
-	
-	//���ر�׼��ϸ��Ϣ
-	public String getIDDetail(String code){
+
+	// ���ر�׼��ϸ��Ϣ
+	public String getIDDetail(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		String name = "";
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
-		try{
+		try {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_IDDETAIL);
 			stmt.setString(1, code);
 			results = stmt.executeQuery();
-			while(results.next()){
+			while (results.next()) {
 				name = results.getString("name");
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {  
+		} finally {
 			JdbcUtils.free(null, null, connection);
 		}
 		return name;
 	}
-	
-	//���ò��ϱ��� ��1���֣����ò��Ϸ���������Ʒ����(10)
-	public boolean getTobbacoMaterials(String categoryCode, String groupCode){
+
+	// ���ò��ϱ��� ��1���֣����ò��Ϸ���������Ʒ����(10)
+	public boolean getTobbacoMaterials(String categoryCode, String groupCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOMATERIALS);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOMATERIALS);
 			int i = 1;
 			stmt.setString(i++, categoryCode);
 			stmt.setString(i++, groupCode);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -540,9 +560,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳó��ҵ��ͳ�Ʒ��������(14)
-	public boolean getFoodTrade(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳó��ҵ��ͳ�Ʒ��������(14)
+	public boolean getFoodTrade(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -551,14 +571,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_FOODTRADE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -567,9 +587,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ�ӹ�(18)
-	public boolean getFoodEconomy(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ�ӹ�(18)
+	public boolean getFoodEconomy(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -578,14 +598,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_FOODECONOMY);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -594,9 +614,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ�ִ�ҵ��ͳ�Ʒ��������(16)
-	public boolean getGrainStoreHouse(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ�ִ�ҵ��ͳ�Ʒ��������(16)
+	public boolean getGrainStoreHouse(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -605,14 +625,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSTOREHOUSE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -621,9 +641,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� �������溦���������(17)
-	public boolean getGrainsDiseases(String code){
+
+	// ��ʳ��Ϣ��������� �������溦���������(17)
+	public boolean getGrainsDiseases(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -632,14 +652,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSDISEASES);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -648,9 +668,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ�ӹ���1���֣��ӹ���ҵ���������(19)
-	public boolean getGrainsProcess(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ�ӹ���1���֣��ӹ���ҵ���������(19)
+	public boolean getGrainsProcess(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -659,14 +679,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSPROCESS);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -675,9 +695,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ�ִ���3���֣����ķ��������(20)
-	public boolean getGrainsEquipment(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ�ִ���3���֣����ķ��������(20)
+	public boolean getGrainsEquipment(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -686,14 +706,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSEQUIPMENT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -702,25 +722,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ�ִ���2���֣���������������(21)
-	public boolean getGrainConditionDetection(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ�ִ���2���֣���������������(21)
+	public boolean getGrainConditionDetection(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINCONDITIONDETECTION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRAINCONDITIONDETECTION);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -729,9 +750,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ�ִ���1���֣��ִ���ҵ���������(22)
-	public boolean getgrainsSmartWMS(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ�ִ���1���֣��ִ���ҵ���������(22)
+	public boolean getgrainsSmartWMS(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -740,14 +761,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSSMARTWMS);
 			int i = 1;
 			stmt.setString(i, code + "%");
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(rowcount >= 1){
-				ret =  true;
+			if (rowcount >= 1) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -756,25 +777,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ�����2���֣�������׼���������(26)
-	public boolean getGrainsQualityStandard(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ�����2���֣�������׼���������(26)
+	public boolean getGrainsQualityStandard(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRIANQUALITYSTANDARD);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRIANQUALITYSTANDARD);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -783,25 +805,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��������������������(32)
-	public boolean getMeasuringInstrument(String code){
+
+	// ��������������������(32)
+	public boolean getMeasuringInstrument(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_MEASURINGINSTRUMENT);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MEASURINGINSTRUMENT);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -810,9 +833,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ���� ��1���֣�ָ����������(27)
-	public boolean getGrainsIndex(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ���� ��1���֣�ָ����������(27)
+	public boolean getGrainsIndex(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -821,14 +844,14 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSINDEX);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -837,25 +860,26 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ���ӹ���Ʒ���������(28)
-	public boolean getGrainsInformation(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ���ӹ���Ʒ���������(28)
+	public boolean getGrainsInformation(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSINFORMATION);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRAINSINFORMATION);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -864,9 +888,9 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//��ʳ��Ϣ��������� ��ʳ���Է��������(29)
-	public boolean getGrainsAttribute(String code){
+
+	// ��ʳ��Ϣ��������� ��ʳ���Է��������(29)
+	public boolean getGrainsAttribute(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -875,14 +899,208 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSATTRIBUTE);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��ʳ��Ϣ��������� ��ʳ��������ҵ�����������������(31)
+	public boolean getGrainsAdministrative(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GRAINSADMINISTRATIVE);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ������Ʒ����ʹ���(34)
+	public boolean getConstructionProducts(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_CONSTRUCTIONPRODUCTS);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �������ӵ�ͼ��ݷ��������(45)
+	public boolean getElectronicMap(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_ELECTRONICMAP);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ������Ϣ������������(56)
+	public boolean getGeographicInformation(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GEOGRAPHICINFORMATION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��֯���ϱ��뻯�˲���(64)
+	public boolean getTextileFabricNameCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TETILEFABRICNAME);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��֯�������Դ���(64)��֯��X1X2
+	public boolean getPropertiesMainMaterial(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROPERTIESMAINMATERIAL);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��֯�������Դ���(64)��֯�첼X1X2
+	public boolean getPropertiesMain(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESMAIN);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -895,22 +1113,50 @@ public class RecoDao {
 	//function: query the table phonenumber and thus check the legality of the prefix of a given phone number (7 numbers)
 	//creator: dgq
 	public boolean getPrefixPhoneNO(String code){
+	Connection connection = JdbcUtils.getConnection();
+	PreparedStatement stmt = null;
+	ResultSet results = null;
+	boolean ret = false;
+	try {
+		stmt = connection.prepareStatement(RecoUtil.SELECT_PHONENUMBER);
+		int i = 1;
+		stmt.setString(i, code);
+		
+		results = stmt.executeQuery();
+		int rowcount = 0;
+		while (results.next()) {
+			rowcount++;				
+		}
+		if(1 == rowcount){
+			ret =  true;
+		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��֯�������Դ���(64)��ά���� X3X4
+	public boolean getPropertiesFiberCharacteristics(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 		boolean ret = false;
 		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_PHONENUMBER);
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROPERTIERFIBERCHARACTERS);
 			int i = 1;
 			stmt.setString(i, code);
-			
+
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				rowcount++;				
+				rowcount++;
 			}
-			if(1 == rowcount){
-				ret =  true;
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -939,6 +1185,32 @@ public class RecoDao {
 			}
 			if(1 == rowcount){
 				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	// ��֯�������Դ���(64)X7X8����᷽̽ʽ
+	public boolean getPropertiesMix(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PROPERTIESMIX);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -976,6 +1248,34 @@ public class RecoDao {
 		return ret;
 	}
 	
+	// ��֯�������Դ���(64)X9X10 01-19 99
+	public boolean getPropertiesFabric(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROPERTIESFABRIC);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
 	//function: query the table vehiclenomwj and thus check the legality of the third character of a WJ vehicle character
 	//creator: dgq
 	public boolean getPrefixWJVehicleNO(String code){
@@ -1003,5 +1303,3793 @@ public class RecoDao {
 		}
 		return ret;
 	}
+
+	// ��֯�������Դ���(64)X11X12
+	public boolean getPropertiesDyeingandFinishing(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROPERTIESDYEING);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 	
+	// ����װ������ҵ��Ʒȫ�������ڹ���֪ʶ��2����(65)
+	public boolean getGeneralManufacturingProcess(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MANUFACTURINGPROCESS);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ȫ����Ҫ��Ʒ����������2���� ���������Ʒ��3λ(712)
+	public boolean getUntransportableProduct(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_UNTRANSPORTABLEPRODUCT);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ȫ����Ҫ��Ʒ����������2���� ���������Ʒ��3λ(712)
+	public boolean getLastThreeUntransportableProduct(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_LASTTHREEUNTRANSPORTABLEPRODUCT);
+			int i = 1;
+			stmt.setString(i, "%" + code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��·��ͨ��Ϣ�ɼ���Ϣ���������(77)
+	public boolean getTrafficInformationCollection(String firstCode,
+			String secondCode) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TRAFFICINFORMATIONCOLLECTION);
+			int i = 1;
+			stmt.setString(i++, firstCode);
+			stmt.setString(i++, secondCode);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �̲���ҵ����ͳ�����Ԫ��2���� ���뼯(202)
+	public boolean getTrafficOrganization(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOORGANIZATION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��Ҷ�����5������Ҷ��ɫ����(204)
+	public boolean getTobaccoLeafColor(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOLEAFCOLOR);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��Ҷ�����2������Ҷ��̬����(207)
+	public boolean getTobaccoLeafForm(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TABACCOLEAFFORM);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��Ҷ�����1������Ҷ���������(208)
+	public boolean getTobaccoLeafClass(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOLEAFCLASS);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��ͯ�����״����(213)
+	public boolean getChildrenExcrement(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_CHILDRENEXCREMENT);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �������������ࡢ��ʩ���ࡢ��Ʒ�������
+	public boolean getFuneral(String id, String type) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(type);
+			stmt.setString(1, id);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ���Ƶ�ʴ���(214)
+	public boolean getDrinkingFrequency(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_DRINKINGFREQUENCY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ����������(214)
+	public boolean getDrinkingClass(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_DRINKINGCLASS);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ����Ƶ�ʴ���(214)
+	public boolean getPhysicalActivityFrequency(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PHYSICALACTIVITYFREQUENCY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ������ֹ��ʽ�����(215)
+	public boolean getTerminationofPregnancy(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TERMINATIONOFPREGNENCY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ���䷽ʽ����(215)
+	public boolean getModeofProduction(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MODEOFPRODUCTION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ����ص�������(215)
+	public boolean getDileveryPlace(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_DILIVERYPLACE);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ������Ϣ���Ԫֵ������17���֣��������(218)
+	public boolean getHealthSupervisionObject(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HEALTHSUPERVISIONOBJECT);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��ͨ���ߴ���(219)
+	public boolean getCommunicationCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_COMMUNICATIONCODE);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ����ල��ְ��������(220)
+	public boolean getHygieneAgencyPersonnel(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HYGIENEAGENCYPERSONNEL);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ����ල��ְ��������(220)
+	public boolean getWorkerHealthSupervision(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_WORKERHEALTHSUPERVISION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �̲ݻ�е(195)
+	public boolean getTobaccoMachineryID(String id) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_TABACCOMACHINEPRODUCT);
+			stmt.setString(1, id);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 280-���뵳����ش�����Ʒ��� �����ݿ�
+	public boolean getPortTariff280(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF281);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 281-�����鱦��ʯ��������Ʒ���������Ʒ��� �����ݿ�
+	public boolean getPortTariff281(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa281);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 281-�����鱦��ʯ���������ʷ��������Ʒ��� �����ݿ�
+	public boolean getPortTariffMa281(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa281);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 282-������Ϣ��ȫ����������Ʒ��� �����ݿ�
+	public boolean getPortTariffMa282(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa282);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 284-������ᾭ��Ŀ�����ʹ���� �����ݿ�
+	public boolean getPortTariffMa284(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa284);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 285-����������Ϣ����ʹ���� �����ݿ�
+	public boolean getPortTariffMa285(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa285);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 287-������װ����ʹ���� �����ݿ�
+	public boolean getPortTariffMa287(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa287);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 288-������װ����ʹ���� �����ݿ�
+	public boolean getPortTariffMa288(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa288);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 291-����ҽҩ��е����ʹ���� �����ݿ�
+	public boolean getPortTariffMa291(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFFMa191);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �̲ݻ�е�������úͼ����ļ����븽¼C���ѯ
+	public boolean getPrefixoftabaccoC(int code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_tabaccoC);
+			int i = 1;
+			stmt.setInt(i++, code);
+			stmt.setInt(i++, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 268-�������뵳����ش�����Ʒ��� �����ݿ�
+	public boolean getPortTariff268(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF268);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 270-������Ȼ�ֺ����������Ʒ��� �����ݿ�
+	public boolean getPortTariff270(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF270);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 275-����������ҵ������������Ʒ��� �����ݿ�
+	public boolean getPortTariff275(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF275);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 276-����������Ʒ���������Ʒ��� �����ݿ�
+	public boolean getPortTariff276(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF276);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 395-���������Ϣ�������ʹ���� �����ݿ�
+	public boolean getFireInfomation395(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF395);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 399-���������Ϣ�������ʹ���� �����ݿ�
+	public boolean getFireInfomation399(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF399);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 403-���������Ϣ�������ʹ���� �����ݿ⣺������������
+	public boolean getFireInfomation403(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF403);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 409-���������Ϣ�������ʹ���� �����ݿ⣺���ѵ�����˴���
+	public boolean getFireInfomation409(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF409);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ���ó�����䴬�������������ԭ��(312)
+	public boolean getInternationalShipCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_INTERNATIONALSHIP);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �غ������������(238)
+	public boolean getCoastalAdminAreaID(String id) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_COASTALADMINAREAID);
+			stmt.setString(1, id);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (rowcount == 1) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �������ʹ���(227)
+	public boolean getWirtschaftsTypCodeID(String id) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_WIRTSCHAFTSTYPCODE);
+			stmt.setString(1, id);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��Ⱦ����ƴ���(225)
+	public boolean getInfectiousDiseasesID(String id) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_INFECTIOUSDISEASES);
+			stmt.setString(1, id);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �����������������ƹ���(309)
+	public boolean getGeographicalCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_GEOGRAPHICALCODE);
+
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ũҩ������Ƽ�����
+	public boolean getPesticideFormulationCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PESTICIDECODE);
+
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ���ó��ߴ����(306)
+	public boolean getPassengerCarCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PASSENGERCARCODE);
+
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+
+	}
+
+	public boolean getCivilAviation(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_CIVILAVIATION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation32(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION32);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation50(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION50);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation53(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION53);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getSecurityAccounterments(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_SECURITYACCOUNTERMENTS);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getSpecialVehicle(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_SPECIALVEHICLE);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation5(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION5);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation41(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION41);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation63(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION63);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation64(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION64);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayTransportation(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYTRANSPORTATION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayTransportation4b1(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYTRANSPORTATION4B1);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayTransportation4b7(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYTRANSPORTATION4B7);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayTransportation4b9(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYTRANSPORTATION4B9);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayTransportation4c3(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYTRANSPORTATION4C3);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPortTariff3(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF3);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPortTariff4(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF4);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPortTariff9(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF9);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPortTariff25(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF25);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPortTariff26(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF26);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPortTariff10(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF10);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery2(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY2);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayMaintenance4(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYMAINTENANCE4);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayMaintenance3(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYMAINTENANCE3);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery3(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY3);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery4(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY4);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery5(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY5);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery6(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY6);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery7(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY7);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery8(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY8);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery9(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY9);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getMachinery10(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_MACHINERY10);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayTransportation4c6(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYTRANSPORTATION4C6);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getHighwayTransportation4b10(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYTRANSPORTATION4B10);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getWaterwayTransportation(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_WATERWAYTRANSPORTATION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPort(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORT);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 410
+	public boolean getOfficialPositonByCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_OFFICIALPOSITION);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation60(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION60);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation22(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION22);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getRoadTransportation21(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ROADTRANSPORTATION21);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ɽ��ɽ����ƴ��루297��
+	public boolean getMountainRangeAndPeakName(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MOUNTAINRANGEANDPEAKNAME);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ֪ʶ��Ȩ��������Ϣ���༰���루298��
+	public boolean getIntellectualProperty(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_INTELLECTUALPROPERTY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ���ú���ҵ��Ϣ��������� (340)
+	public boolean getClassificationOfCivilAviation(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_CLASSIFICATIONOFCIVILAVIATION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �ߵ�ѧУ���ơ�ר��רҵ��ƴ��루328��
+	public boolean getNormalAndShortCycleSpeciality(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_NORMALANDSHORTCYCLESPECIALITY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ����ά�ޱ�����ϵ �ڶ����֣�337��
+	public boolean getMaintenanceSystemPTwo(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MAINTENANCESYSTEMPTWO);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ���ó�׺�ͬ���루326��
+	public boolean getCountryRegionCode1(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_COUNTRYREGIONCODE1);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getFirst2CharsofAdminDivision(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_FIRST2CHARSOFADMINDIVISION);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �����Ƽ��ɹ��������루784��
+	public boolean getElectricPower(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_ELECTRICPOWER);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ȫ�������ƴ��루785��
+	public boolean getPowerGrid(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_POWERGRID);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ������ҵ��λ�����루787��
+	public boolean getElectricPowerIndustry(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ELECTRICPOWERINDUSTRY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ����������Ϣϵͳͼ�η�ŷ�������루788��
+	public boolean getElectricPowerGeography(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ELECTRICPOWERGEOGRAPHY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��ѹ�ȼ����루789��
+	public boolean getVoltageClass(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_VOLTAGECLASS);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �������ʱ��� �ڶ����� ����Ʒ��909��
+	public boolean getPowerGoodsP2(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_POWERGOODSP2);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// /�������ϢҪ�ط�������루353��
+	public boolean getGeographicalInfoCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_GEOGRAPHICINFO);
+			stmt.setString(1, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// /�����Σ�պ��к����ط�������루354��
+	public boolean getHarmfulFactorCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_HARMFULFACTOR);
+			stmt.setString(1, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// /�л����񹲺͹���·��վ���루366��
+	public boolean getRailwayStationCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_RAILWAYSTATIONCODE);
+			stmt.setString(1, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// /��ҵ��Դ��������� ��ľ����
+	public boolean getTreeDiseaseCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TREEDISEASE);
+			stmt.setString(1, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// /�ںӴ�����������루314-1��
+	public boolean getNavigationShipCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_NAVIGATIONSHIP);
+			stmt.setString(1, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// /����֤������(470)
+	public boolean getTravelCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TRAVLEDOCUMENT);
+			stmt.setString(1, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ����������ֺ�ʡ����������ܶӴ���(474)
+	public boolean getProvinceAdminCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PROVINCEADMINCODE);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �йܵ�λ����(474)
+	public boolean getAdminDivision1(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_ADMINDIVISION1);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials44(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS44);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials45(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS45);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials46(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS46);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials47(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS47);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials49(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS49);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials50(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS50);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials51(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS51);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials52(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS52);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials53(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS53);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	public boolean getPowerMaterials54(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_POWERMATERIALS54);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 509���������Ϸ���Ӫҵ�������岿��
+	// IDstr: ��ʶ����
+	// LenID: ��ʶ����ĳ���5λ
+	// Index: ������֤�㷨������λ��
+	// LenIndex:a3
+	// creator:fdl
+	public boolean getPortTariff509(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTTARIFF509);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��Ԫ�ر��롪����Ҵ���
+	// IDstr: ��ʶ����
+	// LenID: ��ʶ����ĳ���5λ
+	// Index: ������֤�㷨������λ��
+	// LenIndex:a3
+	// creator:fdl
+	public boolean getPortNuclearelementNation(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PORTNuclearelementNation);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��Ԫ�ر���
+	// IDstr: ��ʶ����
+	// LenID: ��ʶ����ĳ���5λ
+	// Index: ������֤�㷨������λ��
+	// LenIndex:a3
+	// creator:fdl
+	public boolean getPortNuclearelements(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PORTNuclearelements);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// Function: ���Ʒ�㲿���߱������
+	// IDstr: ��ʶ����
+	// LenID: ��ʶ����ĳ���
+	// Index:4
+	// LenIndex: ���ȱ�Ϊ4
+	// creator: fdl
+	public boolean getPortCarProductCompnent(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PORTCarProductCompnent);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// Function: TCL���ܵ�ر������
+	// IDstr: ��ʶ����
+	// LenID: ��ʶ����ĳ���
+	// Index:4
+	// LenIndex: ���ȱ�Ϊ4
+	// creator: fdl
+	public boolean getPortTCLBatteryProduct(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_PORTTCLBatteryProduct);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// Function: TCL���ܵ�ر�����򡪡��������
+	// IDstr: ��ʶ����
+	// LenID: ��ʶ����ĳ���
+	// Index:4
+	// LenIndex: ���ȱ�Ϊ4
+	// creator: fdl
+	public boolean getPortProductCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTProductCode);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// ��Ʒ���� Ӧ�ñ�ʶ��632)
+	public boolean getBarCodeForCommodity(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_BARCODEFORCOMMODITY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	/*
+	 * 757 author:wt
+	 */
+	public boolean getHighwayDatabase17(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYDATABASE17);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	/*
+	 * 757 author:wt
+	 */
+	public boolean getHighwayDatabase46(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYDATABASE46);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	/*
+	 * 757 author:wt
+	 */
+	public boolean getHighwayDatabase47(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYDATABASE47);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	/*
+	 * 757 author:wt
+	 */
+	public boolean getHighwayDatabase71(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_HIGHWAYDATABASE71);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// �й�ʯ����Ȼ���ܹ�˾����ҵ��λ���루763��
+	public boolean getGassCompany(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_GASSCOMPANY);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 11 hydrologic data
+	public boolean getHydrologicData(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_HYDROLOGICDATA);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 12 meat and vegetable
+	public boolean getMeatandVegetable(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MEATANDVEGETABLE);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// Function: ɭ�����ͱ������
+	// IDstr: ��ʶ����
+	// LenID: ��ʶ����ĳ���
+	// Index:5
+	// LenIndex: ���ȱ�Ϊ5
+	// creator: fdl
+	public boolean getPortForestTypes(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PORTForestTypes);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+				System.out.println("results=" + results.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 700-�������Ｒ��
+	public boolean getAnimalDiseaseByCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_ANIMIALDISEASE700);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 698-����ȫ��������ҵҽ����е�������豸����
+	public boolean getMedicalInstrumentByCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection
+					.prepareStatement(RecoUtil.SELECT_MEDICALINSTRUMENT);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 728������ҽ��֢����
+	public boolean getTCMdiseaseByCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TCMDISEASE);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 728<2>������ҽ��֢����
+	public boolean getTCMFeatureByCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TCMFEATURE);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 706,708�������ʿ����������ѡ�ʷ�Χ
+	public boolean getDZClassifyByCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_DZCLASSIIFY);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// 710�������ʿ����������ѡ�ʷ�Χ
+	public boolean getDZClassify710ByCode(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_DZCLASSIFY710);
+			int i = 1;
+			stmt.setString(i, code);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
 }
