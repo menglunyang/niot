@@ -11645,7 +11645,7 @@ public class RuleFunction {
 		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex != 7) {
+		if (LenIndex != 8) {
 			return ERR;
 		}
 		String code = new String(CODEstr);
@@ -11674,7 +11674,7 @@ public class RuleFunction {
 		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex != 4) {
+		if (LenIndex != 6) {
 			return ERR;
 		}
 		String code = new String(CODEstr);
@@ -11801,7 +11801,7 @@ public class RuleFunction {
 
 		try {
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getMaintenanceSystemPTwo(code);
+			boolean ret = recoDao.getCountryRegionCode1(code);
 			if (ret) {
 				return OK;
 			} else
@@ -11831,7 +11831,7 @@ public class RuleFunction {
 
 		try {
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getMaintenanceSystemPTwo(code);
+			boolean ret = recoDao.getElectricPower(code);
 			if (ret) {
 				return OK;
 			} else
@@ -11974,7 +11974,7 @@ public class RuleFunction {
 			return ERR;
 		}
 
-		if (LenIndex != 2) {
+		if (LenIndex != 3) {
 			return ERR;
 		}
 		String code = new String(CODEstr);
@@ -12710,7 +12710,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 4) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
@@ -12874,7 +12874,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 2) {
+			if (LenIndex != 4) {
 				return ERR;
 			}
 
@@ -13018,7 +13018,7 @@ public class RuleFunction {
 			return ERR;
 		}
 
-		if (LenIndex != 8) {
+		if (LenIndex != 9) {
 			return ERR;
 		}
 		String code = new String(CODEstr);
