@@ -26,99 +26,111 @@ public class RecoUtil {
 	// country and region code
 	public static final String SELECT_COUNTRYREGIONCODE = "select * from countryregioncode where twocharcode=? or threecharcode=? or numcode=?";
 
-	// ÑÌ²İ»úĞµ²úÆ·ÓÃÎïÁÏ
+	// ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final String SELECT_TABACCOMACHINEPRODUCT = "select * from tabaccomachineproduct where categorycode=? and groupcode=? and variatycode=?";
 
-	// ÉÌÆ·ÌõÂëÁãÊÛÉÌÆ·±àÂëEAN UPCÇ°3Î»Ç°×ºÂë
+	// ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½EAN UPCÇ°3Î»Ç°×ºï¿½ï¿½
 	public static final String SELECT_EANUPC = "select * from EANUPC where begincode<=? and endcode>=?";
 
-	// ÑÌ²İ»úĞµÎïÁÏ ·ÖÀàºÍ±àÂëµÚ2²¿·Ö£º×¨ÓÃ¼ş ¸½Â¼DÖĞµÄµ¥Î»±àÂë(672)
+	// ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Ö£ï¿½×¨ï¿½Ã¼ï¿½ ï¿½ï¿½Â¼Dï¿½ĞµÄµï¿½Î»ï¿½ï¿½ï¿½ï¿½(672)
 	public static final String SELECT_TABACCOMACHINEPRODUCER = "select * from tabaccomachineproducer where id=? limit 1";
 
-	// CIDµ÷ÓÃ4Î»Êı×ÖĞĞÕşÇøºÅ
+	// CIDï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final String SELECT_DISTRICTNO = "select * from districtno where id=?";
 
-	// ÑÌ²İ»úĞµ²úÆ·ÓÃÎïÁÏ ÆóÒµ»úĞµ±ê×¼¼ş ±àÂëÖĞµÄÀà±ğ´úÂë£¬×é±ğ´úÂëºÍÆ·ÖÖ´úÂë£¨6£©
+	// ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Òµï¿½ï¿½Ğµï¿½ï¿½×¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ö´ï¿½ï¿½ë£¨6ï¿½ï¿½
 	public static final String SELECT_TABACCOSTANDARDPART = "select * from tabaccostandardpart where categorycode=? and groupcode=? and variatycode=?";
 
-	// ÑÌ²İ»úĞµ²úÆ·ÓÃÎïÁÏ·ÖÀàºÍ±àÂë µÚ6²¿·Ö£ºÔ­¡¢¸¨²ÄÁÏ(4)
+	// ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ ï¿½ï¿½6ï¿½ï¿½ï¿½Ö£ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(4)
 	public static final String SELECT_TABACCOMATERIAL = "select * from tabaccomaterial where categorycode=? and variatycode=?";
 
-	// Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë ²ÆÎñ»á¼Æ·ÖÀàÓë´úÂë(15)
+	// ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(15)
 	public static final String SELECT_FOORDACCOUNT = "select * from foodaccount where id=?";
 
-	// Á¸Ê³ĞÅÏ¢·ÖÀàÓë´úÂë Á¸Ê³Éè±¸·ÖÀàÓë´úÂë£¨23£©
+	// ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨23ï¿½ï¿½
 	public static final String SELECT_GRAINEQUIPMENT = "select * from grainequipment where id=?";
 
-	// Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³ÉèÊ©·ÖÀàÓë±àÂë£¨24£©
+	// ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½Ê©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨24ï¿½ï¿½
 	public static final String SELECT_GRAINESTABLISHMENT = "select * from grainestablishment where id=?";
 
-	// ÑÌ²İ»úĞµ²úÆ·ÓÃÎïÁÏ ·ÖÀàºÍ±àÂë µÚ5²¿·Ö£ºµçÆ÷ÔªÆ÷¼ş £¨5£©
+	// ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ ï¿½ï¿½5ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½5ï¿½ï¿½
 	public static final String SELECT_TABACCOELECTRICCOMPONENT = "select * from tabaccoelectriccomponent where categorycode=? and groupcode=?";
 
-	// ĞĞÕşÇø»®´úÂëËæ»úÈ¡Ò»Ìõ¼ÇÂ¼
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 	public static final String SELECT_RANDOMADMINDIVISION = "select * from admindivision where id>=convert(floor(((SELECT MAX(convert(Id,signed)) FROM admindivision)-(SELECT MIN(convert(Id,signed)) FROM admindivision)) * rand() + (SELECT MIN(convert(Id,signed)) FROM admindivision)),char(6)) limit 1";
 	
-	//EANUPC´úÂëËæ»úÒ»Ìõ¼ÇÂ¼
+	//EANUPCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 	public static final String SELECT_RANDOMEANUPC = "select floor(rand()*(endcode-begincode)+begincode) as code from (select * from EANUPC where rowno >= (select floor(rand()*(max(rowno)-min(rowno))) + min(rowno) from EANUPC) limit 1) t";
 	
 	public static final String SELECT_TYPEANDRULES = "select * from iotid";
 	
-	//ÑÌÓÃ²ÄÁÏ±àÂë µÚ1²¿·Ö£ºÑÌÓÃ²ÄÁÏ·ÖÀà´úÂëÓë²úÆ·´úÂë(10)
+	//ï¿½ï¿½ï¿½Ã²ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½1ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½(10)
 	public static final String SELECT_TABACCOMATERIALS = "select * from tabaccomaterials where categorycode=? and groupcode=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³Ã³Ò×ÒµÎñÍ³¼Æ·ÖÀàÓë´úÂë(14)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³Ã³ï¿½ï¿½Òµï¿½ï¿½Í³ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(14)
 	public static final String SELECT_FOODTRADE = "select * from foodtradestatistics where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢ÒµÎñÍ³¼Æ·ÖÀàÓë´úÂë(16)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ö´ï¿½Òµï¿½ï¿½Í³ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(16)
 	public static final String SELECT_GRAINSTOREHOUSE = "select * from grainstorehouse where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë ´¢Á¸²¡³æº¦·ÖÀàÓë´úÂë(17)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æº¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(17)
 	public static final String SELECT_GRAINSDISEASES = "select * from grainsdiseases where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼Ó¹¤(18)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ó¹ï¿½(18)
 	public static final String SELECT_FOODECONOMY = "select * from grainstechnicaleconomy where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼Ó¹¤µÚ1²¿·Ö£º¼Ó¹¤×÷Òµ·ÖÀàÓë´úÂë(19)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ó¹ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½Ö£ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(19)
 	public static final String SELECT_GRAINSPROCESS = "select * from grainsprocess where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ3²¿·Ö£ºÆ÷²Ä·ÖÀàÓë´úÂë(20)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ö´ï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(20)
 	public static final String SELECT_GRAINSEQUIPMENT = "select * from grainsequipment where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ2²¿·Ö£ºÁ¸Çé¼ì²â·ÖÀàÓë´úÂë(21)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ö´ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(21)
 	public static final String SELECT_GRAINCONDITIONDETECTION = "select * from grainconditiondetection where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ1²¿·Ö£º²Ö´¢×÷Òµ·ÖÀàÓë´úÂë(22)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ö´ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½Ö£ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(22)
 	public static final String SELECT_GRAINSSMARTWMS = "select * from grainsSmartWMS where id like ?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼ìÑéµÚ2²¿·Ö£ºÖÊÁ¿±ê×¼·ÖÀàÓë´úÂë(26)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(26)
 	public static final String SELECT_GRIANQUALITYSTANDARD = "select * from grainsqualitystandard where id=?";
 	
-	//¼ÆÁ¿Æ÷¾ßÃüÃûÓë·ÖÀà±àÂë(32)
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(32)
 	public static final String SELECT_MEASURINGINSTRUMENT = "select * from measuringinstrument where code=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼ìÑé µÚ1²¿·Ö£ºÖ¸±ê·ÖÀàÓë´úÂë(27)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½1ï¿½ï¿½ï¿½Ö£ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(27)
 	public static final String SELECT_GRAINSINDEX = "select * from grainsindex where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼°¼Ó¹¤²úÆ··ÖÀàÓë´úÂë(28)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(28)
 	public static final String SELECT_GRAINSINFORMATION = "select * from grainsinformation where id=?";
 	
-	//Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³ÊôĞÔ·ÖÀàÓë´úÂë(29)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(29)
 	public static final String SELECT_GRAINSATTRIBUTE = "select * from grainsattribute where id=?"; 
 	
-	//¡¢Ã»ÓĞÆ¥Åä³É¹¦ÈÎºÎÒ»ÖÖ±êÊ¶
+	//select the first 7 numbers of a phone number
+	public static final String SELECT_PHONENUMBER = "select * from phonenumber where MobileNumber=?";
+	
+	//select the first 2 characters of a normal vehicle NO
+	public static final String SELECT_NORMALVEHICLENO = "select * from vehiclenonormal where vehicleprefix=?";
+	
+	//select the first 2 characters of a army vehicle NO
+	public static final String SELECT_ARMYVEHICLENO = "select * from vehiclenoarmy where vehicleprefix=?";
+	
+	//select the first 2 characters of a WJ vehicle NO
+	public static final String SELECT_WJVEHICLENO = "select * from vehiclenowj where vehicleprefix=?";
+	
+	//ï¿½ï¿½Ã»ï¿½ï¿½Æ¥ï¿½ï¿½É¹ï¿½ï¿½Îºï¿½Ò»ï¿½Ö±ï¿½Ê¶
 	public static final int NO_ID_MATCHED = 0;
 	
-	//¡¢Æ¥Åä³É¹¦Ò»ÖÖ±êÊ¶
+	//ï¿½ï¿½Æ¥ï¿½ï¿½É¹ï¿½Ò»ï¿½Ö±ï¿½Ê¶
 	public static final int ONE_ID_MATCHED = 1;
 
-	// ±àÂëÏêÏ¸ĞÅÏ¢
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢
 	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?";
 	
-	// Ç°¶ËÒ³ÃæÏÔÊ¾±ê×¼Ãû³Æ¶ÌÂë×Ö·ûµÄ×î´ó³¤¶È
+	// Ç°ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½×¼ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ó³¤¶ï¿½
 	public static final int DISPLAYLENGTH = 9;
 	
-	//»ñµÃURLµØÖ·
+	//ï¿½ï¿½ï¿½URLï¿½ï¿½Ö·
 	public static String getURLParam(String paramName){
 		ActionContext ctx = ActionContext.getContext();            
 		HttpServletRequest request = (HttpServletRequest)ctx.get(ServletActionContext.HTTP_REQUEST);
@@ -127,7 +139,7 @@ public class RecoUtil {
 		return parameter;
 	}
 	
-	//ĞŞ¸Ä±ê×¼IDÎªÃû³Æ
+	//ï¿½Ş¸Ä±ï¿½×¼IDÎªï¿½ï¿½ï¿½
 	public static HashMap<String, Double> replaceIotId(HashMap<String, Double> map){
 		HashMap<String, Double> newMap = new HashMap<String, Double>();
 		Iterator iterator = map.keySet().iterator();

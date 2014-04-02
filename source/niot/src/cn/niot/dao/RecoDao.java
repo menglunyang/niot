@@ -43,7 +43,7 @@ public class RecoDao {
 	}
 	
 	/*
-	 * ²ÎÊýÒ²ÊÇ·µ»ØÖµ ·µ»ØhashMapTypeToRules¡¢rmvRuleSet¡¢rmvIDSet¡¢hashMapRuleToTypes
+	 * ï¿½ï¿½ï¿½ï¿½Ò²ï¿½Ç·ï¿½ï¿½ï¿½Öµ ï¿½ï¿½ï¿½ï¿½hashMapTypeToRulesï¿½ï¿½rmvRuleSetï¿½ï¿½rmvIDSetï¿½ï¿½hashMapRuleToTypes
 	 */
 	public HashMap<String, ArrayList<String>> DBreadTypeAndRules(
 			HashMap<String, Double> rmvRuleSet,
@@ -60,7 +60,7 @@ public class RecoDao {
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				ArrayList<String> rules = new ArrayList<String>();// º¯Êý·µ»ØÖµÖÐµÄArrayList
+				ArrayList<String> rules = new ArrayList<String>();// ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Ðµï¿½ArrayList
 				String idType = results.getString("id");
 				String lengthRule = results.getString("length");
 				String byteRule = results.getString("byte");
@@ -69,19 +69,19 @@ public class RecoDao {
 				if (lengthRule.length() != 0) {
 					lengthRule = "IoTIDLength)(?#PARA=" + lengthRule + "){]";
 					rules.add(lengthRule);// eg.length8)(?#PARA=8){]
-					// º¯ÊýÃû×Ö½Ðlength8,²ÎÊý8
-					rmvRuleSet.put(lengthRule, 0.5);// ÏòrmvRuleSetÌí¼Ólength¹æÔò
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½length8,ï¿½ï¿½ï¿½ï¿½8
+					rmvRuleSet.put(lengthRule, 0.5);// ï¿½ï¿½rmvRuleSetï¿½ï¿½ï¿½lengthï¿½ï¿½ï¿½ï¿½
 					hashMapTypeToRulesSwitchhashMapRuleToTypes(
-							hashMapRuleToTypes, lengthRule, idType);// hashMapTypeToRules×ª»»ÎªhashMapRuleToTypes,´¦Àílength
+							hashMapRuleToTypes, lengthRule, idType);// hashMapTypeToRules×ªï¿½ï¿½ÎªhashMapRuleToTypes,ï¿½ï¿½ï¿½ï¿½length
 				}
 				if (byteRule.length() != 0) {
 					byteRule = "IoTIDByte)(?#PARA=" + byteRule + "){]";
 					rules.add(byteRule);
-					rmvRuleSet.put(byteRule, 0.5);// ÏòrmvRuleSetÌí¼Óbyte¹æÔò
+					rmvRuleSet.put(byteRule, 0.5);// ï¿½ï¿½rmvRuleSetï¿½ï¿½ï¿½byteï¿½ï¿½ï¿½ï¿½
 					hashMapTypeToRulesSwitchhashMapRuleToTypes(
-							hashMapRuleToTypes, byteRule, idType);// hashMapTypeToRules×ª»»ÎªhashMapRuleToTypes,´¦Àíbyte
+							hashMapRuleToTypes, byteRule, idType);// hashMapTypeToRules×ªï¿½ï¿½ÎªhashMapRuleToTypes,ï¿½ï¿½ï¿½ï¿½byte
 				}
-				rmvIDSet.put(idType, priorProbability);// ÏòrmvRuleSetÌí¼ÓID,ÏÈÑé¸ÅÂÊ0.5
+				rmvIDSet.put(idType, priorProbability);// ï¿½ï¿½rmvRuleSetï¿½ï¿½ï¿½ID,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0.5
 				ArrayList<String> types = new ArrayList<String>();
 
 				String[] splitFunctionRules = functionRules
@@ -109,7 +109,7 @@ public class RecoDao {
 			HashMap<String, ArrayList<String>> hashMapRuleToTypes, String rule,
 			String idType) {
 		ArrayList<String> types = new ArrayList<String>();
-		if (hashMapRuleToTypes.get(rule) == null) {// hashMapTypeToRules×ª»»ÎªhashMapRuleToTypes,´¦Àífunction
+		if (hashMapRuleToTypes.get(rule) == null) {// hashMapTypeToRules×ªï¿½ï¿½ÎªhashMapRuleToTypes,ï¿½ï¿½ï¿½ï¿½function
 			types.add(idType);
 			hashMapRuleToTypes.put(rule, types);
 		} else {
@@ -120,7 +120,7 @@ public class RecoDao {
 
 	}
 	
-	///ÐÐÕþÇø»®´úÂë(296)
+	///ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(296)
 	public boolean getAdminDivisionID(String id){
 		Connection	connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -145,7 +145,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	///ÊÀ½ç¸÷¹úºÍµØÇøÃû³Æ´úÂë(279)
+	///ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½(279)
 	public boolean getCountryRegionCode(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -174,7 +174,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//ÑÌ²Ý»úÐµ²úÆ·ÓÃÎïÁÏ ·ÖÀàºÍ±àÂë µÚ3²¿·Ö£º»úÐµÍâ¹º¼þ(7)
+	//ï¿½Ì²Ý»ï¿½Ðµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ ï¿½ï¿½3ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½Ðµï¿½â¹ºï¿½ï¿½(7)
 	public boolean getTabaccoMachineProduct(String categoryCode, String groupCode, String variatyCode){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -203,7 +203,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//ÉÌÆ·ÌõÂëÁãÊÛÉÌÆ·±àÂëEAN UPCÇ°3Î»Ç°×ºÂë
+	//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½EAN UPCÇ°3Î»Ç°×ºï¿½ï¿½
 	public boolean getPrefixofRetailCommodityNumber(int code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -231,7 +231,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//ÑÌ²Ý»úÐµÎïÁÏ ·ÖÀàºÍ±àÂëµÚ2²¿·Ö£º×¨ÓÃ¼þ ¸½Â¼DÖÐµÄµ¥Î»±àÂë(672)
+	//ï¿½Ì²Ý»ï¿½Ðµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Ö£ï¿½×¨ï¿½Ã¼ï¿½ ï¿½ï¿½Â¼Dï¿½ÐµÄµï¿½Î»ï¿½ï¿½ï¿½ï¿½(672)
 	public boolean getTabaccoMachineProducer(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -258,7 +258,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//CIDµ÷ÓÃ4Î»Êý×ÖÐÐÕþÇøºÅ
+	//CIDï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public boolean getDistrictNo(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -285,7 +285,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//ÑÌ²Ý»úÐµ²úÆ·ÓÃÎïÁÏ ÆóÒµ»úÐµ±ê×¼¼þ ±àÂëÖÐµÄÀà±ð´úÂë£¬×é±ð´úÂëºÍÆ·ÖÖ´úÂë£¨6£©
+	//ï¿½Ì²Ý»ï¿½Ðµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Òµï¿½ï¿½Ðµï¿½ï¿½×¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ö´ï¿½ï¿½ë£¨6ï¿½ï¿½
 	public boolean getTabaccoStandardPart(String categoryCode, String groupCode, String variatyCode){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -314,7 +314,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//ÑÌ²Ý»úÐµ²úÆ·ÓÃÎïÁÏ·ÖÀàºÍ±àÂë µÚ6²¿·Ö£ºÔ­¡¢¸¨²ÄÁÏ(4)
+	//ï¿½Ì²Ý»ï¿½Ðµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ ï¿½ï¿½6ï¿½ï¿½ï¿½Ö£ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(4)
 	public boolean getTabaccoMaterial(String categoryCode, String variatyCode){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -342,7 +342,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë ²ÆÎñ»á¼Æ·ÖÀàÓë´úÂë(15)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(15)
 	public boolean getFoodAccount(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -369,7 +369,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë´úÂë Á¸Ê³Éè±¸·ÖÀàÓë´úÂë£¨23£©
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨23ï¿½ï¿½
 	public boolean getGrainEquipment(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -396,7 +396,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³ÉèÊ©·ÖÀàÓë±àÂë£¨24£©
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½Ê©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨24ï¿½ï¿½
 	public boolean getGrainEstablishment(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -423,7 +423,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//ÑÌ²Ý»úÐµ²úÆ·ÓÃÎïÁÏ ·ÖÀàºÍ±àÂë µÚ5²¿·Ö£ºµçÆ÷ÔªÆ÷¼þ £¨5£©
+	//ï¿½Ì²Ý»ï¿½Ðµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ ï¿½ï¿½5ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½5ï¿½ï¿½
 	public boolean getTabaccoElectricComponent(String categoryCode, String groupCode){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -451,7 +451,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Ëæ»úÈ¡³öÒ»ÌõÐÐÕþÇø»®´úÂëÊý¾Ý
+	//ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String getRandomAdminDivision(){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -471,7 +471,7 @@ public class RecoDao {
 		return code;
 	}
 	
-	//Ëæ»úÈ¡³öÒ»ÌõEANUPCÊý¾Ý
+	//ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½ï¿½EANUPCï¿½ï¿½ï¿½
 	public String getRandomEANUPC(){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -491,7 +491,7 @@ public class RecoDao {
 		return code;
 	}
 	
-	//·µ»Ø±ê×¼ÏêÏ¸ÐÅÏ¢
+	//ï¿½ï¿½ï¿½Ø±ï¿½×¼ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢
 	public String getIDDetail(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -513,7 +513,7 @@ public class RecoDao {
 		return name;
 	}
 	
-	//ÑÌÓÃ²ÄÁÏ±àÂë µÚ1²¿·Ö£ºÑÌÓÃ²ÄÁÏ·ÖÀà´úÂëÓë²úÆ·´úÂë(10)
+	//ï¿½ï¿½ï¿½Ã²ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½1ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½(10)
 	public boolean getTobbacoMaterials(String categoryCode, String groupCode){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -541,7 +541,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³Ã³Ò×ÒµÎñÍ³¼Æ·ÖÀàÓë´úÂë(14)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³Ã³ï¿½ï¿½Òµï¿½ï¿½Í³ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(14)
 	public boolean getFoodTrade(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -568,7 +568,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼Ó¹¤(18)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ó¹ï¿½(18)
 	public boolean getFoodEconomy(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -595,7 +595,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢ÒµÎñÍ³¼Æ·ÖÀàÓë´úÂë(16)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ö´ï¿½Òµï¿½ï¿½Í³ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(16)
 	public boolean getGrainStoreHouse(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -622,7 +622,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë ´¢Á¸²¡³æº¦·ÖÀàÓë´úÂë(17)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æº¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(17)
 	public boolean getGrainsDiseases(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -649,7 +649,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼Ó¹¤µÚ1²¿·Ö£º¼Ó¹¤×÷Òµ·ÖÀàÓë´úÂë(19)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ó¹ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½Ö£ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(19)
 	public boolean getGrainsProcess(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -676,7 +676,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ3²¿·Ö£ºÆ÷²Ä·ÖÀàÓë´úÂë(20)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ö´ï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(20)
 	public boolean getGrainsEquipment(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -703,7 +703,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ2²¿·Ö£ºÁ¸Çé¼ì²â·ÖÀàÓë´úÂë(21)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ö´ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(21)
 	public boolean getGrainConditionDetection(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -730,7 +730,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ1²¿·Ö£º²Ö´¢×÷Òµ·ÖÀàÓë´úÂë(22)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½Ö´ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½Ö£ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(22)
 	public boolean getgrainsSmartWMS(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -757,7 +757,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼ìÑéµÚ2²¿·Ö£ºÖÊÁ¿±ê×¼·ÖÀàÓë´úÂë(26)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(26)
 	public boolean getGrainsQualityStandard(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -784,7 +784,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//¼ÆÁ¿Æ÷¾ßÃüÃûÓë·ÖÀà±àÂë(32)
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(32)
 	public boolean getMeasuringInstrument(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -811,7 +811,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼ìÑé µÚ1²¿·Ö£ºÖ¸±ê·ÖÀàÓë´úÂë(27)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½1ï¿½ï¿½ï¿½Ö£ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(27)
 	public boolean getGrainsIndex(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -838,7 +838,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼°¼Ó¹¤²úÆ··ÖÀàÓë´úÂë(28)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(28)
 	public boolean getGrainsInformation(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -865,7 +865,7 @@ public class RecoDao {
 		return ret;
 	}
 	
-	//Á¸Ê³ÐÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³ÊôÐÔ·ÖÀàÓë´úÂë(29)
+	//ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(29)
 	public boolean getGrainsAttribute(String code){
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -873,6 +873,118 @@ public class RecoDao {
 		boolean ret = false;
 		try {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_GRAINSATTRIBUTE);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//function: query the table phonenumber and thus check the legality of the prefix of a given phone number (7 numbers)
+	//creator: dgq
+	public boolean getPrefixPhoneNO(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PHONENUMBER);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//function: query the table vehiclenonormal and thus check the legality of the prefix of a normal vehicle character (2 characters)
+	//creator: dgq
+	public boolean getPrefixNormalVehicleNO(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_NORMALVEHICLENO);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//function: query the table vehiclenomarmy and thus check the legality of the prefix of a normal vehicle character (2 characters)
+	//creator: dgq
+	public boolean getPrefixArmyVehicleNO(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_ARMYVEHICLENO);
+			int i = 1;
+			stmt.setString(i, code);
+			
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;				
+			}
+			if(1 == rowcount){
+				ret =  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+	
+	//function: query the table vehiclenomwj and thus check the legality of the third character of a WJ vehicle character
+	//creator: dgq
+	public boolean getPrefixWJVehicleNO(String code){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_WJVEHICLENO);
 			int i = 1;
 			stmt.setString(i, code);
 			

@@ -9,8 +9,8 @@ import cn.niot.util.*;
 
 public class NewIDstdCollisionDetect {
 	private static NewIDstdCollisionDetect collisionDetectAlg = new NewIDstdCollisionDetect();
-	private static Random r1 = new Random(1000);//Ö¸¶¨ÖÖ×ÓÊý×Ö
-	private static double RandomNumber = 213;//Ëæ»ú±êÊ¶Éú³ÉµÄ¸öÊý
+	private static Random r1 = new Random(1000);//Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private static double RandomNumber = 213;//ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ÉµÄ¸ï¿½ï¿½ï¿½
 	private static int BEGIN_END = 2;
 	
 	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {
@@ -29,8 +29,10 @@ public class NewIDstdCollisionDetect {
 				 System.out.println("ERROR! formJsonString!");				 
 			 }
 			 String[] subsubEle = subEle[0].split("-");
-			 for (char temp = subsubEle[0].charAt(0); temp <=  subsubEle[1].charAt(0); temp++){
-				 jsonObject.put(String.valueOf((char)((int)temp - 1)), subEle[1]);
+			 int index_begin = Integer.parseInt(subsubEle[0]);
+			 int index_end = Integer.parseInt(subsubEle[1]);
+			 for (int temp = index_begin; temp <= index_end; temp++){
+				 jsonObject.put(String.valueOf(temp - 1), subEle[1]);
 			 }
 		 }
 		 resJasonStr = jsonObject.toString();
@@ -91,7 +93,7 @@ public class NewIDstdCollisionDetect {
 	        	int index = Integer.parseInt((String)key);
 	        	String byteRule = (String)value;
 	        	
-	        	//Éú³ÉÒ»¸öËæ»ú×Ö·û//
+	        	//ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½//
 	        	char resChar = generateRandomChar(byteRule);
 	        	instr[index] = resChar;
 	        }catch (Exception e){
@@ -155,7 +157,7 @@ public class NewIDstdCollisionDetect {
 			i++; 
 		}
 		if (i > 0){
-			//¼ÓÈëËæ»úËã·¨
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã·¨
 			resChar = randomizeArray(resChars, i);
 		}	
         
