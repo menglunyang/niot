@@ -26,8 +26,6 @@
             <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">登录</button>
             <button type="button" class="btn btn-primary" style="width:45px;height:30px;background:#000;color:#CCC;padding:4px 4px;">注册</button>
         </div><!-- end .header -->
-        
-        
     
         <div class="container_1" style="display: none">
             <div class="inputContent_1">
@@ -35,12 +33,12 @@
                  </div><!--end writecode-->
                  <div class="butonn">
                     <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;">扫描输入</button>
-                    <button type="button" class="btn btn-primary" style="width:100px;height:30px;background:#a2b3b9;" onClick = "RFIDInput()">RFID</button>
+                    <button type="button" class="btn btn-primary"style="width:100px;height:30px;background:#a2b3b9;">RFID</button>
                  </div><!--end buttonn-->
                 
                 <textarea id="reqCode" name="textarea" rows="3" class="form-control" placeholder="请在这里输入要查询的编码" style="height:140px; width:700px;"></textarea>
     
-                <button id="requestNow" type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "sendReqCode()">立即查询</button>
+                <button type="button" class="btn btn-primary" style="height:30px;margin-top: 10px; width:100px;background:#ebe973" onclick = "sendReqCode()">立即查询</button>
             	<div id = "warning_1">请输入要查询的编码 </div>
             
             </div>
@@ -305,9 +303,9 @@
      	</div><!-- end .container -->
 	   
 		<div id="id_ltittle" class="ltittle">   
-		   	<span class="logotittle" style="width:227px"> &nbsp&nbsp&nbsp 编码识别&nbsp  </span>
-			<span class="logotittle" style="width:227px"> &nbsp&nbsp&nbsp&nbsp 冲突检测  &nbsp</span> 
-			<span class="logotittle" style="width:227px">&nbsp&nbsp&nbsp&nbsp 编码设计 &nbsp</span>
+		   	<span class="logotittle">编码冲突检测</span>
+			<span class="logotittle">标准冲突检测</span> 
+			<span class="logotittle">设计冲突检测</span>
 		</div><!--end ltittle-->
 
         
@@ -316,11 +314,6 @@
         
         
 </div><!--end id="main"-->
-
-<div id = "RFID">
-	<div id = "RFID_info">请将RFID标签放到读卡器上。。。</div>
-	<img id = "RFID_loading" src="./images/loading.gif"/>
-</div>
 
 <div id = "idTable" style="position:absolute;background:#FFFFFF;right:10px;top:30px;display:none">
 <div id = "hideTable" style="margin:0 auto;width:30px;" onclick = "hideIdTable()">
