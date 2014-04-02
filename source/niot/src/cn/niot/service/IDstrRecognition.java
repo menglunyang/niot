@@ -11,34 +11,51 @@ import cn.niot.util.JdbcUtils;
 import cn.niot.util.RecoUtil;
 
 public class IDstrRecognition {
-	static String DEBUG = "ON";//the value of DEBUG can be "ON" or "OFF"
-	static String DEBUG_RES = "ON";//the value of DEBUG_RES can be "ON" or "OFF"
-	static String DEBUG_LINE = "ON";//the value of DEBUG_LINE can be "ON" or "OFF"
-	static String DEBUG_TIME = "ON";//the value of DEBUG_TIME can be "ON" or "OFF"
+	static String DEBUG = "OFF";//the value of DEBUG can be "ON" or "OFF"
+	static String DEBUG_RES = "OFF";//the value of DEBUG_RES can be "ON" or "OFF"
+	static String DEBUG_LINE = "OFF";//the value of DEBUG_LINE can be "ON" or "OFF"
+	static String DEBUG_TIME = "OFF";//the value of DEBUG_TIME can be "ON" or "OFF"
 	static int line = 0;
 	
 	static HashMap<String, Double> rmvRuleSet;
 	static HashMap<String, Double> rmvIDSet;
-	static HashMap<String, ArrayList<String>> hashMapTypeToRules;// ÀàÐÍ¶ÔÓ¦¹æÔò
-	static HashMap<String, ArrayList<String>> hashMapRuleToTypes;// ¹æÔò¶ÔÓ¦ÀàÐÍ
+	static HashMap<String, ArrayList<String>> hashMapTypeToRules;// ï¿½ï¿½ï¿½Í¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
+	static HashMap<String, ArrayList<String>> hashMapRuleToTypes;// ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
 	
 	
+	public static void readDao(int type){
+		hashMapTypeToRules = new HashMap<String, ArrayList<String>>();
+		hashMapRuleToTypes = new HashMap<String, ArrayList<String>>();// ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
+		rmvRuleSet = new HashMap<String, Double>();// rmvRuleSet<ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½>
+		rmvIDSet = new HashMap<String, Double>();
+		RecoDao dao = RecoDao.getRecoDao();
+		if(type==0){
+		hashMapTypeToRules = dao.DBreadTypeAndRules(rmvRuleSet, rmvIDSet,
+				hashMapRuleToTypes);
+		}
+		else{
+			hashMapTypeToRules = dao.HibernateDBreadTypeAndRules(rmvRuleSet, rmvIDSet, hashMapRuleToTypes);
+		}
+		
+	}
 	
-	public static HashMap<String, Double> IoTIDRecognizeAlg(String s){		
+	public static HashMap<String, Double> IoTIDRecognizeAlg(String s){	
+		//È«ï¿½Ö²ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+		//System.out.println(System.currentTimeMillis());
 		HashMap<String, Double> typeProbability = new HashMap<String, Double>();
-		hashMapTypeToRules = new HashMap<String, ArrayList<String>>();// ÀàÐÍ¶ÔÓ¦¹æÔò
-		hashMapRuleToTypes = new HashMap<String, ArrayList<String>>();// ¹æÔò¶ÔÓ¦ÀàÐÍ
-		rmvRuleSet = new HashMap<String, Double>();// rmvRuleSet<¹æÔòÃû£¬È¨ÖØ>
-		rmvIDSet = new HashMap<String, Double>();// rmvIDSet<ÀàÐÍÃû£¬ÏÈÑé¸ÅÂÊ>
+//		hashMapTypeToRules = new HashMap<String, ArrayList<String>>();// ï¿½ï¿½ï¿½Í¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
+//		hashMapRuleToTypes = new HashMap<String, ArrayList<String>>();// ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
+//		rmvRuleSet = new HashMap<String, Double>();// rmvRuleSet<ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½>
+//		rmvIDSet = new HashMap<String, Double>();// rmvIDSet<ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½>
 		
 		long timeDaoBegin = 0,timeDao =0,timeSortRulesBegin=0,timeSortRules=0,timeMatchBegin=0,timeMatch=0,timeSubtractionBegin=0,timeSubtraction=0,timeUnionBegin=0,timeUnion=0;
 		
 
-		RecoDao dao = RecoDao.getRecoDao();
-		if("ON"==DEBUG_TIME)timeDaoBegin=System.currentTimeMillis();
-		hashMapTypeToRules = dao.DBreadTypeAndRules(rmvRuleSet, rmvIDSet,
-				hashMapRuleToTypes);
-		if("ON"==DEBUG_TIME)timeDao=System.currentTimeMillis()-timeDaoBegin;
+//		RecoDao dao = RecoDao.getRecoDao();
+//		if("ON"==DEBUG_TIME)timeDaoBegin=System.currentTimeMillis();
+//		hashMapTypeToRules = dao.HibernateDBreadTypeAndRules(rmvRuleSet, rmvIDSet,
+//				hashMapRuleToTypes);
+//		if("ON"==DEBUG_TIME)timeDao=System.currentTimeMillis()-timeDaoBegin;
 		ArrayList<String> rulesList;
 
 		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
@@ -46,8 +63,8 @@ public class IDstrRecognition {
 			sortRules();
 			if("ON"==DEBUG_TIME)timeSortRules=System.currentTimeMillis()-timeSortRulesBegin;
 			String maxRule = getMax();
-			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// ÌáÈ¡¹æÔòÃû
-			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// ÌáÈ¡²ÎÊý
+			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 			if ("ON" == DEBUG){
 				System.out.print("matching " + splitRules[0] + "("
 						+ splitParameter[0] + ").");
@@ -72,9 +89,9 @@ public class IDstrRecognition {
 			union(maxRule);
 			if("ON"==DEBUG_TIME)timeUnion=System.currentTimeMillis()-timeUnionBegin;
 		}
-		if("ON"==DEBUG_TIME)System.out.println("¶ÁÊý¾Ý¿âÓÃÊ±£º"+timeDao+",SortRulesÓÃÊ±£º"+timeSortRules+",MatchÓÃÊ±£º"+timeMatch+",SubtractionÓÃÊ±£º"+timeSubtraction+",UnionÓÃÊ±£º"+timeUnion);
+		if("ON"==DEBUG_TIME)System.out.println("ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½Ê±ï¿½ï¿½"+timeDao+",SortRulesï¿½ï¿½Ê±ï¿½ï¿½"+timeSortRules+",Matchï¿½ï¿½Ê±ï¿½ï¿½"+timeMatch+",Subtractionï¿½ï¿½Ê±ï¿½ï¿½"+timeSubtraction+",Unionï¿½ï¿½Ê±ï¿½ï¿½"+timeUnion);
 		Date now = new Date();
-	    DateFormat d1 = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.LONG); //Ä¬ÈÏÓïÑÔ£¨ººÓï£©ÏÂµÄÄ¬ÈÏ·ç¸ñ£¨MEDIUM·ç¸ñ£¬±ÈÈç£º2008-6-16 20:54:53£©
+	    DateFormat d1 = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.LONG); //Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï£©ï¿½Âµï¿½Ä¬ï¿½Ï·ï¿½ï¿½MEDIUMï¿½ï¿½ñ£¬±ï¿½ï¿½ç£º2008-6-16 20:54:53ï¿½ï¿½
 	    if ("ON" == DEBUG){
 	    	System.out.print(d1.format(now)+":");
 	    }
@@ -110,6 +127,7 @@ public class IDstrRecognition {
 			double probability = rmvIDSet.get(key2) / totalProbabity;
 			typeProbability.put(String.valueOf(key2), probability);
 		}
+		//System.out.println(System.currentTimeMillis());
 		return typeProbability;
 	}
 	
@@ -295,7 +313,7 @@ public class IDstrRecognition {
 				/ Math.log(2);
 	}
 
-	// Æ¥Åä²»³É¹¦£¬½«rmvISDet - arrayList
+	// Æ¥ï¿½ä²»ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½rmvISDet - arrayList
 	private static void subtraction(HashMap<String, Double> rmvIDSet,
 			ArrayList<String> arrayList) {
 		Iterator<String> iterator = rmvIDSet.keySet().iterator();
@@ -303,14 +321,14 @@ public class IDstrRecognition {
 		while (iterator.hasNext()) {
 			String temp = (String) iterator.next();
 
-			if (arrayList.indexOf(temp) >= 0) { // ÔÚarrayListÖÐÕÒµ½ÁË
+			if (arrayList.indexOf(temp) >= 0) { // ï¿½ï¿½arrayListï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½
 				// rmvIDSet.remove(temp);
 				iterator.remove();
 			}
 		}
 	}
 
-	// Æ¥Åä³É¹¦£¬×ö½»¼¯
+	// Æ¥ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private static void intersection(HashMap<String, Double> rmvIDSet,
 			ArrayList<String> arrayList) {
 		Iterator<String> iterator = rmvIDSet.keySet().iterator();
@@ -318,10 +336,10 @@ public class IDstrRecognition {
 		ArrayList<String> delete_list = new ArrayList<String>();
 
 		while (iterator.hasNext()) {
-			String temp = (String) iterator.next(); // È¡³örmvIDSetµÄÖµÓëarrayListÀïÃæµÄÖµ±È½Ï
+			String temp = (String) iterator.next(); // È¡ï¿½ï¿½rmvIDSetï¿½ï¿½Öµï¿½ï¿½arrayListï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½È½ï¿½
 
-			if (arrayList.indexOf(temp) == -1) { // ÔÚarrayListÖÐÃ»ÓÐÕÒµ½£¬¾ÍÉ¾³ý
-				// rmvIDSet.remove(temp); //²»ÄÜÔÙ±éÀúµÄÊ±ºòÉ¾³ý
+			if (arrayList.indexOf(temp) == -1) { // ï¿½ï¿½arrayListï¿½ï¿½Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½
+				// rmvIDSet.remove(temp); //ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½É¾ï¿½ï¿½
 				delete_list.add(temp);
 			}
 		}
@@ -331,11 +349,11 @@ public class IDstrRecognition {
 		}
 	}
 
-	// ¸üÐÂrmvRuleSet
+	// ï¿½ï¿½ï¿½ï¿½rmvRuleSet
 	private static void union(String delRule) {
 		Iterator<String> iter = rmvIDSet.keySet().iterator();
 
-		ArrayList<String> arrayList = new ArrayList<String>(); // Ö±½Ó°ÑÃ¿¸öruleÈ«²¿ºÏ²¢³ÉÒ»¸ölist£¬²»¹ÜÊÇ·ñÖØ¸´
+		ArrayList<String> arrayList = new ArrayList<String>(); // Ö±ï¿½Ó°ï¿½Ã¿ï¿½ï¿½ruleÈ«ï¿½ï¿½ï¿½Ï²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½listï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ø¸ï¿½
 		ArrayList<String> arrayList_Rules;
 
 		while (iter.hasNext()) {
@@ -354,7 +372,7 @@ public class IDstrRecognition {
 		while (iterator.hasNext()) {
 			String Rule_key = iterator.next();
 
-			if (arrayList.indexOf(Rule_key) == -1) { // ÔÚºÏ²¢µÄlistÀïÃæÃ»ÓÐÕÒµ½£¬±íÃ÷Õâ¸öÊÇÐèÒªÉ¾³ýµÄ
+			if (arrayList.indexOf(Rule_key) == -1) { // ï¿½ÚºÏ²ï¿½ï¿½ï¿½listï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½
 				// rmvRuleSet.remove(Rule_key);
 				iterator.remove();
 			}
