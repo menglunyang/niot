@@ -3409,34 +3409,6 @@ public class RuleFunction {
 		}
 	}
 
-	// 195-烟草机械——产品工艺文件代码编制方法 查表数据库
-	// IDstr: 标识编码
-	// LenID: 标识编码的长度3位
-	// Index: 调用验证算法的索引位置
-	// LenIndex:a3
-	// creator:fdl
-	public static String Tobaccomachinery(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
-		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			return ERR;
-		}
-		if (LenIndex != 3) {
-			return ERR;
-		}
-		try {
-			int code = IDstr[Index[0]] + IDstr[Index[1] - 96];
-			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getPrefixofRetailCommodityNumber(code);
-			if (ret) {
-				return OK;
-			} else
-				return ERR;
-		} catch (Exception e) {
-			return ERR;
-		}
-
-	}
-
 	// Function: 384 fire information
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
