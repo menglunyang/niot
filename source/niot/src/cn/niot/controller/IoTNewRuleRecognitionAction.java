@@ -27,37 +27,15 @@ import javax.servlet.http.HttpServletRequest;
 
 public class IoTNewRuleRecognitionAction extends ActionSupport {
 	
-	 /**
-	  * 锟矫伙拷锟斤拷前台锟斤拷锟斤拷锟斤拷锟侥憋拷锟诫长锟斤拷
-	  */
+	
 	private String len;
-	 /**
-	  * 锟矫伙拷锟斤拷前台锟斤拷锟斤拷锟斤拷锟侥革拷位取值锟斤拷围
-	  */
+	 
 	private String valueRange;
 	
-	 /**
-	  * 锟斤拷锟筋。
-	  * 锟斤拷锟斤拷锟斤拷锟斤拷锟截革拷前台锟侥诧拷询状态锟斤拷
-	  * 锟斤拷锟斤拷锟饺≈碉拷直锟轿拷锟斤拷锟�锟斤拷锟斤拷锟斤拷1锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷1锟斤拷锟斤拷锟斤拷锟絜rror锟斤拷
-	  */
 	private String status;
 	
-	 /**
-	  * 锟斤拷status取值为锟斤拷1锟斤拷锟斤拷锟竭达拷锟节★拷1锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟筋。
-	  * 锟斤拷锟斤拷锟斤拷锟斤拷锟截革拷前台锟侥憋拷锟斤拷锟斤拷息锟斤拷
-	  * 锟斤拷status取值为锟斤拷1锟斤拷时锟斤拷data锟芥储锟斤拷询锟斤拷锟侥憋拷锟斤拷锟斤拷疲锟斤拷锟斤拷锟絛ata="CPC",
-	  * 锟斤拷status取值为锟斤拷锟斤拷1锟斤拷锟斤拷锟斤拷时锟斤拷data锟芥储锟斤拷锟斤拷锟斤拷锟斤拷约锟斤拷锟斤拷锟斤拷锟绞ｏ拷
-	  * 锟斤拷锟斤拷data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
-	  */
 	private String data;
 	
-	 /**
-	  * 锟斤拷status=="error"时锟斤拷锟斤拷锟筋。
-	  * 锟斤拷锟斤拷锟斤拷锟斤拷锟截革拷前台锟侥达拷锟斤拷锟斤拷息锟斤拷
-	  * 锟斤拷status=="error"时锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷息锟斤拷值锟斤拷statement锟斤拷
-	  * 锟斤拷锟斤拷statement=="锟斤拷锟斤拷锟斤拷锟斤拷应锟斤拷时"锟斤拷之锟襟传递革拷前台
-	  */
 	private String statement;
 	
 	private String extraData;	

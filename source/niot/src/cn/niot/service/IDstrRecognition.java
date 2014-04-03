@@ -19,15 +19,15 @@ public class IDstrRecognition {
 	
 	static HashMap<String, Double> rmvRuleSet;
 	static HashMap<String, Double> rmvIDSet;
-	static HashMap<String, ArrayList<String>> hashMapTypeToRules;// ���Ͷ�Ӧ����
-	static HashMap<String, ArrayList<String>> hashMapRuleToTypes;// �����Ӧ����
+	static HashMap<String, ArrayList<String>> hashMapTypeToRules;// 类型对应规则
+	static HashMap<String, ArrayList<String>> hashMapRuleToTypes;// 规则对应类型
 	
 	
 	public static void readDao(int type){
-		hashMapTypeToRules = new HashMap<String, ArrayList<String>>();
-		hashMapRuleToTypes = new HashMap<String, ArrayList<String>>();// �����Ӧ����
-		rmvRuleSet = new HashMap<String, Double>();// rmvRuleSet<������Ȩ��>
-		rmvIDSet = new HashMap<String, Double>();
+		hashMapTypeToRules = new HashMap<String, ArrayList<String>>();// 类型对应规则
+		hashMapRuleToTypes = new HashMap<String, ArrayList<String>>();// 规则对应类型
+		rmvRuleSet = new HashMap<String, Double>();// rmvRuleSet<规则名，权重>
+		rmvIDSet = new HashMap<String, Double>();// rmvIDSet<类型名，先验概率>
 		RecoDao dao = RecoDao.getRecoDao();
 		if(type==0){
 		hashMapTypeToRules = dao.DBreadTypeAndRules(rmvRuleSet, rmvIDSet,
@@ -40,13 +40,8 @@ public class IDstrRecognition {
 	}
 	
 	public static HashMap<String, Double> IoTIDRecognizeAlg(String s){	
-		//ȫ�ֲ���ʱ��
 		//System.out.println(System.currentTimeMillis());
 		HashMap<String, Double> typeProbability = new HashMap<String, Double>();
-//		hashMapTypeToRules = new HashMap<String, ArrayList<String>>();// ���Ͷ�Ӧ����
-//		hashMapRuleToTypes = new HashMap<String, ArrayList<String>>();// �����Ӧ����
-//		rmvRuleSet = new HashMap<String, Double>();// rmvRuleSet<������Ȩ��>
-//		rmvIDSet = new HashMap<String, Double>();// rmvIDSet<�������������>
 		
 		long timeDaoBegin = 0,timeDao =0,timeSortRulesBegin=0,timeSortRules=0,timeMatchBegin=0,timeMatch=0,timeSubtractionBegin=0,timeSubtraction=0,timeUnionBegin=0,timeUnion=0;
 		
@@ -63,8 +58,8 @@ public class IDstrRecognition {
 			sortRules();
 			if("ON"==DEBUG_TIME)timeSortRules=System.currentTimeMillis()-timeSortRulesBegin;
 			String maxRule = getMax();
-			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// ��ȡ������
-			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// ��ȡ����
+			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
+			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
 			if ("ON" == DEBUG){
 				System.out.print("matching " + splitRules[0] + "("
 						+ splitParameter[0] + ").");
@@ -89,9 +84,9 @@ public class IDstrRecognition {
 			union(maxRule);
 			if("ON"==DEBUG_TIME)timeUnion=System.currentTimeMillis()-timeUnionBegin;
 		}
-		if("ON"==DEBUG_TIME)System.out.println("����ݿ���ʱ��"+timeDao+",SortRules��ʱ��"+timeSortRules+",Match��ʱ��"+timeMatch+",Subtraction��ʱ��"+timeSubtraction+",Union��ʱ��"+timeUnion);
+		if("ON"==DEBUG_TIME)System.out.println("读数据库用时："+timeDao+",SortRules用时："+timeSortRules+",Match用时："+timeMatch+",Subtraction用时："+timeSubtraction+",Union用时："+timeUnion);
 		Date now = new Date();
-	    DateFormat d1 = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.LONG); //Ĭ�����ԣ�����µ�Ĭ�Ϸ��MEDIUM��񣬱��磺2008-6-16 20:54:53��
+	    DateFormat d1 = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.LONG); 
 	    if ("ON" == DEBUG){
 	    	System.out.print(d1.format(now)+":");
 	    }
