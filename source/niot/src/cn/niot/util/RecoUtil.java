@@ -20,250 +20,267 @@ public class RecoUtil {
 	public static final int INTERVAL_WIDTH = 2;
 	public static final int COUNT_NUMBER_CHARS = 64;
 
+	// 没有匹配成功任何一种标识
+	public static final int NO_ID_MATCHED = 0;
+
+	// 匹配成功一种标识
+	public static final int ONE_ID_MATCHED = 1;
+
+	// 编码详细信息
+	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?;";
+
+	// 前端页面显示标准名称短码字符的最大长度
+	public static final int DISPLAYLENGTH = 9;
+
 	// administrative division
 	public static final String SELECT_ADMINDIVISION = "select * from admindivision where id=?";
 
 	// country and region code
 	public static final String SELECT_COUNTRYREGIONCODE = "select * from countryregioncode where twocharcode=? or threecharcode=? or numcode=?";
 
-	// �̲ݻ�е��Ʒ������
+	// 烟草机械产品用物料
 	public static final String SELECT_TABACCOMACHINEPRODUCT = "select * from tabaccomachineproduct where categorycode=? and groupcode=? and variatycode=?";
 
-	// ��Ʒ����������Ʒ����EAN UPCǰ3λǰ׺��
+	// 商品条码零售商品编码EAN UPC前3位前缀码
 	public static final String SELECT_EANUPC = "select * from EANUPC where begincode<=? and endcode>=?";
 
-
-	// �̲ݻ�е���� ����ͱ����2���֣�ר�ü� ��¼D�еĵ�λ����(672)
-
-	// �̲ݻ�е�������úͼ����ļ����븽¼C���ѯ
+	// 烟草机械电气配置和技术文件代码附录C表查询
 	public static final String SELECT_tabaccoC = "select * from tabaccoC where code=?";
 
-	// �̲ݻ�е���� ����ͱ����2���֣�ר�ü� ��¼D�еĵ�λ����(672)
+	// 烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码(672)
 	public static final String SELECT_TABACCOMACHINEPRODUCER = "select * from tabaccomachineproducer where id=? limit 1";
 
-	// CID����4λ�����������
+	// CID调用4位数字行政区号
 	public static final String SELECT_DISTRICTNO = "select * from districtno where id=?";
 
-
-	// �̲ݻ�е��Ʒ������ ��ҵ��е��׼�� �����е������룬�������Ʒ�ִ��루6��
-	// �̲ݻ�е��Ʒ������ ��ҵ��е��׼�� �����е������룬�������Ʒ�ִ���(6)
+	// 烟草机械产品用物料 企业机械标准件 编码中的类别代码，组别代码和品种代码(6)
 	public static final String SELECT_TABACCOSTANDARDPART = "select * from tabaccostandardpart where categorycode=? and groupcode=? and variatycode=?";
 
-	// �̲ݻ�е��Ʒ�����Ϸ���ͱ��� ��6���֣�ԭ��������(4)
+	// 烟草机械产品用物料分类和编码 第6部分：原、辅材料(4)
 	public static final String SELECT_TABACCOMATERIAL = "select * from tabaccomaterial where categorycode=? and variatycode=?";
 
-	// ��ʳ��Ϣ��������� �����Ʒ��������(15)
+	// 粮食信息分类与编码 财务会计分类与代码(15)
 	public static final String SELECT_FOORDACCOUNT = "select * from foodaccount where id=?";
 
-	// ��ʳ��Ϣ��������� ��ʳ�豸��������루23��
+	// 粮食信息分类与代码 粮食设备分类与代码(23)
 	public static final String SELECT_GRAINEQUIPMENT = "select * from grainequipment where id=?";
 
-	// ��ʳ��Ϣ��������� ��ʳ��ʩ��������루24��
+	// 粮食信息分类与编码 粮食设施分类与编码(24)
 	public static final String SELECT_GRAINESTABLISHMENT = "select * from grainestablishment where id=?";
 
-	// �̲ݻ�е��Ʒ������ ����ͱ��� ��5���֣�����Ԫ���� (5)
-
+	// 烟草机械产品用物料 分类和编码 第5部分：电器元器件 (5)
 	public static final String SELECT_TABACCOELECTRICCOMPONENT = "select * from tabaccoelectriccomponent where categorycode=? and groupcode=?";
 
-	// ������������ȡһ����¼
+	// 行政区划代码随机取一条记录
 	public static final String SELECT_RANDOMADMINDIVISION = "select * from admindivision where id>=convert(floor(((SELECT MAX(convert(Id,signed)) FROM admindivision)-(SELECT MIN(convert(Id,signed)) FROM admindivision)) * rand() + (SELECT MIN(convert(Id,signed)) FROM admindivision)),char(6)) limit 1";
-	
-	//EANUPC�������һ����¼
 
-	// EANUPC�������һ����¼
+	// EANUPC代码随机一条记录
 	public static final String SELECT_RANDOMEANUPC = "select floor(rand()*(endcode-begincode)+begincode) as code from (select * from EANUPC where rowno >= (select floor(rand()*(max(rowno)-min(rowno))) + min(rowno) from EANUPC) limit 1) t";
 
 	public static final String SELECT_TYPEANDRULES = "select * from iotid";
-	
-	//���ò��ϱ��� ��1���֣����ò��Ϸ���������Ʒ����(10)
+
+	// 烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
 	public static final String SELECT_TABACCOMATERIALS = "select * from tabaccomaterials where categorycode=? and groupcode=?";
-	
-	//��ʳ��Ϣ��������� ��ʳó��ҵ��ͳ�Ʒ��������(14)
+
+	// 粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
 	public static final String SELECT_FOODTRADE = "select * from foodtradestatistics where id=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ�ִ�ҵ��ͳ�Ʒ��������(16)
+
+	// 粮食信息分类与编码 粮食仓储业务统计分类与代码(16)
 	public static final String SELECT_GRAINSTOREHOUSE = "select * from grainstorehouse where id=?";
-	
-	//��ʳ��Ϣ��������� �������溦���������(17)
+
+	// 粮食信息分类与编码 储粮病虫害分类与代码(17)
 	public static final String SELECT_GRAINSDISEASES = "select * from grainsdiseases where id=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ�ӹ�(18)
+
+	// 粮食信息分类与编码 粮食加工(18)
 	public static final String SELECT_FOODECONOMY = "select * from grainstechnicaleconomy where id=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ�ӹ���1���֣��ӹ���ҵ���������(19)
+
+	// 粮食信息分类与编码 粮食加工第1部分：加工作业分类与代码(19)
 	public static final String SELECT_GRAINSPROCESS = "select * from grainsprocess where id=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ�ִ���3���֣����ķ��������(20)
+
+	// 粮食信息分类与编码 粮食仓储第3部分：器材分类与代码(20)
 	public static final String SELECT_GRAINSEQUIPMENT = "select * from grainsequipment where id=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ�ִ���2���֣���������������(21)
+
+	// 粮食信息分类与编码 粮食仓储第2部分：粮情检测分类与代码(21)
 	public static final String SELECT_GRAINCONDITIONDETECTION = "select * from grainconditiondetection where id=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ�ִ���1���֣��ִ���ҵ���������(22)
+
+	// 粮食信息分类与编码 粮食仓储第1部分：仓储作业分类与代码(22)
 	public static final String SELECT_GRAINSSMARTWMS = "select * from grainsSmartWMS where id like ?";
-	
-	//��ʳ��Ϣ��������� ��ʳ�����2���֣�������׼���������(26)
+
+	// 粮食信息分类与编码 粮食检验第2部分：质量标准分类与代码(26)
 	public static final String SELECT_GRIANQUALITYSTANDARD = "select * from grainsqualitystandard where id=?";
-	
-	//��������������������(32)
+
+	// 计量器具命名与分类编码(32)
 	public static final String SELECT_MEASURINGINSTRUMENT = "select * from measuringinstrument where code=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ���� ��1���֣�ָ����������(27)
+
+	// 粮食信息分类与编码 粮食检验 第1部分：指标分类与代码(27)
 	public static final String SELECT_GRAINSINDEX = "select * from grainsindex where id=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ���ӹ���Ʒ���������(28)
+
+	// 粮食信息分类与编码 粮食及加工产品分类与代码(28)
 	public static final String SELECT_GRAINSINFORMATION = "select * from grainsinformation where id=?";
-	
-	//��ʳ��Ϣ��������� ��ʳ���Է��������(29)
-	public static final String SELECT_GRAINSATTRIBUTE = "select * from grainsattribute where id=?"; 
-	
-	//select the first 7 numbers of a phone number
+
+	// 粮食信息分类与编码 粮食属性分类与代码(29)
+	public static final String SELECT_GRAINSATTRIBUTE = "select * from grainsattribute where id=?";
+
+	// select the first 7 numbers of a phone number
 	public static final String SELECT_PHONENUMBER = "select * from phonenumber where MobileNumber=?";
-	
-	//select the first 2 characters of a normal vehicle NO
+
+	// select the first 2 characters of a normal vehicle NO
 	public static final String SELECT_NORMALVEHICLENO = "select * from vehiclenonormal where vehicleprefix=?";
-	
-	//select the first 2 characters of a army vehicle NO
+
+	// select the first 2 characters of a army vehicle NO
 	public static final String SELECT_ARMYVEHICLENO = "select * from vehiclenoarmy where vehicleprefix=?";
-	
-	//select the first 2 characters of a WJ vehicle NO
+
+	// select the first 2 characters of a WJ vehicle NO
 	public static final String SELECT_WJVEHICLENO = "select * from vehiclenowj where vehicleprefix=?";
-	
-	//��û��ƥ��ɹ��κ�һ�ֱ�ʶ
-	public static final int NO_ID_MATCHED = 0;
-	
-	// ��ʳ��Ϣ��������� ��ʳ��������ҵ�����������������(31)
+
+	// 粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
 	public static final String SELECT_GRAINSADMINISTRATIVE = "select * from grainsadministrative where id=?";
 
-	// ������Ʒ����ʹ���(34)
+	// 建筑产品分类和代码(34)
 	public static final String SELECT_CONSTRUCTIONPRODUCTS = "select * from constructionproducts where id=?";
 
-	// �������ӵ�ͼ��ݷ��������(45)
+	// 导航电子地图数据分类与编码(45)
 	public static final String SELECT_ELECTRONICMAP = "select * from electronicmap where id=?";
 
-	// ������Ϣ������������(56)
+	// 地理信息分类与编码规则(56)
 	public static final String SELECT_GEOGRAPHICINFORMATION = "select * from geographicinformation where id=?";
 
-	// ��֯���ϱ��뻯�˲���(64)
+	// 纺织面料编码化纤部分(64)
 	public static final String SELECT_TETILEFABRICNAME = "select * from textilefabricnamecode where id=?";
 
-	// ��֯�������Դ���(64)X1X2
+	// 纺织面料属性代码(64)X1X2
 	public static final String SELECT_PROPERTIESMAINMATERIAL = "select * from propertiesmainmaterial where id=?";
 
-	// ��֯�������Դ���(64)��֯�첼X1X2
+	// 纺织面料属性代码(64)非织造布X1X2
 	public static final String SELECT_PROPERTIESMAIN = "select * from propertiesmain where id=?";
 
-	// ��֯�������Դ���(64)��ά���� X3X4
+	// 纺织面料属性代码(64)纤维特征 X3X4
 	public static final String SELECT_PROPERTIERFIBERCHARACTERS = "select * from propertiesfibercharacteristics where id=?";
 
-	// ��֯�������Դ���(64)X7X8����᷽̽ʽ
+	// 纺织面料属性代码(64)X7X8纤网固结方式
 	public static final String SELECT_PROPERTIESMIX = "select * from propertiesmixed where id=?";
 
-	// ��֯�������Դ���(64)X9X10 01-19 99
+	// 纺织面料属性代码(64)X9X10 01-19 99
 	public static final String SELECT_PROPERTIESFABRIC = "select * from propertiesfabric where id=?";
 
-	// ��֯�������Դ���(64)X11X12
+	// 纺织面料属性代码(64)X11X12
 	public static final String SELECT_PROPERTIESDYEING = "select * from propertiesdyeingandfinishing where id=?";
 
-	// ����װ������ҵ��Ʒȫ�������ڹ���֪ʶ��2����(65)
+	// 面向装备制造业产品全生命周期工艺知识第2部分(65)
 	public static final String SELECT_MANUFACTURINGPROCESS = "select * from generalmanufacturingprocess where id=?";
 
-	// ȫ����Ҫ��Ʒ����������2���� ���������Ʒ(712)
+	// 全国主要产品分类与代码第2部分 不可运输产品(712)
 	public static final String SELECT_UNTRANSPORTABLEPRODUCT = "select * from untransportableproduct where id=?";
 
-	// ȫ����Ҫ��Ʒ����������2���� ���������Ʒ��3λ(712)
+	// 全国主要产品分类与代码第2部分 不可运输产品后3位(712)
 	public static final String SELECT_LASTTHREEUNTRANSPORTABLEPRODUCT = "select * from untransportableproduct where length(id)=5 and id like ?";
 
-	// ��·��ͨ��Ϣ�ɼ���Ϣ���������(77)
+	// 道路交通信息采集信息分类与编码(77)
 	public static final String SELECT_TRAFFICINFORMATIONCOLLECTION = "select * from trafficinformationcollection where firstcode=? and secondcode=?";
 
-	// �̲���ҵ����ͳ�����Ԫ��2���� ���뼯(202)
+	// 烟草行业工商统计数据元第2部分 代码集(202)
 	public static final String SELECT_TABACCOORGANIZATION = "select * from tobaccoorganization where id=?";
 
-	// ��Ҷ�����5������Ҷ��ɫ����(204)
+	// 烟叶代码第5部分烟叶颜色代码(204)
 	public static final String SELECT_TABACCOLEAFCOLOR = "select * from tobaccoleafcolor where id=?";
 
-	// ��Ҷ�����2������Ҷ��̬����(207)
+	// 烟叶代码第2部分烟叶形态代码(207)
 	public static final String SELECT_TABACCOLEAFFORM = "select * from tobaccoleafform where id=?";
 
-	// ��Ҷ�����1������Ҷ���������(208)
+	// 烟叶代码第1部分烟叶分类与代码(208)
 	public static final String SELECT_TABACCOLEAFCLASS = "select * from tobaccoleafclass where id=?";
 
-	// ��ͯ�����״����(213)
+	// 儿童大便性状代码(213)
 	public static final String SELECT_CHILDRENEXCREMENT = "select * from childrenexcrement where id=?";
 
-	// ���Ƶ�ʴ���(214)
+	// 饮酒频率代码(214)
 	public static final String SELECT_DRINKINGFREQUENCY = "select * from drinkingfrequency where id=?";
 
-	// ����������(214)
+	// 饮酒种类代码(214)
 	public static final String SELECT_DRINKINGCLASS = "select * from drinkingclass where id=?";
 
-	// ����Ƶ�ʴ���(214)
+	// 身体活动频率代码(214)
 	public static final String SELECT_PHYSICALACTIVITYFREQUENCY = "select * from physicalactivityfrequency where id=?";
 
-	// ������ֹ��ʽ�����(215)
+	// 妊娠终止方式代码表(215)
 	public static final String SELECT_TERMINATIONOFPREGNENCY = "select * from terminationofpregnancy where id=?";
 
-	// ���䷽ʽ����(215)
+	// 分娩方式代码(215)
 	public static final String SELECT_MODEOFPRODUCTION = "select * from modeofproduction where id=?";
 
-	// ����ص�������(215)
+	// 分娩地点类别代码(215)
 	public static final String SELECT_DILIVERYPLACE = "select * from deliveryplace where id=?";
 
-	// ������Ϣ���Ԫֵ������17���֣��������(218)
+	// 卫生信息数据元值域代码第17部分：卫生管理(218)
 	public static final String SELECT_HEALTHSUPERVISIONOBJECT = "select * from healthsupervisionobject where id=?";
 
-	// ��ͨ���ߴ���(219)
+	// 交通工具代码(219)
 	public static final String SELECT_COMMUNICATIONCODE = "select * from communicationmediacode where id=?";
 
-	// ����ල����Ա����������(220)
+	// 卫生监督机构人员编制类别代码(220)
 	public static final String SELECT_HYGIENEAGENCYPERSONNEL = "select * from hygieneagencypersonnel where id=?";
 
-	// ����ල��ְ��������(220)
+	// 卫生监督机构职工类别代码(220)
 	public static final String SELECT_WORKERHEALTHSUPERVISION = "select * from workerhealthsupervision where id=?";
 
-	// ������ʩ�����һ����¼
+	// 殡葬设施分类的一条记录
 	public static final String SELECT_FUNERALSERVICE = "select * from funeralservice where id=?";
 
-	// ������ʩ��Ʒ��һ����¼
+	// 殡葬设施用品的一条记录
 	public static final String SELECT_FUNERALFACILITIES = "select * from funeralfacilities where id=?";
 
-	// ������ʩ��Ʒ��һ����¼
+	// 殡葬设施用品的一条记录
 	public static final String SELECT_SUPPLIES = "select * from funeralsupplies where id=?";
 
-	// 268���뵳�����
+	// 268中央党政机关
 	public static final String SELECT_PORTTARIFF268 = "select * from TheCenteralPartyCommitte where code=?";
-	// 270��Ȼ�ֺ�
+
+	// 270自然灾害
 	public static final String SELECT_PORTTARIFF270 = "select * from Naturaldisaster where code=?";
-	// 275������ҵ����
+
+	// 275物流作业货物
 	public static final String SELECT_PORTTARIFF275 = "select * from Logisticsoperation where code=?";
-	// 276������Ʒ
+
+	// 276废弃物品
 	public static final String SELECT_PORTTARIFF276 = "select * from Wasteproducts where code=?";
-	// 280���뵳�����
+
+	// 280中央党政机关
 	public static final String SELECT_PORTTARIFF280 = "select * from TheCenteralPartyCommitte where code=?";
-	// 281-�����鱦��ʯ��������Ʒ���������Ʒ��� �����ݿ�
+
+	// 281-珠宝玉石及金属产品分类代码编制方法 查表数据库
 	public static final String SELECT_PORTTARIFF281 = "select * from JadejewelryClass where code=?";
-	// 281-�����鱦��ʯ���������ʷ��������Ʒ��� �����ݿ�
+
+	// 281-珠宝玉石及金属材质分类代码编制方法 查表数据库
 	public static final String SELECT_PORTTARIFFMa281 = "select * from JadejewelryMaterialclassif where code=?";
-	// 282-������Ϣ��ȫ����������Ʒ��� �����ݿ�
+
+	// 282-——信息安全技术代码编制方法 查表数据库
 	public static final String SELECT_PORTTARIFFMa282 = "select * from InformationSafe where code=?";
-	// 284-������ᾭ��Ŀ�����ʹ���� �����ݿ�
+
+	// 284-社会经济目标分类和代码表 查表数据库
 	public static final String SELECT_PORTTARIFFMa284 = "select * from goalsocialeconomic where code=?";
-	// 287_������Ϣ����
+
+	// 287_物流信息分类
 	public static final String SELECT_PORTTARIFFMa285 = "select * from LogisticsInf where code=?";
-	// 287_��װ����
+
+	// 287_服装分类
 	public static final String SELECT_PORTTARIFFMa287 = "select * from clothesclass where code=?";
-	// 288_��װ���ַ���
+
+	// 288_服装名字分类
 	public static final String SELECT_PORTTARIFFMa288 = "select * from ClothesName where code=?";
-	// 191_ҽҩ��е����
+
+	// 191_医药器械分类
 	public static final String SELECT_PORTTARIFFMa191 = "select * from Pharmacequipment where code=?";
-	// 395_�����Ϣ����
+
+	// 395_消防信息代码
 	public static final String SELECT_PORTTARIFF395 = "select * from FireInfomation  where code=?";
-	// 399_�����Ϣ����
+
+	// 399_消防信息代码
 	public static final String SELECT_PORTTARIFF399 = "select * from FireInfowatersupply  where code=?";
-	// 403_�����Ϣ����
+
+	// 403_消防信息代码
 	public static final String SELECT_PORTTARIFF403 = "select * from FireInfocamp  where code=?";
-	// 409_�����Ϣ����
+
+	// 409_消防信息代码
 	public static final String SELECT_PORTTARIFF409 = "select * from FireInfotainass  where code=?";
 
 	// 410
@@ -278,16 +295,16 @@ public class RecoUtil {
 	// WirtschaftsTypCode
 	public static final String SELECT_WIRTSCHAFTSTYPCODE = "select * from WirtschaftsTypCode where id=?";
 
-	// ũҩ������Ƽ�����(305)
+	// 农药剂型名称及代码(305)
 	public static final String SELECT_PESTICIDECODE = "select * from PesticideFormulationCode where code=?";
 
-	// ���ó��ߴ����(306)
+	// 乘用车尺寸代码(306)
 	public static final String SELECT_PASSENGERCARCODE = "select * from passengerCarCode where code=?";
 
-	// �����������������ƹ���(309)
+	// 地名分类与类别代码编制规则(309)
 	public static final String SELECT_GEOGRAPHICALCODE = "select * from GeographicalCode where code=?";
 
-	// ���ó�����䴬����Ƽ��������ԭ��(312)
+	// 国际贸易运输船舶名称及代码编制原则(312)
 	public static final String SELECT_INTERNATIONALSHIP = "select * from InternationalShipCode where code=?";
 
 	// wt
@@ -367,38 +384,45 @@ public class RecoUtil {
 
 	public static final String SELECT_SPECIALVEHICLE = "select * from specialvehicle where code=?";
 
-	// public static final String SELECT_MOUNTAINRANGEANDPEAKNAME =
-	// "select * from mountainrangeandpeakname where code=?";
-
 	public static final String SELECT_CIVILAVIATION = "select * from civilaviation where code=?";
 
-	// ɽ��ɽ����ƴ��루297��
+	// 山脉山峰名称代码(297)
 
 	public static final String SELECT_MOUNTAINRANGEANDPEAKNAME = "select * from mountainrangeandpeakname where code=?";
 
-	// ֪ʶ��Ȩ��������Ϣ���༰���루298��
+	// 知识产权文献与信息分类及代码(298)
 	public static final String SELECT_INTELLECTUALPROPERTY = "select * from intellectualproperty where code=?";
-	// ���ú���ҵ��Ϣ��������� (340)
+
+	// 民用航空业信息分类与代码 (340)
 	public static final String SELECT_CLASSIFICATIONOFCIVILAVIATION = "select * from classificationofcivilaviation where code=?";
 
-	// �ߵ�ѧУ���ơ�ר��רҵ��ƴ��루328��
+	// 高等学校本科、专科专业名称代码(328)
 	public static final String SELECT_NORMALANDSHORTCYCLESPECIALITY = "select * from normalandshortcyclespeciality where code=?";
-	// ����ά�ޱ�����ϵ �ڶ����֣�337��
+
+	// 船舶维修保养体系 第二部分(337)
 	public static final String SELECT_MAINTENANCESYSTEMPTWO = "select * from maintenancesystemptwo where code=?";
-	// ���ó�׺�ͬ���루326��
+
+	// 国际贸易合同代码(326)
 	public static final String SELECT_COUNTRYREGIONCODE1 = "select * from countryregioncode where twocharcode=?";
+
 	public static final String SELECT_FIRST2CHARSOFADMINDIVISION = "select * from admindivision where id=?";
-	// �����Ƽ��ɹ��������루784��
+
+	// 电力科技成果分类与代码(784)
 	public static final String SELECT_ELECTRICPOWER = "select * from electricpower where code=?";
-	// ȫ�������ƴ��루785��
+
+	// 全国电网名称代码(785)
 	public static final String SELECT_POWERGRID = "select * from powergrid where code=?";
-	// ������ҵ��λ�����루787��
+
+	// 电力行业单位类别代码(787)
 	public static final String SELECT_ELECTRICPOWERINDUSTRY = "select * from electricpowerindustry where code=?";
-	// ����������Ϣϵͳͼ�η�ŷ�������루788��
+
+	// 电力地理信息系统图形符号分类与代码(788)
 	public static final String SELECT_ELECTRICPOWERGEOGRAPHY = "select * from electricpowergeography where code=?";
-	// ��ѹ�ȼ����루789��
+
+	// 电压等级代码(789)
 	public static final String SELECT_VOLTAGECLASS = "select * from voltageclass where code=?";
-	// �������ʱ��� �ڶ����� ����Ʒ��909��
+
+	// 电力物资编码 第二部分 机电产品(909)
 	public static final String SELECT_POWERGOODSP2 = "select * from powergoodsp2 where code=?";
 
 	// Specifications for feature classification and codes of fundamental
@@ -420,10 +444,9 @@ public class RecoUtil {
 	// Travel documents coded
 	public static final String SELECT_TRAVLEDOCUMENT = "select * from TravleDocumentCode where code=?";
 
-	// ����������ֺ�ʡ����������ܶӴ���(474)
+	// 列管单位代码(474)
 	public static final String SELECT_PROVINCEADMINCODE = "select * from provinceadmincode where code=?";
 
-	// �йܵ�λ����(474)
 	public static final String SELECT_ADMINDIVISION1 = "select * from admindivision1 where code=?";
 
 	// 910
@@ -447,20 +470,25 @@ public class RecoUtil {
 
 	public static final String SELECT_POWERMATERIALS54 = "select * from powermaterials54 where code=?";
 
-	// 509���������Ϸ���Ӫҵ�������岿��fdl
+	// 509互联网网上服务营业场所——第五部分fdl
 	public static final String SELECT_PORTTARIFF509 = "select * from InternetWebService where code=?";
-	// ��Ԫ�ر��� fdl
+
+	// 核元素编码 fdl
 	public static final String SELECT_PORTNuclearelements = "select * from Nuclearelements where code=?";
-	// ��Ԫ�ر��롪����Ҵ��� fdl
+
+	// 核元素编码——国家代码 fdl
 	public static final String SELECT_PORTNuclearelementNation = "select * from NuclearelementNation where code=?";
-	// Function: ���Ʒ�㲿���߱������fdl
+
+	// Function: 汽车产品零部件边编码规则fdl
 	public static final String SELECT_PORTCarProductCompnent = "select * from CarProductCompnent where code=?";
-	// Function: �ԣã̽��ܵ�ر������fdl
+
+	// Function: TCL金能电池编码规则fdl
 	public static final String SELECT_PORTTCLBatteryProduct = "select * from TCLBatteryProduct where code=?";
-	// Function: �ԣã̽��ܵ�ر������fdl
+
+	// Function: TCL金能电池编码规则fdl
 	public static final String SELECT_PORTProductCode = "select * from ProductCode where code=?";
 
-	// ��Ʒ���� Ӧ�ñ�ʶ��632��
+	// 商品条码 应用标识符（632）
 	public static final String SELECT_BARCODEFORCOMMODITY = "select * from barcodeforcommodity where code=?";
 
 	// 757,author:wt
@@ -472,52 +500,46 @@ public class RecoUtil {
 
 	public static final String SELECT_HIGHWAYDATABASE71 = "select * from highwaydatabase71 where code=?";
 
-	// �й�ʯ����Ȼ���ܹ�˾����ҵ��λ���루763��
+	// 中国石油天然气总公司企、事业单位代码(763)
 	public static final String SELECT_GASSCOMPANY = "select * from gasscompany where code=?";
 
 	// wt
 	public static final String SELECT_HYDROLOGICDATA = "select *from hydrologicdata where code=?";
+
 	public static final String SELECT_MEATANDVEGETABLE = "select *from meatandvegetable where code=?";
 
-	// Function: ɭ�����ͱ������fdl
+	// Function: 森林类型编码规则fdl
 	public static final String SELECT_PORTForestTypes = "select * from ForestTypes where code=?";
 
-	// 700½��Ұ�����߲�����
+	// 700陆生野生动物疫病分类
 	public static final String SELECT_ANIMIALDISEASE700 = "select *from Animaldisease where code=?";
-	// 698ȫ��������ҵҽ����е�������豸����
+
+	// 698全国卫生行业医疗器械、仪器设备分类
 	public static final String SELECT_MEDICALINSTRUMENT = "select *from medicalInstrument where code=?";
-	// 728��ҽ��������
+
+	// 728中医疾病分类
 	public static final String SELECT_TCMDISEASE = "select *from tcmdisease where code=?";
-	// 728(2)��ҽ��֢����
+
+	// 728(2)中医病症分类
 	public static final String SELECT_TCMFEATURE = "select *from tcmfeature where code=?";
-	// 706,708���ʿ���������ѡ�ʷ�Χ
+
+	// 706,708地质矿物大类分类选词范围
 	public static final String SELECT_DZCLASSIIFY = "select *from dzclassify where code=?";
-	// 710���ʿ���������ѡ�ʷ�Χ
+
+	// 710地质矿物大类分类选词范围
 	public static final String SELECT_DZCLASSIFY710 = "select *from dzclassify710 where code=?";
 
-	// ƥ��ɹ�һ�ֱ�ʶ
-
-	public static final int ONE_ID_MATCHED = 1;
-
-	// ������ϸ��Ϣ
-	public static final String SELECT_IDDETAIL = "select * from iotid join iotdetail on iotdetail.did=iotid.id and iotid.id=?";
-
-	
-	// ǰ��ҳ����ʾ��׼��ƶ����ַ����󳤶�
-	public static final int DISPLAYLENGTH = 9;
-	
-	// ���URL��ַ
+	// 获得URL地址ַ
 	public static String getURLParam(String paramName) {
 		ActionContext ctx = ActionContext.getContext();
 		HttpServletRequest request = (HttpServletRequest) ctx
 				.get(ServletActionContext.HTTP_REQUEST);
-
 		String url = request.getContextPath();
 		String parameter = request.getParameter(paramName);
 		return parameter;
 	}
-	
-	// �޸ı�׼IDΪ���
+
+	// 修改标准ID为名称
 	public static HashMap<String, Double> replaceIotId(
 			HashMap<String, Double> map) {
 		HashMap<String, Double> newMap = new HashMap<String, Double>();

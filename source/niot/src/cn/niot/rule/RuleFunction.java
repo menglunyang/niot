@@ -3,11 +3,9 @@ package cn.niot.rule;
 import cn.niot.dao.RecoDao;
 import cn.niot.util.RecoUtil;
 
-import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.junit.internal.matchers.SubstringMatcher;
+import java.math.BigInteger;
 
 public class RuleFunction {
 
@@ -16,37 +14,20 @@ public class RuleFunction {
 	static int NO_LENGHT_LIMIT = -1;
 
 	public static void main(String[] args) {
-		// System.out.println("�������!");
+		// System.out.println("你好世界!");
 		// System.out.println("Hello World!");
-		char[] IDstr = new char[15];
+		char[] IDstr = new char[4];
 		IDstr[0] = '0';
-		IDstr[1] = '0';
+		IDstr[1] = '2';
 		IDstr[2] = '0';
-		IDstr[3] = '0';
-		IDstr[4] = '0';
-		IDstr[5] = '0';
-
-		IDstr[6] = '1';
-
-		IDstr[7] = '0';
-		IDstr[8] = '1';
-		IDstr[9] = '0';
-		IDstr[10] = '0';
-		IDstr[11] = '0';
-		IDstr[12] = '0';
-
-		IDstr[13] = '0';
-		IDstr[14] = '0';
-
-		int[] index = new int[7];
-		index[0] = 6;
-		index[1] = 7;
-		index[2] = 8;
-		index[3] = 9;
-		index[4] = 10;
-		index[5] = 11;
-		index[6] = 12;
-		System.out.println(FuneralInterment(IDstr, 15, index, 7));
+		IDstr[3] = '1';
+		int[] index = new int[4];
+		index[0] = 0;
+		index[1] = 1;
+		index[2] = 2;
+		index[3] = 3;
+		System.out
+				.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 	}
 
 	// Function: represent a decimal integer whose value range is from 1 to 99
@@ -64,7 +45,7 @@ public class RuleFunction {
 			String[] lengthRanges = parameter.split(",");
 			for (int i = 0; i < lengthRanges.length; i++) {
 				String[] lengthMaxMin = lengthRanges[i].split("-");
-				if (lengthMaxMin.length == 1) {// 1����
+				if (lengthMaxMin.length == 1) {// 1个数
 					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
 						return OK;
 					} else {
@@ -144,7 +125,6 @@ public class RuleFunction {
 					hasSig = true;
 					break;
 				}
-
 			}
 			if (!hasSig) {
 				for (int i = 0; i < LenIndex; i++) {
@@ -371,11 +351,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:��λ���һλΪ1ʱ���ڶ�λΪ��0~9������һλΪ2ʱ���ڶ�λΪ��0~3������һλΪ9ʱ���ڶ�λΪ9.
+	// Function:两位数，第一位为1时，第二位为（0~9）；第一位为2时，第二位为（0~3）；第一位为9时，第二位为9.
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, �̶�Ϊ2
+	// LenIndex: the number of indexes, 固定为2
 	public static String Count(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -480,12 +460,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 6λ���������.
-	// Function: 6λ����������ǰ2λ.
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������������λ��
-	// LenIndex: ���ȱ�����2λ
+	// Function: 6位行政区划代码.
+	// Function: 6位行政区划代码的前2位.
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用行政区划代码的位置
+	// LenIndex: 长度必须是2位
 	public static String First2CharsofAdminDivision(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -512,11 +492,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 6λ���������.(296)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������������λ��
-	// LenIndex: ���ȱ�����6λ
+	// Function: 6位行政区划代码.(296)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用行政区划代码的位置
+	// LenIndex: 长度必须是6位
 	// creator: zll
 	public static String AdminDivision(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -542,11 +522,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �������͵�����ƴ���ΪCPC�������,(279)�й涨���볤��Ϊ2-3λ��CPC����Ϊ�ڵ�4λ��0.
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �����������͵�����ƴ����λ��
-	// LenIndex: �����Ƕ��٣�һ����4λ
+	// Function: 世界各国和地区名称代码为CPC编码调用,(279)中规定编码长度为2-3位，CPC编码为在第4位加0.
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用世界各国和地区名称代码的位置
+	// LenIndex: 长度是多少，一定是4位
 	// creator: zll
 	public static String CountryRegionCodeforCPC(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -573,11 +553,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �������͵�����ƴ��룬(279)�й涨���볤��Ϊ2-3λ.
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �����������͵�����ƴ����λ��
-	// LenIndex: �����Ƕ��٣�һ����2-3λ
+	// Function: 世界各国和地区名称代码，(279)中规定编码长度为2-3位.
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用世界各国和地区名称代码的位置
+	// LenIndex: 长度是多少，一定是2-3位
 	// creator: zll
 	public static String CountryRegionCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -608,11 +588,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �̲ݻ�е��Ʒ������ ����ͱ��� ��3���֣���е�⹺��(7)�е�5λ����.
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �����̲ݻ�е��Ʒ�����ϴ����λ��
-	// LenIndex: ������6λ
+	// Function: 烟草机械产品用物料 分类和编码 第3部分：机械外购件(7)中的5位编码.
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用烟草机械产品用物料代码的位置
+	// LenIndex: 长度是6位
 	// creator: zll
 	public static String TabaccoMachineProduct(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -641,11 +621,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��Ʒ����������Ʒ����EAN UPCǰ3λǰ׺��.
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ����ǰ׺���λ��
-	// LenIndex: ������3λ
+	// Function: 商品条码零售商品编码EAN UPC前3位前缀码.
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用前缀码的位置
+	// LenIndex: 长度是3位
 	// creator: zll
 	public static String PrefixofRetailCommodityNumber(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -673,11 +653,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �̲ݻ�е���� ����ͱ����2���֣�ר�ü� ��¼D�еĵ�λ����.(672)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ����ǰ׺���λ��
-	// LenIndex: ������2λ��Ϊ��д��ĸ
+	// Function: 烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码.(672)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用前缀码的位置
+	// LenIndex: 长度是2位，为大写字母
 	// creator: zll
 	public static String TabaccoMachineProducer(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -703,11 +683,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 4λ�������.
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ����������õ�λ��
-	// LenIndex: ������4λ��Ϊ����
+	// Function: 4位行政区号.
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用行政区好的位置
+	// LenIndex: 长度是4位，为数字
 	// creator: zll
 	public static String DistrictNo(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -733,11 +713,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: CID������������.
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: (18,-1),��18λ�Ժ���ַ����������ʽ��֤
-	// LenIndex: ���ȱ�Ϊ2
+	// Function: CID满足的域名规则.
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: (18,-1),从18位以后的字符串进行正则表达式验证
+	// LenIndex: 长度必为2
 	// creator: zll
 	public static String CIDRegex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -766,11 +746,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �̲���ҵ��׼����������������룬�������Ʒ�ִ���(6)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���������루1λ���������루2λ����Ʒ�ִ��루2λ����λ��
-	// LenIndex:���ȱ�Ϊ5
+	// Function: 烟草企业标准件编码所需的类别代码，组别代码和品种代码(6)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用类别代码（1位），组别代码（2位）和品种代码（2位）的位置
+	// LenIndex:长度必为5
 	// creator: zll
 	public static String TabaccoStandardPart(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -799,11 +779,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �̲ݻ�е��Ʒ�����Ϸ���ͱ��� ��6���֣�ԭ��������(4)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���������루2λ����Ʒ�ִ��루3λ����λ��
-	// LenIndex:���ȱ�Ϊ5
+	// Function: 烟草机械产品用物料分类和编码 第6部分：原、辅材料(4)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用类别代码（2位）和品种代码（3位）的位置
+	// LenIndex:长度必为5
 	// creator: zll
 	public static String TabaccoMaterial(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -831,11 +811,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʻ��˴��?֤��ʶ������в���������ҵ�Զ����������ƥ��,���ֻ�����ĸ����������ĸ���档(55)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����<=16
+	// Function: 国际货运代理单证标识符编码中不定长的企业自定义编码正则匹配,数字或者字母，数字在字母后面。(55)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=16
 	// creator: zll
 	public static String IntFreitForwarding(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -849,7 +829,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			// ���һλΪУ��λ
+			// 最后一位为校验位
 			for (int i = Index[0]; i < LenID - 1; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
@@ -871,11 +851,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� �����Ʒ��������(15)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ6
+	// Function: 粮食信息分类与编码 财务会计分类与代码(15)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为6
 	// creator: zll
 	public static String FoodAccount(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -901,11 +881,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ�豸���������(23)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ8
+	// Function: 粮食信息分类与代码 粮食设备分类与代码(23)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为8
 	// creator: zll
 	public static String GrainEquipment(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -931,11 +911,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ��ʩ��������루24��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ7
+	// Function: 粮食信息分类与编码 粮食设施分类与编码(24)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为7
 	// creator: zll
 	public static String GrainEstablishment(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -961,11 +941,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �̲ݻ�е��Ʒ������ ����ͱ��� ��5���֣�����Ԫ���� ��5��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ5
+	// Function: 烟草机械产品用物料 分类和编码 第5部分：电器元器件 (5)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为5
 	// creator: zll
 	public static String TabaccoElectricComponent(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -993,11 +973,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:��λ���һλΪ0ʱ���ڶ�λΪ��0��1��2������һλΪ1ʱ���ڶ�λΪ��1��2,6,7������һλΪ��2��ʱ���ڶ�λΪ��0~5��
+	// Function:两位数，第一位为0时，第二位为（0，1，2）；第一位为1时，第二位为（1，2,6,7）；第一位为（2）时，第二位为（0~5）
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, �̶�Ϊ2
+	// LenIndex: the number of indexes, 固定为2
 	public static String CPCTwoByte(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1037,11 +1017,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ж������ֽ��ǲ��Ǵ���·�
+	// Function: 判断两个字节是不是代表月份
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, �̶�Ϊ2
+	// LenIndex: the number of indexes, 固定为2
 	public static String Month(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1072,11 +1052,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ж�����ֽ��ǲ�������LS/T 1704.3-2004��1�еı���
+	// Function: 判断六个字节是不是属于LS/T 1704.3-2004表1中的编码
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, �̶�Ϊ6
+	// LenIndex: the number of indexes, 固定为6
 	public static String ClassOfGrain(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1186,11 +1166,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ж�2���ֽ��ǲ�������(01-07,99)
+	// Function: 判断2个字节是不是属于(01-07,99)
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, �̶�Ϊ2
+	// LenIndex: the number of indexes, 固定为2
 	public static String TwobytleCode07(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1220,11 +1200,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ж�2���ֽ��ǲ�������(01-06,99)
+	// Function: 判断2个字节是不是属于(01-06,99)
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, �̶�Ϊ2
+	// LenIndex: the number of indexes, 固定为2
 	public static String TwobytleCode06(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1253,11 +1233,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: UCODE ��Top Level Domain Code: TLDc��ȡֵ����Ϊ"E000"�͡�FFFF��
+	// Function: UCODE 的Top Level Domain Code: TLDc的取值不可为"E000"和“FFFF”
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, �̶�Ϊ4
+	// LenIndex: the number of indexes, 固定为4
 	public static String CountUcode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1289,7 +1269,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: EPC��������������(Domain Manager)����ȡֵΪ0xA011363��ȫ0
+	// Function: EPC编码的域名管理者(Domain Manager)域不能取值为0xA011363及全0
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1337,8 +1317,8 @@ public class RuleFunction {
 		}
 	}
 
-	// 374 Function: �����Ƿ����� ���2��ʼ���ż��λ������֮�͢٣��١�3=�ڣ������3��ʼ�������λ������֮�ۣ͢���+��=�ܣ��ô���
-	// ����ڽ�����Ϊ�������С���ȥ�ܵõ���ֵ��
+	// 374 Function: 检验是否属于 序号2开始求出偶数位上数字之和①；①×3=②；从序号3开始求出奇数位上数字之和③；②+③=④；用大于
+	// 或等于结果④且为整数倍的最小数减去④得到的值。
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Creator:Wu Zhenyu
@@ -1379,8 +1359,8 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:12λ�����룺6λ ���ÿ���ʱ�䷨��ʱ��δ֪��ȫ����"*"����֪�����199***��֪��ݲ�֪�·ݣ���2008**��
-	// ֪��ʱ�䣬��20080708�� ����λ��˳��ţ�����Ϊȫ0
+	// Function:12位幢编码：6位 采用竣工时间法，时间未知，全部用"*"；仅知年代，如199***；知年份不知月份，如2008**；
+	// 知道时间，如20080708， 后六位幢顺序号，不能为全0
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string is 26
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1398,7 +1378,7 @@ public class RuleFunction {
 				return ERR;
 			}
 
-			// ����һ�γ���"*"ʱ�����ʱ�����λ�����У��Ӹ�λ��ʼ���涼��"*"
+			// 当第一次出现"*"时，代表时间的六位代码中，从该位开始后面都是"*"
 			for (; i < 6; i++) {
 				if (IDstr[Index[i]] == '*') {
 					int k = i + 1;
@@ -1413,19 +1393,19 @@ public class RuleFunction {
 				}
 			}
 
-			// �ж� �·�
+			// 判断 月份
 			int[] Index_month = { Index[4], Index[5] };
 
 			// if ((Month(IDstr, LenID, Index_month, Index_month.length)) ==
-			// ERR) { // ����
-			// // ʵ�ֵĺ����ж��Ƿ����·�
+			// ERR) { // 江峰
+			// // 实现的函数，判断是否是月份
 			// return ERR;
 			// }
 
-			// xjf �޸ĺ�
+			// xjf 修改后
 			if (IDstr[Index[4]] != '*' && Index[5] != '*') {
-				if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // ����
-					// ʵ�ֵĺ����ж��Ƿ����·�
+				if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // 江峰
+					// 实现的函数，判断是否是月份
 					return ERR;
 				}
 			}
@@ -1438,7 +1418,7 @@ public class RuleFunction {
 				}
 			}
 
-			int zero_count = 0; // ����ȫ0
+			int zero_count = 0; // 不能全0
 			for (i = 6; i < LenIndex; i++) {
 				if (IDstr[Index[i]] == '0') {
 					zero_count++;
@@ -1455,7 +1435,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:12λ������,��6λ���������6λ����������(��귨),��������ȡС���ǰ��λ����
+	// Function:12位幢编码,由6位横坐标码与6位纵坐标码组成(坐标法),横纵坐标均取小数点前六位整数
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string is 26
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1471,7 +1451,7 @@ public class RuleFunction {
 				return ERR;
 			}
 
-			// �жϺ������ķ�Χ
+			// 判断横纵坐标的范围
 			int i = 0;
 			for (; i < LenIndex; i++) {
 				if (IDstr[Index[i]] < '0' || IDstr[Index[i]] > '9') {
@@ -1485,7 +1465,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:12λ������,���÷��ڷ���4λ�ַ��Ż򷿲������롢4λ�ڵغš�4λ��˳�����ɣ�4λ��˳���0001~9999
+	// Function:12位幢编码,采用分宗法，4位街坊号或房产分区代码、4位宗地号、4位幢顺序号组成，4位幢顺序号0001~9999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string is 26
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1494,7 +1474,7 @@ public class RuleFunction {
 	public static String HouseCode_CheckBasedFenzong(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
-			// 4λ�ַ��� ���������룬���ĵ����ҵ��ı��ֻ����λ
+			// 4位街坊号 房产分区代码，在文档中找到的编号只有两位
 			int i = 0;
 			int count = 0;
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -1511,7 +1491,7 @@ public class RuleFunction {
 				}
 			}
 
-			// 4λ�ڵغ�
+			// 4位宗地号
 			count = 0;
 			for (i = 4; i < 8; i++) {
 				if (IDstr[Index[i]] == '0') {
@@ -1524,7 +1504,7 @@ public class RuleFunction {
 				}
 			}
 
-			// 4λ��˳���
+			// 4位幢顺序号
 			count = 0;
 			for (i = 8; i < 12; i++) {
 				if (IDstr[Index[i]] == '0') {
@@ -1542,7 +1522,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:12λ�����룬���÷ַ�8λ�ַ�ͼ����ͼ�ź�4λ��˳�����ɣ�4λ��˳���0001~9999
+	// Function:12位幢编码，采用分幅法，8位分幅图分丘图号和4位幢顺序号组成，4位幢顺序号0001~9999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1559,14 +1539,14 @@ public class RuleFunction {
 				return ERR;
 			}
 
-			// ǰ��λ
+			// 前八位
 			for (; i < 8; i++) {
 				if (IDstr[Index[i]] < '0' || IDstr[Index[i]] > '9') {
 					return ERR;
 				}
 			}
 
-			// ����λ˳��ţ�0001~9999
+			// 后四位顺序号，0001~9999
 			int count = 0;
 			for (i = 8; i < LenIndex; i++) {
 				if (IDstr[Index[i]] == '0') {
@@ -1583,7 +1563,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:����ɻ���ʱ��˳���0001��ʼ��0001~9999
+	// Function:按生成户的时间顺序从0001开始，0001~9999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1617,7 +1597,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �м�12λ�����룬ͬʱ�����ַ���
+	// Function: 中间12位幢代码，同时用四种方法
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1649,7 +1629,7 @@ public class RuleFunction {
 		}
 	}
 
-	// У���룬���ݴ���26λ��25λ�����룬���һλУ����
+	// 校验码，房屋代码26位，25位本体码，最后一位校验码
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1663,7 +1643,7 @@ public class RuleFunction {
 	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 	// return ERR;
 	// }
-	// int result = 10 + (IDstr[0] - 48); // ��¼У��������м��̲����ֵ
+	// int result = 10 + (IDstr[0] - 48); // 记录校验码计算中间过程产生的值
 	//
 	// for (i = 1; i < LenIndex; i++) {
 	// if (result % 10 == 0) {
@@ -1725,18 +1705,18 @@ public class RuleFunction {
 
 	}
 
-	// Function: У���㷨 ʵ�� C=MOD(11-MOD(��Ci��Wi,11),10)
-	// ����MOD����ʾ���ຯ��i����ʾ�����ַ��������λ����ţ�Ci����ʾ��iλ���ϵĴ����ַ��ֵ��Wi����ʾ��iλ���ϵļ�Ȩ���ӣ�
-	// ��Ȩ���ӵĹ�ʽ�ǣ�2��n-1���ݳ���11ȡ����n�����Ǹ�i��������������
-	// ��У���ֵΪ10ʱ ��ֵλX
+	// Function: 校验算法 实现 C=MOD(11-MOD(∑Ci×Wi,11),10)
+	// 其中MOD－表示求余函数；i－表示代码字符从左至右位置序号；Ci－表示第i位置上的代码字符的值；Wi－表示第i位置上的加权因子，
+	// 加权因子的公式是：2的n-1次幂除以11取余数，n就是那个i，从右向左排列
+	// 当校检的值为10时 赋值位X
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	public static String DeviceMOD163(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-		// MOD У���㷨���ַ��ٿռ�ʱҪ��һλ��������У��λ
-		double sum = 0; // ����У����
+		// MOD 校验算法，字符串开辟空间时要多一位留给最后加校验位
+		double sum = 0; // 最后的校验码
 		int i;
 		int j = LenIndex - 1;
 		for (i = 0; i < LenIndex - 1; i++) {
@@ -1756,12 +1736,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���뵰��Ʒ��������루232���еĵ��뵰��Ʒ�����
+	// Function: 蛋与蛋制品分类与代码（232）中的蛋与蛋制品编码表
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���3
-	// Creator:�?�� 232
+	// LenIndex: the number of indexes 固定长3
+	// Creator:许江峰 232
 	public static String Egg232(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1849,7 +1829,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String FiveByteDecimalnt(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -1896,7 +1876,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String FourByteDecimalnt(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -1932,22 +1912,22 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ʵ��ģ10����λ��2����͵�У��
-	// ��A-Z�����10���Ƶ�10-35�����µ�10��������µ����飻��������Ĵ��ҵ���ʼÿһλ����2��1��ѭ�����sum
-	// У��λ��ֵΪ 10-sum%10
+	// Function: 实现模10“隔位乘2”求和的校验
+	// 即A-Z换算成10进制的10-35，对新的10进制组成新的数组；对新数组的从右到左开始每一位乘以2或1的循环求和sum
+	// 校验位的值为 10-sum%10
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String InternationalSecurities(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			int i = 0; // �����ж�16����
-			int j; // ��������ı���
+			int i = 0; // 用于判断16进制
+			int j; // 用于数组的遍历
 			int b = 0;
 			char a;
 			a = 'A';
@@ -1983,9 +1963,9 @@ public class RuleFunction {
 					e--;
 				}
 			}
-			int f; // ����X2���������
-			int sum = 0; // ���ڽ���У����
-			int check; // ����У�����ֵ
+			int f; // 用于X2的数组遍历
+			int sum = 0; // 用于接受校验码
+			int check; // 用于校验码的值
 			int bb = 0;
 			int ff = 0;
 			for (f = 0; f < b; f++) {
@@ -2030,23 +2010,23 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ISO 7064:1983.MOD 11-2У���㷨 ʵ�� C=11-MOD(��Ci��Wi,11)
-	// ����MOD����ʾ���ຯ��i����ʾ�����ַ��������λ����ţ�Ci����ʾ��iλ���ϵĴ����ַ��ֵ��Wi����ʾ��iλ���ϵļ�Ȩ���ӣ�
-	// ��Ȩ���ӵĹ�ʽ�ǣ�2��n-1���ݳ���11ȡ����n�����Ǹ�i��������������
-	// ��У���ֵΪ10ʱ ��ֵλX
+	// Function: ISO 7064:1983.MOD 11-2校验算法 实现 C=11-MOD(∑Ci×Wi,11)
+	// 其中MOD－表示求余函数；i－表示代码字符从左至右位置序号；Ci－表示第i位置上的代码字符的值；Wi－表示第i位置上的加权因子，
+	// 加权因子的公式是：2的n-1次幂除以11取余数，n就是那个i，从右向左排列
+	// 当校检的值为10时 赋值位X
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String MOD112(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ISO 7064:1983.MOD 11-2У���㷨���ַ��ٿռ�ʱҪ��һλ��������У��λ
-			double sum = 0; // ����У����
+			// ISO 7064:1983.MOD 11-2校验算法，字符串开辟空间时要多一位留给最后加校验位
+			double sum = 0; // 最后的校验码
 			int i, j;
 			int b = LenIndex - 1;
 			int a;
@@ -2072,45 +2052,40 @@ public class RuleFunction {
 			sum %= 11;
 			mod = (int) (12 - sum) % 11;
 			if (mod == 10) {
-				check = "X".charAt(0); // X��ʾ10
+				check = "X".charAt(0); // X表示10
 			} else {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
 			}
 			System.out.println(check);
 			if (check == (IDstr[Index[b]])) {
-
 				return OK;
-
 			} else {
-
 				return ERR;
-
 			}
-
 		} catch (Exception e) {
 			return ERR;
 		}
 	}
 
-	// Function: ʵ��У�� MOD 16-3 ��16���Ƶ������10���ƣ����µ�10���Ƶ���ֵ����Ȩ�ض�16ȡ�ࣻȨ��λ11,9,3,1��ѭ��
-	// Ȩ��λ1~9��ѭ��
+	// Function: 实现校验 MOD 16-3 即16进制的数换算成10进制，对新的10进制的数值乘以权重对16取余；权重位11,9,3,1的循环
+	// 权重位1~9的循环
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���16
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长16
+	// Creator:许江峰
 	public static String MOD163(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// MOD 16-3У���㷨���ַ��ٿռ�ʱҪ��һλ��������У��λ
-			double sum = 0; // ������У������ֵ
+			// MOD 16-3校验算法，字符串开辟空间时要多一位留给最后加校验位
+			double sum = 0; // 最后的求校验码数值
 			int i;
-			int w = 0; // Ȩ��
-			int h = 0; // ʮ����
+			int w = 0; // 权重
+			int h = 0; // 十进制
 			int j = LenIndex - 1;
 			for (i = 0; i < LenIndex; i++) {
 				if ((LenIndex - i) % 4 == 0) {
@@ -2160,23 +2135,23 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ʵ��У��
-	// ����������λ����1��ż��λ����2�ĺ�sum
-	// У��λ��ֵΪ 10-sum%10
+	// Function: 实现校验
+	// 即数组奇数位乘以1与偶数位乘以2的和sum
+	// 校验位的值为 10-sum%10
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String MrpCheck(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			int f; // ����X2���������
-			int sum = 0; // ���ڽ���У����
-			int check; // ����У�����ֵ
+			int f; // 用于X2的数组遍历
+			int sum = 0; // 用于接受校验码
+			int check; // 用于校验码的值
 			int b = 0;
 			int j = 0;
 			for (f = 0; f < LenIndex - 1; f++) {
@@ -2232,14 +2207,14 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String MusicCheck(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ��T��ʼ��Index
+			// 从T开始算Index
 			int S = 0;
 			int S1 = 0;
 			int check = 0;
@@ -2273,7 +2248,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String ThreeByteDecimalnt(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -2305,12 +2280,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ֵֻ��λSR MX SM YZ
+	// Function: 值只能位SR MX SM YZ
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String TwoByteSRMXSMYZ(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -2340,11 +2315,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:��֯Ʒ ��֯����֯���뼰ʾ�� ��������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ��� ���̶�
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���̶�
+	// Function:纺织品 机织物组织代码及示例 的正则表达
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 不固定
+	// Index: 调用正则的的索引位置
+	// LenIndex:不固定
 	// creator: xjf
 	public static String Weaves355(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -2371,11 +2346,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��Ʒ���� �ʲ�����������ʾ����ϵ�к�Ϊ1-16λ��ʹ���������ƥ��(58)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ��� ���̶�
-	// Index: ��������ĵ�����λ��
-	// LenIndex:0-13λΪȫ��ɻ����ʲ����,LenIndex��Ϊ3����һλΪ��ʼ��λ��ڶ�λΪ������ظ��Ĵ���,����λΪ-1
+	// Function: 商品条码 资产编码与条码表示最后的系列号为1-16位，使用正则进行匹配(58)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 不固定
+	// Index: 调用正则的的索引位置
+	// LenIndex:0-13位为全球可回收资产代码,LenIndex必为3，第一位为起始的位数，第二位为正则可重复的次数,第三位为-1
 	// creator: zll
 	public static String GraiSerialNo(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -2407,11 +2382,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ҩƷ���Ӽ����Ӧ������򣬵�IDstr[1]Ϊ9ʱ��Ӧ�������Ϊ0,1,2
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ��� 20λ
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ1��ֻ��֤IDstr[1]�Ƿ�Ϊ9
+	// Function: 药品电子监管码应用码规则，当IDstr[1]为9时，应用码可以为0,1,2
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 20位
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为1，只验证IDstr[1]是否为9
 	// creator: zll
 	public static String MedAppCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -2423,7 +2398,7 @@ public class RuleFunction {
 				return ERR;
 			}
 			if (IDstr[1] == '9') {
-				if (!(IDstr[Index[0]] == '0' || IDstr[Index[0]] == '1' || IDstr[Index[0]] == '2')) {
+				if (!(Index[0] == '0' || Index[0] == '1' || Index[0] == '2')) {
 					return ERR;
 				}
 			}
@@ -2433,11 +2408,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���ò��Ϸ���������Ʒ����
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���4λ
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ4
+	// Function: 烟用材料分类代码与产品编码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度4位
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为4
 	// creator: zll
 	public static String TabaccoMaterials(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -2464,22 +2439,22 @@ public class RuleFunction {
 		}
 	}
 
-	// ������İ� 9 15425
+	// 有问题的啊 9 15425
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String N14(char[] IDstr, int LenID, int[] Index, int LenIndex) {
 
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ��T��ʼ��Index
+			// 从T开始算Index
 			int S = 0;
 			int S1 = 0;
 			int i;
-			int a = (int) (IDstr[Index[0]] - 32) * 2; // ���ڽ��ܵ�һλ
+			int a = (int) (IDstr[Index[0]] - 32) * 2; // 用于接受第一位
 			for (i = 0; i < 14; i++) {
 				S = S
 						+ ((int) (IDstr[Index[2 * i + 1]] - 48) * 10 + (int) (IDstr[Index[2 * i + 2]] - 48))
@@ -2638,10 +2613,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 188���������ۺϼ����Ϣϵͳ
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ��� 12λ
-	// Index: ������֤�㷨������λ��
+	// 188城市市政综合监管信息系统
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 12位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:12
 	// creator:fdl
 	public static String Littlecode(char[] IDstr, int LenID, int[] Index,
@@ -2701,10 +2676,10 @@ public class RuleFunction {
 		}
 	}
 
-	// ���������ʩ����Ʒ��������� ��6-12λ��Ӧ����
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ��� 15λ
-	// Index: ������֤�㷨������λ��
+	// 殡葬服务、设施、用品分类与代码 第6-12位对应规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 15位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:7
 	// creator:zt
 	public static String FuneralInterment(char[] IDstr, int LenID, int[] Index,
@@ -2748,10 +2723,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 194-�̲ݻ�е�������úͼ����ļ����븽¼D���ѯ
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���2λ
-	// Index: ������֤�㷨������λ��
+	// 194-烟草机械电气配置和技术文件代码附录D表查询
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度2位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String TobaccoTech(char[] IDstr, int LenID, int[] Index,
@@ -2769,23 +2744,20 @@ public class RuleFunction {
 				s = s.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			System.out.println("s=" + s);
-			if (s.equals("00") || s.equals("01") || s.equals("10")
-					|| s.equals("11") || s.equals("12") || s.equals("30")
-					|| s.equals("31") || s.equals("32") || s.equals("44")
-					|| s.equals("45") || s.equals("33") || s.equals("40")
-					|| s.equals("41") || s.equals("42") || s.equals("43")
-					|| s.equals("46") || s.equals("47") || s.equals("48")
-					|| s.equals("50") || s.equals("60")) {
+			if (s.equals("00") || s.equals("01") || s.equals("10") || s.equals("11") || s.equals("12")
+					|| s.equals("30") || s.equals("31") || s.equals("32") || s.equals("44")
+					|| s.equals("45") || s.equals("33") || s.equals("40") || s.equals("41")
+					|| s.equals("42") || s.equals("43") || s.equals("46") || s.equals("47")
+					|| s.equals("48") || s.equals("50") || s.equals("60")) {
 				return OK;
 			}
 			return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
-	// 381�����Ϣ����
+	// 381消防信息代码
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2805,35 +2777,35 @@ public class RuleFunction {
 	// int index1 = Index[0];
 	// int index2 = Index[1];
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '0')) {
-	// information="��ͨ���վ";
+	// information="普通消防站";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '1')) {
-	// information="һ����ͨ���վ";
+	// information="一级普通消防站";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '2')) {
-	// information="������ͨ���վ";
+	// information="二级普通消防站";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '2') && (IDstr[index2] == '0')) {
-	// information="�������վ";
+	// information="特勤消防站";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '6') && (IDstr[index2] == '0')) {
-	// information="ˮ�����վ";
+	// information="水上消防站";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '7') && (IDstr[index2] == '0')) {
-	// information="�������վ";
+	// information="航空消防站";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '8') && (IDstr[index2] == '0')) {
-	// information="½���ѾȻ��";
+	// information="陆地搜救基地";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '9') && (IDstr[index2] == '0')) {
-	// information="�������վ";
+	// information="其他消防站";
 	// return OK;
 	// }
 	// return ERR;
@@ -2841,7 +2813,7 @@ public class RuleFunction {
 	// return ERR;
 	// }
 	// }
-	// 393�����Ϣ����
+	// 393消防信息代码
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2861,27 +2833,27 @@ public class RuleFunction {
 	// int index1 = Index[0];
 	// int index2 = Index[1];
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '0')) {
-	// inforfation="��Ȼ����ϵͳ";
+	// inforfation="自然排烟系统";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '1')) {
-	// inforfation="�ɿ���������Ȼ����";
+	// inforfation="可开启外烟自然排烟";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '2') && (IDstr[index2] == '0')) {
-	// inforfation="��е������ϵͳ";
+	// inforfation="机械防排烟系统";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '2') && (IDstr[index2] == '1')) {
-	// inforfation="��е��ѹ�ͷ����";
+	// inforfation="机械加压送风防烟";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '2') && (IDstr[index2] == '2')) {
-	// inforfation="��е����";
+	// inforfation="机械排烟";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '9') && (IDstr[index2] == '0')) {
-	// inforfation="���������ϵͳ";
+	// inforfation="其他防排烟系统";
 	// return OK;
 	// }
 	// return ERR;
@@ -2889,7 +2861,8 @@ public class RuleFunction {
 	// return ERR;
 	// }
 	// }
-	// 395���������Ϣ����
+	
+	// 395——消防信息代码
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2920,7 +2893,7 @@ public class RuleFunction {
 
 	}
 
-	// 399���������Ϣ����57���� �����ˮ��ʩ����
+	// 399——消防信息代码57部分 消防供水设施种类
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2952,7 +2925,7 @@ public class RuleFunction {
 	//
 	// }
 
-	// 403���������Ϣ����53������������
+	// 403——消防信息代码53部分社会宣传教育活动
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2983,7 +2956,7 @@ public class RuleFunction {
 	//
 	// }
 
-	// 409���������Ϣ����48���֣����ѵ�����˴���
+	// 409——消防信息代码48部分：消防训练考核代码
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -3051,11 +3024,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ʵ��У�� MOD 97-10
+	// Function: 实现校验 MOD 97-10
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���13
+	// LenIndex: the number of indexes 固定长13
 	// Creator:zt
 	public static String MOD9710(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -3097,10 +3070,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 194-�̲ݻ�е�������úͼ����ļ����븽¼C���ѯ
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���3λ
-	// Index: ������֤�㷨������λ��
+	// 194-烟草机械电气配置和技术文件代码附录C表查询
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度3位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String tabaccoC(char[] IDstr, int LenID, int[] Index,
@@ -3112,7 +3085,10 @@ public class RuleFunction {
 			return ERR;
 		}
 		try {
-			int code = IDstr[Index[0]] + IDstr[Index[1] - 96];
+			String code = "";
+			for (int i = 0; i < 3; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPrefixoftabaccoC(code);
 			if (ret) {
@@ -3122,7 +3098,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// Function: 402 fire information
@@ -3222,10 +3197,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 91-�й�ú̿����ϵͳ ��1-12λ��Ӧ����
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ��� 12λ
-	// Index: ������֤�㷨������λ��
+	// 91-中国煤炭编码系统 第1-12位对应规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 12位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:12
 	// creator:fdl
 	public static String CoalInterment(char[] IDstr, int LenID, int[] Index,
@@ -3372,10 +3347,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 90-��Ʒ���롪�����뷽λ�����������ʾ ��13У����
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ��� 13λ
-	// Index: ������֤�㷨������λ��
+	// 90-商品条码——参与方位编码与条码表示 第13校验码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 13位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:13
 	// creator:fdl
 	public static String CheckCodebarcode(char[] IDstr, int LenID, int[] Index,
@@ -3389,15 +3364,15 @@ public class RuleFunction {
 			}
 			String id1 = "";
 			int sum = 0;
-			int sum1 = 0;// ż�����λ�ϵ���ֵ��
-			int sum2 = 0;// �������λ�ϵ���ֵ��
-			int dd = 0;// sum������м���
-			int code = 0;// ���һλ��֤��
+			int sum1 = 0;// 偶数序号位上的数值和
+			int sum2 = 0;// 奇数序号位上的数值和
+			int dd = 0;// sum和整除中间数
+			int code = 0;// 最后一位验证码
 
 			for (int i = 1; i < 12; i++) {
 				if (i % 2 == 1) {
 					sum1 = sum1 + (IDstr[i]);
-					sum1 = sum1 - 48;// �ַ�ת��Ϊ����
+					sum1 = sum1 - 48;// 字符转化为整形
 					System.out.println((int) IDstr[i]);
 				}
 			}
@@ -3406,7 +3381,7 @@ public class RuleFunction {
 			for (int i = 0; i < 11; i++) {
 				if (i % 2 == 0) {
 					sum2 += IDstr[i];
-					sum2 = sum2 - 48;// �ַ�ת��Ϊ����
+					sum2 = sum2 - 48;// 字符转化为整形
 					System.out.println(IDstr[i]);
 				}
 			}
@@ -3434,10 +3409,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 195-�̲ݻ�е������Ʒ�����ļ�������Ʒ��� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���3λ
-	// Index: ������֤�㷨������λ��
+	// 195-烟草机械——产品工艺文件代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度3位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String Tobaccomachinery(char[] IDstr, int LenID, int[] Index,
@@ -3558,7 +3533,7 @@ public class RuleFunction {
 					}
 				}
 			}
-			if (i1 == 2) { // ְԱ����
+			if (i1 == 2) { // 职员级别
 				if (i2 >= 1 && i2 <= 4) {
 					if (i3 == 1 || i3 == 2) {
 						return OK;
@@ -3575,7 +3550,7 @@ public class RuleFunction {
 					}
 				}
 			}
-			if (i1 == 4) { // רҵ����ְ�񼶱�
+			if (i1 == 4) { // 专业技术职务级别
 				if (i2 == 1) {
 					if (i3 == 1 || i3 == 2 || i3 == 0) {
 						return OK;
@@ -3603,12 +3578,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ʵ��У��Nλ��У��
+	// Function: 实现校验N位数校验
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:������
+	// Creator:方丹丽
 	public static String Mod36_37(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -3646,13 +3621,13 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ʵ��У��6λ����������
+	// Function: 实现校验6位数物流编码
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:������
-	// У��������123450
+	// Creator:方丹丽
+	// 校验例子码123450
 	public static String LogisticsCheck(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -3681,10 +3656,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 268-������ȫ���˴���Э����������Ʒ��� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���3λ
-	// Index: ������֤�㷨������λ��
+	// 268-——珠全国人大政协机构分类代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度3位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String TheCenteralPartyCommitte(char[] IDstr, int LenID,
@@ -3711,10 +3686,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 270������Ȼ�ֺ�Natural disaster
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���6λ
-	// Index: ������֤�㷨������λ��
+	// 270——自然灾害Natural disaster
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度6位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String Naturaldisaster(char[] IDstr, int LenID, int[] Index,
@@ -3741,10 +3716,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 275��������ҵ����
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���4λ
-	// Index: ������֤�㷨������λ��
+	// 275—物流作业货物
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度4位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String Logisticsoperation(char[] IDstr, int LenID,
@@ -3771,10 +3746,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 276��������Ʒ����
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���4λ
-	// Index: ������֤�㷨������λ��
+	// 276—废弃物品货物
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度4位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String Wasteproducts(char[] IDstr, int LenID, int[] Index,
@@ -3801,10 +3776,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 281-�����鱦��ʯ���������ʷ��������Ʒ��� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���6λ
-	// Index: ������֤�㷨������λ��
+	// 281-——珠宝玉石及金属材质分类代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度6位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String JadejewelryMaterialclassif(char[] IDstr, int LenID,
@@ -3831,10 +3806,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 216-�������뵳����ش�����Ʒ��� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���3λ
-	// Index: ������֤�㷨������λ��
+	// 216-——中央党政机关代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度3位
+	// Index: 调用验证算法的索引位置
 	// creator:fdl
 	// public static String CodeHighway(char[] IDstr, int LenID, int[] Index,
 	// int LenIndex){
@@ -3854,7 +3829,7 @@ public class RuleFunction {
 	// }
 	// }
 	// }
-	// if (i1 == 2) { // ְԱ����
+	// if (i1 == 2) { // 职员级别
 	// if (i2 >= 1 && i2 <= 4) {
 	// if (i3 == 1 || i3 == 2) {
 	// return OK;
@@ -3871,7 +3846,7 @@ public class RuleFunction {
 	// }
 	// }
 	// }
-	// if (i1 == 4) { // רҵ����ְ�񼶱�
+	// if (i1 == 4) { // 专业技术职务级别
 	// if (i2 == 1) {
 	// if (i3 == 1 || i3 == 2 || i3 == 0) {
 	// return OK;
@@ -5358,7 +5333,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String SixByteDecimalnt(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -5389,8 +5364,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 504
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 504
 	public static String OneTO08(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5414,8 +5389,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 504 509
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 504 509
 	public static String OneTO09(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5439,8 +5414,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 511
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 511
 	public static String OneTO07(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5464,8 +5439,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 512
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 512
 	public static String OneTO05(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5489,8 +5464,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 213
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 213
 	public static String OneTO15(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5514,8 +5489,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 213
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 213
 	public static String OneTO13(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5539,8 +5514,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 213
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 213
 	public static String OneTO11(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5563,8 +5538,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 214
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 214
 	public static String OneTO14(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5588,8 +5563,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 225
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 225
 	public static String OneTO39(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5613,8 +5588,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 225
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 225
 	public static String OneTO22(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5638,8 +5613,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 225
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 225
 	public static String OneTO10(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5663,8 +5638,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 225
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 225
 	public static String OneTO29(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5688,8 +5663,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 225
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 225
 	public static String OneTO21(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5738,8 +5713,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 225
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 225
 	public static String OneTO72(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5764,15 +5739,15 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String MOD3736(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ISO 7064:1983.MOD 11-2У���㷨���ַ��ٿռ�ʱҪ��һλ��������У��λ
-			double sum = 0; // ����У����
+			// ISO 7064:1983.MOD 11-2校验算法，字符串开辟空间时要多一位留给最后加校验位
+			double sum = 0; // 最后的校验码
 			int i, j;
 			int b = LenIndex - 1;
 			int a;
@@ -5820,8 +5795,8 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ISO 7064:1983.MOD 11-2У���㷨���ַ��ٿռ�ʱҪ��һλ��������У��λ
-			double sum = 0; // ����У����
+			// ISO 7064:1983.MOD 11-2校验算法，字符串开辟空间时要多一位留给最后加校验位
+			double sum = 0; // 最后的校验码
 			int i, j;
 			int b = LenIndex - 1;
 			int a;
@@ -5870,7 +5845,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String VersionISAN(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -5916,12 +5891,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:622У��λ
+	// Function:622校检位
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String VehicleIdenCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -6023,7 +5998,7 @@ public class RuleFunction {
 			int mod = sum % 11;
 			char check;
 			if (mod == 10) {
-				check = "X".charAt(0); // X��ʾ10
+				check = "X".charAt(0); // X表示10
 			} else {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
@@ -6039,23 +6014,23 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: У��λ ����3��1 ��
+	// Function: 校检位 乘以3或1 求
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���16
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长16
+	// Creator:许江峰
 	public static String CommodityCodeCheck632(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// MOD 16-3У���㷨���ַ��ٿռ�ʱҪ��һλ��������У��λ
-			double sum = 0; // ������У������ֵ
+			// MOD 16-3校验算法，字符串开辟空间时要多一位留给最后加校验位
+			double sum = 0; // 最后的求校验码数值
 			int i;
-			int w = 0; // Ȩ��
-			int h = 0; // ʮ����
+			int w = 0; // 权重
+			int h = 0; // 十进制
 			int j = 0;
 			for (i = 0; i < LenIndex - 1; i++) {
 				for (j = 0; j < LenIndex; j++) {
@@ -6086,8 +6061,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��639
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰639
 	public static String ZeroTO14(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -6106,8 +6081,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��654
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰654
 	public static String ZeroTO24(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -6124,8 +6099,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��654
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰654
 	public static String ZeroTO60(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -6149,7 +6124,7 @@ public class RuleFunction {
 		return hexStr + hexString;
 	}
 
-	public static String enUnicode(String content) { // ������ת��Ϊ16������
+	public static String enUnicode(String content) { // 将汉字转换为16进制数
 		String enUnicode = null;
 		for (int i = 0; i < content.length(); i++) {
 			if (i == 0) {
@@ -6164,12 +6139,12 @@ public class RuleFunction {
 		return enUnicode;
 	}
 
-	// Function: 657 Сд��ĸת2����
+	// Function: 657 小写字母转2进制
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��657
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰657
 	public static String Xiaoxie(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int j;
@@ -6191,15 +6166,15 @@ public class RuleFunction {
 		int[] jie = new int[LenIndex];
 		for (i = 0; i < LenIndex; i++) {
 			j = (int) IDstr[Index[i]];
-			String a = Integer.toString(j); // ������ֵ
-			BigInteger src = new BigInteger(a); // ת��ΪBigInteger����
+			String a = Integer.toString(j); // 输入数值
+			BigInteger src = new BigInteger(a); // 转换为BigInteger类型
 			String bb = src.toString(2);
 			int bbb = Integer.parseInt(bb);
 			jie[i] = bbb;
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // ������ֵ
+			String bb = Integer.toString(j); // 输入数值ֵ
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -6221,12 +6196,12 @@ public class RuleFunction {
 		return OK;
 	}
 
-	// Function: 657 ��д��ĸת2����
+	// Function: 657 大写字母转2进制
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��657
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰657
 	public static String Daxie(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int j;
@@ -6248,15 +6223,15 @@ public class RuleFunction {
 		int[] jie = new int[LenIndex];
 		for (i = 0; i < LenIndex; i++) {
 			j = (int) IDstr[Index[i]];
-			String a = Integer.toString(j); // ������ֵ
-			BigInteger src = new BigInteger(a); // ת��ΪBigInteger����
+			String a = Integer.toString(j); // 输入数值
+			BigInteger src = new BigInteger(a); // 转换为BigInteger类型
 			String bb = src.toString(2);
 			int bbb = Integer.parseInt(bb);
 			jie[i] = bbb;
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // ������ֵ
+			String bb = Integer.toString(j); // 输入数值
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -6278,12 +6253,12 @@ public class RuleFunction {
 		return OK;
 	}
 
-	// Function: 657 ������ĸת2����
+	// Function: 657 数字字母转2进制
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��657
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰657
 	public static String Hunpai(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int j;
@@ -6317,15 +6292,15 @@ public class RuleFunction {
 		int[] jie = new int[LenIndex];
 		for (i = 0; i < LenIndex; i++) {
 			j = (int) IDstr[Index[i]];
-			String a = Integer.toString(j); // ������ֵ
-			BigInteger src = new BigInteger(a); // ת��ΪBigInteger����
+			String a = Integer.toString(j); // 输入数值
+			BigInteger src = new BigInteger(a); // 转换为BigInteger类型
 			String bb = src.toString(2);
 			int bbb = Integer.parseInt(bb);
 			jie[i] = bbb;
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // ������ֵ
+			String bb = Integer.toString(j); // 输入数值
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -6347,19 +6322,19 @@ public class RuleFunction {
 		return OK;
 	}
 
-	// Function: 657 ����ģʽת2����
+	// Function: 657 数字模式转2进制
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��657
+	// Creator:许江峰657
 	public static String figure(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 
 		int j = 0;
 		int i, ii = 0;
 		int leg;
-		String out = null; // ���ڽ��ܻ��ж�
+		String out = null; // 用于接受或判断
 		if (LenIndex % 3 != 0) {
 			leg = LenIndex / 3 + 1;
 		} else {
@@ -6367,9 +6342,9 @@ public class RuleFunction {
 		}
 		int legg = leg * 3;
 		int[] jie = new int[leg];
-		char[] newIDstr = new char[legg]; // ��������
-		int[] GB = new int[leg]; // ���� ������
-		int[] GB1 = new int[leg]; // �������������ڵ�λ��
+		char[] newIDstr = new char[legg]; // 接受数字
+		int[] GB = new int[leg]; // 接受 特殊符号
+		int[] GB1 = new int[leg]; // 接受特殊符号所在的位置
 		for (i = 0; i < LenIndex; i++) {
 			if (IDstr[Index[i]] > 47) {
 				newIDstr[j] = (char) (IDstr[Index[i]] - 48);
@@ -6456,7 +6431,7 @@ public class RuleFunction {
 					* (int) newIDstr[3 * i + 1] + (int) newIDstr[3 * i + 2];
 		}
 		int jj = 0;
-		int[] GB2 = new int[leg]; // ��������������10���Ƶĵ�λ��
+		int[] GB2 = new int[leg]; // 接受特殊符号所在10进制的的位置
 		leg = 0;
 		for (j = 0; j < ii; j++) {
 			if (leg != 0) {
@@ -6469,8 +6444,8 @@ public class RuleFunction {
 			}
 		}
 		leg = legleg;
-		int[] newgb = new int[leg + ii]; // ȫ�µ���ֵ���������е�10����
-		jj = 0; // ���ڽ��ܣǣ��е�λ
+		int[] newgb = new int[leg + ii]; // 全新的数值来接受所有的10进制
+		jj = 0; // 由于接受GB中的位
 		for (i = 0; i < leg + ii; i++) {
 			j++;
 			if (ii != 0) {
@@ -6489,18 +6464,18 @@ public class RuleFunction {
 				newgb[i] = jie[i];
 			}
 		}
-		int[] Two = new int[leg + ii]; // ����ת���ɵ�2��������
+		int[] Two = new int[leg + ii]; // 接受转换成的2进制数组
 		for (i = 0; i < leg + ii; i++) {
 			j = (int) newgb[i];
-			String a = Integer.toString(j); // ������ֵ
-			BigInteger src = new BigInteger(a); // ת��ΪBigInteger����
+			String a = Integer.toString(j); // 输入数值
+			BigInteger src = new BigInteger(a); // 转换为BigInteger类型
 			String bb = src.toString(2);
 			int bbb = Integer.parseInt(bb);
 			Two[i] = bbb;
 		}
 		for (i = 0; i < leg + ii; i++) {
 			j = Two[i];
-			String bb = Integer.toString(j); // ������ֵ
+			String bb = Integer.toString(j); // 输入数值
 			if (bb.length() == 5) {
 				bb = "00000" + bb;
 			}
@@ -6534,12 +6509,12 @@ public class RuleFunction {
 		return OK;
 	}
 
-	// Function: У��λ
+	// Function: 校检位
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��664
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰664
 	public static String Check4BitBarCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 
@@ -6548,33 +6523,33 @@ public class RuleFunction {
 		for (i = 0; i < LenIndex; i++) {
 			newIDstr[i] = (int) (IDstr[Index[i]] - 48);
 		}
-		// ����2-�ĵ�һλ
+		// 用于2-的第一位
 		int a = newIDstr[1];
-		int b = 0; // ���ڽ��ܼ�Ȩֵ
+		int b = 0; // 用于接受加权值ֵ
 		if (a * 2 < 10) {
 			b = a * 2;
 		} else if (a * 2 > 9) {
 			b = (a * 2 - 1) % 10;
 		}
-		// ����2-�ĵڶ�λ
+		// 用于2-的第二位
 		int a2 = newIDstr[2];
-		int b2 = 0; // ���ڽ��ܼ�Ȩֵ
+		int b2 = 0; // 用于接受加权值
 		if (a2 * 2 < 10) {
 			b2 = a2 * 2;
 		} else if (a2 * 2 > 9) {
 			b2 = (a2 * 2 - 1) % 10;
 		}
-		// ����3�ĵ���λ
+		// 用于3的第三位
 		int a3 = newIDstr[3];
-		int b3 = 0; // ���ڽ��ܼ�Ȩֵ
+		int b3 = 0; // 用于接受加权值
 		if (a3 * 3 < 10) {
 			b3 = a3 * 3;
 		} else if (a3 * 3 > 9) {
 			b3 = (a3 * 3) % 10;
 		}
-		// ����5-�ĵ���λ
+		// 用于5-的第四位
 		int a4 = newIDstr[4];
-		int b4 = 0; // ���ڽ��ܼ�Ȩֵ
+		int b4 = 0; // 用于接受加权值
 		if (a4 * 5 < 10) {
 			b4 = a4 * 5;
 		} else if (a4 * 5 > 9) {
@@ -6589,12 +6564,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: У��λ
+	// Function: 校检位
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��664
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰664
 	public static String Check5BitBarCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 
@@ -6603,41 +6578,41 @@ public class RuleFunction {
 		for (i = 0; i < LenIndex; i++) {
 			newIDstr[i] = (int) (IDstr[Index[i]] - 48);
 		}
-		// ����2-�ĵ���λ
+		// 用于2-的第五位
 		int a = newIDstr[5];
-		int b = 0; // ���ڽ��ܼ�Ȩֵ
+		int b = 0; // 用于接受加权值
 		if (a * 2 < 10) {
 			b = a * 2;
 		} else if (a * 2 > 9) {
 			b = (a * 2 - 1) % 10;
 		}
-		// ����2-�ĵڶ�λ
+		// 用于2-的第二位
 		int a2 = newIDstr[2];
-		int b2 = 0; // ���ڽ��ܼ�Ȩֵ
+		int b2 = 0; // 用于接受加权值
 		if (a2 * 2 < 10) {
 			b2 = a2 * 2;
 		} else if (a2 * 2 > 9) {
 			b2 = (a2 * 2 - 1) % 10;
 		}
-		// ����5+�ĵ�һλ
+		// 用于5+的第一位
 		int a1 = newIDstr[1];
-		int b1 = 0; // ���ڽ��ܼ�Ȩֵ
+		int b1 = 0; // 用于接受加权值
 		if (a1 * 5 < 10) {
 			b1 = a1 * 5;
 		} else if (a1 * 5 > 9) {
 			b1 = ((a1 * 5) + (int) Math.floor((a1 * 5) / 10)) % 10;
 		}
-		// ����5+�ĵ���λ
+		// 用于5+的第四位
 		int a3 = newIDstr[4];
-		int b3 = 0; // ���ڽ��ܼ�Ȩֵ
+		int b3 = 0; // 用于接受加权值
 		if (a3 * 5 < 10) {
 			b3 = a3 * 5;
 		} else if (a3 * 5 > 9) {
 			b3 = ((a3 * 5) + (int) Math.floor((a3 * 5) / 10)) % 10;
 		}
-		// ����5-�ĵ���λ
+		// 用于5-的第三位
 		int a4 = newIDstr[3];
-		int b4 = 0; // ���ڽ��ܼ�Ȩֵ
+		int b4 = 0; // 用于接受加权值
 		if (a4 * 5 < 10) {
 			b4 = a4 * 5;
 		} else if (a4 * 5 > 9) {
@@ -6645,9 +6620,9 @@ public class RuleFunction {
 		}
 		int check;
 		check = 10 - (((b + b2 + b3 + b4 + b1)) % 10);
-		// ����5-��У��λ
+		// 用于5-的校检位
 		int a0 = newIDstr[0];
-		int b0 = 0; // ���ڽ��ܼ�Ȩֵ
+		int b0 = 0; // 用于接受加权值
 		if (a0 * 5 < 10) {
 			b0 = a0 * 5;
 		} else if (a0 * 5 > 9) {
@@ -6665,7 +6640,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String FlavorSubstance(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -6709,7 +6684,7 @@ public class RuleFunction {
 
 	}
 
-	// Function: 757 ��59 ֵ 10 11 12 20
+	// Function: 757 表59 值 10 11 12 20
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
@@ -6742,8 +6717,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String OneTO11and90(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -6766,12 +6741,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 10 11 12 20 21 22 29 30
+	// Function: 10 11 12 19 20 21 22 29 30
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	// public static String HighwayTransportation(char[] IDstr, int LenID,
 	// int[] Index, int LenIndex) {
 	// try {
@@ -6799,8 +6774,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String HighwayTransportationB9(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6825,8 +6800,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���4
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长4
+	// Creator:许江峰
 	public static String HighwayTransportationC3(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6851,15 +6826,14 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	// Function: jt/t 444--201 biao C6
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String HighwayTransportationC6(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6890,8 +6864,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String Porttariff(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6907,18 +6881,16 @@ public class RuleFunction {
 		} else if (i == 3 && j >= 0 && j <= 4) {
 			return OK;
 		}
-
 		else
 			return ERR;
-
 	}
 
 	// Function: jt/t 430
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String Porttariff4(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6948,8 +6920,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���3
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String Porttariff10(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6985,8 +6957,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String OneoTO24(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -6997,15 +6969,14 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	// Function: 01-17
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String OneTO17(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7029,8 +7000,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String OneTO17NO99(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7054,8 +7025,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String OneTO12No99(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7079,8 +7050,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?��
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰
 	public static String OneTO13No99(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7105,7 +7076,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:xjf
 	/*
 	 * public static String TwoOrThree(char[] IDstr, int LenID, int[] Index, int
 	 * LenIndex) { if (!checkInputParam(IDstr, LenID, Index, LenIndex)) { return
@@ -7120,12 +7091,12 @@ public class RuleFunction {
 	 * }
 	 */
 
-	// Function: ��λ����λ
+	// Function: 两位或四位
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String TwoOrFour(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7151,15 +7122,14 @@ public class RuleFunction {
 
 		}
 		return ERR;
-
 	}
 
-	// Function: 910 �еı�15
+	// Function: 910 中的表15
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table15(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7245,12 +7215,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: 910 �еı�18
+	// Function: 910 中的表18
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table18(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7279,12 +7249,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 910 �еı�19
+	// Function: 910 中的表19
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table19(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7313,12 +7283,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: 910 �еı�20
+	// Function: 910 中的表20
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table20(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7352,12 +7322,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒ ֮��׼��
+	// Function: DL/T 700.2-1999第二部分 机电产品 之标准件
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table17(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7388,12 +7358,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable22
+	// Function: DL/T 700.2-1999第二部分 机电产品table22
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table22(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7423,12 +7393,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable27
+	// Function: DL/T 700.2-1999第二部分 机电产品table27
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table27(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7458,12 +7428,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable28
+	// Function: DL/T 700.2-1999第二部分 机电产品table28
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table28(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7493,12 +7463,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable29
+	// Function: DL/T 700.2-1999第二部分 机电产品table29
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table29(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7537,12 +7507,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable30
+	// Function: DL/T 700.2-1999第二部分 机电产品table30
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table30(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7597,12 +7567,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable31
+	// Function: DL/T 700.2-1999第二部分 机电产品table31
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table31(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7647,12 +7617,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable32
+	// Function: DL/T 700.2-1999第二部分 机电产品table32
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table32(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7687,12 +7657,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable34
+	// Function: DL/T 700.2-1999第二部分 机电产品table34
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table34(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7747,12 +7717,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable35
+	// Function: DL/T 700.2-1999第二部分 机电产品table35
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table35(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7782,12 +7752,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable38
+	// Function: DL/T 700.2-1999第二部分 机电产品table38
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table38(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7822,12 +7792,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable41
+	// Function: DL/T 700.2-1999第二部分 机电产品table41
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table41(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7862,12 +7832,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999�ڶ����� ����Ʒtable43
+	// Function: DL/T 700.2-1999第二部分 机电产品table43
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:�?��
+	// Creator:许江峰
 	public static String Table43(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7921,8 +7891,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 504
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 504
 	public static String OneTO03(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8155,8 +8125,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
-	// Creator:�?�� 504
+	// LenIndex: the number of indexes 固定长2
+	// Creator:许江峰 504
 	public static String OneTO42No99(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -8176,11 +8146,11 @@ public class RuleFunction {
 
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳó��ҵ��ͳ�Ʒ��������(14)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ6
+	// Function: 粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为6
 	// creator: zll
 	public static String FoodTrade(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8206,11 +8176,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ�ӹ�(18)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ5
+	// Function: 粮食信息分类与编码 粮食加工(18)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为5
 	// creator: zll
 	public static String FoodEconomy(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8236,11 +8206,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ�ִ�ҵ��ͳ�Ʒ��������(16)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ8
+	// Function: 粮食信息分类与编码 粮食仓储业务统计分类与代码(16)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为8
 	// creator: zll
 	public static String GainStoreHouse(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8266,11 +8236,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� �������溦���������(17)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ5
+	// Function: 粮食信息分类与编码 储粮病虫害分类与代码(17)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为5
 	// creator: zll
 	public static String GainsDiseases(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8296,11 +8266,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ�ӹ���1���֣��ӹ���ҵ���������(19)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ8
+	// Function: 粮食信息分类与编码 粮食加工第1部分：加工作业分类与代码(19)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为8
 	// creator: zll
 	public static String GainsProcess(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8326,11 +8296,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ�ִ���3���֣����ķ��������(20)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ4
+	// Function: 粮食信息分类与编码 粮食仓储第3部分：器材分类与代码(20)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为4
 	// creator: zll
 	public static String GainsEquipment(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8356,11 +8326,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ�ִ���2���֣���������������(21)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ3
+	// Function: 粮食信息分类与编码 粮食仓储第2部分：粮情检测分类与代码(21)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为3
 	// creator: zll
 	public static String GainsConditionDetection(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8386,11 +8356,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ�ִ���1���֣��ִ���ҵ���������(22)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ5����6
+	// Function: 粮食信息分类与编码 粮食仓储第1部分：仓储作业分类与代码(22)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为5或者6
 	// creator: zll
 	public static String GrainsSmartWMS(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8416,11 +8386,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ�����2���֣�������׼���������(26)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ8
+	// Function: 粮食信息分类与编码 粮食检验第2部分：质量标准分类与代码(26)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为8
 	// creator: zll
 	public static String GrainsQualityStandard(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8446,11 +8416,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��������������������(32)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ8
+	// Function: 计量器具命名与分类编码(32)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为8
 	// creator: zll
 	public static String MeasuringInstrument(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8476,11 +8446,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ���� ��1���֣�ָ����������(27)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ8
+	// Function: 粮食信息分类与编码 粮食检验 第1部分：指标分类与代码(27)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为8
 	// creator: zll
 	public static String GrainsIndex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8506,11 +8476,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ���ӹ���Ʒ���������(28)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ7
+	// Function: 粮食信息分类与编码 粮食及加工产品分类与代码(28)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为7
 	// creator: zll
 	public static String GrainsInformation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8536,11 +8506,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ���Է��������(29)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ3
+	// Function: 粮食信息分类与编码 粮食属性分类与代码(29)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为3
 	// creator: zll
 	public static String GrainsAttribute(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8566,11 +8536,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ��ҵ���������(30)�е�ǰ��λ�жϣ���ֵ��ΧΪ10,11,19,30
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ2
+	// Function: 粮食信息分类与编码 粮食企业分类与代码(30)中的前两位判断，数值范围为10,11,19,30
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为2
 	// creator: zll
 	public static String GrainEnterprise(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8596,11 +8566,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʳ��Ϣ��������� ��ʳ��������ҵ�����������������(31)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ6
+	// Function: 粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为6
 	// creator: zll
 	public static String GrainAdministrative(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8626,11 +8596,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ������Ʒ����ʹ���(34)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:���ȱ�Ϊ5
+	// Function: 建筑产品分类和代码(34)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度必为5
 	// creator: zll
 	public static String ConstructionProducts(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8656,11 +8626,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �����˱�ʶ��������ֱ������������ʽ(44)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����11-17
+	// Function: 承运人标识符编码规则，直接满足正则表达式(44)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度11-17
 	// creator: zll
 	public static String CarrierIdentifier(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8685,11 +8655,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �������ӵ�ͼ��ݷ��������(45)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����4
+	// Function: 导航电子地图数据分类与编码(45)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度4
 	// creator: zll
 	public static String ElectronicMap(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8715,11 +8685,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �����շѹؼ���Ϣ����(46)��ǰ4λΪ��������\u4e00-\u9fa5
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����4
+	// Function: 电子收费关键信息编码(46)，前4位为两个汉字\u4e00-\u9fa5
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度4
 	// creator: zll
 	public static String ChineseCharRegex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8747,11 +8717,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ж�2���ֽ��ǲ�������(01-53)
+	// Function: 判断2个字节是不是属于(01-53)
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, �̶�Ϊ2
+	// LenIndex: the number of indexes, 固定为2
 	// creator: helinjia
 	public static String TwobytleWeekCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8788,11 +8758,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ������Ϣ������������(56)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����5
+	// Function: 地理信息分类与编码规则(56)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度5
 	// creator: zll
 	public static String GeographicInformation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8818,11 +8788,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ������Ϣ������������(56)�е�������Ϊ����������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:������
+	// Function: 地理信息分类与编码规则(56)中的属性码为不定长数字
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:不定长
 	// creator: zll
 	public static String GeographicPropertyRegex(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8851,11 +8821,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���ֳ��е�����Ϣ����ƽ̨��������(62)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:������
+	// Function: 数字城市地理信息公共平台，正整数(62)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:不定长
 	// creator: zll
 	public static String DigitRegex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8884,11 +8854,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��֯���ϱ��뻯�˲���(64)��֯������ƴ���
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ5
+	// Function: 纺织面料编码化纤部分(64)纺织面料名称代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为5
 	// creator: zll
 	public static String TextileFabricNameCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8914,11 +8884,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��֯���ϱ��뻯�˲���(64)��֯�������Դ���X1X2
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ2
+	// Function: 纺织面料编码化纤部分(64)纺织面料属性代码X1X2
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
 	// creator: zll
 	public static String PropertiesMain(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8945,11 +8915,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��֯���ϱ��뻯�˲���(64)��ά���� X3X4
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ2
+	// Function: 纺织面料编码化纤部分(64)纤维特征 X3X4
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
 	// creator: zll
 	public static String PropertiesFiberCharacteristics(char[] IDstr,
 			int LenID, int[] Index, int LenIndex) {
@@ -8975,11 +8945,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��֯�������Դ���(64)X7X8����᷽̽ʽ,�������Ϊ[1-3,9],[1-3,9]
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ2
+	// Function: 纺织面料属性代码(64)X7X8纤网固结方式,另外可能为[1-3,9],[1-3,9]
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
 	// creator: zll
 	public static String PropertiesMix(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9009,11 +8979,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��֯�������Դ���(64)X9X10 3�ֿ���01-19,99 01-09,99 01-12,99������ѡ�����Χ����
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ2
+	// Function: 纺织面料属性代码(64)X9X10 3种可能01-19,99 01-09,99 01-12,99，所以选择最大范围满足
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
 	// creator: zll
 	public static String PropertiesFabric(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9039,11 +9009,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��֯�������Դ���(64)X11X12
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ2
+	// Function: 纺织面料属性代码(64)X11X12
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
 	// creator: zll
 	public static String PropertiesDyeingandFinishing(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9069,11 +9039,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��֯�������Դ���(64)X11X12
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ9
+	// Function: 纺织面料属性代码(64)X11X12
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为9
 	// creator: zll
 	public static String GeneralManufacturingProcess(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9099,11 +9069,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��·��ͨ��Ϣ������Ϣ���������(68)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ2
+	// Function: 道路交通信息服务信息分类与编码(68)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2
 	// creator: zll
 	public static String TrafficInformation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9114,11 +9084,11 @@ public class RuleFunction {
 			if (LenIndex != 2) {
 				return ERR;
 			}
-			// ǰ��λ��
+			// 前两位数
 			int index1 = (int) IDstr[0] - 48;
 			int index2 = (int) IDstr[1] - 48;
 			int i = 10 * index1 + index2;
-			// 3,4λ��
+			// 3,4位数
 			int index3 = (int) IDstr[Index[0]] - 48;
 			int index4 = (int) IDstr[Index[1]] - 48;
 			int j = 10 * index3 + index4;
@@ -9141,11 +9111,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ȫ����Ҫ��Ʒ����������2���� ���������Ʒ(712)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���1-5
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ2,0��-1
+	// Function: 全国主要产品分类与代码第2部分 不可运输产品(712)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度1-5
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为2,0和-1
 	// creator: zll
 	public static String UntransportableProduct(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9171,11 +9141,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ȫ����Ҫ��Ʒ����������2���� ���������Ʒ��3λ(712)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���1-5
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����Ϊ3
+	// Function: 全国主要产品分类与代码第2部分 不可运输产品后3位(712)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度1-5
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度为3
 	// creator: zll
 	public static String LastThreeUntransportableProduct(char[] IDstr,
 			int LenID, int[] Index, int LenIndex) {
@@ -9201,11 +9171,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��·��ͨ��Ϣ�ɼ���Ϣ���������(77)
+	// Function: 道路交通信息采集信息分类与编码(77)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� �̶���4
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长4
 	// Creator:zll
 	public static String TrafficInformationCollection(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9228,11 +9198,11 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: �̲���ҵ����ͳ�����Ԫ��2���� ���뼯(202)
+	// Function: 烟草行业工商统计数据元第2部分 代码集(202)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� �̶���2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长2
 	// Creator:zll
 	public static String TobaccoLeafColor(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9258,11 +9228,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��Ҷ�����5������Ҷ��ɫ����(204)
+	// Function: 烟叶代码第5部分烟叶颜色代码(204)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� �̶���2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长2
 	// Creator:zll
 	public static String TrafficOrganization(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9288,11 +9258,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��Ҷ�����2������Ҷ��̬����(207)
+	// Function: 烟叶代码第2部分烟叶形态代码(207)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� �̶���3
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长3
 	// Creator:zll
 	public static String TobaccoLeafForm(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9318,11 +9288,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��Ҷ�����1������Ҷ���������(208)
+	// Function: 烟叶代码第1部分烟叶分类与代码(208)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� �̶���5
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 固定长5
 	// Creator:zll
 	public static String TobaccoLeafClass(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9348,11 +9318,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ͯ�����״����(213)
+	// Function: 儿童大便性状代码(213)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String ChildrenExcrement(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9382,7 +9352,7 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
+	// LenIndex: the number of indexes 固定长2
 	// Creator:zll
 	public static String OneToEleven(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9406,11 +9376,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���Ƶ�ʴ���(214)
+	// Function: 饮酒频率代码(214)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String DrinkingFrequency(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9436,11 +9406,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���Ƶ�ʴ���(214)
+	// Function: 饮酒频率代码(214)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String DrinkingClass(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9466,11 +9436,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���Ƶ�ʴ���(214)
+	// Function: 饮酒频率代码(214)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String PhysicalActivityFrequency(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9496,11 +9466,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ������ֹ��ʽ�����(215)
+	// Function: 妊娠终止方式代码表(215)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String TerminationofPregnancy(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9526,11 +9496,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ������ֹ��ʽ�����(215)
+	// Function: 妊娠终止方式代码表(215)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String ModeofProduction(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9556,11 +9526,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ����ص�������(215)
+	// Function: 分娩地点类别代码(215)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String DileveryPlace(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9586,11 +9556,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ������Ϣ���Ԫֵ������17���֣��������(218)
+	// Function: 卫生信息数据元值域代码第17部分：卫生管理(218)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ2-8
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为2-8
 	// Creator:zll
 	public static String HealthSupervisionObject(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9616,11 +9586,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ͨ���ߴ���(219)
+	// Function: 交通工具代码(219)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String CommunicationCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9646,11 +9616,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ����ල����Ա����������(220)
+	// Function: 卫生监督机构人员编制类别代码(220)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String HygieneAgencyPersonnel(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9676,11 +9646,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ����ල����Ա����������(220)
+	// Function: 卫生监督机构人员编制类别代码(220)
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������ĵ�����λ�� ����Ϊ1-2
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为1-2
 	// Creator:zll
 	public static String WorkerHealthSupervision(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9706,13 +9676,13 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ʵ��У��15λ��17710
+	// Function: 实现校验15位数17710
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:������
-	// ����������110108000000016
+	// Creator:方丹丽
+	// 检验例子码110108000000016
 	public static String BussManaCheck(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -9736,13 +9706,13 @@ public class RuleFunction {
 				if (s[i] % 10 == 0) {
 					p[i + 1] = 20;
 				}
-				System.out.println("s[i]=" + s[i]);
-				System.out.println("p[i]=" + p[i]);
+//				System.out.println("s[i]=" + s[i]);
+//				System.out.println("p[i]=" + p[i]);
 			}
 			p[14] = (s[13] % 10) * 2;
-			System.out.println("p[14]=" + p[14]);
+//			System.out.println("p[14]=" + p[14]);
 			s[14] = p[14] % 11 + a[0];
-			System.out.println("s[14]=" + s[14]);
+//			System.out.println("s[14]=" + s[14]);
 
 			if (s[14] % 10 == 1) {
 				return OK;
@@ -9755,10 +9725,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 280-�����鱦��ʯ��������Ʒ���������Ʒ��� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���5λ
-	// Index: ������֤�㷨������λ��
+	// 280-——珠宝玉石及金属产品分类代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度5位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String JadejewelryClass(char[] IDstr, int LenID, int[] Index,
@@ -9785,10 +9755,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 282-������Ϣ��ȫ����������Ʒ��� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���4λ
-	// Index: ������֤�㷨������λ��
+	// 282-——信息安全技术代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度4位
+	// Index: 调用验证算法的索引位置
 	// creator:fdl
 	public static String InformationSafe(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9815,39 +9785,50 @@ public class RuleFunction {
 		}
 	}
 
-	// 280-�������뵳����ش�����Ʒ��� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���3λ
-	// Index: ������֤�㷨������λ��
+	// 280-——中央党政机关代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度3位
+	// Index: 调用验证算法的索引位置
 	// creator:fdl
-	public static String CodeHighWay(char[] IDstr, int LenID, int[] Index,
+	public static String CodeHighWayLine(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			return ERR;
-		}
-		if (LenIndex != 3) {
-			return ERR;
-		}
 		try {
-			String code = "";
-			for (int i = 0; i < 3; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
-			}
-			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getPortTariff280(code);
-			if (ret) {
-				return OK;
-			} else
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
+			}
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			int index1 = Index[0];
+			int index2 = Index[1];
+			int index3 = Index[2];
+			int index4 = Index[3];
+			if ((IDstr[index1] == '0') && (IDstr[index2] == '0')
+					&& (IDstr[index3] == '0') && (IDstr[index4] == '0')) {
+				return ERR;
+			}
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index4] < '0') || (IDstr[index4] > '9')) {
+				return ERR;
+			}
+			return OK;
 		} catch (Exception e) {
 			return ERR;
 		}
 	}
 
-	// 284-������ᾭ��Ŀ�����ʹ���� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���6λ
-	// Index: ������֤�㷨������λ��
+	// 284-——社会经济目标分类和代码表 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度6位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a6
 	// creator:fdl
 	public static String goalsocialeconomic(char[] IDstr, int LenID,
@@ -9875,10 +9856,10 @@ public class RuleFunction {
 
 	}
 
-	// 285-����������Ϣ����ʹ���� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���6λ
-	// Index: ������֤�㷨������λ��
+	// 285-——物流信息分类和代码表 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度6位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a6
 	// creator:fdl
 	public static String LogisticsInf(char[] IDstr, int LenID, int[] Index,
@@ -9906,10 +9887,10 @@ public class RuleFunction {
 
 	}
 
-	// 287-������װ����ʹ���� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���6λ
-	// Index: ������֤�㷨������λ��
+	// 287-——服装分类和代码表 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度6位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a6
 	// creator:fdl
 	public static String clothesclass(char[] IDstr, int LenID, int[] Index,
@@ -9937,10 +9918,10 @@ public class RuleFunction {
 
 	}
 
-	// 288-������װ���ַ��������Ʒ��� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���5λ
-	// Index: ������֤�㷨������λ��
+	// 288-——服装名字分类代码编制方法 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度5位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String ClothesName(char[] IDstr, int LenID, int[] Index,
@@ -9967,10 +9948,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 191-����ҽҩ��е����ʹ���� �����ݿ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���6λ
-	// Index: ������֤�㷨������λ��
+	// 191-——医药器械分类和代码表 查表数据库
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度6位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a6
 	// creator:fdl
 	public static String Pharmacequipment(char[] IDstr, int LenID, int[] Index,
@@ -9997,11 +9978,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��λ�غ�����������������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �����غ�������������λ��
-	// LenIndex: ����Ϊ��λ
+	// Function: 六位沿海行政区域分类与代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用沿海行政区域代码的位置
+	// LenIndex: 长度为六位
 	// creator: gcc
 	public static String CoastalAdminAreaId(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -10028,11 +10009,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��λ�����ǼǺ�
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ô����ǼǺŴ����λ��
-	// LenIndex: ����Ϊ��λ
+	// Function: 六位船舶登记号
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用船舶登记号代码的位置
+	// LenIndex: 长度为六位
 	// creator: gcc
 	public static String InternationalShipCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -10059,11 +10040,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �غ�������������ǰ��λ
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �����غ������������ǰ��λ��λ��
-	// LenIndex: ����Ϊ��λ
+	// Function: 沿海行政区域代码的前两位
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用沿海行政区域代码前两位的位置
+	// LenIndex: 长度为两位
 	// creator: gcc
 	public static String First2CharsofCoastalAdminAreaId(char[] IDstr,
 			int LenID, int[] Index, int LenIndex) {
@@ -10092,11 +10073,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��λ�������ʹ���
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���þ������ʹ����λ��
-	// LenIndex: ����Ϊ��λ
+	// Function: 两位经济类型代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用经济类型代码的位置
+	// LenIndex: 长度为两位
 	// creator: gcc
 	public static String WirtschaftsTypCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -10123,13 +10104,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��Ⱦ����ƴ������3��4λ����˳����룬��һ��1λ���ֱ�ʾ���ڶ���2λ���ֱ�ʾ����3��1λ���ֱ�ʾ������������������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ô�Ⱦ����ƴ����λ��
-	// LenIndex: ���ȱ���Ϊ4λ
+	// Function: 传染病名称代码采用3层4位数字顺序代码，第一层1位数字表示；第二层2位数字表示，第3层1位数字表示。所有数字升序排列
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用传染病名称代码的位置
+	// LenIndex: 长度必须为4位
 	// creator: gcc
-
 	public static String InfectiousDiseases(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -10156,11 +10136,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ����վ��վ��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ú���վ��Ŵ����λ��
-	// LenIndex: ��������λ
+	// Function: 海洋站区站号
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用海洋站区号代码的位置
+	// LenIndex: 长度是两位
 	// creator: gcc
 	public static String OceanStationCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -10186,11 +10166,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �����������������ƹ���309��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���õ������Դ����λ��
-	// LenIndex: ��������λ
+	// Function: 地名分类与类别代码编制规则（309）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用地理属性代码的位置
+	// LenIndex: 长度是四位
 	// creator: gcc
 	public static String GeographicalCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -10217,11 +10197,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ũҩ������Ƽ����루305��
+	// Function: 农药剂型名称及代码（305）
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: �������������λ�ó���Ϊ2-4
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的索引位置长度为2-4
 	// creator: gcc
 	public static String PesticideFormulationCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -10249,11 +10229,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���ó��ߴ����
+	// Function: 乘用车尺寸代码
 	// IDstr: ID String
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: �������������λ�ó���Ϊ6-8
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的索引位置长度为6-8
 	// creator: gcc
 	public static String PassengerCarCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -11383,7 +11363,7 @@ public class RuleFunction {
 	 * number of indexes creator:wt
 	 */
 
-	public static String TwobytleCode06and90(char[] IDstr, int LenID,
+	public static String TwobyteCode06and90(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
@@ -11517,10 +11497,10 @@ public class RuleFunction {
 		return ERR;
 	}
 
-	// 377��������ְ
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ��� 4λ
-	// Index: ������֤�㷨������λ��
+	// 377——社会兼职
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 4位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:4
 	// creator:fdl
 	public static String SocialWork(char[] IDstr, int LenID, int[] Index,
@@ -11529,7 +11509,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 4) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 
@@ -11541,7 +11521,6 @@ public class RuleFunction {
 					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '7')
 					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '8')
 					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '9')
-					|| (IDstr[Index[0]] == '1' && IDstr[Index[1]] == '0')
 					|| (IDstr[Index[0]] == '1' && IDstr[Index[1]] == '0')
 					|| (IDstr[Index[0]] == '4' && IDstr[Index[1]] == '1')
 					|| (IDstr[Index[0]] == '4' && IDstr[Index[1]] == '2')
@@ -11634,10 +11613,10 @@ public class RuleFunction {
 
 	}
 
-	// Function: ɽ��ɽ����ƴ��루297��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function: 山脉山峰名称代码（297）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String MountainRangeAndPeakName(char[] CODEstr, int LenCODE,
@@ -11646,7 +11625,7 @@ public class RuleFunction {
 		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex != 7) {
+		if (LenIndex != 8) {
 			return ERR;
 		}
 		String code = new String(CODEstr);
@@ -11663,10 +11642,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ֪ʶ��Ȩ��������Ϣ���༰���루298��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function: 知识产权文献与信息分类及代码（298）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String IntellectualProperty(char[] CODEstr, int LenCODE,
@@ -11675,7 +11654,7 @@ public class RuleFunction {
 		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex != 4) {
+		if (LenIndex != 6) {
 			return ERR;
 		}
 		String code = new String(CODEstr);
@@ -11692,10 +11671,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���ú���ҵ��Ϣ��������� (340)
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function: 民用航空业信息分类与代码 (340)
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String ClassificationOfCivilAviation(char[] CODEstr,
@@ -11722,10 +11701,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ߵ�ѧУ���ơ�ר��רҵ��ƴ��루328��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function: 高等学校本科、专科专业名称代码（328）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String NormalAndShortCycleSpeciality(char[] CODEstr,
@@ -11752,10 +11731,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ����ά�ޱ�����ϵ �ڶ����֣�337��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function: 船舶维修保养体系 第二部分（337）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String MaintenanceSystemPTwo(char[] CODEstr, int LenCODE,
@@ -11782,10 +11761,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:���ó�׺�ͬ���루326��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:国际贸易合同代码（326）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String CountryRegionCode1(char[] IDstr, int LenID,
@@ -11802,7 +11781,7 @@ public class RuleFunction {
 
 		try {
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getMaintenanceSystemPTwo(code);
+			boolean ret = recoDao.getCountryRegionCode1(code);
 			if (ret) {
 				return OK;
 			} else
@@ -11812,10 +11791,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:�����Ƽ��ɹ��������루784��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:电力科技成果分类与代码（784）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String ElectricPower(char[] CODEstr, int LenCODE,
@@ -11832,7 +11811,7 @@ public class RuleFunction {
 
 		try {
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getMaintenanceSystemPTwo(code);
+			boolean ret = recoDao.getElectricPower(code);
 			if (ret) {
 				return OK;
 			} else
@@ -11842,10 +11821,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:ȫ�������ƴ��루785��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:全国电网名称代码（785）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String PowerGrid(char[] CODEstr, int LenCODE, int[] Index,
@@ -11872,10 +11851,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:������ҵ��λ�����루787��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:电力行业单位类别代码（787）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String ElectricPowerIndustry(char[] CODEstr, int LenCODE,
@@ -11902,10 +11881,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:����������Ϣϵͳͼ�η�ŷ�������루788��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:电力地理信息系统图形符号分类与代码（788）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String ElectricPowerGeography(char[] CODEstr, int LenCODE,
@@ -11932,10 +11911,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:��ѹ�ȼ����루789��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:电压等级代码（789）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String VoltageClass(char[] CODEstr, int LenCODE, int[] Index,
@@ -11962,10 +11941,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:�������ʱ��� �ڶ����� ����Ʒ��909��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:电力物资编码 第二部分 机电产品（909）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String PowerGoodsP2(char[] CODEstr, int LenCODE, int[] Index,
@@ -11975,7 +11954,7 @@ public class RuleFunction {
 			return ERR;
 		}
 
-		if (LenIndex != 2) {
+		if (LenIndex != 3) {
 			return ERR;
 		}
 		String code = new String(CODEstr);
@@ -11992,11 +11971,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �����ȴ��?�շ��༰��ţ����������빤����Ʋ��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ñ�ʶ�����λ��
-	// LenIndex: ����Ϊ2
+	// Function: 金属热处理工艺分类及代号，工艺类型与工艺名称层次
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用标识编码的位置
+	// LenIndex: 长度为2
 	// creator: gcc
 	public static String MetalHeatCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12033,11 +12012,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �������ϢҪ�ط��������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ñ�ʶ�����λ��
-	// LenIndex: ����Ϊ��λ
+	// Function: 基础地理信息要素分类与代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用标识编码的位置
+	// LenIndex: 长度为六位
 	// creator: gcc
 	public static String GeographicInfoCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12064,11 +12043,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �����Σ�պ��к����ط��������(354)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex: ���ȱ�Ϊ6
+	// Function: 生产过程危险和有害因素分类与代码(354)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex: 长度必为6
 	// creator: gcc
 	public static String HarmfulFactor(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12094,11 +12073,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �л����񹲺͹���·��վ���������(366)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex: ���ȱ�Ϊ6
+	// Function: 中华人民共和国铁路车站分类与代码(366)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex: 长度必为6
 	// creator: gcc
 	public static String RailwayStationCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12124,11 +12103,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ת�������ṹ�ķ����ȼ���IP���룩 �ּ�(261)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �������������λ��
-	// LenIndex: ������
+	// Function: 旋转电机整体结构的防护等级（IP代码） 分级(261)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的索引位置
+	// LenIndex: 不定长
 	// creator: gcc
 	public static String ProtectionDegreeRegex(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12158,11 +12137,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ҵ������������루237��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �������������λ��
-	// LenIndex: ������
+	// Function: 林业档案分类与代码（237）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的索引位置
+	// LenIndex: 不定长
 	// creator: gcc
 	public static String ForestryClassRegex(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12192,11 +12171,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���ʿ�������������루241-244��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex: ������
+	// Function: 地质矿产术语分类与代码（241-244）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex: 不定长
 	// creator: gcc
 	public static String MineralRegex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12226,11 +12205,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ʺ��˻���װж���úʹ������޷�ʽ�������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ������������λ��
-	// LenIndex: ����Ϊ��λ
+	// Function: 国际航运货物装卸费用和船舶租赁方式条款代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用条款代码的位置
+	// LenIndex: 长度为两位
 	// creator: gcc
 	public static String StevedorageChartering(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12281,11 +12260,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ҵ��Դ��������� ��ľ����
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ������ľ������λ��
-	// LenIndex�� ����Ϊ��λ
+	// Function: 林业资源分类与代码 林木病害
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用林木病害的位置
+	// LenIndex: 长度为六位
 	// creator: gcc
 	public static String TreeDiseaseCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12312,11 +12291,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ںӴ������������ǰ��λ��341-1��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ô��������λ��
-	// LenIndex: ��������λ
+	// Function: 内河船舶分类与代码前四位（341-1）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用船舶代码的位置
+	// LenIndex: 长度是四位
 	// creator: gcc
 	public static String NavigationShip(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12343,11 +12322,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ںӴ�����������븽�Ӵ��루341-2��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ø��Ӵ����λ��
-	// LenIndex: ��������λ
+	// Function: 第46部分：消防训练分类与代码（411）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用消防训练分类与代码代码的位置
+	// LenIndex: 长度是六位
 	// creator: gcc
 	public static String NavigationShipAddCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12391,11 +12370,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��46���֣����ѵ����������루411��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �������ѵ���������������λ��
-	// LenIndex: ��������λ
+	// Function: 第33部分：起火原因分类与代码（425）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用起火原因分类与代码代码的位置
+	// LenIndex: 长度是六位
 	// creator: gcc
 	public static String FireTrainCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12468,11 +12447,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��33���֣����ԭ���������루425��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: �������ԭ��������������λ��
-	// LenIndex: ��������λ
+	// Function: 第28部分：消防出警事件分类与代码（425）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用消防出警事件分类与代码代码的位置
+	// LenIndex: 长度是四位
 	// creator: gcc
 	public static String FireCauseCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12564,11 +12543,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��28���֣���������¼���������루425��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ������������¼��������������λ��
-	// LenIndex: ��������λ
+	// Function: 第28部分：消防出警事件分类与代码（425）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用消防出警事件分类与代码代码的位置
+	// LenIndex: 长度是四位
 	// creator: gcc
 	public static String FireForceCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12711,7 +12690,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 4) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 			int index1 = (int) IDstr[Index[0]] - 48;
@@ -12766,11 +12745,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: GA/T 556.4
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ý��ڵ�λ�������λ��
-	// LenIndex: ��������λ
+	// Function: 第28部分：消防出警事件分类与代码（425）
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用消防出警事件分类与代码代码的位置
+	// LenIndex: 长度是四位
 	// creator: gcc
 	public static String FinancialCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12828,10 +12807,10 @@ public class RuleFunction {
 	}
 
 	// Function: GA/T 556.3
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ���ý���������λ��
-	// LenIndex: ��������λ
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用金库类别代码的位置
+	// LenIndex: 长度是两位
 	// creator: gcc
 	public static String TreasuryClass(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12864,10 +12843,10 @@ public class RuleFunction {
 	}
 
 	// Function: GA/T 556.1
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ����ְ���������λ��
-	// LenIndex: ��������λ
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用职务类别代码的位置
+	// LenIndex: 长度是两位
 	// creator: gcc
 	public static String JobClassificationCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12875,7 +12854,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 2) {
+			if (LenIndex != 4) {
 				return ERR;
 			}
 
@@ -12944,11 +12923,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ����֤�����루470��
+	// Function: 常用证件代码（470）
 	// IDstr: ID string
-	// LenID: ��ʶ����
-	// Index: ��ʶ����ĳ���
-	// LenIndex: ��������λ�ó���Ϊ3
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用索引位置长度为3
 	// creator: gcc
 	public static String TravleDocumentCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12976,10 +12955,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:����������ֺ�ʡ����������ܶӴ���(474)
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:公安部消防局和省级公安消防总队代码(474)
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String ProvinceAdminCode(char[] CODEstr, int LenCODE,
@@ -13006,10 +12985,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:�йܵ�λ����(474)
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:列管单位代码(474)
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String AdminDivision1(char[] CODEstr, int LenCODE,
@@ -13019,7 +12998,7 @@ public class RuleFunction {
 			return ERR;
 		}
 
-		if (LenIndex != 8) {
+		if (LenIndex != 9) {
 			return ERR;
 		}
 		String code = new String(CODEstr);
@@ -13036,11 +13015,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���ó�׺�ͬ������ƹ����Զ����������ƥ��,���ֻ�����ĸ����������ĸ���档(326)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����<=9
+	// Function: 国际贸易合同代码编制规则自定义编码正则匹配,数字或者字母，数字在字母后面。(326)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=9
 	// creator: yzc
 	public static String DraftingRulesForCodes(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -13069,11 +13048,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ������Ϣ�������������ƥ��,����(776)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:��������
+	// Function: 环境信息分类与代码正则匹配,数字(776)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度无穷
 	// creator: yzc
 	public static String EnvironmentalInformation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -13102,11 +13081,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��ˮ����������ƥ��,����(782)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:��������
+	// Function: 废水类别代码正则匹配,数字(782)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度无穷
 	// creator: yzc
 	public static String Wastewater(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13135,11 +13114,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���б�ʾ�����֧���������ƥ��,���֣���ĸ(332)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����<=4
+	// Function: 银行表示代码分支机构代码正则匹配,数字，字母(332)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=4
 	// creator: yzc
 	public static String BankCodes(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13168,7 +13147,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��֤��֤������루538��
+	// Function: 书证物证种类代码（538）
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -13201,7 +13180,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �ܺ���λ��ҵ������루532��
+	// Function: 受害单位行业分类代码（532）
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -13234,7 +13213,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: �����ֶδ��루539��
+	// Function: 作案手段代码（539）
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -13271,7 +13250,7 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes �̶���2
+	// LenIndex: the number of indexes 固定长2
 	// Creator:yzc
 	public static String OneTO48(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13292,11 +13271,11 @@ public class RuleFunction {
 
 	}
 
-	// Function:��··�߱�ʶ����͹���������ƥ��,���֣���ĸ(598)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����<=3
+	// Function:公路路线标识规则和国道编号正则匹配,数字，字母(598)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=3
 	// creator: yzc
 	public static String NationalTrunkHighway(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -13399,7 +13378,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * ǰ4λ�����֣���2λ��С�� 1234.12 author:wt
+	 * 前4位是数字，后2位是小数 1234.12 author:wt
 	 */
 	public static String ParamCode7(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13422,7 +13401,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * ������1,2,3,6λ������
+	 * 可能是1,2,3,6位的数字
 	 * 
 	 * author:wt
 	 */
@@ -13465,7 +13444,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������6λ��7λ������ author��wt
+	 * 校验最后的码，可能是6位或7位的数字 author：wt
 	 */
 	public static String ParamCode19(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13493,7 +13472,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������4λ��8λ��9������ author��wt
+	 * 校验最后的码，可能是4位或8位或9的数字 author：wt
 	 */
 	public static String ParamCode20(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13529,7 +13508,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������8λ��6λ���� ��Ϊ8λʱ����ĵ�һλ��1 ��Ϊ6λʱ����ĵ�һλ��2 author��wt
+	 * 校验最后的码，可能是8位或6位数字 当为8位时，码的第一位是1 当为6位时，码的第一位是2 author：wt
 	 */
 	public static String ParamCode22(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13563,7 +13542,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������10λ��8λ���� ��Ϊ10λʱ����ĵ�1,2λ��01 ��Ϊ8λʱ����ĵ�1,2λ��02 author��wt
+	 * 校验最后的码，可能是10位或8位数字 当为10位时，码的第1,2位是01 当为8位时，码的第1,2位是02 author：wt
 	 */
 	public static String ParamCode27(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13597,7 +13576,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������4λ��5λ���� ��Ϊ4λʱ����ĵ�1,2λ��01��03 ��Ϊ5λʱ����ĵ�1,2λ��02 author��wt
+	 * 校验最后的码，可能是4位或5位数字 当为4位时，码的第1,2位是01或03 当为5位时，码的第1,2位是02 author：wt
 	 */
 	public static String ParamCode28(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13631,8 +13610,8 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������3,4,5,9λ���� ��Ϊ3λʱ����ĵ�1,2λ��06 ��Ϊ4λʱ����ĵ�1,2λ��01,02,05,07
-	 * ��Ϊ5λʱ����ĵ�1,2λ��03 ��Ϊ9λʱ����ĵ�1,2λ��04 author��wt
+	 * 校验最后的码，可能是3,4,5,9位数字 当为3位时，码的第1,2位是06 当为4位时，码的第1,2位是01,02,05,07
+	 * 当为5位时，码的第1,2位是03 当为9位时，码的第1,2位是04 author：wt
 	 */
 	public static String ParamCode29(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13689,9 +13668,9 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������2,3,4,5,6,7,8λ���� ��Ϊ2λʱ����ĵ�1,2λ��05 ��Ϊ3λʱ����ĵ�1,2λ��06
-	 * ��Ϊ4λʱ����ĵ�1,2λ��09,10,11,12 ��Ϊ5λʱ����ĵ�1,2λ��07,08 ��Ϊ6λʱ����ĵ�1,2λ��02
-	 * ��Ϊ7λʱ����ĵ�1,2λ��01,03 ��Ϊ8λʱ����ĵ�1,2λ��04 author��wt
+	 * 校验最后的码，可能是2,3,4,5,6,7,8位数字 当为2位时，码的第1,2位是05 当为3位时，码的第1,2位是06
+	 * 当为4位时，码的第1,2位是09,10,11,12 当为5位时，码的第1,2位是07,08 当为6位时，码的第1,2位是02
+	 * 当为7位时，码的第1,2位是01,03 当为8位时，码的第1,2位是04 author：wt
 	 */
 	public static String ParamCode30(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13782,8 +13761,8 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������4,5,6,7,8λ���� ��Ϊ4λʱ����ĵ�1,2λ��05,08 ��Ϊ5λʱ����ĵ�1,2λ��03,06,09
-	 * ��Ϊ6λʱ����ĵ�1,2λ��07 ��Ϊ7λʱ����ĵ�1,2λ��04 ��Ϊ8λʱ����ĵ�1,2λ��01,02 author��wt
+	 * 校验最后的码，可能是4,5,6,7,8位数字 当为4位时，码的第1,2位是05,08 当为5位时，码的第1,2位是03,06,09
+	 * 当为6位时，码的第1,2位是07 当为7位时，码的第1,2位是04 当为8位时，码的第1,2位是01,02 author：wt
 	 */
 	public static String ParamCode31(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13829,8 +13808,8 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������3,7,8λ���� ��Ϊ3λʱ����ĵ�1,2λ��05 ��Ϊ7λʱ����ĵ�1,2λ��03,04
-	 * ��Ϊ8λʱ����ĵ�1,2λ��01,02 author��wt
+	 * 校验最后的码，可能是3,7,8位数字 当为3位时，码的第1,2位是05 当为7位时，码的第1,2位是03,04
+	 * 当为8位时，码的第1,2位是01,02 author：wt
 	 */
 	public static String ParamCode32(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13875,9 +13854,9 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������5,6,7,8,9,10,11λ���� ��Ϊ5λʱ����ĵ�1,2λ��09,10,11 ��Ϊ6λʱ����ĵ�1,2λ��08
-	 * ��Ϊ7λʱ����ĵ�1,2λ��03,06 ��Ϊ8λʱ����ĵ�1,2λ��05,07 ��Ϊ9λʱ����ĵ�1,2λ��04
-	 * ��Ϊ10λʱ����ĵ�1,2λ��02 ��Ϊ11λʱ����ĵ�1,2λ��01 author��wt
+	 * 校验最后的码，可能是5,6,7,8,9,10,11位数字 当为5位时，码的第1,2位是09,10,11 当为6位时，码的第1,2位是08
+	 * 当为7位时，码的第1,2位是03,06 当为8位时，码的第1,2位是05,07 当为9位时，码的第1,2位是04
+	 * 当为10位时，码的第1,2位是02 当为11位时，码的第1,2位是01 author：wt
 	 */
 	public static String ParamCode34(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13967,7 +13946,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������5,6λ���� ��Ϊ5λʱ����ĵ�1,2λ��3,4 ��Ϊ6λʱ����ĵ�1,2λ��1,2 author��wt
+	 * 校验最后的码，可能是5,6位数字 当为5位时，码的第1,2位是3,4 当为6位时，码的第1,2位是1,2 author：wt
 	 */
 	public static String ParamCode35(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -14001,7 +13980,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������7,9,10λ���� ��Ϊ7λʱ����ĵ�1λ��3 ��Ϊ9λʱ����ĵ�1λ��1 ��Ϊ10λʱ����ĵ�1λ��2 author��wt
+	 * 校验最后的码，可能是7,9,10位数字 当为7位时，码的第1位是3 当为9位时，码的第1位是1 当为10位时，码的第1位是2 author：wt
 	 */
 	public static String ParamCode38(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -14046,7 +14025,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������6,7λ���� ��Ϊ6λʱ����ĵ�1λ��1��2 ��Ϊ7λʱ����ĵ�1λ��3 author��wt
+	 * 校验最后的码，可能是6,7位数字 当为6位时，码的第1位是1或2 当为7位时，码的第1位是3 author：wt
 	 */
 	public static String ParamCode41(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -14081,9 +14060,9 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У�������룬������6,7λ���� ��Ϊ3λʱ����ĵ�1,2λ��15 ��Ϊ5λʱ����ĵ�1,2λ��09,10,11,13
-	 * ��Ϊ6λʱ����ĵ�1,2λ��01,06,12 ��Ϊ7λʱ����ĵ�1,2λ��02,03,04,05,07,08 ��Ϊ8λʱ����ĵ�1,2λ��14
-	 * author��wt
+	 * 校验最后的码，可能是6,7位数字 当为3位时，码的第1,2位是15 当为5位时，码的第1,2位是09,10,11,13
+	 * 当为6位时，码的第1,2位是01,06,12 当为7位时，码的第1,2位是02,03,04,05,07,08 当为8位时，码的第1,2位是14
+	 * author：wt
 	 */
 	public static String ParamCode43(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -14486,10 +14465,10 @@ public class RuleFunction {
 
 	}
 
-	// 509���������Ϸ���Ӫҵ�������岿��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���4λ
-	// Index: ������֤�㷨������λ��
+	// 509互联网网上服务营业场所——第五部分
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度4位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public static String InternetWebService(char[] IDstr, int LenID,
@@ -14516,8 +14495,8 @@ public class RuleFunction {
 		}
 	}
 
-	// 966-��ҹ��̽����׼��ϵ����ͳһ���� fdl
-	// [A1 A2 A3 B1 C1 D1 E1 F1 G1 H1 J1 K1 L1 M1 N1 P1 Q1 R1]��λ����
+	// 966-国家工程建设标准体系编码统一规则 fdl
+	// [A1 A2 A3 B1 C1 D1 E1 F1 G1 H1 J1 K1 L1 M1 N1 P1 Q1 R1]两位关联
 	public static String projectbuild(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -14555,7 +14534,7 @@ public class RuleFunction {
 		}
 	}
 
-	// ����Դ������� ��Ԫ�ع�Ҵ��� fdl
+	// 放射源编码规则 核元素国家代码 fdl
 	public static String NuclearelementNation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -14580,7 +14559,7 @@ public class RuleFunction {
 		}
 	}
 
-	// ����Դ������� fdl
+	// 放射源编码规则 fdl
 	public static String Nuclearelements(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -14605,7 +14584,7 @@ public class RuleFunction {
 		}
 	}
 
-	// ������������ע��ű��ƹ��� fdl
+	// 工商行政管理注册号编制规则 fdl
 	public static String BusinessAdminis(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -14634,17 +14613,17 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���׼����Ʒ��Ź���
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: (13,-1),��13λ�Ժ���ַ����������ʽ��֤
-	// LenIndex: ���ȱ�Ϊ2
+	// Function: 汽车标准件产品编号规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: (13,-1),从13位以后的字符串进行正则表达式验证
+	// LenIndex: 长度必为2
 	// creator: fdl
-	public static String CarProduct(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String CarProduct(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			String code = "";
-			String regex = "[1-6,9][0-4,6,9,A-N,P-Y]{0,1}";
+			String regex = "[1-6,9][0-4,6,9,A-N,P-Y]*";
 			int prefix = 13;
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
@@ -14652,8 +14631,8 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			// ���һλΪУ��λ
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			// 最后一位为校验位
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -14669,11 +14648,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���Ʒ�㲿���߱������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	// Function: 汽车产品零部件边编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:4
-	// LenIndex: ���ȱ�Ϊ4
+	// LenIndex: 长度必为4
 	// creator: fdl
 	public static String CarProductCompnent(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -14699,11 +14678,11 @@ public class RuleFunction {
 		}
 	}
 
-	// GB/T 23733�й��׼������Ʒ���� fdl
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	// GB/T 23733中国标准音乐作品编码 fdl
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:15
-	// LenIndex: ���ȱ�Ϊ15
+	// LenIndex: 长度必为15
 	// creator: fdl
 	public static String StandardMusicCheckCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -14739,11 +14718,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: TCL���ܵ�ر������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	// Function: TCL金能电池编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:4
-	// LenIndex: ���ȱ�Ϊ4
+	// LenIndex: 长度必为4
 	// creator: fdl
 	public static String TCLBatteryProduct(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -14769,11 +14748,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: TCL���ܵ�ر�����򡪡��������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	// Function: TCL金能电池编码规则——第三级编码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:4
-	// LenIndex: ���ȱ�Ϊ4
+	// LenIndex: 长度必为4
 	// creator: fdl
 	public static String ProductCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -14793,7 +14772,7 @@ public class RuleFunction {
 				if (ret) {
 					return OK;
 				} else
-					System.out.println("ƥ��ڶ�������");
+					//System.out.println("匹配第二条规则");
 				return ERR;
 			} catch (Exception e) {
 				return ERR;
@@ -14811,7 +14790,7 @@ public class RuleFunction {
 				RecoDao recoDao = new RecoDao();
 				boolean ret = recoDao.getPortProductCode(code);
 				if (ret) {
-					System.out.println("ƥ���һ������");
+					//System.out.println("匹配第一条规则");
 					return OK;
 				} else
 					return ERR;
@@ -14821,7 +14800,7 @@ public class RuleFunction {
 		return ERR;
 	}
 
-	// Function: 504 ��10���֣��������ͼ����ݴ���
+	// Function: 504 第10部分：服务类型及内容代码
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
@@ -14859,7 +14838,7 @@ public class RuleFunction {
 
 	}
 
-	// Function: 516 ��1���֣���ͨΥ����Ϊ�������
+	// Function: 516 第1部分：交通违法行为分类代码
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
@@ -14956,7 +14935,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:510 �������֤���ϼ�����������豸����
+	// Function:510 居民身份证材料及所有软件、设备代码
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15038,10 +15017,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���������ʾ�淶У���� ����MOD112
-	// ����MOD����ʾ���ຯ��i����ʾ�����ַ��������λ����ţ�Ci����ʾ��iλ���ϵĴ����ַ��ֵ��Wi����ʾ��iλ���ϵļ�Ȩ���ӣ�
-	// ��Ȩ���ӵĹ�ʽ�ǣ�2��n-1���ݳ���11ȡ����n�����Ǹ�i��������������
-	// ��У���ֵΪ10ʱ ��ֵλX.��У���ֵΪ11ʱ ��ֵλ0
+	// Function: 信用主体表示规范校验码 类似MOD112
+	// 其中MOD－表示求余函数；i－表示代码字符从左至右位置序号；Ci－表示第i位置上的代码字符的值；Wi－表示第i位置上的加权因子，
+	// 加权因子的公式是：2的n-1次幂除以11取余数，n就是那个i，从右向左排列
+	// 当校检的值为10时 赋值位X.当校检的值为11时 赋值位0
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15053,8 +15032,8 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ISO 7064:1983.MOD 11-2У���㷨���ַ��ٿռ�ʱҪ��һλ��������У��λ
-			double sum = 0; // ����У����
+			// ISO 7064:1983.MOD 11-2校验算法，字符串开辟空间时要多一位留给最后加校验位
+			double sum = 0; // 最后的校验码
 			int i, j;
 			int b = LenIndex - 1;
 			int a;
@@ -15080,7 +15059,7 @@ public class RuleFunction {
 			sum %= 11;
 			mod = (int) (11 - sum) % 11;
 			if (mod == 10) {
-				check = "X".charAt(0); // X��ʾ10
+				check = "X".charAt(0); // X表示10
 			} else {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
@@ -15101,11 +15080,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ���������ʶ�淶����ƥ��,����(603)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����<=2
+	// Function: 信用主体标识规范正则匹配,数字(603)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=2
 	// creator: yzc
 	public static String CreditIdentifiers(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15134,11 +15113,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��̥�����켰���㲿���ı�ʶ��������ƥ��,��ĸ(615)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����<=1
+	// Function: 轮胎气门嘴及其零部件的标识方法正则匹配,字母(615)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=1
 	// creator: yzc
 	public static String TubesValves(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15152,7 +15131,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -15167,11 +15146,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ��̥�����켰���㲿���ı�ʶ��������ƥ��,��ĸ(615)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����<=1
+	// Function: 轮胎气门嘴及其零部件的标识方法正则匹配,字母(615)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=1
 	// creator: yzc
 	public static String TubesValves1(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15185,7 +15164,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -15200,10 +15179,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:��Ʒ���� Ӧ�ñ�ʶ��632��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:商品条码 应用标识符（632）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String BarCodeForCommodity(char[] CODEstr, int LenCODE,
@@ -15213,11 +15192,10 @@ public class RuleFunction {
 			return ERR;
 		}
 
-		if (LenIndex != 2 || LenIndex != 3 || LenIndex != 4) {
-			return ERR;
+		String code = "";
+		for (int i = 0; i < LenIndex; i++) {
+			code = code.concat(String.valueOf(CODEstr[Index[i]]));
 		}
-		String code = new String(CODEstr);
-
 		try {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getBarCodeForCommodity(code);
@@ -15230,11 +15208,13 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ʶ�� �����߱�ʶ ��һ��������ƥ��,����(635)
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:����<=12
+	
+
+	// Function: 识别卡 发卡者标识 第一部分正则匹配,数字(635)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:长度<=12
 	// creator: yzc
 	public static String IdentificationCardsP1(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15248,7 +15228,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -15264,7 +15244,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ4λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前4位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase70(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15287,7 +15267,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ4λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前4位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase71(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15315,7 +15295,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase66(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15339,7 +15319,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase65(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15360,7 +15340,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase59(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15436,7 +15416,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase26(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15458,7 +15438,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase25(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15480,7 +15460,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase24(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15503,7 +15483,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase18(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15551,7 +15531,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase16(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15573,7 +15553,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase13(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15596,7 +15576,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase8(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15619,7 +15599,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase7(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15641,7 +15621,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * У��ǰ2λ�ǲ�����Щ���� 757 author:wt
+	 * 校验前2位是不是这些数字 757 author:wt
 	 */
 	public static String HighwayDatabase6(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15663,10 +15643,10 @@ public class RuleFunction {
 		return ERR;
 	}
 
-	// Function:�й�ʯ����Ȼ���ܹ�˾����ҵ��λ���루763��
-	// CODEstr: ��ʶ����
-	// LenCODE: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
+	// Function:中国石油天然气总公司企、事业单位代码（763）
+	// CODEstr: 标识编码
+	// LenCODE: 标识编码的长度
+	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
 	public static String GassCompany(char[] CODEstr, int LenCODE, int[] Index,
@@ -15692,8 +15672,7 @@ public class RuleFunction {
 		}
 	}
 
-	/*
-	 * ��֤��׼11��ǰ��λ�ǲ�������ݿ���
+	/*验证标准11的前六位是不是在数据库中
 	 * 
 	 * author:wt
 	 */
@@ -15723,8 +15702,7 @@ public class RuleFunction {
 	}
 
 
-	/*
-	 * ��֤��׼12��ǰ9λ�ǲ�������ݿ���
+	/*验证标准12的前9位是不是在数据库中
 	 * 
 	 * author:wt
 	 */
@@ -15752,7 +15730,7 @@ public class RuleFunction {
 		}
 	}
 	
-	//�й��������� fdl
+	//中国动物分类代码 fdl
 	// Function: represent a decimal integer whose value range is from 010 to 999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -15764,27 +15742,6 @@ public class RuleFunction {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
-			}
-			// MOD 16-3У���㷨���ַ��ٿռ�ʱҪ��һλ��������У��λ
-			double sum = 0; // ������У������ֵ
-			int i;
-			int w = 0; // Ȩ��
-			int h = 0; // ʮ����
-			int j = 0;
-			for (i = 0; i < LenIndex - 1; i++) {
-				for (j = 0; j < LenIndex; j++) {
-					if (i == LenIndex - 2 - (2 * j)) {
-						w = 3;
-					}
-					if (i == LenIndex - 2 - (2 * j + 1)) {
-						w = 1;
-					}
-				}
-				sum = sum + (int) (IDstr[Index[i]] - 48) * w;
-			}
-			int cd = 10 - (int) (sum % 10);
-			if (cd == 10) {
-				cd = 0;
 			}
 			if (LenIndex != 16) {
 				return ERR;
@@ -15804,13 +15761,12 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-
-
-	// Function: ɭ�����ͱ������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	
+	// Function: 森林类型编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:5
-	// LenIndex: ���ȱ�Ϊ5
+	// LenIndex: 长度必为5
 	// creator: fdl
 	public static String ForestTypes(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15837,8 +15793,7 @@ public class RuleFunction {
 		}
 	}
 	
-
-	// Function:654 �̾����������ǩ ��֯������
+	// Function:654 烟卷箱用条码标签 组织机构类型
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15866,7 +15821,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:654 �̾����������ǩ ��֯����ʡ��������ֱϽ��
+	// Function:654 烟卷箱用条码标签 组织所属省、自治区、直辖市
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15906,7 +15861,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:654 �̾����������ǩ ��֯�����С�����
+	// Function:654 烟卷箱用条码标签 组织所属市、地区
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15935,7 +15890,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:658 ��λ�������������� Сд��ĸģʽ
+	// Function:658 二位条形码网格矩阵码 小写字母模式
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15969,7 +15924,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:658 ��λ�������������� ������ĸ���ģʽ
+	// Function:658 二位条形码网格矩阵码 数字字母混合模式
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16010,7 +15965,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:700 ½��Ұ�����߲�����
+	// Function:700 陆生野生动物疫病分类
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16043,7 +15998,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:704������Ϣ���������3,4��λ����
+	// Function:704海洋信息分类与代码3,4两位定义
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16071,7 +16026,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:698 ȫ��������ҵҽ����е�������豸����
+	// Function:698 全国卫生行业医疗器械、仪器设备分类
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16104,7 +16059,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:728(1)��ҽ��������
+	// Function:728(1)中医疾病分类
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16137,7 +16092,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:728(2)��ҽ����֢״
+	// Function:728(2)中医疾病症状
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16170,7 +16125,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:706,708���ʷ���
+	// Function:706,708地质分类
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16203,7 +16158,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:710���ʷ���
+	// Function:710地质分类
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16236,11 +16191,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 722 ���ó�׼�����λ
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
-	// Index: ��������ĵ�����λ��
-	// LenIndex:������
+	// Function: 722 国际贸易计量单位
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置
+	// LenIndex:不定长
 	// creator: lhx
 	public static String MeasureUnit(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -16413,4 +16368,32 @@ public class RuleFunction {
 		}
 	}
 	
+	// Function: http://zh.wikipedia.org/zh-cn/%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E4%B9%A6%E5%8F%B7
+	// creator: menglunyang
+	public static String ISBN13(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (IDstr[0] == '9' && IDstr[1] == '7'
+					&& (IDstr[2] == '8' || IDstr[2] == '9')) {
+				int checkNumber = (IDstr[0] - 48) * 1 + (IDstr[1] - 48) * 3
+						+ (IDstr[2] - 48) * 1 + (IDstr[3] - 48) * 3
+						+ (IDstr[4] - 48) * 1 + (IDstr[5] - 48) * 3
+						+ (IDstr[6] - 48) * 1 + (IDstr[7] - 48) * 3
+						+ (IDstr[8] - 48) * 1 + (IDstr[9] - 48) * 3
+						+ (IDstr[10] - 48) * 1 + (IDstr[11] - 48) * 3;
+				checkNumber = checkNumber % 10;
+				checkNumber = 10 - checkNumber;
+				if (checkNumber == 10 && IDstr[12] == '0'
+						|| checkNumber == IDstr[12] - 48)
+					return OK;
+			}
+			return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 }

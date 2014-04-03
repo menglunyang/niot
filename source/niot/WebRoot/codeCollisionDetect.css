@@ -646,32 +646,5 @@ textarea.form-control {
 	float:left;
 }
 	
-	#RFID{
-		display:none;
-		position:absolute;
-		background:#FFFFFF;
-		border:1px solid;
-		border-radius: 4px;
-		padding:30px;
-		width:646px;
-		height:86px;
-		top:125px;
-		left:269px;
-	}
-	
-	#RFID_info{
-		
-		width:310px;
-		margin: 0 auto;
-		font:inherit;
-		font-size: 20px;
-	}
-	
-	#RFID_loading{
-		width:35px;
-		margin: 0 auto;
-		padding-top:10px;
-		display: block;
-	}
 
     

@@ -131,7 +131,7 @@ public class RuleFuncTest {
 
 	}
 
-	// º¯ÊıCountÓëº¯ÊıCigaOrgCode¹¦ÄÜÏàÍ¬£¬Regex±íÖĞ²¢Ã»ÓĞÓÃµ½Countº¯Êı
+	// å‡½æ•°Countä¸å‡½æ•°CigaOrgCodeåŠŸèƒ½ç›¸åŒï¼ŒRegexè¡¨ä¸­å¹¶æ²¡æœ‰ç”¨åˆ°Countå‡½æ•°
 	public static void testCount() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -351,7 +351,7 @@ public class RuleFuncTest {
 
 		int[] index2 = { 0, 1, 2, 3 };
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("A0101");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -391,7 +391,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 3; // ¶¨Òå³¤¶È
+		int j = 3; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		for (int i = 0; i < j; i++) {
@@ -437,14 +437,14 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 2; // ¶¨Òå³¤¶È
+		int j = 2; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		for (int i = 0; i < j; i++) {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("DF");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -485,14 +485,14 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 4; // ¶¨Òå³¤¶È
+		int j = 4; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		for (int i = 0; i < j; i++) {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("0010");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -520,14 +520,14 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 39; // ¶¨Òå³¤¶È
+		int j = 39; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[21];
 		;
 		for (int i = 0; i < 21; i++) {
 			index1[i] = i + 18;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("123123123123123123.kkkk.kkkk.cid.iot.cn");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -565,14 +565,14 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 5; // ¶¨Òå³¤¶È
+		int j = 5; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		for (int i = 0; i < j; i++) {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("00201");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -602,14 +602,14 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 5; // ¶¨Òå³¤¶È
+		int j = 5; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		for (int i = 0; i < j; i++) {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("01001");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -637,7 +637,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 23; // ¶¨Òå³¤¶È
+		int j = 23; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[5];
 		;
 		for (int i = 0; i < 5; i++) {
@@ -645,7 +645,7 @@ public class RuleFuncTest {
 		}
 
 		// [a-zA-Z][a-zA-Z0-9]{0,15}"
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("123123123123123123.kkkk");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -686,14 +686,14 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 6; // ¶¨Òå³¤¶È
+		int j = 6; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		for (int i = 0; i < j; i++) {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("100901");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -721,7 +721,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 8; // ¶¨Òå³¤¶È
+		int j = 8; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		int[] index2 = { 0, 1, 2, 3, 4, 5 };
@@ -730,7 +730,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("11010102");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -758,7 +758,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 7; // ¶¨Òå³¤¶È
+		int j = 7; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		int[] index2 = { 0, 1, 2, 3, 4, 5 };
@@ -767,7 +767,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("11010102");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -797,7 +797,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 5; // ¶¨Òå³¤¶È
+		int j = 5; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		// int [] index2 = {0,1,2,3,4,5};;
@@ -805,7 +805,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("01010");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -835,7 +835,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 2; // ¶¨Òå³¤¶È
+		int j = 2; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		// int [] index2 = {0,1,2,3,4,5};;
@@ -843,7 +843,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("20");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -871,7 +871,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 2; // ¶¨Òå³¤¶È
+		int j = 2; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		// int [] index2 = {0,1,2,3,4,5};;
@@ -879,7 +879,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("12");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -915,7 +915,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 6; // ¶¨Òå³¤¶È
+		int j = 6; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		// int [] index2 = {0,1,2,3,4,5};;
@@ -923,7 +923,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("030100");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -951,7 +951,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 2; // ¶¨Òå³¤¶È
+		int j = 2; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		// int [] index2 = {0,1,2,3,4,5};;
@@ -959,7 +959,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("07");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -993,7 +993,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 4; // ¶¨Òå³¤¶È
+		int j = 4; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		// int [] index2 = {0,1,2,3,4,5};;
@@ -1001,7 +1001,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("E000");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -1028,14 +1028,14 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.CountUcode(IDstr3, j, index1, j), "OK");
 	}
 
-	// Î´ÔÚRedexÖĞÕÒµ½DomainManagerInEPCCheckº¯Êı
+	// æœªåœ¨Redexä¸­æ‰¾åˆ°DomainManagerInEPCCheckå‡½æ•°
 	public static void testDomainManagerInEPCCheck() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 4; // ¶¨Òå³¤¶È
+		int j = 4; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		// int [] index2 = {0,1,2,3,4,5};;
@@ -1043,7 +1043,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("E000");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -1080,9 +1080,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=4;//¶¨Òå³¤¶È
+		// int j=4;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("06901234567892");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1120,16 +1120,16 @@ public class RuleFuncTest {
 				j), "ERR");
 	}
 
-	// Î´ÔÚRedexÖĞÕÒµ½HouseCode_CheckBasedCompleteTimeº¯Êı
+	// æœªåœ¨Redexä¸­æ‰¾åˆ°HouseCode_CheckBasedCompleteTimeå‡½æ•°
 	public static void testHouseCode_CheckBasedCompleteTime() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 12; // ¶¨Òå³¤¶È
+		int j = 12; // å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("200807080101");
 		// int j=tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1182,16 +1182,16 @@ public class RuleFuncTest {
 				index1, j), "ERR");
 	}
 
-	// Î´ÔÚRedexÖĞÕÒµ½HouseCode_CheckBasedCoordinateº¯Êı
+	// æœªåœ¨Redexä¸­æ‰¾åˆ°HouseCode_CheckBasedCoordinateå‡½æ•°
 	public static void testHouseCode_CheckBasedCoordinate() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 12; // ¶¨Òå³¤¶È
+		int j = 12; // å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("010101020202");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -1220,16 +1220,16 @@ public class RuleFuncTest {
 
 	}
 
-	// Î´ÔÚRedexÖĞÕÒµ½HouseCode_CheckBasedFenzongº¯Êı
+	// æœªåœ¨Redexä¸­æ‰¾åˆ°HouseCode_CheckBasedFenzongå‡½æ•°
 	public static void testHouseCode_CheckBasedFenzong() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 12; // ¶¨Òå³¤¶È
+		int j = 12; // å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("010101020202");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -1268,16 +1268,16 @@ public class RuleFuncTest {
 
 	}
 
-	// Î´ÔÚRedexÖĞÕÒµ½HouseCode_CheckBasedFenfuº¯Êı
+	// æœªåœ¨Redexä¸­æ‰¾åˆ°HouseCode_CheckBasedFenfuå‡½æ•°
 	public static void testHouseCode_CheckBasedFenfu() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 12; // ¶¨Òå³¤¶È
+		int j = 12; // å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("010101020202");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -1323,9 +1323,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 4; // ¶¨Òå³¤¶È
+		int j = 4; // å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("0000");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -1371,9 +1371,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 12; // ¶¨Òå³¤¶È
+		int j = 12; // å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("2010**898900");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -1412,16 +1412,16 @@ public class RuleFuncTest {
 
 	}
 
-	// 217, WS 364.2-2011 ¹«ÃñÉí·İÖ¤ºÅ
+	// 217, WS 364.2-2011 å…¬æ°‘èº«ä»½è¯å·
 	public static void testMOD112() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("130322199004062618");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1449,16 +1449,16 @@ public class RuleFuncTest {
 
 	}
 
-	// Î´ÔÚRedexÖĞÕÒµ½TwoByteSRMXSMYZº¯Êı
+	// æœªåœ¨Redexä¸­æ‰¾åˆ°TwoByteSRMXSMYZå‡½æ•°
 	public static void testTwoByteSRMXSMYZ() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("SR");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1493,9 +1493,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("11010100");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1530,9 +1530,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("000");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1586,9 +1586,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("T0345246801");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1623,9 +1623,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("0A920021223F3320");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1660,9 +1660,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("US3838831051");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1708,9 +1708,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("00001");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1756,9 +1756,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("111");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1794,16 +1794,16 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Egg232(IDstr3, j, index1, j), "OK");
 	}
 
-	// 163, GB 18240.6-2004·ÖÀàÓë±àÂëÍ¨ÓÃÊõÓï105¡ª¡ª»úÆ÷±àÂëµÄ½á¹¹ºÍ±íÊ¾ĞÎÊ½
+	// 163, GB 18240.6-2004åˆ†ç±»ä¸ç¼–ç é€šç”¨æœ¯è¯­105â€”â€”æœºå™¨ç¼–ç çš„ç»“æ„å’Œè¡¨ç¤ºå½¢å¼
 	public static void testDeviceMOD163() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("789021234561");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1838,9 +1838,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("1160634520086296");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1875,9 +1875,9 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		// int j=12;//¶¨Òå³¤¶È
+		// int j=12;//å®šä¹‰é•¿åº¦
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("0123");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
@@ -1910,8 +1910,8 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 26;// ¶¨Òå³¤¶È
-		// ¶¨ÒåIDstr
+		int j = 26;// å®šä¹‰é•¿åº¦
+		// å®šä¹‰IDstr
 		String tr1 = new String("1101010102006005000109*001");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -1991,7 +1991,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Climatic(IDstr5, j, index1, j), "OK");
 	}
 
-	// 70, GB/T 21379-2008 Â·¶Î½»Í¨¹ÜÀíÊôĞÔ·ÖÀàÓë±àÂë
+	// 70, GB/T 21379-2008 è·¯æ®µäº¤é€šç®¡ç†å±æ€§åˆ†ç±»ä¸ç¼–ç 
 	public static void testCodeHighway() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -2168,7 +2168,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.NonMotorVehicle(IDstr5, j, index1, j), "OK");
 	}
 
-	// 365, GB/T 12402¡ª¡ª2000
+	// 365, GB/T 12402â€”â€”2000
 	public static void testEconomicCate() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -2537,7 +2537,7 @@ public class RuleFuncTest {
 				j), "OK");
 	}
 
-	// ÎïÁ÷±àÂë
+	// ç‰©æµç¼–ç 
 	public static void testLogisticsCheck() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -2596,7 +2596,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.LogisticsCheck(IDstr5, j, index1, j), "OK");
 	}
 
-	// GB/T 23730.1-2009ÖĞ¹ú±ê×¼ÊÓÌı×÷Æ·ºÅ µÚ1²¿·Ö:ÊÓÌı×÷Æ·±êÊ¶·û
+	// GB/T 23730.1-2009ä¸­å›½æ ‡å‡†è§†å¬ä½œå“å· ç¬¬1éƒ¨åˆ†:è§†å¬ä½œå“æ ‡è¯†ç¬¦
 	// public static void testMod36_37() {
 	// JOptionPane.showMessageDialog(null, Thread.currentThread()
 	// .getStackTrace()[1].getMethodName());
@@ -2897,7 +2897,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr5, j, index1, j), "OK");
 	}
 
-	// 90, GB/T 16828-2007ÉÌÆ·ÌõÂë¡ª¡ª²ÎÓë·½Î»±àÂëÓëÌõÂë±íÊ¾
+	// 90, GB/T 16828-2007å•†å“æ¡ç â€”â€”å‚ä¸æ–¹ä½ç¼–ç ä¸æ¡ç è¡¨ç¤º
 	public static void testCheckCodebarcode() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -3075,7 +3075,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.FireInfoSmoke(IDstr5, j, index1, j), "OK");
 	}
 
-	// 91, GB/T 16772-1997ÖĞ¹úÃºÌ¿±àÂëÏµÍ³
+	// 91, GB/T 16772-1997ä¸­å›½ç…¤ç‚­ç¼–ç ç³»ç»Ÿ
 	public static void testCoalInterment() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -3385,7 +3385,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.tabaccoC(IDstr5, j, index1, j), "OK");
 	}
 
-	// 80, GB/T 19632-2005 È«¹úéëÔá·şÎñ¡¢ÉèÊ©ºÍÓÃÆ·´úÂë ÓĞÎÊÌâ
+	// 80, GB/T 19632-2005 å…¨å›½æ®¡è‘¬æœåŠ¡ã€è®¾æ–½å’Œç”¨å“ä»£ç  æœ‰é—®é¢˜
 	public static void testMOD9710() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -3444,7 +3444,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.MOD9710(IDstr5, j, index1, j), "OK");
 	}
 
-	// ³ÇÊĞÊĞÕş×ÛºÏ¼à¹ÜĞÅÏ¢ÏµÍ³ µ¥ÔªÍø¸ñ»®·ÖÓë±àÂë¹æÔò
+	// åŸå¸‚å¸‚æ”¿ç»¼åˆç›‘ç®¡ä¿¡æ¯ç³»ç»Ÿ å•å…ƒç½‘æ ¼åˆ’åˆ†ä¸ç¼–ç è§„åˆ™
 	public static void testThreeByteDecimalnt1() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -3567,7 +3567,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.FireInfomation(IDstr5, j, index1, j), "OK");
 	}
 
-	// 194 ÓĞÎÊÌâ
+	// 194 æœ‰é—®é¢˜
 	public static void testTobaccoTech() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -3626,7 +3626,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.TobaccoTech(IDstr5, j, index1, j), "OK");
 	}
 
-	// 80, GB/T 19632-2005 È«¹úéëÔá·şÎñ¡¢ÉèÊ©ºÍÓÃÆ·´úÂë
+	// 80, GB/T 19632-2005 å…¨å›½æ®¡è‘¬æœåŠ¡ã€è®¾æ–½å’Œç”¨å“ä»£ç 
 	public static void testFuneralInterment() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -4022,7 +4022,7 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 2; // ¶¨Òå³¤¶È
+		int j = 2; // å®šä¹‰é•¿åº¦
 		int[] index1 = new int[j];
 		;
 		// int [] index2 = {0,1,2,3,4,5};;
@@ -4030,7 +4030,7 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// ¶¨ÒåIDstr
+		// å®šä¹‰IDstr
 		String tr1 = new String("06");
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -5473,7 +5473,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 219, WS 364.16-2011 ¹¬ÄÚ½ÚÓıÆ÷ÖÖÀà´úÂë
+	// 219, WS 364.16-2011 å®«å†…èŠ‚è‚²å™¨ç§ç±»ä»£ç 
 	public static void testOneTO08() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -5532,7 +5532,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO08(IDstr5, j, index1, j), "OK");
 	}
 
-	// 64, GB/T 22970-2010 ·ÄÖ¯ÃæÁÏ´úÂë
+	// 64, GB/T 22970-2010 çººç»‡é¢æ–™ä»£ç 
 	public static void testOneTO09() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -5650,7 +5650,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO05(IDstr5, j, index1, j), "OK");
 	}
 
-	// 221, WS 364.14-2011 ¼à¶½»ú¹¹¿ÆÊÒ´úÂë
+	// 221, WS 364.14-2011 ç›‘ç£æœºæ„ç§‘å®¤ä»£ç 
 	public static void testOneTO07() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -5709,7 +5709,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO07(IDstr5, j, index1, j), "OK");
 	}
 
-	// 213, WS 364.6-2011 ¸¾¿Æ¼°ÈéÏÙ²»ÊÊÖ¢Ö¢×´´úÂë
+	// 213, WS 364.6-2011 å¦‡ç§‘åŠä¹³è…ºä¸é€‚ç—‡ç—‡çŠ¶ä»£ç 
 	public static void testOneTO15() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -5768,7 +5768,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO15(IDstr5, j, index1, j), "OK");
 	}
 
-	// 213, WS 364.6-2011 ÉËº¦·¢ÉúÔ­Òò´úÂë
+	// 213, WS 364.6-2011 ä¼¤å®³å‘ç”ŸåŸå› ä»£ç 
 	public static void testOneTO13() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -5827,7 +5827,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO13(IDstr5, j, index1, j), "OK");
 	}
 
-	// 213, WS 364.6-2011 ¾«ÉñÖ¢×´´úÂë
+	// 213, WS 364.6-2011 ç²¾ç¥ç—‡çŠ¶ä»£ç 
 	public static void testOneTO11() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -5886,7 +5886,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO11(IDstr5, j, index1, j), "OK");
 	}
 
-	// 215, WS 364.4-2011 ¼ÈÍù³£¼û¼²²¡ÖÖÀà´úÂë
+	// 215, WS 364.4-2011 æ—¢å¾€å¸¸è§ç–¾ç—…ç§ç±»ä»£ç 
 	public static void testOneTO14() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -5945,7 +5945,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO14(IDstr5, j, index1, j), "OK");
 	}
 
-	// 225, WS 364.10-2011 ÔĞ²ú¸¾ËÀÍöÔ­Òò·ÖÀà´úÂë
+	// 225, WS 364.10-2011 å­•äº§å¦‡æ­»äº¡åŸå› åˆ†ç±»ä»£ç 
 	public static void testOneTO39() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6004,7 +6004,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO39(IDstr5, j, index1, j), "OK");
 	}
 
-	// 225, WS 364.10-2011 Ì¥·½Î»´úÂë
+	// 225, WS 364.10-2011 èƒæ–¹ä½ä»£ç 
 	public static void testOneTO22() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6063,7 +6063,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO22(IDstr5, j, index1, j), "OK");
 	}
 
-	// 224, WS 364.11-2011 ÀÍ¶¯ÄÜÁ¦ÆÀ¶¨·Ö¼¶´úÂë
+	// 224, WS 364.11-2011 åŠ³åŠ¨èƒ½åŠ›è¯„å®šåˆ†çº§ä»£ç 
 	public static void testOneTO10() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6122,7 +6122,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO10(IDstr5, j, index1, j), "OK");
 	}
 
-	// 225, WS 364.10-2011 ³öÉúÈ±ÏİÀà±ğ´úÂë
+	// 225, WS 364.10-2011 å‡ºç”Ÿç¼ºé™·ç±»åˆ«ä»£ç 
 	public static void testOneTO29() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6181,7 +6181,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO29(IDstr5, j, index1, j), "OK");
 	}
 
-	// 70, GB/T 21379-2008 ÖØµãµ¥Î»½»Í¨¹ÜÀíÊôĞÔ·ÖÀàÓë±àÂë
+	// 70, GB/T 21379-2008 é‡ç‚¹å•ä½äº¤é€šç®¡ç†å±æ€§åˆ†ç±»ä¸ç¼–ç 
 	public static void testOneTO21() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6240,7 +6240,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO21(IDstr5, j, index1, j), "OK");
 	}
 
-	// 219, WS 364.16-2011 ÒßÃçÃû³Æ´úÂë
+	// 219, WS 364.16-2011 ç–«è‹—åç§°ä»£ç 
 	public static void testOneTO46() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6299,7 +6299,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO46(IDstr5, j, index1, j), "OK");
 	}
 
-	// 219, WS 364.16-2011 Ò©Îï¼ÁĞÍ´úÂë
+	// 219, WS 364.16-2011 è¯ç‰©å‰‚å‹ä»£ç 
 	public static void testOneTO72() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6417,7 +6417,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.MOD3736(IDstr5, j, index1, j), "OK");
 	}
 
-	// // 622, GB/T 19127¡ª¡ª2003
+	// // 622, GB/T 19127â€”â€”2003
 	// public static void testVehicleIdenCode() {
 	// JOptionPane.showMessageDialog(null, Thread.currentThread()
 	// .getStackTrace()[1].getMethodName());
@@ -6481,7 +6481,7 @@ public class RuleFuncTest {
 	// "OK");
 	// }
 
-	// 639, GB/T 14043¡ª¡ª2005
+	// 639, GB/T 14043â€”â€”2005
 
 	public static void testZeroTO14() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -6659,7 +6659,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.ZeroTO60(IDstr5, j, index1, j), "OK");
 	}
 
-	// 664, GB/T 18283-2008 °üº¬¼Û¸ñ½á¹¹Èı
+	// 664, GB/T 18283-2008 åŒ…å«ä»·æ ¼ç»“æ„ä¸‰
 	public static void testCheck4BitBarCode() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6788,7 +6788,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 1176, JT/T 444-2001 ÔËÊä¹¤¾ßÊµÓĞÊıÍ³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 è¿è¾“å·¥å…·å®æœ‰æ•°ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testOneTO11and90() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6847,7 +6847,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO11and90(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1176, JT/T 444-2001 ÔËÊä¹¤¾ßÊµÓĞÊıÍ³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 è¿è¾“å·¥å…·å®æœ‰æ•°ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testHighwayTransportationB9() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6911,7 +6911,7 @@ public class RuleFuncTest {
 				.HighwayTransportationB9(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1176, JT/T 444-2001 ¹«Â·»õÔËÁ¿Í³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 å…¬è·¯è´§è¿é‡ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testHighwayTransportationC3() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -6975,7 +6975,7 @@ public class RuleFuncTest {
 				.HighwayTransportationC3(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1179, JT/T 430-2000 ¸Û¿ÚÊÕ·ÑĞÅÏ¢·ÖÀà¼°´úÂë
+	// 1179, JT/T 430-2000 æ¸¯å£æ”¶è´¹ä¿¡æ¯åˆ†ç±»åŠä»£ç 
 	public static void testPorttariff() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7034,7 +7034,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Porttariff(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1179, JT/T 430-2000 ÍâÃ³½ø³ö¿Ú»õÎï¸ÛÎñ·Ñ´úÂë
+	// 1179, JT/T 430-2000 å¤–è´¸è¿›å‡ºå£è´§ç‰©æ¸¯åŠ¡è´¹ä»£ç 
 	public static void testPorttariff4() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7093,7 +7093,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Porttariff4(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1179, JT/T 430-2000 ÍâÃ³½ø³ö¿Ú»õÎï×°Ğ¶·Ñ´úÂë
+	// 1179, JT/T 430-2000 å¤–è´¸è¿›å‡ºå£è´§ç‰©è£…å¸è´¹ä»£ç 
 	public static void testPorttariff10() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7152,7 +7152,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Porttariff10(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1592, GA 24.7 ¡ª¡ª2005
+	// 1592, GA 24.7 â€”â€”2005 //
 	public static void testOneoTO24() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7211,7 +7211,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneoTO24(IDstr5, j, index1, j), "OK");
 	}
 
-	// 910, DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ· Ö®µçÁ¦ÕûÁ÷Æ÷
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µåŠ›æ•´æµå™¨
 	public static void testOneTO17() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7270,7 +7270,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO17(IDstr5, j, index1, j), "OK");
 	}
 
-	// 216, WS 364.3-2011 ´«È¾²¡»¼ÕßÖ°Òµ´úÂë
+	// 216, WS 364.3-2011 ä¼ æŸ“ç—…æ‚£è€…èŒä¸šä»£ç 
 	public static void testOneTO17NO99() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7329,7 +7329,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO17NO99(IDstr5, j, index1, j), "OK");
 	}
 
-	// 910, DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ· Ö®µçÁ¦ÕûÁ÷Æ÷
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µåŠ›æ•´æµå™¨
 	public static void testOneTO12No99() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7388,7 +7388,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO12No99(IDstr5, j, index1, j), "OK");
 	}
 
-	// 910, DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ· Ö®¼õËÙÆ÷
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹å‡é€Ÿå™¨
 	public static void testOneTO13No99() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7447,7 +7447,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneTO13No99(IDstr5, j, index1, j), "OK");
 	}
 
-	// 910, DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ· Ö®µçÏß
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µçº¿
 	public static void testTable35() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -7514,7 +7514,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Table35(IDstr5, j1, index2, j1), "OK");
 	}
 
-	// 910, DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ· Ö®µç×Ó¼ÆËã»ú¼°Íâ²¿Éè±¸
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µå­è®¡ç®—æœºåŠå¤–éƒ¨è®¾å¤‡
 	public static void testOneTO03() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -9095,7 +9095,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.DigitRegex(IDstr5, j, index1, j), "OK");
 	}
 
-	// 64, GB/T 22970-2010 ·ÄÖ¯ÃæÁÏ´úÂë
+	// 64, GB/T 22970-2010 çººç»‡é¢æ–™ä»£ç 
 	public static void testTextileFabricNameCode() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -9159,7 +9159,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 64, GB/T 22970-2010 ·ÄÖ¯ÃæÁÏ´úÂë
+	// 64, GB/T 22970-2010 çººç»‡é¢æ–™ä»£ç 
 	public static void testPropertiesMain() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -9218,7 +9218,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.PropertiesMain(IDstr5, j, index1, j), "OK");
 	}
 
-	// 64, GB/T 22970-2010 ·ÄÖ¯ÃæÁÏ´úÂë
+	// 64, GB/T 22970-2010 çººç»‡é¢æ–™ä»£ç 
 	public static void testPropertiesFiberCharacteristics() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -9282,7 +9282,7 @@ public class RuleFuncTest {
 				index1, j), "OK");
 	}
 
-	// 64, GB/T 22970-2010 ·ÄÖ¯ÃæÁÏ´úÂë
+	// 64, GB/T 22970-2010 çººç»‡é¢æ–™ä»£ç 
 	public static void testPropertiesMix() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -9341,7 +9341,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.PropertiesMix(IDstr5, j, index1, j), "OK");
 	}
 
-	// 64, GB/T 22970-2010 ·ÄÖ¯ÃæÁÏ´úÂë
+	// 64, GB/T 22970-2010 çººç»‡é¢æ–™ä»£ç 
 	public static void testPropertiesFabric() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -9401,7 +9401,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.PropertiesFabric(IDstr5, j, index1, j), "OK");
 	}
 
-	// 64, GB/T 22970-2010 ·ÄÖ¯ÃæÁÏ´úÂë
+	// 64, GB/T 22970-2010 çººç»‡é¢æ–™ä»£ç 
 	public static void testPropertiesDyeingandFinishing() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -9994,41 +9994,43 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.TobaccoLeafClass(IDstr5, j, index1, j), "OK");
 	}
 
-	// 213, WS 364.6-2011 ¶ùÍ¯´ó±ãĞÔ×´´úÂë
+	// 213, WS 364.6-2011 å„¿ç«¥å¤§ä¾¿æ€§çŠ¶ä»£ç 
 	public static void testChildrenExcrement() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("80100");
+		String tr1 = new String("4");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("20212");
+		String tr2 = new String("9");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("20110");
-		char[] IDstr3 = new char[j];
-		for (int i = 0; i < j; i++) {
+		String tr3 = new String("23");
+		int j1 = tr3.length();
+
+		char[] IDstr3 = new char[j1];
+		for (int i = 0; i < j1; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("20240");
-		char[] IDstr4 = new char[j];
-		for (int i = 0; i < j; i++) {
+		String tr4 = new String("11");
+		char[] IDstr4 = new char[j1];
+		for (int i = 0; i < j1; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
-		String tr5 = new String("10001");
-		char[] IDstr5 = new char[j];
-		for (int i = 0; i < j; i++) {
+		String tr5 = new String("31");
+		char[] IDstr5 = new char[j1];
+		for (int i = 0; i < j1; i++) {
 			IDstr5[i] = tr5.charAt(i);
 		}
 
@@ -10036,6 +10038,11 @@ public class RuleFuncTest {
 
 		for (int i = 0; i < j; i++) {
 			index1[i] = i;
+		}
+		int[] index2 = new int[j1];
+
+		for (int i = 0; i < j1; i++) {
+			index2[i] = i;
 		}
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.ChildrenExcrement(IDstr1, j, index1, j),
@@ -10046,19 +10053,19 @@ public class RuleFuncTest {
 				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ChildrenExcrement(IDstr3, j, index1, j),
+		UnitTestEqual(RuleFunction.ChildrenExcrement(IDstr3, j1, index2, j1),
 				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ChildrenExcrement(IDstr4, j, index1, j),
+		UnitTestEqual(RuleFunction.ChildrenExcrement(IDstr4, j1, index2, j1),
 				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ChildrenExcrement(IDstr5, j, index1, j),
+		UnitTestEqual(RuleFunction.ChildrenExcrement(IDstr5, j1, index2, j1),
 				"OK");
 	}
 
-	// 214, WS 364.5-2011 ÒûÊ³ÖÖÀà´úÂë
+	// 214, WS 364.5-2011 é¥®é£Ÿç§ç±»ä»£ç 
 	public static void testOneToEleven() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10117,7 +10124,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.OneToEleven(IDstr5, j, index1, j), "OK");
 	}
 
-	// 214, WS 364.5-2011 Òû¾ÆÆµÂÊ´úÂë
+	// 214, WS 364.5-2011 é¥®é…’é¢‘ç‡ä»£ç 
 	public static void testDrinkingFrequency() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10188,7 +10195,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 214, WS 364.5-2011 Òû¾ÆÖÖÀà´úÂë
+	// 214, WS 364.5-2011 é¥®é…’ç§ç±»ä»£ç 
 	public static void testDrinkingClass() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10254,7 +10261,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.DrinkingClass(IDstr5, j, index1, j), "OK");
 	}
 
-	// 214, WS 364.5-2011 ÉíÌå»î¶¯ÆµÂÊ´úÂë
+	// 214, WS 364.5-2011 èº«ä½“æ´»åŠ¨é¢‘ç‡ä»£ç 
 	public static void testPhysicalActivityFrequency() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10325,7 +10332,7 @@ public class RuleFuncTest {
 				j), "OK");
 	}
 
-	// 215, WS 364.4-2011 ÈÑÉïÖÕÖ¹·½Ê½´úÂë±í
+	// 215, WS 364.4-2011 å¦Šå¨ ç»ˆæ­¢æ–¹å¼ä»£ç è¡¨
 	public static void testTerminationofPregnancy() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10397,7 +10404,7 @@ public class RuleFuncTest {
 				RuleFunction.TerminationofPregnancy(IDstr5, j, index1, j), "OK");
 	}
 
-	// 215, WS 364.4-2011 ·ÖÃä·½Ê½´úÂë
+	// 215, WS 364.4-2011 åˆ†å¨©æ–¹å¼ä»£ç 
 	public static void testModeofProduction() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10411,7 +10418,7 @@ public class RuleFuncTest {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("6");
+		String tr2 = new String("3");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
@@ -10424,7 +10431,7 @@ public class RuleFuncTest {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("12");
+		String tr4 = new String("33");
 		char[] IDstr4 = new char[j1];
 		for (int i = 0; i < j1; i++) {
 			IDstr4[i] = tr4.charAt(i);
@@ -10466,14 +10473,14 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.ModeofProduction(IDstr5, j, index1, j), "OK");
 	}
 
-	// 216, WS 364.3-2011 ·ÖÃäµØµãÀà±ğ´úÂë
+	// 216, WS 364.3-2011 åˆ†å¨©åœ°ç‚¹ç±»åˆ«ä»£ç 
 	public static void testDileveryPlace() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("1");
+		String tr1 = new String("7");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -10625,7 +10632,7 @@ public class RuleFuncTest {
 				j4), "OK");
 	}
 
-	// 219, WS 364.16-2011 ½»Í¨¹¤¾ß´úÂë
+	// 219, WS 364.16-2011 äº¤é€šå·¥å…·ä»£ç 
 	public static void testCommunicationCode() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10696,7 +10703,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 220, WS 364.15-2011 ÎÀÉú¼à¶½»ú¹¹ÈËÔ±±àÖÆÀà±ğ´úÂë
+	// 220, WS 364.15-2011 å«ç”Ÿç›‘ç£æœºæ„äººå‘˜ç¼–åˆ¶ç±»åˆ«ä»£ç 
 	public static void testHygieneAgencyPersonnel() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10768,7 +10775,7 @@ public class RuleFuncTest {
 				j1), "OK");
 	}
 
-	// 220, WS 364.15-2011 ÎÀÉú¼à¶½»ú¹¹Ö°¹¤Àà±ğ´úÂë
+	// 220, WS 364.15-2011 å«ç”Ÿç›‘ç£æœºæ„èŒå·¥ç±»åˆ«ä»£ç 
 	public static void testWorkerHealthSupervision() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -10839,7 +10846,7 @@ public class RuleFuncTest {
 				j1), "OK");
 	}
 
-	// ¹¤ÉÌĞĞÕş¹ÜÀí×¢²áºÅ±àÖÆ¹æÔò
+	// å·¥å•†è¡Œæ”¿ç®¡ç†æ³¨å†Œå·ç¼–åˆ¶è§„åˆ™
 	public static void testBussManaCheck() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -11020,14 +11027,14 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.InformationSafe(IDstr5, j, index1, j), "OK");
 	}
 
-	// 70, GB/T 21379-2008 Â·¶Î½»Í¨¹ÜÀíÊôĞÔ·ÖÀàÓë±àÂë
-	public static void testCodeHighWay() {
+	// 280, GB/T 25344-2010
+	public static void testCodeHighWayLine() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("B203");
+		String tr1 = new String("0000");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
@@ -11040,13 +11047,13 @@ public class RuleFuncTest {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("G302");
+		String tr3 = new String("9999");
 		char[] IDstr3 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("F102");
+		String tr4 = new String("1234");
 		char[] IDstr4 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
@@ -11065,19 +11072,19 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.CodeHighWay(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.CodeHighWayLine(IDstr1, j, index1, j), "OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.CodeHighWay(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.CodeHighWayLine(IDstr2, j, index1, j), "ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.CodeHighWay(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.CodeHighWayLine(IDstr3, j, index1, j), "OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.CodeHighWay(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.CodeHighWayLine(IDstr4, j, index1, j), "OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.CodeHighWay(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.CodeHighWayLine(IDstr5, j, index1, j), "OK");
 	}
 
 	// 284, GB/T 24450-2009
@@ -11674,7 +11681,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 225, WS 364.10-2011 ´«È¾²¡Ãû³Æ´úÂë
+	// 225, WS 364.10-2011 ä¼ æŸ“ç—…åç§°ä»£ç 
 	public static void testInfectiousDiseases() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12017,7 +12024,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.PassengerCarCode(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1880, JT/T 415¡ª¡ª2000³¡Õ¾Àà±ğ
+	// 1880, JT/T 415â€”â€”2000åœºç«™ç±»åˆ«
 	public static void testRoadTransportation21() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12142,7 +12149,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.CivilAviation(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1880, JT/T 415¡ª¡ª2000 ÔËÊä·şÎñÒµ·ÖÀàÓë´úÂë
+	// 1880, JT/T 415â€”â€”2000 è¿è¾“æœåŠ¡ä¸šåˆ†ç±»ä¸ä»£ç 
 	public static void testRoadTransportation22() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12207,7 +12214,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 1880, JT/T 415¡ª¡ª2000 ¾­ÓªÒµ»§µÄÒì¶¯
+	// 1880, JT/T 415â€”â€”2000 ç»è¥ä¸šæˆ·çš„å¼‚åŠ¨
 	public static void testRoadTransportation32() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12272,7 +12279,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 1176, JT/T 444-2001 ÔËÊä¹¤¾ßÊµÓĞÊıÍ³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 è¿è¾“å·¥å…·å®æœ‰æ•°ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testRoadTransportation5() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12337,7 +12344,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 1880, JT/T 415¡ª¡ª2000³µÁ¾ÀàĞÍ
+	// 1880, JT/T 415â€”â€”2000è½¦è¾†ç±»å‹
 	public static void testRoadTransportation41() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12402,7 +12409,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// JT/T 415¡ª¡ª2000Æ±¾İÀà±ğ
+	// JT/T 415â€”â€”2000ç¥¨æ®ç±»åˆ«
 	public static void testRoadTransportation50() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12467,7 +12474,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 1880, JT/T 415¡ª¡ª2000Ö¤ÅÆÀà±ğ
+	// 1880, JT/T 415â€”â€”2000è¯ç‰Œç±»åˆ«
 	public static void testRoadTransportation53() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12532,7 +12539,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 1880, JT/T 415¡ª¡ª2000 ÓªÔËÀà±ğ
+	// 1880, JT/T 415â€”â€”2000 è¥è¿ç±»åˆ«
 	public static void testRoadTransportation63() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12657,7 +12664,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Port(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1880, JT/T 415¡ª¡ª2000 »õÎïÀà±ğ
+	// 1880, JT/T 415â€”â€”2000 è´§ç‰©ç±»åˆ«
 	public static void testRoadTransportation60() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12722,7 +12729,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 1880, JT/T 415¡ª¡ª2000¼¯×°ÏäÏäĞÍ·ÖÀà
+	// 1880, JT/T 415â€”â€”2000é›†è£…ç®±ç®±å‹åˆ†ç±»
 	public static void testRoadTransportation64() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12787,7 +12794,7 @@ public class RuleFuncTest {
 				"OK");
 	}
 
-	// 1176, JT/T 444-2001 ÔËÊä¹¤¾ßÊµÓĞÊıÍ³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 è¿è¾“å·¥å…·å®æœ‰æ•°ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testHighwayTransportation4b1() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12852,7 +12859,7 @@ public class RuleFuncTest {
 				j), "OK");
 	}
 
-	// 1176, JT/T 444-2001 ÔËÊä¹¤¾ßÊµÓĞÊıÍ³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 è¿è¾“å·¥å…·å®æœ‰æ•°ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testHighwayTransportation4b7() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12917,7 +12924,7 @@ public class RuleFuncTest {
 				j), "OK");
 	}
 
-	// 1176, JT/T 444-2001 Æû³µÈ¼ÁÏÏûºÄÁ¿Í³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 æ±½è½¦ç‡ƒæ–™æ¶ˆè€—é‡ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testHighwayTransportation4b9() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -12982,7 +12989,7 @@ public class RuleFuncTest {
 				j), "OK");
 	}
 
-	// 1179, JT/T 430-2000 º½ĞĞ¹ú¼Êº½Ïß´¬²°¸Û¿Ú·Ñ´úÂë
+	// 1179, JT/T 430-2000 èˆªè¡Œå›½é™…èˆªçº¿èˆ¹èˆ¶æ¸¯å£è´¹ä»£ç 
 	public static void testPortTariff3() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -13042,7 +13049,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.PortTariff3(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1179, JT/T 430-2000 ÍâÃ³½ø³ö¿Ú»õÎï¸ÛÎñ·Ñ´úÂë
+	// 1179, JT/T 430-2000 å¤–è´¸è¿›å‡ºå£è´§ç‰©æ¸¯åŠ¡è´¹ä»£ç 
 	public static void testPortTariff4() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -13102,7 +13109,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.PortTariff4(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1179, JT/T 430-2000 ÍâÃ³½ø³ö¿Ú»õÎï×°Ğ¶·Ñ´úÂë
+	// 1179, JT/T 430-2000 å¤–è´¸è¿›å‡ºå£è´§ç‰©è£…å¸è´¹ä»£ç 
 	public static void testPortTariff9() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -13162,7 +13169,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.PortTariff9(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1179, JT/T 430-2000 ×âÓÃ´¬²°¡¢»úĞµ¡¢Éè±¸ºÍÎ¯ÍĞÆäËûÔÓÏî×÷Òµ·ÑÂÊ´úÂë
+	// 1179, JT/T 430-2000 ç§Ÿç”¨èˆ¹èˆ¶ã€æœºæ¢°ã€è®¾å¤‡å’Œå§”æ‰˜å…¶ä»–æ‚é¡¹ä½œä¸šè´¹ç‡ä»£ç 
 	public static void testPortTariff25() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -13222,7 +13229,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.PortTariff25(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1179, JT/T 430-2000 ÍâÃ³½ø³ö¿Ú»õÎï×°Ğ¶·Ñ´úÂë
+	// 1179, JT/T 430-2000 å¤–è´¸è¿›å‡ºå£è´§ç‰©è£…å¸è´¹ä»£ç 
 	public static void testPortTariff10() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -13349,32 +13356,32 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("01175");
+		String tr1 = new String("G324D00144");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("01299");
+		String tr2 = new String("G318D00151");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("01401");
+		String tr3 = new String("G209D00114");
 		char[] IDstr3 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("01465");
+		String tr4 = new String("G213D00151");
 		char[] IDstr4 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
-		String tr5 = new String("02325");
+		String tr5 = new String("G219D00154");
 		char[] IDstr5 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr5[i] = tr5.charAt(i);
@@ -13414,32 +13421,32 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("01175");
+		String tr1 = new String("G208U00214");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("01299");
+		String tr2 = new String("G330U00433");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("01401");
+		String tr3 = new String("G105U00144");
 		char[] IDstr3 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("01465");
+		String tr4 = new String("G381U00151");
 		char[] IDstr4 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
-		String tr5 = new String("02325");
+		String tr5 = new String("G312U00262");
 		char[] IDstr5 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr5[i] = tr5.charAt(i);
@@ -13952,7 +13959,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Machinery10(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1176, JT/T 444-2001 ¹«Â·Àï³ÌÄêµ×µ½´ïÊıÍ³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 å…¬è·¯é‡Œç¨‹å¹´åº•åˆ°è¾¾æ•°ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testHighwayTransportation4c6() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -14083,7 +14090,7 @@ public class RuleFuncTest {
 				RuleFunction.WaterwayTransportation(IDstr5, j, index1, j), "OK");
 	}
 
-	// 1176, JT/T 444-2001 ÔËÊä¹¤¾ßÊµÓĞÊıÍ³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 è¿è¾“å·¥å…·å®æœ‰æ•°ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testHighwayTransportation4b10() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -14148,7 +14155,7 @@ public class RuleFuncTest {
 				j), "OK");
 	}
 
-	// 1176, JT/T 444-2001 ¹«Â·ÔËÊäÖ÷ÒªÍ³¼ÆÖ¸±ê´úÂë
+	// 1176, JT/T 444-2001 å…¬è·¯è¿è¾“ä¸»è¦ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
 	public static void testHighwayTransportation() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -14220,32 +14227,32 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("250");
+		String tr1 = new String("A010501");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("262");
+		String tr2 = new String("A030201 ");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("550");
+		String tr3 = new String("B030302");
 		char[] IDstr3 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("402");
+		String tr4 = new String("B120202");
 		char[] IDstr4 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
-		String tr5 = new String("399");
+		String tr5 = new String("B141702");
 		char[] IDstr5 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr5[i] = tr5.charAt(i);
@@ -14406,7 +14413,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.TwoOrThree(IDstr5, j1, index2, j1), "OK");
 	}
 
-	// 1179, JT/T 430-2000 ÍâÃ³½ø³ö¿Ú»õÎï×°Ğ¶·Ñ´úÂë
+	// 1179, JT/T 430-2000 å¤–è´¸è¿›å‡ºå£è´§ç‰©è£…å¸è´¹ä»£ç 
 	public static void testCommodityName() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -14473,7 +14480,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.CommodityName(IDstr5, j1, index2, j1), "OK");
 	}
 
-	// 377, GB/T 12408¡ª¡ª1990
+	// 377, GB/T 12408â€”â€”1990
 	public static void testSocialWork() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -14500,15 +14507,14 @@ public class RuleFuncTest {
 		}
 
 		String tr4 = new String("10");
-		int j1 = tr4.length();
-		char[] IDstr4 = new char[j1];
-		for (int i = 0; i < j1; i++) {
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
 		String tr5 = new String("42");
-		char[] IDstr5 = new char[j1];
-		for (int i = 0; i < j1; i++) {
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
 			IDstr5[i] = tr5.charAt(i);
 		}
 
@@ -14516,12 +14522,6 @@ public class RuleFuncTest {
 
 		for (int i = 0; i < j; i++) {
 			index1[i] = i;
-		}
-
-		int[] index2 = new int[j1];
-
-		for (int i = 0; i < j1; i++) {
-			index2[i] = i;
 		}
 
 		System.out.print(i++);
@@ -14534,10 +14534,10 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.SocialWork(IDstr3, j, index1, j), "OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.SocialWork(IDstr4, j1, index2, j1), "OK");
+		UnitTestEqual(RuleFunction.SocialWork(IDstr4, j, index1, j), "OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.SocialWork(IDstr5, j1, index2, j1), "OK");
+		UnitTestEqual(RuleFunction.SocialWork(IDstr5, j, index1, j), "OK");
 	}
 
 	// 386, GA/T 974.69-2011
@@ -14800,7 +14800,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Mod36_37(IDstr5, j, index1, j), "OK");
 	}
 
-	// ¹¤ÉÌĞĞÕş¹ÜÀí×¢²áºÅ±àÖÆ¹æÔò
+	// å·¥å•†è¡Œæ”¿ç®¡ç†æ³¨å†Œå·ç¼–åˆ¶è§„åˆ™
 	public static void testBusinessAdminis() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -14858,7 +14858,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.BusinessAdminis(IDstr5, j, index1, j), "OK");
 	}
 
-	// ·ÅÉäÔ´±àÂë¹æÔò ºËÔªËØ¹ú¼Ò´úÂë
+	// æ”¾å°„æºç¼–ç è§„åˆ™ æ ¸å…ƒç´ å›½å®¶ä»£ç 
 	public static void testNuclearelementNation() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
@@ -14978,39 +14978,39 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Nuclearelements(IDstr5, j, index1, j), "OK");
 	}
 
-	// Æû³µ±ê×¼¼ş²úÆ·±àºÅ¹æÔò
+	// æ±½è½¦æ ‡å‡†ä»¶äº§å“ç¼–å·è§„åˆ™
 	public static void testCarProduct() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
 				.getStackTrace()[1].getMethodName());
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("Q1B0001-1T10F6");
+		String tr1 = new String("00000000000009N");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("Q1B0001-1T10F96");
+		String tr2 = new String("00000000000008P");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("Q1B0001-1T10F9B");
+		String tr3 = new String("00000000000006o");
 		char[] IDstr3 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("Q1B0001-1T10F5Q");
+		String tr4 = new String("000000000000059");
 		char[] IDstr4 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
-		String tr5 = new String("Q1B0001-1T10F53");
+		String tr5 = new String("000000000000097");
 		char[] IDstr5 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr5[i] = tr5.charAt(i);
@@ -15018,8 +15018,8 @@ public class RuleFuncTest {
 
 		int[] index1 = new int[j];
 
-		for (int i = 0; i < j; i++) {
-			index1[i] = i;
+		for (int i = 0; i < j - 13; i++) {
+			index1[i] = i + 13;
 		}
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.CarProduct(IDstr1, j, index1, j), "OK");
@@ -15043,32 +15043,32 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("0075004");
+		String tr1 = new String("A0200004");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("0125004");
+		String tr2 = new String("A0125004");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("0150004");
+		String tr3 = new String("B0030004");
 		char[] IDstr3 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("0000012");
+		String tr4 = new String("C0000022");
 		char[] IDstr4 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
-		String tr5 = new String("0035004");
+		String tr5 = new String("D0070013");
 		char[] IDstr5 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr5[i] = tr5.charAt(i);
@@ -15099,4 +15099,6432 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.MountainRangeAndPeakName(IDstr5, j, index1,
 				j), "OK");
 	}
+
+	// 298, GB/T 21373-2008
+	public static void testIntellectualProperty() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("050300");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("030902");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("020802");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("010603");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("010100");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IntellectualProperty(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IntellectualProperty(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IntellectualProperty(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IntellectualProperty(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IntellectualProperty(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 328, GB/T 16835-1997
+	public static void testNormalAndShortCycleSpeciality() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("090699");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("050478");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("040420");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("020152");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("020199");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NormalAndShortCycleSpeciality(IDstr1, j,
+				index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NormalAndShortCycleSpeciality(IDstr2, j,
+				index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NormalAndShortCycleSpeciality(IDstr3, j,
+				index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NormalAndShortCycleSpeciality(IDstr4, j,
+				index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NormalAndShortCycleSpeciality(IDstr5, j,
+				index1, j), "OK");
+	}
+
+	// 337, GB/T 16558.2-2009
+	public static void testMaintenanceSystemPTwo() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("AS-103-000-000");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("AS-203-078-000");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("BW-211-142-000");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("CG-502-608-000");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("ES-200-000-000");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MaintenanceSystemPTwo(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MaintenanceSystemPTwo(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MaintenanceSystemPTwo(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MaintenanceSystemPTwo(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MaintenanceSystemPTwo(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 1880, JT/T 415â€”â€”2000å®¢ç¥¨ç±»åˆ«
+	public static void testTwobyteCode06and90() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("01");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("90");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("06");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("07");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TwobyteCode06and90(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TwobyteCode06and90(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TwobyteCode06and90(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TwobyteCode06and90(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TwobyteCode06and90(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 1179, JT/T 430-2000 èˆªè¡Œå›½é™…èˆªçº¿èˆ¹èˆ¶é•¿æ±Ÿå¼•èˆªã€ç§»æ³Šè´¹ç‡ä»£ç 
+	public static void testPortTariff26() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("WZB");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("BJ0");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("LW0");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("LC0");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("LZA");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PortTariff26(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PortTariff26(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PortTariff26(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PortTariff26(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PortTariff26(IDstr5, j, index1, j), "OK");
+	}
+
+	// 1176, JT/T 444-2001 å…¬è·¯è´§è¿é‡ç»Ÿè®¡æŒ‡æ ‡ä»£ç 
+	public static void testHighwayTransportation4c3() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("1300");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("1700");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0210");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("1000");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("1400");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayTransportation4c3(IDstr1, j, index1,
+				j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayTransportation4c3(IDstr2, j, index1,
+				j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayTransportation4c3(IDstr3, j, index1,
+				j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayTransportation4c3(IDstr4, j, index1,
+				j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayTransportation4c3(IDstr5, j, index1,
+				j), "OK");
+	}
+
+	// 326, GB/T 16963-2010
+	public static void testCountryRegionCode1() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("AW");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("MG");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("IS");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("AF");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("KE");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CountryRegionCode1(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CountryRegionCode1(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CountryRegionCode1(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CountryRegionCode1(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CountryRegionCode1(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 784, DL/T 517-2012
+	public static void testElectricPower() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("450702");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("460300");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("472421");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("310500");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("119900");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPower(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPower(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPower(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPower(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPower(IDstr5, j, index1, j), "OK");
+	}
+
+	// 785, DL/T 510-2010
+	public static void testPowerGrid() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("111");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("210");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("299");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("306");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("119");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGrid(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGrid(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGrid(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGrid(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGrid(IDstr5, j, index1, j), "OK");
+	}
+
+	// 787, DL/T 495-2012
+	public static void testElectricPowerIndustry() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("11");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("90");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("49");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("74");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("88");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPowerIndustry(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPowerIndustry(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPowerIndustry(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPowerIndustry(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ElectricPowerIndustry(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 788, DL/T 397-2010
+	public static void testElectricPowerGeography() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("1030002");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("2000000");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("2030801");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("3020102");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("7020004");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.ElectricPowerGeography(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.ElectricPowerGeography(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.ElectricPowerGeography(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.ElectricPowerGeography(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.ElectricPowerGeography(IDstr5, j, index1, j), "OK");
+	}
+
+	// 789, DL/T 396-2010
+	public static void testVoltageClass() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("AC00482");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("AC06902 ");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("AC72.51");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("DC08001");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("DC02.42");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.VoltageClass(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.VoltageClass(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.VoltageClass(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.VoltageClass(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.VoltageClass(IDstr5, j, index1, j), "OK");
+	}
+
+	// 909, DL/T 700.2-1999
+	public static void testPowerGoodsP2() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("308");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("312");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("232");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("101");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("112");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGoodsP2(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGoodsP2(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGoodsP2(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGoodsP2(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerGoodsP2(IDstr5, j, index1, j), "OK");
+	}
+
+	// 361, GB/T 12603-2005
+	public static void testMetalHeatCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("10");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("27 ");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("18");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("37");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("25");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MetalHeatCode(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MetalHeatCode(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MetalHeatCode(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MetalHeatCode(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MetalHeatCode(IDstr5, j, index1, j), "OK");
+	}
+
+	// 353, GB/T 13923-2006
+	public static void testGeographicInfoCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("210100");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("220304 ");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("230102");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("250402");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("260200");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GeographicInfoCode(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GeographicInfoCode(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GeographicInfoCode(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GeographicInfoCode(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GeographicInfoCode(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 354, GB/T 13861-2009
+	public static void testHarmfulFactor() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("210105");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("210599 ");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("211302");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("321200");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("490000");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HarmfulFactor(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HarmfulFactor(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HarmfulFactor(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HarmfulFactor(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HarmfulFactor(IDstr5, j, index1, j), "OK");
+	}
+
+	// 366, GB/T 10302-2010
+	public static void testRailwayStationCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("43061");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("20093 ");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("28172");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("50204");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("57938");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.RailwayStationCode(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.RailwayStationCode(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.RailwayStationCode(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.RailwayStationCode(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.RailwayStationCode(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 261, GB/T 4942.1-2006/IEC 60034-5:2000
+	public static void testProtectionDegreeRegex() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0000ZXC");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0000VBN ");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0000MLK");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0000JHG");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0000FDS");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 4; i++) {
+			index1[i] = i + 4;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProtectionDegreeRegex(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProtectionDegreeRegex(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProtectionDegreeRegex(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProtectionDegreeRegex(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProtectionDegreeRegex(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 237, LY/T 1080-92
+	public static void testForestryClassRegex() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00000000");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("00000012");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("00000034");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("00000056");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("00000078");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 3; i++) {
+			index1[i] = i + 3;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ForestryClassRegex(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ForestryClassRegex(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ForestryClassRegex(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ForestryClassRegex(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ForestryClassRegex(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 241, GB/T 9649.32-2009
+	public static void testMineralRegex() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("000001132");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("000123145");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("000456167");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("000789198");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("000631100");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 6; i++) {
+			index1[i] = i + 6;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MineralRegex(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MineralRegex(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MineralRegex(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MineralRegex(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MineralRegex(IDstr5, j, index1, j), "OK");
+	}
+
+	// 345, GB/T 15420-2009
+	public static void testStevedorageChartering() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("LF");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("FO");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("UT");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("AC");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("AB");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.StevedorageChartering(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.StevedorageChartering(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.StevedorageChartering(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.StevedorageChartering(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.StevedorageChartering(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 347, GB/T 15161-1994
+	public static void testTreeDiseaseCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("130000");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("132207");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("132238");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("135204");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("135228");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreeDiseaseCode(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreeDiseaseCode(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreeDiseaseCode(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreeDiseaseCode(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreeDiseaseCode(IDstr5, j, index1, j), "OK");
+	}
+
+	// 341, GB/T 16158-1996
+	public static void testNavigationShip() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("2231");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("2613");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("3420");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("4239");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("5120");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShip(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShip(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShip(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShip(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShip(IDstr5, j, index1, j), "OK");
+	}
+
+	// 341, GB/T 16158-1996
+	public static void testNavigationShipAddCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("10");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("18");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("29");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("31");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("69");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShipAddCode(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShipAddCode(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShipAddCode(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShipAddCode(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NavigationShipAddCode(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 411, GA/T 974.46-2011
+	public static void testFireTrainCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("990000");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("030203");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("030114");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("040701");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("030300");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireTrainCode(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireTrainCode(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireTrainCode(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireTrainCode(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireTrainCode(IDstr5, j, index1, j), "OK");
+	}
+
+	// 425, GA/T 974.33-2011
+	public static void testFireCauseCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("980000");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("010399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("020500");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("031199");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("050100");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireCauseCode(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireCauseCode(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireCauseCode(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireCauseCode(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireCauseCode(IDstr5, j, index1, j), "OK");
+	}
+
+	// æ±½è½¦äº§å“é›¶éƒ¨ä»¶è¾¹ç¼–ç è§„åˆ™
+	public static void testCarProductCompnent() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("1000");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("1999");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("1123");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("9999");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0000");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CarProductCompnent(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CarProductCompnent(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CarProductCompnent(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CarProductCompnent(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CarProductCompnent(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// TCLé‡‘èƒ½ç”µæ± ç¼–ç è§„åˆ™
+	public static void testTCLBatteryProduct() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("1.01");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("2.03");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("1.99");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("3.09");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("9.99");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TCLBatteryProduct(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TCLBatteryProduct(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TCLBatteryProduct(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TCLBatteryProduct(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TCLBatteryProduct(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// TCLé‡‘èƒ½ç”µæ± ç¼–ç è§„åˆ™â€”â€”ç¬¬ä¸‰çº§ç¼–ç 
+	public static void testProductCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("200099");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("200056");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("200000");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("10000402");
+		int j1 = tr4.length();
+		char[] IDstr4 = new char[j1];
+		for (int i = 0; i < j1; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("10000602");
+		char[] IDstr5 = new char[j1];
+		for (int i = 0; i < j1; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 4; i++) {
+			index1[i] = i + 4;
+		}
+
+		int[] index2 = new int[j1];
+
+		for (int i = 0; i < j1 - 4; i++) {
+			index2[i] = i + 4;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProductCode(IDstr1, j, index1, j - 4), "OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProductCode(IDstr2, j, index1, j - 4), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProductCode(IDstr3, j, index1, j - 4), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProductCode(IDstr4, j1, index2, j1 - 4),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProductCode(IDstr5, j1, index2, j1 - 4),
+				"OK");
+	}
+
+	// å·¥ä¸šé›·ç®¡ç¼–ç åŸºæœ¬è§„åˆ™
+	public static void testprojectbuild() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("A1");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("R1");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("Z2");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("34");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("2K");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.projectbuild(IDstr1, j, index1, j), "OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.projectbuild(IDstr2, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.projectbuild(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.projectbuild(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.projectbuild(IDstr5, j, index1, j), "OK");
+	}
+
+	// 431, GA/T 974.28-2011
+	public static void testFireForceCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0900");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("1399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("2302");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("4900");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("5300");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireForceCode(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireForceCode(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireForceCode(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireForceCode(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireForceCode(IDstr5, j, index1, j), "OK");
+	}
+
+	// 412ï¼Œ GA/T 974.45-2011
+	public static void testFireInfotrain() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0100");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0299");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0104");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0250");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0099");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireInfotrain(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireInfotrain(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireInfotrain(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireInfotrain(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FireInfotrain(IDstr5, j, index1, j), "OK");
+	}
+
+	// 419, GA/T 974.39-2011
+	public static void testServiceState() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("90");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("25");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("28");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("20");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceState(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceState(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceState(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceState(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceState(IDstr5, j, index1, j), "OK");
+	}
+
+	// 457, GA/T 852.8-2009
+	public static void testPractitionerType() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("13");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("40");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("99");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("25");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("29");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PractitionerType(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PractitionerType(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PractitionerType(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PractitionerType(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PractitionerType(IDstr5, j, index1, j), "OK");
+	}
+
+	// 466, GA/T 556.5-2007
+	public static void testFinancialCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("80");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("49");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("60");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("87");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("99");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FinancialCode(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FinancialCode(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FinancialCode(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FinancialCode(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.FinancialCode(IDstr5, j, index1, j), "OK");
+	}
+
+	// 466, GA/T 556.8-2007
+	public static void testTreasuryClass() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("09");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("19");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("05");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("11");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreasuryClass(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreasuryClass(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreasuryClass(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreasuryClass(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TreasuryClass(IDstr5, j, index1, j), "OK");
+	}
+
+	// 467, GA/T 556.1-2005
+	public static void testJobClassificationCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("FF09");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("FZ01");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("CF03");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("SX09");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("XZ10");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.JobClassificationCode(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.JobClassificationCode(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.JobClassificationCode(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.JobClassificationCode(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.JobClassificationCode(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 470, GA/T 517-2004
+	public static void testTravleDocumentCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("163");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("291");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("323");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("346");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("555");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TravleDocumentCode(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TravleDocumentCode(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TravleDocumentCode(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TravleDocumentCode(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TravleDocumentCode(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 474, GA/T 396-2002 å…¬å®‰éƒ¨æ¶ˆé˜²å±€å’Œçœçº§å…¬å®‰æ¶ˆé˜²æ€»é˜Ÿä»£ç 
+	public static void testProvinceAdminCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("64");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("66");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("50");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("13");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("00");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProvinceAdminCode(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProvinceAdminCode(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProvinceAdminCode(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProvinceAdminCode(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ProvinceAdminCode(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 474, GA/T 396-2002 åˆ—ç®¡å•ä½ä»£ç 
+	public static void testAdminDivision1() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("110102001");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("110104008");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("110105015");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("110105034");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("110106011");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.AdminDivision1(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.AdminDivision1(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.AdminDivision1(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.AdminDivision1(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.AdminDivision1(IDstr5, j, index1, j), "OK");
+	}
+
+	// 326, GB/T 16963-2010
+	public static void testDraftingRulesForCodes() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00000000A09");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("00000000ZDF");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("00000000KLI");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("00000000OP0");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("00000000RTE");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 8; i++) {
+			index1[i] = i + 8;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DraftingRulesForCodes(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DraftingRulesForCodes(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DraftingRulesForCodes(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DraftingRulesForCodes(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DraftingRulesForCodes(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 776, HJ/T 417-2007
+	public static void testEnvironmentalInformation() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00000000909");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("00000000089");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("00000000123");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("00000000456");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("00000000963");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 8; i++) {
+			index1[i] = i + 8;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EnvironmentalInformation(IDstr1, j, index1,
+				j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EnvironmentalInformation(IDstr2, j, index1,
+				j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EnvironmentalInformation(IDstr3, j, index1,
+				j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EnvironmentalInformation(IDstr4, j, index1,
+				j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EnvironmentalInformation(IDstr5, j, index1,
+				j), "OK");
+	}
+
+	// 782, HJ 520-2009
+	public static void testWastewater() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00000909");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("00000089");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("00000123");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("00000456");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("00000963");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 5; i++) {
+			index1[i] = i + 5;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.Wastewater(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.Wastewater(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.Wastewater(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.Wastewater(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.Wastewater(IDstr5, j, index1, j), "OK");
+	}
+
+	// 332, GB/T 16711-1996
+	public static void testBankCodes() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00000000909");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("00000000ABC");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("00000000XYZ");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("00000000MNO");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("00000000QWE");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 8; i++) {
+			index1[i] = i + 8;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BankCodes(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BankCodes(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BankCodes(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BankCodes(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BankCodes(IDstr5, j, index1, j), "OK");
+	}
+
+	// 528, GA 398.20-2002
+	public static void testDocumentEnvidence() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("036");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("486");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("ghy");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("298");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("399");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DocumentEnvidence(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DocumentEnvidence(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DocumentEnvidence(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DocumentEnvidence(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.DocumentEnvidence(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// ä¸­å›½çŸ³æ²¹å¤©ç„¶æ°”æ€»å…¬å¸ä¼ã€äº‹ä¸šå•ä½ä»£ç ï¼ˆ763ï¼‰
+	public static void testGassCompany() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("8052483");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("1071312");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("9999999");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ABFGGGE");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("23ER544");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GassCompany(IDstr1, j, index1, j), "OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GassCompany(IDstr2, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GassCompany(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GassCompany(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.GassCompany(IDstr5, j, index1, j), "OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase6() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("20");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("67");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("91");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("234");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase6(IDstr1, j, index1, j), "OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase6(IDstr2, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase6(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase6(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase6(IDstr5, j, index1, j), "OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase7() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("GG");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("YY");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("AB");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("234");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase7(IDstr1, j, index1, j), "OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase7(IDstr2, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase7(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase7(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase7(IDstr5, j, index1, j), "OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase8() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("27");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("50");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("AB");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("342");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase8(IDstr1, j, index1, j), "OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase8(IDstr2, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase8(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase8(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase8(IDstr5, j, index1, j), "OK");
+	}
+
+	// 532, GA 398.17-2002
+	public static void testEconomicCasesUnit() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("a36");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("486");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("ghy");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("298");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("399");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EconomicCasesUnit(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EconomicCasesUnit(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EconomicCasesUnit(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EconomicCasesUnit(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.EconomicCasesUnit(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 539, GA 398.10-2002
+	public static void testCodesOfMakingCases() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("936");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("486");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("ghy");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("298");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("399");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CodesOfMakingCases(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CodesOfMakingCases(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CodesOfMakingCases(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CodesOfMakingCases(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CodesOfMakingCases(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 569, CB/T 3782-1996æŸå‡ ä½è§„åˆ™æœªæ‰¾åˆ°
+	public static void testOneTO48() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("48");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("01");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("49");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("25");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.OneTO48(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.OneTO48(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.OneTO48(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.OneTO48(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.OneTO48(IDstr5, j, index1, j), "OK");
+	}
+
+	// 598, GB/T 917-2009
+	public static void testNationalTrunkHighway() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("009w10");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("000919");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("003434");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("00ww25");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("00w478");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 2; i++) {
+			index1[i] = i + 2;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NationalTrunkHighway(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NationalTrunkHighway(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NationalTrunkHighway(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NationalTrunkHighway(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.NationalTrunkHighway(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹èµ·é‡è¿è¾“æœºå™¨
+	public static void testParamCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("12.0");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("23.9");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("1200");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("1309");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("1398");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 2; i++) {
+			index1[i] = i + 2;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹æ°”ä½“å‹ç¼©æœº
+	public static void testParamCode6() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("152.123");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("235.987");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("263.456");
+		int j1 = tr3.length();
+		char[] IDstr3 = new char[j1];
+		for (int i = 0; i < j1; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("237.852");
+		char[] IDstr4 = new char[j1];
+		for (int i = 0; i < j1; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("000.222");
+		char[] IDstr5 = new char[j1];
+		for (int i = 0; i < j1; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		int[] index2 = new int[j1];
+
+		for (int i = 0; i < j1; i++) {
+			index2[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode6(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode6(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode6(IDstr3, j1, index2, j1), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode6(IDstr4, j1, index2, j1), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode6(IDstr5, j1, index2, j1), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹åˆ¶å†·ç©ºè°ƒè®¾å¤‡
+	public static void testParamCode7() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0000.00");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("1234.56");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("7896.32");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("a456.36");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("7896.a4");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode7(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode7(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode7(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode7(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode7(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹æ ‡å‡†ä»¶
+	public static void testParamCode17() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("a");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("9");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("1");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("2");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode17(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode17(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode17(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode17(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode17(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910ï¼Œ DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹äº’æ„Ÿå™¨
+	public static void testParamCode19() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("012345");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("789634");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o00000");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("369852");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("742025");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode19(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode19(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode19(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode19(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode19(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹æ–­è·¯å™¨
+	public static void testParamCode20() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("012345124");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("789634355");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o00000906");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("369852542");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("742025569");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode20(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode20(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode20(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode20(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode20(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹éš”ç¦»å¼€å…³
+	public static void testParamCode22() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("234567");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("297842");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o00000");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("201478");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("102365");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode22(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode22(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode22(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode22(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode22(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç»„åˆç”µå™¨
+	public static void testParamCode27() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("02456789");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("02325874");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o0000000");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("01787895");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("02653654");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode27(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode27(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode27(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode27(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode27(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹é¿é›·å™¨
+	public static void testParamCode28() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("02231");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("02561");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o0001");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("01781");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("02451");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode28(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode28(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode28(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode28(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode28(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹çº¿è·¯ç”µç“·
+	public static void testParamCode29() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0156");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0234");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o015");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0756");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0598");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode29(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode29(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode29(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode29(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode29(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µç«™ç”µç“·
+	public static void testParamCode30() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("07566");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("08634");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o0156");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("07956");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("05798");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode30(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode30(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode30(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode30(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode30(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µåŠ›ç”µå®¹å™¨
+	public static void testParamCode31() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("03566");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("06634");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o0156");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("09956");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("05798");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode31(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode31(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode31(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode31(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode31(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µæŠ—å™¨
+	public static void testParamCode32() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("01160000");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("02293685");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o0156121");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("04643561");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("02277140");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode32(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode32(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode32(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode32(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode32(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ä½å‹ç”µå™¨å…ƒä»¶
+	public static void testParamCode34() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("01211600001");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("01232936852");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o0115612134");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("01256435614");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("01242771405");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode34(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode34(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode34(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode34(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode34(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µåŠ›é‡‘å…·
+	public static void testParamCode35() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("122001");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("125852");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("o01105");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("126614");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("340405");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode35(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode35(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode35(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode35(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode35(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µçº¿
+	public static void testParamCode38() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("123122001");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("143125852");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("103o01105");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("212126614");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("153340405");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode38(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode38(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode38(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode38(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode38(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹è“„ç”µæ± 
+	public static void testParamCode41() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("3122001");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("3225852");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("3103o05");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("2126614");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("3340405");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode41(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode41(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode41(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode41(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ParamCode41(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ç”µå·¥ç»ç¼˜ææ–™
+	public static void testPowerMaterials44() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0111");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0299");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0504");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0699");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0700");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials44(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials44(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials44(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials44(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials44(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹å·¥ä¸šè‡ªåŠ¨åŒ–ä»ªå™¨ä»ªè¡¨
+	public static void testPowerMaterials45() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0206");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0501");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0910");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("1300");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials45(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials45(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials45(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials45(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials45(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹ä¸“ç”¨ä»ªå™¨ä»ªè¡¨
+	public static void testPowerMaterials46() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0206");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0501");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0799");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0700");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials46(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials46(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials46(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials46(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials46(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹è®¡é‡æ ‡å‡†ä»ªå™¨
+	public static void testPowerMaterials49() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0206");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0501");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0699");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0101");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials49(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials49(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials49(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials49(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials49(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹æˆåˆ†åˆ†æä»ªå™¨
+	public static void testPowerMaterials50() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0299");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0501");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0699");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0101");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials50(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials50(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials50(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials50(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials50(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹å…‰å­¦ä»ªå™¨
+	public static void testPowerMaterials51() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0299");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0501");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0699");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0101");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials51(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials51(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials51(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials51(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials51(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹å®éªŒä»ªå™¨è£…ç½®
+	public static void testPowerMaterials52() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0299");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0501");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0699");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials52(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials52(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials52(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials52(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials52(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹æ–‡åŒ–åŠå…¬æœºæ¢°
+	public static void testPowerMaterials53() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0299");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0501");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0699");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0601");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials53(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials53(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials53(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials53(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials53(IDstr5, j, index1, j), "OK");
+	}
+
+	// 910, DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹è¯•éªŒæœº
+	public static void testPowerMaterials54() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0299");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0399");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0501");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0699");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("9901");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials54(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials54(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials54(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials54(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.PowerMaterials54(IDstr5, j, index1, j), "OK");
+	}
+
+	// 509, GA 557.5â€”â€”2005
+	public static void testInternetWebService() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0999");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("2013");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("2119");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("2180");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0004");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.InternetWebService(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.InternetWebService(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.InternetWebService(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.InternetWebService(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.InternetWebService(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 504, GA 658.10-2006
+	public static void testServiceContentCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("9999");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("2180");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0011");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("1010");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0000");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceContentCode(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceContentCode(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceContentCode(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceContentCode(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.ServiceContentCode(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 635, GB/T 15694.1-1995
+	public static void testIdentificationCardsP1() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("11111111");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("234643652");
+		int j1 = tr2.length();
+		char[] IDstr2 = new char[j1];
+		for (int i = 0; i < j1; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("5555555555");
+		int j2 = tr3.length();
+		char[] IDstr3 = new char[j2];
+		for (int i = 0; i < j2; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("33333333333");
+		int j3 = tr4.length();
+		char[] IDstr4 = new char[j3];
+		for (int i = 0; i < j3; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("00000008999999");
+		int j4 = tr5.length();
+		char[] IDstr5 = new char[j4];
+		for (int i = 0; i < j4; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 6; i++) {
+			index1[i] = i + 6;
+		}
+		int[] index2 = new int[j1];
+
+		for (int i = 0; i < j1 - 6; i++) {
+			index2[i] = i + 6;
+		}
+		int[] index3 = new int[j2];
+
+		for (int i = 0; i < j2 - 6; i++) {
+			index3[i] = i + 6;
+		}
+		int[] index4 = new int[j3];
+
+		for (int i = 0; i < j3 - 6; i++) {
+			index4[i] = i + 6;
+		}
+		int[] index5 = new int[j4];
+
+		for (int i = 0; i < j4 - 6; i++) {
+			index5[i] = i + 6;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IdentificationCardsP1(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction
+				.IdentificationCardsP1(IDstr2, j1, index2, j1), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction
+				.IdentificationCardsP1(IDstr3, j2, index3, j2), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction
+				.IdentificationCardsP1(IDstr4, j3, index4, j3), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction
+				.IdentificationCardsP1(IDstr5, j4, index5, j4), "OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase13() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("27");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("45");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("AB");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("342");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase13(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase13(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase13(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase13(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase13(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase16() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("27");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("45");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("AB");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("342");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase16(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase16(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase16(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase16(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase16(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// JT/T 132â€”â€”2003 å·¥ç¨‹ææ–™ä»£ç  757
+	public static void testHighwayDatabase17() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("27");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("45");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase17(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase17(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase17(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase17(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase17(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase18() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("21");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase18(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase18(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase18(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase18(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase18(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase24() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("21");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase24(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase24(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase24(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase24(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase24(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase25() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase25(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase25(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase25(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase25(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase25(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase26() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("00");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase26(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase26(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase26(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase26(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase26(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// JT/T 132â€”â€”2003 å…¬è·¯æ²¿çº¿è®¾æ–½åˆ†ç±»ä»£ç  757
+	public static void testHighwayDatabase46() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("21");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase46(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase46(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase46(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase46(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase46(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// JT/T 132â€”â€”2003 å…¬è·¯äº¤é€šæ ‡å¿—åˆ†ç±» 757
+	public static void testHighwayDatabase47() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("119");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("444");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("55b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("abc");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase47(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase47(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase47(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase47(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase47(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase59() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("20");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase59(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase59(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase59(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase59(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase59(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase65() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("19");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase65(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase65(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase65(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase65(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase65(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase66() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("19");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("999");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase66(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase66(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase66(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase66(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase66(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// JT/T 132â€”â€”2003å·¥ç¨‹èµ„è´¨ä»£ç  757
+	public static void testHighwayDatabase71() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("A324");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("4433");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4CCb");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("abDF");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("D590");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase71(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase71(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase71(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase71(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase71(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// æ ¡éªŒå‰4ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757
+	public static void testHighwayDatabase70() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("50");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("44");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4b");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("ab");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("D5");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase70(IDstr1, j, index1, j),
+				"OK");
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase70(IDstr2, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase70(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase70(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.HighwayDatabase70(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 516, GA 408.1â€”â€”2006
+	public static void testTraViolativeActionCode() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("1073");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("3030");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("4301");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("4601");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("5067");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.TraViolativeActionCode(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.TraViolativeActionCode(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.TraViolativeActionCode(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.TraViolativeActionCode(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(
+				RuleFunction.TraViolativeActionCode(IDstr5, j, index1, j), "OK");
+	}
+
+	// 516. GA 408.2â€”â€”2006
+	public static void testTenByteDecimalnt() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0000000000");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0000000001");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("9999999999");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("9999999991");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("a000000001");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TenByteDecimalnt(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TenByteDecimalnt(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TenByteDecimalnt(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TenByteDecimalnt(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TenByteDecimalnt(IDstr5, j, index1, j), "OK");
+	}
+
+	// 510, GA 459-2004
+	public static void testIDcardByMaterial() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("JCL0310");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("JCL0740");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("JGC0190");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("JRJ0150");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("JAS0240");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IDcardByMaterial(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IDcardByMaterial(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IDcardByMaterial(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IDcardByMaterial(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.IDcardByMaterial(IDstr5, j, index1, j), "OK");
+	}
+
+	// 603, GB/T 26819---2011
+	public static void testMOD11() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("JCL0310");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("JCL0740");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("JGC0190");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("JRJ0150");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("JAS0240");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MOD11(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MOD11(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MOD11(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MOD11(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.MOD11(IDstr5, j, index1, j), "OK");
+	}
+
+	// 603, GB/T 26819---2011
+	public static void testCreditIdentifiers() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("000000000000090");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("000000000000099");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("000000000000000");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("000000000000045");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("000000000000069");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 13; i++) {
+			index1[i] = i + 13;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CreditIdentifiers(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CreditIdentifiers(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CreditIdentifiers(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CreditIdentifiers(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.CreditIdentifiers(IDstr5, j, index1, j),
+				"OK");
+	}
+
+	// 615, GB/T 21285-2007
+	public static void testTubesValves() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("0000CC");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("0000CC");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("0000CD");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("0000CZ");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("0000CF");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 4; i++) {
+			index1[i] = i + 4;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves(IDstr5, j, index1, j), "OK");
+	}
+
+	// 615, GB/T 21285-2007
+	public static void testTubesValves1() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("000CC");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("000CC");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("000CD");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("000CZ");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("000CF");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j - 3; i++) {
+			index1[i] = i + 3;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves1(IDstr1, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves1(IDstr2, j, index1, j), "ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves1(IDstr3, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves1(IDstr4, j, index1, j), "OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.TubesValves1(IDstr5, j, index1, j), "OK");
+	}
+
+	// 632, GB/T 16986-2009
+	public static void testBarCodeForCommodity() {
+		JOptionPane.showMessageDialog(null, Thread.currentThread()
+				.getStackTrace()[1].getMethodName());
+		System.out.println(Thread.currentThread().getStackTrace()[1]
+				.getMethodName());
+
+		String tr1 = new String("314n");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+
+		String tr2 = new String("329n");
+		char[] IDstr2 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr2[i] = tr2.charAt(i);
+		}
+
+		String tr3 = new String("356n");
+		char[] IDstr3 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr3[i] = tr3.charAt(i);
+		}
+
+		String tr4 = new String("392n");
+		char[] IDstr4 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr4[i] = tr4.charAt(i);
+		}
+
+		String tr5 = new String("703s");
+		char[] IDstr5 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr5[i] = tr5.charAt(i);
+		}
+
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BarCodeForCommodity(IDstr1, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BarCodeForCommodity(IDstr2, j, index1, j),
+				"ERR");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BarCodeForCommodity(IDstr3, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BarCodeForCommodity(IDstr4, j, index1, j),
+				"OK");
+
+		System.out.print(i++);
+		UnitTestEqual(RuleFunction.BarCodeForCommodity(IDstr5, j, index1, j),
+				"OK");
+	}
+
 }

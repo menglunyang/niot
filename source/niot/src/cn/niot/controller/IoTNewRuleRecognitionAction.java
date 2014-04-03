@@ -19,45 +19,23 @@ import javax.servlet.http.HttpServletRequest;
  * 
 * @Title: RespRul.java 
 * @Package cn.niot.zt 
-* @Description:ǰ��̨��ݴ������� 
+* @Description:前锟斤拷台锟斤拷荽锟斤拷锟斤拷锟斤拷锟�
 * @author Zhang Tao
-* @date 2013-12-16 ���� 
+* @date 2013-12-16 锟斤拷锟斤拷 
 * @version V1.0
  */
 
 public class IoTNewRuleRecognitionAction extends ActionSupport {
 	
-	 /**
-	  * �û���ǰ̨�������ı��볤��
-	  */
+	
 	private String len;
-	 /**
-	  * �û���ǰ̨�������ĸ�λȡֵ��Χ
-	  */
+	 
 	private String valueRange;
 	
-	 /**
-	  * ���
-	  * ���������ظ�ǰ̨�Ĳ�ѯ״̬��
-	  * �����ȡֵ�ֱ�Ϊ����0������1����������1�������error��
-	  */
 	private String status;
 	
-	 /**
-	  * ��statusȡֵΪ��1�����ߴ��ڡ�1��������ʱ�����
-	  * ���������ظ�ǰ̨�ı�����Ϣ��
-	  * ��statusȡֵΪ��1��ʱ��data�洢��ѯ���ı�����ƣ�����data="CPC",
-	  * ��statusȡֵΪ����1������ʱ��data�洢��������Լ�������ʣ�
-	  * ����data = "[{codeName:'cpc',probability:0.12},{codeName:'eCode',probability:0.88}]";
-	  */
 	private String data;
 	
-	 /**
-	  * ��status=="error"ʱ�����
-	  * ���������ظ�ǰ̨�Ĵ�����Ϣ��
-	  * ��status=="error"ʱ����������Ϣ��ֵ��statement��
-	  * ����statement=="��������Ӧ��ʱ"��֮�󴫵ݸ�ǰ̨
-	  */
 	private String statement;
 	
 	private String extraData;	
@@ -93,6 +71,9 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 	public String execute() throws Exception
 	{
 		System.out.println(this.len+"!!!!!"+this.valueRange);
+		
+		System.out.println(System.currentTimeMillis());
+		
 		int nDisplayLen = 9;
 		String resJasonStr = NewIDstdCollisionDetect.formJsonString(this.len, this.valueRange);
 		HashMap<String, Double> HashMapID2Probability = NewIDstdCollisionDetect.computeCollisionRate(resJasonStr);
@@ -166,7 +147,7 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		this.data = "{codeName:'cpc',CollisionRatio:0.12}";
 		
 		//this.status = "error";
-		//this.statement = "��������Ӧʱ�䳬ʱ";
+		//this.statement = "锟斤拷锟斤拷锟斤拷锟斤拷应时锟戒超时";
 		
 		//this.status = "0";
 
@@ -180,7 +161,8 @@ public class IoTNewRuleRecognitionAction extends ActionSupport {
 		
     	//this.status = "1";
 		//this.data = "{codeName:'cpc',CollisionRatio:0.12}";
-		//this.extraData = "{'cpc':{'codeNum':'Ecode_5','fullName':'物联网统一编码 (Entity code, Ecode) V型'}}";
+		//this.extraData = "{'cpc':{'codeNum':'Ecode_5','fullName':'鐗╄仈缃戠粺涓�紪鐮�(Entity code, Ecode) V鍨�}}";
+    	System.out.println(System.currentTimeMillis());
     	
 		System.out.println(this.status+"\n"+this.data+"\n"+this.statement);
 		System.out.println("\n"+this.extraData);

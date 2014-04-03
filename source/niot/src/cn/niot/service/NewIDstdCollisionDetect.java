@@ -9,8 +9,8 @@ import cn.niot.util.*;
 
 public class NewIDstdCollisionDetect {
 	private static NewIDstdCollisionDetect collisionDetectAlg = new NewIDstdCollisionDetect();
-	private static Random r1 = new Random(1000);//ָ����������
-	private static double RandomNumber = 213;//����ʶ��ɵĸ���
+	private static Random r1 = new Random(1000);
+	private static double RandomNumber = 213;
 	private static int BEGIN_END = 2;
 	
 	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {
@@ -32,7 +32,7 @@ public class NewIDstdCollisionDetect {
 			 int index_begin = Integer.parseInt(subsubEle[0]);
 			 int index_end = Integer.parseInt(subsubEle[1]);
 			 for (int temp = index_begin; temp <= index_end; temp++){
-				 jsonObject.put(String.valueOf(temp - 1), subEle[1]);
+				jsonObject.put(String.valueOf(temp - 1), subEle[1]);
 			 }
 		 }
 		 resJasonStr = jsonObject.toString();
@@ -41,9 +41,11 @@ public class NewIDstdCollisionDetect {
 	public static HashMap<String, Double> computeCollisionRate(String JsonString){
 		HashMap<String, Double> IDSTD_CollisionRate = new HashMap<String, Double>();
 		HashMap<String, Double> IDSTD_Count = new HashMap<String, Double>();
+		IDstrRecognition.readDao(1);
 		for (int i = 0; i < RandomNumber; i++){
 			String IDstr = generateIDString(JsonString);
 			IDstrRecognition idstrReco = new IDstrRecognition();
+			
 			HashMap<String, Double> Id_Probability = idstrReco.IoTIDRecognizeAlg(IDstr);
 			Iterator iterator = Id_Probability.keySet().iterator();
 			while (iterator.hasNext()) {
@@ -93,7 +95,7 @@ public class NewIDstdCollisionDetect {
 	        	int index = Integer.parseInt((String)key);
 	        	String byteRule = (String)value;
 	        	
-	        	//���һ������ַ�//
+	        	
 	        	char resChar = generateRandomChar(byteRule);
 	        	instr[index] = resChar;
 	        }catch (Exception e){
@@ -157,7 +159,7 @@ public class NewIDstdCollisionDetect {
 			i++; 
 		}
 		if (i > 0){
-			//��������㷨
+			
 			resChar = randomizeArray(resChars, i);
 		}	
         

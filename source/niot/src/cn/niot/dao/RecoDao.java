@@ -5,9 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import mypack.HibernateSessionFactory;
+import mypack.Iotid;
+
+import org.hibernate.Query;
+import org.hibernate.Transaction;
 
 import cn.niot.util.JdbcUtils;
 
@@ -46,7 +53,77 @@ public class RecoDao {
 	}
 
 	/*
-	 * ����Ҳ�Ƿ���ֵ ����hashMapTypeToRules��rmvRuleSet��rmvIDSet��hashMapRuleToTypes
+	 * Hibernate test
+	 */
+	public HashMap<String, ArrayList<String>> HibernateDBreadTypeAndRules(
+			HashMap<String, Double> rmvRuleSet,
+			HashMap<String, Double> rmvIDSet,
+			HashMap<String, ArrayList<String>> hashMapRuleToTypes) {
+		HashMap<String, ArrayList<String>> hashMapTypeToRules = new HashMap<String, ArrayList<String>>();
+
+		org.hibernate.Session session = HibernateSessionFactory.getSession();
+		Transaction tx = session.beginTransaction();
+
+		try {
+			Query query = session.createQuery("from Iotid  ");
+			List<Iotid> list = query.list();
+			int rowcount = 0;
+			for (Iotid admin : list) {
+				ArrayList<String> rules = new ArrayList<String>();// ֵ е
+																	// ArrayList
+				String idType = admin.getId();// results.getString("id");
+				String lengthRule = admin.getLength();// results.getString("length");
+				String byteRule = admin.getByte_();// results.getString("byte");
+				String functionRules = admin.getFunction();// results.getString("function");
+				double priorProbability = admin.getPriorProbability();// results.getDouble("priorProbability");
+				if (lengthRule.length() != 0) {
+					lengthRule = "IoTIDLength)(?#PARA=" + lengthRule + "){]";
+					rules.add(lengthRule);// eg.length8)(?#PARA=8){]
+					// length8,8
+					rmvRuleSet.put(lengthRule, 0.5);// rmvRuleSet length
+					hashMapTypeToRulesSwitchhashMapRuleToTypes(
+							hashMapRuleToTypes, lengthRule, idType);// hashMapTypeToRulesת
+																	// hashMapRuleToTypes,
+																	// length
+				}
+				if (byteRule.length() != 0) {
+					String[] byteStrArray = byteRule.split(";");
+					for (int i = 0; i < byteStrArray.length; i++) {
+						byteStrArray[i] = "IoTIDByte)(?#PARA="
+								+ byteStrArray[i] + "){]";
+						rules.add(byteStrArray[i]);
+						rmvRuleSet.put(byteStrArray[i], 0.5);// rmvRuleSet byte
+						hashMapTypeToRulesSwitchhashMapRuleToTypes(
+								hashMapRuleToTypes, byteStrArray[i], idType);// hashMapTypeToRulesת
+																				// hashMapRuleToTypes,
+																				// byte
+					}
+				}
+				rmvIDSet.put(idType, priorProbability);// rmvRuleSet ID, 0.5
+				ArrayList<String> types = new ArrayList<String>();
+
+				String[] splitFunctionRules = functionRules
+						.split("\\(\\?\\#ALGNAME=");
+				for (int i = 0; i < splitFunctionRules.length; i++) {
+					if (splitFunctionRules[i].length() != 0) {
+						rules.add(splitFunctionRules[i]);
+						rmvRuleSet.put(splitFunctionRules[i], 0.5);
+						hashMapTypeToRulesSwitchhashMapRuleToTypes(
+								hashMapRuleToTypes, splitFunctionRules[i],
+								idType);
+					}
+				}
+				hashMapTypeToRules.put(idType, rules);
+			}
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return hashMapTypeToRules;
+	}
+
+	/*
+	 * 参数也是返回值 返回hashMapTypeToRules、rmvRuleSet、rmvIDSet、hashMapRuleToTypes
 	 */
 	public HashMap<String, ArrayList<String>> DBreadTypeAndRules(
 			HashMap<String, Double> rmvRuleSet,
@@ -63,7 +140,7 @@ public class RecoDao {
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
-				ArrayList<String> rules = new ArrayList<String>();// �����ֵ�е�ArrayList
+				ArrayList<String> rules = new ArrayList<String>();// 函数返回值中的ArrayList
 				String idType = results.getString("id");
 				String lengthRule = results.getString("length");
 				String byteRule = results.getString("byte");
@@ -72,10 +149,10 @@ public class RecoDao {
 				if (lengthRule.length() != 0) {
 					lengthRule = "IoTIDLength)(?#PARA=" + lengthRule + "){]";
 					rules.add(lengthRule);// eg.length8)(?#PARA=8){]
-					// �������ֽ�length8,����8
-					rmvRuleSet.put(lengthRule, 0.5);// ��rmvRuleSet���length����
+					// 函数名字叫length8,参数8
+					rmvRuleSet.put(lengthRule, 0.5);// 向rmvRuleSet添加length规则
 					hashMapTypeToRulesSwitchhashMapRuleToTypes(
-					hashMapRuleToTypes, lengthRule, idType);// hhashMapTypeToRulesת��ΪhashMapRuleToTypes,����length
+							hashMapRuleToTypes, lengthRule, idType);// hhashMapTypeToRules转换为hashMapRuleToTypes,处理length
 				}
 				if (byteRule.length() != 0) {
 					String[] byteStrArray = byteRule.split(";");
@@ -83,12 +160,12 @@ public class RecoDao {
 						byteStrArray[i] = "IoTIDByte)(?#PARA="
 								+ byteStrArray[i] + "){]";
 						rules.add(byteStrArray[i]);
-						rmvRuleSet.put(byteStrArray[i], 0.5);// ��rmvRuleSet���byte����
+						rmvRuleSet.put(byteStrArray[i], 0.5);// 向rmvRuleSet添加byte规则
 						hashMapTypeToRulesSwitchhashMapRuleToTypes(
-								hashMapRuleToTypes, byteStrArray[i], idType);// hashMapTypeToRulesת��ΪhashMapRuleToTypes,����byte
+								hashMapRuleToTypes, byteStrArray[i], idType);// hhashMapTypeToRules转换为hashMapRuleToTypes,处理length
 					}
 				}
-				rmvIDSet.put(idType, priorProbability);// ��rmvRuleSet���ID,�������0.5
+				rmvIDSet.put(idType, priorProbability);// 向rmvRuleSet添加ID,先验概率0.5
 				ArrayList<String> types = new ArrayList<String>();
 
 				String[] splitFunctionRules = functionRules
@@ -116,7 +193,7 @@ public class RecoDao {
 			HashMap<String, ArrayList<String>> hashMapRuleToTypes, String rule,
 			String idType) {
 		ArrayList<String> types = new ArrayList<String>();
-		if (hashMapRuleToTypes.get(rule) == null) {// hashMapTypeToRulesת��ΪhashMapRuleToTypes,����function
+		if (hashMapRuleToTypes.get(rule) == null) {// hashMapTypeToRules转换为hashMapRuleToTypes,处理function
 			types.add(idType);
 			hashMapRuleToTypes.put(rule, types);
 		} else {
@@ -127,7 +204,7 @@ public class RecoDao {
 
 	}
 
-	// ���������(296)
+	// 行政区划代码(296)
 	public boolean getAdminDivisionID(String id) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -152,7 +229,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �������͵�����ƴ���(279)
+	// 世界各国和地区名称代码(279)
 	public boolean getCountryRegionCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -182,7 +259,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �̲ݻ�е��Ʒ������ ����ͱ��� ��3���֣���е�⹺��(7)
+	// 烟草机械产品用物料 分类和编码 第3部分：机械外购件(7)
 	public boolean getTabaccoMachineProduct(String categoryCode,
 			String groupCode, String variatyCode) {
 		Connection connection = JdbcUtils.getConnection();
@@ -213,8 +290,7 @@ public class RecoDao {
 		return ret;
 	}
 
-
-	// ��Ʒ����������Ʒ����EAN UPCǰ3λǰ׺��
+	// 商品条码零售商品编码EAN UPC前3位前缀码
 	public boolean getPrefixofRetailCommodityNumber(int code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -242,7 +318,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �̲ݻ�е���� ����ͱ����2���֣�ר�ü� ��¼D�еĵ�λ����(672)
+	// 烟草机械物料 分类和编码第2部分：专用件 附录D中的单位编码(672)
 	public boolean getTabaccoMachineProducer(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -270,7 +346,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// CID����4λ�����������
+	// CID调用4位数字行政区号
 	public boolean getDistrictNo(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -297,7 +373,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �̲ݻ�е��Ʒ������ ��ҵ��е��׼�� �����е������룬�������Ʒ�ִ���(6)
+	// 烟草机械产品用物料 企业机械标准件 编码中的类别代码，组别代码和品种代码(6)
 	public boolean getTabaccoStandardPart(String categoryCode,
 			String groupCode, String variatyCode) {
 		Connection connection = JdbcUtils.getConnection();
@@ -328,8 +404,7 @@ public class RecoDao {
 		return ret;
 	}
 
-
-	// �̲ݻ�е��Ʒ�����Ϸ���ͱ��� ��6���֣�ԭ��������(4)
+	// 烟草机械产品用物料分类和编码 第6部分：原、辅材料(4)
 	public boolean getTabaccoMaterial(String categoryCode, String variatyCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -357,7 +432,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� �����Ʒ��������(15)
+	// 粮食信息分类与编码 财务会计分类与代码(15)
 	public boolean getFoodAccount(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -384,7 +459,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ�豸���������(23)
+	// 粮食信息分类与代码 粮食设备分类与代码(23)
 	public boolean getGrainEquipment(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -411,7 +486,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ��ʩ���������(24)
+	// 粮食信息分类与编码 粮食设施分类与编码(24)
 	public boolean getGrainEstablishment(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -439,7 +514,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �̲ݻ�е��Ʒ������ ����ͱ��� ��5���֣�����Ԫ���� (5)
+	// 烟草机械产品用物料 分类和编码 第5部分：电器元器件 (5)
 	public boolean getTabaccoElectricComponent(String categoryCode,
 			String groupCode) {
 		Connection connection = JdbcUtils.getConnection();
@@ -469,7 +544,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ���ȡ��һ��������������
+	// 随机取出一条行政区划代码数据
 	public String getRandomAdminDivision() {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -490,7 +565,7 @@ public class RecoDao {
 		return code;
 	}
 
-	// ���ȡ��һ��EANUPC���
+	// 随机取出一条EANUPC数据
 	public String getRandomEANUPC() {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -510,7 +585,7 @@ public class RecoDao {
 		return code;
 	}
 
-	// ���ر�׼��ϸ��Ϣ
+	// 返回标准详细信息
 	public String getIDDetail(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -532,7 +607,7 @@ public class RecoDao {
 		return name;
 	}
 
-	// ���ò��ϱ��� ��1���֣����ò��Ϸ���������Ʒ����(10)
+	// 烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
 	public boolean getTobbacoMaterials(String categoryCode, String groupCode) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -561,7 +636,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳó��ҵ��ͳ�Ʒ��������(14)
+	// 粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
 	public boolean getFoodTrade(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -588,7 +663,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ�ӹ�(18)
+	// 粮食信息分类与编码 粮食加工(18)
 	public boolean getFoodEconomy(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -615,7 +690,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ�ִ�ҵ��ͳ�Ʒ��������(16)
+	// 粮食信息分类与编码 粮食仓储业务统计分类与代码(16)
 	public boolean getGrainStoreHouse(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -642,7 +717,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� �������溦���������(17)
+	// 粮食信息分类与编码 储粮病虫害分类与代码(17)
 	public boolean getGrainsDiseases(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -669,7 +744,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ�ӹ���1���֣��ӹ���ҵ���������(19)
+	// 粮食信息分类与编码 粮食加工第1部分：加工作业分类与代码(19)
 	public boolean getGrainsProcess(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -696,7 +771,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ�ִ���3���֣����ķ��������(20)
+	// 粮食信息分类与编码 粮食仓储第3部分：器材分类与代码(20)
 	public boolean getGrainsEquipment(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -723,7 +798,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ�ִ���2���֣���������������(21)
+	// 粮食信息分类与编码 粮食仓储第2部分：粮情检测分类与代码(21)
 	public boolean getGrainConditionDetection(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -751,7 +826,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ�ִ���1���֣��ִ���ҵ���������(22)
+	// 粮食信息分类与编码 粮食仓储第1部分：仓储作业分类与代码(22)
 	public boolean getgrainsSmartWMS(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -778,7 +853,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ�����2���֣�������׼���������(26)
+	// 粮食信息分类与编码 粮食检验第2部分：质量标准分类与代码(26)
 	public boolean getGrainsQualityStandard(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -806,7 +881,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��������������������(32)
+	// 计量器具命名与分类编码(32)
 	public boolean getMeasuringInstrument(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -834,7 +909,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ���� ��1���֣�ָ����������(27)
+	// 粮食信息分类与编码 粮食检验 第1部分：指标分类与代码(27)
 	public boolean getGrainsIndex(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -861,7 +936,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ���ӹ���Ʒ���������(28)
+	// 粮食信息分类与编码 粮食及加工产品分类与代码(28)
 	public boolean getGrainsInformation(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -889,7 +964,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ���Է��������(29)
+	// 粮食信息分类与编码 粮食属性分类与代码(29)
 	public boolean getGrainsAttribute(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -916,7 +991,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ʳ��Ϣ��������� ��ʳ��������ҵ�����������������(31)
+	// 粮食信息分类与编码 粮食行政、事业机构及社会团体分类与代码(31)
 	public boolean getGrainsAdministrative(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -944,7 +1019,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ������Ʒ����ʹ���(34)
+	// 建筑产品分类和代码(34)
 	public boolean getConstructionProducts(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -972,7 +1047,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �������ӵ�ͼ��ݷ��������(45)
+	// 导航电子地图数据分类与编码(45)
 	public boolean getElectronicMap(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -999,7 +1074,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ������Ϣ������������(56)
+	// 地理信息分类与编码规则(56)
 	public boolean getGeographicInformation(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1027,7 +1102,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��֯���ϱ��뻯�˲���(64)
+	// 纺织面料编码化纤部分(64)
 	public boolean getTextileFabricNameCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1055,7 +1130,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��֯�������Դ���(64)��֯��X1X2
+	// 纺织面料属性代码(64)机织物X1X2
 	public boolean getPropertiesMainMaterial(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1083,7 +1158,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��֯�������Դ���(64)��֯�첼X1X2
+	// 纺织面料属性代码(64)非织造布X1X2
 	public boolean getPropertiesMain(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1109,36 +1184,8 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//function: query the table phonenumber and thus check the legality of the prefix of a given phone number (7 numbers)
-	//creator: dgq
-	public boolean getPrefixPhoneNO(String code){
-	Connection connection = JdbcUtils.getConnection();
-	PreparedStatement stmt = null;
-	ResultSet results = null;
-	boolean ret = false;
-	try {
-		stmt = connection.prepareStatement(RecoUtil.SELECT_PHONENUMBER);
-		int i = 1;
-		stmt.setString(i, code);
-		
-		results = stmt.executeQuery();
-		int rowcount = 0;
-		while (results.next()) {
-			rowcount++;				
-		}
-		if(1 == rowcount){
-			ret =  true;
-		}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JdbcUtils.free(null, null, connection);
-		}
-		return ret;
-	}
 
-	// ��֯�������Դ���(64)��ά���� X3X4
+	// 纺织面料属性代码(64)纤维特征 X3X4
 	public boolean getPropertiesFiberCharacteristics(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1165,35 +1212,8 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//function: query the table vehiclenonormal and thus check the legality of the prefix of a normal vehicle character (2 characters)
-	//creator: dgq
-	public boolean getPrefixNormalVehicleNO(String code){
-		Connection connection = JdbcUtils.getConnection();
-		PreparedStatement stmt = null;
-		ResultSet results = null;
-		boolean ret = false;
-		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_NORMALVEHICLENO);
-			int i = 1;
-			stmt.setString(i, code);
-			
-			results = stmt.executeQuery();
-			int rowcount = 0;
-			while (results.next()) {
-				rowcount++;				
-			}
-			if(1 == rowcount){
-				ret =  true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JdbcUtils.free(null, null, connection);
-		}
-		return ret;
-	}
-	// ��֯�������Դ���(64)X7X8����᷽̽ʽ
+
+	// 纺织面料属性代码(64)X7X8纤网固结方式
 	public boolean getPropertiesMix(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1219,36 +1239,8 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//function: query the table vehiclenomarmy and thus check the legality of the prefix of a normal vehicle character (2 characters)
-	//creator: dgq
-	public boolean getPrefixArmyVehicleNO(String code){
-		Connection connection = JdbcUtils.getConnection();
-		PreparedStatement stmt = null;
-		ResultSet results = null;
-		boolean ret = false;
-		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_ARMYVEHICLENO);
-			int i = 1;
-			stmt.setString(i, code);
-			
-			results = stmt.executeQuery();
-			int rowcount = 0;
-			while (results.next()) {
-				rowcount++;				
-			}
-			if(1 == rowcount){
-				ret =  true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JdbcUtils.free(null, null, connection);
-		}
-		return ret;
-	}
-	
-	// ��֯�������Դ���(64)X9X10 01-19 99
+
+	// 纺织面料属性代码(64)X9X10 01-19 99
 	public boolean getPropertiesFabric(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1275,36 +1267,8 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	//function: query the table vehiclenomwj and thus check the legality of the third character of a WJ vehicle character
-	//creator: dgq
-	public boolean getPrefixWJVehicleNO(String code){
-		Connection connection = JdbcUtils.getConnection();
-		PreparedStatement stmt = null;
-		ResultSet results = null;
-		boolean ret = false;
-		try {
-			stmt = connection.prepareStatement(RecoUtil.SELECT_WJVEHICLENO);
-			int i = 1;
-			stmt.setString(i, code);
-			
-			results = stmt.executeQuery();
-			int rowcount = 0;
-			while (results.next()) {
-				rowcount++;				
-			}
-			if(1 == rowcount){
-				ret =  true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JdbcUtils.free(null, null, connection);
-		}
-		return ret;
-	}
 
-	// ��֯�������Դ���(64)X11X12
+	// 纺织面料属性代码(64)X11X12
 	public boolean getPropertiesDyeingandFinishing(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1331,8 +1295,8 @@ public class RecoDao {
 		}
 		return ret;
 	}
-	
-	// ����װ������ҵ��Ʒȫ�������ڹ���֪ʶ��2����(65)
+
+	// 面向装备制造业产品全生命周期工艺知识第2部分(65)
 	public boolean getGeneralManufacturingProcess(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1360,7 +1324,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ȫ����Ҫ��Ʒ����������2���� ���������Ʒ��3λ(712)
+	// 全国主要产品分类与代码第2部分 不可运输产品后3位(712)
 	public boolean getUntransportableProduct(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1388,7 +1352,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ȫ����Ҫ��Ʒ����������2���� ���������Ʒ��3λ(712)
+	// 全国主要产品分类与代码第2部分 不可运输产品后3位(712)
 	public boolean getLastThreeUntransportableProduct(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1416,7 +1380,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��·��ͨ��Ϣ�ɼ���Ϣ���������(77)
+	// 道路交通信息采集信息分类与编码(77)
 	public boolean getTrafficInformationCollection(String firstCode,
 			String secondCode) {
 		Connection connection = JdbcUtils.getConnection();
@@ -1446,7 +1410,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �̲���ҵ����ͳ�����Ԫ��2���� ���뼯(202)
+	// 烟草行业工商统计数据元第2部分 代码集(202)
 	public boolean getTrafficOrganization(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1474,7 +1438,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��Ҷ�����5������Ҷ��ɫ����(204)
+	// 烟叶代码第5部分烟叶颜色代码(204)
 	public boolean getTobaccoLeafColor(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1502,7 +1466,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��Ҷ�����2������Ҷ��̬����(207)
+	// 烟叶代码第2部分烟叶形态代码(207)
 	public boolean getTobaccoLeafForm(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1529,7 +1493,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��Ҷ�����1������Ҷ���������(208)
+	// 烟叶代码第1部分烟叶分类与代码(208)
 	public boolean getTobaccoLeafClass(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1557,7 +1521,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ͯ�����״����(213)
+	// 儿童大便性状代码(213)
 	public boolean getChildrenExcrement(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1584,7 +1548,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �������������ࡢ��ʩ���ࡢ��Ʒ�������
+	// 查找殡葬服务分类、设施分类、用品分类代码
 	public boolean getFuneral(String id, String type) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1609,7 +1573,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ���Ƶ�ʴ���(214)
+	// 饮酒频率代码(214)
 	public boolean getDrinkingFrequency(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1637,7 +1601,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ����������(214)
+	// 饮酒种类代码(214)
 	public boolean getDrinkingClass(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1664,7 +1628,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ����Ƶ�ʴ���(214)
+	// 身体活动频率代码(214)
 	public boolean getPhysicalActivityFrequency(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1692,7 +1656,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ������ֹ��ʽ�����(215)
+	// 妊娠终止方式代码表(215)
 	public boolean getTerminationofPregnancy(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1720,7 +1684,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ���䷽ʽ����(215)
+	// 分娩方式代码(215)
 	public boolean getModeofProduction(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1748,7 +1712,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ����ص�������(215)
+	// 分娩地点类别代码(215)
 	public boolean getDileveryPlace(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1775,7 +1739,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ������Ϣ���Ԫֵ������17���֣��������(218)
+	// 卫生信息数据元值域代码第17部分：卫生管理(218)
 	public boolean getHealthSupervisionObject(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1803,7 +1767,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ͨ���ߴ���(219)
+	// 交通工具代码(219)
 	public boolean getCommunicationCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1831,7 +1795,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ����ල��ְ��������(220)
+	// 卫生监督机构职工类别代码(220)
 	public boolean getHygieneAgencyPersonnel(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1859,7 +1823,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ����ල��ְ��������(220)
+	// 卫生监督机构职工类别代码(220)
 	public boolean getWorkerHealthSupervision(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1887,7 +1851,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �̲ݻ�е(195)
+	// 烟草机械(195)
 	public boolean getTobaccoMachineryID(String id) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1913,7 +1877,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 280-���뵳����ش�����Ʒ��� �����ݿ�
+	// 280-中央党政机关代码编制方法 查表数据库
 	public boolean getPortTariff280(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1940,7 +1904,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 281-�����鱦��ʯ��������Ʒ���������Ʒ��� �����ݿ�
+	// 281-珠宝玉石及金属产品分类代码编制方法 查表数据库
 	public boolean getPortTariff281(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1967,7 +1931,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 281-�����鱦��ʯ���������ʷ��������Ʒ��� �����ݿ�
+	// 281-珠宝玉石及金属材质分类代码编制方法 查表数据库
 	public boolean getPortTariffMa281(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -1994,7 +1958,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 282-������Ϣ��ȫ����������Ʒ��� �����ݿ�
+	// 282-信息安全技术代码编制方法 查表数据库
 	public boolean getPortTariffMa282(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2021,7 +1985,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 284-������ᾭ��Ŀ�����ʹ���� �����ݿ�
+	// 284-社会经济目标分类和代码表 查表数据库
 	public boolean getPortTariffMa284(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2048,7 +2012,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 285-����������Ϣ����ʹ���� �����ݿ�
+	// 285-物流信息分类和代码表 查表数据库
 	public boolean getPortTariffMa285(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2075,7 +2039,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 287-������װ����ʹ���� �����ݿ�
+	// 287-服装分类和代码表 查表数据库
 	public boolean getPortTariffMa287(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2102,7 +2066,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 288-������װ����ʹ���� �����ݿ�
+	// 288-服装分类和代码表 查表数据库
 	public boolean getPortTariffMa288(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2129,7 +2093,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 291-����ҽҩ��е����ʹ���� �����ݿ�
+	// 291-医药器械分类和代码表 查表数据库
 	public boolean getPortTariffMa291(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2156,8 +2120,8 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �̲ݻ�е�������úͼ����ļ����븽¼C���ѯ
-	public boolean getPrefixoftabaccoC(int code) {
+	// 烟草机械电气配置和技术文件代码附录C表查询
+	public boolean getPrefixoftabaccoC(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -2165,9 +2129,7 @@ public class RecoDao {
 		try {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_tabaccoC);
 			int i = 1;
-			stmt.setInt(i++, code);
-			stmt.setInt(i++, code);
-
+			stmt.setString(i, code);
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {
@@ -2175,8 +2137,9 @@ public class RecoDao {
 			}
 			if (1 == rowcount) {
 				ret = true;
+				System.out.println("results=" + results.toString());
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JdbcUtils.free(null, null, connection);
@@ -2184,7 +2147,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 268-�������뵳����ش�����Ʒ��� �����ݿ�
+	// 268-中央党政机关代码编制方法 查表数据库
 	public boolean getPortTariff268(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2211,7 +2174,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 270-������Ȼ�ֺ����������Ʒ��� �����ݿ�
+	// 270-自然灾害分类代码编制方法 查表数据库
 	public boolean getPortTariff270(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2238,7 +2201,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 275-����������ҵ������������Ʒ��� �����ݿ�
+	// 275-物流作业货物分类代码编制方法 查表数据库
 	public boolean getPortTariff275(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2265,7 +2228,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 276-����������Ʒ���������Ʒ��� �����ݿ�
+	// 276-废弃物品分类代码编制方法 查表数据库
 	public boolean getPortTariff276(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2292,7 +2255,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 395-���������Ϣ�������ʹ���� �����ݿ�
+	// 395-消防信息代码分类和代码表 查表数据库
 	public boolean getFireInfomation395(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2319,7 +2282,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 399-���������Ϣ�������ʹ���� �����ݿ�
+	// 399-消防信息代码分类和代码表 查表数据库
 	public boolean getFireInfomation399(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2346,7 +2309,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 403-���������Ϣ�������ʹ���� �����ݿ⣺������������
+	// 403-消防信息代码分类和代码表 查表数据库：社会宣传教育活动分类
 	public boolean getFireInfomation403(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2373,7 +2336,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 409-���������Ϣ�������ʹ���� �����ݿ⣺���ѵ�����˴���
+	// 409-消防信息代码分类和代码表 查表数据库：消防训练考核代码
 	public boolean getFireInfomation409(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2400,7 +2363,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ���ó�����䴬�������������ԭ��(312)
+	// 国际贸易运输船舶名称与代码编制原则(312)
 	public boolean getInternationalShipCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2428,7 +2391,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �غ������������(238)
+	// 沿海行政区域代码(238)
 	public boolean getCoastalAdminAreaID(String id) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2454,7 +2417,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �������ʹ���(227)
+	// 经济类型代码(227)
 	public boolean getWirtschaftsTypCodeID(String id) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2480,7 +2443,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��Ⱦ����ƴ���(225)
+	// 传染病名称代码(225)
 	public boolean getInfectiousDiseasesID(String id) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2507,7 +2470,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �����������������ƹ���(309)
+	// 地名分类与类别代码编制规则(309)
 	public boolean getGeographicalCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2537,7 +2500,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ũҩ������Ƽ�����
+	// 农药剂型名称及代码
 	public boolean getPesticideFormulationCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -2565,7 +2528,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ���ó��ߴ����(306)
+	// 乘用车尺寸代码(306)
 	public boolean getPassengerCarCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3642,7 +3605,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ɽ��ɽ����ƴ��루297��
+	// 山脉山峰名称代码(297)
 	public boolean getMountainRangeAndPeakName(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3670,7 +3633,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ֪ʶ��Ȩ��������Ϣ���༰���루298��
+	// 知识产权文献与信息分类及代码(298)
 	public boolean getIntellectualProperty(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3698,7 +3661,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ���ú���ҵ��Ϣ��������� (340)
+	// 民用航空业信息分类与代码 (340)
 	public boolean getClassificationOfCivilAviation(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3726,7 +3689,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �ߵ�ѧУ���ơ�ר��רҵ��ƴ��루328��
+	// 高等学校本科、专科专业名称代码(328)
 	public boolean getNormalAndShortCycleSpeciality(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3754,7 +3717,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ����ά�ޱ�����ϵ �ڶ����֣�337��
+	// 船舶维修保养体系 第二部分(337)
 	public boolean getMaintenanceSystemPTwo(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3782,7 +3745,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ���ó�׺�ͬ���루326��
+	// 国际贸易合同代码(326)
 	public boolean getCountryRegionCode1(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3837,7 +3800,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �����Ƽ��ɹ��������루784��
+	// 电力科技成果分类与代码(784)
 	public boolean getElectricPower(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3864,7 +3827,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ȫ�������ƴ��루785��
+	// 全国电网名称代码(785)
 	public boolean getPowerGrid(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3891,7 +3854,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ������ҵ��λ�����루787��
+	// 电力行业单位类别代码(787)
 	public boolean getElectricPowerIndustry(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3919,7 +3882,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ����������Ϣϵͳͼ�η�ŷ�������루788��
+	// 电力地理信息系统图形符号分类与代码(788)
 	public boolean getElectricPowerGeography(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3947,7 +3910,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��ѹ�ȼ����루789��
+	// 电压等级代码(789)
 	public boolean getVoltageClass(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -3974,7 +3937,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �������ʱ��� �ڶ����� ����Ʒ��909��
+	// 电力物资编码 第二部分 机电产品(909)
 	public boolean getPowerGoodsP2(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4001,7 +3964,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// /�������ϢҪ�ط�������루353��
+	// 基础地理信息要素分类与代码(353)
 	public boolean getGeographicalInfoCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4026,7 +3989,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// /�����Σ�պ��к����ط�������루354��
+	// 生产过程危险和有害因素分类与代码(354)
 	public boolean getHarmfulFactorCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4051,7 +4014,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// /�л����񹲺͹���·��վ���루366��
+	// 中华人民共和国铁路车站代码(366)
 	public boolean getRailwayStationCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4077,7 +4040,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// /��ҵ��Դ��������� ��ľ����
+	// 林业资源分类与代码 林木病害
 	public boolean getTreeDiseaseCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4102,7 +4065,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// /�ںӴ�����������루314-1��
+	// 内河船舶分类与代码(314-1)
 	public boolean getNavigationShipCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4127,7 +4090,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// /����֤������(470)
+	// 常用证件代码(470)
 	public boolean getTravelCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4152,7 +4115,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ����������ֺ�ʡ����������ܶӴ���(474)
+	// 公安部消防局和省级公安消防总队代码(474)
 	public boolean getProvinceAdminCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4180,7 +4143,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �йܵ�λ����(474)
+	// 列管单位代码(474)
 	public boolean getAdminDivision1(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4477,10 +4440,10 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 509���������Ϸ���Ӫҵ�������岿��
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���5λ
-	// Index: ������֤�㷨������λ��
+	// 509互联网网上服务营业场所-第五部分
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度5位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public boolean getPortTariff509(String code) {
@@ -4509,10 +4472,10 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��Ԫ�ر��롪����Ҵ���
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���5λ
-	// Index: ������֤�㷨������λ��
+	// 核元素编码——国家代码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度5位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public boolean getPortNuclearelementNation(String code) {
@@ -4542,10 +4505,10 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��Ԫ�ر���
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���5λ
-	// Index: ������֤�㷨������λ��
+	// 核元素编码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度5位
+	// Index: 调用验证算法的索引位置
 	// LenIndex:a3
 	// creator:fdl
 	public boolean getPortNuclearelements(String code) {
@@ -4575,11 +4538,11 @@ public class RecoDao {
 		return ret;
 	}
 
-	// Function: ���Ʒ�㲿���߱������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	// Function: 汽车产品零部件边编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:4
-	// LenIndex: ���ȱ�Ϊ4
+	// LenIndex: 长度必为4
 	// creator: fdl
 	public boolean getPortCarProductCompnent(String code) {
 		Connection connection = JdbcUtils.getConnection();
@@ -4608,11 +4571,11 @@ public class RecoDao {
 		return ret;
 	}
 
-	// Function: TCL���ܵ�ر������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	// Function: TCL金能电池编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:4
-	// LenIndex: ���ȱ�Ϊ4
+	// LenIndex: 长度必为4
 	// creator: fdl
 	public boolean getPortTCLBatteryProduct(String code) {
 		Connection connection = JdbcUtils.getConnection();
@@ -4641,11 +4604,11 @@ public class RecoDao {
 		return ret;
 	}
 
-	// Function: TCL���ܵ�ر�����򡪡��������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	// Function: TCL金能电池编码规则——第三级编码
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:4
-	// LenIndex: ���ȱ�Ϊ4
+	// LenIndex: 长度必为4
 	// creator: fdl
 	public boolean getPortProductCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
@@ -4673,7 +4636,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// ��Ʒ���� Ӧ�ñ�ʶ��632)
+	// 商品条码 应用标识符(632)
 	public boolean getBarCodeForCommodity(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4821,7 +4784,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// �й�ʯ����Ȼ���ܹ�˾����ҵ��λ���루763��
+	// 中国石油天然气总公司企、事业单位代码(763)
 	public boolean getGassCompany(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4903,11 +4866,11 @@ public class RecoDao {
 		return ret;
 	}
 
-	// Function: ɭ�����ͱ������
-	// IDstr: ��ʶ����
-	// LenID: ��ʶ����ĳ���
+	// Function: 森林类型编码规则
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
 	// Index:5
-	// LenIndex: ���ȱ�Ϊ5
+	// LenIndex: 长度必为5
 	// creator: fdl
 	public boolean getPortForestTypes(String code) {
 		Connection connection = JdbcUtils.getConnection();
@@ -4935,7 +4898,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 700-�������Ｒ��
+	// 700-动物疾病
 	public boolean getAnimalDiseaseByCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4962,7 +4925,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 698-����ȫ��������ҵҽ����е�������豸����
+	// 698-全国卫生行业医疗器械、仪器设备分类
 	public boolean getMedicalInstrumentByCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -4989,7 +4952,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 728������ҽ��֢����
+	// 728-中医病症分类
 	public boolean getTCMdiseaseByCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -5015,7 +4978,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 728<2>������ҽ��֢����
+	// 728<2>-中医病症分类
 	public boolean getTCMFeatureByCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -5041,7 +5004,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 706,708�������ʿ����������ѡ�ʷ�Χ
+	// 706,708-地质矿物术语分类选词范围
 	public boolean getDZClassifyByCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -5067,7 +5030,7 @@ public class RecoDao {
 		return ret;
 	}
 
-	// 710�������ʿ����������ѡ�ʷ�Χ
+	// 710——地质矿物术语分类选词范围
 	public boolean getDZClassify710ByCode(String code) {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -5086,6 +5049,122 @@ public class RecoDao {
 				ret = true;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// function: query the table phonenumber and thus check the legality of the
+	// prefix of a given phone number (7 numbers)
+	// creator: dgq
+	public boolean getPrefixPhoneNO(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_PHONENUMBER);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// function: query the table vehiclenonormal and thus check the legality of
+	// the prefix of a normal vehicle character (2 characters)
+	// creator: dgq
+	public boolean getPrefixNormalVehicleNO(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_NORMALVEHICLENO);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// function: query the table vehiclenomarmy and thus check the legality of
+	// the prefix of a normal vehicle character (2 characters)
+	// creator: dgq
+	public boolean getPrefixArmyVehicleNO(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_ARMYVEHICLENO);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return ret;
+	}
+
+	// function: query the table vehiclenomwj and thus check the legality of the
+	// third character of a WJ vehicle character
+	// creator: dgq
+	public boolean getPrefixWJVehicleNO(String code) {
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		boolean ret = false;
+		try {
+			stmt = connection.prepareStatement(RecoUtil.SELECT_WJVEHICLENO);
+			int i = 1;
+			stmt.setString(i, code);
+
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while (results.next()) {
+				rowcount++;
+			}
+			if (1 == rowcount) {
+				ret = true;
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JdbcUtils.free(null, null, connection);

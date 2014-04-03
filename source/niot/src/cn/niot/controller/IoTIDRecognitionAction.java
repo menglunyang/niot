@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import mypack.TestHibernate;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -146,6 +147,9 @@ public class IoTIDRecognitionAction extends ActionSupport {
 	}
 */
 	public String execute() throws Exception {
+		long begin=System.currentTimeMillis();
+		
+		
 		String IoTcode = null;
 		if (this.code != null) {
 			IoTcode = replaceBlank(this.code);
@@ -154,6 +158,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		}
 
 		if (IoTcode != null) {
+			IDstrRecognition.readDao(0);
 			HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
 			//HashMap<String, Double> ChineseName_Pro = RecoUtil.replaceIotId(typeProbability);
 			HashMap<String, Double> ShortName_Probability = new HashMap<String, Double>();
@@ -188,9 +193,11 @@ public class IoTIDRecognitionAction extends ActionSupport {
 					this.data = jsonArray.toString();
 				}
 			}
+			
 		}
-		//System.out.println("\nthis.data:   "+this.data);
-		//System.out.println("\nthis.extraData:   "+this.extraData);
+		System.out.println("during:"+(System.currentTimeMillis()-begin));
+		System.out.println("\nthis.data:   "+this.data);
+		System.out.println("\nthis.extraData:   "+this.extraData);
 		return SUCCESS;
 	}
 }
