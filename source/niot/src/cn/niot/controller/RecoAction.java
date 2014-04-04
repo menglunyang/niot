@@ -43,7 +43,19 @@ public class RecoAction extends ActionSupport {
 		index[2] = -1;
 //		index[3] = 3;
 //		index[4] = 4;
-		System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
+		String tr1 = new String("云M");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.println(RuleFunction.VehicleNONormal(IDstr1, j, index1, j));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));

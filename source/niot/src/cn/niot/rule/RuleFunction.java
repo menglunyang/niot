@@ -13005,9 +13005,10 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
+			System.out.print(code);
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
@@ -13038,7 +13039,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -13071,7 +13072,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -13104,7 +13105,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -13261,7 +13262,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -15715,7 +15716,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 16) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 
