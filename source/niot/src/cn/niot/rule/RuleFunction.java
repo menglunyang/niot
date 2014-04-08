@@ -13332,20 +13332,20 @@ public class RuleFunction {
 						&& index6 >= 0 && index6 <= 9)
 					return OK;
 			}
-			if (LenIndex == 7) {
-				if (index3 >= 0 && index3 <= 9) {
-					char d = IDstr[Index[3]];
-					if (d == '.') {
-						int index5 = (int) IDstr[Index[4]] - 48;
-						int index6 = (int) IDstr[Index[5]] - 48;
-						int index7 = (int) IDstr[Index[6]] - 48;
-						if (index5 >= 0 && index5 <= 9 && index6 >= 0
-								&& index6 <= 9 && index7 >= 0 && index7 <= 9)
-							return OK;
-					}
+		}
+		
+		if (LenIndex == 7) {
+			if (index3 >= 0 && index3 <= 9) {
+				char d = IDstr[Index[3]];
+				if (d == '.') {
+					int index5 = (int) IDstr[Index[4]] - 48;
+					int index6 = (int) IDstr[Index[5]] - 48;
+					int index7 = (int) IDstr[Index[6]] - 48;
+					if (index5 >= 0 && index5 <= 9 && index6 >= 0
+							&& index6 <= 9 && index7 >= 0 && index7 <= 9)
+						return OK;
 				}
 			}
-
 		}
 		return ERR;
 	}
@@ -13366,7 +13366,7 @@ public class RuleFunction {
 		char c = IDstr[Index[4]];
 		if (c == '.') {
 			int index1 = (int) IDstr[Index[5]] - 48;
-			int index2 = (int) IDstr[Index[5]] - 48;
+			int index2 = (int) IDstr[Index[6]] - 48;
 			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
 				return OK;
 		}
