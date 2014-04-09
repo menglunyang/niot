@@ -34,19 +34,19 @@ public class RFIDReader {
 	}
 
 	public String ReadAntimetalTag() throws Exception {
-		// ÉèÖÃ²ÎÊı£¬²»¼ì²é¶Á¿¨Æ÷µÄ¶Ë¿Ú
+		// è®¾ç½®å‚æ•°ï¼Œä¸æ£€æŸ¥è¯»å¡å™¨çš„ç«¯å£
 		System.out.println("antimetal tag...");
 		reader.paramSet(ParamNames.Reader_Antenna_CheckPort, false);
-		// ´´½¨Ò»¸ö¼òµ¥¶ÁµÄ·½°¸£¬²ÎÊı1ÊÇÖ»ÓĞ1¸öÌìÏß£¬²ÎÊı2ÊÇµç×Ó±êÇ©µÄĞ­ÒéÊ±ISO18000_6B
+		// åˆ›å»ºä¸€ä¸ªç®€å•è¯»çš„æ–¹æ¡ˆï¼Œå‚æ•°1æ˜¯åªæœ‰1ä¸ªå¤©çº¿ï¼Œå‚æ•°2æ˜¯ç”µå­æ ‡ç­¾çš„åè®®æ—¶ISO18000_6B
 		SimpleReadPlan srp = new SimpleReadPlan(new int[] { 1 },
 				TagProtocol.TagProtocolE.ISO18000_6B);
 		reader.paramSet(ParamNames.Reader_Read_Plan, srp);
 		TagReadData[] trd = reader.Read(4000);
 		// this.code = trd[0].EPCHexstr();
-		// ´ËID½«×÷ÎªfilterµÄ²ÎÊı
+		// æ­¤IDå°†ä½œä¸ºfilterçš„å‚æ•°
 		String id = trd[0].EPCHexstr();
 		System.out.println("id======>" + id);
-		// 6B Ã¿¿éÒ»¸ö×Ö½Ú£¬Ã¿¸ö×Ö½ÚÁ½¸öÊ®Áù½øÖÆÊı£¬0-7¿é²»¿ÉĞ´£¬8-224¿é¿ÉĞ´
+		// 6B æ¯å—ä¸€ä¸ªå­—èŠ‚ï¼Œæ¯ä¸ªå­—èŠ‚ä¸¤ä¸ªåå…­è¿›åˆ¶æ•°ï¼Œ0-7å—ä¸å¯å†™ï¼Œ8-224å—å¯å†™
 		reader.paramSet(ParamNames.Reader_Tagop_Protocol,
 				TagProtocol.TagProtocolE.ISO18000_6B);
 		// ISO6BTagFilter iso6tf=new
@@ -66,7 +66,7 @@ public class RFIDReader {
 		return code;
 	}
 
-	// ¸ù¾İÆ¥ÅäµÄ×Ö·û´®´¦ÀíÊäÈëµÄ×Ö·û´®
+	// æ ¹æ®åŒ¹é…çš„å­—ç¬¦ä¸²å¤„ç†è¾“å…¥çš„å­—ç¬¦ä¸²
 	public String getInputByStr(String inputCode, String str) {
 		int i = 0, j = 0;
 		String outputCode = inputCode;
