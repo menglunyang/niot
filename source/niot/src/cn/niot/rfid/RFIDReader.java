@@ -1,7 +1,5 @@
 package cn.niot.rfid;
 
-
-
 import com.silionmodule.Functional;
 import com.silionmodule.ISO180006B;
 import com.silionmodule.ParamNames;
@@ -15,71 +13,99 @@ import com.silionmodule.ISO180006B.ISO6BTagFilter;
 import com.silionmodule.ReaderType.ReaderTypeE;
 
 public class RFIDReader {
-	
+
 	Reader reader;
-	
-	public RFIDReader() throws ReaderException
-	{
-		reader = Reader.Create("192.168.1.100",ReaderTypeE.M5E_A7_FOURANTS);
-		//reader=Reader.Create("com3", ReaderTypeE.M1S_ONEANTS);
-		//reader=Reader.Create("com3", AntTypeE.ONE_ANT);
+
+	public RFIDReader() throws ReaderException {
+		reader = Reader.Create("192.168.1.100", ReaderTypeE.M5E_A7_FOURANTS);
+		// reader=Reader.Create("com3", ReaderTypeE.M1S_ONEANTS);
+		// reader=Reader.Create("com3", AntTypeE.ONE_ANT);
 	}
-	
-	//read paper tag, return the user id
-	public String ReadPaperTag () throws ReaderException
-	{
+
+	// read paper tag, return the user id
+	public String ReadPaperTag() throws ReaderException {
 		System.out.println("paper tag...");
 		short[] epddata = reader.ReadTagMemWords(null, MemBankE.USER, 0, 32);
-		String code = Functional.shorts_HexStr(epddata);
+		String code1 = Functional.shorts_HexStr(epddata);
+		String code=getInputByStr(code1, "0");
 		System.out.println(code);
+
 		return code;
 	}
-	
-	public String ReadAntimetalTag() throws Exception
-	{
-		//è®¾ç½®å‚æ•°ï¼Œä¸æ£€æŸ¥è¯»å¡å™¨çš„ç«¯å£
+
+	public String ReadAntimetalTag() throws Exception {
+		// ÉèÖÃ²ÎÊý£¬²»¼ì²é¶Á¿¨Æ÷µÄ¶Ë¿Ú
 		System.out.println("antimetal tag...");
-		reader.paramSet(ParamNames.Reader_Antenna_CheckPort,false);
-		//åˆ›å»ºä¸€ä¸ªç®€å•è¯»çš„æ–¹æ¡ˆï¼Œå‚æ•°1æ˜¯åªæœ‰1ä¸ªå¤©çº¿ï¼Œå‚æ•°2æ˜¯ç”µå­æ ‡ç­¾çš„åè®®æ—¶ISO18000_6B
-		SimpleReadPlan srp=new SimpleReadPlan(new int[]{1},TagProtocol.TagProtocolE.ISO18000_6B);
+		reader.paramSet(ParamNames.Reader_Antenna_CheckPort, false);
+		// ´´½¨Ò»¸ö¼òµ¥¶ÁµÄ·½°¸£¬²ÎÊý1ÊÇÖ»ÓÐ1¸öÌìÏß£¬²ÎÊý2ÊÇµç×Ó±êÇ©µÄÐ­ÒéÊ±ISO18000_6B
+		SimpleReadPlan srp = new SimpleReadPlan(new int[] { 1 },
+				TagProtocol.TagProtocolE.ISO18000_6B);
 		reader.paramSet(ParamNames.Reader_Read_Plan, srp);
-		TagReadData[] trd=reader.Read(4000);
-		//this.code = trd[0].EPCHexstr();
-		//æ­¤IDå°†ä½œä¸ºfilterçš„å‚æ•°
+		TagReadData[] trd = reader.Read(4000);
+		// this.code = trd[0].EPCHexstr();
+		// ´ËID½«×÷ÎªfilterµÄ²ÎÊý
 		String id = trd[0].EPCHexstr();
-		System.out.println("id======>"+id);
-		//6B æ¯å—ä¸€ä¸ªå­—èŠ‚ï¼Œæ¯ä¸ªå­—èŠ‚ä¸¤ä¸ªåå…­è¿›åˆ¶æ•°ï¼Œ0-7å—ä¸å¯å†™ï¼Œ8-224å—å¯å†™
-		reader.paramSet(ParamNames.Reader_Tagop_Protocol, TagProtocol.TagProtocolE.ISO18000_6B);
-		//ISO6BTagFilter iso6tf=new ISO180006B.ISO6BTagFilter(Functional.hexstr_Bytes("E00400002101CC05")); 
-		ISO6BTagFilter iso6tf=new ISO180006B.ISO6BTagFilter(Functional.hexstr_Bytes(id)); 
-		//reader.WriteTagMemBytes(iso6tf, ISO180006B.MemBankE.ISO180006B, 8, Functional.hexstr_Bytes("222222"));
-		
-		byte[] r186bdata=reader.ReadTagMemBytes(iso6tf, ISO180006B.MemBankE.ISO180006B, 8, 100);
-		System.out.println("6b read:"+Functional.bytes_Hexstr(r186bdata));
-		
-		String code = Functional.bytes_Hexstr(r186bdata);
-		//System.out.println(this.code);
+		System.out.println("id======>" + id);
+		// 6B Ã¿¿éÒ»¸ö×Ö½Ú£¬Ã¿¸ö×Ö½ÚÁ½¸öÊ®Áù½øÖÆÊý£¬0-7¿é²»¿ÉÐ´£¬8-224¿é¿ÉÐ´
+		reader.paramSet(ParamNames.Reader_Tagop_Protocol,
+				TagProtocol.TagProtocolE.ISO18000_6B);
+		// ISO6BTagFilter iso6tf=new
+		// ISO180006B.ISO6BTagFilter(Functional.hexstr_Bytes("E00400002101CC05"));
+		ISO6BTagFilter iso6tf = new ISO180006B.ISO6BTagFilter(Functional
+				.hexstr_Bytes(id));
+		// reader.WriteTagMemBytes(iso6tf, ISO180006B.MemBankE.ISO180006B, 8,
+		// Functional.hexstr_Bytes("222222"));
+
+		byte[] r186bdata = reader.ReadTagMemBytes(iso6tf,
+				ISO180006B.MemBankE.ISO180006B, 8, 100);
+		System.out.println("6b read:" + Functional.bytes_Hexstr(r186bdata));
+
+		String code1 = Functional.bytes_Hexstr(r186bdata);
+		// System.out.println(this.code);
+		String code=getInputByStr(code1, "F");
 		return code;
 	}
-	
+
+	// ¸ù¾ÝÆ¥ÅäµÄ×Ö·û´®´¦ÀíÊäÈëµÄ×Ö·û´®
+	public String getInputByStr(String inputCode, String str) {
+		int i = 0, j = 0;
+		String outputCode = inputCode;
+		if (str != null) {
+			while (i < inputCode.length() && j < str.length()) {
+				if (inputCode.charAt(i) == str.charAt(j)) {
+					i++;
+					j++;
+				} else {
+					i = i - j + 1;
+					j = 0;
+				}
+				if (j == str.length()) {
+					String code = inputCode.substring(0, i - str.length());
+					outputCode = code;
+				}
+			}
+		}
+		return outputCode;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        try {
-			RFIDReader tmj=new RFIDReader();
-			//tmj.TestMultiRead();
-			//tmj.TestSimpleRead();
-			//tmj.TestWriteMembank();
-			//tmj.TestLockMembank();
-			//tmj.TestReadMembank();
+		try {
+			RFIDReader tmj = new RFIDReader();
+			// tmj.TestMultiRead();
+			// tmj.TestSimpleRead();
+			// tmj.TestWriteMembank();
+			// tmj.TestLockMembank();
+			// tmj.TestReadMembank();
 			tmj.ReadPaperTag();
-			//tmj.TestParamSetGet();
-			//tmj.TestNes();
-			//tmj.TestOver();
+			// tmj.TestParamSetGet();
+			// tmj.TestNes();
+			// tmj.TestOver();
 		} catch (ReaderException e) {
 			// TODO Auto-generated catch block
-			
+
 			System.out.println(e.GetMessage());
 		}
-         
+
 	}
 }
