@@ -13388,12 +13388,14 @@ public class RuleFunction {
 			int index = (int) IDstr[Index[0]] - 48;
 			if (index >= 0 && index <= 9)
 				return OK;
+			break;
 		}
 		case 2: {
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
 			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
 				return OK;
+			break;
 		}
 		case 3: {
 			for (int i = 0; i < 3; i++) {
@@ -13412,8 +13414,9 @@ public class RuleFunction {
 			return OK;
 		}
 		default:
-			return OK;
+			return ERR;
 		}
+		return ERR;
 	}
 
 	/*
@@ -14361,7 +14364,7 @@ public class RuleFunction {
 		}
 		try {
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getPowerMaterials51(code);
+			boolean ret = recoDao.getPowerMaterials52(code);
 			if (ret) {
 				return OK;
 			} else
@@ -14369,7 +14372,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -14730,46 +14732,43 @@ public class RuleFunction {
 	public static String ProductCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			//System.out.println("aaa");
 			return ERR;
 		}
-		if (IDstr[0] == 2) {
-			try {
-				String code = "";
-				String regex = "[0-9]{0,-1}";
-				for (int i = 0; i < LenIndex - 1; i++) {
-					code = code.concat(String.valueOf(IDstr[i]));
-				}
-				Pattern pa = Pattern.compile(regex);
-				Matcher ma = pa.matcher(code);
-				boolean ret = ma.matches();
-				if (ret) {
-					return OK;
-				} else
-					//System.out.println("匹配第二条规则");
-				return ERR;
-			} catch (Exception e) {
-				return ERR;
+		if(IDstr[0]=='2'){
+					String code = "";
+					String regex = "[0-9]*";
+					for (int i = 0; i < LenIndex ; i++) {
+						code = code.concat(String.valueOf(IDstr[Index[i]]));
+					}
+					Pattern pa = Pattern.compile(regex);
+					Matcher ma = pa.matcher(code);
+					boolean ret = ma.matches();
+					if (ret ) {
+						//System.out.println("ccc");
+						return OK;
+					} else
+						//System.out.println("匹配第二条规则");
+						return ERR;
 			}
-		}
-		if (IDstr[0] == 1) {
+		if(IDstr[0]=='1'){
 			if (LenIndex != 4) {
+				//System.out.println("fff");
 				return ERR;
-			}
-			try {
+			   }
 				String code = "";
-				for (int i = 0; i < 4; i++) {
-					code = code.concat(String.valueOf(IDstr[i]));
+				for (int i = 0; i < LenIndex; i++) {
+					code = code.concat(String.valueOf(IDstr[Index[i]]));
 				}
 				RecoDao recoDao = new RecoDao();
 				boolean ret = recoDao.getPortProductCode(code);
 				if (ret) {
 					//System.out.println("匹配第一条规则");
 					return OK;
-				} else
-					return ERR;
-			} catch (Exception e) {
-			}
-		}
+				} else{
+					//System.out.println("eee");
+					return ERR;}
+		  }	
 		return ERR;
 	}
 
@@ -14885,6 +14884,12 @@ public class RuleFunction {
 			if (LenIndex != 10) {
 				return ERR;
 			}
+			for(int i=0;i<LenID;i++){
+				int check=(int) IDstr[Index[i]] - 48;
+				if(check>=0&&check<=9);
+				else return ERR;
+				
+			}
 			int i1 = (int) IDstr[Index[1]] - 48;
 			int i0 = (int) IDstr[Index[0]] - 48;
 			int i2 = (int) IDstr[Index[2]] - 48;
@@ -14934,10 +14939,10 @@ public class RuleFunction {
 			int i3 = (int) IDstr[Index[6]] - 48;
 			long i = 1000 * i0 + 100 * i1 + 10 * i2 + i3;
 			if (code != null && code.equals("JCL")) {
-				if (i == 110 || i == 120 || i == 190 || i == 0220 || i == 290
-						|| i == 0310 || i == 0320 || i == 0330 || i == 390
-						|| i == 0410 || i == 490 || i == 0510 || i == 0520
-						|| i == 0530 || i == 590 || i == 610 || i == 690
+				if (i == 110 || i == 120 || i == 190 || i == 220 || i == 290
+						|| i == 310 || i == 320 || i == 330 || i == 390
+						|| i == 410 || i == 490 || i == 510 || i == 520
+						|| i == 530 || i == 590 || i == 610 || i == 690
 						|| i == 710 || i == 720 || i == 730 || i == 740
 						|| i == 750 || i == 760 || i == 790 || i == 210)
 					return OK;
