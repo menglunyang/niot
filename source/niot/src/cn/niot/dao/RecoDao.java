@@ -1,5 +1,7 @@
 package cn.niot.dao;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -5088,7 +5090,7 @@ public class RecoDao {
 	// function: query the table vehiclenonormal and thus check the legality of
 	// the prefix of a normal vehicle character (2 characters)
 	// creator: dgq
-	public boolean getPrefixNormalVehicleNO(String code) {
+	public boolean getPrefixNormalVehicleNO(String code) throws UnsupportedEncodingException {
 		Connection connection = JdbcUtils.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet results = null;
@@ -5097,7 +5099,7 @@ public class RecoDao {
 			stmt = connection.prepareStatement(RecoUtil.SELECT_NORMALVEHICLENO);
 			int i = 1;
 			stmt.setString(i, code);
-
+			stmt.execute("set names utf8");
 			results = stmt.executeQuery();
 			int rowcount = 0;
 			while (results.next()) {

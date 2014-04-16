@@ -2838,64 +2838,64 @@ public class RuleFuncTest {
 	}
 
 	// 194, YC/T 391-2011
-	public static void testTobaccomachinery() {
-		JOptionPane.showMessageDialog(null, Thread.currentThread()
-				.getStackTrace()[1].getMethodName());
-		System.out.println(Thread.currentThread().getStackTrace()[1]
-				.getMethodName());
-
-		String tr1 = new String("401");
-		int j = tr1.length();
-		char[] IDstr1 = new char[j];
-		for (int i = 0; i < j; i++) {
-			IDstr1[i] = tr1.charAt(i);
-		}
-
-		String tr2 = new String("475");
-		char[] IDstr2 = new char[j];
-		for (int i = 0; i < j; i++) {
-			IDstr2[i] = tr2.charAt(i);
-		}
-
-		String tr3 = new String("511");
-		char[] IDstr3 = new char[j];
-		for (int i = 0; i < j; i++) {
-			IDstr3[i] = tr3.charAt(i);
-		}
-
-		String tr4 = new String("620");
-		char[] IDstr4 = new char[j];
-		for (int i = 0; i < j; i++) {
-			IDstr4[i] = tr4.charAt(i);
-		}
-
-		String tr5 = new String("708");
-		char[] IDstr5 = new char[j];
-		for (int i = 0; i < j; i++) {
-			IDstr5[i] = tr5.charAt(i);
-		}
-
-		int[] index1 = new int[j];
-
-		for (int i = 0; i < j; i++) {
-			index1[i] = i;
-		}
-		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr1, j, index1, j), "OK");
-
-		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr2, j, index1, j),
-				"ERR");
-
-		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr3, j, index1, j), "OK");
-
-		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr4, j, index1, j), "OK");
-
-		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr5, j, index1, j), "OK");
-	}
+//	public static void testTobaccomachinery() {
+//		JOptionPane.showMessageDialog(null, Thread.currentThread()
+//				.getStackTrace()[1].getMethodName());
+//		System.out.println(Thread.currentThread().getStackTrace()[1]
+//				.getMethodName());
+//
+//		String tr1 = new String("401");
+//		int j = tr1.length();
+//		char[] IDstr1 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr1[i] = tr1.charAt(i);
+//		}
+//
+//		String tr2 = new String("475");
+//		char[] IDstr2 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr2[i] = tr2.charAt(i);
+//		}
+//
+//		String tr3 = new String("511");
+//		char[] IDstr3 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr3[i] = tr3.charAt(i);
+//		}
+//
+//		String tr4 = new String("620");
+//		char[] IDstr4 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr4[i] = tr4.charAt(i);
+//		}
+//
+//		String tr5 = new String("708");
+//		char[] IDstr5 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr5[i] = tr5.charAt(i);
+//		}
+//
+//		int[] index1 = new int[j];
+//
+//		for (int i = 0; i < j; i++) {
+//			index1[i] = i;
+//		}
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr1, j, index1, j), "OK");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr2, j, index1, j),
+//				"ERR");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr3, j, index1, j), "OK");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr4, j, index1, j), "OK");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr5, j, index1, j), "OK");
+//	}
 
 	// 90, GB/T 16828-2007商品条码——参与方位编码与条码表示
 	public static void testCheckCodebarcode() {

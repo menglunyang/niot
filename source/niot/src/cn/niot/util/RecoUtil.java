@@ -80,7 +80,7 @@ public class RecoUtil {
 	public static final String SELECT_TYPEANDRULES = "select * from iotid";
 
 	// 烟用材料编码 第1部分：烟用材料分类代码与产品代码(10)
-	public static final String SELECT_TABACCOMATERIALS = "select * from tabaccomaterials where categorycode=? and groupcode=?";
+	public static final String SELECT_TABACCOMATERIALS = "select * from tobaccomaterials where categorycode=? and groupcode=?";
 
 	// 粮食信息分类与编码 粮食贸易业务统计分类与代码(14)
 	public static final String SELECT_FOODTRADE = "select * from foodtradestatistics where id=?";

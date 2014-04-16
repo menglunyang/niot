@@ -32,6 +32,7 @@ function sendReqCode()
 							$("#loading_1").css("display","block");
 						},
 			success:function(result){
+							console.log(result);
 							$("#loading_1").css("display","none");
 							if (result.status == 'error'){
 								$("#errorStatement").text(result.statement);
@@ -54,12 +55,12 @@ function sendReqCode()
     							console.log(fullName);
     							console.log(codeNum);
 								
-								oneresult.text(380, 10, "您查询的编码").attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
+								oneresult.text(380, 10, "您要查询的编码").attr({"font-family":"Microsoft Yahei","font-size":"20px","fill":"#777"});
 								oneresult.circle(380, 130, 100).attr({'fill':'#54A3F0','stroke':''});
 								oneresult.text(380,130,"100%").attr({'font-family':'Lithos Pro','font-size':'100px','fill':'#FFFEFF'});
-								oneresult.text(380,250,"属于"+result.data).attr({'font-family':'微软雅黑','font-size':'20px','fill':'#777'});
-								oneresult.text(380,270,fullName).attr({'font-family':'微软雅黑','font-size':'15px','fill':'#777'});
-								oneresult.text(380,290,codeNum).attr({'font-family':'微软雅黑','font-size':'15px','fill':'#777'});
+								oneresult.text(380,250,"属于"+result.data).attr({'font-family':'Microsoft Yahei','font-size':'20px','fill':'#777'});
+								oneresult.text(380,270,fullName).attr({'font-family':'Microsoft Yahei','font-size':'15px','fill':'#777'});
+								oneresult.text(380,290,codeNum).attr({'font-family':'Microsoft Yahei','font-size':'15px','fill':'#777'});
 							}
 							else if (result.status >1){
 								var pieData = eval(result.data);
@@ -159,6 +160,71 @@ dataSource = [
     { codeName: 'CNNIC', probability: 0.025 },
     { codeName: 'FFFF', probability: 0.025 }
 ];
+
+function RFIDInput()
+{
+	console.log("RFIDInput pressed");
+	$("#RFID_loading").attr("src","./images/loading.gif");
+	$("#RFID").toggle();
+	if($("#RFID").css("display") == "block")
+	{
+		console.log($("#RFID").css("display"));
+		RFIDQuerry();
+	}
+	else
+	{
+		console.log($("#RFID").css("display"));
+		RFIDInfo.RFIDRequest.abort();
+		clearTimeout(RFIDInfo.RFIDTimeout);
+		RFIDInfo.querryCount = 1
+		
+	}
+}
+
+var RFIDInfo = new Object();
+RFIDInfo.querryCount = 1;
+RFIDInfo.RFIDRequest = null;
+RFIDInfo.RFIDTimeout = null;
+
+function RFIDQuerry()
+{
+	RFIDInfo.RFIDRequest = $.ajax({
+		url:'RFIDInput.action',
+		cache:false,
+		data:{InputType:"RFID"},
+		dataType:'json',
+		beforeSend:function(){
+					},
+		success:function(result){
+						console.log(result.code);
+						if (result.code == null && RFIDInfo.querryCount < 6)
+							{
+								console.log(RFIDInfo.querryCount);
+								RFIDInfo.RFIDTimeout = setTimeout("RFIDQuerry()",0);;
+								RFIDInfo.querryCount++;
+							}
+						else if(result.code == null && RFIDInfo.querryCount == 6)
+						{
+								console.log(RFIDInfo.querryCount);
+								//setTimeOut("RFIDQuerry()",5000);;
+								$("#RFID_loading").attr("src","./images/warning.png");								
+								RFIDInfo.querryCount = 1;
+						}
+						else
+						{
+							console.log(RFIDInfo.querryCount);
+							$("#RFID_loading").attr("src","./images/checkmark.png");
+							$("#reqCode").val(result.code);
+							sendReqCode();
+							RFIDInfo.querryCount = 1;
+							setTimeout("RFIDInput()",3000);
+						}
+					},
+		error:"alert('1')"
+	});
+}
+
+
 
 function switchToContainer1()
 {
