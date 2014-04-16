@@ -153,6 +153,8 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		String IoTcode = null;
 		if (this.code != null) {
 			IoTcode = replaceBlank(this.code);
+			//System.out.println("\nIoTcode:   " + IoTcode);
+			//System.out.println("\nLength of IoTcode:   " + IoTcode.length());
 		}
 
 		if (IoTcode != null) {
@@ -172,7 +174,6 @@ public class IoTIDRecognitionAction extends ActionSupport {
 				while (iterator.hasNext()) {
 					Object key = iterator.next();
 					this.data = String.valueOf(key);
-					//this.data = "邓光青邓光青邓光青邓光青邓光青邓光青邓光青邓光青邓光青\n012345678";
 					this.status = String.valueOf(RecoUtil.ONE_ID_MATCHED);
 				}
 			} else {

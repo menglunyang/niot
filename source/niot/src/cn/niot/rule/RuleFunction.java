@@ -1,9 +1,11 @@
 package cn.niot.rule;
 
 import cn.niot.dao.RecoDao;
+import cn.niot.util.RecoUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.math.BigInteger;
 
 public class RuleFunction {
 
@@ -12,7 +14,7 @@ public class RuleFunction {
 	static int NO_LENGHT_LIMIT = -1;
 
 	public static void main(String[] args) {
-		// System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
+		// System.out.println("ä½ å¥½ä¸–ç•Œ!");
 		// System.out.println("Hello World!");
 		char[] IDstr = new char[4];
 		IDstr[0] = '0';
@@ -43,7 +45,7 @@ public class RuleFunction {
 			String[] lengthRanges = parameter.split(",");
 			for (int i = 0; i < lengthRanges.length; i++) {
 				String[] lengthMaxMin = lengthRanges[i].split("-");
-				if (lengthMaxMin.length == 1) {// 1ï¿½ï¿½ï¿½ï¿½
+				if (lengthMaxMin.length == 1) {// 1ä¸ªæ•°
 					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
 						return OK;
 					} else {
@@ -123,7 +125,6 @@ public class RuleFunction {
 					hasSig = true;
 					break;
 				}
-
 			}
 			if (!hasSig) {
 				for (int i = 0; i < LenIndex; i++) {
@@ -350,11 +351,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ò»Î»Îª1Ê±ï¿½ï¿½ï¿½Ú¶ï¿½Î»Îªï¿½ï¿½0~9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»Îª2Ê±ï¿½ï¿½ï¿½Ú¶ï¿½Î»Îªï¿½ï¿½0~3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»Îª9Ê±ï¿½ï¿½ï¿½Ú¶ï¿½Î»Îª9.
+	// Function:ä¸¤ä½æ•°ï¼Œç¬¬ä¸€ä½ä¸º1æ—¶ï¼Œç¬¬äºŒä½ä¸ºï¼ˆ0~9ï¼‰ï¼›ç¬¬ä¸€ä½ä¸º2æ—¶ï¼Œç¬¬äºŒä½ä¸ºï¼ˆ0~3ï¼‰ï¼›ç¬¬ä¸€ä½ä¸º9æ—¶ï¼Œç¬¬äºŒä½ä¸º9.
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, ï¿½Ì¶ï¿½Îª2
+	// LenIndex: the number of indexes, å›ºå®šä¸º2
 	public static String Count(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -459,12 +460,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 6Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
-	// Function: 6Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°2Î».
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex: ï¿½ï¿½ï¿½È±ï¿½ï¿½ï¿½ï¿½ï¿½2Î»
+	// Function: 6ä½è¡Œæ”¿åŒºåˆ’ä»£ç .
+	// Function: 6ä½è¡Œæ”¿åŒºåˆ’ä»£ç çš„å‰2ä½.
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨è¡Œæ”¿åŒºåˆ’ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦å¿…é¡»æ˜¯2ä½
 	public static String First2CharsofAdminDivision(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -491,11 +492,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 6Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.(296)
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex: ï¿½ï¿½ï¿½È±ï¿½ï¿½ï¿½ï¿½ï¿½6Î»
+	// Function: 6ä½è¡Œæ”¿åŒºåˆ’ä»£ç .(296)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨è¡Œæ”¿åŒºåˆ’ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦å¿…é¡»æ˜¯6ä½
 	// creator: zll
 	public static String AdminDivision(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -521,11 +522,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ÎªCPCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,(279)ï¿½Ğ¹æ¶¨ï¿½ï¿½ï¿½ë³¤ï¿½ï¿½Îª2-3Î»ï¿½ï¿½CPCï¿½ï¿½ï¿½ï¿½Îªï¿½Úµï¿½4Î»ï¿½ï¿½0.
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex: ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½Ù£ï¿½Ò»ï¿½ï¿½ï¿½ï¿½4Î»
+	// Function: ä¸–ç•Œå„å›½å’Œåœ°åŒºåç§°ä»£ç ä¸ºCPCç¼–ç è°ƒç”¨,(279)ä¸­è§„å®šç¼–ç é•¿åº¦ä¸º2-3ä½ï¼ŒCPCç¼–ç ä¸ºåœ¨ç¬¬4ä½åŠ 0.
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨ä¸–ç•Œå„å›½å’Œåœ°åŒºåç§°ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å¤šå°‘ï¼Œä¸€å®šæ˜¯4ä½
 	// creator: zll
 	public static String CountryRegionCodeforCPC(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -552,11 +553,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ë£¬(279)ï¿½Ğ¹æ¶¨ï¿½ï¿½ï¿½ë³¤ï¿½ï¿½Îª2-3Î».
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex: ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½Ù£ï¿½Ò»ï¿½ï¿½ï¿½ï¿½2-3Î»
+	// Function: ä¸–ç•Œå„å›½å’Œåœ°åŒºåç§°ä»£ç ï¼Œ(279)ä¸­è§„å®šç¼–ç é•¿åº¦ä¸º2-3ä½.
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨ä¸–ç•Œå„å›½å’Œåœ°åŒºåç§°ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å¤šå°‘ï¼Œä¸€å®šæ˜¯2-3ä½
 	// creator: zll
 	public static String CountryRegionCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -587,11 +588,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ ï¿½ï¿½3ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½Ğµï¿½â¹ºï¿½ï¿½(7)ï¿½Ğµï¿½5Î»ï¿½ï¿½ï¿½ï¿½.
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½6Î»
+	// Function: çƒŸè‰æœºæ¢°äº§å“ç”¨ç‰©æ–™ åˆ†ç±»å’Œç¼–ç  ç¬¬3éƒ¨åˆ†ï¼šæœºæ¢°å¤–è´­ä»¶(7)ä¸­çš„5ä½ç¼–ç .
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨çƒŸè‰æœºæ¢°äº§å“ç”¨ç‰©æ–™ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯6ä½
 	// creator: zll
 	public static String TabaccoMachineProduct(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -620,11 +621,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½EAN UPCÇ°3Î»Ç°×ºï¿½ï¿½.
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½Ç°×ºï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3Î»
+	// Function: å•†å“æ¡ç é›¶å”®å•†å“ç¼–ç EAN UPCå‰3ä½å‰ç¼€ç .
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨å‰ç¼€ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯3ä½
 	// creator: zll
 	public static String PrefixofRetailCommodityNumber(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -652,11 +653,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Ö£ï¿½×¨ï¿½Ã¼ï¿½ ï¿½ï¿½Â¼Dï¿½ĞµÄµï¿½Î»ï¿½ï¿½ï¿½ï¿½.(672)
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½Ç°×ºï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2Î»ï¿½ï¿½Îªï¿½ï¿½Ğ´ï¿½ï¿½Ä¸
+	// Function: çƒŸè‰æœºæ¢°ç‰©æ–™ åˆ†ç±»å’Œç¼–ç ç¬¬2éƒ¨åˆ†ï¼šä¸“ç”¨ä»¶ é™„å½•Dä¸­çš„å•ä½ç¼–ç .(672)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨å‰ç¼€ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯2ä½ï¼Œä¸ºå¤§å†™å­—æ¯
 	// creator: zll
 	public static String TabaccoMachineProducer(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -682,11 +683,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 4Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Î»ï¿½ï¿½
-	// LenIndex: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
+	// Function: 4ä½è¡Œæ”¿åŒºå·.
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨è¡Œæ”¿åŒºå¥½çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯4ä½ï¼Œä¸ºæ•°å­—
 	// creator: zll
 	public static String DistrictNo(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -712,11 +713,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: CIDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: (18,-1),ï¿½ï¿½18Î»ï¿½Ôºï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Ö¤
-	// LenIndex: ï¿½ï¿½ï¿½È±ï¿½Îª2
+	// Function: CIDæ»¡è¶³çš„åŸŸåè§„åˆ™.
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: (18,-1),ä»18ä½ä»¥åçš„å­—ç¬¦ä¸²è¿›è¡Œæ­£åˆ™è¡¨è¾¾å¼éªŒè¯
+	// LenIndex: é•¿åº¦å¿…ä¸º2
 	// creator: zll
 	public static String CIDRegex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -745,11 +746,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ì²ï¿½ï¿½ï¿½Òµï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ö´ï¿½ï¿½ï¿½(6)
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨1Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨2Î»ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ö´ï¿½ï¿½ë£¨2Î»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½È±ï¿½Îª5
+	// Function: çƒŸè‰ä¼ä¸šæ ‡å‡†ä»¶ç¼–ç æ‰€éœ€çš„ç±»åˆ«ä»£ç ï¼Œç»„åˆ«ä»£ç å’Œå“ç§ä»£ç (6)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨ç±»åˆ«ä»£ç ï¼ˆ1ä½ï¼‰ï¼Œç»„åˆ«ä»£ç ï¼ˆ2ä½ï¼‰å’Œå“ç§ä»£ç ï¼ˆ2ä½ï¼‰çš„ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º5
 	// creator: zll
 	public static String TabaccoStandardPart(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -778,11 +779,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ ï¿½ï¿½6ï¿½ï¿½ï¿½Ö£ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(4)
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨2Î»ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ö´ï¿½ï¿½ë£¨3Î»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½È±ï¿½Îª5
+	// Function: çƒŸè‰æœºæ¢°äº§å“ç”¨ç‰©æ–™åˆ†ç±»å’Œç¼–ç  ç¬¬6éƒ¨åˆ†ï¼šåŸã€è¾…ææ–™(4)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨ç±»åˆ«ä»£ç ï¼ˆ2ä½ï¼‰å’Œå“ç§ä»£ç ï¼ˆ3ä½ï¼‰çš„ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º5
 	// creator: zll
 	public static String TabaccoMaterial(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -810,11 +811,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½Ê»ï¿½ï¿½Ë´ï¿½ï¿½?Ö¤ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½,ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½æ¡£(55)
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½ï¿½<=16
+	// Function: å›½é™…è´§è¿ä»£ç†å•è¯æ ‡è¯†ç¬¦ç¼–ç ä¸­ä¸å®šé•¿çš„ä¼ä¸šè‡ªå®šä¹‰ç¼–ç æ­£åˆ™åŒ¹é…,æ•°å­—æˆ–è€…å­—æ¯ï¼Œæ•°å­—åœ¨å­—æ¯åé¢ã€‚(55)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦<=16
 	// creator: zll
 	public static String IntFreitForwarding(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -828,7 +829,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			// ï¿½ï¿½ï¿½Ò»Î»ÎªĞ£ï¿½ï¿½Î»
+			// æœ€åä¸€ä½ä¸ºæ ¡éªŒä½
 			for (int i = Index[0]; i < LenID - 1; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
@@ -850,11 +851,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(15)
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½È±ï¿½Îª6
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  è´¢åŠ¡ä¼šè®¡åˆ†ç±»ä¸ä»£ç (15)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º6
 	// creator: zll
 	public static String FoodAccount(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -880,11 +881,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(23)
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½È±ï¿½Îª8
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ä»£ç  ç²®é£Ÿè®¾å¤‡åˆ†ç±»ä¸ä»£ç (23)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º8
 	// creator: zll
 	public static String GrainEquipment(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -910,11 +911,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½Ê³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê³ï¿½ï¿½Ê©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨24ï¿½ï¿½
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½È±ï¿½Îª7
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿè®¾æ–½åˆ†ç±»ä¸ç¼–ç (24)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º7
 	// creator: zll
 	public static String GrainEstablishment(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -940,11 +941,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ì²İ»ï¿½Ğµï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ ï¿½ï¿½5ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½5ï¿½ï¿½
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½È±ï¿½Îª5
+	// Function: çƒŸè‰æœºæ¢°äº§å“ç”¨ç‰©æ–™ åˆ†ç±»å’Œç¼–ç  ç¬¬5éƒ¨åˆ†ï¼šç”µå™¨å…ƒå™¨ä»¶ (5)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º5
 	// creator: zll
 	public static String TabaccoElectricComponent(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -972,11 +973,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ò»Î»Îª0Ê±ï¿½ï¿½ï¿½Ú¶ï¿½Î»Îªï¿½ï¿½0ï¿½ï¿½1ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»Îª1Ê±ï¿½ï¿½ï¿½Ú¶ï¿½Î»Îªï¿½ï¿½1ï¿½ï¿½2,6,7ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»Îªï¿½ï¿½2ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ú¶ï¿½Î»Îªï¿½ï¿½0~5ï¿½ï¿½
+	// Function:ä¸¤ä½æ•°ï¼Œç¬¬ä¸€ä½ä¸º0æ—¶ï¼Œç¬¬äºŒä½ä¸ºï¼ˆ0ï¼Œ1ï¼Œ2ï¼‰ï¼›ç¬¬ä¸€ä½ä¸º1æ—¶ï¼Œç¬¬äºŒä½ä¸ºï¼ˆ1ï¼Œ2,6,7ï¼‰ï¼›ç¬¬ä¸€ä½ä¸ºï¼ˆ2ï¼‰æ—¶ï¼Œç¬¬äºŒä½ä¸ºï¼ˆ0~5ï¼‰
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, ï¿½Ì¶ï¿½Îª2
+	// LenIndex: the number of indexes, å›ºå®šä¸º2
 	public static String CPCTwoByte(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1016,11 +1017,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½Ç²ï¿½ï¿½Ç´ï¿½ï¿½ï¿½Â·ï¿½
+	// Function: åˆ¤æ–­ä¸¤ä¸ªå­—èŠ‚æ˜¯ä¸æ˜¯ä»£è¡¨æœˆä»½
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, ï¿½Ì¶ï¿½Îª2
+	// LenIndex: the number of indexes, å›ºå®šä¸º2
 	public static String Month(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1051,11 +1052,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½LS/T 1704.3-2004ï¿½ï¿½1ï¿½ĞµÄ±ï¿½ï¿½ï¿½
+	// Function: åˆ¤æ–­å…­ä¸ªå­—èŠ‚æ˜¯ä¸æ˜¯å±äºLS/T 1704.3-2004è¡¨1ä¸­çš„ç¼–ç 
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, ï¿½Ì¶ï¿½Îª6
+	// LenIndex: the number of indexes, å›ºå®šä¸º6
 	public static String ClassOfGrain(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1165,11 +1166,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ğ¶ï¿½2ï¿½ï¿½ï¿½Ö½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(01-07,99)
+	// Function: åˆ¤æ–­2ä¸ªå­—èŠ‚æ˜¯ä¸æ˜¯å±äº(01-07,99)
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, ï¿½Ì¶ï¿½Îª2
+	// LenIndex: the number of indexes, å›ºå®šä¸º2
 	public static String TwobytleCode07(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1199,11 +1200,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ğ¶ï¿½2ï¿½ï¿½ï¿½Ö½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(01-06,99)
+	// Function: åˆ¤æ–­2ä¸ªå­—èŠ‚æ˜¯ä¸æ˜¯å±äº(01-06,99)
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, ï¿½Ì¶ï¿½Îª2
+	// LenIndex: the number of indexes, å›ºå®šä¸º2
 	public static String TwobytleCode06(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1232,11 +1233,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: UCODE ï¿½ï¿½Top Level Domain Code: TLDcï¿½ï¿½È¡Öµï¿½ï¿½ï¿½ï¿½Îª"E000"ï¿½Í¡ï¿½FFFFï¿½ï¿½
+	// Function: UCODE çš„Top Level Domain Code: TLDcçš„å–å€¼ä¸å¯ä¸º"E000"å’Œâ€œFFFFâ€
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, ï¿½Ì¶ï¿½Îª4
+	// LenIndex: the number of indexes, å›ºå®šä¸º4
 	public static String CountUcode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1268,7 +1269,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: EPCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Domain Manager)ï¿½ï¿½ï¿½ï¿½È¡ÖµÎª0xA011363ï¿½ï¿½È«0
+	// Function: EPCç¼–ç çš„åŸŸåç®¡ç†è€…(Domain Manager)åŸŸä¸èƒ½å–å€¼ä¸º0xA011363åŠå…¨0
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1316,8 +1317,8 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½2ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Å¼ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½Í¢Ù£ï¿½ï¿½Ù¡ï¿½3=ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½Í¢Û£ï¿½ï¿½ï¿½+ï¿½ï¿½=ï¿½Ü£ï¿½ï¿½Ã´ï¿½ï¿½ï¿½
-	// ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½È¥ï¿½ÜµÃµï¿½ï¿½ï¿½Öµï¿½ï¿½
+	// 374 Function: æ£€éªŒæ˜¯å¦å±äº åºå·2å¼€å§‹æ±‚å‡ºå¶æ•°ä½ä¸Šæ•°å­—ä¹‹å’Œâ‘ ï¼›â‘ Ã—3=â‘¡ï¼›ä»åºå·3å¼€å§‹æ±‚å‡ºå¥‡æ•°ä½ä¸Šæ•°å­—ä¹‹å’Œâ‘¢ï¼›â‘¡+â‘¢=â‘£ï¼›ç”¨å¤§äº
+	// æˆ–ç­‰äºç»“æœâ‘£ä¸”ä¸ºæ•´æ•°å€çš„æœ€å°æ•°å‡å»â‘£å¾—åˆ°çš„å€¼ã€‚
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Creator:Wu Zhenyu
@@ -1335,7 +1336,8 @@ public class RuleFunction {
 				return ERR;
 			}
 			for (i = LenIndex - 2; i >= 0; i -= 2) {
-				even_sum += (IDstr[i] - 48); // ASCIIï¿½ï¿½ï¿½ï¿½ ï¿½Ö·ï¿½'0'ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½30H,Ê®ï¿½ï¿½ï¿½Æ¾ï¿½ï¿½ï¿½48
+				even_sum += (IDstr[i] - 48); // ASCIIï¿½ï¿½ï¿½ï¿½
+												// ï¿½Ö·ï¿½'0'ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½30H,Ê®ï¿½ï¿½ï¿½Æ¾ï¿½ï¿½ï¿½48
 			}
 
 			for (i = LenIndex - 3; i >= 0; i -= 2) {
@@ -1358,8 +1360,8 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:12Î»ï¿½ï¿½ï¿½ï¿½ï¿½ë£º6Î» ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Ê±ï¿½ä·¨ï¿½ï¿½Ê±ï¿½ï¿½Î´Öªï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½"*"ï¿½ï¿½ï¿½ï¿½Öªï¿½ï¿½ï¿½ï¿½ï¿½199***ï¿½ï¿½Öªï¿½ï¿½İ²ï¿½Öªï¿½Â·İ£ï¿½ï¿½ï¿½2008**ï¿½ï¿½
-	// Öªï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½20080708ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½Ë³ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÈ«0
+	// Function:12ä½å¹¢ç¼–ç ï¼š6ä½ é‡‡ç”¨ç«£å·¥æ—¶é—´æ³•ï¼Œæ—¶é—´æœªçŸ¥ï¼Œå…¨éƒ¨ç”¨"*"ï¼›ä»…çŸ¥å¹´ä»£ï¼Œå¦‚199***ï¼›çŸ¥å¹´ä»½ä¸çŸ¥æœˆä»½ï¼Œå¦‚2008**ï¼›
+	// çŸ¥é“æ—¶é—´ï¼Œå¦‚20080708ï¼Œ åå…­ä½å¹¢é¡ºåºå·ï¼Œä¸èƒ½ä¸ºå…¨0
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string is 26
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1377,7 +1379,7 @@ public class RuleFunction {
 				return ERR;
 			}
 
-			// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î³ï¿½ï¿½ï¿½"*"Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½Ó¸ï¿½Î»ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½æ¶¼ï¿½ï¿½"*"
+			// å½“ç¬¬ä¸€æ¬¡å‡ºç°"*"æ—¶ï¼Œä»£è¡¨æ—¶é—´çš„å…­ä½ä»£ç ä¸­ï¼Œä»è¯¥ä½å¼€å§‹åé¢éƒ½æ˜¯"*"
 			for (; i < 6; i++) {
 				if (IDstr[Index[i]] == '*') {
 					int k = i + 1;
@@ -1392,19 +1394,19 @@ public class RuleFunction {
 				}
 			}
 
-			// ï¿½Ğ¶ï¿½ ï¿½Â·ï¿½
+			// åˆ¤æ–­ æœˆä»½
 			int[] Index_month = { Index[4], Index[5] };
 
 			// if ((Month(IDstr, LenID, Index_month, Index_month.length)) ==
-			// ERR) { // ï¿½ï¿½ï¿½ï¿½
-			// // Êµï¿½ÖµÄºï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Â·ï¿½
+			// ERR) { // æ±Ÿå³°
+			// // å®ç°çš„å‡½æ•°ï¼Œåˆ¤æ–­æ˜¯å¦æ˜¯æœˆä»½
 			// return ERR;
 			// }
 
-			// xjf ï¿½Ş¸Äºï¿½
+			// xjf ä¿®æ”¹å
 			if (IDstr[Index[4]] != '*' && Index[5] != '*') {
-				if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // ï¿½ï¿½ï¿½ï¿½
-					// Êµï¿½ÖµÄºï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Â·ï¿½
+				if ((Month(IDstr, LenID, Index_month, Index_month.length)) == ERR) { // æ±Ÿå³°
+					// å®ç°çš„å‡½æ•°ï¼Œåˆ¤æ–­æ˜¯å¦æ˜¯æœˆä»½
 					return ERR;
 				}
 			}
@@ -1417,7 +1419,7 @@ public class RuleFunction {
 				}
 			}
 
-			int zero_count = 0; // ï¿½ï¿½ï¿½ï¿½È«0
+			int zero_count = 0; // ä¸èƒ½å…¨0
 			for (i = 6; i < LenIndex; i++) {
 				if (IDstr[Index[i]] == '0') {
 					zero_count++;
@@ -1434,7 +1436,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:12Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½6Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½6Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ê·¨),ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ğ¡ï¿½ï¿½ï¿½Ç°ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	// Function:12ä½å¹¢ç¼–ç ,ç”±6ä½æ¨ªåæ ‡ç ä¸6ä½çºµåæ ‡ç ç»„æˆ(åæ ‡æ³•),æ¨ªçºµåæ ‡å‡å–å°æ•°ç‚¹å‰å…­ä½æ•´æ•°
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string is 26
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1450,7 +1452,7 @@ public class RuleFunction {
 				return ERR;
 			}
 
-			// ï¿½Ğ¶Ïºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½Î§
+			// åˆ¤æ–­æ¨ªçºµåæ ‡çš„èŒƒå›´
 			int i = 0;
 			for (; i < LenIndex; i++) {
 				if (IDstr[Index[i]] < '0' || IDstr[Index[i]] > '9') {
@@ -1464,7 +1466,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:12Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ã·ï¿½ï¿½Ú·ï¿½ï¿½ï¿½4Î»ï¿½Ö·ï¿½ï¿½Å»ò·¿²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¡¢4Î»ï¿½ÚµØºÅ¡ï¿½4Î»ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½4Î»ï¿½ï¿½Ë³ï¿½ï¿½ï¿½0001~9999
+	// Function:12ä½å¹¢ç¼–ç ,é‡‡ç”¨åˆ†å®—æ³•ï¼Œ4ä½è¡—åŠå·æˆ–æˆ¿äº§åˆ†åŒºä»£ç ã€4ä½å®—åœ°å·ã€4ä½å¹¢é¡ºåºå·ç»„æˆï¼Œ4ä½å¹¢é¡ºåºå·0001~9999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string is 26
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1473,7 +1475,7 @@ public class RuleFunction {
 	public static String HouseCode_CheckBasedFenzong(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
-			// 4Î»ï¿½Ö·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Ä±ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Î»
+			// 4ä½è¡—åŠå· æˆ¿äº§åˆ†åŒºä»£ç ï¼Œåœ¨æ–‡æ¡£ä¸­æ‰¾åˆ°çš„ç¼–å·åªæœ‰ä¸¤ä½
 			int i = 0;
 			int count = 0;
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -1490,7 +1492,7 @@ public class RuleFunction {
 				}
 			}
 
-			// 4Î»ï¿½ÚµØºï¿½
+			// 4ä½å®—åœ°å·
 			count = 0;
 			for (i = 4; i < 8; i++) {
 				if (IDstr[Index[i]] == '0') {
@@ -1503,7 +1505,7 @@ public class RuleFunction {
 				}
 			}
 
-			// 4Î»ï¿½ï¿½Ë³ï¿½ï¿½ï¿½
+			// 4ä½å¹¢é¡ºåºå·
 			count = 0;
 			for (i = 8; i < 12; i++) {
 				if (IDstr[Index[i]] == '0') {
@@ -1521,7 +1523,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:12Î»ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½Ã·Ö·ï¿½8Î»ï¿½Ö·ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Åºï¿½4Î»ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½4Î»ï¿½ï¿½Ë³ï¿½ï¿½ï¿½0001~9999
+	// Function:12ä½å¹¢ç¼–ç ï¼Œé‡‡ç”¨åˆ†å¹…æ³•ï¼Œ8ä½åˆ†å¹…å›¾åˆ†ä¸˜å›¾å·å’Œ4ä½å¹¢é¡ºåºå·ç»„æˆï¼Œ4ä½å¹¢é¡ºåºå·0001~9999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1538,14 +1540,14 @@ public class RuleFunction {
 				return ERR;
 			}
 
-			// Ç°ï¿½ï¿½Î»
+			// å‰å…«ä½
 			for (; i < 8; i++) {
 				if (IDstr[Index[i]] < '0' || IDstr[Index[i]] > '9') {
 					return ERR;
 				}
 			}
 
-			// ï¿½ï¿½ï¿½ï¿½Î»Ë³ï¿½ï¿½Å£ï¿½0001~9999
+			// åå››ä½é¡ºåºå·ï¼Œ0001~9999
 			int count = 0;
 			for (i = 8; i < LenIndex; i++) {
 				if (IDstr[Index[i]] == '0') {
@@ -1562,7 +1564,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:ï¿½ï¿½ï¿½ï¿½É»ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ë³ï¿½ï¿½ï¿½0001ï¿½ï¿½Ê¼ï¿½ï¿½0001~9999
+	// Function:æŒ‰ç”Ÿæˆæˆ·çš„æ—¶é—´é¡ºåºä»0001å¼€å§‹ï¼Œ0001~9999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1596,7 +1598,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½Ğ¼ï¿½12Î»ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬Í¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+	// Function: ä¸­é—´12ä½å¹¢ä»£ç ï¼ŒåŒæ—¶ç”¨å››ç§æ–¹æ³•
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -1628,12 +1630,13 @@ public class RuleFunction {
 		}
 	}
 
-	// Ğ£ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½İ´ï¿½ï¿½ï¿½26Î»ï¿½ï¿½25Î»ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½Ò»Î»Ğ£ï¿½ï¿½ï¿½ï¿½
+	// æ ¡éªŒç ï¼Œæˆ¿å±‹ä»£ç 26ä½ï¼Œ25ä½æœ¬ä½“ç ï¼Œæœ€åä¸€ä½æ ¡éªŒç 
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	// Creator:Wu Zhenyu
+
 	// public static String HouseCode_CheckCode(char[] IDstr, int LenID,
 	// int[] Index, int LenIndex) {
 	// try {
@@ -1641,7 +1644,7 @@ public class RuleFunction {
 	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 	// return ERR;
 	// }
-	// int result = 10 + (IDstr[0] - 48); // ï¿½ï¿½Â¼Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½ï¿½Ì²ï¿½ï¿½ï¿½ï¿½Öµ
+	// int result = 10 + (IDstr[0] - 48); // è®°å½•æ ¡éªŒç è®¡ç®—ä¸­é—´è¿‡ç¨‹äº§ç”Ÿçš„å€¼
 	//
 	// for (i = 1; i < LenIndex; i++) {
 	// if (result % 10 == 0) {
@@ -1673,6 +1676,7 @@ public class RuleFunction {
 	// return ERR;
 	// }
 	// }
+
 	public static String HouseCode_CheckCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -1702,18 +1706,18 @@ public class RuleFunction {
 
 	}
 
-	// Function: Ğ£ï¿½ï¿½ï¿½ã·¨ Êµï¿½ï¿½ C=MOD(11-MOD(ï¿½ï¿½Ciï¿½ï¿½Wi,11),10)
-	// ï¿½ï¿½ï¿½ï¿½MODï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½àº¯ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Å£ï¿½Ciï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½iÎ»ï¿½ï¿½ï¿½ÏµÄ´ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Öµï¿½ï¿½Wiï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½iÎ»ï¿½ï¿½ï¿½ÏµÄ¼ï¿½È¨ï¿½ï¿½ï¿½Ó£ï¿½
-	// ï¿½ï¿½È¨ï¿½ï¿½ï¿½ÓµÄ¹ï¿½Ê½ï¿½Ç£ï¿½2ï¿½ï¿½n-1ï¿½ï¿½ï¿½İ³ï¿½ï¿½ï¿½11È¡ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	// ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ÖµÎª10Ê± ï¿½ï¿½ÖµÎ»X
+	// Function: æ ¡éªŒç®—æ³• å®ç° C=MOD(11-MOD(âˆ‘CiÃ—Wi,11),10)
+	// å…¶ä¸­MODï¼è¡¨ç¤ºæ±‚ä½™å‡½æ•°ï¼›iï¼è¡¨ç¤ºä»£ç å­—ç¬¦ä»å·¦è‡³å³ä½ç½®åºå·ï¼›Ciï¼è¡¨ç¤ºç¬¬iä½ç½®ä¸Šçš„ä»£ç å­—ç¬¦çš„å€¼ï¼›Wiï¼è¡¨ç¤ºç¬¬iä½ç½®ä¸Šçš„åŠ æƒå› å­ï¼Œ
+	// åŠ æƒå› å­çš„å…¬å¼æ˜¯ï¼š2çš„n-1æ¬¡å¹‚é™¤ä»¥11å–ä½™æ•°ï¼Œnå°±æ˜¯é‚£ä¸ªiï¼Œä»å³å‘å·¦æ’åˆ—
+	// å½“æ ¡æ£€çš„å€¼ä¸º10æ—¶ èµ‹å€¼ä½X
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
 	public static String DeviceMOD163(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-		// MOD Ğ£ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ù¿Õ¼ï¿½Ê±Òªï¿½ï¿½Ò»Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½Î»
-		double sum = 0; // ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½
+		// MOD æ ¡éªŒç®—æ³•ï¼Œå­—ç¬¦ä¸²å¼€è¾Ÿç©ºé—´æ—¶è¦å¤šä¸€ä½ç•™ç»™æœ€ååŠ æ ¡éªŒä½
+		double sum = 0; // æœ€åçš„æ ¡éªŒç 
 		int i;
 		int j = LenIndex - 1;
 		for (i = 0; i < LenIndex - 1; i++) {
@@ -1733,12 +1737,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½ï¿½ëµ°ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨232ï¿½ï¿½ï¿½ĞµÄµï¿½ï¿½ëµ°ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½
+	// Function: è›‹ä¸è›‹åˆ¶å“åˆ†ç±»ä¸ä»£ç ï¼ˆ232ï¼‰ä¸­çš„è›‹ä¸è›‹åˆ¶å“ç¼–ç è¡¨
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ï¿½Ì¶ï¿½ï¿½ï¿½3
-	// Creator:ï¿½?ï¿½ï¿½ 232
+	// LenIndex: the number of indexes å›ºå®šé•¿3
+	// Creator:è®¸æ±Ÿå³° 232
 	public static String Egg232(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -1826,7 +1830,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:ï¿½?ï¿½ï¿½
+	// Creator:è®¸æ±Ÿå³°
 	public static String FiveByteDecimalnt(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -1873,7 +1877,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:ï¿½?ï¿½ï¿½
+	// Creator:è®¸æ±Ÿå³°
 	public static String FourByteDecimalnt(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -1909,22 +1913,22 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Êµï¿½ï¿½Ä£10ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½Íµï¿½Ğ£ï¿½ï¿½
-	// ï¿½ï¿½A-Zï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½Æµï¿½10-35ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½é£»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½Òµï¿½ï¿½ï¿½Ê¼Ã¿Ò»Î»ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½1ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½sum
-	// Ğ£ï¿½ï¿½Î»ï¿½ï¿½ÖµÎª 10-sum%10
+	// Function: å®ç°æ¨¡10â€œéš”ä½ä¹˜2â€æ±‚å’Œçš„æ ¡éªŒ
+	// å³A-Zæ¢ç®—æˆ10è¿›åˆ¶çš„10-35ï¼Œå¯¹æ–°çš„10è¿›åˆ¶ç»„æˆæ–°çš„æ•°ç»„ï¼›å¯¹æ–°æ•°ç»„çš„ä»å³åˆ°å·¦å¼€å§‹æ¯ä¸€ä½ä¹˜ä»¥2æˆ–1çš„å¾ªç¯æ±‚å’Œsum
+	// æ ¡éªŒä½çš„å€¼ä¸º 10-sum%10
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:ï¿½?ï¿½ï¿½
+	// Creator:è®¸æ±Ÿå³°
 	public static String InternationalSecurities(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			int i = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½16ï¿½ï¿½ï¿½ï¿½
-			int j; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
+			int i = 0; // ç”¨äºåˆ¤æ–­16è¿›åˆ¶
+			int j; // ç”¨äºæ•°ç»„çš„éå†
 			int b = 0;
 			char a;
 			a = 'A';
@@ -1960,9 +1964,9 @@ public class RuleFunction {
 					e--;
 				}
 			}
-			int f; // ï¿½ï¿½ï¿½ï¿½X2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-			int sum = 0; // ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½
-			int check; // ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+			int f; // ç”¨äºX2çš„æ•°ç»„éå†
+			int sum = 0; // ç”¨äºæ¥å—æ ¡éªŒç 
+			int check; // ç”¨äºæ ¡éªŒç çš„å€¼
 			int bb = 0;
 			int ff = 0;
 			for (f = 0; f < b; f++) {
@@ -2007,23 +2011,23 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ISO 7064:1983.MOD 11-2Ğ£ï¿½ï¿½ï¿½ã·¨ Êµï¿½ï¿½ C=11-MOD(ï¿½ï¿½Ciï¿½ï¿½Wi,11)
-	// ï¿½ï¿½ï¿½ï¿½MODï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½àº¯ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Å£ï¿½Ciï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½iÎ»ï¿½ï¿½ï¿½ÏµÄ´ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Öµï¿½ï¿½Wiï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½iÎ»ï¿½ï¿½ï¿½ÏµÄ¼ï¿½È¨ï¿½ï¿½ï¿½Ó£ï¿½
-	// ï¿½ï¿½È¨ï¿½ï¿½ï¿½ÓµÄ¹ï¿½Ê½ï¿½Ç£ï¿½2ï¿½ï¿½n-1ï¿½ï¿½ï¿½İ³ï¿½ï¿½ï¿½11È¡ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	// ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ÖµÎª10Ê± ï¿½ï¿½ÖµÎ»X
+	// Function: ISO 7064:1983.MOD 11-2æ ¡éªŒç®—æ³• å®ç° C=11-MOD(âˆ‘CiÃ—Wi,11)
+	// å…¶ä¸­MODï¼è¡¨ç¤ºæ±‚ä½™å‡½æ•°ï¼›iï¼è¡¨ç¤ºä»£ç å­—ç¬¦ä»å·¦è‡³å³ä½ç½®åºå·ï¼›Ciï¼è¡¨ç¤ºç¬¬iä½ç½®ä¸Šçš„ä»£ç å­—ç¬¦çš„å€¼ï¼›Wiï¼è¡¨ç¤ºç¬¬iä½ç½®ä¸Šçš„åŠ æƒå› å­ï¼Œ
+	// åŠ æƒå› å­çš„å…¬å¼æ˜¯ï¼š2çš„n-1æ¬¡å¹‚é™¤ä»¥11å–ä½™æ•°ï¼Œnå°±æ˜¯é‚£ä¸ªiï¼Œä»å³å‘å·¦æ’åˆ—
+	// å½“æ ¡æ£€çš„å€¼ä¸º10æ—¶ èµ‹å€¼ä½X
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:ï¿½?ï¿½ï¿½
+	// Creator:è®¸æ±Ÿå³°
 	public static String MOD112(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ISO 7064:1983.MOD 11-2Ğ£ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ù¿Õ¼ï¿½Ê±Òªï¿½ï¿½Ò»Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½Î»
-			double sum = 0; // ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½
+			// ISO 7064:1983.MOD 11-2æ ¡éªŒç®—æ³•ï¼Œå­—ç¬¦ä¸²å¼€è¾Ÿç©ºé—´æ—¶è¦å¤šä¸€ä½ç•™ç»™æœ€ååŠ æ ¡éªŒä½
+			double sum = 0; // æœ€åçš„æ ¡éªŒç 
 			int i, j;
 			int b = LenIndex - 1;
 			int a;
@@ -2049,45 +2053,40 @@ public class RuleFunction {
 			sum %= 11;
 			mod = (int) (12 - sum) % 11;
 			if (mod == 10) {
-				check = "X".charAt(0); // Xï¿½ï¿½Ê¾10
+				check = "X".charAt(0); // Xè¡¨ç¤º10
 			} else {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
 			}
 			System.out.println(check);
 			if (check == (IDstr[Index[b]])) {
-
 				return OK;
-
 			} else {
-
 				return ERR;
-
 			}
-
 		} catch (Exception e) {
 			return ERR;
 		}
 	}
 
-	// Function: Êµï¿½ï¿½Ğ£ï¿½ï¿½ MOD 16-3 ï¿½ï¿½16ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½Âµï¿½10ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½È¨ï¿½Ø¶ï¿½16È¡ï¿½à£»È¨ï¿½ï¿½Î»11,9,3,1ï¿½ï¿½Ñ­ï¿½ï¿½
-	// È¨ï¿½ï¿½Î»1~9ï¿½ï¿½Ñ­ï¿½ï¿½
+	// Function: å®ç°æ ¡éªŒ MOD 16-3 å³16è¿›åˆ¶çš„æ•°æ¢ç®—æˆ10è¿›åˆ¶ï¼Œå¯¹æ–°çš„10è¿›åˆ¶çš„æ•°å€¼ä¹˜ä»¥æƒé‡å¯¹16å–ä½™ï¼›æƒé‡ä½11,9,3,1çš„å¾ªç¯
+	// æƒé‡ä½1~9çš„å¾ªç¯
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ï¿½Ì¶ï¿½ï¿½ï¿½16
-	// Creator:ï¿½?ï¿½ï¿½
+	// LenIndex: the number of indexes å›ºå®šé•¿16
+	// Creator:è®¸æ±Ÿå³°
 	public static String MOD163(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// MOD 16-3Ğ£ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ù¿Õ¼ï¿½Ê±Òªï¿½ï¿½Ò»Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½Î»
-			double sum = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+			// MOD 16-3æ ¡éªŒç®—æ³•ï¼Œå­—ç¬¦ä¸²å¼€è¾Ÿç©ºé—´æ—¶è¦å¤šä¸€ä½ç•™ç»™æœ€ååŠ æ ¡éªŒä½
+			double sum = 0; // æœ€åçš„æ±‚æ ¡éªŒç æ•°å€¼
 			int i;
-			int w = 0; // È¨ï¿½ï¿½
-			int h = 0; // Ê®ï¿½ï¿½ï¿½ï¿½
+			int w = 0; // æƒé‡
+			int h = 0; // åè¿›åˆ¶
 			int j = LenIndex - 1;
 			for (i = 0; i < LenIndex; i++) {
 				if ((LenIndex - i) % 4 == 0) {
@@ -2137,23 +2136,23 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Êµï¿½ï¿½Ğ£ï¿½ï¿½
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Å¼ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½2ï¿½Äºï¿½sum
-	// Ğ£ï¿½ï¿½Î»ï¿½ï¿½ÖµÎª 10-sum%10
+	// Function: å®ç°æ ¡éªŒ
+	// å³æ•°ç»„å¥‡æ•°ä½ä¹˜ä»¥1ä¸å¶æ•°ä½ä¹˜ä»¥2çš„å’Œsum
+	// æ ¡éªŒä½çš„å€¼ä¸º 10-sum%10
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:ï¿½?ï¿½ï¿½
+	// Creator:è®¸æ±Ÿå³°
 	public static String MrpCheck(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			int f; // ï¿½ï¿½ï¿½ï¿½X2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-			int sum = 0; // ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½
-			int check; // ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+			int f; // ç”¨äºX2çš„æ•°ç»„éå†
+			int sum = 0; // ç”¨äºæ¥å—æ ¡éªŒç 
+			int check; // ç”¨äºæ ¡éªŒç çš„å€¼
 			int b = 0;
 			int j = 0;
 			for (f = 0; f < LenIndex - 1; f++) {
@@ -2209,14 +2208,14 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:ï¿½?ï¿½ï¿½
+	// Creator:è®¸æ±Ÿå³°
 	public static String MusicCheck(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ï¿½ï¿½Tï¿½ï¿½Ê¼ï¿½ï¿½Index
+			// ä»Tå¼€å§‹ç®—Index
 			int S = 0;
 			int S1 = 0;
 			int check = 0;
@@ -2250,7 +2249,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:ï¿½?ï¿½ï¿½
+	// Creator:è®¸æ±Ÿå³°
 	public static String ThreeByteDecimalnt(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -2282,12 +2281,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÖµÖ»ï¿½ï¿½Î»SR MX SM YZ
+	// Function: å€¼åªèƒ½ä½SR MX SM YZ
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:ï¿½?ï¿½ï¿½
+	// Creator:è®¸æ±Ÿå³°
 	public static String TwoByteSRMXSMYZ(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -2317,11 +2316,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:ï¿½ï¿½Ö¯Æ· ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ë¼°Ê¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½Ì¶ï¿½
+	// Function:çººç»‡å“ æœºç»‡ç‰©ç»„ç»‡ä»£ç åŠç¤ºä¾‹ çš„æ­£åˆ™è¡¨è¾¾
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦ ä¸å›ºå®š
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:ä¸å›ºå®š
 	// creator: xjf
 	public static String Weaves355(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -2348,11 +2347,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ ï¿½Ê²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ïµï¿½Ğºï¿½Îª1-16Î»ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½(58)
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:0-13Î»ÎªÈ«ï¿½ï¿½É»ï¿½ï¿½ï¿½ï¿½Ê²ï¿½ï¿½ï¿½ï¿½,LenIndexï¿½ï¿½Îª3ï¿½ï¿½ï¿½ï¿½Ò»Î»Îªï¿½ï¿½Ê¼ï¿½ï¿½Î»ï¿½ï¿½Ú¶ï¿½Î»Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½Ä´ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Î»Îª-1
+	// Function: å•†å“æ¡ç  èµ„äº§ç¼–ç ä¸æ¡ç è¡¨ç¤ºæœ€åçš„ç³»åˆ—å·ä¸º1-16ä½ï¼Œä½¿ç”¨æ­£åˆ™è¿›è¡ŒåŒ¹é…(58)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦ ä¸å›ºå®š
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:0-13ä½ä¸ºå…¨çƒå¯å›æ”¶èµ„äº§ä»£ç ,LenIndexå¿…ä¸º3ï¼Œç¬¬ä¸€ä½ä¸ºèµ·å§‹çš„ä½æ•°ï¼Œç¬¬äºŒä½ä¸ºæ­£åˆ™å¯é‡å¤çš„æ¬¡æ•°,ç¬¬ä¸‰ä½ä¸º-1
 	// creator: zll
 	public static String GraiSerialNo(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -2384,11 +2383,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Ò©Æ·ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò£¬µï¿½IDstr[1]Îª9Ê±ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª0,1,2
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ 20Î»
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½ï¿½Îª1ï¿½ï¿½Ö»ï¿½ï¿½Ö¤IDstr[1]ï¿½Ç·ï¿½Îª9
+	// Function: è¯å“ç”µå­ç›‘ç®¡ç åº”ç”¨ç è§„åˆ™ï¼Œå½“IDstr[1]ä¸º9æ—¶ï¼Œåº”ç”¨ç å¯ä»¥ä¸º0,1,2
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦ 20ä½
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º1ï¼ŒåªéªŒè¯IDstr[1]æ˜¯å¦ä¸º9
 	// creator: zll
 	public static String MedAppCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -2409,35 +2408,365 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	// Function: http://zh.wikipedia.org/zh-cn/%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E4%B9%A6%E5%8F%B7
-	// IDstr: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
-	// LenID: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ 20Î»
-	// Index: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-	// LenIndex:ï¿½ï¿½ï¿½ï¿½Îª1ï¿½ï¿½Ö»ï¿½ï¿½Ö¤IDstr[1]ï¿½Ç·ï¿½Îª9
-	// creator: menglunyang
-	public static String ISBN13(char[] IDstr, int LenID, int[] Index,
+
+	// Function: çƒŸç”¨ææ–™åˆ†ç±»ä»£ç ä¸äº§å“ç¼–ç 
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦4ä½
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º4
+	// creator: zll
+	public static String TabaccoMaterials(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (IDstr[0] == '9' && IDstr[1] == '7'
-					&& (IDstr[2] == '8' || IDstr[2] == '9')) {
-				int checkNumber = (IDstr[0] - 48) * 1 + (IDstr[1] - 48) * 3
-						+ (IDstr[2] - 48) * 1 + (IDstr[3] - 48) * 3
-						+ (IDstr[4] - 48) * 1 + (IDstr[5] - 48) * 3
-						+ (IDstr[6] - 48) * 1 + (IDstr[7] - 48) * 3
-						+ (IDstr[8] - 48) * 1 + (IDstr[9] - 48) * 3
-						+ (IDstr[10] - 48) * 1 + (IDstr[11] - 48) * 3;
-				checkNumber = checkNumber % 10;
-				checkNumber = 10 - checkNumber;
-				if (checkNumber == 10 && IDstr[12] == '0'
-						|| checkNumber == IDstr[12] - 48)
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			String categoryCode = String.valueOf(IDstr[Index[0]])
+					+ String.valueOf(IDstr[Index[1]]);
+			String groupCode = String.valueOf(IDstr[Index[2]])
+					+ String.valueOf(IDstr[Index[3]]);
+			RecoDao dao = new RecoDao();
+			boolean ret = dao.getTobbacoMaterials(categoryCode, groupCode);
+			if (ret) {
+				return OK;
+			} else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// æœ‰é—®é¢˜çš„å•Š 9 15425
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:è®¸æ±Ÿå³°
+	public static String N14(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			// ä»Tå¼€å§‹ç®—Index
+			int S = 0;
+			int S1 = 0;
+			int i;
+			int a = (int) (IDstr[Index[0]] - 32) * 2; // ç”¨äºæ¥å—ç¬¬ä¸€ä½
+			for (i = 0; i < 14; i++) {
+				S = S
+						+ ((int) (IDstr[Index[2 * i + 1]] - 48) * 10 + (int) (IDstr[Index[2 * i + 2]] - 48))
+						* (i + 4);
+
+			}
+			S = S + 104 + 102 + a + 99 * 3;
+			S1 = S % 103 + 32;
+
+			if ((int) (IDstr[Index[LenIndex - 1]] - 48) == S1) {
+				return OK;
+			}
+
+			else {
+				return ERR;
+			}
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 413 fire information
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String FireInfo(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
+			int i = 10 * index1 + index2;
+			if (i >= 10 && i <= 13) {
+				return OK;
+			} else if (i >= 20 && i <= 23) {
+				return OK;
+			} else if (i >= 30 && i <= 33 || i == 90) {
+				return OK;
+			}
+
+			else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 412 fire information
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 4
+	// creator: xjf
+	// public static String FireInfotrain(char[] IDstr, int LenID, int[] Index,
+	// int LenIndex) {
+	// try {
+	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+	// return ERR;
+	// }
+	// if (LenIndex != 4) {
+	// return ERR;
+	// }
+	// int index1 = (int) IDstr[Index[1]] - 48;
+	// int index2 = (int) IDstr[Index[2]] - 48;
+	// int index3 = (int) IDstr[Index[3]] - 48;
+	// int index4 = (int) IDstr[Index[0]] - 48;
+	// // int Xx = 8;
+	// int i = 100 * index1 + 10 * index2 + index3 + 1000 * index4;
+	// if (i >= 101 && i <= 104) {
+	// return OK;
+	// } else if (i >= 201 && i <= 203) {
+	// return OK;
+	// } else if (i == 299 || i == 99) {
+	// return OK;
+	// }
+	//
+	// else
+	// return ERR;
+	// } catch (Exception e) {
+	// return ERR;
+	// }
+	// }
+
+	// Function: 409 fire information
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String FireInfotainass(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
+			int i = 10 * index1 + index2;
+			if (i >= 20 && i <= 22) {
+				return OK;
+			} else if (i == 30 || i == 10 || i == 90) {
+				return OK;
+			}
+
+			else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 406 fire information
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String FireInfotainrate(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			int index1 = 0;
+			int index2 = 0;
+			int i = 0;
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			index1 = (int) IDstr[Index[0]] - 48;
+			index2 = (int) IDstr[Index[1]] - 48;
+
+			// int Xx = 8;
+			i = 10 * index1 + index2;
+			if (i >= 20 && i <= 21) {
+				return OK;
+			} else if (i >= 40 && i <= 43) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// 188åŸå¸‚å¸‚æ”¿ç»¼åˆç›‘ç®¡ä¿¡æ¯ç³»ç»Ÿ
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦ 12ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
+	// LenIndex:12
+	// creator:fdl
+	public static String Littlecode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			if ((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '1')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '5')
+					|| (IDstr[Index[0]] == '2' && IDstr[Index[1]] == '1')) {
+				return OK;
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: 403 fire information
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// LenIndex: the number of indexes that must be 2
+	// creator: xjf
+	public static String FireInfocamp(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			// int Xx = 8;
+			int i = 10 * index1 + index2;
+			if (i >= 10 && i <= 15) {
+				return OK;
+			} else if (i >= 20 && i <= 29) {
+				return OK;
+			} else if (i == 30 || i == 10 || i == 90) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// æ®¡è‘¬æœåŠ¡ã€è®¾æ–½ã€ç”¨å“åˆ†ç±»ä¸ä»£ç  ç¬¬6-12ä½å¯¹åº”è§„åˆ™
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦ 15ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
+	// LenIndex:7
+	// creator:zt
+	public static String FuneralInterment(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 7) {
+				return ERR;
+			}
+			String id = "";
+			RecoDao recoDao = new RecoDao();
+			for (int i = 1; i < LenIndex; i++) {
+				id = id.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			if (IDstr[Index[0]] == '1') {
+				boolean ret = recoDao.getFuneral(id,
+						RecoUtil.SELECT_FUNERALSERVICE);
+				if (ret) {
 					return OK;
+				} else
+					return ERR;
+			} else if (IDstr[Index[0]] == '2') {
+				boolean ret = recoDao.getFuneral(id,
+						RecoUtil.SELECT_FUNERALFACILITIES);
+				if (ret) {
+					return OK;
+				} else
+					return ERR;
+			} else if (IDstr[Index[0]] == '3') {
+				boolean ret = recoDao.getFuneral(id, RecoUtil.SELECT_SUPPLIES);
+				if (ret) {
+					return OK;
+				} else
+					return ERR;
 			}
 			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 
-<<<<<<< HEAD
+	// 194-çƒŸè‰æœºæ¢°ç”µæ°”é…ç½®å’ŒæŠ€æœ¯æ–‡ä»¶ä»£ç é™„å½•Dè¡¨æŸ¥è¯¢
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦2ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
+	// LenIndex:a3
+	// creator:fdl
+	public static String TobaccoTech(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			String s = "";
+			for (int i = 0; i < 2; i++) {
+				s = s.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			System.out.println("s=" + s);
+			if (s.equals("00") || s.equals("01") || s.equals("10")
+					|| s.equals("11") || s.equals("12") || s.equals("30")
+					|| s.equals("31") || s.equals("32") || s.equals("44")
+					|| s.equals("45") || s.equals("33") || s.equals("40")
+					|| s.equals("41") || s.equals("42") || s.equals("43")
+					|| s.equals("46") || s.equals("47") || s.equals("48")
+					|| s.equals("50") || s.equals("60")) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// 381æ¶ˆé˜²ä¿¡æ¯ä»£ç 
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator: fdl
+
 	// public static String FireInfoStstion(char[] IDstr, int LenID,
 	// int[] Index, int LenIndex) {
 	// String information;
@@ -2451,35 +2780,35 @@ public class RuleFunction {
 	// int index1 = Index[0];
 	// int index2 = Index[1];
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '0')) {
-	// information="ÆÕÍ¨Ïû·ÀÕ¾";
+	// information="æ™®é€šæ¶ˆé˜²ç«™";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '1')) {
-	// information="Ò»¼¶ÆÕÍ¨Ïû·ÀÕ¾";
+	// information="ä¸€çº§æ™®é€šæ¶ˆé˜²ç«™";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '2')) {
-	// information="¶ş¼¶ÆÕÍ¨Ïû·ÀÕ¾";
+	// information="äºŒçº§æ™®é€šæ¶ˆé˜²ç«™";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '2') && (IDstr[index2] == '0')) {
-	// information="ÌØÇÚÏû·ÀÕ¾";
+	// information="ç‰¹å‹¤æ¶ˆé˜²ç«™";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '6') && (IDstr[index2] == '0')) {
-	// information="Ë®ÉÏÏû·ÀÕ¾";
+	// information="æ°´ä¸Šæ¶ˆé˜²ç«™";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '7') && (IDstr[index2] == '0')) {
-	// information="º½¿ÕÏû·ÀÕ¾";
+	// information="èˆªç©ºæ¶ˆé˜²ç«™";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '8') && (IDstr[index2] == '0')) {
-	// information="Â½µØËÑ¾È»ùµØ";
+	// information="é™†åœ°æœæ•‘åŸºåœ°";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '9') && (IDstr[index2] == '0')) {
-	// information="ÆäËûÏû·ÀÕ¾";
+	// information="å…¶ä»–æ¶ˆé˜²ç«™";
 	// return OK;
 	// }
 	// return ERR;
@@ -2487,7 +2816,7 @@ public class RuleFunction {
 	// return ERR;
 	// }
 	// }
-	// 393Ïû·ÀĞÅÏ¢´úÂë
+	// 393æ¶ˆé˜²ä¿¡æ¯ä»£ç 
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2507,27 +2836,27 @@ public class RuleFunction {
 	// int index1 = Index[0];
 	// int index2 = Index[1];
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '0')) {
-	// inforfation="×ÔÈ»ÅÅÑÌÏµÍ³";
+	// inforfation="è‡ªç„¶æ’çƒŸç³»ç»Ÿ";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '1') && (IDstr[index2] == '1')) {
-	// inforfation="¿É¿ªÆôÍâÑÌ×ÔÈ»ÅÅÑÌ";
+	// inforfation="å¯å¼€å¯å¤–çƒŸè‡ªç„¶æ’çƒŸ";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '2') && (IDstr[index2] == '0')) {
-	// inforfation="»úĞµ·ÀÅÅÑÌÏµÍ³";
+	// inforfation="æœºæ¢°é˜²æ’çƒŸç³»ç»Ÿ";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '2') && (IDstr[index2] == '1')) {
-	// inforfation="»úĞµ¼ÓÑ¹ËÍ·ç·ÀÑÌ";
+	// inforfation="æœºæ¢°åŠ å‹é€é£é˜²çƒŸ";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '2') && (IDstr[index2] == '2')) {
-	// inforfation="»úĞµÅÅÑÌ";
+	// inforfation="æœºæ¢°æ’çƒŸ";
 	// return OK;
 	// }
 	// if ((IDstr[index1] == '9') && (IDstr[index2] == '0')) {
-	// inforfation="ÆäËû·ÀÅÅÑÌÏµÍ³";
+	// inforfation="å…¶ä»–é˜²æ’çƒŸç³»ç»Ÿ";
 	// return OK;
 	// }
 	// return ERR;
@@ -2535,7 +2864,8 @@ public class RuleFunction {
 	// return ERR;
 	// }
 	// }
-	// 395¡ª¡ªÏû·ÀĞÅÏ¢´úÂë
+
+	// 395â€”â€”æ¶ˆé˜²ä¿¡æ¯ä»£ç 
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2566,7 +2896,7 @@ public class RuleFunction {
 
 	}
 
-	// 399¡ª¡ªÏû·ÀĞÅÏ¢´úÂë57²¿·Ö Ïû·À¹©Ë®ÉèÊ©ÖÖÀà
+	// 399â€”â€”æ¶ˆé˜²ä¿¡æ¯ä»£ç 57éƒ¨åˆ† æ¶ˆé˜²ä¾›æ°´è®¾æ–½ç§ç±»
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2598,7 +2928,7 @@ public class RuleFunction {
 	//
 	// }
 
-	// 403¡ª¡ªÏû·ÀĞÅÏ¢´úÂë53²¿·ÖÉç»áĞû´«½ÌÓı»î¶¯
+	// 403â€”â€”æ¶ˆé˜²ä¿¡æ¯ä»£ç 53éƒ¨åˆ†ç¤¾ä¼šå®£ä¼ æ•™è‚²æ´»åŠ¨
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2629,7 +2959,7 @@ public class RuleFunction {
 	//
 	// }
 
-	// 409¡ª¡ªÏû·ÀĞÅÏ¢´úÂë48²¿·Ö£ºÏû·ÀÑµÁ·¿¼ºË´úÂë
+	// 409â€”â€”æ¶ˆé˜²ä¿¡æ¯ä»£ç 48éƒ¨åˆ†ï¼šæ¶ˆé˜²è®­ç»ƒè€ƒæ ¸ä»£ç 
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -2697,11 +3027,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÊµÏÖĞ£Ñé MOD 97-10
+	// Function: å®ç°æ ¡éªŒ MOD 97-10
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤13
+	// LenIndex: the number of indexes å›ºå®šé•¿13
 	// Creator:zt
 	public static String MOD9710(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -2743,10 +3073,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 194-ÑÌ²İ»úĞµµçÆøÅäÖÃºÍ¼¼ÊõÎÄ¼ş´úÂë¸½Â¼C±í²éÑ¯
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È3Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 194-çƒŸè‰æœºæ¢°ç”µæ°”é…ç½®å’ŒæŠ€æœ¯æ–‡ä»¶ä»£ç é™„å½•Cè¡¨æŸ¥è¯¢
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦3ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String tabaccoC(char[] IDstr, int LenID, int[] Index,
@@ -2758,7 +3088,10 @@ public class RuleFunction {
 			return ERR;
 		}
 		try {
-			int code = IDstr[Index[0]] + IDstr[Index[1] - 96];
+			String code = "";
+			for (int i = 0; i < 3; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPrefixoftabaccoC(code);
 			if (ret) {
@@ -2768,7 +3101,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// Function: 402 fire information
@@ -2868,10 +3200,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 91-ÖĞ¹úÃºÌ¿±àÂëÏµÍ³ µÚ1-12Î»¶ÔÓ¦¹æÔò
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È 12Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 91-ä¸­å›½ç…¤ç‚­ç¼–ç ç³»ç»Ÿ ç¬¬1-12ä½å¯¹åº”è§„åˆ™
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦ 12ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:12
 	// creator:fdl
 	public static String CoalInterment(char[] IDstr, int LenID, int[] Index,
@@ -3018,10 +3350,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 90-ÉÌÆ·ÌõÂë¡ª¡ª²ÎÓë·½Î»±àÂëÓëÌõÂë±íÊ¾ µÚ13Ğ£ÑéÂë
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È 13Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 90-å•†å“æ¡ç â€”â€”å‚ä¸æ–¹ä½ç¼–ç ä¸æ¡ç è¡¨ç¤º ç¬¬13æ ¡éªŒç 
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦ 13ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:13
 	// creator:fdl
 	public static String CheckCodebarcode(char[] IDstr, int LenID, int[] Index,
@@ -3035,15 +3367,15 @@ public class RuleFunction {
 			}
 			String id1 = "";
 			int sum = 0;
-			int sum1 = 0;// Å¼ÊıĞòºÅÎ»ÉÏµÄÊıÖµºÍ
-			int sum2 = 0;// ÆæÊıĞòºÅÎ»ÉÏµÄÊıÖµºÍ
-			int dd = 0;// sumºÍÕû³ıÖĞ¼äÊı
-			int code = 0;// ×îºóÒ»Î»ÑéÖ¤Âë
+			int sum1 = 0;// å¶æ•°åºå·ä½ä¸Šçš„æ•°å€¼å’Œ
+			int sum2 = 0;// å¥‡æ•°åºå·ä½ä¸Šçš„æ•°å€¼å’Œ
+			int dd = 0;// sumå’Œæ•´é™¤ä¸­é—´æ•°
+			int code = 0;// æœ€åä¸€ä½éªŒè¯ç 
 
 			for (int i = 1; i < 12; i++) {
 				if (i % 2 == 1) {
 					sum1 = sum1 + (IDstr[i]);
-					sum1 = sum1 - 48;// ×Ö·û×ª»¯ÎªÕûĞÎ
+					sum1 = sum1 - 48;// å­—ç¬¦è½¬åŒ–ä¸ºæ•´å½¢
 					System.out.println((int) IDstr[i]);
 				}
 			}
@@ -3052,7 +3384,7 @@ public class RuleFunction {
 			for (int i = 0; i < 11; i++) {
 				if (i % 2 == 0) {
 					sum2 += IDstr[i];
-					sum2 = sum2 - 48;// ×Ö·û×ª»¯ÎªÕûĞÎ
+					sum2 = sum2 - 48;// å­—ç¬¦è½¬åŒ–ä¸ºæ•´å½¢
 					System.out.println(IDstr[i]);
 				}
 			}
@@ -3069,7 +3401,7 @@ public class RuleFunction {
 					return OK;
 				}
 			}
-			System.out.println("ÑéÖ¤ÂëÎ»=" + code);
+			System.out.println("ï¿½ï¿½Ö¤ï¿½ï¿½Î»=" + code);
 			if (code == (int) IDstr[12] - 48) {
 				return OK;
 			}
@@ -3078,34 +3410,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-	}
-
-	// 195-ÑÌ²İ»úĞµ¡ª¡ª²úÆ·¹¤ÒÕÎÄ¼ş´úÂë±àÖÆ·½·¨ ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È3Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
-	// LenIndex:a3
-	// creator:fdl
-	public static String Tobaccomachinery(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
-		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			return ERR;
-		}
-		if (LenIndex != 3) {
-			return ERR;
-		}
-		try {
-			int code = IDstr[Index[0]] + IDstr[Index[1] - 96];
-			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getPrefixofRetailCommodityNumber(code);
-			if (ret) {
-				return OK;
-			} else
-				return ERR;
-		} catch (Exception e) {
-			return ERR;
-		}
-
 	}
 
 	// Function: 384 fire information
@@ -3204,7 +3508,7 @@ public class RuleFunction {
 					}
 				}
 			}
-			if (i1 == 2) { // Ö°Ô±¼¶±ğ
+			if (i1 == 2) { // èŒå‘˜çº§åˆ«
 				if (i2 >= 1 && i2 <= 4) {
 					if (i3 == 1 || i3 == 2) {
 						return OK;
@@ -3221,7 +3525,7 @@ public class RuleFunction {
 					}
 				}
 			}
-			if (i1 == 4) { // ×¨Òµ¼¼ÊõÖ°Îñ¼¶±ğ
+			if (i1 == 4) { // ä¸“ä¸šæŠ€æœ¯èŒåŠ¡çº§åˆ«
 				if (i2 == 1) {
 					if (i3 == 1 || i3 == 2 || i3 == 0) {
 						return OK;
@@ -3249,12 +3553,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÊµÏÖĞ£ÑéNÎ»ÊıĞ£Ñé
+	// Function: å®ç°æ ¡éªŒNä½æ•°æ ¡éªŒ
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:·½µ¤Àö
+	// Creator:æ–¹ä¸¹ä¸½
 	public static String Mod36_37(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -3292,13 +3596,13 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÊµÏÖĞ£Ñé6Î»ÊıÎïÁ÷±àÂë
+	// Function: å®ç°æ ¡éªŒ6ä½æ•°ç‰©æµç¼–ç 
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:·½µ¤Àö
-	// Ğ£ÑéÀı×ÓÂë123450
+	// Creator:æ–¹ä¸¹ä¸½
+	// æ ¡éªŒä¾‹å­ç 123450
 	public static String LogisticsCheck(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -3327,10 +3631,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 268-¡ª¡ªÖéÈ«¹úÈË´óÕşĞ­»ú¹¹·ÖÀà´úÂë±àÖÆ·½·¨ ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È3Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 268-â€”â€”ç å…¨å›½äººå¤§æ”¿åæœºæ„åˆ†ç±»ä»£ç ç¼–åˆ¶æ–¹æ³• æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦3ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String TheCenteralPartyCommitte(char[] IDstr, int LenID,
@@ -3357,10 +3661,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 270¡ª¡ª×ÔÈ»ÔÖº¦Natural disaster
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È6Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 270â€”â€”è‡ªç„¶ç¾å®³Natural disaster
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦6ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String Naturaldisaster(char[] IDstr, int LenID, int[] Index,
@@ -3387,10 +3691,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 275¡ªÎïÁ÷×÷Òµ»õÎï
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È4Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 275â€”ç‰©æµä½œä¸šè´§ç‰©
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦4ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String Logisticsoperation(char[] IDstr, int LenID,
@@ -3417,10 +3721,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 276¡ª·ÏÆúÎïÆ·»õÎï
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È4Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 276â€”åºŸå¼ƒç‰©å“è´§ç‰©
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦4ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String Wasteproducts(char[] IDstr, int LenID, int[] Index,
@@ -3447,10 +3751,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 281-¡ª¡ªÖé±¦ÓñÊ¯¼°½ğÊô²ÄÖÊ·ÖÀà´úÂë±àÖÆ·½·¨ ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È6Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 281-â€”â€”ç å®ç‰çŸ³åŠé‡‘å±æè´¨åˆ†ç±»ä»£ç ç¼–åˆ¶æ–¹æ³• æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦6ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String JadejewelryMaterialclassif(char[] IDstr, int LenID,
@@ -3477,10 +3781,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 216-¡ª¡ªÖĞÑëµ³Õş»ú¹Ø´úÂë±àÖÆ·½·¨ ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È3Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 216-â€”â€”ä¸­å¤®å…šæ”¿æœºå…³ä»£ç ç¼–åˆ¶æ–¹æ³• æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦3ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// creator:fdl
 	// public static String CodeHighway(char[] IDstr, int LenID, int[] Index,
 	// int LenIndex){
@@ -3500,7 +3804,7 @@ public class RuleFunction {
 	// }
 	// }
 	// }
-	// if (i1 == 2) { // Ö°Ô±¼¶±ğ
+	// if (i1 == 2) { // èŒå‘˜çº§åˆ«
 	// if (i2 >= 1 && i2 <= 4) {
 	// if (i3 == 1 || i3 == 2) {
 	// return OK;
@@ -3517,7 +3821,7 @@ public class RuleFunction {
 	// }
 	// }
 	// }
-	// if (i1 == 4) { // ×¨Òµ¼¼ÊõÖ°Îñ¼¶±ğ
+	// if (i1 == 4) { // ä¸“ä¸šæŠ€æœ¯èŒåŠ¡çº§åˆ«
 	// if (i2 == 1) {
 	// if (i3 == 1 || i3 == 2 || i3 == 0) {
 	// return OK;
@@ -5004,7 +5308,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String SixByteDecimalnt(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -5035,8 +5339,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 504
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 504
 	public static String OneTO08(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5060,8 +5364,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 504 509
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 504 509
 	public static String OneTO09(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5085,8 +5389,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 511
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 511
 	public static String OneTO07(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5110,8 +5414,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 512
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 512
 	public static String OneTO05(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5135,8 +5439,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 213
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 213
 	public static String OneTO15(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5160,8 +5464,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 213
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 213
 	public static String OneTO13(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5185,8 +5489,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 213
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 213
 	public static String OneTO11(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5209,8 +5513,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 214
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 214
 	public static String OneTO14(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5234,8 +5538,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 225
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 225
 	public static String OneTO39(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5259,8 +5563,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 225
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 225
 	public static String OneTO22(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5284,8 +5588,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 225
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 225
 	public static String OneTO10(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5309,8 +5613,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 225
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 225
 	public static String OneTO29(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5334,8 +5638,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 225
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 225
 	public static String OneTO21(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5359,8 +5663,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 225
+	// LenIndex: the number of indexes ï¿½Ì¶ï¿½ï¿½ï¿½2
+	// Creator:ï¿½?ï¿½ï¿½ 225
 	public static String OneTO46(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5384,8 +5688,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 225
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 225
 	public static String OneTO72(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -5410,15 +5714,15 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String MOD3736(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ISO 7064:1983.MOD 11-2Ğ£ÑéËã·¨£¬×Ö·û´®¿ª±Ù¿Õ¼äÊ±Òª¶àÒ»Î»Áô¸ø×îºó¼ÓĞ£ÑéÎ»
-			double sum = 0; // ×îºóµÄĞ£ÑéÂë
+			// ISO 7064:1983.MOD 11-2æ ¡éªŒç®—æ³•ï¼Œå­—ç¬¦ä¸²å¼€è¾Ÿç©ºé—´æ—¶è¦å¤šä¸€ä½ç•™ç»™æœ€ååŠ æ ¡éªŒä½
+			double sum = 0; // æœ€åçš„æ ¡éªŒç 
 			int i, j;
 			int b = LenIndex - 1;
 			int a;
@@ -5466,8 +5770,8 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ISO 7064:1983.MOD 11-2Ğ£ÑéËã·¨£¬×Ö·û´®¿ª±Ù¿Õ¼äÊ±Òª¶àÒ»Î»Áô¸ø×îºó¼ÓĞ£ÑéÎ»
-			double sum = 0; // ×îºóµÄĞ£ÑéÂë
+			// ISO 7064:1983.MOD 11-2æ ¡éªŒç®—æ³•ï¼Œå­—ç¬¦ä¸²å¼€è¾Ÿç©ºé—´æ—¶è¦å¤šä¸€ä½ç•™ç»™æœ€ååŠ æ ¡éªŒä½
+			double sum = 0; // æœ€åçš„æ ¡éªŒç 
 			int i, j;
 			int b = LenIndex - 1;
 			int a;
@@ -5516,7 +5820,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String VersionISAN(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -5562,12 +5866,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:622Ğ£¼ìÎ»
+	// Function:622æ ¡æ£€ä½
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String VehicleIdenCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -5669,7 +5973,7 @@ public class RuleFunction {
 			int mod = sum % 11;
 			char check;
 			if (mod == 10) {
-				check = "X".charAt(0); // X±íÊ¾10
+				check = "X".charAt(0); // Xè¡¨ç¤º10
 			} else {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
@@ -5685,23 +5989,23 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Ğ£¼ìÎ» ³ËÒÔ3»ò1 Çó
+	// Function: æ ¡æ£€ä½ ä¹˜ä»¥3æˆ–1 æ±‚
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤16
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿16
+	// Creator:è®¸æ±Ÿå³°
 	public static String CommodityCodeCheck632(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// MOD 16-3Ğ£ÑéËã·¨£¬×Ö·û´®¿ª±Ù¿Õ¼äÊ±Òª¶àÒ»Î»Áô¸ø×îºó¼ÓĞ£ÑéÎ»
-			double sum = 0; // ×îºóµÄÇóĞ£ÑéÂëÊıÖµ
+			// MOD 16-3æ ¡éªŒç®—æ³•ï¼Œå­—ç¬¦ä¸²å¼€è¾Ÿç©ºé—´æ—¶è¦å¤šä¸€ä½ç•™ç»™æœ€ååŠ æ ¡éªŒä½
+			double sum = 0; // æœ€åçš„æ±‚æ ¡éªŒç æ•°å€¼
 			int i;
-			int w = 0; // È¨ÖØ
-			int h = 0; // Ê®½øÖÆ
+			int w = 0; // æƒé‡
+			int h = 0; // åè¿›åˆ¶
 			int j = 0;
 			for (i = 0; i < LenIndex - 1; i++) {
 				for (j = 0; j < LenIndex; j++) {
@@ -5732,8 +6036,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å639
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°639
 	public static String ZeroTO14(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -5752,8 +6056,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å654
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°654
 	public static String ZeroTO24(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -5770,8 +6074,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å654
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°654
 	public static String ZeroTO60(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -5795,7 +6099,7 @@ public class RuleFunction {
 		return hexStr + hexString;
 	}
 
-	public static String enUnicode(String content) { // ½«ºº×Ö×ª»»Îª16½øÖÆÊı
+	public static String enUnicode(String content) { // å°†æ±‰å­—è½¬æ¢ä¸º16è¿›åˆ¶æ•°
 		String enUnicode = null;
 		for (int i = 0; i < content.length(); i++) {
 			if (i == 0) {
@@ -5810,12 +6114,12 @@ public class RuleFunction {
 		return enUnicode;
 	}
 
-	// Function: 657 Ğ¡Ğ´×ÖÄ¸×ª2½øÖÆ
+	// Function: 657 å°å†™å­—æ¯è½¬2è¿›åˆ¶
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å657
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°657
 	public static String Xiaoxie(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int j;
@@ -5837,15 +6141,15 @@ public class RuleFunction {
 		int[] jie = new int[LenIndex];
 		for (i = 0; i < LenIndex; i++) {
 			j = (int) IDstr[Index[i]];
-			String a = Integer.toString(j); // ÊäÈëÊıÖµ
-			BigInteger src = new BigInteger(a); // ×ª»»ÎªBigIntegerÀàĞÍ
+			String a = Integer.toString(j); // è¾“å…¥æ•°å€¼
+			BigInteger src = new BigInteger(a); // è½¬æ¢ä¸ºBigIntegerç±»å‹
 			String bb = src.toString(2);
 			int bbb = Integer.parseInt(bb);
 			jie[i] = bbb;
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // ÊäÈëÊıÖµ
+			String bb = Integer.toString(j); // è¾“å…¥æ•°å€¼Öµ
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -5867,12 +6171,12 @@ public class RuleFunction {
 		return OK;
 	}
 
-	// Function: 657 ´óĞ´×ÖÄ¸×ª2½øÖÆ
+	// Function: 657 å¤§å†™å­—æ¯è½¬2è¿›åˆ¶
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å657
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°657
 	public static String Daxie(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int j;
@@ -5894,15 +6198,15 @@ public class RuleFunction {
 		int[] jie = new int[LenIndex];
 		for (i = 0; i < LenIndex; i++) {
 			j = (int) IDstr[Index[i]];
-			String a = Integer.toString(j); // ÊäÈëÊıÖµ
-			BigInteger src = new BigInteger(a); // ×ª»»ÎªBigIntegerÀàĞÍ
+			String a = Integer.toString(j); // è¾“å…¥æ•°å€¼
+			BigInteger src = new BigInteger(a); // è½¬æ¢ä¸ºBigIntegerç±»å‹
 			String bb = src.toString(2);
 			int bbb = Integer.parseInt(bb);
 			jie[i] = bbb;
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // ÊäÈëÊıÖµ
+			String bb = Integer.toString(j); // è¾“å…¥æ•°å€¼
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -5924,12 +6228,12 @@ public class RuleFunction {
 		return OK;
 	}
 
-	// Function: 657 Êı×Ö×ÖÄ¸×ª2½øÖÆ
+	// Function: 657 æ•°å­—å­—æ¯è½¬2è¿›åˆ¶
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å657
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°657
 	public static String Hunpai(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int j;
@@ -5963,15 +6267,15 @@ public class RuleFunction {
 		int[] jie = new int[LenIndex];
 		for (i = 0; i < LenIndex; i++) {
 			j = (int) IDstr[Index[i]];
-			String a = Integer.toString(j); // ÊäÈëÊıÖµ
-			BigInteger src = new BigInteger(a); // ×ª»»ÎªBigIntegerÀàĞÍ
+			String a = Integer.toString(j); // è¾“å…¥æ•°å€¼
+			BigInteger src = new BigInteger(a); // è½¬æ¢ä¸ºBigIntegerç±»å‹
 			String bb = src.toString(2);
 			int bbb = Integer.parseInt(bb);
 			jie[i] = bbb;
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // ÊäÈëÊıÖµ
+			String bb = Integer.toString(j); // è¾“å…¥æ•°å€¼
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -5993,19 +6297,19 @@ public class RuleFunction {
 		return OK;
 	}
 
-	// Function: 657 Êı×ÖÄ£Ê½×ª2½øÖÆ
+	// Function: 657 æ•°å­—æ¨¡å¼è½¬2è¿›åˆ¶
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å657
+	// Creator:è®¸æ±Ÿå³°657
 	public static String figure(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 
 		int j = 0;
 		int i, ii = 0;
 		int leg;
-		String out = null; // ÓÃÓÚ½ÓÊÜ»òÅĞ¶Ï
+		String out = null; // ç”¨äºæ¥å—æˆ–åˆ¤æ–­
 		if (LenIndex % 3 != 0) {
 			leg = LenIndex / 3 + 1;
 		} else {
@@ -6013,9 +6317,9 @@ public class RuleFunction {
 		}
 		int legg = leg * 3;
 		int[] jie = new int[leg];
-		char[] newIDstr = new char[legg]; // ½ÓÊÜÊı×Ö
-		int[] GB = new int[leg]; // ½ÓÊÜ ÌØÊâ·ûºÅ
-		int[] GB1 = new int[leg]; // ½ÓÊÜÌØÊâ·ûºÅËùÔÚµÄÎ»ÖÃ
+		char[] newIDstr = new char[legg]; // æ¥å—æ•°å­—
+		int[] GB = new int[leg]; // æ¥å— ç‰¹æ®Šç¬¦å·
+		int[] GB1 = new int[leg]; // æ¥å—ç‰¹æ®Šç¬¦å·æ‰€åœ¨çš„ä½ç½®
 		for (i = 0; i < LenIndex; i++) {
 			if (IDstr[Index[i]] > 47) {
 				newIDstr[j] = (char) (IDstr[Index[i]] - 48);
@@ -6102,7 +6406,7 @@ public class RuleFunction {
 					* (int) newIDstr[3 * i + 1] + (int) newIDstr[3 * i + 2];
 		}
 		int jj = 0;
-		int[] GB2 = new int[leg]; // ½ÓÊÜÌØÊâ·ûºÅËùÔÚ10½øÖÆµÄµÄÎ»ÖÃ
+		int[] GB2 = new int[leg]; // æ¥å—ç‰¹æ®Šç¬¦å·æ‰€åœ¨10è¿›åˆ¶çš„çš„ä½ç½®
 		leg = 0;
 		for (j = 0; j < ii; j++) {
 			if (leg != 0) {
@@ -6115,8 +6419,8 @@ public class RuleFunction {
 			}
 		}
 		leg = legleg;
-		int[] newgb = new int[leg + ii]; // È«ĞÂµÄÊıÖµÀ´½ÓÊÜËùÓĞµÄ10½øÖÆ
-		jj = 0; // ÓÉÓÚ½ÓÊÜ£Ç£ÂÖĞµÄÎ»
+		int[] newgb = new int[leg + ii]; // å…¨æ–°çš„æ•°å€¼æ¥æ¥å—æ‰€æœ‰çš„10è¿›åˆ¶
+		jj = 0; // ç”±äºæ¥å—GBä¸­çš„ä½
 		for (i = 0; i < leg + ii; i++) {
 			j++;
 			if (ii != 0) {
@@ -6135,18 +6439,18 @@ public class RuleFunction {
 				newgb[i] = jie[i];
 			}
 		}
-		int[] Two = new int[leg + ii]; // ½ÓÊÜ×ª»»³ÉµÄ2½øÖÆÊı×é
+		int[] Two = new int[leg + ii]; // æ¥å—è½¬æ¢æˆçš„2è¿›åˆ¶æ•°ç»„
 		for (i = 0; i < leg + ii; i++) {
 			j = (int) newgb[i];
-			String a = Integer.toString(j); // ÊäÈëÊıÖµ
-			BigInteger src = new BigInteger(a); // ×ª»»ÎªBigIntegerÀàĞÍ
+			String a = Integer.toString(j); // è¾“å…¥æ•°å€¼
+			BigInteger src = new BigInteger(a); // è½¬æ¢ä¸ºBigIntegerç±»å‹
 			String bb = src.toString(2);
 			int bbb = Integer.parseInt(bb);
 			Two[i] = bbb;
 		}
 		for (i = 0; i < leg + ii; i++) {
 			j = Two[i];
-			String bb = Integer.toString(j); // ÊäÈëÊıÖµ
+			String bb = Integer.toString(j); // è¾“å…¥æ•°å€¼
 			if (bb.length() == 5) {
 				bb = "00000" + bb;
 			}
@@ -6180,12 +6484,12 @@ public class RuleFunction {
 		return OK;
 	}
 
-	// Function: Ğ£¼ìÎ»
+	// Function: æ ¡æ£€ä½
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å664
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°664
 	public static String Check4BitBarCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 
@@ -6194,33 +6498,33 @@ public class RuleFunction {
 		for (i = 0; i < LenIndex; i++) {
 			newIDstr[i] = (int) (IDstr[Index[i]] - 48);
 		}
-		// ÓÃÓÚ2-µÄµÚÒ»Î»
+		// ç”¨äº2-çš„ç¬¬ä¸€ä½
 		int a = newIDstr[1];
-		int b = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b = 0; // ç”¨äºæ¥å—åŠ æƒå€¼Öµ
 		if (a * 2 < 10) {
 			b = a * 2;
 		} else if (a * 2 > 9) {
 			b = (a * 2 - 1) % 10;
 		}
-		// ÓÃÓÚ2-µÄµÚ¶şÎ»
+		// ç”¨äº2-çš„ç¬¬äºŒä½
 		int a2 = newIDstr[2];
-		int b2 = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b2 = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a2 * 2 < 10) {
 			b2 = a2 * 2;
 		} else if (a2 * 2 > 9) {
 			b2 = (a2 * 2 - 1) % 10;
 		}
-		// ÓÃÓÚ3µÄµÚÈıÎ»
+		// ç”¨äº3çš„ç¬¬ä¸‰ä½
 		int a3 = newIDstr[3];
-		int b3 = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b3 = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a3 * 3 < 10) {
 			b3 = a3 * 3;
 		} else if (a3 * 3 > 9) {
 			b3 = (a3 * 3) % 10;
 		}
-		// ÓÃÓÚ5-µÄµÚËÄÎ»
+		// ç”¨äº5-çš„ç¬¬å››ä½
 		int a4 = newIDstr[4];
-		int b4 = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b4 = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a4 * 5 < 10) {
 			b4 = a4 * 5;
 		} else if (a4 * 5 > 9) {
@@ -6235,12 +6539,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Ğ£¼ìÎ»
+	// Function: æ ¡æ£€ä½
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å664
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°664
 	public static String Check5BitBarCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 
@@ -6249,41 +6553,41 @@ public class RuleFunction {
 		for (i = 0; i < LenIndex; i++) {
 			newIDstr[i] = (int) (IDstr[Index[i]] - 48);
 		}
-		// ÓÃÓÚ2-µÄµÚÎåÎ»
+		// ç”¨äº2-çš„ç¬¬äº”ä½
 		int a = newIDstr[5];
-		int b = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a * 2 < 10) {
 			b = a * 2;
 		} else if (a * 2 > 9) {
 			b = (a * 2 - 1) % 10;
 		}
-		// ÓÃÓÚ2-µÄµÚ¶şÎ»
+		// ç”¨äº2-çš„ç¬¬äºŒä½
 		int a2 = newIDstr[2];
-		int b2 = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b2 = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a2 * 2 < 10) {
 			b2 = a2 * 2;
 		} else if (a2 * 2 > 9) {
 			b2 = (a2 * 2 - 1) % 10;
 		}
-		// ÓÃÓÚ5+µÄµÚÒ»Î»
+		// ç”¨äº5+çš„ç¬¬ä¸€ä½
 		int a1 = newIDstr[1];
-		int b1 = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b1 = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a1 * 5 < 10) {
 			b1 = a1 * 5;
 		} else if (a1 * 5 > 9) {
 			b1 = ((a1 * 5) + (int) Math.floor((a1 * 5) / 10)) % 10;
 		}
-		// ÓÃÓÚ5+µÄµÚËÄÎ»
+		// ç”¨äº5+çš„ç¬¬å››ä½
 		int a3 = newIDstr[4];
-		int b3 = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b3 = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a3 * 5 < 10) {
 			b3 = a3 * 5;
 		} else if (a3 * 5 > 9) {
 			b3 = ((a3 * 5) + (int) Math.floor((a3 * 5) / 10)) % 10;
 		}
-		// ÓÃÓÚ5-µÄµÚÈıÎ»
+		// ç”¨äº5-çš„ç¬¬ä¸‰ä½
 		int a4 = newIDstr[3];
-		int b4 = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b4 = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a4 * 5 < 10) {
 			b4 = a4 * 5;
 		} else if (a4 * 5 > 9) {
@@ -6291,9 +6595,9 @@ public class RuleFunction {
 		}
 		int check;
 		check = 10 - (((b + b2 + b3 + b4 + b1)) % 10);
-		// ÓÃÓÚ5-µÄĞ£¼ìÎ»
+		// ç”¨äº5-çš„æ ¡æ£€ä½
 		int a0 = newIDstr[0];
-		int b0 = 0; // ÓÃÓÚ½ÓÊÜ¼ÓÈ¨Öµ
+		int b0 = 0; // ç”¨äºæ¥å—åŠ æƒå€¼
 		if (a0 * 5 < 10) {
 			b0 = a0 * 5;
 		} else if (a0 * 5 > 9) {
@@ -6311,7 +6615,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String FlavorSubstance(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -6355,7 +6659,7 @@ public class RuleFunction {
 
 	}
 
-	// Function: 757 ±í59 Öµ 10 11 12 20
+	// Function: 757 è¡¨59 å€¼ 10 11 12 20
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
@@ -6388,8 +6692,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String OneTO11and90(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -6412,12 +6716,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 10 11 12 20 21 22 29 30
+	// Function: 10 11 12 19 20 21 22 29 30
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	// public static String HighwayTransportation(char[] IDstr, int LenID,
 	// int[] Index, int LenIndex) {
 	// try {
@@ -6445,8 +6749,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String HighwayTransportationB9(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6471,8 +6775,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤4
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿4
+	// Creator:è®¸æ±Ÿå³°
 	public static String HighwayTransportationC3(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6497,15 +6801,14 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	// Function: jt/t 444--201 biao C6
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String HighwayTransportationC6(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6536,8 +6839,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String Porttariff(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6552,19 +6855,16 @@ public class RuleFunction {
 			return OK;
 		} else if (i == 3 && j >= 0 && j <= 4) {
 			return OK;
-		}
-
-		else
+		} else
 			return ERR;
-
 	}
 
 	// Function: jt/t 430
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String Porttariff4(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6594,8 +6894,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤3
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String Porttariff10(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6631,8 +6931,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String OneoTO24(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		int index1 = (int) IDstr[Index[0]] - 48;
@@ -6643,15 +6943,14 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	// Function: 01-17
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String OneTO17(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6675,8 +6974,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String OneTO17NO99(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6700,8 +6999,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String OneTO12No99(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6725,8 +7024,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³°
 	public static String OneTO13No99(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6751,7 +7050,7 @@ public class RuleFunction {
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:xjf
 	/*
 	 * public static String TwoOrThree(char[] IDstr, int LenID, int[] Index, int
 	 * LenIndex) { if (!checkInputParam(IDstr, LenID, Index, LenIndex)) { return
@@ -6766,12 +7065,12 @@ public class RuleFunction {
 	 * }
 	 */
 
-	// Function: Á½Î»»òËÄÎ»
+	// Function: ä¸¤ä½æˆ–å››ä½
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String TwoOrFour(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6797,15 +7096,14 @@ public class RuleFunction {
 
 		}
 		return ERR;
-
 	}
 
-	// Function: 910 ÖĞµÄ±í15
+	// Function: 910 ä¸­çš„è¡¨15
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table15(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6891,12 +7189,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: 910 ÖĞµÄ±í18
+	// Function: 910 ä¸­çš„è¡¨18
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table18(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6925,12 +7223,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: 910 ÖĞµÄ±í19
+	// Function: 910 ä¸­çš„è¡¨19
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table19(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6959,12 +7257,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: 910 ÖĞµÄ±í20
+	// Function: 910 ä¸­çš„è¡¨20
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table20(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -6998,12 +7296,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ· Ö®±ê×¼¼ş
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ ä¹‹æ ‡å‡†ä»¶
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table17(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7034,12 +7332,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table22
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table22
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table22(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7069,12 +7367,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table27
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table27
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table27(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7104,12 +7402,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table28
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table28
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table28(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7139,12 +7437,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table29
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table29
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table29(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7183,12 +7481,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table30
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table30
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table30(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7243,12 +7541,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table31
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table31
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table31(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7293,12 +7591,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table32
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table32
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table32(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7333,12 +7631,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table34
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table34
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table34(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7393,12 +7691,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table35
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table35
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table35(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7428,12 +7726,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table38
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table38
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table38(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7468,12 +7766,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table41
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table41
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table41(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7508,12 +7806,12 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: DL/T 700.2-1999µÚ¶ş²¿·Ö »úµç²úÆ·table43
+	// Function: DL/T 700.2-1999ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“table43
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:Ğí½­·å
+	// Creator:è®¸æ±Ÿå³°
 	public static String Table43(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7567,8 +7865,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 504
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 504
 	public static String OneTO03(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7801,8 +8099,8 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
-	// Creator:Ğí½­·å 504
+	// LenIndex: the number of indexes å›ºå®šé•¿2
+	// Creator:è®¸æ±Ÿå³° 504
 	public static String OneTO42No99(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -7822,11 +8120,11 @@ public class RuleFunction {
 
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³Ã³Ò×ÒµÎñÍ³¼Æ·ÖÀàÓë´úÂë(14)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª6
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿè´¸æ˜“ä¸šåŠ¡ç»Ÿè®¡åˆ†ç±»ä¸ä»£ç (14)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º6
 	// creator: zll
 	public static String FoodTrade(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -7852,11 +8150,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼Ó¹¤(18)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª5
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£ŸåŠ å·¥(18)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º5
 	// creator: zll
 	public static String FoodEconomy(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -7882,11 +8180,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢ÒµÎñÍ³¼Æ·ÖÀàÓë´úÂë(16)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª8
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿä»“å‚¨ä¸šåŠ¡ç»Ÿè®¡åˆ†ç±»ä¸ä»£ç (16)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º8
 	// creator: zll
 	public static String GainStoreHouse(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -7912,11 +8210,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë ´¢Á¸²¡³æº¦·ÖÀàÓë´úÂë(17)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª5
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  å‚¨ç²®ç—…è™«å®³åˆ†ç±»ä¸ä»£ç (17)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º5
 	// creator: zll
 	public static String GainsDiseases(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -7942,11 +8240,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼Ó¹¤µÚ1²¿·Ö£º¼Ó¹¤×÷Òµ·ÖÀàÓë´úÂë(19)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª8
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£ŸåŠ å·¥ç¬¬1éƒ¨åˆ†ï¼šåŠ å·¥ä½œä¸šåˆ†ç±»ä¸ä»£ç (19)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º8
 	// creator: zll
 	public static String GainsProcess(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -7972,11 +8270,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ3²¿·Ö£ºÆ÷²Ä·ÖÀàÓë´úÂë(20)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª4
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿä»“å‚¨ç¬¬3éƒ¨åˆ†ï¼šå™¨æåˆ†ç±»ä¸ä»£ç (20)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º4
 	// creator: zll
 	public static String GainsEquipment(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8002,11 +8300,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ2²¿·Ö£ºÁ¸Çé¼ì²â·ÖÀàÓë´úÂë(21)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª3
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿä»“å‚¨ç¬¬2éƒ¨åˆ†ï¼šç²®æƒ…æ£€æµ‹åˆ†ç±»ä¸ä»£ç (21)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º3
 	// creator: zll
 	public static String GainsConditionDetection(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8032,11 +8330,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³²Ö´¢µÚ1²¿·Ö£º²Ö´¢×÷Òµ·ÖÀàÓë´úÂë(22)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª5»òÕß6
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿä»“å‚¨ç¬¬1éƒ¨åˆ†ï¼šä»“å‚¨ä½œä¸šåˆ†ç±»ä¸ä»£ç (22)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º5æˆ–è€…6
 	// creator: zll
 	public static String GrainsSmartWMS(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8062,11 +8360,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼ìÑéµÚ2²¿·Ö£ºÖÊÁ¿±ê×¼·ÖÀàÓë´úÂë(26)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª8
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿæ£€éªŒç¬¬2éƒ¨åˆ†ï¼šè´¨é‡æ ‡å‡†åˆ†ç±»ä¸ä»£ç (26)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º8
 	// creator: zll
 	public static String GrainsQualityStandard(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8092,11 +8390,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ¼ÆÁ¿Æ÷¾ßÃüÃûÓë·ÖÀà±àÂë(32)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª8
+	// Function: è®¡é‡å™¨å…·å‘½åä¸åˆ†ç±»ç¼–ç (32)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º8
 	// creator: zll
 	public static String MeasuringInstrument(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8122,11 +8420,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼ìÑé µÚ1²¿·Ö£ºÖ¸±ê·ÖÀàÓë´úÂë(27)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª8
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿæ£€éªŒ ç¬¬1éƒ¨åˆ†ï¼šæŒ‡æ ‡åˆ†ç±»ä¸ä»£ç (27)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º8
 	// creator: zll
 	public static String GrainsIndex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8152,11 +8450,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³¼°¼Ó¹¤²úÆ··ÖÀàÓë´úÂë(28)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª7
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£ŸåŠåŠ å·¥äº§å“åˆ†ç±»ä¸ä»£ç (28)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º7
 	// creator: zll
 	public static String GrainsInformation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8182,11 +8480,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³ÊôĞÔ·ÖÀàÓë´úÂë(29)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª3
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿå±æ€§åˆ†ç±»ä¸ä»£ç (29)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º3
 	// creator: zll
 	public static String GrainsAttribute(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8212,11 +8510,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³ÆóÒµ·ÖÀàÓë´úÂë(30)ÖĞµÄÇ°Á½Î»ÅĞ¶Ï£¬ÊıÖµ·¶Î§Îª10,11,19,30
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª2
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿä¼ä¸šåˆ†ç±»ä¸ä»£ç (30)ä¸­çš„å‰ä¸¤ä½åˆ¤æ–­ï¼Œæ•°å€¼èŒƒå›´ä¸º10,11,19,30
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º2
 	// creator: zll
 	public static String GrainEnterprise(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8242,11 +8540,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á¸Ê³ĞÅÏ¢·ÖÀàÓë±àÂë Á¸Ê³ĞĞÕş¡¢ÊÂÒµ»ú¹¹¼°Éç»áÍÅÌå·ÖÀàÓë´úÂë(31)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª6
+	// Function: ç²®é£Ÿä¿¡æ¯åˆ†ç±»ä¸ç¼–ç  ç²®é£Ÿè¡Œæ”¿ã€äº‹ä¸šæœºæ„åŠç¤¾ä¼šå›¢ä½“åˆ†ç±»ä¸ä»£ç (31)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º6
 	// creator: zll
 	public static String GrainAdministrative(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8272,11 +8570,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ½¨Öş²úÆ··ÖÀàºÍ´úÂë(34)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È±ØÎª5
+	// Function: å»ºç­‘äº§å“åˆ†ç±»å’Œä»£ç (34)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦å¿…ä¸º5
 	// creator: zll
 	public static String ConstructionProducts(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8302,11 +8600,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ³ĞÔËÈË±êÊ¶·û±àÂë¹æÔò£¬Ö±½ÓÂú×ãÕıÔò±í´ïÊ½(44)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È11-17
+	// Function: æ‰¿è¿äººæ ‡è¯†ç¬¦ç¼–ç è§„åˆ™ï¼Œç›´æ¥æ»¡è¶³æ­£åˆ™è¡¨è¾¾å¼(44)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦11-17
 	// creator: zll
 	public static String CarrierIdentifier(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8331,11 +8629,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µ¼º½µç×ÓµØÍ¼Êı¾İ·ÖÀàÓë±àÂë(45)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È4
+	// Function: å¯¼èˆªç”µå­åœ°å›¾æ•°æ®åˆ†ç±»ä¸ç¼–ç (45)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:å˜é•¿ï¼Œæœ€å°é•¿åº¦4
 	// creator: zll
 	public static String ElectronicMap(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8344,9 +8642,9 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 4) {
-				return ERR;
-			}
+			// if (LenIndex != 4) {
+			// return ERR;
+			// }
 			for (int i = 0; i < LenIndex; i++) {
 				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
@@ -8361,11 +8659,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µç×ÓÊÕ·Ñ¹Ø¼üĞÅÏ¢±àÂë(46)£¬Ç°4Î»ÎªÁ½¸öºº×Ö\u4e00-\u9fa5
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È4
+	// Function: ç”µå­æ”¶è´¹å…³é”®ä¿¡æ¯ç¼–ç (46)ï¼Œå‰4ä½ä¸ºä¸¤ä¸ªæ±‰å­—\u4e00-\u9fa5
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦8
 	// creator: zll
 	public static String ChineseCharRegex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8393,11 +8691,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÅĞ¶Ï2¸ö×Ö½ÚÊÇ²»ÊÇÊôÓÚ(01-53)
+	// Function: åˆ¤æ–­2ä¸ªå­—èŠ‚æ˜¯ä¸æ˜¯å±äº(01-53)
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes, ¹Ì¶¨Îª2
+	// LenIndex: the number of indexes, å›ºå®šä¸º2
 	// creator: helinjia
 	public static String TwobytleWeekCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8417,12 +8715,12 @@ public class RuleFunction {
 					return OK;
 				}
 			}
-			
+
 			if (IDstr[index1] == '0') {
 				if (IDstr[index2] >= '1' && IDstr[index2] <= '9') {
 					return OK;
 				}
-			}			
+			}
 			if (IDstr[index1] == '5') {
 				if (IDstr[index2] >= '0' && IDstr[index2] <= '3') {
 					return OK;
@@ -8434,11 +8732,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µØÀíĞÅÏ¢·ÖÀàÓë±àÂë¹æÔò(56)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È5
+	// Function: åœ°ç†ä¿¡æ¯åˆ†ç±»ä¸ç¼–ç è§„åˆ™(56)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦5
 	// creator: zll
 	public static String GeographicInformation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8464,11 +8762,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µØÀíĞÅÏ¢·ÖÀàÓë±àÂë¹æÔò(56)ÖĞµÄÊôĞÔÂëÎª²»¶¨³¤Êı×Ö
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:²»¶¨³¤
+	// Function: åœ°ç†ä¿¡æ¯åˆ†ç±»ä¸ç¼–ç è§„åˆ™(56)ä¸­çš„å±æ€§ç ä¸ºä¸å®šé•¿æ•°å­—
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:ä¸å®šé•¿
 	// creator: zll
 	public static String GeographicPropertyRegex(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8497,11 +8795,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Êı×Ö³ÇÊĞµØÀíĞÅÏ¢¹«¹²Æ½Ì¨£¬ÕıÕûÊı(62)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:²»¶¨³¤
+	// Function: æ•°å­—åŸå¸‚åœ°ç†ä¿¡æ¯å…¬å…±å¹³å°ï¼Œæ­£æ•´æ•°(62)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:ä¸å®šé•¿
 	// creator: zll
 	public static String DigitRegex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8530,11 +8828,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÄÖ¯ÃæÁÏ±àÂë»¯ÏË²¿·Ö(64)·ÄÖ¯ÃæÁÏÃû³Æ´úÂë
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª5
+	// Function: çººç»‡é¢æ–™ç¼–ç åŒ–çº¤éƒ¨åˆ†(64)çººç»‡é¢æ–™åç§°ä»£ç 
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º5
 	// creator: zll
 	public static String TextileFabricNameCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8560,11 +8858,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÄÖ¯ÃæÁÏ±àÂë»¯ÏË²¿·Ö(64)·ÄÖ¯ÃæÁÏÊôĞÔ´úÂëX1X2
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª2
+	// Function: çººç»‡é¢æ–™ç¼–ç åŒ–çº¤éƒ¨åˆ†(64)çººç»‡é¢æ–™å±æ€§ä»£ç X1X2
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º2
 	// creator: zll
 	public static String PropertiesMain(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8591,11 +8889,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÄÖ¯ÃæÁÏ±àÂë»¯ÏË²¿·Ö(64)ÏËÎ¬ÌØÕ÷ X3X4
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª2
+	// Function: çººç»‡é¢æ–™ç¼–ç åŒ–çº¤éƒ¨åˆ†(64)çº¤ç»´ç‰¹å¾ X3X4
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º2
 	// creator: zll
 	public static String PropertiesFiberCharacteristics(char[] IDstr,
 			int LenID, int[] Index, int LenIndex) {
@@ -8621,11 +8919,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÄÖ¯ÃæÁÏÊôĞÔ´úÂë(64)X7X8ÏËÍø¹Ì½á·½Ê½,ÁíÍâ¿ÉÄÜÎª[1-3,9],[1-3,9]
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª2
+	// Function: çººç»‡é¢æ–™å±æ€§ä»£ç (64)X7X8çº¤ç½‘å›ºç»“æ–¹å¼,å¦å¤–å¯èƒ½ä¸º[1-3,9],[1-3,9]
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º2
 	// creator: zll
 	public static String PropertiesMix(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8655,11 +8953,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÄÖ¯ÃæÁÏÊôĞÔ´úÂë(64)X9X10 3ÖÖ¿ÉÄÜ01-19,99 01-09,99 01-12,99£¬ËùÒÔÑ¡Ôñ×î´ó·¶Î§Âú×ã
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª2
+	// Function: çººç»‡é¢æ–™å±æ€§ä»£ç (64)X9X10 3ç§å¯èƒ½01-19,99 01-09,99 01-12,99ï¼Œæ‰€ä»¥é€‰æ‹©æœ€å¤§èŒƒå›´æ»¡è¶³
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º2
 	// creator: zll
 	public static String PropertiesFabric(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8685,11 +8983,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÄÖ¯ÃæÁÏÊôĞÔ´úÂë(64)X11X12
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª2
+	// Function: çººç»‡é¢æ–™å±æ€§ä»£ç (64)X11X12
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º2
 	// creator: zll
 	public static String PropertiesDyeingandFinishing(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8715,11 +9013,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÄÖ¯ÃæÁÏÊôĞÔ´úÂë(64)X11X12
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª9
+	// Function: çººç»‡é¢æ–™å±æ€§ä»£ç (64)X11X12
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º9
 	// creator: zll
 	public static String GeneralManufacturingProcess(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8745,11 +9043,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µÀÂ·½»Í¨ĞÅÏ¢·şÎñĞÅÏ¢·ÖÀàÓë±àÂë(68)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª2
+	// Function: é“è·¯äº¤é€šä¿¡æ¯æœåŠ¡ä¿¡æ¯åˆ†ç±»ä¸ç¼–ç (68)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º2
 	// creator: zll
 	public static String TrafficInformation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8760,11 +9058,11 @@ public class RuleFunction {
 			if (LenIndex != 2) {
 				return ERR;
 			}
-			// Ç°Á½Î»Êı
+			// å‰ä¸¤ä½æ•°
 			int index1 = (int) IDstr[0] - 48;
 			int index2 = (int) IDstr[1] - 48;
 			int i = 10 * index1 + index2;
-			// 3,4Î»Êı
+			// 3,4ä½æ•°
 			int index3 = (int) IDstr[Index[0]] - 48;
 			int index4 = (int) IDstr[Index[1]] - 48;
 			int j = 10 * index3 + index4;
@@ -8787,11 +9085,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: È«¹úÖ÷Òª²úÆ··ÖÀàÓë´úÂëµÚ2²¿·Ö ²»¿ÉÔËÊä²úÆ·(712)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È1-5
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª2,0ºÍ-1
+	// Function: å…¨å›½ä¸»è¦äº§å“åˆ†ç±»ä¸ä»£ç ç¬¬2éƒ¨åˆ† ä¸å¯è¿è¾“äº§å“(712)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦1-5
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º2,0å’Œ-1
 	// creator: zll
 	public static String UntransportableProduct(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8817,11 +9115,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: È«¹úÖ÷Òª²úÆ··ÖÀàÓë´úÂëµÚ2²¿·Ö ²»¿ÉÔËÊä²úÆ·ºó3Î»(712)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È1-5
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎª3
+	// Function: å…¨å›½ä¸»è¦äº§å“åˆ†ç±»ä¸ä»£ç ç¬¬2éƒ¨åˆ† ä¸å¯è¿è¾“äº§å“å3ä½(712)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦1-5
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦ä¸º3
 	// creator: zll
 	public static String LastThreeUntransportableProduct(char[] IDstr,
 			int LenID, int[] Index, int LenIndex) {
@@ -8847,11 +9145,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µÀÂ·½»Í¨ĞÅÏ¢²É¼¯ĞÅÏ¢·ÖÀàÓë±àÂë(77)
+	// Function: é“è·¯äº¤é€šä¿¡æ¯é‡‡é›†ä¿¡æ¯åˆ†ç±»ä¸ç¼–ç (77)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ¹Ì¶¨³¤4
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® å›ºå®šé•¿4
 	// Creator:zll
 	public static String TrafficInformationCollection(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8874,11 +9172,11 @@ public class RuleFunction {
 			return ERR;
 	}
 
-	// Function: ÑÌ²İĞĞÒµ¹¤ÉÌÍ³¼ÆÊı¾İÔªµÚ2²¿·Ö ´úÂë¼¯(202)
+	// Function: çƒŸè‰è¡Œä¸šå·¥å•†ç»Ÿè®¡æ•°æ®å…ƒç¬¬2éƒ¨åˆ† ä»£ç é›†(202)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ¹Ì¶¨³¤2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® å›ºå®šé•¿2
 	// Creator:zll
 	public static String TobaccoLeafColor(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8904,11 +9202,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÑÌÒ¶´úÂëµÚ5²¿·ÖÑÌÒ¶ÑÕÉ«´úÂë(204)
+	// Function: çƒŸå¶ä»£ç ç¬¬5éƒ¨åˆ†çƒŸå¶é¢œè‰²ä»£ç (204)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ¹Ì¶¨³¤2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® å›ºå®šé•¿2
 	// Creator:zll
 	public static String TrafficOrganization(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -8934,11 +9232,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÑÌÒ¶´úÂëµÚ2²¿·ÖÑÌÒ¶ĞÎÌ¬´úÂë(207)
+	// Function: çƒŸå¶ä»£ç ç¬¬2éƒ¨åˆ†çƒŸå¶å½¢æ€ä»£ç (207)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ¹Ì¶¨³¤3
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® å›ºå®šé•¿3
 	// Creator:zll
 	public static String TobaccoLeafForm(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8964,11 +9262,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÑÌÒ¶´úÂëµÚ1²¿·ÖÑÌÒ¶·ÖÀàÓë´úÂë(208)
+	// Function: çƒŸå¶ä»£ç ç¬¬1éƒ¨åˆ†çƒŸå¶åˆ†ç±»ä¸ä»£ç (208)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ¹Ì¶¨³¤5
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® å›ºå®šé•¿5
 	// Creator:zll
 	public static String TobaccoLeafClass(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -8994,11 +9292,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ¶ùÍ¯´ó±ãĞÔ×´´úÂë(213)
+	// Function: å„¿ç«¥å¤§ä¾¿æ€§çŠ¶ä»£ç (213)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String ChildrenExcrement(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9028,7 +9326,7 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
+	// LenIndex: the number of indexes å›ºå®šé•¿2
 	// Creator:zll
 	public static String OneToEleven(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9052,11 +9350,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Òû¾ÆÆµÂÊ´úÂë(214)
+	// Function: é¥®é…’é¢‘ç‡ä»£ç (214)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String DrinkingFrequency(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9082,11 +9380,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Òû¾ÆÆµÂÊ´úÂë(214)
+	// Function: é¥®é…’é¢‘ç‡ä»£ç (214)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String DrinkingClass(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9112,11 +9410,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Òû¾ÆÆµÂÊ´úÂë(214)
+	// Function: é¥®é…’é¢‘ç‡ä»£ç (214)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String PhysicalActivityFrequency(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9142,11 +9440,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÈÑÉïÖÕÖ¹·½Ê½´úÂë±í(215)
+	// Function: å¦Šå¨ ç»ˆæ­¢æ–¹å¼ä»£ç è¡¨(215)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String TerminationofPregnancy(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9172,11 +9470,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÈÑÉïÖÕÖ¹·½Ê½´úÂë±í(215)
+	// Function: å¦Šå¨ ç»ˆæ­¢æ–¹å¼ä»£ç è¡¨(215)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String ModeofProduction(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9202,11 +9500,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÖÃäµØµãÀà±ğ´úÂë(215)
+	// Function: åˆ†å¨©åœ°ç‚¹ç±»åˆ«ä»£ç (215)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String DileveryPlace(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9232,11 +9530,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÎÀÉúĞÅÏ¢Êı¾İÔªÖµÓò´úÂëµÚ17²¿·Ö£ºÎÀÉú¹ÜÀí(218)
+	// Function: å«ç”Ÿä¿¡æ¯æ•°æ®å…ƒå€¼åŸŸä»£ç ç¬¬17éƒ¨åˆ†ï¼šå«ç”Ÿç®¡ç†(218)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª2-8
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º2-8
 	// Creator:zll
 	public static String HealthSupervisionObject(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9262,11 +9560,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ½»Í¨¹¤¾ß´úÂë(219)
+	// Function: äº¤é€šå·¥å…·ä»£ç (219)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String CommunicationCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9292,11 +9590,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÎÀÉú¼à¶½»ú¹¹ÈËÔ±±àÖÆÀà±ğ´úÂë(220)
+	// Function: å«ç”Ÿç›‘ç£æœºæ„äººå‘˜ç¼–åˆ¶ç±»åˆ«ä»£ç (220)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String HygieneAgencyPersonnel(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9322,11 +9620,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÎÀÉú¼à¶½»ú¹¹ÈËÔ±±àÖÆÀà±ğ´úÂë(220)
+	// Function: å«ç”Ÿç›‘ç£æœºæ„äººå‘˜ç¼–åˆ¶ç±»åˆ«ä»£ç (220)
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ ³¤¶ÈÎª1-2
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½® é•¿åº¦ä¸º1-2
 	// Creator:zll
 	public static String WorkerHealthSupervision(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9352,13 +9650,13 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÊµÏÖĞ£Ñé15Î»Êı17710
+	// Function: å®ç°æ ¡éªŒ15ä½æ•°17710
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
-	// Creator:·½µ¤Àö
-	// ¼ìÑéÀı×ÓÂë110108000000016
+	// Creator:æ–¹ä¸¹ä¸½
+	// æ£€éªŒä¾‹å­ç 110108000000016
 	public static String BussManaCheck(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -9382,13 +9680,13 @@ public class RuleFunction {
 				if (s[i] % 10 == 0) {
 					p[i + 1] = 20;
 				}
-				System.out.println("s[i]=" + s[i]);
-				System.out.println("p[i]=" + p[i]);
+				// System.out.println("s[i]=" + s[i]);
+				// System.out.println("p[i]=" + p[i]);
 			}
 			p[14] = (s[13] % 10) * 2;
-			System.out.println("p[14]=" + p[14]);
+			// System.out.println("p[14]=" + p[14]);
 			s[14] = p[14] % 11 + a[0];
-			System.out.println("s[14]=" + s[14]);
+			// System.out.println("s[14]=" + s[14]);
 
 			if (s[14] % 10 == 1) {
 				return OK;
@@ -9401,10 +9699,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 280-¡ª¡ªÖé±¦ÓñÊ¯¼°½ğÊô²úÆ··ÖÀà´úÂë±àÖÆ·½·¨ ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È5Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 280-â€”â€”ç å®ç‰çŸ³åŠé‡‘å±äº§å“åˆ†ç±»ä»£ç ç¼–åˆ¶æ–¹æ³• æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦5ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String JadejewelryClass(char[] IDstr, int LenID, int[] Index,
@@ -9431,10 +9729,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 282-¡ª¡ªĞÅÏ¢°²È«¼¼Êõ´úÂë±àÖÆ·½·¨ ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È4Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 282-â€”â€”ä¿¡æ¯å®‰å…¨æŠ€æœ¯ä»£ç ç¼–åˆ¶æ–¹æ³• æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦4ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// creator:fdl
 	public static String InformationSafe(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9461,39 +9759,50 @@ public class RuleFunction {
 		}
 	}
 
-	// 280-¡ª¡ªÖĞÑëµ³Õş»ú¹Ø´úÂë±àÖÆ·½·¨ ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È3Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 280-â€”â€”ä¸­å¤®å…šæ”¿æœºå…³ä»£ç ç¼–åˆ¶æ–¹æ³• æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦3ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// creator:fdl
-	public static String CodeHighWay(char[] IDstr, int LenID, int[] Index,
+	public static String CodeHighWayLine(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			return ERR;
-		}
-		if (LenIndex != 3) {
-			return ERR;
-		}
 		try {
-			String code = "";
-			for (int i = 0; i < 3; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
-			}
-			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getPortTariff280(code);
-			if (ret) {
-				return OK;
-			} else
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
+			}
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			int index1 = Index[0];
+			int index2 = Index[1];
+			int index3 = Index[2];
+			int index4 = Index[3];
+			if ((IDstr[index1] == '0') && (IDstr[index2] == '0')
+					&& (IDstr[index3] == '0') && (IDstr[index4] == '0')) {
+				return ERR;
+			}
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index4] < '0') || (IDstr[index4] > '9')) {
+				return ERR;
+			}
+			return OK;
 		} catch (Exception e) {
 			return ERR;
 		}
 	}
 
-	// 284-¡ª¡ªÉç»á¾­¼ÃÄ¿±ê·ÖÀàºÍ´úÂë±í ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È6Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 284-â€”â€”ç¤¾ä¼šç»æµç›®æ ‡åˆ†ç±»å’Œä»£ç è¡¨ æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦6ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a6
 	// creator:fdl
 	public static String goalsocialeconomic(char[] IDstr, int LenID,
@@ -9521,10 +9830,10 @@ public class RuleFunction {
 
 	}
 
-	// 285-¡ª¡ªÎïÁ÷ĞÅÏ¢·ÖÀàºÍ´úÂë±í ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È6Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 285-â€”â€”ç‰©æµä¿¡æ¯åˆ†ç±»å’Œä»£ç è¡¨ æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦6ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a6
 	// creator:fdl
 	public static String LogisticsInf(char[] IDstr, int LenID, int[] Index,
@@ -9552,10 +9861,10 @@ public class RuleFunction {
 
 	}
 
-	// 287-¡ª¡ª·ş×°·ÖÀàºÍ´úÂë±í ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È6Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 287-â€”â€”æœè£…åˆ†ç±»å’Œä»£ç è¡¨ æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦6ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a6
 	// creator:fdl
 	public static String clothesclass(char[] IDstr, int LenID, int[] Index,
@@ -9583,10 +9892,10 @@ public class RuleFunction {
 
 	}
 
-	// 288-¡ª¡ª·ş×°Ãû×Ö·ÖÀà´úÂë±àÖÆ·½·¨ ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È5Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 288-â€”â€”æœè£…åå­—åˆ†ç±»ä»£ç ç¼–åˆ¶æ–¹æ³• æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦5ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String ClothesName(char[] IDstr, int LenID, int[] Index,
@@ -9613,10 +9922,10 @@ public class RuleFunction {
 		}
 	}
 
-	// 191-¡ª¡ªÒ½Ò©Æ÷Ğµ·ÖÀàºÍ´úÂë±í ²é±íÊı¾İ¿â
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È6Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 191-â€”â€”åŒ»è¯å™¨æ¢°åˆ†ç±»å’Œä»£ç è¡¨ æŸ¥è¡¨æ•°æ®åº“
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦6ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a6
 	// creator:fdl
 	public static String Pharmacequipment(char[] IDstr, int LenID, int[] Index,
@@ -9643,11 +9952,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÁùÎ»ÑØº£ĞĞÕşÇøÓò·ÖÀàÓë´úÂë
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÑØº£ĞĞÕşÇøÓò´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÎªÁùÎ»
+	// Function: å…­ä½æ²¿æµ·è¡Œæ”¿åŒºåŸŸåˆ†ç±»ä¸ä»£ç 
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ²¿æµ·è¡Œæ”¿åŒºåŸŸä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦ä¸ºå…­ä½
 	// creator: gcc
 	public static String CoastalAdminAreaId(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9674,11 +9983,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÁùÎ»´¬²°µÇ¼ÇºÅ
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ´¬²°µÇ¼ÇºÅ´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÎªÁùÎ»
+	// Function: å…­ä½èˆ¹èˆ¶ç™»è®°å·
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨èˆ¹èˆ¶ç™»è®°å·ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦ä¸ºå…­ä½
 	// creator: gcc
 	public static String InternationalShipCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9705,11 +10014,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÑØº£ĞĞÕşÇøÓò´úÂëµÄÇ°Á½Î»
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÑØº£ĞĞÕşÇøÓò´úÂëÇ°Á½Î»µÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÎªÁ½Î»
+	// Function: æ²¿æµ·è¡Œæ”¿åŒºåŸŸä»£ç çš„å‰ä¸¤ä½
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ²¿æµ·è¡Œæ”¿åŒºåŸŸä»£ç å‰ä¸¤ä½çš„ä½ç½®
+	// LenIndex: é•¿åº¦ä¸ºä¸¤ä½
 	// creator: gcc
 	public static String First2CharsofCoastalAdminAreaId(char[] IDstr,
 			int LenID, int[] Index, int LenIndex) {
@@ -9738,11 +10047,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Á½Î»¾­¼ÃÀàĞÍ´úÂë
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ¾­¼ÃÀàĞÍ´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÎªÁ½Î»
+	// Function: ä¸¤ä½ç»æµç±»å‹ä»£ç 
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨ç»æµç±»å‹ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦ä¸ºä¸¤ä½
 	// creator: gcc
 	public static String WirtschaftsTypCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9769,13 +10078,12 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ´«È¾²¡Ãû³Æ´úÂë²ÉÓÃ3²ã4Î»Êı×ÖË³Ğò´úÂë£¬µÚÒ»²ã1Î»Êı×Ö±íÊ¾£»µÚ¶ş²ã2Î»Êı×Ö±íÊ¾£¬µÚ3²ã1Î»Êı×Ö±íÊ¾¡£ËùÓĞÊı×ÖÉıĞòÅÅÁĞ
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ´«È¾²¡Ãû³Æ´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶È±ØĞëÎª4Î»
+	// Function: ä¼ æŸ“ç—…åç§°ä»£ç é‡‡ç”¨3å±‚4ä½æ•°å­—é¡ºåºä»£ç ï¼Œç¬¬ä¸€å±‚1ä½æ•°å­—è¡¨ç¤ºï¼›ç¬¬äºŒå±‚2ä½æ•°å­—è¡¨ç¤ºï¼Œç¬¬3å±‚1ä½æ•°å­—è¡¨ç¤ºã€‚æ‰€æœ‰æ•°å­—å‡åºæ’åˆ—
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨ä¼ æŸ“ç—…åç§°ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦å¿…é¡»ä¸º4ä½
 	// creator: gcc
-
 	public static String InfectiousDiseases(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
@@ -9802,11 +10110,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: º£ÑóÕ¾ÇøÕ¾ºÅ
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃº£ÑóÕ¾ÇøºÅ´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇÁ½Î»
+	// Function: æµ·æ´‹ç«™åŒºç«™å·
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æµ·æ´‹ç«™åŒºå·ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯ä¸¤ä½
 	// creator: gcc
 	public static String OceanStationCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9832,11 +10140,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µØÃû·ÖÀàÓëÀà±ğ´úÂë±àÖÆ¹æÔò£¨309£©
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃµØÀíÊôĞÔ´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇËÄÎ»
+	// Function: åœ°ååˆ†ç±»ä¸ç±»åˆ«ä»£ç ç¼–åˆ¶è§„åˆ™ï¼ˆ309ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨åœ°ç†å±æ€§ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å››ä½
 	// creator: gcc
 	public static String GeographicalCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -9863,11 +10171,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Å©Ò©¼ÁĞÍÃû³Æ¼°´úÂë£¨305£©
+	// Function: å†œè¯å‰‚å‹åç§°åŠä»£ç ï¼ˆ305ï¼‰
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄË÷ÒıÎ»ÖÃ³¤¶ÈÎª2-4
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„ç´¢å¼•ä½ç½®é•¿åº¦ä¸º2-4
 	// creator: gcc
 	public static String PesticideFormulationCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -9895,11 +10203,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ³ËÓÃ³µ³ß´ç´úÂë
+	// Function: ä¹˜ç”¨è½¦å°ºå¯¸ä»£ç 
 	// IDstr: ID String
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃÕıÔòµÄË÷ÒıÎ»ÖÃ³¤¶ÈÎª6-8
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨æ­£åˆ™çš„ç´¢å¼•ä½ç½®é•¿åº¦ä¸º6-8
 	// creator: gcc
 	public static String PassengerCarCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -11029,7 +11337,7 @@ public class RuleFunction {
 	 * number of indexes creator:wt
 	 */
 
-	public static String TwobytleCode06and90(char[] IDstr, int LenID,
+	public static String TwobyteCode06and90(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
@@ -11062,11 +11370,11 @@ public class RuleFunction {
 		if (IDstr[0] != 'A' && IDstr[0] != 'B') {
 			return ERR;
 		}
-		
+
 		if (LenIndex != 7) {
 			return ERR;
 		}
-		
+
 		String code = new String(IDstr);
 		try {
 			RecoDao recoDao = new RecoDao();
@@ -11163,10 +11471,10 @@ public class RuleFunction {
 		return ERR;
 	}
 
-	// 377¡ª¡ªÉç»á¼æÖ°
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È 4Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 377â€”â€”ç¤¾ä¼šå…¼èŒ
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦ 4ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:4
 	// creator:fdl
 	public static String SocialWork(char[] IDstr, int LenID, int[] Index,
@@ -11175,7 +11483,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 4) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 
@@ -11187,7 +11495,6 @@ public class RuleFunction {
 					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '7')
 					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '8')
 					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '9')
-					|| (IDstr[Index[0]] == '1' && IDstr[Index[1]] == '0')
 					|| (IDstr[Index[0]] == '1' && IDstr[Index[1]] == '0')
 					|| (IDstr[Index[0]] == '4' && IDstr[Index[1]] == '1')
 					|| (IDstr[Index[0]] == '4' && IDstr[Index[1]] == '2')
@@ -11280,10 +11587,10 @@ public class RuleFunction {
 
 	}
 
-	// Function: É½ÂöÉ½·åÃû³Æ´úÂë£¨297£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function: å±±è„‰å±±å³°åç§°ä»£ç ï¼ˆ297ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String MountainRangeAndPeakName(char[] CODEstr, int LenCODE,
@@ -11309,10 +11616,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÖªÊ¶²úÈ¨ÎÄÏ×ÓëĞÅÏ¢·ÖÀà¼°´úÂë£¨298£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function: çŸ¥è¯†äº§æƒæ–‡çŒ®ä¸ä¿¡æ¯åˆ†ç±»åŠä»£ç ï¼ˆ298ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String IntellectualProperty(char[] CODEstr, int LenCODE,
@@ -11338,10 +11645,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÃñÓÃº½¿ÕÒµĞÅÏ¢·ÖÀàÓë´úÂë (340)
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function: æ°‘ç”¨èˆªç©ºä¸šä¿¡æ¯åˆ†ç±»ä¸ä»£ç  (340)
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String ClassificationOfCivilAviation(char[] CODEstr,
@@ -11368,10 +11675,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ¸ßµÈÑ§Ğ£±¾¿Æ¡¢×¨¿Æ×¨ÒµÃû³Æ´úÂë£¨328£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function: é«˜ç­‰å­¦æ ¡æœ¬ç§‘ã€ä¸“ç§‘ä¸“ä¸šåç§°ä»£ç ï¼ˆ328ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String NormalAndShortCycleSpeciality(char[] CODEstr,
@@ -11398,10 +11705,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ´¬²°Î¬ĞŞ±£ÑøÌåÏµ µÚ¶ş²¿·Ö£¨337£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function: èˆ¹èˆ¶ç»´ä¿®ä¿å…»ä½“ç³» ç¬¬äºŒéƒ¨åˆ†ï¼ˆ337ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String MaintenanceSystemPTwo(char[] CODEstr, int LenCODE,
@@ -11428,10 +11735,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:¹ú¼ÊÃ³Ò×ºÏÍ¬´úÂë£¨326£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:å›½é™…è´¸æ˜“åˆåŒä»£ç ï¼ˆ326ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String CountryRegionCode1(char[] IDstr, int LenID,
@@ -11458,10 +11765,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:µçÁ¦¿Æ¼¼³É¹û·ÖÀàÓë´úÂë£¨784£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:ç”µåŠ›ç§‘æŠ€æˆæœåˆ†ç±»ä¸ä»£ç ï¼ˆ784ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String ElectricPower(char[] CODEstr, int LenCODE,
@@ -11488,10 +11795,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:È«¹úµçÍøÃû³Æ´úÂë£¨785£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:å…¨å›½ç”µç½‘åç§°ä»£ç ï¼ˆ785ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String PowerGrid(char[] CODEstr, int LenCODE, int[] Index,
@@ -11518,10 +11825,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:µçÁ¦ĞĞÒµµ¥Î»Àà±ğ´úÂë£¨787£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:ç”µåŠ›è¡Œä¸šå•ä½ç±»åˆ«ä»£ç ï¼ˆ787ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String ElectricPowerIndustry(char[] CODEstr, int LenCODE,
@@ -11548,10 +11855,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:µçÁ¦µØÀíĞÅÏ¢ÏµÍ³Í¼ĞÎ·ûºÅ·ÖÀàÓë´úÂë£¨788£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:ç”µåŠ›åœ°ç†ä¿¡æ¯ç³»ç»Ÿå›¾å½¢ç¬¦å·åˆ†ç±»ä¸ä»£ç ï¼ˆ788ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String ElectricPowerGeography(char[] CODEstr, int LenCODE,
@@ -11578,10 +11885,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:µçÑ¹µÈ¼¶´úÂë£¨789£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:ç”µå‹ç­‰çº§ä»£ç ï¼ˆ789ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String VoltageClass(char[] CODEstr, int LenCODE, int[] Index,
@@ -11608,10 +11915,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:µçÁ¦Îï×Ê±àÂë µÚ¶ş²¿·Ö »úµç²úÆ·£¨909£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:ç”µåŠ›ç‰©èµ„ç¼–ç  ç¬¬äºŒéƒ¨åˆ† æœºç”µäº§å“ï¼ˆ909ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String PowerGoodsP2(char[] CODEstr, int LenCODE, int[] Index,
@@ -11638,11 +11945,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ½ğÊôÈÈ´¦Àí¹¤ÒÕ·ÖÀà¼°´úºÅ£¬¹¤ÒÕÀàĞÍÓë¹¤ÒÕÃû³Æ²ã´Î
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ±êÊ¶±àÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÎª2
+	// Function: é‡‘å±çƒ­å¤„ç†å·¥è‰ºåˆ†ç±»åŠä»£å·ï¼Œå·¥è‰ºç±»å‹ä¸å·¥è‰ºåç§°å±‚æ¬¡
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ ‡è¯†ç¼–ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦ä¸º2
 	// creator: gcc
 	public static String MetalHeatCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -11679,11 +11986,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: »ù´¡µØÀíĞÅÏ¢ÒªËØ·ÖÀàÓë´úÂë
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ±êÊ¶±àÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÎªÁùÎ»
+	// Function: åŸºç¡€åœ°ç†ä¿¡æ¯è¦ç´ åˆ†ç±»ä¸ä»£ç 
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ ‡è¯†ç¼–ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦ä¸ºå…­ä½
 	// creator: gcc
 	public static String GeographicInfoCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -11710,11 +12017,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Éú²ú¹ı³ÌÎ£ÏÕºÍÓĞº¦ÒòËØ·ÖÀàÓë´úÂë(354)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex: ³¤¶È±ØÎª6
+	// Function: ç”Ÿäº§è¿‡ç¨‹å±é™©å’Œæœ‰å®³å› ç´ åˆ†ç±»ä¸ä»£ç (354)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex: é•¿åº¦å¿…ä¸º6
 	// creator: gcc
 	public static String HarmfulFactor(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -11740,11 +12047,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÖĞ»ªÈËÃñ¹²ºÍ¹úÌúÂ·³µÕ¾·ÖÀàÓë´úÂë(366)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex: ³¤¶È±ØÎª6
+	// Function: ä¸­åäººæ°‘å…±å’Œå›½é“è·¯è½¦ç«™åˆ†ç±»ä¸ä»£ç (366)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex: é•¿åº¦å¿…ä¸º6
 	// creator: gcc
 	public static String RailwayStationCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -11770,11 +12077,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Ğı×ªµç»úÕûÌå½á¹¹µÄ·À»¤µÈ¼¶£¨IP´úÂë£© ·Ö¼¶(261)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄË÷ÒıÎ»ÖÃ
-	// LenIndex: ²»¶¨³¤
+	// Function: æ—‹è½¬ç”µæœºæ•´ä½“ç»“æ„çš„é˜²æŠ¤ç­‰çº§ï¼ˆIPä»£ç ï¼‰ åˆ†çº§(261)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„ç´¢å¼•ä½ç½®
+	// LenIndex: ä¸å®šé•¿
 	// creator: gcc
 	public static String ProtectionDegreeRegex(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -11804,11 +12111,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÁÖÒµµµ°¸·ÖÀàÓë´úÂë£¨237£©
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄË÷ÒıÎ»ÖÃ
-	// LenIndex: ²»¶¨³¤
+	// Function: æ—ä¸šæ¡£æ¡ˆåˆ†ç±»ä¸ä»£ç ï¼ˆ237ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„ç´¢å¼•ä½ç½®
+	// LenIndex: ä¸å®šé•¿
 	// creator: gcc
 	public static String ForestryClassRegex(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -11838,11 +12145,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µØÖÊ¿ó²úÊõÓï·ÖÀàÓë´úÂë£¨241-244£©
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex: ²»¶¨³¤
+	// Function: åœ°è´¨çŸ¿äº§æœ¯è¯­åˆ†ç±»ä¸ä»£ç ï¼ˆ241-244ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex: ä¸å®šé•¿
 	// creator: gcc
 	public static String MineralRegex(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -11872,11 +12179,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ¹ú¼Êº½ÔË»õÎï×°Ğ¶·ÑÓÃºÍ´¬²°×âÁŞ·½Ê½Ìõ¿î´úÂë
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÌõ¿î´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÎªÁ½Î»
+	// Function: å›½é™…èˆªè¿è´§ç‰©è£…å¸è´¹ç”¨å’Œèˆ¹èˆ¶ç§Ÿèµæ–¹å¼æ¡æ¬¾ä»£ç 
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ¡æ¬¾ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦ä¸ºä¸¤ä½
 	// creator: gcc
 	public static String StevedorageChartering(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -11927,11 +12234,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÁÖÒµ×ÊÔ´·ÖÀàÓë´úÂë ÁÖÄ¾²¡º¦
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÁÖÄ¾²¡º¦µÄÎ»ÖÃ
-	// LenIndex£» ³¤¶ÈÎªÁùÎ»
+	// Function: æ—ä¸šèµ„æºåˆ†ç±»ä¸ä»£ç  æ—æœ¨ç—…å®³
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ—æœ¨ç—…å®³çš„ä½ç½®
+	// LenIndex: é•¿åº¦ä¸ºå…­ä½
 	// creator: gcc
 	public static String TreeDiseaseCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -11958,11 +12265,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÄÚºÓ´¬²°·ÖÀàÓë´úÂëÇ°ËÄÎ»£¨341-1£©
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ´¬²°´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇËÄÎ»
+	// Function: å†…æ²³èˆ¹èˆ¶åˆ†ç±»ä¸ä»£ç å‰å››ä½ï¼ˆ341-1ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨èˆ¹èˆ¶ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å››ä½
 	// creator: gcc
 	public static String NavigationShip(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -11989,11 +12296,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÄÚºÓ´¬²°·ÖÀàÓë´úÂë¸½¼Ó´úÂë£¨341-2£©
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ¸½¼Ó´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇÁ½Î»
+	// Function: ç¬¬46éƒ¨åˆ†ï¼šæ¶ˆé˜²è®­ç»ƒåˆ†ç±»ä¸ä»£ç ï¼ˆ411ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ¶ˆé˜²è®­ç»ƒåˆ†ç±»ä¸ä»£ç ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å…­ä½
 	// creator: gcc
 	public static String NavigationShipAddCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12037,11 +12344,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µÚ46²¿·Ö£ºÏû·ÀÑµÁ··ÖÀàÓë´úÂë£¨411£©
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÏû·ÀÑµÁ··ÖÀàÓë´úÂë´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇÁùÎ»
+	// Function: ç¬¬33éƒ¨åˆ†ï¼šèµ·ç«åŸå› åˆ†ç±»ä¸ä»£ç ï¼ˆ425ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨èµ·ç«åŸå› åˆ†ç±»ä¸ä»£ç ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å…­ä½
 	// creator: gcc
 	public static String FireTrainCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12114,11 +12421,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µÚ33²¿·Ö£ºÆğ»ğÔ­Òò·ÖÀàÓë´úÂë£¨425£©
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÆğ»ğÔ­Òò·ÖÀàÓë´úÂë´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇÁùÎ»
+	// Function: ç¬¬28éƒ¨åˆ†ï¼šæ¶ˆé˜²å‡ºè­¦äº‹ä»¶åˆ†ç±»ä¸ä»£ç ï¼ˆ425ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ¶ˆé˜²å‡ºè­¦äº‹ä»¶åˆ†ç±»ä¸ä»£ç ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å››ä½
 	// creator: gcc
 	public static String FireCauseCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12210,11 +12517,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: µÚ28²¿·Ö£ºÏû·À³ö¾¯ÊÂ¼ş·ÖÀàÓë´úÂë£¨425£©
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÏû·À³ö¾¯ÊÂ¼ş·ÖÀàÓë´úÂë´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇËÄÎ»
+	// Function: ç¬¬28éƒ¨åˆ†ï¼šæ¶ˆé˜²å‡ºè­¦äº‹ä»¶åˆ†ç±»ä¸ä»£ç ï¼ˆ425ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ¶ˆé˜²å‡ºè­¦äº‹ä»¶åˆ†ç±»ä¸ä»£ç ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å››ä½
 	// creator: gcc
 	public static String FireForceCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12412,11 +12719,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: GA/T 556.4
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ½ğÈÚµ¥Î»Àà±ğ´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇÁ½Î»
+	// Function: ç¬¬28éƒ¨åˆ†ï¼šæ¶ˆé˜²å‡ºè­¦äº‹ä»¶åˆ†ç±»ä¸ä»£ç ï¼ˆ425ï¼‰
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ¶ˆé˜²å‡ºè­¦äº‹ä»¶åˆ†ç±»ä¸ä»£ç ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯å››ä½
 	// creator: gcc
 	public static String FinancialCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12474,10 +12781,10 @@ public class RuleFunction {
 	}
 
 	// Function: GA/T 556.3
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃ½ğ¿âÀà±ğ´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇÁ½Î»
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨é‡‘åº“ç±»åˆ«ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯ä¸¤ä½
 	// creator: gcc
 	public static String TreasuryClass(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12510,10 +12817,10 @@ public class RuleFunction {
 	}
 
 	// Function: GA/T 556.1
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÖ°ÎñÀà±ğ´úÂëµÄÎ»ÖÃ
-	// LenIndex: ³¤¶ÈÊÇÁ½Î»
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨èŒåŠ¡ç±»åˆ«ä»£ç çš„ä½ç½®
+	// LenIndex: é•¿åº¦æ˜¯ä¸¤ä½
 	// creator: gcc
 	public static String JobClassificationCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12590,11 +12897,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ³£ÓÃÖ¤¼ş´úÂë£¨470£©
+	// Function: å¸¸ç”¨è¯ä»¶ä»£ç ï¼ˆ470ï¼‰
 	// IDstr: ID string
-	// LenID: ±êÊ¶±àÂë
-	// Index: ±êÊ¶±àÂëµÄ³¤¶È
-	// LenIndex: µ÷ÓÃË÷ÒıÎ»ÖÃ³¤¶ÈÎª3
+	// LenID: æ ‡è¯†ç¼–ç 
+	// Index: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// LenIndex: è°ƒç”¨ç´¢å¼•ä½ç½®é•¿åº¦ä¸º3
 	// creator: gcc
 	public static String TravleDocumentCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12622,10 +12929,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:¹«°²²¿Ïû·À¾ÖºÍÊ¡¼¶¹«°²Ïû·À×Ü¶Ó´úÂë(474)
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:å…¬å®‰éƒ¨æ¶ˆé˜²å±€å’Œçœçº§å…¬å®‰æ¶ˆé˜²æ€»é˜Ÿä»£ç (474)
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String ProvinceAdminCode(char[] CODEstr, int LenCODE,
@@ -12652,10 +12959,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:ÁĞ¹Üµ¥Î»´úÂë(474)
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:åˆ—ç®¡å•ä½ä»£ç (474)
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String AdminDivision1(char[] CODEstr, int LenCODE,
@@ -12682,11 +12989,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ¹ú¼ÊÃ³Ò×ºÏÍ¬´úÂë±àÖÆ¹æÔò×Ô¶¨Òå±àÂëÕıÔòÆ¥Åä,Êı×Ö»òÕß×ÖÄ¸£¬Êı×ÖÔÚ×ÖÄ¸ºóÃæ¡£(326)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È<=9
+	// Function: å›½é™…è´¸æ˜“åˆåŒä»£ç ç¼–åˆ¶è§„åˆ™è‡ªå®šä¹‰ç¼–ç æ­£åˆ™åŒ¹é…,æ•°å­—æˆ–è€…å­—æ¯ï¼Œæ•°å­—åœ¨å­—æ¯åé¢ã€‚(326)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦<=9
 	// creator: yzc
 	public static String DraftingRulesForCodes(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12700,9 +13007,10 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
+			System.out.print(code);
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
@@ -12715,11 +13023,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: »·¾³ĞÅÏ¢·ÖÀàÓë´úÂëÕıÔòÆ¥Åä,Êı×Ö(776)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎŞÇî
+	// Function: ç¯å¢ƒä¿¡æ¯åˆ†ç±»ä¸ä»£ç æ­£åˆ™åŒ¹é…,æ•°å­—(776)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦æ— ç©·
 	// creator: yzc
 	public static String EnvironmentalInformation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12733,7 +13041,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -12748,11 +13056,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ·ÏË®Àà±ğ´úÂëÕıÔòÆ¥Åä,Êı×Ö(782)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶ÈÎŞÇî
+	// Function: åºŸæ°´ç±»åˆ«ä»£ç æ­£åˆ™åŒ¹é…,æ•°å­—(782)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦æ— ç©·
 	// creator: yzc
 	public static String Wastewater(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12766,7 +13074,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -12781,11 +13089,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÒøĞĞ±íÊ¾´úÂë·ÖÖ§»ú¹¹´úÂëÕıÔòÆ¥Åä,Êı×Ö£¬×ÖÄ¸(332)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È<=4
+	// Function: é“¶è¡Œè¡¨ç¤ºä»£ç åˆ†æ”¯æœºæ„ä»£ç æ­£åˆ™åŒ¹é…,æ•°å­—ï¼Œå­—æ¯(332)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦<=4
 	// creator: yzc
 	public static String BankCodes(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12799,7 +13107,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -12814,7 +13122,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÊéÖ¤ÎïÖ¤ÖÖÀà´úÂë£¨538£©
+	// Function: ä¹¦è¯ç‰©è¯ç§ç±»ä»£ç ï¼ˆ538ï¼‰
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -12847,7 +13155,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÊÜº¦µ¥Î»ĞĞÒµ·ÖÀà´úÂë£¨532£©
+	// Function: å—å®³å•ä½è¡Œä¸šåˆ†ç±»ä»£ç ï¼ˆ532ï¼‰
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -12880,7 +13188,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ×÷°¸ÊÖ¶Î´úÂë£¨539£©
+	// Function: ä½œæ¡ˆæ‰‹æ®µä»£ç ï¼ˆ539ï¼‰
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -12917,7 +13225,7 @@ public class RuleFunction {
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes ¹Ì¶¨³¤2
+	// LenIndex: the number of indexes å›ºå®šé•¿2
 	// Creator:yzc
 	public static String OneTO48(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -12938,11 +13246,11 @@ public class RuleFunction {
 
 	}
 
-	// Function:¹«Â·Â·Ïß±êÊ¶¹æÔòºÍ¹úµÀ±àºÅÕıÔòÆ¥Åä,Êı×Ö£¬×ÖÄ¸(598)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È<=3
+	// Function:å…¬è·¯è·¯çº¿æ ‡è¯†è§„åˆ™å’Œå›½é“ç¼–å·æ­£åˆ™åŒ¹é…,æ•°å­—ï¼Œå­—æ¯(598)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦<=3
 	// creator: yzc
 	public static String NationalTrunkHighway(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -12956,7 +13264,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -13026,26 +13334,26 @@ public class RuleFunction {
 						&& index6 >= 0 && index6 <= 9)
 					return OK;
 			}
-			if (LenIndex == 7) {
-				if (index3 >= 0 && index3 <= 9) {
-					char d = IDstr[Index[3]];
-					if (d == '.') {
-						int index5 = (int) IDstr[Index[4]] - 48;
-						int index6 = (int) IDstr[Index[5]] - 48;
-						int index7 = (int) IDstr[Index[6]] - 48;
-						if (index5 >= 0 && index5 <= 9 && index6 >= 0
-								&& index6 <= 9 && index7 >= 0 && index7 <= 9)
-							return OK;
-					}
+		}
+
+		if (LenIndex == 7) {
+			if (index3 >= 0 && index3 <= 9) {
+				char d = IDstr[Index[3]];
+				if (d == '.') {
+					int index5 = (int) IDstr[Index[4]] - 48;
+					int index6 = (int) IDstr[Index[5]] - 48;
+					int index7 = (int) IDstr[Index[6]] - 48;
+					if (index5 >= 0 && index5 <= 9 && index6 >= 0
+							&& index6 <= 9 && index7 >= 0 && index7 <= 9)
+						return OK;
 				}
 			}
-
 		}
 		return ERR;
 	}
 
 	/*
-	 * Ç°4Î»ÊÇÊı×Ö£¬ºó2Î»ÊÇĞ¡Êı 1234.12 author:wt
+	 * å‰4ä½æ˜¯æ•°å­—ï¼Œå2ä½æ˜¯å°æ•° 1234.12 author:wt
 	 */
 	public static String ParamCode7(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13060,7 +13368,7 @@ public class RuleFunction {
 		char c = IDstr[Index[4]];
 		if (c == '.') {
 			int index1 = (int) IDstr[Index[5]] - 48;
-			int index2 = (int) IDstr[Index[5]] - 48;
+			int index2 = (int) IDstr[Index[6]] - 48;
 			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
 				return OK;
 		}
@@ -13068,7 +13376,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * ¿ÉÄÜÊÇ1,2,3,6Î»µÄÊı×Ö
+	 * å¯èƒ½æ˜¯1,2,3,6ä½çš„æ•°å­—
 	 * 
 	 * author:wt
 	 */
@@ -13082,12 +13390,14 @@ public class RuleFunction {
 			int index = (int) IDstr[Index[0]] - 48;
 			if (index >= 0 && index <= 9)
 				return OK;
+			break;
 		}
 		case 2: {
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
 			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
 				return OK;
+			break;
 		}
 		case 3: {
 			for (int i = 0; i < 3; i++) {
@@ -13106,12 +13416,13 @@ public class RuleFunction {
 			return OK;
 		}
 		default:
-			return OK;
+			return ERR;
 		}
+		return ERR;
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ6Î»»ò7Î»µÄÊı×Ö author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯6ä½æˆ–7ä½çš„æ•°å­— authorï¼šwt
 	 */
 	public static String ParamCode19(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13139,7 +13450,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ4Î»»ò8Î»»ò9µÄÊı×Ö author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯4ä½æˆ–8ä½æˆ–9çš„æ•°å­— authorï¼šwt
 	 */
 	public static String ParamCode20(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13175,7 +13486,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ8Î»»ò6Î»Êı×Ö µ±Îª8Î»Ê±£¬ÂëµÄµÚÒ»Î»ÊÇ1 µ±Îª6Î»Ê±£¬ÂëµÄµÚÒ»Î»ÊÇ2 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯8ä½æˆ–6ä½æ•°å­— å½“ä¸º8ä½æ—¶ï¼Œç çš„ç¬¬ä¸€ä½æ˜¯1 å½“ä¸º6ä½æ—¶ï¼Œç çš„ç¬¬ä¸€ä½æ˜¯2 authorï¼šwt
 	 */
 	public static String ParamCode22(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13209,7 +13520,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ10Î»»ò8Î»Êı×Ö µ±Îª10Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ01 µ±Îª8Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ02 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯10ä½æˆ–8ä½æ•°å­— å½“ä¸º10ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯01 å½“ä¸º8ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯02 authorï¼šwt
 	 */
 	public static String ParamCode27(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13243,7 +13554,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ4Î»»ò5Î»Êı×Ö µ±Îª4Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ01»ò03 µ±Îª5Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ02 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯4ä½æˆ–5ä½æ•°å­— å½“ä¸º4ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯01æˆ–03 å½“ä¸º5ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯02 authorï¼šwt
 	 */
 	public static String ParamCode28(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13277,8 +13588,8 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ3,4,5,9Î»Êı×Ö µ±Îª3Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ06 µ±Îª4Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ01,02,05,07
-	 * µ±Îª5Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ03 µ±Îª9Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ04 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯3,4,5,9ä½æ•°å­— å½“ä¸º3ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯06 å½“ä¸º4ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯01,02,05,07
+	 * å½“ä¸º5ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯03 å½“ä¸º9ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯04 authorï¼šwt
 	 */
 	public static String ParamCode29(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13335,9 +13646,9 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ2,3,4,5,6,7,8Î»Êı×Ö µ±Îª2Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ05 µ±Îª3Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ06
-	 * µ±Îª4Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ09,10,11,12 µ±Îª5Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ07,08 µ±Îª6Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ02
-	 * µ±Îª7Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ01,03 µ±Îª8Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ04 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯2,3,4,5,6,7,8ä½æ•°å­— å½“ä¸º2ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯05 å½“ä¸º3ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯06
+	 * å½“ä¸º4ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯09,10,11,12 å½“ä¸º5ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯07,08 å½“ä¸º6ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯02
+	 * å½“ä¸º7ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯01,03 å½“ä¸º8ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯04 authorï¼šwt
 	 */
 	public static String ParamCode30(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13428,8 +13739,8 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ4,5,6,7,8Î»Êı×Ö µ±Îª4Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ05,08 µ±Îª5Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ03,06,09
-	 * µ±Îª6Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ07 µ±Îª7Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ04 µ±Îª8Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ01,02 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯4,5,6,7,8ä½æ•°å­— å½“ä¸º4ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯05,08 å½“ä¸º5ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯03,06,09
+	 * å½“ä¸º6ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯07 å½“ä¸º7ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯04 å½“ä¸º8ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯01,02 authorï¼šwt
 	 */
 	public static String ParamCode31(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13475,8 +13786,8 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ3,7,8Î»Êı×Ö µ±Îª3Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ05 µ±Îª7Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ03,04
-	 * µ±Îª8Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ01,02 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯3,7,8ä½æ•°å­— å½“ä¸º3ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯05 å½“ä¸º7ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯03,04
+	 * å½“ä¸º8ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯01,02 authorï¼šwt
 	 */
 	public static String ParamCode32(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13521,9 +13832,9 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ5,6,7,8,9,10,11Î»Êı×Ö µ±Îª5Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ09,10,11 µ±Îª6Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ08
-	 * µ±Îª7Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ03,06 µ±Îª8Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ05,07 µ±Îª9Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ04
-	 * µ±Îª10Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ02 µ±Îª11Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ01 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯5,6,7,8,9,10,11ä½æ•°å­— å½“ä¸º5ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯09,10,11 å½“ä¸º6ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯08
+	 * å½“ä¸º7ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯03,06 å½“ä¸º8ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯05,07 å½“ä¸º9ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯04
+	 * å½“ä¸º10ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯02 å½“ä¸º11ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯01 authorï¼šwt
 	 */
 	public static String ParamCode34(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13613,7 +13924,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ5,6Î»Êı×Ö µ±Îª5Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ3,4 µ±Îª6Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ1,2 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯5,6ä½æ•°å­— å½“ä¸º5ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯3,4 å½“ä¸º6ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯1,2 authorï¼šwt
 	 */
 	public static String ParamCode35(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13647,7 +13958,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ7,9,10Î»Êı×Ö µ±Îª7Î»Ê±£¬ÂëµÄµÚ1Î»ÊÇ3 µ±Îª9Î»Ê±£¬ÂëµÄµÚ1Î»ÊÇ1 µ±Îª10Î»Ê±£¬ÂëµÄµÚ1Î»ÊÇ2 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯7,9,10ä½æ•°å­— å½“ä¸º7ä½æ—¶ï¼Œç çš„ç¬¬1ä½æ˜¯3 å½“ä¸º9ä½æ—¶ï¼Œç çš„ç¬¬1ä½æ˜¯1 å½“ä¸º10ä½æ—¶ï¼Œç çš„ç¬¬1ä½æ˜¯2 authorï¼šwt
 	 */
 	public static String ParamCode38(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13692,7 +14003,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ6,7Î»Êı×Ö µ±Îª6Î»Ê±£¬ÂëµÄµÚ1Î»ÊÇ1»ò2 µ±Îª7Î»Ê±£¬ÂëµÄµÚ1Î»ÊÇ3 author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯6,7ä½æ•°å­— å½“ä¸º6ä½æ—¶ï¼Œç çš„ç¬¬1ä½æ˜¯1æˆ–2 å½“ä¸º7ä½æ—¶ï¼Œç çš„ç¬¬1ä½æ˜¯3 authorï¼šwt
 	 */
 	public static String ParamCode41(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13727,9 +14038,9 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£Ñé×îºóµÄÂë£¬¿ÉÄÜÊÇ6,7Î»Êı×Ö µ±Îª3Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ15 µ±Îª5Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ09,10,11,13
-	 * µ±Îª6Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ01,06,12 µ±Îª7Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ02,03,04,05,07,08 µ±Îª8Î»Ê±£¬ÂëµÄµÚ1,2Î»ÊÇ14
-	 * author£ºwt
+	 * æ ¡éªŒæœ€åçš„ç ï¼Œå¯èƒ½æ˜¯6,7ä½æ•°å­— å½“ä¸º3ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯15 å½“ä¸º5ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯09,10,11,13
+	 * å½“ä¸º6ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯01,06,12 å½“ä¸º7ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯02,03,04,05,07,08 å½“ä¸º8ä½æ—¶ï¼Œç çš„ç¬¬1,2ä½æ˜¯14
+	 * authorï¼šwt
 	 */
 	public static String ParamCode43(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -14055,7 +14366,7 @@ public class RuleFunction {
 		}
 		try {
 			RecoDao recoDao = new RecoDao();
-			boolean ret = recoDao.getPowerMaterials51(code);
+			boolean ret = recoDao.getPowerMaterials52(code);
 			if (ret) {
 				return OK;
 			} else
@@ -14063,7 +14374,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -14132,10 +14442,10 @@ public class RuleFunction {
 
 	}
 
-	// 509»¥ÁªÍøÍøÉÏ·şÎñÓªÒµ³¡Ëù¡ª¡ªµÚÎå²¿·Ö
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È4Î»
-	// Index: µ÷ÓÃÑéÖ¤Ëã·¨µÄË÷ÒıÎ»ÖÃ
+	// 509äº’è”ç½‘ç½‘ä¸ŠæœåŠ¡è¥ä¸šåœºæ‰€â€”â€”ç¬¬äº”éƒ¨åˆ†
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦4ä½
+	// Index: è°ƒç”¨éªŒè¯ç®—æ³•çš„ç´¢å¼•ä½ç½®
 	// LenIndex:a3
 	// creator:fdl
 	public static String InternetWebService(char[] IDstr, int LenID,
@@ -14162,8 +14472,8 @@ public class RuleFunction {
 		}
 	}
 
-	// 966-¹ú¼Ò¹¤³Ì½¨Éè±ê×¼ÌåÏµ±àÂëÍ³Ò»¹æÔò fdl
-	// [A1 A2 A3 B1 C1 D1 E1 F1 G1 H1 J1 K1 L1 M1 N1 P1 Q1 R1]Á½Î»¹ØÁª
+	// 966-å›½å®¶å·¥ç¨‹å»ºè®¾æ ‡å‡†ä½“ç³»ç¼–ç ç»Ÿä¸€è§„åˆ™ fdl
+	// [A1 A2 A3 B1 C1 D1 E1 F1 G1 H1 J1 K1 L1 M1 N1 P1 Q1 R1]ä¸¤ä½å…³è”
 	public static String projectbuild(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -14201,7 +14511,7 @@ public class RuleFunction {
 		}
 	}
 
-	// ·ÅÉäÔ´±àÂë¹æÔò ºËÔªËØ¹ú¼Ò´úÂë fdl
+	// æ”¾å°„æºç¼–ç è§„åˆ™ æ ¸å…ƒç´ å›½å®¶ä»£ç  fdl
 	public static String NuclearelementNation(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -14226,7 +14536,7 @@ public class RuleFunction {
 		}
 	}
 
-	// ·ÅÉäÔ´±àÂë¹æÔò fdl
+	// æ”¾å°„æºç¼–ç è§„åˆ™ fdl
 	public static String Nuclearelements(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -14251,7 +14561,7 @@ public class RuleFunction {
 		}
 	}
 
-	// ¹¤ÉÌĞĞÕş¹ÜÀí×¢²áºÅ±àÖÆ¹æÔò fdl
+	// å·¥å•†è¡Œæ”¿ç®¡ç†æ³¨å†Œå·ç¼–åˆ¶è§„åˆ™ fdl
 	public static String BusinessAdminis(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -14280,17 +14590,17 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Æû³µ±ê×¼¼ş²úÆ·±àºÅ¹æÔò
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: (13,-1),´Ó13Î»ÒÔºóµÄ×Ö·û´®½øĞĞÕıÔò±í´ïÊ½ÑéÖ¤
-	// LenIndex: ³¤¶È±ØÎª2
+	// Function: æ±½è½¦æ ‡å‡†ä»¶äº§å“ç¼–å·è§„åˆ™
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: (13,-1),ä»13ä½ä»¥åçš„å­—ç¬¦ä¸²è¿›è¡Œæ­£åˆ™è¡¨è¾¾å¼éªŒè¯
+	// LenIndex: é•¿åº¦å¿…ä¸º2
 	// creator: fdl
 	public static String CarProduct(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			String code = "";
-			String regex = "[1-6,9][0-4,6,9,A-N,P-Y]{0,1}";
+			String regex = "[1-6,9][0-4,6,9,A-N,P-Y]*";
 			int prefix = 13;
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
@@ -14298,8 +14608,8 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			// ×îºóÒ»Î»ÎªĞ£ÑéÎ»
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			// æœ€åä¸€ä½ä¸ºæ ¡éªŒä½
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -14315,11 +14625,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Æû³µ²úÆ·Áã²¿¼ş±ß±àÂë¹æÔò
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
+	// Function: æ±½è½¦äº§å“é›¶éƒ¨ä»¶è¾¹ç¼–ç è§„åˆ™
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
 	// Index:4
-	// LenIndex: ³¤¶È±ØÎª4
+	// LenIndex: é•¿åº¦å¿…ä¸º4
 	// creator: fdl
 	public static String CarProductCompnent(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -14345,11 +14655,11 @@ public class RuleFunction {
 		}
 	}
 
-	// GB/T 23733ÖĞ¹ú±ê×¼ÒôÀÖ×÷Æ·±àÂë fdl
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
+	// GB/T 23733ä¸­å›½æ ‡å‡†éŸ³ä¹ä½œå“ç¼–ç  fdl
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
 	// Index:15
-	// LenIndex: ³¤¶È±ØÎª15
+	// LenIndex: é•¿åº¦å¿…ä¸º15
 	// creator: fdl
 	public static String StandardMusicCheckCode(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -14385,11 +14695,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: TCL½ğÄÜµç³Ø±àÂë¹æÔò
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
+	// Function: TCLé‡‘èƒ½ç”µæ± ç¼–ç è§„åˆ™
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
 	// Index:4
-	// LenIndex: ³¤¶È±ØÎª4
+	// LenIndex: é•¿åº¦å¿…ä¸º4
 	// creator: fdl
 	public static String TCLBatteryProduct(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -14415,59 +14725,57 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: TCL½ğÄÜµç³Ø±àÂë¹æÔò¡ª¡ªµÚÈı¼¶±àÂë
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
+	// Function: TCLé‡‘èƒ½ç”µæ± ç¼–ç è§„åˆ™â€”â€”ç¬¬ä¸‰çº§ç¼–ç 
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
 	// Index:4
-	// LenIndex: ³¤¶È±ØÎª4
+	// LenIndex: é•¿åº¦å¿…ä¸º4
 	// creator: fdl
 	public static String ProductCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			// System.out.println("aaa");
 			return ERR;
 		}
-		if (IDstr[0] == 2) {
-			try {
-				String code = "";
-				String regex = "[0-9]{0,-1}";
-				for (int i = 0; i < LenIndex - 1; i++) {
-					code = code.concat(String.valueOf(IDstr[i]));
-				}
-				Pattern pa = Pattern.compile(regex);
-				Matcher ma = pa.matcher(code);
-				boolean ret = ma.matches();
-				if (ret) {
-					return OK;
-				} else
-					System.out.println("Æ¥ÅäµÚ¶şÌõ¹æÔò");
-				return ERR;
-			} catch (Exception e) {
-				return ERR;
+		if (IDstr[0] == '2') {
+			String code = "";
+			String regex = "[0-9]*";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				// System.out.println("ccc");
+				return OK;
+			} else
+				// System.out.println("åŒ¹é…ç¬¬äºŒæ¡è§„åˆ™");
+				return ERR;
 		}
-		if (IDstr[0] == 1) {
+		if (IDstr[0] == '1') {
 			if (LenIndex != 4) {
+				// System.out.println("fff");
 				return ERR;
 			}
-			try {
-				String code = "";
-				for (int i = 0; i < 4; i++) {
-					code = code.concat(String.valueOf(IDstr[i]));
-				}
-				RecoDao recoDao = new RecoDao();
-				boolean ret = recoDao.getPortProductCode(code);
-				if (ret) {
-					System.out.println("Æ¥ÅäµÚÒ»Ìõ¹æÔò");
-					return OK;
-				} else
-					return ERR;
-			} catch (Exception e) {
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPortProductCode(code);
+			if (ret) {
+				// System.out.println("åŒ¹é…ç¬¬ä¸€æ¡è§„åˆ™");
+				return OK;
+			} else {
+				// System.out.println("eee");
+				return ERR;
 			}
 		}
 		return ERR;
 	}
 
-	// Function: 504 µÚ10²¿·Ö£º·şÎñÀàĞÍ¼°ÄÚÈİ´úÂë
+	// Function: 504 ç¬¬10éƒ¨åˆ†ï¼šæœåŠ¡ç±»å‹åŠå†…å®¹ä»£ç 
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
@@ -14505,7 +14813,7 @@ public class RuleFunction {
 
 	}
 
-	// Function: 516 µÚ1²¿·Ö£º½»Í¨Î¥·¨ĞĞÎª·ÖÀà´úÂë
+	// Function: 516 ç¬¬1éƒ¨åˆ†ï¼šäº¤é€šè¿æ³•è¡Œä¸ºåˆ†ç±»ä»£ç 
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes
@@ -14579,6 +14887,14 @@ public class RuleFunction {
 			if (LenIndex != 10) {
 				return ERR;
 			}
+			for (int i = 0; i < LenID; i++) {
+				int check = (int) IDstr[Index[i]] - 48;
+				if (check >= 0 && check <= 9)
+					;
+				else
+					return ERR;
+
+			}
 			int i1 = (int) IDstr[Index[1]] - 48;
 			int i0 = (int) IDstr[Index[0]] - 48;
 			int i2 = (int) IDstr[Index[2]] - 48;
@@ -14602,7 +14918,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:510 ¾ÓÃñÉí·İÖ¤²ÄÁÏ¼°ËùÓĞÈí¼ş¡¢Éè±¸´úÂë
+	// Function:510 å±…æ°‘èº«ä»½è¯ææ–™åŠæ‰€æœ‰è½¯ä»¶ã€è®¾å¤‡ä»£ç 
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -14628,10 +14944,10 @@ public class RuleFunction {
 			int i3 = (int) IDstr[Index[6]] - 48;
 			long i = 1000 * i0 + 100 * i1 + 10 * i2 + i3;
 			if (code != null && code.equals("JCL")) {
-				if (i == 110 || i == 120 || i == 190 || i == 0220 || i == 290
-						|| i == 0310 || i == 0320 || i == 0330 || i == 390
-						|| i == 0410 || i == 490 || i == 0510 || i == 0520
-						|| i == 0530 || i == 590 || i == 610 || i == 690
+				if (i == 110 || i == 120 || i == 190 || i == 220 || i == 290
+						|| i == 310 || i == 320 || i == 330 || i == 390
+						|| i == 410 || i == 490 || i == 510 || i == 520
+						|| i == 530 || i == 590 || i == 610 || i == 690
 						|| i == 710 || i == 720 || i == 730 || i == 740
 						|| i == 750 || i == 760 || i == 790 || i == 210)
 					return OK;
@@ -14684,10 +15000,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ĞÅÓÃÖ÷Ìå±íÊ¾¹æ·¶Ğ£ÑéÂë ÀàËÆMOD112
-	// ÆäÖĞMOD£­±íÊ¾ÇóÓàº¯Êı£»i£­±íÊ¾´úÂë×Ö·û´Ó×óÖÁÓÒÎ»ÖÃĞòºÅ£»Ci£­±íÊ¾µÚiÎ»ÖÃÉÏµÄ´úÂë×Ö·ûµÄÖµ£»Wi£­±íÊ¾µÚiÎ»ÖÃÉÏµÄ¼ÓÈ¨Òò×Ó£¬
-	// ¼ÓÈ¨Òò×ÓµÄ¹«Ê½ÊÇ£º2µÄn-1´ÎÃİ³ıÒÔ11È¡ÓàÊı£¬n¾ÍÊÇÄÇ¸öi£¬´ÓÓÒÏò×óÅÅÁĞ
-	// µ±Ğ£¼ìµÄÖµÎª10Ê± ¸³ÖµÎ»X.µ±Ğ£¼ìµÄÖµÎª11Ê± ¸³ÖµÎ»0
+	// Function: ä¿¡ç”¨ä¸»ä½“è¡¨ç¤ºè§„èŒƒæ ¡éªŒç  ç±»ä¼¼MOD112
+	// å…¶ä¸­MODï¼è¡¨ç¤ºæ±‚ä½™å‡½æ•°ï¼›iï¼è¡¨ç¤ºä»£ç å­—ç¬¦ä»å·¦è‡³å³ä½ç½®åºå·ï¼›Ciï¼è¡¨ç¤ºç¬¬iä½ç½®ä¸Šçš„ä»£ç å­—ç¬¦çš„å€¼ï¼›Wiï¼è¡¨ç¤ºç¬¬iä½ç½®ä¸Šçš„åŠ æƒå› å­ï¼Œ
+	// åŠ æƒå› å­çš„å…¬å¼æ˜¯ï¼š2çš„n-1æ¬¡å¹‚é™¤ä»¥11å–ä½™æ•°ï¼Œnå°±æ˜¯é‚£ä¸ªiï¼Œä»å³å‘å·¦æ’åˆ—
+	// å½“æ ¡æ£€çš„å€¼ä¸º10æ—¶ èµ‹å€¼ä½X.å½“æ ¡æ£€çš„å€¼ä¸º11æ—¶ èµ‹å€¼ä½0
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -14699,8 +15015,8 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			// ISO 7064:1983.MOD 11-2Ğ£ÑéËã·¨£¬×Ö·û´®¿ª±Ù¿Õ¼äÊ±Òª¶àÒ»Î»Áô¸ø×îºó¼ÓĞ£ÑéÎ»
-			double sum = 0; // ×îºóµÄĞ£ÑéÂë
+			// ISO 7064:1983.MOD 11-2æ ¡éªŒç®—æ³•ï¼Œå­—ç¬¦ä¸²å¼€è¾Ÿç©ºé—´æ—¶è¦å¤šä¸€ä½ç•™ç»™æœ€ååŠ æ ¡éªŒä½
+			double sum = 0; // æœ€åçš„æ ¡éªŒç 
 			int i, j;
 			int b = LenIndex - 1;
 			int a;
@@ -14726,7 +15042,7 @@ public class RuleFunction {
 			sum %= 11;
 			mod = (int) (11 - sum) % 11;
 			if (mod == 10) {
-				check = "X".charAt(0); // X±íÊ¾10
+				check = "X".charAt(0); // Xè¡¨ç¤º10
 			} else {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
@@ -14747,11 +15063,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ĞÅÓÃÖ÷Ìå±êÊ¶¹æ·¶ÕıÔòÆ¥Åä,Êı×Ö(603)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È<=2
+	// Function: ä¿¡ç”¨ä¸»ä½“æ ‡è¯†è§„èŒƒæ­£åˆ™åŒ¹é…,æ•°å­—(603)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦<=2
 	// creator: yzc
 	public static String CreditIdentifiers(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -14780,11 +15096,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÂÖÌ¥ÆøÃÅ×ì¼°ÆäÁã²¿¼şµÄ±êÊ¶·½·¨ÕıÔòÆ¥Åä,×ÖÄ¸(615)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È<=1
+	// Function: è½®èƒæ°”é—¨å˜´åŠå…¶é›¶éƒ¨ä»¶çš„æ ‡è¯†æ–¹æ³•æ­£åˆ™åŒ¹é…,å­—æ¯(615)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦<=1
 	// creator: yzc
 	public static String TubesValves(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -14798,7 +15114,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -14813,11 +15129,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: ÂÖÌ¥ÆøÃÅ×ì¼°ÆäÁã²¿¼şµÄ±êÊ¶·½·¨ÕıÔòÆ¥Åä,×ÖÄ¸(615)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È<=1
+	// Function: è½®èƒæ°”é—¨å˜´åŠå…¶é›¶éƒ¨ä»¶çš„æ ‡è¯†æ–¹æ³•æ­£åˆ™åŒ¹é…,å­—æ¯(615)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦<=1
 	// creator: yzc
 	public static String TubesValves1(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -14831,7 +15147,7 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -14846,10 +15162,10 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:ÉÌÆ·ÌõÂë Ó¦ÓÃ±êÊ¶·û£¨632£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:å•†å“æ¡ç  åº”ç”¨æ ‡è¯†ç¬¦ï¼ˆ632ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String BarCodeForCommodity(char[] CODEstr, int LenCODE,
@@ -14859,11 +15175,10 @@ public class RuleFunction {
 			return ERR;
 		}
 
-		if (LenIndex != 2 || LenIndex != 3 || LenIndex != 4) {
-			return ERR;
+		String code = "";
+		for (int i = 0; i < LenIndex; i++) {
+			code = code.concat(String.valueOf(CODEstr[Index[i]]));
 		}
-		String code = new String(CODEstr);
-
 		try {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getBarCodeForCommodity(code);
@@ -14876,11 +15191,11 @@ public class RuleFunction {
 		}
 	}
 
-	// Function: Ê¶±ğ¿¨ ·¢¿¨Õß±êÊ¶ µÚÒ»²¿·ÖÕıÔòÆ¥Åä,Êı×Ö(635)
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:³¤¶È<=12
+	// Function: è¯†åˆ«å¡ å‘å¡è€…æ ‡è¯† ç¬¬ä¸€éƒ¨åˆ†æ­£åˆ™åŒ¹é…,æ•°å­—(635)
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:é•¿åº¦<=12
 	// creator: yzc
 	public static String IdentificationCardsP1(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -14894,13 +15209,20 @@ public class RuleFunction {
 			if (Index[0] != prefix) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID - 1; i++) {
+			// æœ€åä¸€ä½ä¸ºæ ¡éªŒä½
+			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
-			if (ret) {
+			int[] modIndex = new int[LenID];
+			for (int i = 0; i < LenID; i++) {
+				modIndex[i] = i;
+			}
+			String modRet = InternationalSecurities(IDstr, LenID, modIndex,
+					LenID);
+			if (ret && modRet.equals(OK)) {
 				return OK;
 			} else
 				return ERR;
@@ -14910,11 +15232,10 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°4Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰4ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase70(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
-
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -14934,11 +15255,10 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°4Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰4ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase71(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
-
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -14963,10 +15283,11 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase66(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
+
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -14986,7 +15307,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase65(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15007,7 +15328,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase59(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15083,7 +15404,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase26(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15105,7 +15426,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase25(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15127,7 +15448,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase24(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15150,7 +15471,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase18(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15198,7 +15519,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase16(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15220,7 +15541,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase13(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
@@ -15243,7 +15564,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase8(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15266,7 +15587,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase7(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15288,7 +15609,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * Ğ£ÑéÇ°2Î»ÊÇ²»ÊÇÕâĞ©Êı×Ö 757 author:wt
+	 * æ ¡éªŒå‰2ä½æ˜¯ä¸æ˜¯è¿™äº›æ•°å­— 757 author:wt
 	 */
 	public static String HighwayDatabase6(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15310,15 +15631,14 @@ public class RuleFunction {
 		return ERR;
 	}
 
-	// Function:ÖĞ¹úÊ¯ÓÍÌìÈ»Æø×Ü¹«Ë¾Æó¡¢ÊÂÒµµ¥Î»´úÂë£¨763£©
-	// CODEstr: ±êÊ¶±àÂë
-	// LenCODE: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
+	// Function:ä¸­å›½çŸ³æ²¹å¤©ç„¶æ°”æ€»å…¬å¸ä¼ã€äº‹ä¸šå•ä½ä»£ç ï¼ˆ763ï¼‰
+	// CODEstr: æ ‡è¯†ç¼–ç 
+	// LenCODE: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
 	// LenIndex:
 	// Creator:YZC
 	public static String GassCompany(char[] CODEstr, int LenCODE, int[] Index,
 			int LenIndex) {
-
 		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
 			return ERR;
 		}
@@ -15341,7 +15661,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * ÑéÖ¤±ê×¼11µÄÇ°ÁùÎ»ÊÇ²»ÊÇÔÚÊı¾İ¿âÖĞ
+	 * éªŒè¯æ ‡å‡†11çš„å‰å…­ä½æ˜¯ä¸æ˜¯åœ¨æ•°æ®åº“ä¸­
 	 * 
 	 * author:wt
 	 */
@@ -15371,7 +15691,7 @@ public class RuleFunction {
 	}
 
 	/*
-	 * ÑéÖ¤±ê×¼12µÄÇ°9Î»ÊÇ²»ÊÇÔÚÊı¾İ¿âÖĞ
+	 * éªŒè¯æ ‡å‡†12çš„å‰9ä½æ˜¯ä¸æ˜¯åœ¨æ•°æ®åº“ä¸­
 	 * 
 	 * author:wt
 	 */
@@ -15398,9 +15718,10 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
-	//ÖĞ¹ú¶¯Îï·ÖÀà´úÂë fdl
-	// Function: represent a decimal integer whose value range is from 010 to 999
+
+	// ä¸­å›½åŠ¨ç‰©åˆ†ç±»ä»£ç  fdl
+	// Function: represent a decimal integer whose value range is from 010 to
+	// 999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15412,7 +15733,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 16) {
+			if (LenIndex != 2) {
 				return ERR;
 			}
 
@@ -15421,8 +15742,7 @@ public class RuleFunction {
 					|| (IDstr[Index[0]] == 'A' && IDstr[Index[1]] == 'V')
 					|| (IDstr[Index[0]] == 'M' && IDstr[Index[1]] == 'A')
 					|| (IDstr[Index[0]] == 'P' && IDstr[Index[1]] == 'S')
-					|| (IDstr[Index[0]] == 'R' && IDstr[Index[1]] == 'P')
-					) {
+					|| (IDstr[Index[0]] == 'R' && IDstr[Index[1]] == 'P')) {
 				return OK;
 			}
 			return ERR;
@@ -15430,12 +15750,12 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
-	// Function: É­ÁÖÀàĞÍ±àÂë¹æÔò
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
+
+	// Function: æ£®æ—ç±»å‹ç¼–ç è§„åˆ™
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
 	// Index:5
-	// LenIndex: ³¤¶È±ØÎª5
+	// LenIndex: é•¿åº¦å¿…ä¸º5
 	// creator: fdl
 	public static String ForestTypes(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15456,14 +15776,13 @@ public class RuleFunction {
 				return OK;
 			} else
 				System.out.println("ERR000");
-				return ERR;
+			return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}
 	}
-	
 
-	// Function:654 ÑÌ¾íÏäÓÃÌõÂë±êÇ© ×éÖ¯»ú¹¹ÀàĞÍ
+	// Function:654 çƒŸå·ç®±ç”¨æ¡ç æ ‡ç­¾ ç»„ç»‡æœºæ„ç±»å‹
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15491,7 +15810,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:654 ÑÌ¾íÏäÓÃÌõÂë±êÇ© ×éÖ¯ËùÊôÊ¡¡¢×ÔÖÎÇø¡¢Ö±Ï½ÊĞ
+	// Function:654 çƒŸå·ç®±ç”¨æ¡ç æ ‡ç­¾ ç»„ç»‡æ‰€å±çœã€è‡ªæ²»åŒºã€ç›´è¾–å¸‚
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15531,7 +15850,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:654 ÑÌ¾íÏäÓÃÌõÂë±êÇ© ×éÖ¯ËùÊôÊĞ¡¢µØÇø
+	// Function:654 çƒŸå·ç®±ç”¨æ¡ç æ ‡ç­¾ ç»„ç»‡æ‰€å±å¸‚ã€åœ°åŒº
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15560,7 +15879,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:658 ¶şÎ»ÌõĞÎÂëÍø¸ñ¾ØÕóÂë Ğ¡Ğ´×ÖÄ¸Ä£Ê½
+	// Function:658 äºŒä½æ¡å½¢ç ç½‘æ ¼çŸ©é˜µç  å°å†™å­—æ¯æ¨¡å¼
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15594,7 +15913,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:658 ¶şÎ»ÌõĞÎÂëÍø¸ñ¾ØÕóÂë Êı×Ö×ÖÄ¸»ìºÏÄ£Ê½
+	// Function:658 äºŒä½æ¡å½¢ç ç½‘æ ¼çŸ©é˜µç  æ•°å­—å­—æ¯æ··åˆæ¨¡å¼
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15635,7 +15954,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:700 Â½ÉúÒ°Éú¶¯ÎïÒß²¡·ÖÀà
+	// Function:700 é™†ç”Ÿé‡ç”ŸåŠ¨ç‰©ç–«ç—…åˆ†ç±»
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15668,7 +15987,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:704º£ÑóĞÅÏ¢·ÖÀàÓë´úÂë3,4Á½Î»¶¨Òå
+	// Function:704æµ·æ´‹ä¿¡æ¯åˆ†ç±»ä¸ä»£ç 3,4ä¸¤ä½å®šä¹‰
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15696,7 +16015,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:698 È«¹úÎÀÉúĞĞÒµÒ½ÁÆÆ÷Ğµ¡¢ÒÇÆ÷Éè±¸·ÖÀà
+	// Function:698 å…¨å›½å«ç”Ÿè¡Œä¸šåŒ»ç–—å™¨æ¢°ã€ä»ªå™¨è®¾å¤‡åˆ†ç±»
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15729,7 +16048,7 @@ public class RuleFunction {
 		}
 	}
 
-	// Function:728(1)ÖĞÒ½¼²²¡·ÖÀà
+	// Function:728(1)ä¸­åŒ»ç–¾ç—…åˆ†ç±»
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15761,7 +16080,8 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	// Function:728(2)ÖĞÒ½¼²²¡Ö¢×´
+
+	// Function:728(2)ä¸­åŒ»ç–¾ç—…ç—‡çŠ¶
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15793,7 +16113,8 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	// Function:706,708µØÖÊ·ÖÀà
+
+	// Function:706,708åœ°è´¨åˆ†ç±»
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15825,7 +16146,8 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	// Function:710µØÖÊ·ÖÀà
+
+	// Function:710åœ°è´¨åˆ†ç±»
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -15857,11 +16179,12 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	// Function: 722 ¹ú¼ÊÃ³Ò×¼ÆÁ¿µ¥Î»
-	// IDstr: ±êÊ¶±àÂë
-	// LenID: ±êÊ¶±àÂëµÄ³¤¶È
-	// Index: µ÷ÓÃÕıÔòµÄµÄË÷ÒıÎ»ÖÃ
-	// LenIndex:²»¶¨³¤
+
+	// Function: 722 å›½é™…è´¸æ˜“è®¡é‡å•ä½
+	// IDstr: æ ‡è¯†ç¼–ç 
+	// LenID: æ ‡è¯†ç¼–ç çš„é•¿åº¦
+	// Index: è°ƒç”¨æ­£åˆ™çš„çš„ç´¢å¼•ä½ç½®
+	// LenIndex:ä¸å®šé•¿
 	// creator: lhx
 	public static String MeasureUnit(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -15871,7 +16194,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			
+
 			for (int i = 0; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
@@ -15882,8 +16205,397 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-=======
->>>>>>> menglunyang-master
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: check the legality of the first seven numbers of a given mobile
+	// phone number
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// creator: dgq
+	public static String MobilePhoneNum(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+
+			String code = "";
+			int LEN_PREFIX = 7; // relate to the first 7 number of a given phone
+								// number
+			for (int i = 0; i < LEN_PREFIX; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPrefixPhoneNO(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: check the legality of the first two characters of a normal
+	// vehicle number
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// creator: dgq
+	public static String VehicleNONormal(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+
+			String code = "";
+			int LEN_PREFIX = 2; // relate to the first 2 characters of a given
+								// normal vehicle number
+			for (int i = 0; i < LEN_PREFIX; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPrefixNormalVehicleNO(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: check the legality of the first two characters of a army
+	// vehicle number
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// creator: dgq
+	public static String VehicleNOArmy(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+
+			String code = "";
+			int LEN_PREFIX = 2; // relate to the first 2 characters of a army
+								// vehicle number
+			for (int i = 0; i < LEN_PREFIX; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPrefixArmyVehicleNO(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: check the legality of the last one character of a army vehicle
+	// number
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// creator: dgq
+	public static String VehicleNOArmySuffix(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (7 == LenID) { // the length of the army vehicle number is 7
+				if (IDstr[6] >= '0' && IDstr[6] <= '9') {
+					return OK;
+				}
+			} else if (6 == LenID) {// the length of the army vehicle number is
+									// 6
+				return OK;
+			}
+
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function: check the legality of the third character of a WJ vehicle
+	// number
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// creator: dgq
+	public static String VehicleNOWJ(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+
+			String code = String.valueOf(IDstr[Index[0]]);
+
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPrefixWJVehicleNO(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// Function:
+	// http://zh.wikipedia.org/zh-cn/%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E4%B9%A6%E5%8F%B7
+	// creator: menglunyang
+	public static String ISBN13(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (IDstr[0] == '9' && IDstr[1] == '7'
+					&& (IDstr[2] == '8' || IDstr[2] == '9')) {
+				int checkNumber = (IDstr[0] - 48) * 1 + (IDstr[1] - 48) * 3
+						+ (IDstr[2] - 48) * 1 + (IDstr[3] - 48) * 3
+						+ (IDstr[4] - 48) * 1 + (IDstr[5] - 48) * 3
+						+ (IDstr[6] - 48) * 1 + (IDstr[7] - 48) * 3
+						+ (IDstr[8] - 48) * 1 + (IDstr[9] - 48) * 3
+						+ (IDstr[10] - 48) * 1 + (IDstr[11] - 48) * 3;
+				checkNumber = checkNumber % 10;
+				checkNumber = 10 - checkNumber;
+				if (checkNumber == 10 && IDstr[12] == '0'
+						|| checkNumber == IDstr[12] - 48)
+					return OK;
+			}
+			return ERR;
+
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	/*
+	 * 1,2,3 digit wt
+	 */
+	public static String One2ThreeDigit(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex == 1) {
+			int index = (int) IDstr[Index[0]] - 48;
+			if (index >= 0 && index <= 9)
+				return OK;
+			else
+				return ERR;
+		} else if (LenIndex == 2) {
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
+				return OK;
+			else
+				return ERR;
+		} else if (LenIndex == 3) {
+			int index1 = (int) IDstr[Index[0]] - 48;
+			int index2 = (int) IDstr[Index[1]] - 48;
+			int index3 = (int) IDstr[Index[2]] - 48;
+			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9
+					&& index3 >= 0 && index3 <= 9)
+				return OK;
+			else
+				return ERR;
+		} else
+			return ERR;
+
+	}
+
+	/*
+	 * A-E,or null wt
+	 */
+	public static String A2EOrNull(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex == 0)
+			return OK;
+		if (LenIndex == 1) {
+			if (IDstr[Index[0]] == 'A' || IDstr[Index[1]] == 'B'
+					|| IDstr[Index[2]] == 'C' || IDstr[Index[3]] == 'D'
+					|| IDstr[Index[4]] == 'E')
+				return OK;
+			else
+				return ERR;
+		}
+		return ERR;
+	}
+
+	// special character underline _
+	// zll
+	public static String Underline(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[_]";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			// Index[0]ä¿å­˜çš„ä½ç½®
+			code = String.valueOf(IDstr[Index[0]]);
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// specail character hyphen - zll
+	public static String Hyphen(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[-]";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			// Index[0]ä¿å­˜çš„ä½ç½®
+			code = String.valueOf(IDstr[Index[0]]);
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// specail character plus - zll
+	public static String Plus(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[+]";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			// Index[0]ä¿å­˜çš„ä½ç½®
+			code = String.valueOf(IDstr[Index[0]]);
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// specail character slash - zll
+	public static String Slash(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[/]";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			// Index[0]ä¿å­˜çš„ä½ç½®
+			code = String.valueOf(IDstr[Index[0]]);
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// specail character dot - zll
+	public static String Dot(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[.]";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			// Index[0]ä¿å­˜çš„ä½ç½®
+			code = String.valueOf(IDstr[Index[0]]);
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+	
+	// Function: åˆ¤æ–­2ä¸ªå­—èŠ‚æ˜¯ä¸æ˜¯å±äº(01-08,90)
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes, å›ºå®šä¸º2
+	public static String TwobytleCode08and90(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			int index1 = Index[0];
+			int index2 = Index[1];
+
+			if (IDstr[index1] == '0') {
+				if (IDstr[index2] >= '1' && IDstr[index2] <= '8') {
+					return OK;
+				}
+			}
+
+			if (IDstr[index1] == '9' && IDstr[index2] == '0') {
+				return OK;
+			}
+			return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}

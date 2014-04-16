@@ -9,8 +9,8 @@ import cn.niot.util.*;
 
 public class NewIDstdCollisionDetect {
 	private static NewIDstdCollisionDetect collisionDetectAlg = new NewIDstdCollisionDetect();
-	private static Random r1 = new Random(1000);//ָ����������
-	private static double RandomNumber = 213;//����ʶ��ɵĸ���
+	private static Random r1 = new Random(1000);
+	private static double RandomNumber = 213;
 	private static int BEGIN_END = 2;
 	
 	public static NewIDstdCollisionDetect getCollisionDetectAlgorithm() {
@@ -34,11 +34,6 @@ public class NewIDstdCollisionDetect {
 			 for (int temp = index_begin; temp <= index_end; temp++){
 				jsonObject.put(String.valueOf(temp - 1), subEle[1]);
 			 }
-			 /*  
-			 for (char temp = subsubEle[0].charAt(0); temp <=  subsubEle[1].charAt(0); temp++){
-				 jsonObject.put(String.valueOf((char)((int)temp - 1)), subEle[1]);
-			 }
-			 */
 		 }
 		 resJasonStr = jsonObject.toString();
 		return resJasonStr;
@@ -100,7 +95,7 @@ public class NewIDstdCollisionDetect {
 	        	int index = Integer.parseInt((String)key);
 	        	String byteRule = (String)value;
 	        	
-	        	//���һ������ַ�//
+	        	
 	        	char resChar = generateRandomChar(byteRule);
 	        	instr[index] = resChar;
 	        }catch (Exception e){
@@ -164,7 +159,7 @@ public class NewIDstdCollisionDetect {
 			i++; 
 		}
 		if (i > 0){
-			//��������㷨
+			
 			resChar = randomizeArray(resChars, i);
 		}	
         

@@ -20,30 +20,42 @@ public class RecoAction extends ActionSupport {
 		this.iotID = iotID;
 	}
 	
-	private String Msg;    // 添加一个变量
+	private String Msg;    
 
 
-	public String getMsg() {    // 添加getter
+	public String getMsg() {    
 		return Msg;
 	}
 	public String execute() {
 		if (iotID.equals("123456")){
-			Msg = "                   "+ iotID + " is ID type A";     // 逻辑运算
+			Msg = "                   "+ iotID + " is ID type A";    
 		} else{
-			Msg = "                   "+ iotID + " is not ID type A";     // 逻辑运算
+			Msg = "                   "+ iotID + " is not ID type A";     
 		}
 		//138000100000000001.sh.beidou.cid.iot.cn
 		//char [] IDstr = new char[]{'1','3','8','0','0','0','1','0','0','0','0','0','0','0','0','0','0','.','s','h','.','b','e','i',
 		//		'd','o','u','.','c','i','d','.','i','o','t','.','c','n'};
-		char[] IDstr = new char[]{'1', 'a','d','0','1'};
+		char[] IDstr = new char[]{'1', 'a','d','_','1'};
 		
-		int [] index = new int[3];
-		index[0] = 1;
-		index[1] = 4;
-		index[2] = -1;
+		int [] index = new int[1];
+		index[0] = 3;
+//		index[1] = 4;
+//		index[2] = -1;
 //		index[3] = 3;
 //		index[4] = 4;
-		System.out.println(RuleFunction.GraiSerialNo(IDstr, 5, index, 3));
+		String tr1 = new String("浜慚");
+		int j = tr1.length();
+		char[] IDstr1 = new char[j];
+		for (int i = 0; i < j; i++) {
+			IDstr1[i] = tr1.charAt(i);
+		}
+		int[] index1 = new int[j];
+
+		for (int i = 0; i < j; i++) {
+			index1[i] = i;
+		}
+
+		System.out.println(RuleFunction.Underline(IDstr, IDstr.length, index, index.length));
 		
 		//NewIDstdCollisionDetect collisionDetecAlg = NewIDstdCollisionDetect.getCollisionDetectAlgorithm();
 		//System.out.println(collisionDetecAlg.jsonStr2HashMap("{\"name\": \"123\",\"array\":\"abc\",\"address\":\"guangzhou\"}"));
@@ -54,7 +66,7 @@ public class RecoAction extends ActionSupport {
 		
 		RuleFuncTest.testTwoByteDecimalnt();
 		
-		return "sucess"; //预定义常量
+		return "sucess"; //鎴愬姛
 	} 
 
 }
