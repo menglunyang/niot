@@ -16567,4 +16567,37 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+	
+	// Function: 判断2个字节是不是属于(01-08,90)
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes, 固定为2
+	public static String TwobytleCode08and90(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			int index1 = Index[0];
+			int index2 = Index[1];
+
+			if (IDstr[index1] == '0') {
+				if (IDstr[index2] >= '1' && IDstr[index2] <= '8') {
+					return OK;
+				}
+			}
+
+			if (IDstr[index1] == '9' && IDstr[index2] == '0') {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 }
