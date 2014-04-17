@@ -5173,4 +5173,25 @@ public class RecoDao {
 		}
 		return ret;
 	}
+	
+	public static HashMap<String, String> test()
+	{
+		HashMap<String, String> test = new HashMap<String, String>();
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		try{
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TEST);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while(results.next()){
+				test.put(results.getString("testID"), results.getString("test"));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return test;
+	}
 }

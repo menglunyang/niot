@@ -529,6 +529,8 @@ public class RecoUtil {
 	// 710地质矿物大类分类选词范围
 	public static final String SELECT_DZCLASSIFY710 = "select *from dzclassify710 where code=?";
 
+	public static final String SELECT_TEST="select * from test";
+
 	// 获得URL地址ַ
 	public static String getURLParam(String paramName) {
 		ActionContext ctx = ActionContext.getContext();

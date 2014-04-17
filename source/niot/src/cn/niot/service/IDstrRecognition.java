@@ -9,6 +9,11 @@ import net.sf.json.JSONObject;
 import cn.niot.dao.*;
 import cn.niot.util.JdbcUtils;
 import cn.niot.util.RecoUtil;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.File;
+
 
 public class IDstrRecognition {
 	static String DEBUG = "OFF";//the value of DEBUG can be "ON" or "OFF"
@@ -373,5 +378,64 @@ public class IDstrRecognition {
 			}
 		}
 		rmvRuleSet.remove(delRule);
+	}
+	
+	public static void testAndTestID() throws IOException {
+		HashMap<String, String> testHashMap = new HashMap<String, String>();
+		testHashMap = RecoDao.test();
+		Iterator<String> iterator1 = testHashMap.keySet().iterator();
+		while(iterator1.hasNext()){
+			Object testID = iterator1.next();
+			String test = testHashMap.get(testID);
+			int i = 0;
+			ArrayList<String> s= hashMapTypeToRules.get(testID);
+			String resFlag = "OK";
+			String res = "";
+			for (i = 0; i < s.size(); i++) {
+				String temp = s.get(i);
+				String[] splitRules = temp.split(
+						"\\)\\(\\?\\#PARA=");// 提取规则名
+				String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
+				if (!match(splitRules[0], splitParameter[0], test)) {
+					resFlag = "ERR";
+					res = res + "ERROR!  IoTID:" + testID + "  InputIDstr:"+ test + "  Function:" + splitRules[0]+ "  FuncPara:" + splitParameter[0] + "\n";				                                                              					             					
+					
+				} else {
+					res = res + "OK!  IoTID:" + testID + "  InputIDstr:"+ test + "  Function:" + splitRules[0]+ "  FuncPara:" + splitParameter[0] + "\n";
+				
+				}
+			}
+			if (resFlag == "OK") {
+				File f = new File("e://DebugResultOK.txt");					
+				BufferedWriter output = new BufferedWriter(new FileWriter(f,true));
+				output.append(res);
+				output.append("\n");
+				output.flush();
+				output.close();
+				
+				//////////////////////////////////
+				File f1 = new File("e://DebugResultOKID.txt");					
+				BufferedWriter output1 = new BufferedWriter(new FileWriter(f1,true));
+				output1.append(testID.toString());
+				output1.append("\n");
+				output1.flush();
+				output1.close();
+			} else {
+				File f = new File("e://DebugResultERROR.txt");					
+				BufferedWriter output = new BufferedWriter(new FileWriter(f,true));
+				output.append(res);
+				output.append("\n");
+				output.flush();
+				output.close();
+				
+				//////////////////////////////////
+				File f1 = new File("e://DebugResultERRORID.txt");					
+				BufferedWriter output1 = new BufferedWriter(new FileWriter(f1,true));
+				output1.append(testID.toString());
+				output1.append("\n");
+				output1.flush();
+				output1.close();
+			}
+		}
 	}
 }
