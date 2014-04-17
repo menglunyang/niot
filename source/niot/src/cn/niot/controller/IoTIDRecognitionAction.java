@@ -158,7 +158,6 @@ public class IoTIDRecognitionAction extends ActionSupport {
 		if (0 == nflag){
 			IDstrRecognition.readDao(0);
 			//System.setOut(new PrintStream(new FileOutputStream("e:\\result.txt")));
-
 			IDstrRecognition.testAndTestID();
 			return SUCCESS;
 		}			

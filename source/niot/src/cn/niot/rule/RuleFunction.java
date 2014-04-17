@@ -16600,5 +16600,4 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-
 }
