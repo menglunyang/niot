@@ -37,11 +37,46 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	public static String IoTIDLength(String IDstr, int LenID, String parameter,
 			int LenIndex) {
+		if (IDstr.equals("2110")){
+			int ss = 0;
+			ss = ss + 1;
+		}
+		
 		// without length limit
 		boolean flag = false;
+		boolean flagMINUS = false;
+		int nIndexEnd = 0;
 		if (parameter.charAt(0) == '-') {// -1
 			return "OK";
 		} else {
+			int index = parameter.indexOf(",-1");
+			if(index >=0 )//存在
+			{
+				for (int i = index - 1; i >= 0; i--) {
+					if (parameter.charAt(i) == ',') {
+						int num = Integer.parseInt(parameter.substring(i, index));
+						if(IDstr.length()>=num){							
+							return OK;
+						} else {
+							flagMINUS = true;
+							nIndexEnd = i;
+						}
+							
+					}
+				}
+				int num = Integer.parseInt(parameter.substring(0, index));
+				if(IDstr.length()>=num){
+					return OK;
+				} else {
+					return ERR;
+				}
+					
+			} 
+			
+			if (true == flagMINUS) {
+				parameter = parameter.substring(0, nIndexEnd);
+			}
+
 			String[] lengthRanges = parameter.split(",");
 			for (int i = 0; i < lengthRanges.length; i++) {
 				String[] lengthMaxMin = lengthRanges[i].split("-");
@@ -67,7 +102,7 @@ public class RuleFunction {
 			return "ERR";
 		}
 	}
-
+	
 	// Function: represent a decimal integer whose value range is from 1 to 99
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string

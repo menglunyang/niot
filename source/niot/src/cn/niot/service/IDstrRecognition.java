@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.text.SimpleDateFormat;
 
 
 public class IDstrRecognition {
@@ -122,11 +123,22 @@ public class IDstrRecognition {
 			System.out.println(line);
 		}
 		Iterator<String> iterator2 = rmvIDSet.keySet().iterator();
+		Date today=new Date();
+		SimpleDateFormat f = new SimpleDateFormat("HH");
+		String time=f.format(today);
 		while (iterator2.hasNext()) {
 			Object key2 = iterator2.next();
 			double probability = rmvIDSet.get(key2) / totalProbabity;
 			typeProbability.put(String.valueOf(key2), probability);
 		}
+		/*
+		// change the pri probabilty
+        while (iterator2.hasNext()) {
+			Object key2 = iterator2.next();
+			double probability = rmvIDSet.get(key2) / totalProbabity;
+			typeProbability.put(String.valueOf(key2), probability);
+			RecoDao.add1ToPriorProbabilityX(Integer.parseInt(time), String.valueOf(key2));
+		}*/
 		//System.out.println(System.currentTimeMillis());
 		return typeProbability;
 	}
