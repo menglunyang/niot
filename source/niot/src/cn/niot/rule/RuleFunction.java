@@ -15943,13 +15943,7 @@ public class RuleFunction {
 			}
 			BigInteger src = new BigInteger(code, 2);
 			int traCode = src.intValue();
-			if (traCode >= 48 && traCode <= 57)
-				return OK;
-			else if (traCode >= 65 && traCode <= 90)
-				return OK;
-			else if (traCode >= 97 && traCode <= 122)
-				return OK;
-			else if (traCode == 32)
+			if (traCode >= 0 && traCode <= 63)
 				return OK;
 			else
 				return ERR;
@@ -16482,7 +16476,7 @@ public class RuleFunction {
 		}
 	}
 
-	// specail character hyphen - zll
+	// special character hyphen - zll
 	public static String Hyphen(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -16631,5 +16625,24 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
+	}
+
+	// wt
+	public static String OneTO10No99(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 10;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
 	}
 }
