@@ -14985,32 +14985,32 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("00000000000009N");
+		String tr1 = new String("000000000000014");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("00000000000008P");
+		String tr2 = new String("000000000000066");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("00000000000006o");
+		String tr3 = new String("00000000000009Y");
 		char[] IDstr3 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("000000000000059");
+		String tr4 = new String("00000000000006A");
 		char[] IDstr4 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
-		String tr5 = new String("000000000000097");
+		String tr5 = new String("00000000000005X");
 		char[] IDstr5 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr5[i] = tr5.charAt(i);
