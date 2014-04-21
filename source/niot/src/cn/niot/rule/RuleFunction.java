@@ -411,7 +411,6 @@ public class RuleFunction {
 					return OK;
 				}
 			}
-
 			if (IDstr[index1] == '9') {
 				if (IDstr[index2] == '9') {
 					return OK;
@@ -14964,7 +14963,11 @@ public class RuleFunction {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortProductCode(code);
 			if (ret) {
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> f9b22cba3e0b3ece949d5ab55d713bca437d036c
 				return OK;
 			} else {
 				return ERR;
@@ -16867,6 +16870,10 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+<<<<<<< HEAD
 
 }
 
+=======
+}
+>>>>>>> f9b22cba3e0b3ece949d5ab55d713bca437d036c
