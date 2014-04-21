@@ -9,6 +9,12 @@ import net.sf.json.JSONObject;
 import cn.niot.dao.*;
 import cn.niot.util.JdbcUtils;
 import cn.niot.util.RecoUtil;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.text.SimpleDateFormat;
+
 
 public class IDstrRecognition {
 	static String DEBUG = "OFF";//the value of DEBUG can be "ON" or "OFF"
@@ -55,9 +61,10 @@ public class IDstrRecognition {
 
 		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
 			if("ON"==DEBUG_TIME)timeSortRulesBegin=System.currentTimeMillis();
-			sortRules();
+			//sortRules(); //Temporarily moved by dgq, 2014-04-21 
 			if("ON"==DEBUG_TIME)timeSortRules=System.currentTimeMillis()-timeSortRulesBegin;
-			String maxRule = getMax();
+			//String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21 
+			String maxRule = getMax_dgq();//Temporarily added by dgq, 2014-04-21
 			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
 			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
 			if ("ON" == DEBUG){
@@ -117,11 +124,22 @@ public class IDstrRecognition {
 			System.out.println(line);
 		}
 		Iterator<String> iterator2 = rmvIDSet.keySet().iterator();
+		Date today=new Date();
+		SimpleDateFormat f = new SimpleDateFormat("HH");
+		String time=f.format(today);
 		while (iterator2.hasNext()) {
 			Object key2 = iterator2.next();
 			double probability = rmvIDSet.get(key2) / totalProbabity;
 			typeProbability.put(String.valueOf(key2), probability);
 		}
+		/*
+		// change the pri probabilty
+        while (iterator2.hasNext()) {
+			Object key2 = iterator2.next();
+			double probability = rmvIDSet.get(key2) / totalProbabity;
+			typeProbability.put(String.valueOf(key2), probability);
+			RecoDao.add1ToPriorProbabilityX(Integer.parseInt(time), String.valueOf(key2));
+		}*/
 		//System.out.println(System.currentTimeMillis());
 		return typeProbability;
 	}
@@ -255,7 +273,8 @@ public class IDstrRecognition {
 
 		return true;
 	}
-
+	//some comments added by dengguangqing, on 2014-04-21
+	// get the rule with the largest weight
 	private static String getMax() {
 		Set<String> keySet = rmvRuleSet.keySet();
 		Iterator ikey = keySet.iterator();
@@ -274,7 +293,23 @@ public class IDstrRecognition {
 		}
 		return maxName;
 	}
+	
+	//some comments added by dengguangqing, on 2014-04-21
+	// get one rule randomly
+	private static String getMax_dgq() {
+		Set<String> keySet = rmvRuleSet.keySet();
+		Iterator ikey = keySet.iterator();
+		String nextName = "";
 
+		while (ikey.hasNext()) {
+			nextName = (String) ikey.next();
+			break;
+		}
+		return nextName;
+	}
+	
+	//some comments added by dengguangqing, 2014-04-21
+	//the function is calculate the weight of each rule
 	private static void sortRules() {
 		// TODO Auto-generated method stub
 		double p = 0.0;
@@ -293,14 +328,16 @@ public class IDstrRecognition {
 				}
 			}
 			if (p == 0 || p == 1) {
-				System.out.println(ruleName + " p is 0 or 1,error!");
+				System.out.println("ERROR!  " + ruleName + " p is 0 or 1,error!");
 			}
 			if (p > 1 || p < 0) {
-				System.out.println(ruleName + " p is not in 1~0 range,error!");
+				System.out.println("ERROR!  " + ruleName + " p is not in 1~0 range,error!");
 			}
 			rmvRuleSet.put(ruleName, w(p));// p!=0 or 1
 		}
 	}
+	
+	
 
 	private static double w(double p) {
 		double q = 1 - p;
@@ -308,7 +345,8 @@ public class IDstrRecognition {
 				/ Math.log(2);
 	}
 
-	// ƥ�䲻�ɹ�����rmvISDet - arrayList
+	// comments added by dengguangqing, 2014-04-21
+	// remove those IDs in rmvIDSet relating to the rule which fails in matching
 	private static void subtraction(HashMap<String, Double> rmvIDSet,
 			ArrayList<String> arrayList) {
 		Iterator<String> iterator = rmvIDSet.keySet().iterator();
@@ -344,9 +382,10 @@ public class IDstrRecognition {
 		}
 	}
 
-	// ����rmvRuleSet
+	// some comments added by dengguangqing, 2014-04-21
+	// update rmvRuleSet according to new rmvIDSet and currently already matched rule
 	private static void union(String delRule) {
-		Iterator<String> iter = rmvIDSet.keySet().iterator();
+		Iterator<String> iter = rmvIDSet.keySet().iterator();// IoT ID set
 
 		ArrayList<String> arrayList = new ArrayList<String>(); // ֱ�Ӱ�ÿ��ruleȫ���ϲ���һ��list�������Ƿ��ظ�
 		ArrayList<String> arrayList_Rules;
@@ -355,7 +394,7 @@ public class IDstrRecognition {
 			String ID_key = (String) iter.next();
 
 			arrayList_Rules = new ArrayList<String>();
-			arrayList_Rules = hashMapTypeToRules.get(ID_key);
+			arrayList_Rules = hashMapTypeToRules.get(ID_key);// obtain the rule set corresponding to the given IoT ID
 
 			for (String rule : arrayList_Rules) {
 				arrayList.add(rule);
@@ -373,5 +412,68 @@ public class IDstrRecognition {
 			}
 		}
 		rmvRuleSet.remove(delRule);
+	}
+	
+	public static void testAndTestID() throws IOException {
+		HashMap<String, String> testHashMap = new HashMap<String, String>();
+		testHashMap = RecoDao.test();
+		Iterator<String> iterator1 = testHashMap.keySet().iterator();
+		while(iterator1.hasNext()){
+			Object testID = iterator1.next();
+			String test = testHashMap.get(testID);
+			int i = 0;
+			// just for test, added by dgq
+			if (test.equals("10100")){
+				i = 0;
+			}
+			ArrayList<String> s= hashMapTypeToRules.get(testID);
+			String resFlag = "OK";
+			String res = "";
+			for (i = 0; i < s.size(); i++) {
+				String temp = s.get(i);
+				String[] splitRules = temp.split(
+						"\\)\\(\\?\\#PARA=");// 提取规则名
+				String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
+				if (!match(splitRules[0], splitParameter[0], test)) {
+					resFlag = "ERR";
+					res = res + "ERROR!  IoTID:" + testID + "  InputIDstr:"+ test + "  Function:" + splitRules[0]+ "  FuncPara:" + splitParameter[0] + "\n";				                                                              					             					
+					
+				} else {
+					res = res + "OK!  IoTID:" + testID + "  InputIDstr:"+ test + "  Function:" + splitRules[0]+ "  FuncPara:" + splitParameter[0] + "\n";
+				
+				}
+			}
+			if (resFlag == "OK") {
+				File f = new File("e://DebugResultOK.txt");					
+				BufferedWriter output = new BufferedWriter(new FileWriter(f,true));
+				output.append(res);
+				output.append("\n");
+				output.flush();
+				output.close();
+				
+				//////////////////////////////////
+				File f1 = new File("e://DebugResultOKID.txt");					
+				BufferedWriter output1 = new BufferedWriter(new FileWriter(f1,true));
+				output1.append(testID.toString());
+				output1.append("\n");
+				output1.flush();
+				output1.close();
+			} else {
+				File f = new File("e://DebugResultERROR.txt");					
+				BufferedWriter output = new BufferedWriter(new FileWriter(f,true));
+				output.append(res);
+				output.append("\n");
+				output.flush();
+				output.close();
+				
+				//////////////////////////////////
+				File f1 = new File("e://DebugResultERRORID.txt");					
+				BufferedWriter output1 = new BufferedWriter(new FileWriter(f1,true));
+				output1.append(testID.toString());
+				output1.append("\n");
+				output1.flush();
+				output1.close();
+			}
+		}
 	}
 }

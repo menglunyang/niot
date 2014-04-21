@@ -5173,4 +5173,69 @@ public class RecoDao {
 		}
 		return ret;
 	}
+	
+	public static HashMap<String, String> test()
+	{
+		HashMap<String, String> test = new HashMap<String, String>();
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		try{
+			stmt = connection.prepareStatement(RecoUtil.SELECT_TEST);
+			results = stmt.executeQuery();
+			int rowcount = 0;
+			while(results.next()){
+				test.put(results.getString("testID"), results.getString("test"));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return test;
+	}
+	//add priorProbabilityX
+	//by menglunyang
+	public static String add1ToPriorProbabilityX(int hour, String ID){
+		Connection connection = JdbcUtils.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		try {
+			switch (hour){
+			case 0:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY0);break;
+			case 1:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY1);break;
+			case 2:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY2);break;
+			case 3:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY3);break;
+			case 4:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY4);break;
+			case 5:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY5);break;
+			case 6:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY6);break;
+			case 7:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY7);break;
+			case 8:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY8);break;
+			case 9:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY9);break;
+			case 10:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY10);break;
+			case 11:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY11);break;
+			case 12:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY12);break;
+			case 13:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY13);break;
+			case 14:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY14);break;
+			case 15:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY15);break;
+			case 16:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY16);break;
+			case 17:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY17);break;
+			case 18:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY18);break;
+			case 19:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY19);break;
+			case 20:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY20);break;
+			case 21:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY21);break;
+			case 22:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY22);break;
+			case 23:stmt = connection.prepareStatement(RecoUtil.ADD_ONE_TO_PRIORPROBABILITY23);break;
+			
+			}
+			stmt.setString(1, ID);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.free(null, null, connection);
+		}
+		return "ok";
+	}
+
 }

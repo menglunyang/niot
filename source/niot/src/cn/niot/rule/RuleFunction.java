@@ -14,8 +14,6 @@ public class RuleFunction {
 	static int NO_LENGHT_LIMIT = -1;
 
 	public static void main(String[] args) {
-		// System.out.println("你好世界!");
-		// System.out.println("Hello World!");
 		char[] IDstr = new char[4];
 		IDstr[0] = '0';
 		IDstr[1] = '2';
@@ -26,8 +24,6 @@ public class RuleFunction {
 		index[1] = 1;
 		index[2] = 2;
 		index[3] = 3;
-		System.out
-				.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 	}
 
 	// Function: represent a decimal integer whose value range is from 1 to 99
@@ -37,11 +33,46 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	public static String IoTIDLength(String IDstr, int LenID, String parameter,
 			int LenIndex) {
+		if (IDstr.equals("2110")){
+			int ss = 0;
+			ss = ss + 1;
+		}
+		
 		// without length limit
 		boolean flag = false;
+		boolean flagMINUS = false;
+		int nIndexEnd = 0;
 		if (parameter.charAt(0) == '-') {// -1
 			return "OK";
 		} else {
+			int index = parameter.indexOf(",-1");
+			if(index >=0 )//存在
+			{
+				for (int i = index - 1; i >= 0; i--) {
+					if (parameter.charAt(i) == ',') {
+						int num = Integer.parseInt(parameter.substring(i, index));
+						if(IDstr.length()>=num){							
+							return OK;
+						} else {
+							flagMINUS = true;
+							nIndexEnd = i;
+						}
+							
+					}
+				}
+				int num = Integer.parseInt(parameter.substring(0, index));
+				if(IDstr.length()>=num){
+					return OK;
+				} else {
+					return ERR;
+				}
+					
+			} 
+			
+			if (true == flagMINUS) {
+				parameter = parameter.substring(0, nIndexEnd);
+			}
+
 			String[] lengthRanges = parameter.split(",");
 			for (int i = 0; i < lengthRanges.length; i++) {
 				String[] lengthMaxMin = lengthRanges[i].split("-");
@@ -67,7 +98,7 @@ public class RuleFunction {
 			return "ERR";
 		}
 	}
-
+	
 	// Function: represent a decimal integer whose value range is from 1 to 99
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -1724,11 +1755,16 @@ public class RuleFunction {
 					* (Math.pow(2, LenIndex - i - 1) % 11);
 		}
 		String check;
+<<<<<<< HEAD
 		// System.out.println(sum);
 		int mod = (int) (11 - (sum % 11));
 		check = Integer.toString(mod % 10);
 		// System.out.println(check);
 		// System.out.println(mod);
+=======
+		int mod = (int) (11 - (sum % 11));
+		check = Integer.toString(mod % 10);
+>>>>>>> 54aa45efaf99d4330919560a9cdfcca96ea151e6
 		if (check.equals(Integer.toString((int) IDstr[Index[j]] - 48))) {
 			return OK;
 		} else {
@@ -2057,7 +2093,7 @@ public class RuleFunction {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
 			}
-			System.out.println(check);
+
 			if (check == (IDstr[Index[b]])) {
 				return OK;
 			} else {
@@ -2171,7 +2207,6 @@ public class RuleFunction {
 			int e = 0;
 			e = b - 1;
 			for (j = 0; j < LenIndex - 1; j++) {
-				System.out.print((int) IDstr[Index[j]]);
 				if ((int) IDstr[Index[j]] < 10) {
 					nums[e] = (int) IDstr[Index[j]];
 					e--;
@@ -2188,7 +2223,6 @@ public class RuleFunction {
 				sum = sum + nums[f];
 			}
 
-			System.out.print(sum);
 			if (10 - sum % 10 == 10) {
 				check = 0;
 			} else {
@@ -2743,7 +2777,6 @@ public class RuleFunction {
 			for (int i = 0; i < 2; i++) {
 				s = s.concat(String.valueOf(IDstr[Index[i]]));
 			}
-			System.out.println("s=" + s);
 			if (s.equals("00") || s.equals("01") || s.equals("10")
 					|| s.equals("11") || s.equals("12") || s.equals("30")
 					|| s.equals("31") || s.equals("32") || s.equals("44")
@@ -3048,24 +3081,15 @@ public class RuleFunction {
 				id1 = id1.concat(String.valueOf(IDstr[Index[i]]));
 			}
 
-			System.out.println("str id1=" + id1);
-
 			for (int i = 13; i < 15; i++) {
 				id2 = id2.concat(String.valueOf(IDstr[Index[i]]));
 			}
 
-			System.out.println("str id2=" + id2);
-
 			double input = Double.parseDouble(id1);
 			double output = Double.parseDouble(id2);
-
-			System.out.println("int input=" + input);
-			System.out.println("int output=" + output);
-
 			if ((98 - (input * 100) % 97) == output) {
 				return OK;
 			}
-
 			return ERR;
 		} catch (Exception e) {
 			return ERR;
@@ -3375,22 +3399,18 @@ public class RuleFunction {
 				if (i % 2 == 1) {
 					sum1 = sum1 + (IDstr[i]);
 					sum1 = sum1 - 48;// 字符转化为整形
-					System.out.println((int) IDstr[i]);
 				}
 			}
-			System.out.println("sum1=" + sum1);
+
 			sum1 = sum1 * 3;
 			for (int i = 0; i < 11; i++) {
 				if (i % 2 == 0) {
 					sum2 += IDstr[i];
 					sum2 = sum2 - 48;// 字符转化为整形
-					System.out.println(IDstr[i]);
 				}
 			}
 
-			System.out.println("sum2=" + sum2);
 			sum = sum1 + sum2;
-			System.out.println("sum=" + sum);
 			dd = sum / 10;
 			dd += 1;
 			dd = dd * 10;
@@ -3400,7 +3420,7 @@ public class RuleFunction {
 					return OK;
 				}
 			}
-			System.out.println("��֤��λ=" + code);
+
 			if (code == (int) IDstr[12] - 48) {
 				return OK;
 			}
@@ -3579,15 +3599,11 @@ public class RuleFunction {
 			for (int i = 0; i < 14; i++) {
 				s[i] = p[i] + a[14 - i];
 				p[i + 1] = s[i] * r;
-				System.out.println("s[i]=" + s[i]);
-				System.out.println("p[i]=" + p[i]);
 			}
 
 			if ((p[14] + a[0]) % 36 == 1 || (p[14] + a[0]) % 37 == 1) {
 				return OK;
 			}
-			System.out.println("(p[14]+a[0])%36=" + (p[14] + a[0]) % 36);
-			System.out.println("(p[14]+a[0])%37=" + (p[14] + a[0]) % 37);
 			return ERR;
 
 		} catch (Exception e) {
@@ -3618,7 +3634,6 @@ public class RuleFunction {
 			}
 			sum = 5 * a[1] + 4 * a[2] + 3 * a[3] + 2 * a[4];
 
-			System.out.println("sum=" + sum);
 			if (sum % 11 == a[5]) {
 				return OK;
 			}
@@ -9679,20 +9694,14 @@ public class RuleFunction {
 				if (s[i] % 10 == 0) {
 					p[i + 1] = 20;
 				}
-				// System.out.println("s[i]=" + s[i]);
-				// System.out.println("p[i]=" + p[i]);
 			}
 			p[14] = (s[13] % 10) * 2;
-			// System.out.println("p[14]=" + p[14]);
 			s[14] = p[14] % 11 + a[0];
-			// System.out.println("s[14]=" + s[14]);
 
 			if (s[14] % 10 == 1) {
 				return OK;
 			}
-
 			return ERR;
-
 		} catch (Exception e) {
 			return ERR;
 		}
@@ -9746,7 +9755,7 @@ public class RuleFunction {
 			for (int i = 0; i < 4; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
-			System.out.println(code);
+
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariffMa282(code);
 			if (ret) {
@@ -10262,7 +10271,14 @@ public class RuleFunction {
 		}
 
 	}
-
+	
+	// Function:  MH/T 0018-1999
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为0-8
+	//判断0-8位是不是在数据库中存在
+	// Creator:wt
 	public static String CivilAviation(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -10278,7 +10294,6 @@ public class RuleFunction {
 		for (int i = 0; i < 9; i++) {
 			code = code.concat(String.valueOf(IDstr[Index[i]]));
 		}
-		System.out.println(code);
 		try {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getCivilAviation(code);
@@ -10357,7 +10372,6 @@ public class RuleFunction {
 	 * list of corresponding indexes regarding to this algorithm LenIndex: the
 	 * number of indexes creator:wt
 	 */
-
 	public static String RoadTransportation5(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -10371,7 +10385,6 @@ public class RuleFunction {
 					+ String.valueOf(IDstr[Index[1]])
 					+ String.valueOf(IDstr[Index[2]]);
 			RecoDao recoDao = new RecoDao();
-			System.out.println(code);
 			boolean ret = recoDao.getRoadTransportation5(code);
 			if (ret) {
 				return OK;
@@ -10797,8 +10810,7 @@ public class RuleFunction {
 
 	}
 
-	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String PortTariff25(char[] IDstr, int LenID, int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -13007,7 +13019,7 @@ public class RuleFunction {
 			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
-			System.out.print(code);
+
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
@@ -13489,7 +13501,7 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
+
 		if (len == 4) {
 			String regex1 = "[0-9]{4}";
 			Pattern pa = Pattern.compile(regex1);
@@ -13579,7 +13591,6 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 10) {
 			String regex1 = "[0-9]{10}";
 			Pattern pa = Pattern.compile(regex1);
@@ -13622,7 +13633,6 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 4) {
 			String regex1 = "[0-9]{4}";
 			Pattern pa = Pattern.compile(regex1);
@@ -13665,7 +13675,6 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 3) {
 			String regex1 = "[0-9]{3}";
 			Pattern pa = Pattern.compile(regex1);
@@ -13754,7 +13763,6 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 2) {
 			String regex1 = "[0-9]{2}";
 			Pattern pa = Pattern.compile(regex1);
@@ -13860,7 +13868,6 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 4) {
 			String regex1 = "[0-9]{4}";
 			Pattern pa = Pattern.compile(regex1);
@@ -13931,7 +13938,6 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 3) {
 			String regex1 = "[0-9]{3}";
 			Pattern pa = Pattern.compile(regex1);
@@ -14105,7 +14111,6 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 
 		if (len == 5) {
 			String regex2 = "[0-9]{5}";
@@ -14219,8 +14224,6 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		System.out.println(len2);
-		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 6) {
 			String regex1 = "[0-9]{6}";
 			Pattern pa = Pattern.compile(regex1);
@@ -14240,7 +14243,6 @@ public class RuleFunction {
 			boolean ret = ma.matches();
 			if (ret) {
 				if (IDstr[0] == '3') {
-					System.out.println("pass");
 					return OK;
 				} else
 					return ERR;
@@ -14793,7 +14795,6 @@ public class RuleFunction {
 			for (int i = 0; i < 6; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
-			System.out.println("code=" + code);
 			if (code.equals("100000")) {
 				return OK;
 			}
@@ -14887,7 +14888,6 @@ public class RuleFunction {
 			int[] newIDstr = new int[LenIndex];
 			for (i = 0; i < LenIndex - 4; i++) {
 				newIDstr[i] = (int) (IDstr[Index[i + 4]] - 48);
-				System.out.println("newIDstr[i]=" + newIDstr[i]);
 			}
 
 			int sum = 0;
@@ -14947,10 +14947,9 @@ public class RuleFunction {
 	public static String ProductCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			// System.out.println("aaa");
 			return ERR;
 		}
-		if (IDstr[0] == '2') {
+	    if (IDstr[0] == '2') {
 			String code = "";
 			String regex = "[0-9]*";
 			for (int i = Index[0]; i < IDstr.length; i++) {
@@ -14972,7 +14971,6 @@ public class RuleFunction {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortProductCode(code);
 			if (ret) {
-
 				return OK;
 			} else {
 				return ERR;
@@ -14980,6 +14978,7 @@ public class RuleFunction {
 		}
 		return ERR;
 	}
+
 
 	// Function: 504 第10部分：服务类型及内容代码
 	// LenID: the number of characters in the ID string
@@ -15001,7 +15000,6 @@ public class RuleFunction {
 			int index3 = (int) IDstr[Index[2]] - 48;
 			int index4 = (int) IDstr[Index[3]] - 48;
 			int code = index1 * 1000 + index2 * 100 + index3 * 10 + index4;
-			System.out.println("code=" + code);
 			if ((code >= 0 && code <= 11) || code == 999)
 				return OK;
 			else if ((code >= 1000 && code <= 1010) || code == 1999)
@@ -15253,7 +15251,6 @@ public class RuleFunction {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
 			}
-			System.out.println(check);
 			if (check == (IDstr[Index[b]])) {
 
 				return OK;
@@ -15980,8 +15977,7 @@ public class RuleFunction {
 			boolean ret = recoDao.getPortForestTypes(code);
 			if (ret) {
 				return OK;
-			} else
-				System.out.println("ERR000");
+			}
 			return ERR;
 		} catch (Exception e) {
 			return ERR;
@@ -16605,32 +16601,20 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 1) {
-			int index = (int) IDstr[Index[0]] - 48;
-			if (index >= 0 && index <= 9)
-				return OK;
-			else
-				return ERR;
-		} else if (LenIndex == 2) {
-			int index1 = (int) IDstr[Index[0]] - 48;
-			int index2 = (int) IDstr[Index[1]] - 48;
-			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
-				return OK;
-			else
-				return ERR;
-		} else if (LenIndex == 3) {
-			int index1 = (int) IDstr[Index[0]] - 48;
-			int index2 = (int) IDstr[Index[1]] - 48;
-			int index3 = (int) IDstr[Index[2]] - 48;
-			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9
-					&& index3 >= 0 && index3 <= 9)
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		
+		for (int i = Index[0]; i < LenID; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		String regex = "[0-9]{1,3}";
+		Pattern pa = Pattern.compile(regex);
+		Matcher ma = pa.matcher(code);
+		boolean ret = ma.matches();
+		if (ret) {
+			return OK;
 		} else
 			return ERR;
-
-	}
+	}	
 
 	/*
 	 * A-E,or null wt
@@ -16843,6 +16827,7 @@ public class RuleFunction {
 		int index2 = (int) IDstr[Index[1]] - 48;
 		int Xx = 10;
 		int i = 10 * index1 + index2;
+
 		if (i >= 01 && i <= Xx) {
 			return OK;
 		} else
@@ -16892,6 +16877,7 @@ public class RuleFunction {
 		}
 	}
 
+<<<<<<< HEAD
 	// GB/T_28422-2012_6 wt
 	public static String ClassOfCardCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -16945,3 +16931,7 @@ public class RuleFunction {
 		}
 	}
 }
+=======
+}
+
+>>>>>>> 54aa45efaf99d4330919560a9cdfcca96ea151e6

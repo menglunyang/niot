@@ -16,6 +16,11 @@ import cn.niot.util.RecoUtil;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ActionContext;
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.PrintStream;
 
 /**
  * 
@@ -148,8 +153,17 @@ public class IoTIDRecognitionAction extends ActionSupport {
 */
 	public String execute() throws Exception {
 		long begin=System.currentTimeMillis();
+		//added by dgq, for test only
+		int nflag = 0;
+		if (0 == nflag){
+			IDstrRecognition.readDao(0);
+			//System.setOut(new PrintStream(new FileOutputStream("e:\\result.txt")));
+			IDstrRecognition.testAndTestID();
+			System.out.println("The end of this run!!!!\n");
+			return SUCCESS;
+		}			
 		
-		
+
 		String IoTcode = null;
 		if (this.code != null) {
 			IoTcode = replaceBlank(this.code);
@@ -195,7 +209,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 			}
 			
 		}
-		System.out.println("during:"+(System.currentTimeMillis()-begin));
+		//System.out.println("during:"+(System.currentTimeMillis()-begin));
 		System.out.println("\nthis.data:   "+this.data);
 		System.out.println("\nthis.extraData:   "+this.extraData);
 		return SUCCESS;

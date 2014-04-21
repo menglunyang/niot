@@ -529,6 +529,35 @@ public class RecoUtil {
 	// 710地质矿物大类分类选词范围
 	public static final String SELECT_DZCLASSIFY710 = "select *from dzclassify710 where code=?";
 
+	public static final String SELECT_TEST="select * from test";
+	
+	//add one to PriorProbabilityX
+	public static final String ADD_ONE_TO_PRIORPROBABILITY0 = "UPDATE iotid_copy SET priorProbability0 = priorProbability0+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY1 = "UPDATE iotid_copy SET priorProbability1 = priorProbability1+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY2 = "UPDATE iotid_copy SET priorProbability2 = priorProbability2+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY3 = "UPDATE iotid_copy SET priorProbability3 = priorProbability3+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY4 = "UPDATE iotid_copy SET priorProbability4 = priorProbability4+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY5 = "UPDATE iotid_copy SET priorProbability5 = priorProbability5+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY6 = "UPDATE iotid_copy SET priorProbability6 = priorProbability6+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY7 = "UPDATE iotid_copy SET priorProbability7 = priorProbability7+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY8 = "UPDATE iotid_copy SET priorProbability8 = priorProbability8+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY9 = "UPDATE iotid_copy SET priorProbability9 = priorProbability9+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY10 = "UPDATE iotid_copy SET priorProbability10 = priorProbability10+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY11 = "UPDATE iotid_copy SET priorProbability11 = priorProbability11+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY12 = "UPDATE iotid_copy SET priorProbability12 = priorProbability12+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY13 = "UPDATE iotid_copy SET priorProbability13 = priorProbability13+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY14 = "UPDATE iotid_copy SET priorProbability14 = priorProbability14+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY15 = "UPDATE iotid_copy SET priorProbability15 = priorProbability15+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY16 = "UPDATE iotid_copy SET priorProbability16 = priorProbability16+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY17 = "UPDATE iotid_copy SET priorProbability17 = priorProbability17+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY18 = "UPDATE iotid_copy SET priorProbability18 = priorProbability18+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY19 = "UPDATE iotid_copy SET priorProbability19 = priorProbability19+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY20 = "UPDATE iotid_copy SET priorProbability20 = priorProbability20+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY21 = "UPDATE iotid_copy SET priorProbability21 = priorProbability21+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY22 = "UPDATE iotid_copy SET priorProbability22 = priorProbability22+1 WHERE id = ?";
+	public static final String ADD_ONE_TO_PRIORPROBABILITY23 = "UPDATE iotid_copy SET priorProbability23 = priorProbability23+1 WHERE id = ?";
+
+
 	// 获得URL地址ַ
 	public static String getURLParam(String paramName) {
 		ActionContext ctx = ActionContext.getContext();
