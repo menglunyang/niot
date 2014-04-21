@@ -7336,7 +7336,6 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-
 		}
 	}
 
@@ -7370,7 +7369,6 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-
 		} else
 			return ERR;
 	}
@@ -9860,7 +9858,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// 287-——服装分类和代码表 查表数据库
@@ -9891,7 +9888,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// 288-——服装名字分类代码编制方法 查表数据库
@@ -10263,7 +10259,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// Function: MH/T 0018-1999
@@ -10298,7 +10293,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10327,7 +10321,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10357,7 +10350,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10387,7 +10379,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10418,7 +10409,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10448,7 +10438,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10479,7 +10468,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10509,7 +10497,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10539,7 +10526,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10573,7 +10559,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10603,7 +10588,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10633,7 +10617,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10664,7 +10647,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10694,7 +10676,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10726,7 +10707,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff3(char[] IDstr, int LenID, int[] Index,
@@ -10751,7 +10731,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff4(char[] IDstr, int LenID, int[] Index,
@@ -10776,7 +10755,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
@@ -10801,7 +10779,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
@@ -10826,7 +10803,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff26(char[] IDstr, int LenID, int[] Index,
@@ -10851,7 +10827,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff10(char[] IDstr, int LenID, int[] Index,
@@ -10876,7 +10851,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10907,7 +10881,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10938,7 +10911,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10999,7 +10971,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11030,7 +11001,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11061,7 +11031,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11092,7 +11061,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11123,7 +11091,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11154,7 +11121,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11185,7 +11151,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11216,7 +11181,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String HighwayTransportation4c6(char[] IDstr, int LenID,
@@ -11241,7 +11205,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11273,7 +11236,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11302,7 +11264,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11333,7 +11294,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11359,7 +11319,6 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	/*
@@ -11588,7 +11547,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// Function: 山脉山峰名称代码（297）
@@ -16917,7 +16875,6 @@ public class RuleFunction {
 					|| (IDstr[Index[0]] == '2' && IDstr[Index[1]] == '1')) {
 				return OK;
 			}
-
 			return ERR;
 		} catch (Exception e) {
 			return ERR;
