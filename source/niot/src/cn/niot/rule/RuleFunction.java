@@ -380,7 +380,6 @@ public class RuleFunction {
 					return OK;
 				}
 			}
-
 			if (IDstr[index1] == '9') {
 				if (IDstr[index2] == '9') {
 					return OK;
@@ -14954,42 +14953,28 @@ public class RuleFunction {
 		if (IDstr[0] == '2') {
 			String code = "";
 			String regex = "[0-9]*";
-			int prefix = 4;
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-				return ERR;
-			}
-			if (Index[0] != prefix) {
-				return ERR;
-			}
-			for (int i = 0; i < LenIndex; i++) {
-				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			for (int i = Index[0]; i < IDstr.length; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
 			if (ret) {
-				// System.out.println("ccc");
 				return OK;
 			} else
-				// System.out.println("匹配第二条规则");
 				return ERR;
 		}
 		if (IDstr[0] == '1') {
-			if (LenIndex != 4) {
-				// System.out.println("fff");
-				return ERR;
-			}
 			String code = "";
-			for (int i = 0; i < LenIndex; i++) {
-				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			for (int i = Index[0]; i < IDstr.length; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortProductCode(code);
 			if (ret) {
-				// System.out.println("匹配第一条规则");
+
 				return OK;
 			} else {
-				// System.out.println("eee");
 				return ERR;
 			}
 		}
@@ -16860,5 +16845,47 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
+	}
+	
+	//全国主要产品分类代码 fdl
+	// Function: represent a decimal integer whose value range is from 010 to 999
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator: fdl
+	public static String ProductThreeByte(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+
+			int index1 = Index[0];
+			int index2 = Index[1];
+			int index3 = Index[2];
+
+			if ((IDstr[index1] == '0') && (IDstr[index2] == '0')) {
+				return ERR;
+			}
+
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '9')) {
+				return ERR;
+			}
+
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+				return ERR;
+			}
+
+			return OK;
+		} catch (Exception e) {
+			return ERR;
+		}
 	}
 }
