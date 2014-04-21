@@ -33,11 +33,11 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	public static String IoTIDLength(String IDstr, int LenID, String parameter,
 			int LenIndex) {
-		if (IDstr.equals("2110")){
+		if (IDstr.equals("2110")) {
 			int ss = 0;
 			ss = ss + 1;
 		}
-		
+
 		// without length limit
 		boolean flag = false;
 		boolean flagMINUS = false;
@@ -46,29 +46,30 @@ public class RuleFunction {
 			return "OK";
 		} else {
 			int index = parameter.indexOf(",-1");
-			if(index >=0 )//存在
+			if (index >= 0)// 存在
 			{
 				for (int i = index - 1; i >= 0; i--) {
 					if (parameter.charAt(i) == ',') {
-						int num = Integer.parseInt(parameter.substring(i, index));
-						if(IDstr.length()>=num){							
+						int num = Integer.parseInt(parameter
+								.substring(i, index));
+						if (IDstr.length() >= num) {
 							return OK;
 						} else {
 							flagMINUS = true;
 							nIndexEnd = i;
 						}
-							
+
 					}
 				}
 				int num = Integer.parseInt(parameter.substring(0, index));
-				if(IDstr.length()>=num){
+				if (IDstr.length() >= num) {
 					return OK;
 				} else {
 					return ERR;
 				}
-					
-			} 
-			
+
+			}
+
 			if (true == flagMINUS) {
 				parameter = parameter.substring(0, nIndexEnd);
 			}
@@ -98,7 +99,7 @@ public class RuleFunction {
 			return "ERR";
 		}
 	}
-	
+
 	// Function: represent a decimal integer whose value range is from 1 to 99
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -1755,16 +1756,9 @@ public class RuleFunction {
 					* (Math.pow(2, LenIndex - i - 1) % 11);
 		}
 		String check;
-<<<<<<< HEAD
-		// System.out.println(sum);
 		int mod = (int) (11 - (sum % 11));
 		check = Integer.toString(mod % 10);
-		// System.out.println(check);
-		// System.out.println(mod);
-=======
-		int mod = (int) (11 - (sum % 11));
-		check = Integer.toString(mod % 10);
->>>>>>> 54aa45efaf99d4330919560a9cdfcca96ea151e6
+
 		if (check.equals(Integer.toString((int) IDstr[Index[j]] - 48))) {
 			return OK;
 		} else {
@@ -4784,7 +4778,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-
+	
 	// Function: 451 fire information
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -4821,7 +4815,7 @@ public class RuleFunction {
 			if (i >= 499 && i <= 500 || i == 9900) {
 				return OK;
 			}
-			if (ii >= 6 && i <= 18) {
+			if (ii >= 6 && ii <= 18) {
 				return OK;
 			}
 			return ERR;
@@ -10271,13 +10265,13 @@ public class RuleFunction {
 		}
 
 	}
-	
-	// Function:  MH/T 0018-1999
+
+	// Function: MH/T 0018-1999
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为0-8
-	//判断0-8位是不是在数据库中存在
+	// 判断0-8位是不是在数据库中存在
 	// Creator:wt
 	public static String CivilAviation(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -10810,7 +10804,8 @@ public class RuleFunction {
 
 	}
 
-	public static String PortTariff25(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -14949,7 +14944,7 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-	    if (IDstr[0] == '2') {
+		if (IDstr[0] == '2') {
 			String code = "";
 			String regex = "[0-9]*";
 			for (int i = Index[0]; i < IDstr.length; i++) {
@@ -14978,7 +14973,6 @@ public class RuleFunction {
 		}
 		return ERR;
 	}
-
 
 	// Function: 504 第10部分：服务类型及内容代码
 	// LenID: the number of characters in the ID string
@@ -16602,7 +16596,7 @@ public class RuleFunction {
 			return ERR;
 		}
 		String code = "";
-		
+
 		for (int i = Index[0]; i < LenID; i++) {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
@@ -16614,7 +16608,7 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-	}	
+	}
 
 	/*
 	 * A-E,or null wt
@@ -16877,7 +16871,6 @@ public class RuleFunction {
 		}
 	}
 
-<<<<<<< HEAD
 	// GB/T_28422-2012_6 wt
 	public static String ClassOfCardCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -16931,7 +16924,3 @@ public class RuleFunction {
 		}
 	}
 }
-=======
-}
-
->>>>>>> 54aa45efaf99d4330919560a9cdfcca96ea151e6
