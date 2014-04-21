@@ -27,7 +27,7 @@ public class RFIDReader {
 		System.out.println("paper tag...");
 		short[] epddata = reader.ReadTagMemWords(null, MemBankE.USER, 0, 32);
 		String code1 = Functional.shorts_HexStr(epddata);
-		String code=getInputByStr(code1, "0");
+		String code=getInputByStr(code1, "ABCD");
 		System.out.println(code);
 
 		return code;
@@ -62,7 +62,7 @@ public class RFIDReader {
 
 		String code1 = Functional.bytes_Hexstr(r186bdata);
 		// System.out.println(this.code);
-		String code=getInputByStr(code1, "F");
+		String code=getInputByStr(code1, "ABCD");
 		return code;
 	}
 
