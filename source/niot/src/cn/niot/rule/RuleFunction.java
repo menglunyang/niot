@@ -10833,8 +10833,7 @@ public class RuleFunction {
 
 	}
 
-	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String PortTariff25(char[] IDstr, int LenID, int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -16445,32 +16444,20 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 1) {
-			int index = (int) IDstr[Index[0]] - 48;
-			if (index >= 0 && index <= 9)
-				return OK;
-			else
-				return ERR;
-		} else if (LenIndex == 2) {
-			int index1 = (int) IDstr[Index[0]] - 48;
-			int index2 = (int) IDstr[Index[1]] - 48;
-			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
-				return OK;
-			else
-				return ERR;
-		} else if (LenIndex == 3) {
-			int index1 = (int) IDstr[Index[0]] - 48;
-			int index2 = (int) IDstr[Index[1]] - 48;
-			int index3 = (int) IDstr[Index[2]] - 48;
-			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9
-					&& index3 >= 0 && index3 <= 9)
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		
+		for (int i = Index[0]; i < LenID; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		String regex = "[0-9]{1,3}";
+		Pattern pa = Pattern.compile(regex);
+		Matcher ma = pa.matcher(code);
+		boolean ret = ma.matches();
+		if (ret) {
+			return OK;
 		} else
 			return ERR;
-
-	}
+	}	
 
 	/*
 	 * A-E,or null wt
@@ -16667,4 +16654,23 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+	
+	public static String OneTO10No99(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 10;
+		int i = 10 * index1 + index2;
+		if (i >= 01 && i <= Xx ) {
+			return OK;
+		} else
+			return ERR;
+	}
+
 }

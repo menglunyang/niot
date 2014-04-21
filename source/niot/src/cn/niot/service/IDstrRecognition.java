@@ -61,9 +61,10 @@ public class IDstrRecognition {
 
 		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
 			if("ON"==DEBUG_TIME)timeSortRulesBegin=System.currentTimeMillis();
-			sortRules();
+			//sortRules(); //Temporarily moved by dgq, 2014-04-21 
 			if("ON"==DEBUG_TIME)timeSortRules=System.currentTimeMillis()-timeSortRulesBegin;
-			String maxRule = getMax();
+			//String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21 
+			String maxRule = getMax_dgq();//Temporarily added by dgq, 2014-04-21
 			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
 			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
 			if ("ON" == DEBUG){
@@ -272,7 +273,8 @@ public class IDstrRecognition {
 
 		return true;
 	}
-
+	//some comments added by dengguangqing, on 2014-04-21
+	// get the rule with the largest weight
 	private static String getMax() {
 		Set<String> keySet = rmvRuleSet.keySet();
 		Iterator ikey = keySet.iterator();
@@ -291,7 +293,23 @@ public class IDstrRecognition {
 		}
 		return maxName;
 	}
+	
+	//some comments added by dengguangqing, on 2014-04-21
+	// get one rule randomly
+	private static String getMax_dgq() {
+		Set<String> keySet = rmvRuleSet.keySet();
+		Iterator ikey = keySet.iterator();
+		String nextName = "";
 
+		while (ikey.hasNext()) {
+			nextName = (String) ikey.next();
+			break;
+		}
+		return nextName;
+	}
+	
+	//some comments added by dengguangqing, 2014-04-21
+	//the function is calculate the weight of each rule
 	private static void sortRules() {
 		// TODO Auto-generated method stub
 		double p = 0.0;
@@ -318,6 +336,8 @@ public class IDstrRecognition {
 			rmvRuleSet.put(ruleName, w(p));// p!=0 or 1
 		}
 	}
+	
+	
 
 	private static double w(double p) {
 		double q = 1 - p;
@@ -325,7 +345,8 @@ public class IDstrRecognition {
 				/ Math.log(2);
 	}
 
-	// ƥ�䲻�ɹ�����rmvISDet - arrayList
+	// comments added by dengguangqing, 2014-04-21
+	// remove those IDs in rmvIDSet relating to the rule which fails in matching
 	private static void subtraction(HashMap<String, Double> rmvIDSet,
 			ArrayList<String> arrayList) {
 		Iterator<String> iterator = rmvIDSet.keySet().iterator();
@@ -361,9 +382,10 @@ public class IDstrRecognition {
 		}
 	}
 
-	// ����rmvRuleSet
+	// some comments added by dengguangqing, 2014-04-21
+	// update rmvRuleSet according to new rmvIDSet and currently already matched rule
 	private static void union(String delRule) {
-		Iterator<String> iter = rmvIDSet.keySet().iterator();
+		Iterator<String> iter = rmvIDSet.keySet().iterator();// IoT ID set
 
 		ArrayList<String> arrayList = new ArrayList<String>(); // ֱ�Ӱ�ÿ��ruleȫ���ϲ���һ��list�������Ƿ��ظ�
 		ArrayList<String> arrayList_Rules;
@@ -372,7 +394,7 @@ public class IDstrRecognition {
 			String ID_key = (String) iter.next();
 
 			arrayList_Rules = new ArrayList<String>();
-			arrayList_Rules = hashMapTypeToRules.get(ID_key);
+			arrayList_Rules = hashMapTypeToRules.get(ID_key);// obtain the rule set corresponding to the given IoT ID
 
 			for (String rule : arrayList_Rules) {
 				arrayList.add(rule);
@@ -400,6 +422,10 @@ public class IDstrRecognition {
 			Object testID = iterator1.next();
 			String test = testHashMap.get(testID);
 			int i = 0;
+			// just for test, added by dgq
+			if (test.equals("10100")){
+				i = 0;
+			}
 			ArrayList<String> s= hashMapTypeToRules.get(testID);
 			String resFlag = "OK";
 			String res = "";
