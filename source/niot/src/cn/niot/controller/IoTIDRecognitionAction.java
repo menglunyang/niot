@@ -159,6 +159,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 			IDstrRecognition.readDao(0);
 			//System.setOut(new PrintStream(new FileOutputStream("e:\\result.txt")));
 			IDstrRecognition.testAndTestID();
+			System.out.println("The end of this run!!!!\n");
 			return SUCCESS;
 		}			
 		
@@ -208,7 +209,7 @@ public class IoTIDRecognitionAction extends ActionSupport {
 			}
 			
 		}
-		System.out.println("during:"+(System.currentTimeMillis()-begin));
+		//System.out.println("during:"+(System.currentTimeMillis()-begin));
 		System.out.println("\nthis.data:   "+this.data);
 		System.out.println("\nthis.extraData:   "+this.extraData);
 		return SUCCESS;

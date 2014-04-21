@@ -328,10 +328,10 @@ public class IDstrRecognition {
 				}
 			}
 			if (p == 0 || p == 1) {
-				System.out.println(ruleName + " p is 0 or 1,error!");
+				System.out.println("ERROR!  " + ruleName + " p is 0 or 1,error!");
 			}
 			if (p > 1 || p < 0) {
-				System.out.println(ruleName + " p is not in 1~0 range,error!");
+				System.out.println("ERROR!  " + ruleName + " p is not in 1~0 range,error!");
 			}
 			rmvRuleSet.put(ruleName, w(p));// p!=0 or 1
 		}
