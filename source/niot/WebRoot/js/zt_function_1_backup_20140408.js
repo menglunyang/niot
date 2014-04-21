@@ -164,8 +164,7 @@ dataSource = [
 function RFIDInput()
 {
 	console.log("RFIDInput pressed");
-	$("#RFID_success").css("display","none");
-	$("#RFID_failed").css("display","none");
+	$("#RFID_loading").attr("src","./images/loading.gif");
 	$("#RFID").toggle();
 	if($("#RFID").css("display") == "block")
 	{
@@ -187,11 +186,6 @@ RFIDInfo.querryCount = 1;
 RFIDInfo.RFIDRequest = null;
 RFIDInfo.RFIDTimeout = null;
 
-function RFIDSuccessDisplayNone()
-{
-	$("#RFID_success").css("display","none");
-}
-
 function RFIDQuerry()
 {
 	RFIDInfo.RFIDRequest = $.ajax({
@@ -199,7 +193,6 @@ function RFIDQuerry()
 		cache:false,
 		data:{InputType:"RFID"},
 		dataType:'json',
-		timeout:'17000',
 		beforeSend:function(){
 					},
 		success:function(result){
@@ -214,30 +207,20 @@ function RFIDQuerry()
 						{
 								console.log(RFIDInfo.querryCount);
 								//setTimeOut("RFIDQuerry()",5000);;
-								$("#RFID_failed").css("display","block");
-								$("#RFID").css("display","none");
+								$("#RFID_loading").attr("src","./images/warning.png");								
 								RFIDInfo.querryCount = 1;
 						}
 						else
 						{
 							console.log(RFIDInfo.querryCount);
-							$("#RFID_success").css("display","block");
-							$("#RFID").css("display","none");
+							$("#RFID_loading").attr("src","./images/checkmark.png");
 							$("#reqCode").val(result.code);
 							sendReqCode();
 							RFIDInfo.querryCount = 1;
-							setTimeout("RFIDSuccessDisplayNone()",3000);
+							setTimeout("RFIDInput()",3000);
 						}
 					},
-		error:function(jqXHR,textStatus,errorThrown ){
-				if (textStatus == 'timeout'){
-					console.log(RFIDInfo.querryCount);
-					//setTimeOut("RFIDQuerry()",5000);;
-					$("#RFID_failed").css("display","block");
-					$("#RFID").css("display","none");
-					RFIDInfo.querryCount = 1;
-				}
-			}
+		error:"alert('1')"
 	});
 }
 
