@@ -1724,11 +1724,11 @@ public class RuleFunction {
 					* (Math.pow(2, LenIndex - i - 1) % 11);
 		}
 		String check;
-		System.out.println(sum);
+		// System.out.println(sum);
 		int mod = (int) (11 - (sum % 11));
 		check = Integer.toString(mod % 10);
-		System.out.println(check);
-		System.out.println(mod);
+		// System.out.println(check);
+		// System.out.println(mod);
 		if (check.equals(Integer.toString((int) IDstr[Index[j]] - 48))) {
 			return OK;
 		} else {
@@ -16640,17 +16640,19 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 0)
-			return OK;
-		if (LenIndex == 1) {
-			if (IDstr[Index[0]] == 'A' || IDstr[Index[1]] == 'B'
-					|| IDstr[Index[2]] == 'C' || IDstr[Index[3]] == 'D'
-					|| IDstr[Index[4]] == 'E')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+
+		for (int i = Index[0]; i < LenID; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		return ERR;
+		String regex = "[A-E]";
+		Pattern pa = Pattern.compile(regex);
+		Matcher ma = pa.matcher(code);
+		boolean ret = ma.matches();
+		if (ret) {
+			return OK;
+		} else
+			return ERR;
 	}
 
 	// special character underline _
@@ -16846,9 +16848,10 @@ public class RuleFunction {
 		} else
 			return ERR;
 	}
-	
-	//全国主要产品分类代码 fdl
-	// Function: represent a decimal integer whose value range is from 010 to 999
+
+	// 全国主要产品分类代码 fdl
+	// Function: represent a decimal integer whose value range is from 010 to
+	// 999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16884,6 +16887,59 @@ public class RuleFunction {
 			}
 
 			return OK;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// GB/T_28422-2012_6 wt
+	public static String ClassOfCardCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		String code = "";
+
+		for (int i = 0; i < 2; i++) {
+			code = code.concat(String.valueOf(IDstr[Index[i]]));
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int num = 10 * index1 + index2;
+		if (num >= 21 && num <= 53 && index1 >= 0 && index2 <= 9 && index2 >= 0
+				&& index2 <= 9)
+			return OK;
+		else
+			return ERR;
+	}
+
+	// 188城市市政综合监管信息系统
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 12位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:12
+	// creator:fdl
+	public static String Bigcode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			if ((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '1')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '5')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '6')
+					|| (IDstr[Index[0]] == '2' && IDstr[Index[1]] == '1')) {
+				return OK;
+			}
+
+			return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}
