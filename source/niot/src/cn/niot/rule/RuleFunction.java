@@ -4778,7 +4778,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 451 fire information
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -6157,7 +6157,7 @@ public class RuleFunction {
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // 输入数值ֵ
+			String bb = Integer.toString(j); // 输入数值
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -8682,7 +8682,7 @@ public class RuleFunction {
 			if (LenIndex != 8) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID; i++) {
+			for (int i = Index[0]; i < LenIndex; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -11358,6 +11358,7 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
+
 		String code = new String(IDstr);
 		try {
 			RecoDao recoDao = new RecoDao();
@@ -12117,8 +12118,8 @@ public class RuleFunction {
 			int LenIndex) {
 		try {
 			String code = "";
-			String regex = "[0-9]*";
-			int prefix = 6;
+			String regex = "[A-Z]{0,4}[0-9]*";
+			int prefix = 2;
 
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
@@ -14177,6 +14178,8 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
+		System.out.println(len2);
+		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 6) {
 			String regex1 = "[0-9]{6}";
 			Pattern pa = Pattern.compile(regex1);
@@ -14196,6 +14199,7 @@ public class RuleFunction {
 			boolean ret = ma.matches();
 			if (ret) {
 				if (IDstr[0] == '3') {
+					System.out.println("pass");
 					return OK;
 				} else
 					return ERR;
@@ -14215,70 +14219,86 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		int len = code.length();
+		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
+		if (len == 3) {
+			String regex1 = "[0-9]{3}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1' && IDstr[1] == '5')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 5) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
+						&& IDstr[1] == '0' || IDstr[0] == '1'
+						&& IDstr[1] == '1' || IDstr[0] == '1'
+						&& IDstr[1] == '3')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 6) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '1' || IDstr[0] == '0'
+						&& IDstr[1] == '6' || IDstr[0] == '1'
+						&& IDstr[1] == '2')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 7) {
+			String regex2 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '2' || IDstr[0] == '0'
+						&& IDstr[1] == '3' || IDstr[0] == '0'
+						&& IDstr[1] == '4' || IDstr[0] == '0'
+						&& IDstr[1] == '5' || IDstr[0] == '0'
+						&& IDstr[1] == '7' || IDstr[0] == '0'
+						&& IDstr[1] == '8')
+					return OK;
+				else
+					return ERR;
 
-		if (LenIndex == 3) {
-			for (int i = 0; i < 3; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1' && IDstr[1] == '5')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 8) {
+			String regex2 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1' && IDstr[1] == '4')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
-					&& IDstr[1] == '0' || IDstr[0] == '1' && IDstr[1] == '1'
-					|| IDstr[0] == '1' && IDstr[1] == '3')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '1' || IDstr[0] == '0'
-					&& IDstr[1] == '6' || IDstr[0] == '1' && IDstr[1] == '2')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '2' || IDstr[0] == '0'
-					&& IDstr[1] == '3' || IDstr[0] == '0' && IDstr[1] == '4'
-					|| IDstr[0] == '0' && IDstr[1] == '5' || IDstr[0] == '0'
-					&& IDstr[1] == '7' || IDstr[0] == '0' && IDstr[1] == '8')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1' && IDstr[1] == '4')
-				return OK;
-			else
-				return ERR;
-		}
-		return ERR;
 
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -14809,7 +14829,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortCarProductCompnent(code);

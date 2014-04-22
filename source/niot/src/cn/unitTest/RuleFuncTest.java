@@ -637,45 +637,48 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		int j = 23; // 定义长度
-		int[] index1 = new int[5];
-		;
-		for (int i = 0; i < 5; i++) {
-			index1[i] = i + 18;
-		}
+//		int j = 23; // 定义长度
+//		
+//		;
+
 
 		// [a-zA-Z][a-zA-Z0-9]{0,15}"
 		// 定义IDstr
-		String tr1 = new String("123123123123123123.kkkk");
+		String tr1 = new String("000000000000000000aa");
+		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
-		System.out.print(IDstr1[18]);
-		;
-		String tr2 = new String("123123123123123123.k-00");
-		char[] IDstr2 = new char[j];
-		for (int i = 0; i < j; i++) {
-			IDstr2[i] = tr2.charAt(i);
+//		System.out.print(IDstr1[18]);
+//		;
+//		String tr2 = new String("000000000000000000009MW324DABCDEFGHAZBC90");
+//		char[] IDstr2 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr2[i] = tr2.charAt(i);
+//		}
+
+//		String tr3 = new String("123123123123123123.5555");
+//		char[] IDstr3 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr3[i] = tr3.charAt(i);
+//		}
+		int[] index1 = new int[j];
+		for (int i = 0; i < j-18; i++) {
+			index1[i] = i + 18;
 		}
 
-		String tr3 = new String("123123123123123123.5555");
-		char[] IDstr3 = new char[j];
-		for (int i = 0; i < j; i++) {
-			IDstr3[i] = tr3.charAt(i);
-		}
-
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.IntFreitForwarding(IDstr1, j, index1, 5),
+		UnitTestEqual(RuleFunction.IntFreitForwarding(IDstr1, j, index1, j),
 				"OK");
 
-		System.out.print(i++);
-		UnitTestEqual(RuleFunction.IntFreitForwarding(IDstr2, j, index1, 5),
-				"OK");
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.IntFreitForwarding(IDstr2, j, index1, j),
+//				"OK");
 
-		System.out.print(i++);
-		UnitTestEqual(RuleFunction.IntFreitForwarding(IDstr3, j, index1, 5),
-				"ERR");
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.IntFreitForwarding(IDstr3, j, index1, 5),
+//				"ERR");
 
 	}
 
@@ -2838,64 +2841,64 @@ public class RuleFuncTest {
 	}
 
 	// 194, YC/T 391-2011
-	// public static void testTobaccomachinery() {
-	// JOptionPane.showMessageDialog(null, Thread.currentThread()
-	// .getStackTrace()[1].getMethodName());
-	// System.out.println(Thread.currentThread().getStackTrace()[1]
-	// .getMethodName());
-	//
-	// String tr1 = new String("401");
-	// int j = tr1.length();
-	// char[] IDstr1 = new char[j];
-	// for (int i = 0; i < j; i++) {
-	// IDstr1[i] = tr1.charAt(i);
-	// }
-	//
-	// String tr2 = new String("475");
-	// char[] IDstr2 = new char[j];
-	// for (int i = 0; i < j; i++) {
-	// IDstr2[i] = tr2.charAt(i);
-	// }
-	//
-	// String tr3 = new String("511");
-	// char[] IDstr3 = new char[j];
-	// for (int i = 0; i < j; i++) {
-	// IDstr3[i] = tr3.charAt(i);
-	// }
-	//
-	// String tr4 = new String("620");
-	// char[] IDstr4 = new char[j];
-	// for (int i = 0; i < j; i++) {
-	// IDstr4[i] = tr4.charAt(i);
-	// }
-	//
-	// String tr5 = new String("708");
-	// char[] IDstr5 = new char[j];
-	// for (int i = 0; i < j; i++) {
-	// IDstr5[i] = tr5.charAt(i);
-	// }
-	//
-	// int[] index1 = new int[j];
-	//
-	// for (int i = 0; i < j; i++) {
-	// index1[i] = i;
-	// }
-	// System.out.print(i++);
-	// UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr1, j, index1, j), "OK");
-	//
-	// System.out.print(i++);
-	// UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr2, j, index1, j),
-	// "ERR");
-	//
-	// System.out.print(i++);
-	// UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr3, j, index1, j), "OK");
-	//
-	// System.out.print(i++);
-	// UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr4, j, index1, j), "OK");
-	//
-	// System.out.print(i++);
-	// UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr5, j, index1, j), "OK");
-	// }
+//	public static void testTobaccomachinery() {
+//		JOptionPane.showMessageDialog(null, Thread.currentThread()
+//				.getStackTrace()[1].getMethodName());
+//		System.out.println(Thread.currentThread().getStackTrace()[1]
+//				.getMethodName());
+//
+//		String tr1 = new String("401");
+//		int j = tr1.length();
+//		char[] IDstr1 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr1[i] = tr1.charAt(i);
+//		}
+//
+//		String tr2 = new String("475");
+//		char[] IDstr2 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr2[i] = tr2.charAt(i);
+//		}
+//
+//		String tr3 = new String("511");
+//		char[] IDstr3 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr3[i] = tr3.charAt(i);
+//		}
+//
+//		String tr4 = new String("620");
+//		char[] IDstr4 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr4[i] = tr4.charAt(i);
+//		}
+//
+//		String tr5 = new String("708");
+//		char[] IDstr5 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr5[i] = tr5.charAt(i);
+//		}
+//
+//		int[] index1 = new int[j];
+//
+//		for (int i = 0; i < j; i++) {
+//			index1[i] = i;
+//		}
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr1, j, index1, j), "OK");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr2, j, index1, j),
+//				"ERR");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr3, j, index1, j), "OK");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr4, j, index1, j), "OK");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.Tobaccomachinery(IDstr5, j, index1, j), "OK");
+//	}
 
 	// 90, GB/T 16828-2007商品条码——参与方位编码与条码表示
 	public static void testCheckCodebarcode() {
@@ -6416,6 +6419,7 @@ public class RuleFuncTest {
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.MOD3736(IDstr5, j, index1, j), "OK");
 	}
+
 
 	// 639, GB/T 14043——2005
 
@@ -16225,32 +16229,32 @@ public class RuleFuncTest {
 		System.out.println(Thread.currentThread().getStackTrace()[1]
 				.getMethodName());
 
-		String tr1 = new String("000001132");
+		String tr1 = new String("00AB1132");
 		int j = tr1.length();
 		char[] IDstr1 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		String tr2 = new String("000123145");
+		String tr2 = new String("00EF3145");
 		char[] IDstr2 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr2[i] = tr2.charAt(i);
 		}
 
-		String tr3 = new String("000456167");
+		String tr3 = new String("00Er6167");
 		char[] IDstr3 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr3[i] = tr3.charAt(i);
 		}
 
-		String tr4 = new String("000789198");
+		String tr4 = new String("00QW9198");
 		char[] IDstr4 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr4[i] = tr4.charAt(i);
 		}
 
-		String tr5 = new String("000631100");
+		String tr5 = new String("00631100");
 		char[] IDstr5 = new char[j];
 		for (int i = 0; i < j; i++) {
 			IDstr5[i] = tr5.charAt(i);
@@ -16258,8 +16262,8 @@ public class RuleFuncTest {
 
 		int[] index1 = new int[j];
 
-		for (int i = 0; i < j - 6; i++) {
-			index1[i] = i + 6;
+		for (int i = 0; i < j - 2; i++) {
+			index1[i] = i + 2;
 		}
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.MineralRegex(IDstr1, j, index1, j), "OK");
@@ -16827,10 +16831,12 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.ProductCode(IDstr3, j, index1, j), "OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ProductCode(IDstr4, j1, index2, j1), "OK");
+		UnitTestEqual(RuleFunction.ProductCode(IDstr4, j1, index2, j1),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ProductCode(IDstr5, j1, index2, j1), "OK");
+		UnitTestEqual(RuleFunction.ProductCode(IDstr5, j1, index2, j1),
+				"OK");
 	}
 
 	// 工业雷管编码基本规则
@@ -21460,7 +21466,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.BarCodeForCommodity(IDstr5, j, index1, j),
 				"OK");
 	}
-
+	
 	// 11, SL_385-2007
 	public static void testHydrologicData() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21506,21 +21512,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.HydrologicData(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.HydrologicData(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.HydrologicData(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.HydrologicData(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.HydrologicData(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.HydrologicData(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.HydrologicData(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.HydrologicData(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.HydrologicData(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.HydrologicData(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 12, SB/T_10680-2012_5
 	public static void testMeatandVegetable() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21566,22 +21577,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr2, j, index1, j),
 				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MeatandVegetable(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 729, GB/T_15628.1-2009
 	public static void testChinaAnimal() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21627,21 +21642,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ChinaAnimal(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 733, GB/T_14721-2010
 	public static void testForestTypes() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21687,21 +21707,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ForestTypes(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ForestTypes(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ForestTypes(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.ForestTypes(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ForestTypes(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ForestTypes(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ForestTypes(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ForestTypes(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ForestTypes(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ForestTypes(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 未在Redex中找到该函数
 	public static void testOrganizationCode() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21747,22 +21772,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OrganizationCode(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.OrganizationCode(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.OrganizationCode(IDstr2, j, index1, j),
 				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OrganizationCode(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.OrganizationCode(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OrganizationCode(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.OrganizationCode(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OrganizationCode(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.OrganizationCode(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 未在Redex中找到该函数
 	public static void testProvince() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21808,21 +21837,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Province(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Province(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Province(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.Province(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Province(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Province(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Province(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Province(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Province(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Province(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 未在Redex中找到该函数
 	public static void testCity() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21868,21 +21902,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.City(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.City(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.City(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.City(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.City(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.City(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.City(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.City(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.City(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.City(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 658, GB/T_27766-2011_2
 	public static void testLetter() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21928,21 +21967,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Letter(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Letter(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Letter(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.Letter(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Letter(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Letter(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Letter(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Letter(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Letter(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Letter(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 658, GB/T_27766-2011_4
 	public static void testDigitAndLetter() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -21987,22 +22031,27 @@ public class RuleFuncTest {
 			index1[i] = i;
 		}
 
-		// System.out.print(i++);
-		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr1, j, index1, j), "OK");
+		//System.out.print(i++);
+		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr1, j, index1, j),
+				"OK");
 
-		// System.out.print(i++);
-		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr2, j, index1, j), "ERR");
+		//System.out.print(i++);
+		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr2, j, index1, j),
+				"ERR");
 
-		// System.out.print(i++);
-		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr3, j, index1, j), "OK");
+		//System.out.print(i++);
+		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr3, j, index1, j),
+				"OK");
 
-		// System.out.print(i++);
-		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr4, j, index1, j), "OK");
+		//System.out.print(i++);
+		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr4, j, index1, j),
+				"OK");
 
-		// System.out.print(i++);
-		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr5, j, index1, j), "OK");
+		//System.out.print(i++);
+		UnitTestEqual(RuleFunction.DigitAndLetter(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 700, LY/T_1959-2011
 	public static void testAnimalDisease() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22048,21 +22097,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.AnimalDisease(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.AnimalDisease(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.AnimalDisease(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.AnimalDisease(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.AnimalDisease(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.AnimalDisease(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.AnimalDisease(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.AnimalDisease(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.AnimalDisease(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.AnimalDisease(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 704, HY/T_075-2005
 	public static void testOceanInfoMid() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22108,21 +22162,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.OceanInfoMid(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 698, WS/T_118-1999
 	public static void testMedicalInstru() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22168,21 +22227,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MedicalInstru(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MedicalInstru(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MedicalInstru(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.MedicalInstru(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MedicalInstru(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MedicalInstru(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MedicalInstru(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MedicalInstru(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MedicalInstru(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MedicalInstru(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 728, GB/T_15657-1995_1
 	public static void testTCMDisease() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22228,21 +22292,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMDisease(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.TCMDisease(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMDisease(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.TCMDisease(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMDisease(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.TCMDisease(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMDisease(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.TCMDisease(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMDisease(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.TCMDisease(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 728, GB/T_15657-1995_2
 	public static void testTCMFeature() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22288,21 +22357,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMFeature(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.TCMFeature(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMFeature(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.TCMFeature(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMFeature(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.TCMFeature(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMFeature(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.TCMFeature(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.TCMFeature(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.TCMFeature(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 706, GB/T_9649.9-2009
 	public static void testDZClassify() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22348,21 +22422,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.DZClassify(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.DZClassify(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.DZClassify(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.DZClassify(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.DZClassify(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 710, GB/T_9649.17-2009
 	public static void testDZClassify710() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22408,21 +22487,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify710(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.DZClassify710(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify710(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.DZClassify710(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify710(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.DZClassify710(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify710(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.DZClassify710(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.DZClassify710(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.DZClassify710(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 722, GB/T_17295-2008
 	public static void testMeasureUnit() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22468,21 +22552,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeasureUnit(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MeasureUnit(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeasureUnit(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.MeasureUnit(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeasureUnit(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MeasureUnit(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeasureUnit(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MeasureUnit(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MeasureUnit(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MeasureUnit(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// PhoneNumber
 	public static void testMobilePhoneNum() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22528,21 +22617,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.MobilePhoneNum(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// VehicleNO_1
 	public static void testVehicleNONormal() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22588,21 +22682,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNONormal(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// VehicleNO_2
 	public static void testVehicleNOArmy() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22648,21 +22747,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNOArmy(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// VehicleNO_2
 	public static void testVehicleNOArmySuffix() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22727,7 +22831,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.VehicleNOArmySuffix(IDstr5, j, index1, j),
 				"OK");
 	}
-
+	
 	// VehicleNO_3
 	public static void testVehicleNOWJ() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22773,21 +22877,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.VehicleNOWJ(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// isbn
 	public static void testISBN13() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22802,29 +22911,29 @@ public class RuleFuncTest {
 			IDstr1[i] = tr1.charAt(i);
 		}
 
-		// String tr2 = new String("鲁 ");
-		// char[] IDstr2 = new char[j];
-		// for (int i = 0; i < j; i++) {
-		// IDstr2[i] = tr2.charAt(i);
-		// }
-		//
-		// String tr3 = new String("黑 ");
-		// char[] IDstr3 = new char[j];
-		// for (int i = 0; i < j; i++) {
-		// IDstr3[i] = tr3.charAt(i);
-		// }
-		//
-		// String tr4 = new String("云 ");
-		// char[] IDstr4 = new char[j];
-		// for (int i = 0; i < j; i++) {
-		// IDstr4[i] = tr4.charAt(i);
-		// }
-		//
-		// String tr5 = new String("沪 ");
-		// char[] IDstr5 = new char[j];
-		// for (int i = 0; i < j; i++) {
-		// IDstr5[i] = tr5.charAt(i);
-		// }
+//		String tr2 = new String("鲁 ");
+//		char[] IDstr2 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr2[i] = tr2.charAt(i);
+//		}
+//
+//		String tr3 = new String("黑 ");
+//		char[] IDstr3 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr3[i] = tr3.charAt(i);
+//		}
+//
+//		String tr4 = new String("云 ");
+//		char[] IDstr4 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr4[i] = tr4.charAt(i);
+//		}
+//
+//		String tr5 = new String("沪 ");
+//		char[] IDstr5 = new char[j];
+//		for (int i = 0; i < j; i++) {
+//			IDstr5[i] = tr5.charAt(i);
+//		}
 
 		int[] index1 = new int[j];
 
@@ -22833,25 +22942,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ISBN13(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ISBN13(IDstr1, j, index1, j),
+				"OK");
 
-		// System.out.print(i++);
-		// UnitTestEqual(RuleFunction.ISBN13(IDstr2, j, index1, j),
-		// "ERR");
-		//
-		// System.out.print(i++);
-		// UnitTestEqual(RuleFunction.ISBN13(IDstr3, j, index1, j),
-		// "OK");
-		//
-		// System.out.print(i++);
-		// UnitTestEqual(RuleFunction.ISBN13(IDstr4, j, index1, j),
-		// "OK");
-		//
-		// System.out.print(i++);
-		// UnitTestEqual(RuleFunction.ISBN13(IDstr5, j, index1, j),
-		// "OK");
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.ISBN13(IDstr2, j, index1, j),
+//				"ERR");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.ISBN13(IDstr3, j, index1, j),
+//				"OK");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.ISBN13(IDstr4, j, index1, j),
+//				"OK");
+//
+//		System.out.print(i++);
+//		UnitTestEqual(RuleFunction.ISBN13(IDstr5, j, index1, j),
+//				"OK");
 	}
-
+	
 	// 910, DL/T_700.1-1999_42
 	public static void testOne2ThreeDigit() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22897,21 +23007,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.One2ThreeDigit(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 1184, JT/T_307.5-1999
 	public static void testA2EOrNull() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -22957,21 +23072,27 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.A2EOrNull(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.A2EOrNull(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.A2EOrNull(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.A2EOrNull(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.A2EOrNull(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.A2EOrNull(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.A2EOrNull(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.A2EOrNull(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.A2EOrNull(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.A2EOrNull(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
+	
 	// 306, GB/T_19234-2003
 	public static void testUnderline() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23017,21 +23138,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Underline(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Underline(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Underline(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.Underline(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Underline(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Underline(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Underline(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Underline(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Underline(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Underline(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 335, GB/T_16696-2008
 	public static void testHyphen() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23077,21 +23203,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Hyphen(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Hyphen(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Hyphen(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.Hyphen(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Hyphen(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Hyphen(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Hyphen(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Hyphen(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Hyphen(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Hyphen(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 588, SB/T_10570-2010
 	public static void testPlus() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23137,21 +23268,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Plus(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Plus(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Plus(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.Plus(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Plus(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Plus(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Plus(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Plus(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Plus(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Plus(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 639, GB/T_14043-2005_1
 	public static void testSlash() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23197,21 +23333,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Slash(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Slash(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Slash(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.Slash(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Slash(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Slash(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Slash(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Slash(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Slash(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Slash(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 765, SY/T_5760-2010
 	public static void testDot() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23257,21 +23398,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Dot(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Dot(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Dot(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.Dot(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Dot(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Dot(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Dot(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Dot(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Dot(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Dot(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 1880, JT/T_415-2000_23
 	public static void testTwobytleCode08and90() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23336,7 +23482,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.TwobytleCode08and90(IDstr5, j, index1, j),
 				"OK");
 	}
-
+	
 	// DL/T_700.1-1999_53
 	public static void testPowergoodsuncertainly() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23376,8 +23522,8 @@ public class RuleFuncTest {
 
 		int[] index1 = new int[j];
 
-		for (int i = 0; i < j - 7; i++) {
-			index1[i] = i + 7;
+		for (int i = 0; i < j-7; i++) {
+			index1[i] = i+7;
 		}
 
 		System.out.print(i++);
@@ -23400,7 +23546,7 @@ public class RuleFuncTest {
 		UnitTestEqual(RuleFunction.Powergoodsuncertainly(IDstr5, j, index1, j),
 				"OK");
 	}
-
+	
 	// 713, GB/T_7635.1-2002
 	public static void testProductThreeByte() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23446,22 +23592,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr2, j, index1, j),
 				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ProductThreeByte(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 46, GB/T_28422-2012_6
 	public static void testClassOfCardCode() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23507,21 +23657,26 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.ClassOfCardCode(IDstr5, j, index1, j),
+				"OK");
 	}
-
+	
 	// 188, CJ/T_214-2007_1
 	public static void testBigcode() {
 		JOptionPane.showMessageDialog(null, Thread.currentThread()
@@ -23567,19 +23722,23 @@ public class RuleFuncTest {
 		}
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Bigcode(IDstr1, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Bigcode(IDstr1, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Bigcode(IDstr2, j, index1, j), "ERR");
+		UnitTestEqual(RuleFunction.Bigcode(IDstr2, j, index1, j),
+				"ERR");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Bigcode(IDstr3, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Bigcode(IDstr3, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Bigcode(IDstr4, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Bigcode(IDstr4, j, index1, j),
+				"OK");
 
 		System.out.print(i++);
-		UnitTestEqual(RuleFunction.Bigcode(IDstr5, j, index1, j), "OK");
+		UnitTestEqual(RuleFunction.Bigcode(IDstr5, j, index1, j),
+				"OK");
 	}
-
 }
