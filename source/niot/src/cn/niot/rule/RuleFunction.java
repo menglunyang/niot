@@ -11714,8 +11714,7 @@ public class RuleFunction {
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		String code = new String(IDstr);
-
+		String code =String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
 		try {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getCountryRegionCode1(code);
