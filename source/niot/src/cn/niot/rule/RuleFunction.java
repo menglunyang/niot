@@ -33,54 +33,37 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	public static String IoTIDLength(String IDstr, int LenID, String parameter,
 			int LenIndex) {
-		if (IDstr.equals("2110")){
-			int ss = 0;
-			ss = ss + 1;
-		}
-		
-		// without length limit
 		boolean flag = false;
-		boolean flagMINUS = false;
-		int nIndexEnd = 0;
-		if (parameter.charAt(0) == '-') {// -1
+		if(parameter.charAt(0)=='-')
+		{
 			return "OK";
-		} else {
-			int index = parameter.indexOf(",-1");
-			if(index >=0 )//存在
-			{
-				for (int i = index - 1; i >= 0; i--) {
-					if (parameter.charAt(i) == ',') {
-						int num = Integer.parseInt(parameter.substring(i, index));
-						if(IDstr.length()>=num){							
-							return OK;
-						} else {
-							flagMINUS = true;
-							nIndexEnd = i;
-						}
-							
+		}
+		String[] lengthRanges = parameter.split(",");
+		if(lengthRanges[lengthRanges.length-1].equals("-1")){//处理正无穷
+			for (int i = 0; i < lengthRanges.length-1; i++) {
+				String[] lengthMaxMin = lengthRanges[i].split("-");
+				if (lengthMaxMin.length == 1) {// 1个数
+					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
+						return OK;
+					}
+				} else {
+					if (IDstr.length() >= Integer.parseInt(lengthMaxMin[0])
+							&& IDstr.length() <= Integer
+									.parseInt(lengthMaxMin[1])) {
+						flag = true;
 					}
 				}
-				int num = Integer.parseInt(parameter.substring(0, index));
-				if(IDstr.length()>=num){
-					return OK;
-				} else {
-					return ERR;
-				}
-					
-			} 
-			
-			if (true == flagMINUS) {
-				parameter = parameter.substring(0, nIndexEnd);
 			}
-
-			String[] lengthRanges = parameter.split(",");
+			if(IDstr.length()>=Integer.parseInt(lengthRanges[lengthRanges.length-2]))
+				flag =true;
+		}
+		else
+		{
 			for (int i = 0; i < lengthRanges.length; i++) {
 				String[] lengthMaxMin = lengthRanges[i].split("-");
 				if (lengthMaxMin.length == 1) {// 1个数
 					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
 						return OK;
-					} else {
-						return ERR;
 					}
 				} else {
 					if (IDstr.length() >= Integer.parseInt(lengthMaxMin[0])
@@ -91,13 +74,59 @@ public class RuleFunction {
 				}
 			}
 		}
-
 		if (flag) {
 			return "OK";
 		} else {
 			return "ERR";
 		}
 	}
+	
+	/*public static String IoTIDLength(String IDstr, int LenID, String parameter,
+			int LenIndex) {
+		boolean flag = false;
+		String[] lengthRanges = parameter.split(",");
+		if(lengthRanges[lengthRanges.length-1].equals("-1")){//处理正无穷
+			for (int i = 0; i < lengthRanges.length-1; i++) {
+				String[] lengthMaxMin = lengthRanges[i].split("-");
+				if (lengthMaxMin.length == 1) {// 1个数
+					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
+						return OK;
+					}
+				} else {
+					if (IDstr.length() >= Integer.parseInt(lengthMaxMin[0])
+							&& IDstr.length() <= Integer
+									.parseInt(lengthMaxMin[1])) {
+						flag = true;
+					}
+				}
+			}
+			if(IDstr.length()>=Integer.parseInt(lengthRanges[lengthRanges.length-2])){
+				flag =true;
+			}				
+		}
+		else
+		{
+			for (int i = 0; i < lengthRanges.length; i++) {
+				String[] lengthMaxMin = lengthRanges[i].split("-");
+				if (lengthMaxMin.length == 1) {// 1个数
+					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
+						return OK;
+					}
+				} else {
+					if (IDstr.length() >= Integer.parseInt(lengthMaxMin[0])
+							&& IDstr.length() <= Integer
+									.parseInt(lengthMaxMin[1])) {
+						flag = true;
+					}
+				}
+			}
+		}
+		if (flag) {
+			return "OK";
+		} else {
+			return "ERR";
+		}
+	}*/
 	
 	// Function: represent a decimal integer whose value range is from 1 to 99
 	// IDstr: ID string

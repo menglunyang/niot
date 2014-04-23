@@ -63,8 +63,8 @@ public class IDstrRecognition {
 			if("ON"==DEBUG_TIME)timeSortRulesBegin=System.currentTimeMillis();
 			//sortRules(); //Temporarily moved by dgq, 2014-04-21 
 			if("ON"==DEBUG_TIME)timeSortRules=System.currentTimeMillis()-timeSortRulesBegin;
-			//String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21 
-			String maxRule = getMax_dgq();//Temporarily added by dgq, 2014-04-21
+			String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21 
+			//String maxRule = getMax_dgq();//Temporarily added by dgq, 2014-04-21
 			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
 			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
 			if ("ON" == DEBUG){
@@ -273,8 +273,6 @@ public class IDstrRecognition {
 
 		return true;
 	}
-	//some comments added by dengguangqing, on 2014-04-21
-	// get the rule with the largest weight
 	private static String getMax() {
 		Set<String> keySet = rmvRuleSet.keySet();
 		Iterator ikey = keySet.iterator();
@@ -286,6 +284,13 @@ public class IDstrRecognition {
 		while (ikey.hasNext()) {
 			nextName = (String) ikey.next();
 			next = rmvRuleSet.get(nextName);
+			String[] functionHead=nextName.split("\\)\\(\\?\\#PARA=");
+			if(functionHead[0].equals("IoTIDLength")){
+				return nextName;
+			}
+			if(functionHead[0].equals("IoTIDByte")){
+				return nextName;
+			}
 			if (next > max) {
 				max = next;
 				maxName = nextName;
@@ -293,6 +298,7 @@ public class IDstrRecognition {
 		}
 		return maxName;
 	}
+
 	
 	//some comments added by dengguangqing, on 2014-04-21
 	// get one rule randomly
