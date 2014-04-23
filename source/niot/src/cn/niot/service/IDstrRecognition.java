@@ -60,22 +60,13 @@ public class IDstrRecognition {
 		ArrayList<String> rulesList;
 
 		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
-<<<<<<< HEAD
-			if("ON"==DEBUG_TIME)timeSortRulesBegin=System.currentTimeMillis();
-			//sortRules(); //Temporarily moved by dgq, 2014-04-21 
-			if("ON"==DEBUG_TIME)timeSortRules=System.currentTimeMillis()-timeSortRulesBegin;
-			String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21 
-			//String maxRule = getMax_dgq();//Temporarily added by dgq, 2014-04-21
-=======
 			if ("ON" == DEBUG_TIME)
 				timeSortRulesBegin = System.currentTimeMillis();
 			// sortRules(); //Temporarily moved by dgq, 2014-04-21
-			if ("ON" == DEBUG_TIME)
-				timeSortRules = System.currentTimeMillis() - timeSortRulesBegin;
+			if ("ON" == DEBUG_TIME)timeSortRules = System.currentTimeMillis() - timeSortRulesBegin;
 			// String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21
 			String maxRule = getMax_dgq();// Temporarily added by dgq,
 											// 2014-04-21
->>>>>>> 5f58d3fea60d275b7a59e2ca4ea4e332c803c28a
 			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
 			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
 			if ("ON" == DEBUG) {
@@ -299,12 +290,9 @@ public class IDstrRecognition {
 
 		return true;
 	}
-<<<<<<< HEAD
-=======
 
 	// some comments added by dengguangqing, on 2014-04-21
 	// get the rule with the largest weight
->>>>>>> 5f58d3fea60d275b7a59e2ca4ea4e332c803c28a
 	private static String getMax() {
 		Set<String> keySet = rmvRuleSet.keySet();
 		Iterator ikey = keySet.iterator();
@@ -331,12 +319,8 @@ public class IDstrRecognition {
 		return maxName;
 	}
 
-<<<<<<< HEAD
-	
 	//some comments added by dengguangqing, on 2014-04-21
-=======
 	// some comments added by dengguangqing, on 2014-04-21
->>>>>>> 5f58d3fea60d275b7a59e2ca4ea4e332c803c28a
 	// get one rule randomly
 	private static String getMax_dgq() {
 		Set<String> keySet = rmvRuleSet.keySet();
