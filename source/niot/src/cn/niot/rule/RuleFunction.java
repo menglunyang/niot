@@ -33,11 +33,11 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	public static String IoTIDLength(String IDstr, int LenID, String parameter,
 			int LenIndex) {
-		if (IDstr.equals("2110")){
+		if (IDstr.equals("2110")) {
 			int ss = 0;
 			ss = ss + 1;
 		}
-		
+
 		// without length limit
 		boolean flag = false;
 		boolean flagMINUS = false;
@@ -46,29 +46,30 @@ public class RuleFunction {
 			return "OK";
 		} else {
 			int index = parameter.indexOf(",-1");
-			if(index >=0 )//存在
+			if (index >= 0)// 存在
 			{
 				for (int i = index - 1; i >= 0; i--) {
 					if (parameter.charAt(i) == ',') {
-						int num = Integer.parseInt(parameter.substring(i, index));
-						if(IDstr.length()>=num){							
+						int num = Integer.parseInt(parameter
+								.substring(i, index));
+						if (IDstr.length() >= num) {
 							return OK;
 						} else {
 							flagMINUS = true;
 							nIndexEnd = i;
 						}
-							
+
 					}
 				}
 				int num = Integer.parseInt(parameter.substring(0, index));
-				if(IDstr.length()>=num){
+				if (IDstr.length() >= num) {
 					return OK;
 				} else {
 					return ERR;
 				}
-					
-			} 
-			
+
+			}
+
 			if (true == flagMINUS) {
 				parameter = parameter.substring(0, nIndexEnd);
 			}
@@ -98,7 +99,7 @@ public class RuleFunction {
 			return "ERR";
 		}
 	}
-	
+
 	// Function: represent a decimal integer whose value range is from 1 to 99
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -1757,6 +1758,7 @@ public class RuleFunction {
 		String check;
 		int mod = (int) (11 - (sum % 11));
 		check = Integer.toString(mod % 10);
+
 		if (check.equals(Integer.toString((int) IDstr[Index[j]] - 48))) {
 			return OK;
 		} else {
@@ -4813,7 +4815,7 @@ public class RuleFunction {
 			if (i >= 499 && i <= 500 || i == 9900) {
 				return OK;
 			}
-			if (ii >= 6 && i <= 18) {
+			if (ii >= 6 && ii <= 18) {
 				return OK;
 			}
 			return ERR;
@@ -6155,7 +6157,7 @@ public class RuleFunction {
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // 输入数值ֵ
+			String bb = Integer.toString(j); // 输入数值
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -7334,7 +7336,6 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-
 		}
 	}
 
@@ -7368,7 +7369,6 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-
 		} else
 			return ERR;
 	}
@@ -8682,7 +8682,7 @@ public class RuleFunction {
 			if (LenIndex != 8) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID; i++) {
+			for (int i = Index[0]; i < LenIndex; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -9858,7 +9858,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// 287-——服装分类和代码表 查表数据库
@@ -9889,7 +9888,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// 288-——服装名字分类代码编制方法 查表数据库
@@ -10261,15 +10259,14 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
-	
-	// Function:  MH/T 0018-1999
+
+	// Function: MH/T 0018-1999
 	// IDstr: ID string
 	// LenID: 标识编码
 	// Index: 标识编码的长度
 	// LenIndex: 调用正则的的索引位置 长度为0-8
-	//判断0-8位是不是在数据库中存在
+	// 判断0-8位是不是在数据库中存在
 	// Creator:wt
 	public static String CivilAviation(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -10296,7 +10293,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10325,7 +10321,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10355,7 +10350,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10385,7 +10379,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10416,7 +10409,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10446,7 +10438,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10477,7 +10468,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10507,7 +10497,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10537,7 +10526,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10571,7 +10559,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10601,7 +10588,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10631,7 +10617,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10662,7 +10647,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10692,7 +10676,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10724,7 +10707,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff3(char[] IDstr, int LenID, int[] Index,
@@ -10749,7 +10731,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff4(char[] IDstr, int LenID, int[] Index,
@@ -10774,7 +10755,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
@@ -10799,10 +10779,10 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
-	public static String PortTariff25(char[] IDstr, int LenID, int[] Index, int LenIndex) {
+	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
@@ -10823,7 +10803,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff26(char[] IDstr, int LenID, int[] Index,
@@ -10848,7 +10827,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff10(char[] IDstr, int LenID, int[] Index,
@@ -10873,7 +10851,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10904,7 +10881,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10935,7 +10911,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10996,7 +10971,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11027,7 +11001,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11058,7 +11031,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11089,7 +11061,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11120,7 +11091,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11151,7 +11121,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11182,7 +11151,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11213,7 +11181,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String HighwayTransportation4c6(char[] IDstr, int LenID,
@@ -11238,7 +11205,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11270,7 +11236,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11299,7 +11264,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11330,7 +11294,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11356,7 +11319,6 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	/*
@@ -11396,6 +11358,7 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
+
 		String code = new String(IDstr);
 		try {
 			RecoDao recoDao = new RecoDao();
@@ -11585,7 +11548,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// Function: 山脉山峰名称代码（297）
@@ -11752,8 +11714,7 @@ public class RuleFunction {
 		if (LenIndex != 2) {
 			return ERR;
 		}
-		String code = new String(IDstr);
-
+		String code =String.valueOf(IDstr[Index[0]])+String.valueOf(IDstr[Index[1]]);
 		try {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getCountryRegionCode1(code);
@@ -12156,8 +12117,8 @@ public class RuleFunction {
 			int LenIndex) {
 		try {
 			String code = "";
-			String regex = "[0-9]*";
-			int prefix = 6;
+			String regex = "[A-Z]{0,4}[0-9]*";
+			int prefix = 2;
 
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
@@ -14216,6 +14177,8 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
+		System.out.println(len2);
+		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
 		if (len == 6) {
 			String regex1 = "[0-9]{6}";
 			Pattern pa = Pattern.compile(regex1);
@@ -14235,6 +14198,7 @@ public class RuleFunction {
 			boolean ret = ma.matches();
 			if (ret) {
 				if (IDstr[0] == '3') {
+					System.out.println("pass");
 					return OK;
 				} else
 					return ERR;
@@ -14254,70 +14218,86 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		int len = code.length();
+		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
+		if (len == 3) {
+			String regex1 = "[0-9]{3}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1' && IDstr[1] == '5')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 5) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
+						&& IDstr[1] == '0' || IDstr[0] == '1'
+						&& IDstr[1] == '1' || IDstr[0] == '1'
+						&& IDstr[1] == '3')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 6) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '1' || IDstr[0] == '0'
+						&& IDstr[1] == '6' || IDstr[0] == '1'
+						&& IDstr[1] == '2')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 7) {
+			String regex2 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '2' || IDstr[0] == '0'
+						&& IDstr[1] == '3' || IDstr[0] == '0'
+						&& IDstr[1] == '4' || IDstr[0] == '0'
+						&& IDstr[1] == '5' || IDstr[0] == '0'
+						&& IDstr[1] == '7' || IDstr[0] == '0'
+						&& IDstr[1] == '8')
+					return OK;
+				else
+					return ERR;
 
-		if (LenIndex == 3) {
-			for (int i = 0; i < 3; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1' && IDstr[1] == '5')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 8) {
+			String regex2 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1' && IDstr[1] == '4')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
-					&& IDstr[1] == '0' || IDstr[0] == '1' && IDstr[1] == '1'
-					|| IDstr[0] == '1' && IDstr[1] == '3')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '1' || IDstr[0] == '0'
-					&& IDstr[1] == '6' || IDstr[0] == '1' && IDstr[1] == '2')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '2' || IDstr[0] == '0'
-					&& IDstr[1] == '3' || IDstr[0] == '0' && IDstr[1] == '4'
-					|| IDstr[0] == '0' && IDstr[1] == '5' || IDstr[0] == '0'
-					&& IDstr[1] == '7' || IDstr[0] == '0' && IDstr[1] == '8')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1' && IDstr[1] == '4')
-				return OK;
-			else
-				return ERR;
-		}
-		return ERR;
 
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -14848,7 +14828,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortCarProductCompnent(code);
@@ -14941,7 +14921,7 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-	    if (IDstr[0] == '2') {
+		if (IDstr[0] == '2') {
 			String code = "";
 			String regex = "[0-9]*";
 			for (int i = Index[0]; i < IDstr.length; i++) {
@@ -14970,7 +14950,6 @@ public class RuleFunction {
 		}
 		return ERR;
 	}
-
 
 	// Function: 504 第10部分：服务类型及内容代码
 	// LenID: the number of characters in the ID string
@@ -16594,7 +16573,7 @@ public class RuleFunction {
 			return ERR;
 		}
 		String code = "";
-		
+
 		for (int i = Index[0]; i < LenID; i++) {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
@@ -16606,7 +16585,7 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-	}	
+	}
 
 	/*
 	 * A-E,or null wt
@@ -16616,17 +16595,19 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 0)
-			return OK;
-		if (LenIndex == 1) {
-			if (IDstr[Index[0]] == 'A' || IDstr[Index[1]] == 'B'
-					|| IDstr[Index[2]] == 'C' || IDstr[Index[3]] == 'D'
-					|| IDstr[Index[4]] == 'E')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+
+		for (int i = Index[0]; i < LenID; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		return ERR;
+		String regex = "[A-E]";
+		Pattern pa = Pattern.compile(regex);
+		Matcher ma = pa.matcher(code);
+		boolean ret = ma.matches();
+		if (ret) {
+			return OK;
+		} else
+			return ERR;
 	}
 
 	// special character underline _
@@ -16823,9 +16804,10 @@ public class RuleFunction {
 		} else
 			return ERR;
 	}
-	
-	//全国主要产品分类代码 fdl
-	// Function: represent a decimal integer whose value range is from 010 to 999
+
+	// 全国主要产品分类代码 fdl
+	// Function: represent a decimal integer whose value range is from 010 to
+	// 999
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
@@ -16866,5 +16848,55 @@ public class RuleFunction {
 		}
 	}
 
-}
+	// GB/T_28422-2012_6 wt
+	public static String ClassOfCardCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		String code = "";
 
+		for (int i = 0; i < 2; i++) {
+			code = code.concat(String.valueOf(IDstr[Index[i]]));
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int num = 10 * index1 + index2;
+		if (num >= 21 && num <= 53 && index1 >= 0 && index2 <= 9 && index2 >= 0
+				&& index2 <= 9)
+			return OK;
+		else
+			return ERR;
+	}
+
+	// 188城市市政综合监管信息系统
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 12位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:12
+	// creator:fdl
+	public static String Bigcode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			if ((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '1')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '5')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '6')
+					|| (IDstr[Index[0]] == '2' && IDstr[Index[1]] == '1')) {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+}
