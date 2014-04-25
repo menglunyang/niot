@@ -3037,13 +3037,13 @@ public class RuleFunction {
 					&& (IDstr[index3] == '0')) {
 				return ERR;
 			}
-			if ((IDstr[index1] < '3') || (IDstr[index1] > '9')) {
+			if ((IDstr[index1] <= '3') || (IDstr[index1] >= '9')) {
 				return ERR;
 			}
-			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+			if ((IDstr[index2] <= '0') || (IDstr[index2] >= '9')) {
 				return ERR;
 			}
-			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+			if ((IDstr[index3] <= '0') || (IDstr[index3] >= '9')) {
 				return ERR;
 			}
 			return OK;
@@ -15081,7 +15081,7 @@ public class RuleFunction {
 			if (LenIndex != 10) {
 				return ERR;
 			}
-			for (int i = 0; i < LenID; i++) {
+			for (int i = 0; i < LenIndex; i++) {
 				int check = (int) IDstr[Index[i]] - 48;
 				if (check >= 0 && check <= 9)
 					;
@@ -15100,9 +15100,9 @@ public class RuleFunction {
 			int i8 = (int) IDstr[Index[8]] - 48;
 			int i9 = (int) IDstr[Index[9]] - 48;
 
-			long i = 1000000000 * i0 + 100000000 * i1 + 10000000 * i2 + 1000000
-					* i3 + 100000 * i4 + i5 * 10000 + i6 * 1000 + i7 * 100 + i8
-					* 10 + i9;
+			long i = 1000000000l * i0 + 100000000l * i1 + 10000000l * i2
+					+ 1000000 * i3 + 100000l * i4 + i5 * 10000l + i6 * 1000l
+					+ i7 * 100l + i8 * 10l + i9;
 			if (i >= 1 && i <= 9999999999l) {
 				return OK;
 			}
