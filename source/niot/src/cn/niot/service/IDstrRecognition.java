@@ -110,7 +110,7 @@ public class IDstrRecognition {
 		DateFormat d1 = DateFormat.getDateTimeInstance(DateFormat.LONG,
 				DateFormat.LONG);
 		if ("ON" == DEBUG) {
-			System.out.print(d1.format(now) + ":");
+			System.out.print("DEBUG: " + d1.format(now) + ":");
 		}
 
 		double totalProbabity = 0;
@@ -127,11 +127,11 @@ public class IDstrRecognition {
 				Object key = iterator.next();
 				totalProbabity = totalProbabity + rmvIDSet.get(key);
 				if ("ON" == DEBUG_RES) {
-					System.out.print((String) key + " ");
+					System.out.print("DEBUG_RES" + (String) key + " ");
 				}
 			}
 			if ("ON" == DEBUG_RES) {
-				System.out.println("");
+				System.out.println("DEBUG_RES" + "");
 			}
 		}
 		if ("ON" == DEBUG_LINE) {
@@ -446,10 +446,12 @@ public class IDstrRecognition {
 	}
 
 	public static void testAndTestID() throws IOException {
+		long timeRuleMatchBegin = System.currentTimeMillis();
 		HashMap<String, String> testHashMap = new HashMap<String, String>();
 		testHashMap = RecoDao.test();
 		Iterator<String> iterator1 = testHashMap.keySet().iterator();
 		while (iterator1.hasNext()) {
+			timeRuleMatchBegin = System.currentTimeMillis();
 			Object testID = iterator1.next();
 			String test = testHashMap.get(testID);
 			int i = 0;
@@ -490,7 +492,7 @@ public class IDstrRecognition {
 				File f1 = new File("e://DebugResultOKID.txt");
 				BufferedWriter output1 = new BufferedWriter(new FileWriter(f1,
 						true));
-				output1.append(testID.toString());
+				output1.append(testID.toString()+":  " + test);
 				output1.append("\n");
 				output1.flush();
 				output1.close();
@@ -507,11 +509,18 @@ public class IDstrRecognition {
 				File f1 = new File("e://DebugResultERRORID.txt");
 				BufferedWriter output1 = new BufferedWriter(new FileWriter(f1,
 						true));
-				output1.append(testID.toString());
+				output1.append(testID.toString()+":  " + test);
 				output1.append("\n");
 				output1.flush();
 				output1.close();
 			}
+			
+			long timeRuleMatchEnd = System.currentTimeMillis() - timeRuleMatchBegin;
+			File ftime = new File("e://IDrecognitionTime.txt");
+			BufferedWriter output1 = new BufferedWriter(new FileWriter(ftime,true));
+			output1.append(testID.toString() + ": " + String.valueOf(timeRuleMatchEnd) + "\n");
+			output1.flush();
+			output1.close();
 		}
 	}
 }
