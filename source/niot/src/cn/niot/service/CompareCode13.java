@@ -2,12 +2,12 @@ package cn.niot.service;
 
 import cn.niot.dao.RecoDao;
 
-//±àÂë62½ÖÏï»òĞ¡Çø±àÂëÓëEAN-13½øĞĞ±È½Ï£¬Á½¸ö±àÂë³¤¶È¶¼ÊÇ13
+//EAN-13ä¸è¡—å··å
 public class CompareCode13 {
-	//Æ¥Åä´ÎÊı
+
 	private int randomNum = 10000;
 	
-	//µ¥×Ö½ÚËæ»ú£¬°´ÕÕ¹æÔò·µ»ØcharÊı×é
+	//charéšæœº
 	private char[] randomCodeRegex(String[] regexArray){
 		char[] charArray = new char[regexArray.length];
 		for(int i = 0; i < regexArray.length; i++){
@@ -16,7 +16,7 @@ public class CompareCode13 {
 		return charArray;
 	}
 	
-	//Ëæ»úµÃµ½Ò»ÌõĞĞÕşÇø»®´úÂëÊı¾İ
+	//è¡Œæ”¿åŒºåˆ’ä»£ç éšæœº
 	private String randomAdminDivision(){
 		String code = "";
 		try{
@@ -28,7 +28,7 @@ public class CompareCode13 {
 		return code;
 	}
 	
-	//Ëæ»úµÃµ½Ò»ÌõEANUPC¹ú¼Ò´úÂëÊı¾İ
+	//EANUPéšæœº
 	private String randomRetailCommunityNumber(){
 		String code = "";
 		try{
@@ -39,7 +39,7 @@ public class CompareCode13 {
 		}
 		return code;
 	}
-	//EAN-13Ğ£ÑéËã·¨
+	//EAN-13Ğ£æ ¡éªŒä½
 	public static char checkCommodityCode(char[] eanCode){
 		char checkcode = 0;
 		int i = 0;
@@ -49,7 +49,7 @@ public class CompareCode13 {
 		int even_sum = 0;
 		
 		for (i = eanCode.length - 2; i >= 0; i -= 2) {
-			even_sum += (eanCode[i] - 48); // ASCIIÂëÖĞ ×Ö·û'0'¶ÔÓ¦µÄÊÇ30H,Ê®½øÖÆ¾ÍÊÇ48
+			even_sum += (eanCode[i] - 48); 
 		}
 
 		for (i = eanCode.length - 3; i >= 0; i -= 2) {
@@ -64,8 +64,8 @@ public class CompareCode13 {
 		return checkcode;
 	}
 	
-	//±àºÅ62µÄËæ»ú±àÂë
-	public char[] generateRandomStreetCode(){
+	//éšæœºäº§ç”Ÿè¡—å··åç¼–ç 
+	public char[] generateRandomStreetCode() {
 		String[] regexArray = new String[]{"[0-3]", "[0-9]", "[0-9]", "[0,1]", "[0-9]", "[0-9]", "[0-9]"};
 		char[] charArray = new char[regexArray.length];
 		char[] adminDivisionArray = new char[6];
@@ -79,8 +79,8 @@ public class CompareCode13 {
 		return streetCode;
 	}
 
-	//EAN-13Ëæ»ú±àÂë
-	public char[] generateRandomEAN13(){
+	//éšæœºäº§ç”ŸEAN-13
+	public char[] generateRandomEAN13() {
 		String[] regexArray = new String[]{"[0-9]", "[0-9]", "[0-9]", "[0-9]" ,"[0-9]", "[0-9]" ,"[0-9]", "[0-9]", "[0-9]"};
 		String commodityNum = randomRetailCommunityNumber();
 		char[] charArray = randomCodeRegex(regexArray);
@@ -94,4 +94,15 @@ public class CompareCode13 {
 		eanCode[eanCode.length - 1] = checkSum;
 		return eanCode;
 	}
+	
+	//YC/T_414-2011_1 22ä½
+//	public char[] generateRandomYCT414() {
+//		
+//	}
+	
+	//GB/T_21379-2008_1 22ä½
+//	public char[] generateRandomGBT21379() {
+//		char[] adminDivisionArray = new char[6];
+//		String adminDivisionCode = randomAdminDivision();
+//	}
 }
