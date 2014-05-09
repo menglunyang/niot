@@ -84,37 +84,52 @@ public class IoTIDRecognitionAction extends ActionSupport {
     }
 
 	public String execute() throws Exception {
-		long begin=System.currentTimeMillis();
-		//added by dgq, for test only
+		long begin = System.currentTimeMillis();
+		// added by dgq, for test only
 		int nflag = 1;
-		if (0 == nflag){
+		if (0 == nflag) {
 			IDstrRecognition.readDao(0);
-			//System.setOut(new PrintStream(new FileOutputStream("e:\\result.txt")));
+			// System.setOut(new PrintStream(new
+			// FileOutputStream("e:\\result.txt")));
 			IDstrRecognition.testAndTestID();
 			System.out.println("The end of this run!!!!\n");
 			return SUCCESS;
-		}			
-		
+		}
 
 		String IoTcode = null;
 		if (this.code != null) {
 			IoTcode = replaceBlank(this.code);
-			//System.out.println("\nIoTcode:   " + IoTcode);
-			//System.out.println("\nLength of IoTcode:   " + IoTcode.length());
+			// System.out.println("\nIoTcode:   " + IoTcode);
+			// System.out.println("\nLength of IoTcode:   " + IoTcode.length());
 		}
 
 		if (IoTcode != null) {
 			IDstrRecognition.readDao(0);
-			HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(IoTcode);
-			//HashMap<String, Double> ChineseName_Pro = RecoUtil.replaceIotId(typeProbability);
+			HashMap<String, Double> typeProbability = IDstrRecognition
+					.IoTIDRecognizeAlg(IoTcode);
+			// added by dgq on 2014-04-29, to remove those items with
+			// probability of 0.0
+			Iterator iterator_IDPro = typeProbability.keySet().iterator();
+			while (iterator_IDPro.hasNext()) {
+				String key_IDstd = iterator_IDPro.next().toString();				
+				double probability = typeProbability.get(key_IDstd);
+				if (0 >= probability) {
+					iterator_IDPro.remove();
+				}
+			}
+
+
+			// HashMap<String, Double> ChineseName_Pro =
+			// RecoUtil.replaceIotId(typeProbability);
 			HashMap<String, Double> ShortName_Probability = new HashMap<String, Double>();
-			JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(typeProbability, ShortName_Probability);	
+			JSONObject jsonObjectRes = IDstrRecognition.getTwoNamesByIDCode(
+					typeProbability, ShortName_Probability);
 			this.extraData = (jsonObjectRes.toString()).replace("\"", "\'");
-			
+
 			int len = ShortName_Probability.size();
 			if (RecoUtil.NO_ID_MATCHED == len) {
 				this.status = String.valueOf(RecoUtil.NO_ID_MATCHED);
-				//this.status = "1";
+				// this.status = "1";
 			} else if (RecoUtil.ONE_ID_MATCHED == len) {
 				Iterator iterator = ShortName_Probability.keySet().iterator();
 				while (iterator.hasNext()) {
@@ -139,11 +154,11 @@ public class IoTIDRecognitionAction extends ActionSupport {
 					this.data = jsonArray.toString();
 				}
 			}
-			
+
 		}
-		//System.out.println("during:"+(System.currentTimeMillis()-begin));
-		System.out.println("\nthis.data:   "+this.data);
-		System.out.println("\nthis.extraData:   "+this.extraData);
+		// System.out.println("during:"+(System.currentTimeMillis()-begin));
+		System.out.println("\nthis.data:   " + this.data);
+		System.out.println("\nthis.extraData:   " + this.extraData);
 		return SUCCESS;
 	}
 }

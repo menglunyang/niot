@@ -58,14 +58,13 @@ public class IDstrRecognition {
 		// hashMapRuleToTypes);
 		// if("ON"==DEBUG_TIME)timeDao=System.currentTimeMillis()-timeDaoBegin;
 		ArrayList<String> rulesList;
-
+		sortRules(); //Temporarily moved by dgq, 2014-04-21
 		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
 			if ("ON" == DEBUG_TIME)
-				timeSortRulesBegin = System.currentTimeMillis();
-			// sortRules(); //Temporarily moved by dgq, 2014-04-21
+				timeSortRulesBegin = System.currentTimeMillis();			
 			if ("ON" == DEBUG_TIME)timeSortRules = System.currentTimeMillis() - timeSortRulesBegin;
-			// String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21
-			String maxRule = getMax_dgq();// Temporarily added by dgq,
+			String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21
+			//String maxRule = getMax_dgq();// Temporarily added by dgq,
 											// 2014-04-21
 			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
 			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
@@ -144,7 +143,10 @@ public class IDstrRecognition {
 		String time = f.format(today);
 		while (iterator2.hasNext()) {
 			Object key2 = iterator2.next();
-			double probability = rmvIDSet.get(key2) / totalProbabity;
+			double probability = 0;
+			if (totalProbabity != 0){
+				probability = rmvIDSet.get(key2) / totalProbabity;
+			}			
 			typeProbability.put(String.valueOf(key2), probability);
 		}
 		/*
@@ -171,6 +173,7 @@ public class IDstrRecognition {
 		while (iterator_t.hasNext()) {
 			String key_IDstd = iterator_t.next().toString();
 			double probability = HashMapID2Probability.get(key_IDstd);
+
 			String ChineseName = dao.getIDDetail(key_IDstd);
 			IDCode_ChineseName.put(key_IDstd, ChineseName);
 
@@ -334,8 +337,6 @@ public class IDstrRecognition {
 		return nextName;
 	}
 
-	// some comments added by dengguangqing, 2014-04-21
-	// the function is calculate the weight of each rule
 	private static void sortRules() {
 		// TODO Auto-generated method stub
 		double p = 0.0;
@@ -346,22 +347,31 @@ public class IDstrRecognition {
 			String ruleName = (String) ruleikey.next();
 			Set<String> idkeySet = rmvIDSet.keySet();
 			Iterator<String> idikey = idkeySet.iterator();
-			while (idikey.hasNext()) {
-				String idName = idikey.next();
-				if (hashMapRuleToTypes.get(ruleName).indexOf(idName) >= 0
-						&& rmvIDSet.containsKey(idName)) {
-					p = p + (double) rmvIDSet.get(idName);
-				}
+			/*
+			 * while (idikey.hasNext()) { String idName = idikey.next(); if
+			 * (hashMapRuleToTypes.get(ruleName).indexOf(idName) >= 0 &&
+			 * rmvIDSet.containsKey(idName)) { p = p + (double)
+			 * rmvIDSet.get(idName); } }
+			 */
+			ArrayList<String> IDs = hashMapRuleToTypes.get(ruleName);
+			double sum_p = 0;
+			for (int i = 0; i < IDs.size(); i++) {
+				String s = IDs.get(i).toString();
+				double currentP = rmvIDSet.get(s);
+				sum_p += currentP;
+
 			}
-			if (p == 0 || p == 1) {
-				System.out.println("ERROR!  " + ruleName
-						+ " p is 0 or 1,error!");
-			}
+
+			/*
+			 * if (p == 0 || p == 1) { System.out.println("ERROR!  " + ruleName
+			 * + " p is 0 or 1,error!"); }
+			 */
 			if (p > 1 || p < 0) {
 				System.out.println("ERROR!  " + ruleName
 						+ " p is not in 1~0 range,error!");
 			}
-			rmvRuleSet.put(ruleName, w(p));// p!=0 or 1
+			// rmvRuleSet.put(ruleName, w(p));// p!=0 or 1
+			rmvRuleSet.put(ruleName, w(sum_p));// p!=0 or 1
 		}
 	}
 
@@ -455,10 +465,12 @@ public class IDstrRecognition {
 			Object testID = iterator1.next();
 			String test = testHashMap.get(testID);
 			int i = 0;
+			
 			// just for test, added by dgq
 			if (test.equals("10100")) {
 				i = 0;
-			}
+			}			
+			
 			ArrayList<String> s = hashMapTypeToRules.get(testID);
 			String resFlag = "OK";
 			String res = "";
@@ -496,6 +508,37 @@ public class IDstrRecognition {
 				output1.append("\n");
 				output1.flush();
 				output1.close();
+				
+				////////////////added by dgq, on 2014-05-06//////////////////////////////////////////////////////////////
+				IDstrRecognition.readDao(0);
+				HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(test);
+				Iterator iterator_IDPro = typeProbability.keySet().iterator();
+				
+				//added by dgq, on 2014-05-06
+				File outfile1 = new File("e://Collision.txt");
+				BufferedWriter outputfiles1 = new BufferedWriter(new FileWriter(outfile1, true));
+				outputfiles1.append(testID.toString()+" <=> ");
+				outputfiles1.flush();
+				outputfiles1.close();
+				
+				while (iterator_IDPro.hasNext()) {
+					String key_IDstd = iterator_IDPro.next().toString();
+					
+					//added by dgq, on 2014-05-06
+					File file = new File("e://Collision.txt");
+					BufferedWriter outputfile = new BufferedWriter(new FileWriter(file, true));
+					outputfile.append(key_IDstd);
+					outputfile.append("{]");
+					outputfile.flush();
+					outputfile.close();
+				}
+				//added by dgq, on 2014-05-06
+				File outfile = new File("e://Collision.txt");
+				BufferedWriter outputfiles = new BufferedWriter(new FileWriter(outfile, true));
+				outputfiles.append("\n");
+				outputfiles.flush();
+				outputfiles.close();
+				//////////////////////////////////////////////////////////////////////////////
 			} else {
 				File f = new File("e://DebugResultERROR.txt");
 				BufferedWriter output = new BufferedWriter(new FileWriter(f,
