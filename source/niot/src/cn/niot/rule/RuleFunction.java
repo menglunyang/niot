@@ -10718,7 +10718,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff3(code);
@@ -10766,7 +10766,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[i + 5]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff9(code);
@@ -11899,25 +11899,26 @@ public class RuleFunction {
 	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
-	public static String PowerGoodsP2(char[] CODEstr, int LenCODE, int[] Index,
+	public static String PowerGoodsP2(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 3) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPowerGoodsP2(code);
 			if (ret) {
 				return OK;
-			} else
+			} else {
 				return ERR;
+			}
 		} catch (Exception e) {
 			return ERR;
 		}
@@ -13300,35 +13301,34 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		int index1 = (int) IDstr[Index[0]] - 48;
-		int index2 = (int) IDstr[Index[1]] - 48;
-		if (index1 < 0 || index1 > 9 || index2 < 0 || index2 > 9)
-			return ERR;
-		char c = IDstr[Index[2]];
-		int index3 = IDstr[Index[2]] - 48;
-		if (LenIndex == 6) {
-			if (c == '.') {
-				int index4 = (int) IDstr[Index[3]] - 48;
-				int index5 = (int) IDstr[Index[4]] - 48;
-				int index6 = (int) IDstr[Index[5]] - 48;
-				if (index4 >= 0 && index4 <= 9 && index5 >= 0 && index5 <= 9
-						&& index6 >= 0 && index6 <= 9)
-					return OK;
-			}
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 7) {
-			if (index3 >= 0 && index3 <= 9) {
-				char d = IDstr[Index[3]];
-				if (d == '.') {
-					int index5 = (int) IDstr[Index[4]] - 48;
-					int index6 = (int) IDstr[Index[5]] - 48;
-					int index7 = (int) IDstr[Index[6]] - 48;
-					if (index5 >= 0 && index5 <= 9 && index6 >= 0
-							&& index6 <= 9 && index7 >= 0 && index7 <= 9)
-						return OK;
-				}
-			}
+		int len = code.length();
+
+		if (len == 6) {
+			String regex = "[0-9]{2}\\.[0-9]{3}";
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else if (len == 7) {
+			String regex = "[0-9]{3}\\.[0-9]{3}";
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
 		}
+
 		return ERR;
 	}
 
@@ -14777,19 +14777,18 @@ public class RuleFunction {
 			if (LenIndex != 6) {
 				return ERR;
 			}
-			String aa = null;
-			aa = AdminDivision(IDstr, LenIndex, Index, LenIndex);
-			if (aa.equals(OK)) {
-				return OK;
-			}
 			String code = "";
 			for (int i = 0; i < 6; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
-			if (code.equals("100000")) {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getAdminDivisionID(code);
+			if (ret) {
 				return OK;
-			}
-			return ERR;
+			} else if (code.equals("100000")) {
+				return OK;
+			} else
+				return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}
