@@ -59,6 +59,68 @@ public class IDstrRecognition {
 		// if("ON"==DEBUG_TIME)timeDao=System.currentTimeMillis()-timeDaoBegin;
 		ArrayList<String> rulesList;
 		sortRules(); //Temporarily moved by dgq, 2014-04-21
+		//*
+		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
+			if ("ON" == DEBUG_TIME) {
+				timeSortRulesBegin = System.currentTimeMillis();
+			}
+			// Temporarily moved by dgq, 2014-04-21
+			if ("ON" == DEBUG_TIME) {
+				timeSortRules += (System.currentTimeMillis() - timeSortRulesBegin);
+			}
+			String maxRule = getMax();// Temporarily moved by dgq, 2014-04-21
+			// String maxRule = getMax_dgq();// Temporarily added by dgq,
+			// 2014-04-21
+			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
+			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
+			if ("ON" == DEBUG) {
+				System.out.print("matching " + splitRules[0] + "("
+						+ splitParameter[0] + ").");
+			}
+			if ("ON" == DEBUG_TIME) {
+				timeMatchBegin = System.currentTimeMillis();
+			}
+			if (match(splitRules[0], splitParameter[0], s)) {
+				// intersection(rmvIDSet, hashMapRuleToTypes.get(maxRule));
+				if ("ON" == DEBUG_TIME) {
+					timeMatch += (System.currentTimeMillis() - timeMatchBegin);
+				}
+				if ("ON" == DEBUG) {
+					System.out.println("OK");
+				}
+				rmvRuleSet.remove(maxRule);
+			} else {
+				subtraction(rmvIDSet, hashMapRuleToTypes.get(maxRule));
+				union(maxRule);
+				if ("ON" == DEBUG_TIME) {
+					timeMatch += (System.currentTimeMillis() - timeMatchBegin);
+				}
+
+				if ("ON" == DEBUG) {
+					System.out.println("ERR");
+				}
+				if ("ON" == DEBUG_TIME) {
+					timeSubtractionBegin = System.currentTimeMillis();
+				}
+
+				if ("ON" == DEBUG_TIME) {
+					//subtraction(rmvIDSet, hashMapRuleToTypes.get(maxRule));
+					timeSubtraction += (System.currentTimeMillis() - timeSubtractionBegin);
+				}
+				if ("ON" == DEBUG_TIME) {
+					timeUnionBegin = System.currentTimeMillis();
+				}
+
+				if ("ON" == DEBUG_TIME) {
+					//union(maxRule);
+					timeUnion += (System.currentTimeMillis() - timeUnionBegin);
+					
+				}
+			}
+
+		}
+		//*/
+		/*
 		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
 			if ("ON" == DEBUG_TIME)
 				timeSortRulesBegin = System.currentTimeMillis();			
@@ -99,7 +161,8 @@ public class IDstrRecognition {
 			union(maxRule);
 			if ("ON" == DEBUG_TIME)
 				timeUnion = System.currentTimeMillis() - timeUnionBegin;
-		}
+		} 
+		*/
 		if ("ON" == DEBUG_TIME)
 			System.out.println("读数据库用时：" + timeDao + ",SortRules用时："
 					+ timeSortRules + ",Match用时：" + timeMatch
@@ -424,8 +487,9 @@ public class IDstrRecognition {
 	private static void union(String delRule) {
 		Iterator<String> iter = rmvIDSet.keySet().iterator();// IoT ID set
 
-		ArrayList<String> arrayList = new ArrayList<String>(); 
+		//ArrayList<String> arrayList = new ArrayList<String>(); 
 		ArrayList<String> arrayList_Rules;
+		HashSet<String> arrayList = new HashSet<String>();
 
 		while (iter.hasNext()) {
 			String ID_key = (String) iter.next();
@@ -447,7 +511,7 @@ public class IDstrRecognition {
 		while (iterator.hasNext()) {
 			String Rule_key = iterator.next();
 
-			if (arrayList.indexOf(Rule_key) == -1) { 
+			if (!arrayList.contains((String)Rule_key)) { 
 				// rmvRuleSet.remove(Rule_key);
 				iterator.remove();
 			}
@@ -510,6 +574,7 @@ public class IDstrRecognition {
 				output1.close();
 				
 				////////////////added by dgq, on 2014-05-06//////////////////////////////////////////////////////////////
+				/*
 				IDstrRecognition.readDao(0);
 				HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(test);
 				Iterator iterator_IDPro = typeProbability.keySet().iterator();
@@ -538,6 +603,7 @@ public class IDstrRecognition {
 				outputfiles.append("\n");
 				outputfiles.flush();
 				outputfiles.close();
+				*/
 				//////////////////////////////////////////////////////////////////////////////
 			} else {
 				File f = new File("e://DebugResultERROR.txt");
