@@ -10580,7 +10580,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff3(code);
@@ -10619,6 +10619,7 @@ public class RuleFunction {
 
 		
 	// e.g 1000 /1010/1011/1020
+	/*
 	 public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
 	   int LenIndex) {
 	  if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -10642,6 +10643,31 @@ public class RuleFunction {
 	   return ERR;
 	  }
 	 }
+
+*/
+	public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 4) {
+			return ERR;
+		}
+		try {
+			String code = "";
+			for (int i = 0; i < 4; i++) {
+				code = code.concat(String.valueOf(IDstr[i + 5]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getPortTariff9(code);
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
 
 
 	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
@@ -11764,25 +11790,26 @@ public class RuleFunction {
 	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
-	public static String PowerGoodsP2(char[] CODEstr, int LenCODE, int[] Index,
+	public static String PowerGoodsP2(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 3) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPowerGoodsP2(code);
 			if (ret) {
 				return OK;
-			} else
+			} else {
 				return ERR;
+			}
 		} catch (Exception e) {
 			return ERR;
 		}
@@ -13188,9 +13215,8 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		
-		if(len==6)
-		{
+		if (len == 6) {
+
 			String regex = "[0-9]{2}\\.[0-9]{3}";
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
@@ -13201,8 +13227,7 @@ public class RuleFunction {
 			} else
 				return ERR;
 		}
-		else if(len==7)
-		{
+		else if (len == 7) {
 			String regex = "[0-9]{3}\\.[0-9]{3}";
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
@@ -13213,7 +13238,6 @@ public class RuleFunction {
 			} else
 				return ERR;
 		}
-		
 		return ERR;
 		
 		
@@ -14652,32 +14676,32 @@ public class RuleFunction {
 	}
 
 	// 工商行政管理注册号编制规则 fdl
-	 public static String BusinessAdminis(char[] IDstr, int LenID, int[] Index,
-	   int LenIndex) {
-	  try {
-	   if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-	    return ERR;
-	   }
-	   if (LenIndex != 6) {
-	    return ERR;
-	   }
-	   String aa = null;
-	   aa = AdminDivision(IDstr, LenIndex, Index, LenIndex);
-	   if (aa.equals(OK)) {
-	    return OK;
-	   }
-	   String code = "";
-	   for (int i = 0; i < 6; i++) {
-	    code = code.concat(String.valueOf(IDstr[i]));
-	    if (code.equals("100000")) {
-	     return OK;
-	    }
-	   }
-	   return ERR;
-	  } catch (Exception e) {
-	   return ERR;
-	  }
-	 }
+	public static String BusinessAdminis(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			String code = "";
+			for (int i = 0; i < 6; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getAdminDivisionID(code);
+			if (ret) {
+				return OK;
+			} else if (code.equals("100000")) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
 
 	// Function: 汽车标准件产品编号规则
 	// IDstr: 标识编码
