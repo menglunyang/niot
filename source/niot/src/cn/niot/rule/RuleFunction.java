@@ -33,15 +33,10 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	public static String IoTIDLength(String IDstr, int LenID, String parameter,
 			int LenIndex) {
-<<<<<<< HEAD
 		if (IDstr.equals("Q1C0345·2T28F16")) {
 			int ss = 0;
 			ss = ss + 1;
 		}
-
-		// without length limit
-=======
->>>>>>> dgq2010-master
 		boolean flag = false;
 		if (parameter.charAt(0) == '-') {
 			return "OK";
@@ -2931,13 +2926,13 @@ public class RuleFunction {
 					&& (IDstr[index3] == '0')) {
 				return ERR;
 			}
-			if ((IDstr[index1] < '0') || (IDstr[index1]  > '3')) {
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '3')) {
 				return ERR;
 			}
-			if ((IDstr[index2] <  '0') || (IDstr[index2] >  '9')) {
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
 				return ERR;
 			}
-			if ((IDstr[index3] <  '0') || (IDstr[index3] >  '9')) {
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
 				return ERR;
 			}
 			return OK;
@@ -2946,7 +2941,6 @@ public class RuleFunction {
 		}
 	}
 
-	
 	// Function: 实现校验 MOD 97-10
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -10624,38 +10618,7 @@ public class RuleFunction {
 		}
 	}
 
-<<<<<<< HEAD
 	// e.g 1000 /1010/1011/1020
-=======
-		
-	// e.g 1000 /1010/1011/1020
-	/*
-	 public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
-	   int LenIndex) {
-	  if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-	   return ERR;
-	  }
-	  if (LenIndex != 4) {
-	   return ERR;
-	  }
-	  try {
-	   String code = "";
-	   for (int i = 0; i < 4; i++) {
-	    code = code.concat(String.valueOf(IDstr[i+5]));
-	   }
-	   RecoDao recoDao = new RecoDao();
-	   boolean ret = recoDao.getPortTariff9(code);
-	   if (ret) {
-	    return OK;
-	   } else
-	    return ERR;
-	  } catch (Exception e) {
-	   return ERR;
-	  }
-	 }
-
-*/
->>>>>>> dgq2010-master
 	public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -10679,7 +10642,6 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-
 
 	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
@@ -13139,7 +13101,7 @@ public class RuleFunction {
 	public static String NationalTrunkHighway(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
-			
+
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
@@ -13163,6 +13125,7 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
+
 	// Function:)
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -13179,9 +13142,8 @@ public class RuleFunction {
 			code = code.concat(String.valueOf(IDstr[i]));
 		}
 		int len = code.length();
-		
-		if(len==4)
-		{
+
+		if (len == 4) {
 			String regex = "[0-9]{2}\\.[0-9]";
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
@@ -13191,9 +13153,7 @@ public class RuleFunction {
 
 			} else
 				return ERR;
-		}
-		else if(len==5)
-		{
+		} else if (len == 5) {
 			String regex = "[0-9]{2}\\.[0-9]{2}";
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
@@ -13204,12 +13164,10 @@ public class RuleFunction {
 			} else
 				return ERR;
 		}
-		
+
 		return ERR;
 	}
 
-
-	
 	// DL/T_700.1-1999_51
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
@@ -13237,8 +13195,7 @@ public class RuleFunction {
 
 			} else
 				return ERR;
-		}
-		else if (len == 7) {
+		} else if (len == 7) {
 			String regex = "[0-9]{3}\\.[0-9]{3}";
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
@@ -13250,10 +13207,9 @@ public class RuleFunction {
 				return ERR;
 		}
 		return ERR;
-		
-		
+
 	}
-	
+
 	/*
 	 * 前4位是数字，后2位是小数 1234.12 author:wt
 	 */
@@ -14712,7 +14668,6 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-
 
 	// Function: 汽车标准件产品编号规则
 	// IDstr: 标识编码
