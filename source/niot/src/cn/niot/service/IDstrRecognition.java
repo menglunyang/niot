@@ -58,15 +58,75 @@ public class IDstrRecognition {
 		// hashMapRuleToTypes);
 		// if("ON"==DEBUG_TIME)timeDao=System.currentTimeMillis()-timeDaoBegin;
 		ArrayList<String> rulesList;
+		sortRules(); //Temporarily moved by dgq, 2014-04-21
+		//*
+		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
+			if ("ON" == DEBUG_TIME) {
+				timeSortRulesBegin = System.currentTimeMillis();
+			}
+			// Temporarily moved by dgq, 2014-04-21
+			if ("ON" == DEBUG_TIME) {
+				timeSortRules += (System.currentTimeMillis() - timeSortRulesBegin);
+			}
+			String maxRule = getMax();// Temporarily moved by dgq, 2014-04-21
+			// String maxRule = getMax_dgq();// Temporarily added by dgq,
+			// 2014-04-21
+			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
+			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
+			if ("ON" == DEBUG) {
+				System.out.print("matching " + splitRules[0] + "("
+						+ splitParameter[0] + ").");
+			}
+			if ("ON" == DEBUG_TIME) {
+				timeMatchBegin = System.currentTimeMillis();
+			}
+			if (match(splitRules[0], splitParameter[0], s)) {
+				// intersection(rmvIDSet, hashMapRuleToTypes.get(maxRule));
+				if ("ON" == DEBUG_TIME) {
+					timeMatch += (System.currentTimeMillis() - timeMatchBegin);
+				}
+				if ("ON" == DEBUG) {
+					System.out.println("OK");
+				}
+				rmvRuleSet.remove(maxRule);
+			} else {
+				subtraction(rmvIDSet, hashMapRuleToTypes.get(maxRule));
+				union(maxRule);
+				if ("ON" == DEBUG_TIME) {
+					timeMatch += (System.currentTimeMillis() - timeMatchBegin);
+				}
 
+				if ("ON" == DEBUG) {
+					System.out.println("ERR");
+				}
+				if ("ON" == DEBUG_TIME) {
+					timeSubtractionBegin = System.currentTimeMillis();
+				}
+
+				if ("ON" == DEBUG_TIME) {
+					//subtraction(rmvIDSet, hashMapRuleToTypes.get(maxRule));
+					timeSubtraction += (System.currentTimeMillis() - timeSubtractionBegin);
+				}
+				if ("ON" == DEBUG_TIME) {
+					timeUnionBegin = System.currentTimeMillis();
+				}
+
+				if ("ON" == DEBUG_TIME) {
+					//union(maxRule);
+					timeUnion += (System.currentTimeMillis() - timeUnionBegin);
+					
+				}
+			}
+
+		}
+		//*/
+		/*
 		while (rmvIDSet.size() != 0 && rmvRuleSet.size() != 0) {
 			if ("ON" == DEBUG_TIME)
-				timeSortRulesBegin = System.currentTimeMillis();
-			// sortRules(); //Temporarily moved by dgq, 2014-04-21
-			if ("ON" == DEBUG_TIME)
-				timeSortRules = System.currentTimeMillis() - timeSortRulesBegin;
-			// String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21
-			String maxRule = getMax_dgq();// Temporarily added by dgq,
+				timeSortRulesBegin = System.currentTimeMillis();			
+			if ("ON" == DEBUG_TIME)timeSortRules = System.currentTimeMillis() - timeSortRulesBegin;
+			String maxRule = getMax();//Temporarily moved by dgq, 2014-04-21
+			//String maxRule = getMax_dgq();// Temporarily added by dgq,
 											// 2014-04-21
 			String[] splitRules = maxRule.split("\\)\\(\\?\\#PARA=");// 提取规则名
 			String[] splitParameter = splitRules[1].split("\\)\\{\\]");// 提取参数
@@ -101,7 +161,8 @@ public class IDstrRecognition {
 			union(maxRule);
 			if ("ON" == DEBUG_TIME)
 				timeUnion = System.currentTimeMillis() - timeUnionBegin;
-		}
+		} 
+		*/
 		if ("ON" == DEBUG_TIME)
 			System.out.println("读数据库用时：" + timeDao + ",SortRules用时："
 					+ timeSortRules + ",Match用时：" + timeMatch
@@ -111,7 +172,7 @@ public class IDstrRecognition {
 		DateFormat d1 = DateFormat.getDateTimeInstance(DateFormat.LONG,
 				DateFormat.LONG);
 		if ("ON" == DEBUG) {
-			System.out.print(d1.format(now) + ":");
+			System.out.print("DEBUG: " + d1.format(now) + ":");
 		}
 
 		double totalProbabity = 0;
@@ -128,11 +189,11 @@ public class IDstrRecognition {
 				Object key = iterator.next();
 				totalProbabity = totalProbabity + rmvIDSet.get(key);
 				if ("ON" == DEBUG_RES) {
-					System.out.print((String) key + " ");
+					System.out.print("DEBUG_RES" + (String) key + " ");
 				}
 			}
 			if ("ON" == DEBUG_RES) {
-				System.out.println("");
+				System.out.println("DEBUG_RES" + "");
 			}
 		}
 		if ("ON" == DEBUG_LINE) {
@@ -145,7 +206,10 @@ public class IDstrRecognition {
 		String time = f.format(today);
 		while (iterator2.hasNext()) {
 			Object key2 = iterator2.next();
-			double probability = rmvIDSet.get(key2) / totalProbabity;
+			double probability = 0;
+			if (totalProbabity != 0){
+				probability = rmvIDSet.get(key2) / totalProbabity;
+			}			
 			typeProbability.put(String.valueOf(key2), probability);
 		}
 		/*
@@ -172,6 +236,7 @@ public class IDstrRecognition {
 		while (iterator_t.hasNext()) {
 			String key_IDstd = iterator_t.next().toString();
 			double probability = HashMapID2Probability.get(key_IDstd);
+
 			String ChineseName = dao.getIDDetail(key_IDstd);
 			IDCode_ChineseName.put(key_IDstd, ChineseName);
 
@@ -305,6 +370,13 @@ public class IDstrRecognition {
 		while (ikey.hasNext()) {
 			nextName = (String) ikey.next();
 			next = rmvRuleSet.get(nextName);
+			String[] functionHead=nextName.split("\\)\\(\\?\\#PARA=");
+			if(functionHead[0].equals("IoTIDLength")){
+				return nextName;
+			}
+			if(functionHead[0].equals("IoTIDByte")){
+				return nextName;
+			}
 			if (next > max) {
 				max = next;
 				maxName = nextName;
@@ -313,6 +385,7 @@ public class IDstrRecognition {
 		return maxName;
 	}
 
+	//some comments added by dengguangqing, on 2014-04-21
 	// some comments added by dengguangqing, on 2014-04-21
 	// get one rule randomly
 	private static String getMax_dgq() {
@@ -327,8 +400,6 @@ public class IDstrRecognition {
 		return nextName;
 	}
 
-	// some comments added by dengguangqing, 2014-04-21
-	// the function is calculate the weight of each rule
 	private static void sortRules() {
 		// TODO Auto-generated method stub
 		double p = 0.0;
@@ -339,22 +410,31 @@ public class IDstrRecognition {
 			String ruleName = (String) ruleikey.next();
 			Set<String> idkeySet = rmvIDSet.keySet();
 			Iterator<String> idikey = idkeySet.iterator();
-			while (idikey.hasNext()) {
-				String idName = idikey.next();
-				if (hashMapRuleToTypes.get(ruleName).indexOf(idName) >= 0
-						&& rmvIDSet.containsKey(idName)) {
-					p = p + (double) rmvIDSet.get(idName);
-				}
+			/*
+			 * while (idikey.hasNext()) { String idName = idikey.next(); if
+			 * (hashMapRuleToTypes.get(ruleName).indexOf(idName) >= 0 &&
+			 * rmvIDSet.containsKey(idName)) { p = p + (double)
+			 * rmvIDSet.get(idName); } }
+			 */
+			ArrayList<String> IDs = hashMapRuleToTypes.get(ruleName);
+			double sum_p = 0;
+			for (int i = 0; i < IDs.size(); i++) {
+				String s = IDs.get(i).toString();
+				double currentP = rmvIDSet.get(s);
+				sum_p += currentP;
+
 			}
-			if (p == 0 || p == 1) {
-				System.out.println("ERROR!  " + ruleName
-						+ " p is 0 or 1,error!");
-			}
+
+			/*
+			 * if (p == 0 || p == 1) { System.out.println("ERROR!  " + ruleName
+			 * + " p is 0 or 1,error!"); }
+			 */
 			if (p > 1 || p < 0) {
 				System.out.println("ERROR!  " + ruleName
 						+ " p is not in 1~0 range,error!");
 			}
-			rmvRuleSet.put(ruleName, w(p));// p!=0 or 1
+			// rmvRuleSet.put(ruleName, w(p));// p!=0 or 1
+			rmvRuleSet.put(ruleName, w(sum_p));// p!=0 or 1
 		}
 	}
 
@@ -407,8 +487,9 @@ public class IDstrRecognition {
 	private static void union(String delRule) {
 		Iterator<String> iter = rmvIDSet.keySet().iterator();// IoT ID set
 
-		ArrayList<String> arrayList = new ArrayList<String>(); 
+		//ArrayList<String> arrayList = new ArrayList<String>(); 
 		ArrayList<String> arrayList_Rules;
+		HashSet<String> arrayList = new HashSet<String>();
 
 		while (iter.hasNext()) {
 			String ID_key = (String) iter.next();
@@ -430,7 +511,7 @@ public class IDstrRecognition {
 		while (iterator.hasNext()) {
 			String Rule_key = iterator.next();
 
-			if (arrayList.indexOf(Rule_key) == -1) { 
+			if (!arrayList.contains((String)Rule_key)) { 
 				// rmvRuleSet.remove(Rule_key);
 				iterator.remove();
 			}
@@ -439,17 +520,21 @@ public class IDstrRecognition {
 	}
 
 	public static void testAndTestID() throws IOException {
+		long timeRuleMatchBegin = System.currentTimeMillis();
 		HashMap<String, String> testHashMap = new HashMap<String, String>();
 		testHashMap = RecoDao.test();
 		Iterator<String> iterator1 = testHashMap.keySet().iterator();
 		while (iterator1.hasNext()) {
+			timeRuleMatchBegin = System.currentTimeMillis();
 			Object testID = iterator1.next();
 			String test = testHashMap.get(testID);
 			int i = 0;
+			
 			// just for test, added by dgq
 			if (test.equals("10100")) {
 				i = 0;
-			}
+			}			
+			
 			ArrayList<String> s = hashMapTypeToRules.get(testID);
 			String resFlag = "OK";
 			String res = "";
@@ -483,10 +568,43 @@ public class IDstrRecognition {
 				File f1 = new File("e://DebugResultOKID.txt");
 				BufferedWriter output1 = new BufferedWriter(new FileWriter(f1,
 						true));
-				output1.append(testID.toString());
+				output1.append(testID.toString()+":  " + test);
 				output1.append("\n");
 				output1.flush();
 				output1.close();
+				
+				////////////////added by dgq, on 2014-05-06//////////////////////////////////////////////////////////////
+				/*
+				IDstrRecognition.readDao(0);
+				HashMap<String, Double> typeProbability = IDstrRecognition.IoTIDRecognizeAlg(test);
+				Iterator iterator_IDPro = typeProbability.keySet().iterator();
+				
+				//added by dgq, on 2014-05-06
+				File outfile1 = new File("e://Collision.txt");
+				BufferedWriter outputfiles1 = new BufferedWriter(new FileWriter(outfile1, true));
+				outputfiles1.append(testID.toString()+" <=> ");
+				outputfiles1.flush();
+				outputfiles1.close();
+				
+				while (iterator_IDPro.hasNext()) {
+					String key_IDstd = iterator_IDPro.next().toString();
+					
+					//added by dgq, on 2014-05-06
+					File file = new File("e://Collision.txt");
+					BufferedWriter outputfile = new BufferedWriter(new FileWriter(file, true));
+					outputfile.append(key_IDstd);
+					outputfile.append("{]");
+					outputfile.flush();
+					outputfile.close();
+				}
+				//added by dgq, on 2014-05-06
+				File outfile = new File("e://Collision.txt");
+				BufferedWriter outputfiles = new BufferedWriter(new FileWriter(outfile, true));
+				outputfiles.append("\n");
+				outputfiles.flush();
+				outputfiles.close();
+				*/
+				//////////////////////////////////////////////////////////////////////////////
 			} else {
 				File f = new File("e://DebugResultERROR.txt");
 				BufferedWriter output = new BufferedWriter(new FileWriter(f,
@@ -500,11 +618,18 @@ public class IDstrRecognition {
 				File f1 = new File("e://DebugResultERRORID.txt");
 				BufferedWriter output1 = new BufferedWriter(new FileWriter(f1,
 						true));
-				output1.append(testID.toString());
+				output1.append(testID.toString()+":  " + test);
 				output1.append("\n");
 				output1.flush();
 				output1.close();
 			}
+			
+			long timeRuleMatchEnd = System.currentTimeMillis() - timeRuleMatchBegin;
+			File ftime = new File("e://IDrecognitionTime.txt");
+			BufferedWriter output1 = new BufferedWriter(new FileWriter(ftime,true));
+			output1.append(testID.toString() + ": " + String.valueOf(timeRuleMatchEnd) + "\n");
+			output1.flush();
+			output1.close();
 		}
 	}
 }

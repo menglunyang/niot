@@ -6709,7 +6709,7 @@ public class RuleFuncTest {
 		for (int i = 0; i < j1; i++) {
 			index2[i] = i;
 		}
-
+		/*
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.FlavorSubstance(IDstr1, j, index1, j), "OK");
 
@@ -6726,6 +6726,7 @@ public class RuleFuncTest {
 		System.out.print(i++);
 		UnitTestEqual(RuleFunction.FlavorSubstance(IDstr5, j1, index2, j1),
 				"OK");
+				*/
 	}
 
 	// 1176, JT/T 444-2001 运输工具实有数统计指标代码
