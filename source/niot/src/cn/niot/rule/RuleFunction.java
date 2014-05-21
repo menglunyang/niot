@@ -33,7 +33,7 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	public static String IoTIDLength(String IDstr, int LenID, String parameter,
 			int LenIndex) {
-		if (IDstr.equals("2110")) {
+		if (IDstr.equals("Q1C0345·2T28F16")) {
 			int ss = 0;
 			ss = ss + 1;
 		}
@@ -1366,8 +1366,7 @@ public class RuleFunction {
 				return ERR;
 			}
 			for (i = LenIndex - 2; i >= 0; i -= 2) {
-				even_sum += (IDstr[i] - 48); // ASCII����
-				// �ַ�'0'��Ӧ����30H,ʮ���ƾ���48
+				even_sum += (IDstr[i] - 48);
 			}
 
 			for (i = LenIndex - 3; i >= 0; i -= 2) {
@@ -2248,7 +2247,6 @@ public class RuleFunction {
 			int i;
 			for (i = 1; i < LenIndex; i++) {
 				if (i % 9 != 0) {
-					;
 					S1 = (int) (IDstr[Index[i]] - 48) * (i % 9);
 					S = S + S1;
 				} else {
@@ -2353,18 +2351,20 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		int index1 = Index[0];
+		// int index1 = Index[0];
 		try {
 			String code = "";
-			String regex = "[1-3][0-1]([0-9][0-9])+([0-9][0-9])+";
+			String regex = "([1-3][0-1]-)(([0-9][0-9]\\s*)+-){2}([0-9][0-9]\\s*)*";
 			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
-			if ((IDstr[index1] == '1') && (IDstr[Index[LenIndex - 1]] == '0')
-					&& (IDstr[Index[LenIndex - 2]] == '0') && ret) {
+			code = code.replace(" ", "");
+			code = code.replace("-", "");
+
+			if (code.length() >= 8 && ret) {
 				return OK;
 			} else
 				return ERR;
@@ -5758,13 +5758,11 @@ public class RuleFunction {
 				p = (s * 2) % 37;
 			}
 			int mod;
-			mod = 37 - (p % 36);
+			mod = 37 - (p % 36); // 11
 			if (mod == (int) IDstr[Index[16]]) {
 				return OK;
 			} else {
-
 				return ERR;
-
 			}
 		} catch (Exception e) {
 			return ERR;
@@ -5885,7 +5883,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 17) {
+			if (LenIndex != 16) {
 				return ERR;
 			}
 			int i, j;
@@ -5985,7 +5983,7 @@ public class RuleFunction {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
 			}
-			if (check == (IDstr[Index[8]])) {
+			if (check == (IDstr[8])) {
 				return OK;
 			} else {
 				return ERR;
@@ -10755,6 +10753,7 @@ public class RuleFunction {
 		}
 	}
 
+	// e.g 1000 /1010/1011/1020
 	public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -10766,7 +10765,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i + 5]));
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff9(code);
@@ -11381,7 +11380,7 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenID == 2) {
+		if (LenID == 15) {
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
 			if (index1 < 0 || index1 > 9 || index2 < 0 || index2 > 9)
@@ -11392,7 +11391,7 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		} else if (LenID == 3) {
+		} else if (LenID == 16) {
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[0]] - 48;
 			int index3 = (int) IDstr[Index[0]] - 48;
@@ -15369,6 +15368,8 @@ public class RuleFunction {
 			for (int i = 0; i < LenIndex; i++) {
 				indexNew[i] = Index[i];
 			}
+		} else {
+			indexNew = Index;
 		}
 		if (!checkInputParam(CODEstr, LenCODE, indexNew, LenIndex)) {
 			return ERR;

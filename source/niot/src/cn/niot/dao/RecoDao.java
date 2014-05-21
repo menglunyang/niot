@@ -2220,7 +2220,7 @@ public class RecoDao {
 			}
 			if (1 == rowcount) {
 				ret = true;
-				System.out.println("results=" + results.toString());
+				//System.out.println("results=" + results.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
