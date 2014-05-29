@@ -14,8 +14,6 @@ public class RuleFunction {
 	static int NO_LENGHT_LIMIT = -1;
 
 	public static void main(String[] args) {
-		// System.out.println("你好世界!");
-		// System.out.println("Hello World!");
 		char[] IDstr = new char[4];
 		IDstr[0] = '0';
 		IDstr[1] = '2';
@@ -26,8 +24,6 @@ public class RuleFunction {
 		index[1] = 1;
 		index[2] = 2;
 		index[3] = 3;
-		System.out
-				.println(First4CharsofAdminDivisionforCiga(IDstr, 4, index, 4));
 	}
 
 	// Function: represent a decimal integer whose value range is from 1 to 99
@@ -37,19 +33,39 @@ public class RuleFunction {
 	// LenIndex: the number of indexes
 	public static String IoTIDLength(String IDstr, int LenID, String parameter,
 			int LenIndex) {
-		// without length limit
+		if (IDstr.equals("Q1C0345·2T28F16")) {
+			int ss = 0;
+			ss = ss + 1;
+		}
 		boolean flag = false;
-		if (parameter.charAt(0) == '-') {// -1
+		if (parameter.charAt(0) == '-') {
 			return "OK";
+		}
+		String[] lengthRanges = parameter.split(",");
+		if (lengthRanges[lengthRanges.length - 1].equals("-1")) {// 处理正无穷
+			for (int i = 0; i < lengthRanges.length - 1; i++) {
+				String[] lengthMaxMin = lengthRanges[i].split("-");
+				if (lengthMaxMin.length == 1) {// 1个数
+					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
+						return OK;
+					}
+				} else {
+					if (IDstr.length() >= Integer.parseInt(lengthMaxMin[0])
+							&& IDstr.length() <= Integer
+									.parseInt(lengthMaxMin[1])) {
+						flag = true;
+					}
+				}
+			}
+			if (IDstr.length() >= Integer
+					.parseInt(lengthRanges[lengthRanges.length - 2]))
+				flag = true;
 		} else {
-			String[] lengthRanges = parameter.split(",");
 			for (int i = 0; i < lengthRanges.length; i++) {
 				String[] lengthMaxMin = lengthRanges[i].split("-");
 				if (lengthMaxMin.length == 1) {// 1个数
 					if (lengthMaxMin[0].equalsIgnoreCase(IDstr.length() + "")) {
 						return OK;
-					} else {
-						return ERR;
 					}
 				} else {
 					if (IDstr.length() >= Integer.parseInt(lengthMaxMin[0])
@@ -60,7 +76,6 @@ public class RuleFunction {
 				}
 			}
 		}
-
 		if (flag) {
 			return "OK";
 		} else {
@@ -120,7 +135,6 @@ public class RuleFunction {
 				return false;
 			}
 			for (int i = 0; i < LenIndex; i++) {
-
 				if (Index[i] == -1) {
 					hasSig = true;
 					break;
@@ -380,7 +394,6 @@ public class RuleFunction {
 					return OK;
 				}
 			}
-
 			if (IDstr[index1] == '9') {
 				if (IDstr[index2] == '9') {
 					return OK;
@@ -1336,8 +1349,7 @@ public class RuleFunction {
 				return ERR;
 			}
 			for (i = LenIndex - 2; i >= 0; i -= 2) {
-				even_sum += (IDstr[i] - 48); // ASCII����
-												// �ַ�'0'��Ӧ����30H,ʮ���ƾ���48
+				even_sum += (IDstr[i] - 48);
 			}
 
 			for (i = LenIndex - 3; i >= 0; i -= 2) {
@@ -1725,11 +1737,9 @@ public class RuleFunction {
 					* (Math.pow(2, LenIndex - i - 1) % 11);
 		}
 		String check;
-		System.out.println(sum);
 		int mod = (int) (11 - (sum % 11));
 		check = Integer.toString(mod % 10);
-		System.out.println(check);
-		System.out.println(mod);
+
 		if (check.equals(Integer.toString((int) IDstr[Index[j]] - 48))) {
 			return OK;
 		} else {
@@ -2058,7 +2068,7 @@ public class RuleFunction {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
 			}
-			System.out.println(check);
+
 			if (check == (IDstr[Index[b]])) {
 				return OK;
 			} else {
@@ -2172,7 +2182,6 @@ public class RuleFunction {
 			int e = 0;
 			e = b - 1;
 			for (j = 0; j < LenIndex - 1; j++) {
-				System.out.print((int) IDstr[Index[j]]);
 				if ((int) IDstr[Index[j]] < 10) {
 					nums[e] = (int) IDstr[Index[j]];
 					e--;
@@ -2189,7 +2198,6 @@ public class RuleFunction {
 				sum = sum + nums[f];
 			}
 
-			System.out.print(sum);
 			if (10 - sum % 10 == 10) {
 				check = 0;
 			} else {
@@ -2222,7 +2230,6 @@ public class RuleFunction {
 			int i;
 			for (i = 1; i < LenIndex; i++) {
 				if (i % 9 != 0) {
-					;
 					S1 = (int) (IDstr[Index[i]] - 48) * (i % 9);
 					S = S + S1;
 				} else {
@@ -2327,18 +2334,20 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		int index1 = Index[0];
+		// int index1 = Index[0];
 		try {
 			String code = "";
-			String regex = "[1-3][0-1]([0-9][0-9])+([0-9][0-9])+";
+			String regex = "([1-3][0-1]-)(([0-9][0-9]\\s*)+-){2}([0-9][0-9]\\s*)*";
 			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
-			if ((IDstr[index1] == '1') && (IDstr[Index[LenIndex - 1]] == '0')
-					&& (IDstr[Index[LenIndex - 2]] == '0') && ret) {
+			code = code.replace(" ", "");
+			code = code.replace("-", "");
+
+			if (code.length() >= 8 && ret) {
 				return OK;
 			} else
 				return ERR;
@@ -2399,7 +2408,7 @@ public class RuleFunction {
 				return ERR;
 			}
 			if (IDstr[1] == '9') {
-				if (!(Index[0] == '0' || Index[0] == '1' || Index[0] == '2')) {
+				if (!(IDstr[Index[0]] == '0' || IDstr[Index[0]] == '1' || IDstr[Index[0]] == '2')) {
 					return ERR;
 				}
 			}
@@ -2744,7 +2753,6 @@ public class RuleFunction {
 			for (int i = 0; i < 2; i++) {
 				s = s.concat(String.valueOf(IDstr[Index[i]]));
 			}
-			System.out.println("s=" + s);
 			if (s.equals("00") || s.equals("01") || s.equals("10")
 					|| s.equals("11") || s.equals("12") || s.equals("30")
 					|| s.equals("31") || s.equals("32") || s.equals("44")
@@ -2896,100 +2904,6 @@ public class RuleFunction {
 
 	}
 
-	// 399——消防信息代码57部分 消防供水设施种类
-	// IDstr: ID string
-	// LenID: the number of characters in the ID string
-	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes
-	// Creator: fdl
-	// public static String FireInfowatersupply(char[] IDstr, int LenID, int[]
-	// Index,
-	// int LenIndex){
-	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-	// return ERR;
-	// }
-	// if (LenIndex != 2) {
-	// return ERR;
-	// }
-	// try{
-	// String code = "";
-	// for(int i=0;i<2;i++){
-	// code=code.concat(String.valueOf(IDstr[i]));
-	// }
-	// RecoDao recoDao = new RecoDao();
-	// boolean ret = recoDao.getFireInfomation399(code);
-	// if (ret) {
-	// return OK;
-	// } else
-	// return ERR;
-	// }catch (Exception e) {
-	// return ERR;
-	// }
-	//
-	// }
-
-	// 403——消防信息代码53部分社会宣传教育活动
-	// IDstr: ID string
-	// LenID: the number of characters in the ID string
-	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes
-	// Creator: fdl
-	// public static String FireInfocamp(char[] IDstr, int LenID, int[] Index,
-	// int LenIndex){
-	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-	// return ERR;
-	// }
-	// if (LenIndex != 2) {
-	// return ERR;
-	// }
-	// try{
-	// String code = "";
-	// for(int i=0;i<2;i++){
-	// code=code.concat(String.valueOf(IDstr[i]));
-	// }
-	// RecoDao recoDao = new RecoDao();
-	// boolean ret = recoDao.getFireInfomation403(code);
-	// if (ret) {
-	// return OK;
-	// } else
-	// return ERR;
-	// }catch (Exception e) {
-	// return ERR;
-	// }
-	//
-	// }
-
-	// 409——消防信息代码48部分：消防训练考核代码
-	// IDstr: ID string
-	// LenID: the number of characters in the ID string
-	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes
-	// Creator: fdl
-	// public static String FireInfotainass(char[] IDstr, int LenID, int[]
-	// Index,
-	// int LenIndex){
-	// if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-	// return ERR;
-	// }
-	// if (LenIndex != 2) {
-	// return ERR;
-	// }
-	// try{
-	// String code = "";
-	// for(int i=0;i<2;i++){
-	// code=code.concat(String.valueOf(IDstr[i]));
-	// }
-	// RecoDao recoDao = new RecoDao();
-	// boolean ret = recoDao.getFireInfomation409(code);
-	// if (ret) {
-	// return OK;
-	// } else
-	// return ERR;
-	// }catch (Exception e) {
-	// return ERR;
-	// }
-	//		
-	// }
 	// Function: represent a decimal integer whose value range is from 1 to 399
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
@@ -3012,7 +2926,7 @@ public class RuleFunction {
 					&& (IDstr[index3] == '0')) {
 				return ERR;
 			}
-			if ((IDstr[index1] < '3') || (IDstr[index1] > '9')) {
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '3')) {
 				return ERR;
 			}
 			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
@@ -3049,24 +2963,15 @@ public class RuleFunction {
 				id1 = id1.concat(String.valueOf(IDstr[Index[i]]));
 			}
 
-			System.out.println("str id1=" + id1);
-
 			for (int i = 13; i < 15; i++) {
 				id2 = id2.concat(String.valueOf(IDstr[Index[i]]));
 			}
 
-			System.out.println("str id2=" + id2);
-
 			double input = Double.parseDouble(id1);
 			double output = Double.parseDouble(id2);
-
-			System.out.println("int input=" + input);
-			System.out.println("int output=" + output);
-
 			if ((98 - (input * 100) % 97) == output) {
 				return OK;
 			}
-
 			return ERR;
 		} catch (Exception e) {
 			return ERR;
@@ -3081,16 +2986,17 @@ public class RuleFunction {
 	// creator:fdl
 	public static String tabaccoC(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			return ERR;
-		}
-		if (LenIndex != 3) {
-			return ERR;
-		}
 		try {
 			String code = "";
-			for (int i = 0; i < 3; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPrefixoftabaccoC(code);
@@ -3365,7 +3271,6 @@ public class RuleFunction {
 			if (LenIndex != 13) {
 				return ERR;
 			}
-			String id1 = "";
 			int sum = 0;
 			int sum1 = 0;// 偶数序号位上的数值和
 			int sum2 = 0;// 奇数序号位上的数值和
@@ -3376,22 +3281,18 @@ public class RuleFunction {
 				if (i % 2 == 1) {
 					sum1 = sum1 + (IDstr[i]);
 					sum1 = sum1 - 48;// 字符转化为整形
-					System.out.println((int) IDstr[i]);
 				}
 			}
-			System.out.println("sum1=" + sum1);
+
 			sum1 = sum1 * 3;
 			for (int i = 0; i < 11; i++) {
 				if (i % 2 == 0) {
 					sum2 += IDstr[i];
 					sum2 = sum2 - 48;// 字符转化为整形
-					System.out.println(IDstr[i]);
 				}
 			}
 
-			System.out.println("sum2=" + sum2);
 			sum = sum1 + sum2;
-			System.out.println("sum=" + sum);
 			dd = sum / 10;
 			dd += 1;
 			dd = dd * 10;
@@ -3401,7 +3302,7 @@ public class RuleFunction {
 					return OK;
 				}
 			}
-			System.out.println("��֤��λ=" + code);
+
 			if (code == (int) IDstr[12] - 48) {
 				return OK;
 			}
@@ -3580,15 +3481,11 @@ public class RuleFunction {
 			for (int i = 0; i < 14; i++) {
 				s[i] = p[i] + a[14 - i];
 				p[i + 1] = s[i] * r;
-				System.out.println("s[i]=" + s[i]);
-				System.out.println("p[i]=" + p[i]);
 			}
 
 			if ((p[14] + a[0]) % 36 == 1 || (p[14] + a[0]) % 37 == 1) {
 				return OK;
 			}
-			System.out.println("(p[14]+a[0])%36=" + (p[14] + a[0]) % 36);
-			System.out.println("(p[14]+a[0])%37=" + (p[14] + a[0]) % 37);
 			return ERR;
 
 		} catch (Exception e) {
@@ -3619,7 +3516,6 @@ public class RuleFunction {
 			}
 			sum = 5 * a[1] + 4 * a[2] + 3 * a[3] + 2 * a[4];
 
-			System.out.println("sum=" + sum);
 			if (sum % 11 == a[5]) {
 				return OK;
 			}
@@ -4284,15 +4180,15 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex == 1) {
-				int i1 = (int) IDstr[Index[0]] - 48;
+			if (LenID == 1) {
+				int i1 = (int) IDstr[0] - 48;
 				if (i1 >= 0 && i1 <= 8) {
 					return OK;
 				}
 			}
-			if (LenIndex == 2) {
-				int i1 = (int) IDstr[Index[0]] - 48;
-				int i2 = (int) IDstr[Index[1]] - 48;
+			if (LenID == 2) {
+				int i1 = (int) IDstr[0] - 48;
+				int i2 = (int) IDstr[1] - 48;
 				int i = 10 * i1 + 1 * i2;
 				if (i == 1 || i == 2) {
 					return OK;
@@ -4304,11 +4200,11 @@ public class RuleFunction {
 					return OK;
 				}
 			}
-			if (LenIndex == 3) {
-				int i1 = (int) IDstr[Index[0]] - 48;
-				int i2 = (int) IDstr[Index[1]] - 48;
+			if (LenID == 3) {
+				int i1 = (int) IDstr[0] - 48;
+				int i2 = (int) IDstr[1] - 48;
 				int i = 10 * i1 + 1 * i2;
-				int i3 = (int) IDstr[Index[2]] - 48;
+				int i3 = (int) IDstr[2] - 48;
 				if (i == 1 || i == 2) {
 					if (i3 >= 0 && i3 <= 8) {
 						return OK;
@@ -4325,9 +4221,9 @@ public class RuleFunction {
 					}
 				}
 			}
-			if (LenIndex == 4) {
-				int i1 = (int) IDstr[Index[0]] - 48;
-				int i2 = (int) IDstr[Index[1]] - 48;
+			if (LenID == 4) {
+				int i1 = (int) IDstr[0] - 48;
+				int i2 = (int) IDstr[1] - 48;
 				int i = 10 * i1 + 1 * i2;
 				int flat = 0;
 				if (i == 1 || i == 2) {
@@ -4340,8 +4236,8 @@ public class RuleFunction {
 					flat = 0;
 				}
 				if (flat == 0) {
-					int i3 = (int) IDstr[Index[2]] - 48;
-					int i4 = (int) IDstr[Index[3]] - 48;
+					int i3 = (int) IDstr[2] - 48;
+					int i4 = (int) IDstr[3] - 48;
 					i = 10 * i3 + 1 * i4;
 					if (i == 1 || i == 2 || i == 0) {
 						return OK;
@@ -4807,7 +4703,7 @@ public class RuleFunction {
 			if (i >= 499 && i <= 500 || i == 9900) {
 				return OK;
 			}
-			if (ii >= 6 && i <= 18) {
+			if (ii >= 6 && ii <= 18) {
 				return OK;
 			}
 			return ERR;
@@ -5751,13 +5647,11 @@ public class RuleFunction {
 				p = (s * 2) % 37;
 			}
 			int mod;
-			mod = 37 - (p % 36);
+			mod = 37 - (p % 36); // 11
 			if (mod == (int) IDstr[Index[16]]) {
 				return OK;
 			} else {
-
 				return ERR;
-
 			}
 		} catch (Exception e) {
 			return ERR;
@@ -5878,7 +5772,7 @@ public class RuleFunction {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
-			if (LenIndex != 17) {
+			if (LenIndex != 16) {
 				return ERR;
 			}
 			int i, j;
@@ -5978,7 +5872,7 @@ public class RuleFunction {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
 			}
-			if (check == (IDstr[Index[8]])) {
+			if (check == (IDstr[8])) {
 				return OK;
 			} else {
 				return ERR;
@@ -6040,6 +5934,9 @@ public class RuleFunction {
 	// Creator:许江峰639
 	public static String ZeroTO14(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int index1 = (int) IDstr[Index[0]] - 48;
 		int index2 = (int) IDstr[Index[1]] - 48;
 		int Xx = 14;
@@ -6060,6 +5957,9 @@ public class RuleFunction {
 	// Creator:许江峰654
 	public static String ZeroTO24(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int index1 = (int) IDstr[Index[0]] - 48;
 		int index2 = (int) IDstr[Index[1]] - 48;
 		int Xx = 24;
@@ -6078,6 +5978,9 @@ public class RuleFunction {
 	// Creator:许江峰654
 	public static String ZeroTO60(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int index1 = (int) IDstr[Index[0]] - 48;
 		int index2 = (int) IDstr[Index[1]] - 48;
 		int Xx = 60;
@@ -6122,6 +6025,9 @@ public class RuleFunction {
 	// Creator:许江峰657
 	public static String Xiaoxie(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int j;
 		int i;
 		String out = null;
@@ -6149,7 +6055,7 @@ public class RuleFunction {
 		}
 		for (i = 0; i < LenIndex; i++) {
 			j = jie[i];
-			String bb = Integer.toString(j); // 输入数值ֵ
+			String bb = Integer.toString(j); // 输入数值
 			if (bb.length() == 1) {
 				bb = "0000" + bb;
 			}
@@ -6179,6 +6085,9 @@ public class RuleFunction {
 	// Creator:许江峰657
 	public static String Daxie(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int j;
 		int i;
 		String out = null;
@@ -6236,6 +6145,9 @@ public class RuleFunction {
 	// Creator:许江峰657
 	public static String Hunpai(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int j;
 		int i;
 		String out = null;
@@ -6305,7 +6217,9 @@ public class RuleFunction {
 	// Creator:许江峰657
 	public static String figure(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int j = 0;
 		int i, ii = 0;
 		int leg;
@@ -6492,7 +6406,9 @@ public class RuleFunction {
 	// Creator:许江峰664
 	public static String Check4BitBarCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int i;
 		int[] newIDstr = new int[LenIndex];
 		for (i = 0; i < LenIndex; i++) {
@@ -6547,7 +6463,9 @@ public class RuleFunction {
 	// Creator:许江峰664
 	public static String Check5BitBarCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
 		int i;
 		int[] newIDstr = new int[LenIndex];
 		for (i = 0; i < LenIndex; i++) {
@@ -6608,55 +6526,6 @@ public class RuleFunction {
 		} else {
 			return ERR;
 		}
-	}
-
-	// Function:681
-	// IDstr: ID string
-	// LenID: the number of characters in the ID string
-	// Index: the list of corresponding indexes regarding to this algorithm
-	// LenIndex: the number of indexes
-	// Creator:许江峰
-	public static String FlavorSubstance(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
-		try {
-			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-				return ERR;
-			}
-			int i = ((int) IDstr[Index[1]] - 48) * 100
-					+ ((int) IDstr[Index[2]] - 48) * 10
-					+ ((int) IDstr[Index[3]] - 48);
-			if (LenIndex == 4) {
-				if ((int) IDstr[Index[0]] == 'N') {
-					if (i > 0 && i < 378) {
-						return OK;
-					}
-				} else {
-					return ERR;
-				}
-			} else if (LenIndex == 5) {
-				int j = ((int) IDstr[Index[1]] - 48) * 1000
-						+ ((int) IDstr[Index[2]] - 48) * 100
-						+ ((int) IDstr[Index[3]] - 48) * 10
-						+ ((int) IDstr[Index[4]] - 48);
-
-				if ((int) IDstr[Index[0]] == 'I') {
-					if (j > 1000 && j < 2087) {
-						return OK;
-					}
-				} else if ((int) IDstr[Index[0]] == 'A') {
-					if (j > 3000 && j < 3212) {
-						return OK;
-					}
-				} else {
-					return ERR;
-				}
-			}
-
-		} catch (Exception e) {
-			return ERR;
-		}
-		return ERR;
-
 	}
 
 	// Function: 757 表59 值 10 11 12 20
@@ -7328,7 +7197,6 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-
 		}
 	}
 
@@ -7362,7 +7230,6 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-
 		} else
 			return ERR;
 	}
@@ -8676,7 +8543,7 @@ public class RuleFunction {
 			if (LenIndex != 8) {
 				return ERR;
 			}
-			for (int i = Index[0]; i < LenID; i++) {
+			for (int i = Index[0]; i < LenIndex; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
@@ -9680,20 +9547,14 @@ public class RuleFunction {
 				if (s[i] % 10 == 0) {
 					p[i + 1] = 20;
 				}
-				// System.out.println("s[i]=" + s[i]);
-				// System.out.println("p[i]=" + p[i]);
 			}
 			p[14] = (s[13] % 10) * 2;
-			// System.out.println("p[14]=" + p[14]);
 			s[14] = p[14] % 11 + a[0];
-			// System.out.println("s[14]=" + s[14]);
 
 			if (s[14] % 10 == 1) {
 				return OK;
 			}
-
 			return ERR;
-
 		} catch (Exception e) {
 			return ERR;
 		}
@@ -9747,7 +9608,7 @@ public class RuleFunction {
 			for (int i = 0; i < 4; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
-			System.out.println(code);
+
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariffMa282(code);
 			if (ret) {
@@ -9858,7 +9719,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// 287-——服装分类和代码表 查表数据库
@@ -9889,7 +9749,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// 288-——服装名字分类代码编制方法 查表数据库
@@ -10221,7 +10080,7 @@ public class RuleFunction {
 			String code = "";
 
 			for (int i = 4; i < LenID; i++) {
-				code = code.concat(String.valueOf(IDstr[Index[i]]));
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPassengerCarCode(code);
@@ -10261,9 +10120,15 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
+	// Function: MH/T 0018-1999
+	// IDstr: ID string
+	// LenID: 标识编码
+	// Index: 标识编码的长度
+	// LenIndex: 调用正则的的索引位置 长度为0-8
+	// 判断0-8位是不是在数据库中存在
+	// Creator:wt
 	public static String CivilAviation(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -10279,7 +10144,6 @@ public class RuleFunction {
 		for (int i = 0; i < 9; i++) {
 			code = code.concat(String.valueOf(IDstr[Index[i]]));
 		}
-		System.out.println(code);
 		try {
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getCivilAviation(code);
@@ -10290,7 +10154,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10319,7 +10182,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10349,7 +10211,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10358,7 +10219,6 @@ public class RuleFunction {
 	 * list of corresponding indexes regarding to this algorithm LenIndex: the
 	 * number of indexes creator:wt
 	 */
-
 	public static String RoadTransportation5(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -10372,7 +10232,6 @@ public class RuleFunction {
 					+ String.valueOf(IDstr[Index[1]])
 					+ String.valueOf(IDstr[Index[2]]);
 			RecoDao recoDao = new RecoDao();
-			System.out.println(code);
 			boolean ret = recoDao.getRoadTransportation5(code);
 			if (ret) {
 				return OK;
@@ -10381,7 +10240,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10412,7 +10270,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10442,7 +10299,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10473,7 +10329,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10503,7 +10358,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10533,7 +10387,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10567,7 +10420,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10597,7 +10449,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10627,7 +10478,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10658,7 +10508,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10688,7 +10537,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10709,7 +10557,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getHighwayTransportation4c3(code);
@@ -10720,7 +10568,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff3(char[] IDstr, int LenID, int[] Index,
@@ -10734,7 +10581,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortTariff3(code);
@@ -10745,7 +10592,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff4(char[] IDstr, int LenID, int[] Index,
@@ -10770,9 +10616,9 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
+	// e.g 1000 /1010/1011/1020
 	public static String PortTariff9(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
@@ -10795,7 +10641,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff25(char[] IDstr, int LenID, int[] Index,
@@ -10820,7 +10665,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff26(char[] IDstr, int LenID, int[] Index,
@@ -10845,7 +10689,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String PortTariff10(char[] IDstr, int LenID, int[] Index,
@@ -10870,7 +10713,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10901,7 +10743,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10932,7 +10773,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -10993,7 +10833,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11024,7 +10863,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11055,7 +10893,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11086,7 +10923,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11117,7 +10953,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11148,7 +10983,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11179,7 +11013,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11210,7 +11043,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	public static String HighwayTransportation4c6(char[] IDstr, int LenID,
@@ -11235,7 +11067,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11267,7 +11098,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11296,7 +11126,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11327,7 +11156,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	/*
@@ -11353,7 +11181,6 @@ public class RuleFunction {
 			return OK;
 		} else
 			return ERR;
-
 	}
 
 	/*
@@ -11393,8 +11220,7 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (IDstr[0] != 'M')
-			return ERR;
+
 		String code = new String(IDstr);
 		try {
 			RecoDao recoDao = new RecoDao();
@@ -11419,7 +11245,7 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenID == 2) {
+		if (LenID == 15) {
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[1]] - 48;
 			if (index1 < 0 || index1 > 9 || index2 < 0 || index2 > 9)
@@ -11430,7 +11256,7 @@ public class RuleFunction {
 				return OK;
 			} else
 				return ERR;
-		} else if (LenID == 3) {
+		} else if (LenID == 16) {
 			int index1 = (int) IDstr[Index[0]] - 48;
 			int index2 = (int) IDstr[Index[0]] - 48;
 			int index3 = (int) IDstr[Index[0]] - 48;
@@ -11584,7 +11410,6 @@ public class RuleFunction {
 		} catch (Exception e) {
 			return ERR;
 		}
-
 	}
 
 	// Function: 山脉山峰名称代码（297）
@@ -11595,16 +11420,19 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String MountainRangeAndPeakName(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-		if (LenIndex != 8) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 8) {
+				return ERR;
+			}
+
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMountainRangeAndPeakName(code);
 			if (ret) {
@@ -11624,16 +11452,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String IntellectualProperty(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-		if (LenIndex != 6) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
+
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getIntellectualProperty(code);
 			if (ret) {
@@ -11653,17 +11483,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String ClassificationOfCivilAviation(char[] CODEstr,
 			int LenCODE, int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 4) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 4) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getClassificationOfCivilAviation(code);
 			if (ret) {
@@ -11683,17 +11514,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String NormalAndShortCycleSpeciality(char[] CODEstr,
 			int LenCODE, int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 6) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getNormalAndShortCycleSpeciality(code);
 			if (ret) {
@@ -11713,17 +11545,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String MaintenanceSystemPTwo(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 14) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 14) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getMaintenanceSystemPTwo(code);
 			if (ret) {
@@ -11743,17 +11576,19 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String CountryRegionCode1(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 2) {
-			return ERR;
-		}
-		String code = new String(IDstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
+
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getCountryRegionCode1(code);
 			if (ret) {
@@ -11773,17 +11608,19 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String ElectricPower(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 6) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 6) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
+
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getElectricPower(code);
 			if (ret) {
@@ -11803,17 +11640,19 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String PowerGrid(char[] CODEstr, int LenCODE, int[] Index,
 			int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 3) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
+
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPowerGrid(code);
 			if (ret) {
@@ -11833,17 +11672,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String ElectricPowerIndustry(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 2) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getElectricPowerIndustry(code);
 			if (ret) {
@@ -11863,17 +11703,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String ElectricPowerGeography(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 7) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 7) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getElectricPowerGeography(code);
 			if (ret) {
@@ -11893,17 +11734,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String VoltageClass(char[] CODEstr, int LenCODE, int[] Index,
 			int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 7) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 7) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getVoltageClass(code);
 			if (ret) {
@@ -11921,25 +11763,26 @@ public class RuleFunction {
 	// Index: 调用正则的的索引位置
 	// LenIndex:
 	// Creator:YZC
-	public static String PowerGoodsP2(char[] CODEstr, int LenCODE, int[] Index,
+	public static String PowerGoodsP2(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 3) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+			String code = "";
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPowerGoodsP2(code);
 			if (ret) {
 				return OK;
-			} else
+			} else {
 				return ERR;
+			}
 		} catch (Exception e) {
 			return ERR;
 		}
@@ -12155,8 +11998,8 @@ public class RuleFunction {
 			int LenIndex) {
 		try {
 			String code = "";
-			String regex = "[0-9]*";
-			int prefix = 6;
+			String regex = "[A-Z]{0,4}[0-9]*";
+			int prefix = 2;
 
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
@@ -12937,17 +12780,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String ProvinceAdminCode(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 2) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 2) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getProvinceAdminCode(code);
 			if (ret) {
@@ -12967,17 +12811,19 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String AdminDivision1(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 9) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 9) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
+
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getAdminDivision1(code);
 			if (ret) {
@@ -13010,7 +12856,7 @@ public class RuleFunction {
 			for (int i = Index[0]; i < LenID; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
-			System.out.print(code);
+
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
@@ -13255,12 +13101,13 @@ public class RuleFunction {
 	public static String NationalTrunkHighway(char[] IDstr, int LenID,
 			int[] Index, int LenIndex) {
 		try {
-			String code = "";
-			String regex = "[0-9,w][0-9,w][1-9]{0,2}";
-			int prefix = 2;
+
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
+			String code = "";
+			String regex = "[0-9,w]{0,1}[0-9,w]{0,1}[1-9]{0,1}";
+			int prefix = 2;
 			if (Index[0] != prefix) {
 				return ERR;
 			}
@@ -13279,77 +13126,88 @@ public class RuleFunction {
 		}
 	}
 
+	// Function:)
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置,6,-1
+	// LenIndex:2
+	// creator: wt
 	public static String ParamCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		int index1 = (int) IDstr[Index[0]] - 48;
-		int index2 = (int) IDstr[Index[1]] - 48;
-		if (index1 < 0 || index1 > 9 || index2 < 0 || index2 > 9)
-			return ERR;
-		char c = IDstr[Index[2]];
-		int index3 = IDstr[Index[2]] - 48;
-		if (LenIndex == 4) {
-			if (c == '.') {
-				int index4 = (int) IDstr[Index[3]] - 48;
-				if (index4 >= 0 && index4 <= 9)
-					return OK;
-			}
-			if (index3 >= 0 && index3 <= 9) {
-				int index4 = (int) IDstr[Index[3]] - 48;
-				if (index4 > 0 && index4 < 9)
-					return OK;
-			}
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 5) {
-			if (c == '.') {
-				int index4 = (int) IDstr[Index[3]] - 48;
-				int index5 = (int) IDstr[Index[4]] - 48;
-				if (index4 >= 0 && index4 <= 9 && index5 > 0 && index5 < 9)
-					return OK;
-			}
-		}
-		return ERR;
+		int len = code.length();
 
+		if (len == 4) {
+			String regex = "[0-9]{2}\\.[0-9]";
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else if (len == 5) {
+			String regex = "[0-9]{2}\\.[0-9]{2}";
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		}
+
+		return ERR;
 	}
 
+	// DL/T_700.1-1999_51
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度
+	// Index: 调用正则的的索引位置,6,-1
+	// LenIndex:2
+	// creator: wt
 	public static String ParamCode6(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		int index1 = (int) IDstr[Index[0]] - 48;
-		int index2 = (int) IDstr[Index[1]] - 48;
-		if (index1 < 0 || index1 > 9 || index2 < 0 || index2 > 9)
-			return ERR;
-		char c = IDstr[Index[2]];
-		int index3 = IDstr[Index[2]] - 48;
-		if (LenIndex == 6) {
-			if (c == '.') {
-				int index4 = (int) IDstr[Index[3]] - 48;
-				int index5 = (int) IDstr[Index[4]] - 48;
-				int index6 = (int) IDstr[Index[5]] - 48;
-				if (index4 >= 0 && index4 <= 9 && index5 >= 0 && index5 <= 9
-						&& index6 >= 0 && index6 <= 9)
-					return OK;
-			}
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
+		int len = code.length();
+		if (len == 6) {
 
-		if (LenIndex == 7) {
-			if (index3 >= 0 && index3 <= 9) {
-				char d = IDstr[Index[3]];
-				if (d == '.') {
-					int index5 = (int) IDstr[Index[4]] - 48;
-					int index6 = (int) IDstr[Index[5]] - 48;
-					int index7 = (int) IDstr[Index[6]] - 48;
-					if (index5 >= 0 && index5 <= 9 && index6 >= 0
-							&& index6 <= 9 && index7 >= 0 && index7 <= 9)
-						return OK;
-				}
-			}
+			String regex = "[0-9]{2}\\.[0-9]{3}";
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else if (len == 7) {
+			String regex = "[0-9]{3}\\.[0-9]{3}";
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
 		}
 		return ERR;
+
 	}
 
 	/*
@@ -13385,40 +13243,54 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		switch (LenIndex) {
-		case 1: {
-			int index = (int) IDstr[Index[0]] - 48;
-			if (index >= 0 && index <= 9)
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		int len = code.length();
+
+		if (len == 1) {
+			String regex2 = "[0-9]";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
 				return OK;
-			break;
-		}
-		case 2: {
-			int index1 = (int) IDstr[Index[0]] - 48;
-			int index2 = (int) IDstr[Index[1]] - 48;
-			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
+
+			} else
+				return ERR;
+		} else if (len == 2) {
+			String regex2 = "[0-9]{2}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
 				return OK;
-			break;
-		}
-		case 3: {
-			for (int i = 0; i < 3; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			return OK;
-		}
-		case 6: {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			return OK;
-		}
-		default:
+
+			} else
+				return ERR;
+		} else if (len == 3) {
+			String regex2 = "[0-9]{3}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else if (len == 6) {
+			String regex2 = "[0-9]{6}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else
 			return ERR;
-		}
-		return ERR;
 	}
 
 	/*
@@ -13429,24 +13301,41 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			return OK;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			return OK;
-		}
-		return ERR;
+		int len = code.length();
 
+		if (len == 6) {
+			String regex2 = "[0-9]{6}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else if (len == 7) {
+			String regex2 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else
+			return ERR;
+		/*
+		 * if (LenIndex == 6) { for (int i = 0; i < 6; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; }
+		 * return OK; } if (LenIndex == 7) { for (int i = 0; i < 7; i++) { int
+		 * index = (int) IDstr[Index[i]] - 48; if (index < 0 || index > 9)
+		 * return ERR; } return OK; } return ERR;
+		 */
 	}
 
 	/*
@@ -13457,32 +13346,45 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 4) {
-			for (int i = 0; i < 4; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			return OK;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			return OK;
-		}
-		if (LenIndex == 9) {
-			for (int i = 0; i < 9; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			return OK;
-		}
-		return ERR;
+		int len = code.length();
 
+		if (len == 4) {
+			String regex1 = "[0-9]{4}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else if (len == 8) {
+			String regex2 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+
+				return OK;
+
+			} else
+				return ERR;
+		} else if (len == 9) {
+			String regex2 = "[0-9]{9}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -13493,30 +13395,37 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		int len = code.length();
+		if (len == 6) {
+			String regex1 = "[0-9]{6}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '2')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '2')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		return ERR;
-
+		} else if (len == 8) {
+			String regex2 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -13527,30 +13436,37 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 10) {
-			for (int i = 0; i < 10; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '1')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		int len = code.length();
+		if (len == 10) {
+			String regex1 = "[0-9]{10}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '1')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '2')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		return ERR;
-
+		} else if (len == 8) {
+			String regex2 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '2')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -13561,30 +13477,38 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 4) {
-			for (int i = 0; i < 4; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] == '3'))
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '2')
-				return OK;
-			else
-				return ERR;
-		}
-		return ERR;
 
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		int len = code.length();
+		if (len == 4) {
+			String regex1 = "[0-9]{4}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] == '3'))
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 5) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '2')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -13596,52 +13520,80 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 3) {
-			for (int i = 0; i < 3; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '6')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 4) {
-			for (int i = 0; i < 4; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		int len = code.length();
+		if (len == 3) {
+			String regex1 = "[0-9]{3}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '6')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0'
-					&& (IDstr[1] == '1' || IDstr[1] == '2' || IDstr[1] == '5' || IDstr[1] == '7'))
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 4) {
+			String regex1 = "[0-9]{4}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0'
+						&& (IDstr[1] == '1' || IDstr[1] == '2'
+								|| IDstr[1] == '5' || IDstr[1] == '7'))
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '3')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 9) {
-			for (int i = 0; i < 9; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 5) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '3')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '4')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		return ERR;
+		} else if (len == 9) {
+			String regex2 = "[0-9]{9}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '4')
+					return OK;
+				else
+					return ERR;
+
+			} else
+				return ERR;
+		} else
+			return ERR;
+		/*
+		 * if (LenIndex == 3) { for (int i = 0; i < 3; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && IDstr[1] == '6') return OK; else return ERR; } if
+		 * (LenIndex == 4) { for (int i = 0; i < 4; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] == '2' || IDstr[1]
+		 * == '5' || IDstr[1] == '7')) return OK; else return ERR; } if
+		 * (LenIndex == 5) { for (int i = 0; i < 5; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && IDstr[1] == '3') return OK; else return ERR; } if
+		 * (LenIndex == 9) { for (int i = 0; i < 9; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && IDstr[1] == '4') return OK; else return ERR; }
+		 * return ERR;
+		 */
 
 	}
 
@@ -13655,87 +13607,101 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 2) {
-			for (int i = 0; i < 2; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '5')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		int len2 = IDstr.length;
+		for (int i = Index[0]; i < len2; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 3) {
-			for (int i = 0; i < 3; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		int len = code.length();
+		if (len == 2) {
+			String regex1 = "[0-9]{2}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '5')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '6')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 4) {
-			for (int i = 0; i < 4; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 3) {
+			String regex1 = "[0-9]{3}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '6')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
-					&& IDstr[1] == '0' || IDstr[0] == '1' && IDstr[1] == '1'
-					|| IDstr[0] == '1' && IDstr[1] == '2')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 4) {
+			String regex1 = "[0-9]{4}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
+						&& IDstr[1] == '0' || IDstr[0] == '1'
+						&& IDstr[1] == '1' || IDstr[0] == '1'
+						&& IDstr[1] == '2')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && (IDstr[1] == '7' || IDstr[1] == '8'))
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 5) {
+			String regex1 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && (IDstr[1] == '7' || IDstr[1] == '8'))
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '2')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 6) {
+			String regex1 = "[0-9]{6}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '2')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] == '3'))
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 7) {
+			String regex1 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] == '3'))
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '4')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		return ERR;
-
+		} else if (len == 8) {
+			String regex1 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '4')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -13747,42 +13713,65 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 4) {
-			for (int i = 0; i < 4; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0'
-					&& (IDstr[1] == '1' || IDstr[1] == '2' || IDstr[1] == '5' || IDstr[1] == '7'))
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		int len = code.length();
+		if (len == 4) {
+			String regex1 = "[0-9]{4}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0'
+						&& (IDstr[1] == '1' || IDstr[1] == '2'
+								|| IDstr[1] == '5' || IDstr[1] == '7'))
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '3')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 9) {
-			for (int i = 0; i < 9; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 5) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '3')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '4')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		return ERR;
+		} else if (len == 9) {
+			String regex2 = "[0-9]{9}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '4')
+					return OK;
+				else
+					return ERR;
 
+			} else
+				return ERR;
+		} else
+			return ERR;
+		/*
+		 * if (LenIndex == 4) { for (int i = 0; i < 4; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] == '2' || IDstr[1]
+		 * == '5' || IDstr[1] == '7')) return OK; else return ERR; } if
+		 * (LenIndex == 5) { for (int i = 0; i < 5; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && IDstr[1] == '3') return OK; else return ERR; } if
+		 * (LenIndex == 9) { for (int i = 0; i < 9; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && IDstr[1] == '4') return OK; else return ERR; }
+		 * return ERR;
+		 */
 	}
 
 	/*
@@ -13794,41 +13783,63 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 3) {
-			for (int i = 0; i < 3; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '5')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		int len = code.length();
+		if (len == 3) {
+			String regex1 = "[0-9]{3}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '5')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && (IDstr[1] == '3' || IDstr[1] == '4'))
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 7) {
+			String regex2 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && (IDstr[1] == '3' || IDstr[1] == '4'))
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] == '2'))
-				return OK;
-			else
-				return ERR;
-		}
-		return ERR;
 
+			} else
+				return ERR;
+		} else if (len == 8) {
+			String regex2 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] == '2'))
+					return OK;
+				else
+					return ERR;
+
+			} else
+				return ERR;
+		} else
+			return ERR;
+		/*
+		 * if (LenIndex == 3) { for (int i = 0; i < 3; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && IDstr[1] == '5') return OK; else return ERR; } if
+		 * (LenIndex == 7) { for (int i = 0; i < 7; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '0' && (IDstr[1] == '3' || IDstr[1] == '4')) return OK;
+		 * else return ERR; } if (LenIndex == 8) { for (int i = 0; i < 8; i++) {
+		 * int index = (int) IDstr[Index[i]] - 48; if (index < 0 || index > 9)
+		 * return ERR; } if (IDstr[0] == '0' && (IDstr[1] == '1' || IDstr[1] ==
+		 * '2')) return OK; else return ERR; } return ERR;
+		 */
 	}
 
 	/*
@@ -13841,86 +13852,100 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
-					&& IDstr[1] == '0' || IDstr[0] == '1' && IDstr[1] == '1')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '8')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && (IDstr[1] == '3' || IDstr[1] == '6'))
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && (IDstr[1] == '5' || IDstr[1] == '7'))
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 9) {
-			for (int i = 0; i < 9; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '4')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 10) {
-			for (int i = 0; i < 10; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '2')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 11) {
-			for (int i = 0; i < 11; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '1')
-				return OK;
-			else
-				return ERR;
-		}
-		return ERR;
+		int len = code.length();
 
+		if (len == 5) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
+						&& IDstr[1] == '0' || IDstr[0] == '1'
+						&& IDstr[1] == '1')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 6) {
+			String regex2 = "[0-9]{6}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '8')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 7) {
+			String regex2 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && (IDstr[1] == '3' || IDstr[1] == '6'))
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 8) {
+			String regex2 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && (IDstr[1] == '5' || IDstr[1] == '7'))
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 9) {
+			String regex2 = "[0-9]{9}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '4')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 10) {
+			String regex2 = "[0-9]{10}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '2')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 11) {
+			String regex2 = "[0-9]{11}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '1')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -13931,30 +13956,50 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '3' || IDstr[0] == '4')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1' || IDstr[0] == '2')
-				return OK;
-			else
-				return ERR;
-		}
-		return ERR;
+		int len = code.length();
 
+		if (len == 5) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '3' || IDstr[0] == '4')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 6) {
+			String regex2 = "[0-9]{6}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1' || IDstr[0] == '2')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		}
+
+		else
+			return ERR;
+
+		/*
+		 * if (LenIndex == 5) { for (int i = 0; i < 5; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '3' || IDstr[0] == '4') return OK; else return ERR; } if
+		 * (LenIndex == 6) { for (int i = 0; i < 6; i++) { int index = (int)
+		 * IDstr[Index[i]] - 48; if (index < 0 || index > 9) return ERR; } if
+		 * (IDstr[0] == '1' || IDstr[0] == '2') return OK; else return ERR; }
+		 * return ERR;
+		 */
 	}
 
 	/*
@@ -13965,41 +14010,54 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '3')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 9) {
-			for (int i = 0; i < 9; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 10) {
-			for (int i = 0; i < 10; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '2')
-				return OK;
-			else
-				return ERR;
-		}
-		return ERR;
 
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		int len = code.length();
+
+		if (len == 7) {
+			String regex2 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '3')
+					return OK;
+				else
+					return ERR;
+
+			} else
+				return ERR;
+		} else if (len == 9) {
+			String regex2 = "[0-9]{9}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1')
+					return OK;
+				else
+					return ERR;
+
+			} else
+				return ERR;
+		} else if (len == 10) {
+			String regex2 = "[0-9]{10}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '2')
+					return OK;
+				else
+					return ERR;
+
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -14010,31 +14068,38 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1' || IDstr[0] == '2')
-				return OK;
-			else
-				return ERR;
+		String code = "";
+		int len2 = IDstr.length;
+		for (int i = Index[0]; i < len2; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
 		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		int len = code.length();
+		if (len == 6) {
+			String regex1 = "[0-9]{6}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1' || IDstr[0] == '2')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '3')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-
-		return ERR;
-
+		} else if (len == 7) {
+			String regex2 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '3') {
+					return OK;
+				} else
+					return ERR;
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -14047,70 +14112,86 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
+		String code = "";
+		for (int i = Index[0]; i < IDstr.length; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		int len = code.length();
+		// System.out.println("aaa:"+IDstr[0]+"b:"+len);
+		if (len == 3) {
+			String regex1 = "[0-9]{3}";
+			Pattern pa = Pattern.compile(regex1);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1' && IDstr[1] == '5')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 5) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
+						&& IDstr[1] == '0' || IDstr[0] == '1'
+						&& IDstr[1] == '1' || IDstr[0] == '1'
+						&& IDstr[1] == '3')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 6) {
+			String regex2 = "[0-9]{5}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '1' || IDstr[0] == '0'
+						&& IDstr[1] == '6' || IDstr[0] == '1'
+						&& IDstr[1] == '2')
+					return OK;
+				else
+					return ERR;
+			} else
+				return ERR;
+		} else if (len == 7) {
+			String regex2 = "[0-9]{7}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '0' && IDstr[1] == '2' || IDstr[0] == '0'
+						&& IDstr[1] == '3' || IDstr[0] == '0'
+						&& IDstr[1] == '4' || IDstr[0] == '0'
+						&& IDstr[1] == '5' || IDstr[0] == '0'
+						&& IDstr[1] == '7' || IDstr[0] == '0'
+						&& IDstr[1] == '8')
+					return OK;
+				else
+					return ERR;
 
-		if (LenIndex == 3) {
-			for (int i = 0; i < 3; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1' && IDstr[1] == '5')
-				return OK;
-			else
+			} else
 				return ERR;
-		}
-		if (LenIndex == 5) {
-			for (int i = 0; i < 5; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
+		} else if (len == 8) {
+			String regex2 = "[0-9]{8}";
+			Pattern pa = Pattern.compile(regex2);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				if (IDstr[0] == '1' && IDstr[1] == '4')
+					return OK;
+				else
 					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '9' || IDstr[0] == '1'
-					&& IDstr[1] == '0' || IDstr[0] == '1' && IDstr[1] == '1'
-					|| IDstr[0] == '1' && IDstr[1] == '3')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 6) {
-			for (int i = 0; i < 6; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '1' || IDstr[0] == '0'
-					&& IDstr[1] == '6' || IDstr[0] == '1' && IDstr[1] == '2')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 7) {
-			for (int i = 0; i < 7; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '0' && IDstr[1] == '2' || IDstr[0] == '0'
-					&& IDstr[1] == '3' || IDstr[0] == '0' && IDstr[1] == '4'
-					|| IDstr[0] == '0' && IDstr[1] == '5' || IDstr[0] == '0'
-					&& IDstr[1] == '7' || IDstr[0] == '0' && IDstr[1] == '8')
-				return OK;
-			else
-				return ERR;
-		}
-		if (LenIndex == 8) {
-			for (int i = 0; i < 8; i++) {
-				int index = (int) IDstr[Index[i]] - 48;
-				if (index < 0 || index > 9)
-					return ERR;
-			}
-			if (IDstr[0] == '1' && IDstr[1] == '4')
-				return OK;
-			else
-				return ERR;
-		}
-		return ERR;
 
+			} else
+				return ERR;
+		} else
+			return ERR;
 	}
 
 	/*
@@ -14548,7 +14629,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 2; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortNuclearelements(code);
@@ -14571,20 +14652,18 @@ public class RuleFunction {
 			if (LenIndex != 6) {
 				return ERR;
 			}
-			String aa = null;
-			aa = AdminDivision(IDstr, LenIndex, Index, LenIndex);
-			if (aa.equals(OK)) {
-				return OK;
-			}
 			String code = "";
 			for (int i = 0; i < 6; i++) {
 				code = code.concat(String.valueOf(IDstr[i]));
 			}
-			System.out.println("code=" + code);
-			if (code.equals("100000")) {
+			RecoDao recoDao = new RecoDao();
+			boolean ret = recoDao.getAdminDivisionID(code);
+			if (ret) {
 				return OK;
-			}
-			return ERR;
+			} else if (code.equals("100000")) {
+				return OK;
+			} else
+				return ERR;
 		} catch (Exception e) {
 			return ERR;
 		}
@@ -14594,13 +14673,13 @@ public class RuleFunction {
 	// IDstr: 标识编码
 	// LenID: 标识编码的长度
 	// Index: (13,-1),从13位以后的字符串进行正则表达式验证
-	// LenIndex: 长度必为2
+	// LenIndex: 长度至少为1位，最多2位
 	// creator: fdl
 	public static String CarProduct(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
 			String code = "";
-			String regex = "[1-6,9][0-4,6,9,A-N,P-Y]*";
+			String regex = "[1-6,9][0-4,6,9,A-N,P-Y]{0,1}";
 			int prefix = 13;
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
@@ -14642,7 +14721,7 @@ public class RuleFunction {
 		try {
 			String code = "";
 			for (int i = 0; i < 4; i++) {
-				code = code.concat(String.valueOf(IDstr[i]));
+				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortCarProductCompnent(code);
@@ -14674,7 +14753,6 @@ public class RuleFunction {
 			int[] newIDstr = new int[LenIndex];
 			for (i = 0; i < LenIndex - 4; i++) {
 				newIDstr[i] = (int) (IDstr[Index[i + 4]] - 48);
-				System.out.println("newIDstr[i]=" + newIDstr[i]);
 			}
 
 			int sum = 0;
@@ -14734,41 +14812,32 @@ public class RuleFunction {
 	public static String ProductCode(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
-			// System.out.println("aaa");
 			return ERR;
 		}
 		if (IDstr[0] == '2') {
 			String code = "";
 			String regex = "[0-9]*";
-			for (int i = 0; i < LenIndex; i++) {
-				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			for (int i = Index[0]; i < IDstr.length; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			Pattern pa = Pattern.compile(regex);
 			Matcher ma = pa.matcher(code);
 			boolean ret = ma.matches();
 			if (ret) {
-				// System.out.println("ccc");
 				return OK;
 			} else
-				// System.out.println("匹配第二条规则");
 				return ERR;
 		}
 		if (IDstr[0] == '1') {
-			if (LenIndex != 4) {
-				// System.out.println("fff");
-				return ERR;
-			}
 			String code = "";
-			for (int i = 0; i < LenIndex; i++) {
-				code = code.concat(String.valueOf(IDstr[Index[i]]));
+			for (int i = Index[0]; i < IDstr.length; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
 			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getPortProductCode(code);
 			if (ret) {
-				// System.out.println("匹配第一条规则");
 				return OK;
 			} else {
-				// System.out.println("eee");
 				return ERR;
 			}
 		}
@@ -14795,7 +14864,6 @@ public class RuleFunction {
 			int index3 = (int) IDstr[Index[2]] - 48;
 			int index4 = (int) IDstr[Index[3]] - 48;
 			int code = index1 * 1000 + index2 * 100 + index3 * 10 + index4;
-			System.out.println("code=" + code);
 			if ((code >= 0 && code <= 11) || code == 999)
 				return OK;
 			else if ((code >= 1000 && code <= 1010) || code == 1999)
@@ -14887,7 +14955,7 @@ public class RuleFunction {
 			if (LenIndex != 10) {
 				return ERR;
 			}
-			for (int i = 0; i < LenID; i++) {
+			for (int i = 0; i < LenIndex; i++) {
 				int check = (int) IDstr[Index[i]] - 48;
 				if (check >= 0 && check <= 9)
 					;
@@ -14906,9 +14974,9 @@ public class RuleFunction {
 			int i8 = (int) IDstr[Index[8]] - 48;
 			int i9 = (int) IDstr[Index[9]] - 48;
 
-			long i = 1000000000 * i0 + 100000000 * i1 + 10000000 * i2 + 1000000
-					* i3 + 100000 * i4 + i5 * 10000 + i6 * 1000 + i7 * 100 + i8
-					* 10 + i9;
+			long i = 1000000000l * i0 + 100000000l * i1 + 10000000l * i2
+					+ 1000000 * i3 + 100000l * i4 + i5 * 10000l + i6 * 1000l
+					+ i7 * 100l + i8 * 10l + i9;
 			if (i >= 1 && i <= 9999999999l) {
 				return OK;
 			}
@@ -15047,7 +15115,6 @@ public class RuleFunction {
 				String jieshou = Integer.toString(mod);
 				check = jieshou.charAt(0);
 			}
-			System.out.println(check);
 			if (check == (IDstr[Index[b]])) {
 
 				return OK;
@@ -15170,14 +15237,23 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String BarCodeForCommodity(char[] CODEstr, int LenCODE,
 			int[] Index, int LenIndex) {
-
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+		int[] indexNew = null;
+		if (LenIndex > LenCODE) {
+			LenIndex = LenCODE;
+			indexNew = new int[LenIndex];
+			for (int i = 0; i < LenIndex; i++) {
+				indexNew[i] = Index[i];
+			}
+		} else {
+			indexNew = Index;
+		}
+		if (!checkInputParam(CODEstr, LenCODE, indexNew, LenIndex)) {
 			return ERR;
 		}
 
 		String code = "";
 		for (int i = 0; i < LenIndex; i++) {
-			code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			code = code.concat(String.valueOf(CODEstr[indexNew[i]]));
 		}
 		try {
 			RecoDao recoDao = new RecoDao();
@@ -15639,16 +15715,18 @@ public class RuleFunction {
 	// Creator:YZC
 	public static String GassCompany(char[] CODEstr, int LenCODE, int[] Index,
 			int LenIndex) {
-		if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
-			return ERR;
-		}
-
-		if (LenIndex != 7) {
-			return ERR;
-		}
-		String code = new String(CODEstr);
-
 		try {
+			String code = "";
+			if (!checkInputParam(CODEstr, LenCODE, Index, LenIndex)) {
+				return ERR;
+			}
+
+			if (LenIndex != 7) {
+				return ERR;
+			}
+			for (int i = 0; i < LenIndex; i++) {
+				code = code.concat(String.valueOf(CODEstr[Index[i]]));
+			}
 			RecoDao recoDao = new RecoDao();
 			boolean ret = recoDao.getGassCompany(code);
 			if (ret) {
@@ -15774,8 +15852,7 @@ public class RuleFunction {
 			boolean ret = recoDao.getPortForestTypes(code);
 			if (ret) {
 				return OK;
-			} else
-				System.out.println("ERR000");
+			}
 			return ERR;
 		} catch (Exception e) {
 			return ERR;
@@ -15938,13 +16015,7 @@ public class RuleFunction {
 			}
 			BigInteger src = new BigInteger(code, 2);
 			int traCode = src.intValue();
-			if (traCode >= 48 && traCode <= 57)
-				return OK;
-			else if (traCode >= 65 && traCode <= 90)
-				return OK;
-			else if (traCode >= 97 && traCode <= 122)
-				return OK;
-			else if (traCode == 32)
+			if (traCode >= 0 && traCode <= 63)
 				return OK;
 			else
 				return ERR;
@@ -16190,7 +16261,7 @@ public class RuleFunction {
 			int LenIndex) {
 		try {
 			String code = "";
-			String regex = "[0-9,A-Z]{2,3}";
+			String regex = "[0-9,A-Z]{1,3}";
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
 			}
@@ -16227,7 +16298,7 @@ public class RuleFunction {
 
 			String code = "";
 			int LEN_PREFIX = 7; // relate to the first 7 number of a given phone
-								// number
+			// number
 			for (int i = 0; i < LEN_PREFIX; i++) {
 				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
@@ -16260,7 +16331,7 @@ public class RuleFunction {
 
 			String code = "";
 			int LEN_PREFIX = 2; // relate to the first 2 characters of a given
-								// normal vehicle number
+			// normal vehicle number
 			for (int i = 0; i < LEN_PREFIX; i++) {
 				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
@@ -16293,7 +16364,7 @@ public class RuleFunction {
 
 			String code = "";
 			int LEN_PREFIX = 2; // relate to the first 2 characters of a army
-								// vehicle number
+			// vehicle number
 			for (int i = 0; i < LEN_PREFIX; i++) {
 				code = code.concat(String.valueOf(IDstr[Index[i]]));
 			}
@@ -16329,7 +16400,7 @@ public class RuleFunction {
 					return OK;
 				}
 			} else if (6 == LenID) {// the length of the army vehicle number is
-									// 6
+				// 6
 				return OK;
 			}
 
@@ -16405,49 +16476,47 @@ public class RuleFunction {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 1) {
-			int index = (int) IDstr[Index[0]] - 48;
-			if (index >= 0 && index <= 9)
-				return OK;
-			else
-				return ERR;
-		} else if (LenIndex == 2) {
-			int index1 = (int) IDstr[Index[0]] - 48;
-			int index2 = (int) IDstr[Index[1]] - 48;
-			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9)
-				return OK;
-			else
-				return ERR;
-		} else if (LenIndex == 3) {
-			int index1 = (int) IDstr[Index[0]] - 48;
-			int index2 = (int) IDstr[Index[1]] - 48;
-			int index3 = (int) IDstr[Index[2]] - 48;
-			if (index1 >= 0 && index1 <= 9 && index2 >= 0 && index2 <= 9
-					&& index3 >= 0 && index3 <= 9)
-				return OK;
-			else
-				return ERR;
+		String code = "";
+
+		for (int i = Index[0]; i < LenID; i++) {
+			code = code.concat(String.valueOf(IDstr[i]));
+		}
+		String regex = "[0-9]{1,3}";
+		Pattern pa = Pattern.compile(regex);
+		Matcher ma = pa.matcher(code);
+		boolean ret = ma.matches();
+		if (ret) {
+			return OK;
 		} else
 			return ERR;
-
 	}
 
-	/*
-	 * A-E,or null wt
-	 */
+	// JT/T_307.5-1999 校验最后一位是A-E或者空
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator:wt
 	public static String A2EOrNull(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 			return ERR;
 		}
-		if (LenIndex == 0)
+
+		int len = LenID - 1 - Index[0];
+		if (len == 0)
 			return OK;
-		if (LenIndex == 1) {
-			if (IDstr[Index[0]] == 'A' || IDstr[Index[1]] == 'B'
-					|| IDstr[Index[2]] == 'C' || IDstr[Index[3]] == 'D'
-					|| IDstr[Index[4]] == 'E')
+		if (len == 1) {
+			String code = String.valueOf(IDstr[LenID - 1]);
+
+			String regex = "[A-E]";
+
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
 				return OK;
-			else
+			} else
 				return ERR;
 		}
 		return ERR;
@@ -16477,7 +16546,7 @@ public class RuleFunction {
 		}
 	}
 
-	// specail character hyphen - zll
+	// special character hyphen - zll
 	public static String Hyphen(char[] IDstr, int LenID, int[] Index,
 			int LenIndex) {
 		try {
@@ -16544,10 +16613,9 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// specail character dot - zll
-	public static String Dot(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String Dot(char[] IDstr, int LenID, int[] Index, int LenIndex) {
 		try {
 			String code = "";
 			String regex = "[.]";
@@ -16567,14 +16635,14 @@ public class RuleFunction {
 			return ERR;
 		}
 	}
-	
+
 	// Function: 判断2个字节是不是属于(01-08,90)
 	// IDstr: ID string
 	// LenID: the number of characters in the ID string
 	// Index: the list of corresponding indexes regarding to this algorithm
 	// LenIndex: the number of indexes, 固定为2
-	public static String TwobytleCode08and90(char[] IDstr, int LenID, int[] Index,
-			int LenIndex) {
+	public static String TwobytleCode08and90(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
 		try {
 			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
 				return ERR;
@@ -16593,6 +16661,149 @@ public class RuleFunction {
 			}
 
 			if (IDstr[index1] == '9' && IDstr[index2] == '0') {
+				return OK;
+			}
+			return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// DL/T_700.1-1999_53(910) yzc
+	public static String Powergoodsuncertainly(char[] IDstr, int LenID,
+			int[] Index, int LenIndex) {
+		try {
+			String code = "";
+			String regex = "[0-9]{0,2}";
+			int prefix = 7;
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (Index[0] != prefix) {
+				return ERR;
+			}
+			for (int i = Index[0]; i < LenID; i++) {
+				code = code.concat(String.valueOf(IDstr[i]));
+			}
+			Pattern pa = Pattern.compile(regex);
+			Matcher ma = pa.matcher(code);
+			boolean ret = ma.matches();
+			if (ret) {
+				return OK;
+			} else
+				return ERR;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// wt
+	public static String OneTO10No99(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		if (LenIndex != 2) {
+			return ERR;
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int Xx = 10;
+		int i = 10 * index1 + index2;
+
+		if (i >= 01 && i <= Xx) {
+			return OK;
+		} else
+			return ERR;
+	}
+
+	// 全国主要产品分类代码 fdl
+	// Function: represent a decimal integer whose value range is from 010 to
+	// 999
+	// IDstr: ID string
+	// LenID: the number of characters in the ID string
+	// Index: the list of corresponding indexes regarding to this algorithm
+	// LenIndex: the number of indexes
+	// Creator: fdl
+	public static String ProductThreeByte(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 3) {
+				return ERR;
+			}
+
+			int index1 = Index[0];
+			int index2 = Index[1];
+			int index3 = Index[2];
+
+			if ((IDstr[index1] == '0') && (IDstr[index2] == '0')) {
+				return ERR;
+			}
+
+			if ((IDstr[index1] < '0') || (IDstr[index1] > '9')) {
+				return ERR;
+			}
+
+			if ((IDstr[index2] < '0') || (IDstr[index2] > '9')) {
+				return ERR;
+			}
+			if ((IDstr[index3] < '0') || (IDstr[index3] > '9')) {
+				return ERR;
+			}
+
+			return OK;
+		} catch (Exception e) {
+			return ERR;
+		}
+	}
+
+	// GB/T_28422-2012_6 wt
+	public static String ClassOfCardCode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+			return ERR;
+		}
+		String code = "";
+
+		for (int i = 0; i < 2; i++) {
+			code = code.concat(String.valueOf(IDstr[Index[i]]));
+		}
+		int index1 = (int) IDstr[Index[0]] - 48;
+		int index2 = (int) IDstr[Index[1]] - 48;
+		int num = 10 * index1 + index2;
+		if (num >= 21 && num <= 53 && index1 >= 0 && index2 <= 9 && index2 >= 0
+				&& index2 <= 9)
+			return OK;
+		else
+			return ERR;
+	}
+
+	// 188城市市政综合监管信息系统
+	// IDstr: 标识编码
+	// LenID: 标识编码的长度 12位
+	// Index: 调用验证算法的索引位置
+	// LenIndex:12
+	// creator:fdl
+	public static String Bigcode(char[] IDstr, int LenID, int[] Index,
+			int LenIndex) {
+		try {
+			if (!checkInputParam(IDstr, LenID, Index, LenIndex)) {
+				return ERR;
+			}
+			if (LenIndex != 2) {
+				return ERR;
+			}
+
+			if ((IDstr[Index[0]] == '0' && IDstr[Index[1]] == '1')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '2')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '3')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '4')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '5')
+					|| (IDstr[Index[0]] == '0' && IDstr[Index[1]] == '6')
+					|| (IDstr[Index[0]] == '2' && IDstr[Index[1]] == '1')) {
 				return OK;
 			}
 			return ERR;
